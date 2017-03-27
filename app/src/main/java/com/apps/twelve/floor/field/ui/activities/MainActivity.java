@@ -4,12 +4,13 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import com.apps.twelve.floor.field.R;
+import com.apps.twelve.floor.field.mvp.views.IMainActivityView;
+import com.apps.twelve.floor.field.ui.base.BaseActivity;
 import com.apps.twelve.floor.field.utils.Permissions;
 import com.tapadoo.alerter.Alerter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity implements IMainActivityView {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

@@ -1,6 +1,5 @@
 package com.apps.twelve.floor.field.mvp.presenters.activities;
 
-import android.os.Handler;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
 import com.apps.twelve.floor.field.mvp.presenters.interfaces.IMainActivityPresenter;
@@ -15,15 +14,9 @@ import com.arellomobile.mvp.InjectViewState;
 
   @Override protected void onFirstViewAttach() {
     super.onFirstViewAttach();
-    delaySplash();
   }
 
   @Override protected void inject() {
     App.getAppComponent().inject(this);
-  }
-
-  @Override public void delaySplash() {
-    final Handler handler = new Handler();
-    handler.postDelayed(() -> getViewState().afterSplash(), 1000);
   }
 }
