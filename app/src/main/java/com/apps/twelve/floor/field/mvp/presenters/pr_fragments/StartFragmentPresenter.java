@@ -3,7 +3,6 @@ package com.apps.twelve.floor.field.mvp.presenters.pr_fragments;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.DataManager;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
-import com.apps.twelve.floor.field.mvp.presenters.pr_interfaces.IStartFragmentPreasenter;
 import com.apps.twelve.floor.field.mvp.views.IStartFragmentView;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
 import com.arellomobile.mvp.InjectViewState;
@@ -15,8 +14,7 @@ import timber.log.Timber;
  * Created by John on 28.03.2017.
  */
 
-@InjectViewState public class StartFragmentPresenter extends BasePresenter<IStartFragmentView>
-    implements IStartFragmentPreasenter {
+@InjectViewState public class StartFragmentPresenter extends BasePresenter<IStartFragmentView> {
 
   @Inject DataManager dataManager;
 
@@ -29,8 +27,7 @@ import timber.log.Timber;
     fetchFields();
   }
 
-  @Override public void fetchFields() {
-
+  private void fetchFields() {
     Subscription subscription = dataManager.fetchFields()
         .compose(ThreadSchedulers.applySchedulers())
         .subscribe(
