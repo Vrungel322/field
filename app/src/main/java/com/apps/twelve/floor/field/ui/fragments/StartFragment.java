@@ -16,6 +16,7 @@ import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.StartFragmentPres
 import com.apps.twelve.floor.field.mvp.views.IStartFragmentView;
 import com.apps.twelve.floor.field.ui.adapters.FieldsAdapter;
 import com.apps.twelve.floor.field.ui.base.BaseFragment;
+import com.apps.twelve.floor.field.utils.ItemClickSupport;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import java.util.List;
 
@@ -50,10 +51,13 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     fieldsRecyclerView.setAdapter(fieldsAdapter);
     fieldsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     fieldsRecyclerView.setItemAnimator(new DefaultItemAnimator());
+    // TODO: open field editing screen
+    ItemClickSupport.addTo(fieldsRecyclerView)
+        .setOnItemClickListener((recyclerView, position, v) -> showToastMessage("" + position));
   }
 
   @OnClick(R.id.add_new_field_fab) public void onViewClicked() {
-    // TODO: select field adding variant, and open field selection screen
+    // TODO: select field adding type, and open field selection screen
   }
 
   @Override public void showFields(List<Field> fields) {

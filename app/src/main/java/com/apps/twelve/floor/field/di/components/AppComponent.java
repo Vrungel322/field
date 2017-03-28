@@ -4,6 +4,7 @@ import com.apps.twelve.floor.field.di.modules.AppModule;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
 import com.apps.twelve.floor.field.mvp.presenters.pr_activities.MainActivityPresenter;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.StartFragmentPresenter;
+import com.apps.twelve.floor.field.ui.adapters.FieldsAdapter;
 import com.apps.twelve.floor.field.ui.base.BaseActivity;
 import com.apps.twelve.floor.field.ui.base.BaseFragment;
 import dagger.Component;
@@ -26,4 +27,5 @@ import dagger.Component;
   void inject(BaseFragment fragment);
 
   //adapters
+  void inject(FieldsAdapter adapter);
 }
