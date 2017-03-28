@@ -2,7 +2,7 @@ package com.apps.twelve.floor.field.ui.fragments;
 
 import android.os.Bundle;
 import com.apps.twelve.floor.field.R;
-import com.apps.twelve.floor.field.mvp.presenters.fragments.StartFragmentPresenter;
+import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.StartFragmentPresenter;
 import com.apps.twelve.floor.field.mvp.views.IStartFragmentView;
 import com.apps.twelve.floor.field.ui.base.BaseFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;

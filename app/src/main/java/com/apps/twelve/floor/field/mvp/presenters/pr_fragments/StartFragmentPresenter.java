@@ -1,8 +1,8 @@
-package com.apps.twelve.floor.field.mvp.presenters.fragments;
+package com.apps.twelve.floor.field.mvp.presenters.pr_fragments;
 
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
-import com.apps.twelve.floor.field.mvp.presenters.interfaces.IStartFragmentPreasenter;
+import com.apps.twelve.floor.field.mvp.presenters.pr_interfaces.IStartFragmentPreasenter;
 import com.apps.twelve.floor.field.mvp.views.IStartFragmentView;
 import com.arellomobile.mvp.InjectViewState;
 

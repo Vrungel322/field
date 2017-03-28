@@ -2,8 +2,8 @@ package com.apps.twelve.floor.field.di.components;
 
 import com.apps.twelve.floor.field.di.modules.AppModule;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
-import com.apps.twelve.floor.field.mvp.presenters.activities.MainActivityPresenter;
-import com.apps.twelve.floor.field.mvp.presenters.fragments.StartFragmentPresenter;
+import com.apps.twelve.floor.field.mvp.presenters.pr_activities.MainActivityPresenter;
+import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.StartFragmentPresenter;
 import com.apps.twelve.floor.field.ui.base.BaseActivity;
 import com.apps.twelve.floor.field.ui.base.BaseFragment;
 import dagger.Component;

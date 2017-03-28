@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import com.apps.twelve.floor.field.R;
-import com.apps.twelve.floor.field.mvp.presenters.activities.MainActivityPresenter;
+import com.apps.twelve.floor.field.mvp.presenters.pr_activities.MainActivityPresenter;
 import com.apps.twelve.floor.field.mvp.views.IMainActivityView;
 import com.apps.twelve.floor.field.ui.base.BaseActivity;
 import com.apps.twelve.floor.field.ui.fragments.StartFragment;
