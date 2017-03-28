@@ -5,4 +5,31 @@ package com.apps.twelve.floor.field.mvp.data.model;
  */
 
 public class Field {
+
+  private String name;
+  private float area;
+
+  public Field() {
+  }
+
+  public Field(String name, float area) {
+    this.name = name;
+    this.area = area;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public float getArea() {
+    return area;
+  }
+
+  public void setArea(float area) {
+    this.area = area;
+  }
 }

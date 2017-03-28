@@ -1,6 +1,10 @@
 package com.apps.twelve.floor.field.mvp.data;
 
+import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.apps.twelve.floor.field.mvp.data.remote.RestApi;
+import java.util.ArrayList;
+import java.util.List;
+import rx.Observable;
 
 /**
  * Created by John on 27.03.2017.
@@ -12,5 +16,16 @@ public class DataManager {
 
   public DataManager(RestApi restApi) {
     this.mRestApi = restApi;
+  }
+
+  public Observable<List<Field>> fetchFields() {
+    // TODO: add fetch from storIO
+
+    ArrayList<Field> dataList = new ArrayList<>();
+    for (int i = 0; i < 30; i++) {
+      dataList.add(new Field("Some field " + i, i * 100));
+    }
+
+    return Observable.just(dataList);
   }
 }

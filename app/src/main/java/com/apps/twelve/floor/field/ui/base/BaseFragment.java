@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import com.apps.twelve.floor.field.App;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import javax.inject.Inject;
@@ -21,6 +22,8 @@ public abstract class BaseFragment extends MvpAppCompatFragment {
 
   @Inject protected Context mContext;
   @Inject protected Navigator mNavigator;
+
+  Unbinder unbinder;
 
   private final int mLayoutId;
 
@@ -37,8 +40,13 @@ public abstract class BaseFragment extends MvpAppCompatFragment {
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     final View fragmentView = inflater.inflate(mLayoutId, container, false);
-    ButterKnife.bind(this, fragmentView);
+    unbinder = ButterKnife.bind(this, fragmentView);
     return fragmentView;
+  }
+
+  @Override public void onDestroyView() {
+    super.onDestroyView();
+    unbinder.unbind();
   }
 
   protected void showToastMessage(String message) {

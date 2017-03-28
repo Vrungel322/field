@@ -5,4 +5,5 @@ package com.apps.twelve.floor.field.mvp.presenters.pr_interfaces;
  */
 
 public interface IStartFragmentPreasenter {
+  void fetchFields();
 }

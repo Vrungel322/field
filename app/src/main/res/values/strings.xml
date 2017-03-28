@@ -6,4 +6,6 @@
   <string name="warning">Предупреждение</string>
   <string name="warning_permission">Для работы приложения необходимо разрешение определения места положения</string>
 
+  <string name="no_fields_data">Нет полей.\nДобавьте новое поле.</string>
+
 </resources>
