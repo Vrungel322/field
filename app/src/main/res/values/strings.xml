@@ -7,11 +7,11 @@
   <string name="warning">Предупреждение</string>
   <string name="warning_permission">Для работы приложения необходимо разрешение определения места положения</string>
 
-  <string name="no_fields_data">Нет полей.\nДобавьте новое поле.</string>
+  <string name="msg_no_fields_data">Нет полей.\nДобавьте новое поле.</string>
 
   <!-- Add filed type dialog -->
-  <string name="dialog_add_field_title">Выберите способ создания поля</string>
-  <string name="dialog_add_field_error">Не указан способ создания поля</string>
+  <string name="dialog_title_add_field">Выберите способ создания поля</string>
+  <string name="dialog_error_add_field">Не указан способ создания поля</string>
   <string-array name="dialog_field_add_types">
     <item>Точками на карте</item>
     <item>Обходом с GPS</item>

@@ -81,7 +81,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     String[] fieldAddTypes = getResources().getStringArray(R.array.dialog_field_add_types);
 
     mFieldAddTypeDialog =
-        DialogFactory.createAlertDialogBuilder(context, getString(R.string.dialog_add_field_title))
+        DialogFactory.createAlertDialogBuilder(context, getString(R.string.dialog_title_add_field))
             .setSingleChoiceItems(fieldAddTypes, mStartFragmentPresenter.getFieldTypePosition(),
                 (dialog, which) -> mStartFragmentPresenter.setFieldTypePosition(which))
             .setPositiveButton(R.string.dialog_action_ok, null)
@@ -96,7 +96,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     mFieldAddTypeDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(button -> {
       int which = mStartFragmentPresenter.getFieldTypePosition();
       if (which < 0) {
-        showToastMessage(R.string.dialog_add_field_error);
+        showToastMessage(R.string.dialog_error_add_field);
       } else {
         // TODO: open field selection screen (give it to mNavigator)
         showToastMessage("Add Field type: " + fieldAddTypes[which]);
