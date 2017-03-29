@@ -18,34 +18,33 @@ import java.util.List;
 
 public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewHolder> {
 
-  private ArrayList<Field> fieldsList = new ArrayList<>();
+  private ArrayList<Field> mFieldsList = new ArrayList<>();
 
   @Override public FieldViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view =
-        LayoutInflater.from(parent.getContext()).inflate(R.layout.filed_list_item, parent, false);
+        LayoutInflater.from(parent.getContext()).inflate(R.layout.item_filed_list, parent, false);
     return new FieldViewHolder(view);
   }
 
   @Override public void onBindViewHolder(FieldViewHolder holder, int position) {
-    Field field = fieldsList.get(position);
-    holder.nameText.setText(field.getName());
-    holder.areaText.setText(String.valueOf((int)field.getArea()));
+    Field field = mFieldsList.get(position);
+    holder.mNameText.setText(field.getName());
+    holder.mAreaText.setText(String.valueOf((int) field.getArea()));
   }
 
   @Override public int getItemCount() {
-    return fieldsList.size();
+    return mFieldsList.size();
   }
 
-  public void addAllFileds(List<Field> fields) {
-    fieldsList.clear();
-    fieldsList.addAll(fields);
+  public void addAllFields(List<Field> fields) {
+    mFieldsList.addAll(fields);
     notifyDataSetChanged();
   }
 
   public static class FieldViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.name_text) TextView nameText;
-    @BindView(R.id.area_text) TextView areaText;
+    @BindView(R.id.textViewName) TextView mNameText;
+    @BindView(R.id.textViewArea) TextView mAreaText;
 
     public FieldViewHolder(View itemView) {
       super(itemView);

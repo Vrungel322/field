@@ -13,5 +13,5 @@ import java.util.List;
 @StateStrategyType(AddToEndSingleStrategy.class) public interface IStartFragmentView
     extends MvpView {
 
-  @StateStrategyType(AddToEndSingleStrategy.class) public void showFields(List<Field> fields);
+  void showFields(List<Field> fields);
 }

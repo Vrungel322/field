@@ -16,7 +16,7 @@ import timber.log.Timber;
 
 @InjectViewState public class StartFragmentPresenter extends BasePresenter<IStartFragmentView> {
 
-  @Inject DataManager dataManager;
+  @Inject DataManager mDataManager;
 
   @Override protected void inject() {
     App.getAppComponent().inject(this);
@@ -28,12 +28,9 @@ import timber.log.Timber;
   }
 
   private void fetchFields() {
-    Subscription subscription = dataManager.fetchFields()
+    Subscription subscription = mDataManager.fetchFields()
         .compose(ThreadSchedulers.applySchedulers())
-        .subscribe(
-            fields -> {getViewState().showFields(fields);},
-            throwable -> {Timber.e(throwable);}
-            );
+        .subscribe(fields -> getViewState().showFields(fields), Timber::e);
 
     addToUnsubscription(subscription);
   }

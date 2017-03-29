@@ -28,10 +28,11 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
 
   @InjectPresenter StartFragmentPresenter mStartFragmentPresenter;
 
-  @BindView(R.id.fields_recycler_view) RecyclerView fieldsRecyclerView;
-  @BindView(R.id.no_data_text) TextView noDataText;
-  @BindView(R.id.add_new_field_fab) FloatingActionButton addNewFieldFab;
-  private FieldsAdapter fieldsAdapter;
+  @BindView(R.id.fields_recycler_view) RecyclerView mFieldsRecyclerView;
+  @BindView(R.id.no_data_text) TextView mNoDataText;
+  @BindView(R.id.add_new_field_fab) FloatingActionButton mAddNewFieldFab;
+
+  private FieldsAdapter mFieldsAdapter;
 
   public StartFragment() {
     super(R.layout.fragment_start);
@@ -47,12 +48,12 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    fieldsAdapter = new FieldsAdapter();
-    fieldsRecyclerView.setAdapter(fieldsAdapter);
-    fieldsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-    fieldsRecyclerView.setItemAnimator(new DefaultItemAnimator());
+    mFieldsAdapter = new FieldsAdapter();
+    mFieldsRecyclerView.setAdapter(mFieldsAdapter);
+    mFieldsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    mFieldsRecyclerView.setItemAnimator(new DefaultItemAnimator());
     // TODO: open field editing screen
-    ItemClickSupport.addTo(fieldsRecyclerView)
+    ItemClickSupport.addTo(mFieldsRecyclerView)
         .setOnItemClickListener((recyclerView, position, v) -> showToastMessage("" + position));
   }
 
@@ -61,7 +62,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
   }
 
   @Override public void showFields(List<Field> fields) {
-    noDataText.setVisibility(fields.size() > 0 ? View.GONE : View.VISIBLE);
-    fieldsAdapter.addAllFileds(fields);
+    mNoDataText.setVisibility(fields.size() > 0 ? View.GONE : View.VISIBLE);
+    mFieldsAdapter.addAllFields(fields);
   }
 }

@@ -20,12 +20,10 @@ public class DataManager {
 
   public Observable<List<Field>> fetchFields() {
     // TODO: add fetch from storIO
-
     ArrayList<Field> dataList = new ArrayList<>();
     for (int i = 0; i < 30; i++) {
-      dataList.add(new Field("Some field " + (i+1), (i+1) * 100));
+      dataList.add(new Field("Some field " + (i + 1), (i + 1) * 100));
     }
-
     return Observable.just(dataList);
   }
 }

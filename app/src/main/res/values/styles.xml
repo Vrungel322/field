@@ -12,18 +12,23 @@
   <style name="text">
     <item name="android:textColor">@color/black</item>
   </style>
+
   <style name="text_large" parent="text">
     <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
   </style>
+
   <style name="text_medium" parent="text">
     <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
   </style>
+
   <style name="text_small" parent="text">
     <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
   </style>
+
   <style name="text_large_white" parent="text_large">
     <item name="android:textColor">@color/white</item>
   </style>
+
   <style name="text_small_grey" parent="text_small">
     <item name="android:textColor">@color/grey</item>
   </style>
@@ -36,6 +41,7 @@
   <style name="name_field_list_item" parent="text_medium">
     <item name="android:gravity">start</item>
   </style>
+
   <style name="area_field_list_item" parent="text_small_grey">
     <item name="android:gravity">end</item>
   </style>
