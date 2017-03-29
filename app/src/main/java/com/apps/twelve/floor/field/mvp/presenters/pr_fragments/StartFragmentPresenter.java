@@ -18,6 +18,8 @@ import timber.log.Timber;
 
   @Inject DataManager mDataManager;
 
+  private int mFieldTypePosition = -1;
+
   @Override protected void inject() {
     App.getAppComponent().inject(this);
   }
@@ -27,11 +29,28 @@ import timber.log.Timber;
     fetchFields();
   }
 
+  public void showFieldTypeDialog() {
+    getViewState().showFieldAddTypeDialog();
+  }
+
+  public void hideFieldTypeDialog() {
+    mFieldTypePosition = -1;
+    getViewState().hideFieldAddTypeDialog();
+  }
+
   private void fetchFields() {
     Subscription subscription = mDataManager.fetchFields()
         .compose(ThreadSchedulers.applySchedulers())
         .subscribe(fields -> getViewState().showFields(fields), Timber::e);
 
     addToUnsubscription(subscription);
+  }
+
+  public void setFieldTypePosition(int position) {
+    mFieldTypePosition = position;
+  }
+
+  public int getFieldTypePosition() {
+    return mFieldTypePosition;
   }
 }
