@@ -31,9 +31,9 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
 
   @InjectPresenter StartFragmentPresenter mStartFragmentPresenter;
 
-  @BindView(R.id.fields_recycler_view) RecyclerView mFieldsRecyclerView;
-  @BindView(R.id.no_data_text) TextView mNoDataText;
-  @BindView(R.id.add_new_field_fab) FloatingActionButton mAddNewFieldFab;
+  @BindView(R.id.recycler_view_fields) RecyclerView mFieldsRecyclerView;
+  @BindView(R.id.text_no_data) TextView mNoDataText;
+  @BindView(R.id.fab_add_new_field) FloatingActionButton mAddNewFieldFab;
 
   private FieldsAdapter mFieldsAdapter;
 
@@ -67,7 +67,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     hideFieldAddTypeDialog();
   }
 
-  @OnClick(R.id.add_new_field_fab) public void onViewClicked() {
+  @OnClick(R.id.fab_add_new_field) public void onViewClicked() {
     mStartFragmentPresenter.showFieldTypeDialog();
   }
 

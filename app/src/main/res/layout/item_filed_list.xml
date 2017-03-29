@@ -18,14 +18,14 @@
       >
 
     <TextView
-        android:id="@+id/textViewName"
+        android:id="@+id/text_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/name_field_list_item"
         />
 
     <TextView
-        android:id="@+id/textViewArea"
+        android:id="@+id/text_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/area_field_list_item"

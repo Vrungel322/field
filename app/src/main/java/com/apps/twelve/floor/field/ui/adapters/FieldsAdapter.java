@@ -43,8 +43,8 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
 
   public static class FieldViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.textViewName) TextView mNameText;
-    @BindView(R.id.textViewArea) TextView mAreaText;
+    @BindView(R.id.text_name) TextView mNameText;
+    @BindView(R.id.text_area) TextView mAreaText;
 
     public FieldViewHolder(View itemView) {
       super(itemView);
