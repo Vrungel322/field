@@ -2,10 +2,19 @@
   <string name="app_name">Field</string>
 
   <string name="dialog_action_ok">OK</string>
+  <string name="dialog_action_cancel">ОТМЕНА</string>
   <string name="dialog_error_title">Ошибка</string>
   <string name="warning">Предупреждение</string>
   <string name="warning_permission">Для работы приложения необходимо разрешение определения места положения</string>
 
   <string name="no_fields_data">Нет полей.\nДобавьте новое поле.</string>
 
+  <!-- Add filed type dialog -->
+  <string name="dialog_add_field_title">Выберите способ создания поля</string>
+  <string name="dialog_add_field_error">Не указан способ создания поля</string>
+  <string-array name="dialog_field_add_types">
+    <item>Точками на карте</item>
+    <item>Обходом с GPS</item>
+    <item>Вручную</item>
+  </string-array>
 </resources>

@@ -1,8 +1,10 @@
 package com.apps.twelve.floor.field.ui.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +18,7 @@ import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.StartFragmentPres
 import com.apps.twelve.floor.field.mvp.views.IStartFragmentView;
 import com.apps.twelve.floor.field.ui.adapters.FieldsAdapter;
 import com.apps.twelve.floor.field.ui.base.BaseFragment;
+import com.apps.twelve.floor.field.utils.DialogFactory;
 import com.apps.twelve.floor.field.utils.ItemClickSupport;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import java.util.List;
@@ -33,6 +36,8 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
   @BindView(R.id.add_new_field_fab) FloatingActionButton mAddNewFieldFab;
 
   private FieldsAdapter mFieldsAdapter;
+
+  private AlertDialog mFieldAddTypeDialog;
 
   public StartFragment() {
     super(R.layout.fragment_start);
@@ -52,17 +57,55 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     mFieldsRecyclerView.setAdapter(mFieldsAdapter);
     mFieldsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     mFieldsRecyclerView.setItemAnimator(new DefaultItemAnimator());
-    // TODO: open field editing screen
+    // TODO: open field editing screen (give it to mNavigator)
     ItemClickSupport.addTo(mFieldsRecyclerView)
         .setOnItemClickListener((recyclerView, position, v) -> showToastMessage("" + position));
   }
 
+  @Override public void onDestroy() {
+    super.onDestroy();
+    hideFieldAddTypeDialog();
+  }
+
   @OnClick(R.id.add_new_field_fab) public void onViewClicked() {
-    // TODO: select field adding type, and open field selection screen
+    showFieldAddTypeDialog();
   }
 
   @Override public void showFields(List<Field> fields) {
     mNoDataText.setVisibility(fields.size() > 0 ? View.GONE : View.VISIBLE);
     mFieldsAdapter.addAllFields(fields);
+  }
+
+  @Override public void showFieldAddTypeDialog() {
+    Context context = getActivity();
+
+    String[] fieldAddTypes = getResources().getStringArray(R.array.dialog_field_add_types);
+    final String[] fieldAddType = new String[1];
+
+    mFieldAddTypeDialog =
+        DialogFactory.createAlertDialogBuilder(context, getString(R.string.dialog_add_field_title))
+            .setSingleChoiceItems(fieldAddTypes, -1,
+                (dialog, which) -> fieldAddType[0] = fieldAddTypes[which])
+            .setPositiveButton(R.string.dialog_action_ok, null)
+            .setNegativeButton(R.string.dialog_action_cancel, null)
+            .setCancelable(false)
+            .create();
+
+    mFieldAddTypeDialog.show();
+
+    // this is kind of workaround to keep dialog on screen when ok clicked with no type is selected
+    mFieldAddTypeDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(button -> {
+      if (fieldAddType[0] != null) {
+        // TODO: open field selection screen (give it to mNavigator)
+        showToastMessage("Add Field type: " + fieldAddType[0]);
+        hideFieldAddTypeDialog();
+      } else {
+        showToastMessage(R.string.dialog_add_field_error);
+      }
+    });
+  }
+
+  @Override public void hideFieldAddTypeDialog() {
+    if (mFieldAddTypeDialog != null) mFieldAddTypeDialog.dismiss();
   }
 }

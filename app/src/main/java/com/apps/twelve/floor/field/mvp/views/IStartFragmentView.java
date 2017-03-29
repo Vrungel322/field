@@ -14,4 +14,8 @@ import java.util.List;
     extends MvpView {
 
   void showFields(List<Field> fields);
+
+  void showFieldAddTypeDialog();
+
+  void hideFieldAddTypeDialog();
 }
