@@ -1,15 +1,15 @@
 package com.apps.twelve.floor.field.mvp.data.remote;
 
-import com.apps.twelve.floor.field.mvp.data.model.SalonApi;
+import com.apps.twelve.floor.field.mvp.data.model.FieldApi;
 
 /**
  * Created by John on 26.01.2017.
  */
 
 public class RestApi {
-  private final SalonApi api;
+  private final FieldApi api;
 
-  public RestApi(SalonApi api) {
+  public RestApi(FieldApi api) {
     this.api = api;
   }
 
