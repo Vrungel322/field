@@ -83,9 +83,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     mFieldAddTypeDialog =
         DialogFactory.createAlertDialogBuilder(context, getString(R.string.dialog_add_field_title))
             .setSingleChoiceItems(fieldAddTypes, mStartFragmentPresenter.getFieldTypePosition(),
-                (dialog, which) -> {
-                  mStartFragmentPresenter.setFieldTypePosition(which);
-                })
+                (dialog, which) -> mStartFragmentPresenter.setFieldTypePosition(which))
             .setPositiveButton(R.string.dialog_action_ok, null)
             .setNegativeButton(R.string.dialog_action_cancel,
                 (dialog, which) -> mStartFragmentPresenter.hideFieldTypeDialog())
