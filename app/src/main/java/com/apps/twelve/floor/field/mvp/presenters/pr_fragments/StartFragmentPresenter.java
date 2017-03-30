@@ -38,19 +38,19 @@ import timber.log.Timber;
     getViewState().hideFieldAddTypeDialog();
   }
 
-  private void fetchFields() {
-    Subscription subscription = mDataManager.fetchFields()
-        .compose(ThreadSchedulers.applySchedulers())
-        .subscribe(fields -> getViewState().showFields(fields), Timber::e);
-
-    addToUnsubscription(subscription);
-  }
-
   public void setFieldTypePosition(int position) {
     mFieldTypePosition = position;
   }
 
   public int getFieldTypePosition() {
     return mFieldTypePosition;
+  }
+
+  private void fetchFields() {
+    Subscription subscription = mDataManager.fetchFields()
+        .compose(ThreadSchedulers.applySchedulers())
+        .subscribe(fields -> getViewState().showFields(fields), Timber::e);
+
+    addToUnsubscription(subscription);
   }
 }

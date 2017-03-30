@@ -1,8 +1,10 @@
 package com.apps.twelve.floor.field.utils;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 
 /**
@@ -28,5 +30,12 @@ public final class Permissions {
         }, PERMISSION_LOCATION);
       }
     }
+  }
+
+  public static boolean isLocationPermissionGranted(Context context) {
+    return ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+        == PackageManager.PERMISSION_GRANTED
+        || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
+        == PackageManager.PERMISSION_GRANTED;
   }
 }
