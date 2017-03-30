@@ -60,7 +60,8 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     mFieldsRecyclerView.setItemAnimator(new DefaultItemAnimator());
     // TODO: open field editing screen (give it to mNavigator)
     ItemClickSupport.addTo(mFieldsRecyclerView)
-        .setOnItemClickListener((recyclerView, position, v) -> showToastMessage("" + position));
+        .setOnItemClickListener((recyclerView, position, v) -> showToastMessage(
+            mFieldsAdapter.getFieldAt(position).getName() + " (" + position + ")"));
   }
 
   @Override public void onDestroy() {

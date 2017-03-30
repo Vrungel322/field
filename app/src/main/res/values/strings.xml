@@ -17,4 +17,12 @@
     <item>Обходом с GPS</item>
     <item>Вручную</item>
   </string-array>
+
+  <!-- Field editing -->
+  <string name="text_edit_mode">Режим редактирования</string>
+  <string name="toggle_button_text_on">Вкл</string>
+  <string name="toggle_button_text_off">Выкл</string>
+  <string name="edit_text_name_hint">Название</string>
+  <string name="edit_text_area_hint">Площадь</string>
+  <string name="button_edit_text">ИЗМЕНИТЬ</string>
 </resources>

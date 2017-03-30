@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="0dp"
+    android:background="@color/light_grey"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="@dimen/bottom_sheet_pick_height"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+    app:layout_constraintBottom_toBottomOf="parent"
+    >
+
+  <TextView
+      android:id="@+id/text_view_edit_mode"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/common_margin"
+      android:layout_marginRight="@dimen/common_margin"
+      android:layout_marginEnd="@dimen/common_margin"
+      android:layout_marginTop="@dimen/common_margin"
+      android:text="@string/text_edit_mode"
+      android:gravity="end|center_vertical"
+      android:textAlignment="textEnd"
+      app:layout_constraintBottom_toBottomOf="@+id/toggle_button_edit_mode"
+      app:layout_constraintRight_toLeftOf="@+id/toggle_button_edit_mode"
+      app:layout_constraintTop_toTopOf="@+id/toggle_button_edit_mode"
+      style="@style/text_medium"
+      />
+
+  <ToggleButton
+      android:id="@+id/toggle_button_edit_mode"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="@dimen/common_margin"
+      android:layout_marginRight="@dimen/common_margin"
+      android:textOff="@string/toggle_button_text_off"
+      android:textOn="@string/toggle_button_text_on"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+
+  <android.support.design.widget.TextInputLayout
+      android:id="@+id/it_layout_name"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="@dimen/common_margin"
+      android:layout_marginLeft="@dimen/common_margin"
+      android:layout_marginRight="@dimen/common_margin"
+      android:layout_marginStart="@dimen/common_margin"
+      android:layout_marginTop="8dp"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/toggle_button_edit_mode"
+      >
+
+    <EditText
+        android:id="@+id/ed_text_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit_text_name_hint"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/dark_grey"
+        />
+  </android.support.design.widget.TextInputLayout>
+
+  <android.support.design.widget.TextInputLayout
+      android:id="@+id/it_layout_area"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/common_margin"
+      android:layout_marginStart="@dimen/common_margin"
+      android:layout_marginTop="8dp"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toLeftOf="@+id/btn_edit_area"
+      app:layout_constraintTop_toBottomOf="@+id/it_layout_name"
+      >
+
+    <EditText
+        android:id="@+id/ed_text_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edit_text_area_hint"
+        android:inputType="numberDecimal"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/dark_grey"
+        />
+  </android.support.design.widget.TextInputLayout>
+
+  <Button
+      android:id="@+id/btn_edit_area"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/common_margin"
+      android:layout_marginEnd="@dimen/common_margin"
+      android:layout_marginLeft="@dimen/common_margin"
+      android:layout_marginRight="@dimen/common_margin"
+      android:layout_marginTop="@dimen/common_margin"
+      android:text="@string/button_edit_text"
+      android:textColor="@color/dark_grey"
+      android:textColorHighlight="@color/colorAccent"
+      app:layout_constraintBottom_toBottomOf="@+id/it_layout_area"
+      app:layout_constraintLeft_toRightOf="@+id/it_layout_area"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/it_layout_area"
+      style="@android:style/Widget.Holo.Button.Borderless"
+      />
+
+  <Button
+      android:id="@+id/btn_ok"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/common_margin"
+      android:layout_marginEnd="@dimen/common_margin"
+      android:layout_marginRight="@dimen/common_margin"
+      android:layout_marginTop="8dp"
+      android:gravity="end|center_vertical"
+      android:text="@string/dialog_action_ok"
+      android:textAlignment="textEnd"
+      android:textColor="@color/colorAccent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/it_layout_area"
+      style="@android:style/Widget.Holo.Button.Borderless"
+      />
+
+</android.support.constraint.ConstraintLayout>

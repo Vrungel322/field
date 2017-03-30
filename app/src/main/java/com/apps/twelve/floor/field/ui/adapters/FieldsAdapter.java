@@ -41,6 +41,10 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
     notifyDataSetChanged();
   }
 
+  public Field getFieldAt(int position) {
+    return mFieldsList.get(position);
+  }
+
   public static class FieldViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.text_name) TextView mNameText;
