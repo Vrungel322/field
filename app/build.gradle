@@ -43,6 +43,7 @@ dependencies {
 
   //Google Maps
   compile 'com.google.android.gms:play-services-maps:10.2.1'
+  compile 'com.google.maps.android:android-maps-utils:0.5'
 
   //ORM Storio
   compile 'com.pushtorefresh.storio:sqlite:1.12.3'

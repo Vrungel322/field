@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -98,8 +99,22 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
       if (which < 0) {
         showToastMessage(R.string.dialog_error_add_field);
       } else {
-        // TODO: open field selection screen (give it to mNavigator)
-        showToastMessage("Add Field type: " + fieldAddTypes[which]);
+        // open field editing screen (give it to mNavigator)
+        // TODO: replace literals with IDs
+        switch (which) {
+          case 0:
+            mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()),
+                R.id.container_start, AddFieldOnMapFragment.newInstance());
+            break;
+          case 1:
+            showToastMessage("Add Field type: " + fieldAddTypes[which]);
+            break;
+          case 2:
+            showToastMessage("Add Field type: " + fieldAddTypes[which]);
+            break;
+          default:
+            break;
+        }
         mStartFragmentPresenter.hideFieldTypeDialog();
       }
     });

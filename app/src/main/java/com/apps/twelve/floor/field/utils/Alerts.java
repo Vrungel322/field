@@ -4,7 +4,7 @@ import android.app.Activity;
 import com.tapadoo.alerter.Alerter;
 
 /**
- * Created by Yaroslav on 30 03 2017.
+ * Created by Yaroslav on 30.03.2017.
  */
 
 public final class Alerts {
