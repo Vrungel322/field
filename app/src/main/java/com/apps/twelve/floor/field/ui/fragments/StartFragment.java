@@ -105,7 +105,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
         switch (which) {
           case 0:
             mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()),
-                R.id.container_start, AddFieldOnMapFragment.newInstance());
+                R.id.container_start, EditFieldOnMapFragment.newInstance());
             break;
           case 1:
             showToastMessage("Add Field type: " + fieldAddTypes[which]);

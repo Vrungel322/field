@@ -3,11 +3,12 @@ package com.apps.twelve.floor.field.di.components;
 import com.apps.twelve.floor.field.di.modules.AppModule;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
 import com.apps.twelve.floor.field.mvp.presenters.pr_activities.MainActivityPresenter;
-import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.AddFieldOnMapFragmentPresenter;
+import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.MapPolygonEditPresenter;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.StartFragmentPresenter;
 import com.apps.twelve.floor.field.ui.adapters.FieldsAdapter;
 import com.apps.twelve.floor.field.ui.base.BaseActivity;
 import com.apps.twelve.floor.field.ui.base.BaseFragment;
+import com.apps.twelve.floor.field.ui.base.ManualAttachBaseFragment;
 import dagger.Component;
 
 /**
@@ -21,13 +22,15 @@ import dagger.Component;
 
   void inject(StartFragmentPresenter presenter);
 
-  void inject(AddFieldOnMapFragmentPresenter presenter);
+  void inject(MapPolygonEditPresenter presenter);
 
   //activities
   void inject(BaseActivity activity);
 
   //fragments
   void inject(BaseFragment fragment);
+
+  void inject(ManualAttachBaseFragment fragment);
 
   //adapters
   void inject(FieldsAdapter adapter);

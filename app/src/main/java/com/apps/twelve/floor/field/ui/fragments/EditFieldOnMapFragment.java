@@ -11,9 +11,9 @@ import butterknife.BindView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import com.apps.twelve.floor.field.R;
-import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.AddFieldOnMapFragmentPresenter;
-import com.apps.twelve.floor.field.mvp.views.IAddFieldOnMapFragmentView;
-import com.apps.twelve.floor.field.ui.base.BaseFragment;
+import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.MapPolygonEditPresenter;
+import com.apps.twelve.floor.field.mvp.views.IEditFieldOnMapFragmentView;
+import com.apps.twelve.floor.field.ui.base.ManualAttachBaseFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
@@ -26,10 +26,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * Created by Yaroslav on 30.03.2017.
  */
 
-public class AddFieldOnMapFragment extends BaseFragment
-    implements IAddFieldOnMapFragmentView, OnMapReadyCallback, OnMapClickListener {
+public class EditFieldOnMapFragment extends ManualAttachBaseFragment
+    implements IEditFieldOnMapFragmentView, OnMapReadyCallback, OnMapClickListener {
 
-  @InjectPresenter AddFieldOnMapFragmentPresenter mAddFieldOnMapFragmentPresenter;
+  @InjectPresenter MapPolygonEditPresenter mMapPolygonEditPresenter;
 
   @BindView(R.id.toggle_button_edit_mode) ToggleButton tglBtnEditMode;
   @BindView(R.id.ed_text_name) EditText edTextName;
@@ -39,23 +39,28 @@ public class AddFieldOnMapFragment extends BaseFragment
 
   private GoogleMap mMap;
 
-  public AddFieldOnMapFragment() {
+  public EditFieldOnMapFragment() {
     super(R.layout.fragment_add_filed_on_map);
   }
 
-  public static AddFieldOnMapFragment newInstance() {
+  public static EditFieldOnMapFragment newInstance() {
     Bundle args = new Bundle();
-    AddFieldOnMapFragment fragment = new AddFieldOnMapFragment();
+    EditFieldOnMapFragment fragment = new EditFieldOnMapFragment();
     fragment.setArguments(args);
     return fragment;
   }
+
+  // Fragment events
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     obtainMap();
   }
 
+  // Map events
+
   @Override public void onMapReady(GoogleMap googleMap) {
+
     mMap = googleMap;
     mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
@@ -66,12 +71,16 @@ public class AddFieldOnMapFragment extends BaseFragment
     // TODO: set map listeners
 
     // TODO: send message to presenter, so it can show field or current location on the map
-    mAddFieldOnMapFragmentPresenter.setMapReady(true);
+    mMapPolygonEditPresenter.setMapReady(true);
+
+    attachViews();
   }
 
   @Override public void onMapClick(LatLng latLng) {
-    mAddFieldOnMapFragmentPresenter.onMapClick(latLng);
+    mMapPolygonEditPresenter.handleNewCoordinates(latLng);
   }
+
+  // Bottom sheet events
 
   @OnClick({ R.id.btn_edit_area, R.id.btn_ok }) public void onViewClicked(View view) {
     switch (view.getId()) {
@@ -97,17 +106,21 @@ public class AddFieldOnMapFragment extends BaseFragment
 
   @OnCheckedChanged(R.id.toggle_button_edit_mode)
   public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-    mAddFieldOnMapFragmentPresenter.setEditMode(isChecked);
+    mMapPolygonEditPresenter.setEditMode(isChecked);
   }
+
+  // MvpView events
 
   @Override public void addMarkerOnMap(LatLng latLng) {
-    mAddFieldOnMapFragmentPresenter.addMarker(
-        mMap.addMarker(new MarkerOptions().position(latLng).draggable(true)));
+    //mMapPolygonEditPresenter.addMarker();
+    mMap.addMarker(new MarkerOptions().position(latLng).draggable(true));
   }
 
-  // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+  // Private section
+
+  // Obtain the SupportMapFragment and get notified when the map is ready to use.
   private void obtainMap() {
-    mAddFieldOnMapFragmentPresenter.setMapReady(false);
+    mMapPolygonEditPresenter.setMapReady(false);
     SupportMapFragment mapFragment =
         (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map);
     mapFragment.getMapAsync(this);
