@@ -7,6 +7,7 @@ import com.arellomobile.mvp.InjectViewState;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
+import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 30.03.2017.
@@ -17,10 +18,10 @@ import java.util.List;
 
   //@Inject DataManager mDataManager;
 
-  private boolean isMapReady = false;
-  private boolean isEditMode = false;
+  private boolean mIsMapReady = false;
+  private boolean mIsEditMode = false;
 
-  private List<LatLng> points = new ArrayList<>();
+  private List<LatLng> mPoints = new ArrayList<>();
 
   //private Field field; // TODO: filed to edit or create (give it to FieldEditPresenter)
 
@@ -37,17 +38,61 @@ import java.util.List;
   }
 
   public void setMapReady(boolean mapReady) {
-    isMapReady = mapReady;
+    mIsMapReady = mapReady;
   }
 
   public void setEditMode(boolean editMode) {
-    isEditMode = editMode && isMapReady;
+    mIsEditMode = editMode && mIsMapReady;
+    onEditModeSwitched();
   }
 
-  public void handleNewCoordinates(LatLng latLng) {
-    if (!isEditMode) return;
+  public void handleNewPoint(LatLng point) {
+    if (!mIsEditMode) return;
 
-    points.add(latLng);
-    getViewState().addMarkerOnMap(latLng);
+    mPoints.add(point);
+    getViewState().addMarkerOnMap(point);
+    getViewState().updatePolyline(mPoints);
+    getViewState().updatePolygon(mPoints);
+  }
+
+  public boolean handlePointClicked(int index, LatLng point) {
+    if (!isOkIndex(index)) return false;
+
+    mPoints.remove(index);
+    getViewState().removeMarkerAtIndex(index);
+    getViewState().updatePolyline(mPoints);
+    getViewState().updatePolygon(mPoints);
+
+    return true;
+  }
+
+  public void handlePointChanged(int index, LatLng point) {
+    if (!isOkIndex(index)) return;
+
+    mPoints.set(index, point);
+    getViewState().updateMarkerAtIndex(index, point);
+    getViewState().updatePolyline(mPoints);
+    getViewState().updatePolygon(mPoints);
+  }
+
+  private boolean isOkIndex(int index) {
+    if (index < 0 || mPoints.size() <= index) {
+      Timber.e("Invalid point index");
+      return false;
+    }
+
+    if (!mIsEditMode) {
+      Timber.e("Invalid mode");
+      return false;
+    }
+
+    return true;
+  }
+
+  private void onEditModeSwitched() {
+    getViewState().setMarkersAndPolylineVisible(mIsEditMode);
+    getViewState().setPolygonVisibleAndClickable(!mIsEditMode);
+
+    // TODO: calculate area
   }
 }

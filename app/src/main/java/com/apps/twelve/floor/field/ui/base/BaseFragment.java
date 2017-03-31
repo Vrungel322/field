@@ -49,10 +49,12 @@ public abstract class BaseFragment extends MvpAppCompatFragment {
     unbinder.unbind();
   }
 
+  // TODO: remove toast methods on release version
   protected void showToastMessage(String message) {
     Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
   }
 
+  // TODO: remove toast methods on release version
   protected void showToastMessage(@StringRes int id) {
     Toast.makeText(mContext, id, Toast.LENGTH_SHORT).show();
   }
