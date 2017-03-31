@@ -3,6 +3,7 @@ package com.apps.twelve.floor.field.mvp.views;
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
+import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
@@ -27,4 +28,6 @@ import java.util.List;
   void setMarkersAndPolylineVisible(boolean visible);
 
   void setPolygonVisibleAndClickable(boolean mode);
+
+  @StateStrategyType(SingleStateStrategy.class) void clearObjects();
 }

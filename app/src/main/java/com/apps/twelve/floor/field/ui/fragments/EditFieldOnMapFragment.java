@@ -24,6 +24,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerDragListener;
+import com.google.android.gms.maps.GoogleMap.OnPolygonClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.Dash;
@@ -49,7 +50,7 @@ import java.util.List;
 
 public class EditFieldOnMapFragment extends ManualAttachBaseFragment
     implements IEditFieldOnMapFragmentView, OnMapReadyCallback, OnMapClickListener,
-    OnMarkerClickListener, OnMarkerDragListener {
+    OnMarkerClickListener, OnMarkerDragListener, OnPolygonClickListener {
 
   private static final int STROKE_WIDTH_PX = 8;
   private static final int PATTERN_DASH_LENGTH_PX = 20;
@@ -72,7 +73,7 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
   private Polygon mPolygon;
 
   public EditFieldOnMapFragment() {
-    super(R.layout.fragment_add_filed_on_map);
+    super(R.layout.fragment_edit_filed_on_map);
   }
 
   public static EditFieldOnMapFragment newInstance() {
@@ -100,8 +101,7 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
     mMap.setOnMapClickListener(this);
     mMap.setOnMarkerClickListener(this);
     mMap.setOnMarkerDragListener(this);
-    /*mMap.setOnPolygonClickListener(this);*/
-    // TODO: set map listeners
+    mMap.setOnPolygonClickListener(this);
 
     // TODO: send message to presenter, so it can show polygon or current location on the map
     mMapPolygonEditPresenter.setMapReady(true);
@@ -126,6 +126,10 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
 
   @Override public void onMarkerDragEnd(Marker marker) {
     mMapPolygonEditPresenter.handlePointChanged(mMarkers.indexOf(marker), marker.getPosition());
+  }
+
+  @Override public void onPolygonClick(Polygon polygon) {
+    mMapPolygonEditPresenter.clearPoints();
   }
 
   // Bottom sheet events ================================================
@@ -176,7 +180,7 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
 
   @Override public void updatePolyline(List<LatLng> points) {
     if (points.size() < 2) {
-      if (mPolyline != null) mPolyline.remove();
+      clearPolyline();
       return;
     }
 
@@ -189,7 +193,7 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
 
   @Override public void updatePolygon(List<LatLng> points) {
     if (points.size() < 3) {
-      if (mPolygon != null) mPolygon.remove();
+      clearPolygon();
       return;
     }
 
@@ -215,6 +219,13 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
       mPolygon.setVisible(mode);
       mPolygon.setClickable(mode);
     }
+  }
+
+  @Override public void clearObjects() {
+    clearPolygon();
+    clearPolyline();
+    mMarkers.forEach(Marker::remove);
+    mMarkers.clear();
   }
 
   // Private section ================================================
@@ -244,7 +255,7 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
   // Make a new styled Polygon
   @NonNull private Polygon makeAPolygon(List<LatLng> points) {
     List<PatternItem> polygonStrokePattern = Arrays.asList(GAP, DASH);
-    ;
+
     int polygonStrokeColor = 0xff388E3C;
     int polygonFillColor = 0x88F57F17;
     float polygonStrokeWidth = 10f;
@@ -254,7 +265,20 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
         .strokeColor(polygonStrokeColor)
         .strokePattern(polygonStrokePattern)
         .strokeWidth(polygonStrokeWidth)
-        .fillColor(polygonFillColor)
-        .visible(false));
+        .fillColor(polygonFillColor).visible(false).clickable(false));
+  }
+
+  private void clearPolyline() {
+    if (mPolyline != null) {
+      mPolyline.remove();
+      mPolyline = null;
+    }
+  }
+
+  private void clearPolygon() {
+    if (mPolygon != null) {
+      mPolygon.remove();
+      mPolygon = null;
+    }
   }
 }

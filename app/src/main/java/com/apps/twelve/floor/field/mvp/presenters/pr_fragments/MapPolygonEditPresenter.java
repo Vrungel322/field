@@ -75,6 +75,11 @@ import timber.log.Timber;
     getViewState().updatePolygon(mPoints);
   }
 
+  public void clearPoints() {
+    mPoints.clear();
+    getViewState().clearObjects();
+  }
+
   private boolean isOkIndex(int index) {
     if (index < 0 || mPoints.size() <= index) {
       Timber.e("Invalid point index");
