@@ -51,8 +51,7 @@ import java.util.List;
 public class EditFieldOnMapFragment extends ManualAttachBaseFragment
     implements IEditFieldOnMapFragmentView, OnMapReadyCallback, OnMapClickListener,
     OnMarkerClickListener, OnMarkerDragListener, OnPolygonClickListener {
-
-  private static final int STROKE_WIDTH_PX = 8;
+  
   private static final int PATTERN_DASH_LENGTH_PX = 20;
   private static final int PATTERN_GAP_LENGTH_PX = 20;
   private static final PatternItem DOT = new Dot();
@@ -265,7 +264,9 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
         .strokeColor(polygonStrokeColor)
         .strokePattern(polygonStrokePattern)
         .strokeWidth(polygonStrokeWidth)
-        .fillColor(polygonFillColor).visible(false).clickable(false));
+        .fillColor(polygonFillColor)
+        .visible(false)
+        .clickable(false));
   }
 
   private void clearPolyline() {
