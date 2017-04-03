@@ -3,6 +3,7 @@ package com.apps.twelve.floor.field.di.components;
 import com.apps.twelve.floor.field.di.modules.AppModule;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
 import com.apps.twelve.floor.field.mvp.presenters.pr_activities.MainActivityPresenter;
+import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.EditFieldPresenter;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.MapPolygonEditPresenter;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.StartFragmentPresenter;
 import com.apps.twelve.floor.field.ui.adapters.FieldsAdapter;
@@ -23,6 +24,8 @@ import dagger.Component;
   void inject(StartFragmentPresenter presenter);
 
   void inject(MapPolygonEditPresenter presenter);
+
+  void inject(EditFieldPresenter presenter);
 
   //activities
   void inject(BaseActivity activity);

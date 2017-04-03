@@ -11,6 +11,10 @@ public final class Constants {
     public static final String BASE_URL = "http://" + DOMEN + "/";
   }
 
+  public class EditField {
+    public static final String FIELD_BUNDLE_KEY = "field_bundle_key";
+  }
+
   public class FragmentTag {
   }
 

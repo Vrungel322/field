@@ -16,14 +16,10 @@ import timber.log.Timber;
 @InjectViewState public class MapPolygonEditPresenter
     extends BasePresenter<IEditFieldOnMapFragmentView> {
 
-  //@Inject DataManager mDataManager;
-
   private boolean mIsMapReady = false;
   private boolean mIsEditMode = false;
 
   private List<LatLng> mPoints = new ArrayList<>();
-
-  //private Field field; // TODO: filed to edit or create (give it to FieldEditPresenter)
 
   @Override protected void inject() {
     App.getAppComponent().inject(this);

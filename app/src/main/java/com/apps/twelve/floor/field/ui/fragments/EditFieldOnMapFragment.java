@@ -15,11 +15,16 @@ import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import com.apps.twelve.floor.field.R;
+import com.apps.twelve.floor.field.mvp.data.model.Field;
+import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.EditFieldPresenter;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.MapPolygonEditPresenter;
+import com.apps.twelve.floor.field.mvp.views.IEditFieldFragmentView;
 import com.apps.twelve.floor.field.mvp.views.IEditFieldOnMapFragmentView;
 import com.apps.twelve.floor.field.ui.base.ManualAttachBaseFragment;
+import com.apps.twelve.floor.field.utils.Constants;
 import com.apps.twelve.floor.field.utils.ViewUtil;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
@@ -49,8 +54,8 @@ import java.util.List;
  */
 
 public class EditFieldOnMapFragment extends ManualAttachBaseFragment
-    implements IEditFieldOnMapFragmentView, OnMapReadyCallback, OnMapClickListener,
-    OnMarkerClickListener, OnMarkerDragListener, OnPolygonClickListener {
+    implements IEditFieldOnMapFragmentView, IEditFieldFragmentView, OnMapReadyCallback,
+    OnMapClickListener, OnMarkerClickListener, OnMarkerDragListener, OnPolygonClickListener {
 
   private static final int PATTERN_DASH_LENGTH_PX = 20;
   private static final int PATTERN_GAP_LENGTH_PX = 20;
@@ -59,6 +64,7 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
   private static final PatternItem GAP = new Gap(PATTERN_GAP_LENGTH_PX);
 
   @InjectPresenter MapPolygonEditPresenter mMapPolygonEditPresenter;
+  @InjectPresenter EditFieldPresenter mEditFieldPresenter;
 
   @BindView(R.id.toggle_button_edit_mode) ToggleButton mTglBtnEditMode;
   @BindView(R.id.ed_text_name) EditText mEdTextName;
@@ -77,10 +83,20 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
   }
 
   public static EditFieldOnMapFragment newInstance() {
+    return newInstance(new Field());
+  }
+
+  public static EditFieldOnMapFragment newInstance(Field field) {
     Bundle args = new Bundle();
+    args.putParcelable(Constants.EditField.FIELD_BUNDLE_KEY, field);
     EditFieldOnMapFragment fragment = new EditFieldOnMapFragment();
     fragment.setArguments(args);
     return fragment;
+  }
+
+  @ProvidePresenter EditFieldPresenter provideEditFieldPresenter() {
+    return new EditFieldPresenter(
+        getArguments().getParcelable(Constants.EditField.FIELD_BUNDLE_KEY));
   }
 
   // Fragment events ================================================
@@ -120,10 +136,12 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
   }
 
   @Override public void onMapClick(LatLng latLng) {
+    mEditFieldPresenter.addNewPoint(latLng);
     mMapPolygonEditPresenter.handleNewPoint(latLng);
   }
 
   @Override public boolean onMarkerClick(Marker marker) {
+    mEditFieldPresenter.removePoint(mMarkers.indexOf(marker), marker.getPosition());
     return mMapPolygonEditPresenter.handlePointClicked(mMarkers.indexOf(marker),
         marker.getPosition());
   }
@@ -135,10 +153,12 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
   }
 
   @Override public void onMarkerDragEnd(Marker marker) {
+    mEditFieldPresenter.updatePoint(mMarkers.indexOf(marker), marker.getPosition());
     mMapPolygonEditPresenter.handlePointChanged(mMarkers.indexOf(marker), marker.getPosition());
   }
 
   @Override public void onPolygonClick(Polygon polygon) {
+    mEditFieldPresenter.clearPoints();
     mMapPolygonEditPresenter.clearPoints();
   }
 
@@ -153,19 +173,34 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
       case R.id.btn_ok:
         // TODO: send message to presenter
         showToastMessage("onOK");
+        mEditFieldPresenter.saveField();
         break;
     }
   }
 
   // when finished editing text - clear EditText's focus
   @OnEditorAction({ R.id.ed_text_area, R.id.ed_text_name, R.id.ed_text_crop })
-  public boolean onEditorAction(
-      EditText editText, int actionId, KeyEvent event) {
+  public boolean onEditorAction(EditText editText, int actionId, KeyEvent event) {
     if (actionId == EditorInfo.IME_ACTION_DONE) {
-      // the user is done typing.
+      // user has done typing.
       editText.clearFocus();
       ViewUtil.hideKeyboard(getActivity());
     }
+
+    switch (editText.getId()) {
+      case R.id.ed_text_name:
+        mEditFieldPresenter.updateFieldName(editText.getText().toString());
+        break;
+      case R.id.ed_text_area:
+        mEditFieldPresenter.updateFieldArea(editText.getText().toString());
+        break;
+      case R.id.ed_text_crop:
+        mEditFieldPresenter.updateFieldCrop(editText.getText().toString());
+        break;
+      default:
+        break;
+    }
+
     return false; // pass on to other listeners.
   }
 
@@ -237,6 +272,18 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
     clearPolyline();
     mMarkers.forEach(Marker::remove);
     mMarkers.clear();
+  }
+
+  @Override public void setFieldNameText(String name) {
+    mEdTextName.setText(name);
+  }
+
+  @Override public void setFieldAreaText(String area) {
+    mEdTextArea.setText(area);
+  }
+
+  @Override public void setFieldCropText(String crop) {
+    mEdTextCrop.setText(crop);
   }
 
   // Private section ================================================
