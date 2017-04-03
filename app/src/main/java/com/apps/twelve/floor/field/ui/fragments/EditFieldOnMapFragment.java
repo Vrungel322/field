@@ -63,6 +63,7 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
   @BindView(R.id.toggle_button_edit_mode) ToggleButton mTglBtnEditMode;
   @BindView(R.id.ed_text_name) EditText mEdTextName;
   @BindView(R.id.ed_text_area) EditText mEdTextArea;
+  @BindView(R.id.ed_text_crop) EditText mEdTextCrop;
   @BindView(R.id.btn_edit_area) Button mBtnEditArea;
   @BindView(R.id.btn_ok) Button mBtnOk;
 
@@ -157,7 +158,8 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
   }
 
   // when finished editing text - clear EditText's focus
-  @OnEditorAction({ R.id.ed_text_area, R.id.ed_text_name }) public boolean onEditorAction(
+  @OnEditorAction({ R.id.ed_text_area, R.id.ed_text_name, R.id.ed_text_crop })
+  public boolean onEditorAction(
       EditText editText, int actionId, KeyEvent event) {
     if (actionId == EditorInfo.IME_ACTION_DONE) {
       // the user is done typing.
