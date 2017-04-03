@@ -16,7 +16,7 @@ import retrofit2.Retrofit;
 
 @Module(includes = { RetrofitModule.class }) public class DataModule {
 
-  @Provides @AppScope FieldApi provideSalonApi(Retrofit retrofit) {
+  @Provides @AppScope FieldApi provideFieldApi(Retrofit retrofit) {
     return retrofit.create(FieldApi.class);
   }
 
