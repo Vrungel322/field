@@ -10,47 +10,57 @@ import java.util.List;
 
 public class Field {
 
-  private String name;
-  private float area;
-  private List<LatLng> points = new ArrayList<>();
+  private String mName;
+  private float mArea;
+  private String mCrop;
+  private List<LatLng> mPoints = new ArrayList<>();
 
   public Field() {
   }
 
-  public Field(String name, float area) {
-    this.name = name;
-    this.area = area;
+  public Field(String name, String crop, float area) {
+    this.mName = name;
+    this.mCrop = crop;
+    this.mArea = area;
   }
 
   public String getName() {
-    return name;
+    return mName;
   }
 
   public void setName(String name) {
-    this.name = name;
+    this.mName = name;
   }
 
   public float getArea() {
-    return area;
+    return mArea;
   }
 
   public void setArea(float area) {
-    this.area = area;
+    this.mArea = area;
   }
 
   public List<LatLng> getPoints() {
-    return points;
+    return mPoints;
   }
 
   public void addAllPoints(List<LatLng> points) {
-    points.addAll(points);
+    this.mPoints.addAll(points);
   }
 
   public void addPoint(LatLng point) {
-    points.add(point);
+    this.mPoints.add(point);
   }
 
   public void clearPoints() {
-    points.clear();
+    mPoints.clear();
+  }
+
+  public String getCrop() {
+    return mCrop;
+  }
+
+  public void setCrop(String crop) {
+    this.mCrop = crop;
   }
 }

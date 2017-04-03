@@ -51,7 +51,7 @@ import java.util.List;
 public class EditFieldOnMapFragment extends ManualAttachBaseFragment
     implements IEditFieldOnMapFragmentView, OnMapReadyCallback, OnMapClickListener,
     OnMarkerClickListener, OnMarkerDragListener, OnPolygonClickListener {
-  
+
   private static final int PATTERN_DASH_LENGTH_PX = 20;
   private static final int PATTERN_GAP_LENGTH_PX = 20;
   private static final PatternItem DOT = new Dot();
@@ -90,6 +90,16 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
     mMapPolygonEditPresenter.setEditMode(mTglBtnEditMode.isChecked());
   }
 
+  @Override public void onStart() {
+    super.onStart();
+    if (mMap != null) attachToPresenter();
+  }
+
+  @Override public void onResume() {
+    super.onResume();
+    if (mMap != null) attachToPresenter();
+  }
+
   // Map events ================================================
 
   @Override public void onMapReady(GoogleMap googleMap) {
@@ -105,7 +115,7 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
     // TODO: send message to presenter, so it can show polygon or current location on the map
     mMapPolygonEditPresenter.setMapReady(true);
 
-    attachViews();
+    attachToPresenter();
   }
 
   @Override public void onMapClick(LatLng latLng) {
@@ -255,8 +265,8 @@ public class EditFieldOnMapFragment extends ManualAttachBaseFragment
   @NonNull private Polygon makeAPolygon(List<LatLng> points) {
     List<PatternItem> polygonStrokePattern = Arrays.asList(GAP, DASH);
 
-    int polygonStrokeColor = 0xff388E3C;
-    int polygonFillColor = 0x88F57F17;
+    int polygonStrokeColor = 0xff388E3C; // green
+    int polygonFillColor = 0x88F57F17; // orange 50% transparent
     float polygonStrokeWidth = 10f;
 
     return mMap.addPolygon(new PolygonOptions().clickable(true)

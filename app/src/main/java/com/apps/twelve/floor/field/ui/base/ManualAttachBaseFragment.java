@@ -73,7 +73,6 @@ public abstract class ManualAttachBaseFragment extends Fragment {
 
   @Override public void onStop() {
     super.onStop();
-
     getMvpDelegate().onDetach();
   }
 
@@ -114,7 +113,7 @@ public abstract class ManualAttachBaseFragment extends Fragment {
     }
   }
 
-  public void attachViews() {
+  public void attachToPresenter() {
     getMvpDelegate().onAttach();
   }
 
