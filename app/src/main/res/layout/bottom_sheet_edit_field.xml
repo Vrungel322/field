@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet_field_item_edition"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="@dimen/bottom_sheet_pick_height"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+    app:layout_constraintBottom_toBottomOf="parent"
+    >
+
+</FrameLayout>

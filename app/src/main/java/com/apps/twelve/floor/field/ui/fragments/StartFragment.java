@@ -62,7 +62,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     ItemClickSupport.addTo(mFieldsRecyclerView)
         .setOnItemClickListener((recyclerView, position, v) -> mNavigator.addFragmentBackStack(
             ((AppCompatActivity) getActivity()), R.id.container_start,
-            EditFieldOnMapFragment.newInstance(mFieldsAdapter.getFieldAt(position))));
+            EditFieldFragment.newInstance(mFieldsAdapter.getFieldAt(position))));
   }
 
   @Override public void onDestroy() {

@@ -13,6 +13,7 @@ public final class Constants {
 
   public class EditField {
     public static final String FIELD_BUNDLE_KEY = "field_bundle_key";
+    public static final String FIELD_EDIT_MODE = "field_edit_mode_key";
   }
 
   public class FragmentTag {

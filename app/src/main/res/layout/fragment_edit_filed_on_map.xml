@@ -23,7 +23,7 @@
   </FrameLayout>
 
   <include
-      layout="@layout/bottom_sheet_field_item"
+      layout="@layout/bottom_sheet_edit_field"
       android:id="@+id/bottom_sheet_field_item_edition"
       />
 
