@@ -24,7 +24,7 @@ public class Field implements Parcelable {
   };
 
   private String mName;
-  private float mArea;
+  private double mArea;
   private String mCrop;
   private List<LatLng> mPoints = new ArrayList<>();
 
@@ -39,7 +39,7 @@ public class Field implements Parcelable {
 
   protected Field(Parcel in) {
     mName = in.readString();
-    mArea = in.readFloat();
+    mArea = in.readDouble();
     mCrop = in.readString();
     mPoints = in.createTypedArrayList(LatLng.CREATOR);
   }
@@ -50,7 +50,7 @@ public class Field implements Parcelable {
 
   @Override public void writeToParcel(Parcel dest, int flags) {
     dest.writeString(mName);
-    dest.writeFloat(mArea);
+    dest.writeDouble(mArea);
     dest.writeString(mCrop);
     dest.writeTypedList(mPoints);
   }
@@ -63,11 +63,11 @@ public class Field implements Parcelable {
     this.mName = name;
   }
 
-  public float getArea() {
+  public double getArea() {
     return mArea;
   }
 
-  public void setArea(float area) {
+  public void setArea(double area) {
     this.mArea = area;
   }
 

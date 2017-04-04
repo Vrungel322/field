@@ -58,6 +58,7 @@ public class EditFieldFragment extends BaseFragment implements IEditFieldFragmen
   @BindView(R.id.ed_text_crop) EditText mEdTextCrop;
   @BindView(R.id.btn_edit_area) Button mBtnEditArea;
   @BindView(R.id.btn_ok) Button mBtnOk;
+  @BindView(R.id.btn_cancel) Button mBtnCancel;
 
   private int mMode = Mode.MODE_NO_MAP;
 
@@ -111,16 +112,21 @@ public class EditFieldFragment extends BaseFragment implements IEditFieldFragmen
     mEdTextCrop.setText(crop);
   }
 
-  @OnClick({ R.id.btn_edit_area, R.id.btn_ok }) public void onViewClicked(View view) {
+  @OnClick({ R.id.btn_edit_area, R.id.btn_ok, R.id.btn_cancel })
+  public void onViewClicked(View view) {
     switch (view.getId()) {
       case R.id.btn_edit_area:
         // TODO: send message to presenter
         showToastMessage("onEdit");
         break;
       case R.id.btn_ok:
-        // TODO: send message to presenter
+        // TODO: save data and replace this fragment (if mode == MODE_WITH_MAP - send msg to OnMapPresenter)
         showToastMessage("onOK");
         mEditFieldPresenter.saveField();
+        break;
+      case R.id.btn_cancel:
+        showToastMessage("onCancel");
+        // TODO: replace this fragment (if mode == MODE_WITH_MAP - send msg to OnMapPresenter)
         break;
     }
   }
@@ -153,7 +159,8 @@ public class EditFieldFragment extends BaseFragment implements IEditFieldFragmen
 
   @OnCheckedChanged(R.id.toggle_button_edit_mode)
   public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-    //mMapPolygonEditPresenter.setEditMode(isChecked);
+    // TODO: maybe block edTexts and btnOk
+    mEditFieldPresenter.setEditMode(isChecked);
   }
 
   // Private section ======================================================

@@ -4,8 +4,13 @@ import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
 import com.apps.twelve.floor.field.mvp.views.IEditFieldFragmentView;
+import com.apps.twelve.floor.field.utils.RxBus;
+import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.arellomobile.mvp.InjectViewState;
-import com.google.android.gms.maps.model.LatLng;
+import java.util.List;
+import javax.inject.Inject;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
 import timber.log.Timber;
 
 /**
@@ -15,6 +20,7 @@ import timber.log.Timber;
 @InjectViewState public class EditFieldPresenter extends BasePresenter<IEditFieldFragmentView> {
 
   //@Inject DataManager mDataManager;
+  @Inject RxBus mRxBus;
 
   private Field mField;
 
@@ -22,8 +28,9 @@ import timber.log.Timber;
     App.getAppComponent().inject(this);
   }
 
-  @Override public void attachView(IEditFieldFragmentView view) {
-    super.attachView(view);
+  @Override protected void onFirstViewAttach() {
+    super.onFirstViewAttach();
+    subscribeToPlygonEditResult();
   }
 
   public EditFieldPresenter(Field field) {
@@ -51,25 +58,19 @@ import timber.log.Timber;
     getViewState().setFieldAreaText(area);
   }
 
+  public void updateFieldArea(double area) {
+    mField.setArea(area);
+    getViewState().setFieldAreaText(String.valueOf(area));
+  }
+
   public void updateFieldCrop(String crop) {
     mField.setCrop(crop);
     getViewState().setFieldCropText(crop);
   }
 
-  public void addNewPoint(LatLng point) {
-    this.mField.addPoint(point);
-  }
-
-  public void removePoint(int index, LatLng point) {
-    mField.removePoint(index, point);
-  }
-
-  public void updatePoint(int index, LatLng point) {
-    mField.updatePoint(index, point);
-  }
-
-  public void clearPoints() {
+  public void updateFieldPoints(List points) {
     mField.clearPoints();
+    mField.addAllPoints(points);
   }
 
   public void saveField() {
@@ -84,5 +85,19 @@ import timber.log.Timber;
         + "\npoints: "
         + mField.getPoints();
     Timber.d(msg);
+  }
+
+  public void setEditMode(boolean isEditMode) {
+    mRxBus.post(new RxBusHelper.SwitchFieldEditMode(isEditMode));
+  }
+
+  private void subscribeToPlygonEditResult() {
+    Subscription subscription = mRxBus.filteredObservable(RxBusHelper.HandlePolygonEditResult.class)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(msg -> {
+          updateFieldPoints(msg.points);
+          updateFieldArea(msg.area);
+        });
+    addToUnsubscription(subscription);
   }
 }

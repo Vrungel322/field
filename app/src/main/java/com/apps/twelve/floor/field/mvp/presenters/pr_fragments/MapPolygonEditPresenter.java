@@ -3,10 +3,16 @@ package com.apps.twelve.floor.field.mvp.presenters.pr_fragments;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
 import com.apps.twelve.floor.field.mvp.views.IEditFieldOnMapFragmentView;
+import com.apps.twelve.floor.field.utils.RxBus;
+import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.arellomobile.mvp.InjectViewState;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.maps.android.SphericalUtil;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
 import timber.log.Timber;
 
 /**
@@ -15,6 +21,8 @@ import timber.log.Timber;
 
 @InjectViewState public class MapPolygonEditPresenter
     extends BasePresenter<IEditFieldOnMapFragmentView> {
+
+  @Inject RxBus mRxBus;
 
   private boolean mIsMapReady = false;
   private boolean mIsEditMode = false;
@@ -27,6 +35,7 @@ import timber.log.Timber;
 
   @Override protected void onFirstViewAttach() {
     super.onFirstViewAttach();
+    subscribeToEditModeSwitcher();
   }
 
   @Override public void attachView(IEditFieldOnMapFragmentView view) {
@@ -35,11 +44,6 @@ import timber.log.Timber;
 
   public void setMapReady(boolean mapReady) {
     mIsMapReady = mapReady;
-  }
-
-  public void setEditMode(boolean editMode) {
-    mIsEditMode = editMode && mIsMapReady;
-    onEditModeSwitched();
   }
 
   public void handleNewPoint(LatLng point) {
@@ -76,12 +80,18 @@ import timber.log.Timber;
     getViewState().clearObjects();
   }
 
+  private void subscribeToEditModeSwitcher() {
+    Subscription subscription = mRxBus.filteredObservable(RxBusHelper.SwitchFieldEditMode.class)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(msg -> onEditModeSwitched(msg.isEditMode));
+    addToUnsubscription(subscription);
+  }
+
   private boolean isOkIndex(int index) {
     if (index < 0 || mPoints.size() <= index) {
       Timber.e("Invalid point index");
       return false;
     }
-
     if (!mIsEditMode) {
       Timber.e("Invalid mode");
       return false;
@@ -90,10 +100,16 @@ import timber.log.Timber;
     return true;
   }
 
-  private void onEditModeSwitched() {
+  private void onEditModeSwitched(boolean isEditMode) {
+    this.mIsEditMode = isEditMode;
     getViewState().setMarkersAndPolylineVisible(mIsEditMode);
     getViewState().setPolygonVisibleAndClickable(!mIsEditMode);
 
-    // TODO: calculate area
+    if (!mIsEditMode) calculateAreaAndSendResult();
+  }
+
+  private void calculateAreaAndSendResult() {
+    mRxBus.post(
+        new RxBusHelper.HandlePolygonEditResult(mPoints, SphericalUtil.computeArea(mPoints)));
   }
 }
