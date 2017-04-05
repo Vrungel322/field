@@ -9,7 +9,7 @@ import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.StartFragmentPres
 import com.apps.twelve.floor.field.ui.adapters.FieldsAdapter;
 import com.apps.twelve.floor.field.ui.base.BaseActivity;
 import com.apps.twelve.floor.field.ui.base.BaseFragment;
-import com.apps.twelve.floor.field.ui.base.ManualAttachBaseFragment;
+import com.apps.twelve.floor.field.ui.base.BaseManualAttachFragment;
 import dagger.Component;
 
 /**
@@ -33,7 +33,7 @@ import dagger.Component;
   //fragments
   void inject(BaseFragment fragment);
 
-  void inject(ManualAttachBaseFragment fragment);
+  void inject(BaseManualAttachFragment fragment);
 
   //adapters
   void inject(FieldsAdapter adapter);

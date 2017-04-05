@@ -19,7 +19,7 @@ import javax.inject.Inject;
  * Created by Yaroslav on 31.03.2017.
  */
 
-public abstract class ManualAttachBaseFragment extends Fragment {
+public abstract class BaseManualAttachFragment extends Fragment {
 
   @Inject protected Context mContext;
   @Inject protected Navigator mNavigator;
@@ -29,9 +29,9 @@ public abstract class ManualAttachBaseFragment extends Fragment {
   private final int mLayoutId;
 
   private boolean mIsStateSaved;
-  private MvpDelegate<? extends ManualAttachBaseFragment> mMvpDelegate;
+  private MvpDelegate<? extends BaseManualAttachFragment> mMvpDelegate;
 
-  public ManualAttachBaseFragment(int layoutId) {
+  public BaseManualAttachFragment(int layoutId) {
     this.mLayoutId = layoutId;
   }
 

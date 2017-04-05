@@ -8,7 +8,7 @@ import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.MapPolygonEditPresenter;
 import com.apps.twelve.floor.field.mvp.views.IEditFieldOnMapFragmentView;
-import com.apps.twelve.floor.field.ui.base.ManualAttachBaseFragment;
+import com.apps.twelve.floor.field.ui.base.BaseManualAttachFragment;
 import com.apps.twelve.floor.field.utils.Constants;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.google.android.gms.maps.GoogleMap;
@@ -39,7 +39,7 @@ import java.util.List;
  * Created by Yaroslav on 30.03.2017.
  */
 
-public class EditFieldOnMapFragment extends ManualAttachBaseFragment
+public class EditFieldOnMapFragment extends BaseManualAttachFragment
     implements IEditFieldOnMapFragmentView, OnMapReadyCallback, OnMapClickListener,
     OnMarkerClickListener, OnMarkerDragListener, OnPolygonClickListener {
 
