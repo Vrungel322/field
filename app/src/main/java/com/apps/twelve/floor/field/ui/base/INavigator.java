@@ -56,6 +56,8 @@ public interface INavigator {
 
   void addChildFragment(@NonNull Fragment parent, @IdRes int containerId, @NonNull Fragment child);
 
+  void popBackStack(@NonNull AppCompatActivity appCompatActivity);
+
   void clearBackStack(@NonNull AppCompatActivity appCompatActivity);
 
   boolean isEmptyBackStack(@NonNull AppCompatActivity appCompatActivity);

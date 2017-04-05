@@ -1,6 +1,7 @@
 package com.apps.twelve.floor.field.ui.fragments;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -73,13 +74,13 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   @OnClick({ R.id.btn_ok, R.id.btn_cancel }) public void onViewClicked(View view) {
     switch (view.getId()) {
       case R.id.btn_ok:
-        // TODO: save data and replace this fragment (if mode == MODE_WITH_MAP - send msg to OnMapPresenter)
         showToastMessage("onOK");
         mEditFieldPresenter.saveField();
+        mNavigator.popBackStack((AppCompatActivity) getActivity());
         break;
       case R.id.btn_cancel:
         showToastMessage("onCancel");
-        // TODO: replace this fragment (if mode == MODE_WITH_MAP - send msg to OnMapPresenter)
+        mNavigator.popBackStack((AppCompatActivity) getActivity());
         break;
     }
   }

@@ -128,6 +128,10 @@ public class Navigator implements INavigator {
     parent.getChildFragmentManager().beginTransaction().add(containerId, child).commit();
   }
 
+  @Override public void popBackStack(@NonNull AppCompatActivity appCompatActivity) {
+    appCompatActivity.getSupportFragmentManager().popBackStackImmediate();
+  }
+
   @Override public void clearBackStack(@NonNull AppCompatActivity activity) {
     if (!isEmptyBackStack(activity)) {
       activity.getSupportFragmentManager()
