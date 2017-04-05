@@ -1,21 +1,14 @@
 package com.apps.twelve.floor.field.ui.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.IntDef;
-import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
-import android.support.constraint.ConstraintSet;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ToggleButton;
 import butterknife.BindView;
-import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import com.apps.twelve.floor.field.R;
@@ -27,22 +20,12 @@ import com.apps.twelve.floor.field.utils.Constants;
 import com.apps.twelve.floor.field.utils.ViewUtil;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 /**
- * Created by Yaroslav on 04.04.2017.
+ * Created by Yaroslav on 05.04.2017.
  */
 
-public class EditFieldFragment extends BaseFragment implements IEditFieldFragmentView {
-
-  @IntDef(flag = true, value = { Mode.MODE_NO_MAP, Mode.MODE_WITH_MAP })
-  @Retention(RetentionPolicy.SOURCE) public @interface Mode {
-    int MODE_NO_MAP = 10;
-    int MODE_WITH_MAP = 20;
-  }
-
-  ;
+public class EditFieldFullScreenFragment extends BaseFragment implements IEditFieldFragmentView {
 
   @InjectPresenter EditFieldPresenter mEditFieldPresenter;
 
@@ -60,46 +43,24 @@ public class EditFieldFragment extends BaseFragment implements IEditFieldFragmen
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
 
-  private int mMode = Mode.MODE_NO_MAP;
-
-  public EditFieldFragment() {
-    super(R.layout.fragment_edit_field);
+  public EditFieldFullScreenFragment() {
+    super(R.layout.fragment_edit_field_full_screen);
   }
 
-  public static EditFieldFragment newInstance() {
+  public static EditFieldFullScreenFragment newInstance() {
     return newInstance(new Field());
   }
 
-  public static EditFieldFragment newInstance(Field field) {
-    return newInstance(field, Mode.MODE_NO_MAP);
-  }
-
-  public static EditFieldFragment newInstance(@Mode int mode) {
-    return newInstance(new Field(), mode);
-  }
-
-  public static EditFieldFragment newInstance(Field field, @Mode int mode) {
+  public static EditFieldFullScreenFragment newInstance(Field field) {
     Bundle args = new Bundle();
     args.putParcelable(Constants.EditField.FIELD_BUNDLE_KEY, field);
-    args.putInt(Constants.EditField.FIELD_EDIT_MODE, mode);
-    EditFieldFragment fragment = new EditFieldFragment();
+    EditFieldFullScreenFragment fragment = new EditFieldFullScreenFragment();
     fragment.setArguments(args);
     return fragment;
   }
 
-  // Lifecycle events ================================================================
+  // MVP View methods ========================================================
 
-  @Nullable @Override
-  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-      @Nullable Bundle savedInstanceState) {
-    View view = super.onCreateView(inflater, container, savedInstanceState);
-
-    mMode = getArguments().getInt(Constants.EditField.FIELD_EDIT_MODE);
-    setupConstraintSetAndLayoutParams();
-    return view;
-  }
-
-  // UI events ================================================================
   @Override public void setFieldNameText(String name) {
     mEdTextName.setText(name);
   }
@@ -112,13 +73,10 @@ public class EditFieldFragment extends BaseFragment implements IEditFieldFragmen
     mEdTextCrop.setText(crop);
   }
 
-  @OnClick({ R.id.btn_edit_area, R.id.btn_ok, R.id.btn_cancel })
-  public void onViewClicked(View view) {
+  // UI events ================================================================
+
+  @OnClick({ R.id.btn_ok, R.id.btn_cancel }) public void onViewClicked(View view) {
     switch (view.getId()) {
-      case R.id.btn_edit_area:
-        // TODO: send message to presenter
-        showToastMessage("onEdit");
-        break;
       case R.id.btn_ok:
         // TODO: save data and replace this fragment (if mode == MODE_WITH_MAP - send msg to OnMapPresenter)
         showToastMessage("onOK");
@@ -155,27 +113,5 @@ public class EditFieldFragment extends BaseFragment implements IEditFieldFragmen
     }
 
     return false; // pass on to other listeners.
-  }
-
-  @OnCheckedChanged(R.id.toggle_button_edit_mode)
-  public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-    // TODO: maybe block edTexts and btnOk
-    mEditFieldPresenter.setEditMode(isChecked);
-  }
-
-  // Private section ======================================================
-
-  private void setupConstraintSetAndLayoutParams() {
-    ConstraintSet constraintSet = new ConstraintSet();
-    constraintSet.clone(getContext(),
-        mMode == Mode.MODE_NO_MAP ? R.layout.fragment_edit_field_full_screen
-            : R.layout.fragment_edit_field);
-    constraintSet.applyTo(mConstraintLayoutRoot);
-
-    if (mMode == Mode.MODE_NO_MAP) {
-      ViewGroup.LayoutParams layoutParams = mConstraintLayoutRoot.getLayoutParams();
-      layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
-      mConstraintLayoutRoot.setLayoutParams(layoutParams);
-    }
   }
 }

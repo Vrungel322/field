@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -62,7 +63,15 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     ItemClickSupport.addTo(mFieldsRecyclerView)
         .setOnItemClickListener((recyclerView, position, v) -> mNavigator.addFragmentBackStack(
             ((AppCompatActivity) getActivity()), R.id.container_start,
-            EditFieldFragment.newInstance(mFieldsAdapter.getFieldAt(position))));
+            makeEditFieldFragment(mFieldsAdapter.getFieldAt(position))));
+  }
+
+  private Fragment makeEditFieldFragment(Field field) {
+    if (field.hasPoints()) {
+      return EditFieldOnMapFragment.newInstance(field);
+    } else {
+      return EditFieldFullScreenFragment.newInstance(field);
+    }
   }
 
   @Override public void onDestroy() {

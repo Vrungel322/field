@@ -212,7 +212,7 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
 
   private void showEditFieldFragment() {
     mNavigator.addChildFragment(this, R.id.bottom_sheet_field_item_edition,
-        EditFieldFragment.newInstance(EditFieldFragment.Mode.MODE_WITH_MAP));
+        EditFieldBottomSheetFragment.newInstance());
   }
 
   // Make a new styled Polyline

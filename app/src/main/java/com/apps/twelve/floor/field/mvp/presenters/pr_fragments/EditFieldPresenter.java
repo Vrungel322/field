@@ -46,6 +46,9 @@ import timber.log.Timber;
     getViewState().setFieldNameText(mField.getName());
     getViewState().setFieldAreaText(String.valueOf(mField.getArea()));
     getViewState().setFieldCropText(mField.getCrop());
+    if (field.hasPoints()) {
+      // TODO: update markers, polyline and polygon on map
+    }
   }
 
   public void updateFieldName(String name) {

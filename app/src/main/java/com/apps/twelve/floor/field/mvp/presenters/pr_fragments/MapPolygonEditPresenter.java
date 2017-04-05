@@ -38,9 +38,9 @@ import timber.log.Timber;
     subscribeToEditModeSwitcher();
   }
 
-  @Override public void attachView(IEditFieldOnMapFragmentView view) {
+  /*@Override public void attachView(IEditFieldOnMapFragmentView view) {
     super.attachView(view);
-  }
+  }*/
 
   public void setMapReady(boolean mapReady) {
     mIsMapReady = mapReady;

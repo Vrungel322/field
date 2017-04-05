@@ -105,6 +105,10 @@ public class Field implements Parcelable {
     this.mCrop = crop;
   }
 
+  public boolean hasPoints() {
+    return mPoints != null && mPoints.size() > 0;
+  }
+
   private boolean isOkIndex(int index) {
     if (index < 0 || mPoints.size() <= index) {
       Timber.e("Invalid point index");
