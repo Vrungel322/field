@@ -78,7 +78,6 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     super.onViewCreated(view, savedInstanceState);
     obtainMap();
     showEditFieldFragment();
-    //mMapPolygonEditPresenter.setEditMode(mTglBtnEditMode.isChecked());
   }
 
   @Override public void onStart() {
@@ -109,12 +108,10 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   }
 
   @Override public void onMapClick(LatLng latLng) {
-    //mEditFieldPresenter.addNewPoint(latLng);
     mMapPolygonEditPresenter.handleNewPoint(latLng);
   }
 
   @Override public boolean onMarkerClick(Marker marker) {
-    //mEditFieldPresenter.removePoint(mMarkers.indexOf(marker), marker.getPosition());
     return mMapPolygonEditPresenter.handlePointClicked(mMarkers.indexOf(marker),
         marker.getPosition());
   }
@@ -126,12 +123,10 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   }
 
   @Override public void onMarkerDragEnd(Marker marker) {
-    //mEditFieldPresenter.updatePoint(mMarkers.indexOf(marker), marker.getPosition());
     mMapPolygonEditPresenter.handlePointChanged(mMarkers.indexOf(marker), marker.getPosition());
   }
 
   @Override public void onPolygonClick(Polygon polygon) {
-    //mEditFieldPresenter.clearPoints();
     mMapPolygonEditPresenter.clearPoints();
   }
 

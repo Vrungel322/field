@@ -6,14 +6,13 @@ package com.apps.twelve.floor.field.utils;
 
 public final class Constants {
   public class Remote {
-    private static final String DOMEN = "api.simple-website.in.ua";
+    private static final String DOMAIN = "api.simple-website.in.ua";
     // TODO: do not forget to paste base url
-    public static final String BASE_URL = "http://" + DOMEN + "/";
+    public static final String BASE_URL = "http://" + DOMAIN + "/";
   }
 
   public class EditField {
     public static final String FIELD_BUNDLE_KEY = "field_bundle_key";
-    public static final String FIELD_EDIT_MODE = "field_edit_mode_key";
   }
 
   public class FragmentTag {

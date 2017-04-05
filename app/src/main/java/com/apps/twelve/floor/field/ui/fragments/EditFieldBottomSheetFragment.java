@@ -29,14 +29,6 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 public class EditFieldBottomSheetFragment extends BaseFragment implements IEditFieldFragmentView {
 
-  /*@IntDef(flag = true, value = { Mode.MODE_NO_MAP, Mode.MODE_WITH_MAP })
-  @Retention(RetentionPolicy.SOURCE) public @interface Mode {
-    int MODE_NO_MAP = 10;
-    int MODE_WITH_MAP = 20;
-  }
-
-  ;*/
-
   @InjectPresenter EditFieldPresenter mEditFieldPresenter;
 
   @ProvidePresenter EditFieldPresenter provideEditFieldPresenter() {
@@ -53,8 +45,6 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
 
-  //private int mMode = Mode.MODE_NO_MAP;
-
   public EditFieldBottomSheetFragment() {
     super(R.layout.fragment_edit_field_bottom_sheet);
   }
@@ -63,24 +53,15 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
     return newInstance(new Field());
   }
 
-  /*public static EditFieldBottomSheetFragment newInstance(Field field) {
-    return newInstance(field, Mode.MODE_NO_MAP);
-  }
-
-  public static EditFieldBottomSheetFragment newInstance(@Mode int mode) {
-    return newInstance(new Field(), mode);
-  }*/
-
-  public static EditFieldBottomSheetFragment newInstance(Field field/*, @Mode int mode*/) {
+  public static EditFieldBottomSheetFragment newInstance(Field field) {
     Bundle args = new Bundle();
     args.putParcelable(Constants.EditField.FIELD_BUNDLE_KEY, field);
-    /*args.putInt(Constants.EditField.FIELD_EDIT_MODE, mode);*/
     EditFieldBottomSheetFragment fragment = new EditFieldBottomSheetFragment();
     fragment.setArguments(args);
     return fragment;
   }
 
-  // MVP View methods ================================================================
+  // MvpView methods ================================================================
 
   @Override public void setFieldNameText(String name) {
     mEdTextName.setText(name);

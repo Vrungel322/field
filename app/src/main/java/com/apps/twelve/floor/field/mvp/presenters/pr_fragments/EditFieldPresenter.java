@@ -77,7 +77,7 @@ import timber.log.Timber;
   }
 
   public void saveField() {
-    // TODO: save field to BD
+    // TODO: save field to DB
     String msg = "Saving field:"
         + "\nname: "
         + mField.getName()

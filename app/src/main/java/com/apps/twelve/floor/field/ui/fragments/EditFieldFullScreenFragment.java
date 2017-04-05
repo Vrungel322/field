@@ -1,13 +1,11 @@
 package com.apps.twelve.floor.field.ui.fragments;
 
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ToggleButton;
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
@@ -34,12 +32,9 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
         getArguments().getParcelable(Constants.EditField.FIELD_BUNDLE_KEY));
   }
 
-  @BindView(R.id.constraint_layout_root) ConstraintLayout mConstraintLayoutRoot;
-  @BindView(R.id.toggle_button_edit_mode) ToggleButton mTglBtnEditMode;
   @BindView(R.id.ed_text_name) EditText mEdTextName;
   @BindView(R.id.ed_text_area) EditText mEdTextArea;
   @BindView(R.id.ed_text_crop) EditText mEdTextCrop;
-  @BindView(R.id.btn_edit_area) Button mBtnEditArea;
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
 
@@ -59,7 +54,7 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
     return fragment;
   }
 
-  // MVP View methods ========================================================
+  // MvpView methods ========================================================
 
   @Override public void setFieldNameText(String name) {
     mEdTextName.setText(name);

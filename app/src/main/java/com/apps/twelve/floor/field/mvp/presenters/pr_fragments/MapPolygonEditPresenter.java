@@ -38,10 +38,6 @@ import timber.log.Timber;
     subscribeToEditModeSwitcher();
   }
 
-  /*@Override public void attachView(IEditFieldOnMapFragmentView view) {
-    super.attachView(view);
-  }*/
-
   public void setMapReady(boolean mapReady) {
     mIsMapReady = mapReady;
   }
@@ -80,13 +76,6 @@ import timber.log.Timber;
     getViewState().clearObjects();
   }
 
-  private void subscribeToEditModeSwitcher() {
-    Subscription subscription = mRxBus.filteredObservable(RxBusHelper.SwitchFieldEditMode.class)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(msg -> onEditModeSwitched(msg.isEditMode));
-    addToUnsubscription(subscription);
-  }
-
   private boolean isOkIndex(int index) {
     if (index < 0 || mPoints.size() <= index) {
       Timber.e("Invalid point index");
@@ -98,6 +87,13 @@ import timber.log.Timber;
     }
 
     return true;
+  }
+
+  private void subscribeToEditModeSwitcher() {
+    Subscription subscription = mRxBus.filteredObservable(RxBusHelper.SwitchFieldEditMode.class)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(msg -> onEditModeSwitched(msg.isEditMode));
+    addToUnsubscription(subscription);
   }
 
   private void onEditModeSwitched(boolean isEditMode) {
