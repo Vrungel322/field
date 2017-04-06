@@ -12,9 +12,11 @@ import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import com.apps.twelve.floor.field.App;
+import com.apps.twelve.floor.field.di.modules.GoogleApiModule;
 import com.arellomobile.mvp.MvpDelegate;
 import com.google.android.gms.common.api.GoogleApiClient;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * Created by Yaroslav on 31.03.2017.
@@ -24,7 +26,7 @@ public abstract class BaseManualAttachFragment extends Fragment {
 
   @Inject protected Context mContext;
   @Inject protected Navigator mNavigator;
-  @Inject protected GoogleApiClient mGoogleApiClient;
+  @Inject @Named(GoogleApiModule.NAME_LOCATION_CLIENT) protected GoogleApiClient mGoogleApiClient;
 
   Unbinder unbinder;
 
