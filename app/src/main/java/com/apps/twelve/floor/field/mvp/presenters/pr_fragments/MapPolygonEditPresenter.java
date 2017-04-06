@@ -6,6 +6,7 @@ import com.apps.twelve.floor.field.mvp.views.IEditFieldOnMapFragmentView;
 import com.apps.twelve.floor.field.utils.RxBus;
 import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.arellomobile.mvp.InjectViewState;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.SphericalUtil;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ import timber.log.Timber;
   private boolean mIsEditMode = false;
 
   private List<LatLng> mPoints = new ArrayList<>();
+  private CameraUpdate mCameraUpdate;
 
   @Override protected void inject() {
     App.getAppComponent().inject(this);
@@ -74,6 +76,15 @@ import timber.log.Timber;
   public void clearPoints() {
     mPoints.clear();
     getViewState().clearObjects();
+  }
+
+  public void initMapCameraUpdate(CameraUpdate cameraUpdate) {
+    if (mCameraUpdate == null) saveMapCameraUpdate(cameraUpdate);
+  }
+
+  public void saveMapCameraUpdate(CameraUpdate cameraUpdate) {
+    this.mCameraUpdate = cameraUpdate;
+    getViewState().moveCamera(mCameraUpdate);
   }
 
   private boolean isOkIndex(int index) {

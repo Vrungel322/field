@@ -19,8 +19,11 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnCameraIdleListener;
+import com.google.android.gms.maps.GoogleMap.OnCameraMoveStartedListener;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerDragListener;
@@ -51,8 +54,8 @@ import timber.log.Timber;
 
 public class EditFieldOnMapFragment extends BaseManualAttachFragment
     implements IEditFieldOnMapFragmentView, OnMapReadyCallback, OnMapClickListener,
-    OnMarkerClickListener, OnMarkerDragListener, OnPolygonClickListener, ConnectionCallbacks,
-    OnConnectionFailedListener {
+    OnCameraMoveStartedListener, OnCameraIdleListener, OnMarkerClickListener, OnMarkerDragListener,
+    OnPolygonClickListener, ConnectionCallbacks, OnConnectionFailedListener {
 
   private static final int PATTERN_DASH_LENGTH_PX = 20;
   private static final int PATTERN_GAP_LENGTH_PX = 20;
@@ -66,6 +69,7 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   private List<Marker> mMarkers = new ArrayList<>();
   private Polyline mPolyline;
   private Polygon mPolygon;
+  private boolean mIsCameraMovedByUser;
 
   public EditFieldOnMapFragment() {
     super(R.layout.fragment_edit_filed_on_map);
@@ -125,6 +129,8 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     mMap.setOnMarkerClickListener(this);
     mMap.setOnMarkerDragListener(this);
     mMap.setOnPolygonClickListener(this);
+    mMap.setOnCameraMoveStartedListener(this);
+    mMap.setOnCameraIdleListener(this);
 
     mMapPolygonEditPresenter.setMapReady(true);
     attachToPresenter();
@@ -154,6 +160,17 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
 
   @Override public void onPolygonClick(Polygon polygon) {
     mMapPolygonEditPresenter.clearPoints();
+  }
+
+  @Override public void onCameraMoveStarted(int i) {
+    mIsCameraMovedByUser = (i == OnCameraMoveStartedListener.REASON_GESTURE);
+  }
+
+  @Override public void onCameraIdle() {
+    if (mIsCameraMovedByUser) {
+      mMapPolygonEditPresenter.saveMapCameraUpdate(
+          CameraUpdateFactory.newCameraPosition(mMap.getCameraPosition()));
+    }
   }
 
   // GoogleApi events ===========================================================
@@ -235,6 +252,10 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     mMarkers.clear();
   }
 
+  @Override public void moveCamera(CameraUpdate cameraUpdate) {
+    mMap.moveCamera(cameraUpdate);
+  }
+
   // Private section ================================================
 
   // Obtain the SupportMapFragment and get notified when the map is ready to use.
@@ -256,8 +277,9 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
 
     // check permissions
     if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION)
-        != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext,
-        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        != PackageManager.PERMISSION_GRANTED
+        && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION)
+        != PackageManager.PERMISSION_GRANTED) {
       return;
     }
 
@@ -266,7 +288,7 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
     if (lastLocation != null) {
       float zoom = 17.0f;
-      mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+      mMapPolygonEditPresenter.initMapCameraUpdate(CameraUpdateFactory.newLatLngZoom(
           new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude()), zoom));
     }
   }
