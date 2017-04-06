@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import com.apps.twelve.floor.field.App;
 import com.arellomobile.mvp.MvpDelegate;
+import com.google.android.gms.common.api.GoogleApiClient;
 import javax.inject.Inject;
 
 /**
@@ -23,6 +24,7 @@ public abstract class BaseManualAttachFragment extends Fragment {
 
   @Inject protected Context mContext;
   @Inject protected Navigator mNavigator;
+  @Inject protected GoogleApiClient mGoogleApiClient;
 
   Unbinder unbinder;
 
@@ -37,7 +39,6 @@ public abstract class BaseManualAttachFragment extends Fragment {
 
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
     getMvpDelegate().onCreate(savedInstanceState);
     App.getAppComponent().inject(this);
   }
@@ -52,19 +53,16 @@ public abstract class BaseManualAttachFragment extends Fragment {
 
   @Override public void onStart() {
     super.onStart();
-
     mIsStateSaved = false;
   }
 
   public void onResume() {
     super.onResume();
-
     mIsStateSaved = false;
   }
 
   public void onSaveInstanceState(Bundle outState) {
     super.onSaveInstanceState(outState);
-
     mIsStateSaved = true;
 
     getMvpDelegate().onSaveInstanceState(outState);

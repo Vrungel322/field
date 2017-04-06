@@ -5,6 +5,8 @@ import android.content.Context;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
 import com.apps.twelve.floor.field.ui.base.Navigator;
 import com.apps.twelve.floor.field.utils.RxBus;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import dagger.Module;
 import dagger.Provides;
 
@@ -30,5 +32,9 @@ import dagger.Provides;
 
   @Provides @AppScope public Navigator provideNavigator() {
     return new Navigator();
+  }
+
+  @Provides @AppScope public GoogleApiClient provideGoogleApiClient() {
+    return new GoogleApiClient.Builder(mApplication).addApi(LocationServices.API).build();
   }
 }

@@ -1,8 +1,12 @@
 package com.apps.twelve.floor.field.ui.fragments;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
@@ -11,6 +15,11 @@ import com.apps.twelve.floor.field.mvp.views.IEditFieldOnMapFragmentView;
 import com.apps.twelve.floor.field.ui.base.BaseManualAttachFragment;
 import com.apps.twelve.floor.field.utils.Constants;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
@@ -34,6 +43,7 @@ import com.google.android.gms.maps.model.SquareCap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 30.03.2017.
@@ -41,7 +51,8 @@ import java.util.List;
 
 public class EditFieldOnMapFragment extends BaseManualAttachFragment
     implements IEditFieldOnMapFragmentView, OnMapReadyCallback, OnMapClickListener,
-    OnMarkerClickListener, OnMarkerDragListener, OnPolygonClickListener {
+    OnMarkerClickListener, OnMarkerDragListener, OnPolygonClickListener, ConnectionCallbacks,
+    OnConnectionFailedListener {
 
   private static final int PATTERN_DASH_LENGTH_PX = 20;
   private static final int PATTERN_GAP_LENGTH_PX = 20;
@@ -74,6 +85,14 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
 
   // Fragment events ================================================
 
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    if (mGoogleApiClient != null) {
+      mGoogleApiClient.registerConnectionCallbacks(this);
+      mGoogleApiClient.registerConnectionFailedListener(this);
+    }
+  }
+
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     obtainMap();
@@ -81,19 +100,24 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   }
 
   @Override public void onStart() {
-    super.onStart();
+    if (mGoogleApiClient != null) mGoogleApiClient.connect();
     if (mMap != null) attachToPresenter();
+    super.onStart();
   }
 
   @Override public void onResume() {
-    super.onResume();
     if (mMap != null) attachToPresenter();
+    super.onResume();
+  }
+
+  @Override public void onStop() {
+    if (mGoogleApiClient != null) mGoogleApiClient.disconnect();
+    super.onStop();
   }
 
   // Map events ================================================
 
   @Override public void onMapReady(GoogleMap googleMap) {
-
     mMap = googleMap;
     mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
@@ -103,8 +127,10 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     mMap.setOnPolygonClickListener(this);
 
     mMapPolygonEditPresenter.setMapReady(true);
-
     attachToPresenter();
+
+    // map can become ready before ApiClient connects
+    if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) moveCameraToCurrentLocation();
   }
 
   @Override public void onMapClick(LatLng latLng) {
@@ -128,6 +154,20 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
 
   @Override public void onPolygonClick(Polygon polygon) {
     mMapPolygonEditPresenter.clearPoints();
+  }
+
+  // GoogleApi events ===========================================================
+
+  @Override public void onConnected(@Nullable Bundle bundle) {
+    // ApiClient can connect before map is ready
+    if (mMap != null) moveCameraToCurrentLocation();
+  }
+
+  @Override public void onConnectionSuspended(int i) {
+  }
+
+  @Override public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+    Timber.e(new Throwable("Connection failed with result:\n" + connectionResult.toString()));
   }
 
   // MvpView methods ================================================
@@ -208,6 +248,28 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   private void showEditFieldFragment() {
     mNavigator.addChildFragment(this, R.id.bottom_sheet_field_item_edition,
         EditFieldBottomSheetFragment.newInstance());
+  }
+
+  private void moveCameraToCurrentLocation() {
+    // check components
+    if (mGoogleApiClient == null || mMap == null || !mGoogleApiClient.isConnected()) return;
+
+    // check permissions
+    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+        != PackageManager.PERMISSION_GRANTED
+        && ActivityCompat.checkSelfPermission(getActivity(),
+        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+      return;
+    }
+
+    mMap.setMyLocationEnabled(true);
+
+    Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+    if (lastLocation != null) {
+      float zoom = 17.0f;
+      mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+          new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude()), zoom));
+    }
   }
 
   // Make a new styled Polyline
