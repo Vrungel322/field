@@ -82,6 +82,8 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
         showToastMessage("onCancel");
         mNavigator.popBackStack((AppCompatActivity) getActivity());
         break;
+      default:
+        break;
     }
   }
 

@@ -93,6 +93,9 @@ dependencies {
   //Timber
   compile 'com.jakewharton.timber:timber:4.5.1'
 
+  // SwipeActionView
+  compile 'com.github.tunous:swipeactionview:1.1.0'
+
   //Test
   testCompile "junit:junit:4.12"
   testCompile "org.mockito:mockito-all:1.10.19"

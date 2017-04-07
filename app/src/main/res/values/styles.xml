@@ -8,6 +8,12 @@
     <item name="colorAccent">@color/colorAccent</item>
   </style>
 
+  <!-- Buttons -->
+  <style name="flat_button_style" parent="@android:style/Widget.Holo.Button.Borderless">
+    <item name="paddingStart">0dp</item>
+    <item name="paddingEnd">0dp</item>
+  </style>
+
   <!-- Base Text styles-->
   <style name="text">
     <item name="android:textColor">@color/black</item>

@@ -27,6 +27,8 @@ buildscript {
 allprojects {
   repositories {
     jcenter()
+    // repository of SwipeActionView
+    maven { url "https://jitpack.io" }
   }
 }
 
