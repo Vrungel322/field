@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,7 +15,6 @@ import java.util.List;
 import me.thanel.swipeactionview.SwipeActionView;
 import me.thanel.swipeactionview.SwipeGestureListener;
 import org.jetbrains.annotations.NotNull;
-import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 28 03 2017.
@@ -40,6 +38,17 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
       mFieldsList.remove(position);
       notifyDataSetChanged();
     });
+    holder.mSwipeActionView.setSwipeGestureListener(new SwipeGestureListener() {
+      @Override public boolean onSwipedLeft(@NotNull SwipeActionView swipeActionView) {
+        swipeActionView.moveToOriginalPosition(2000);
+        return false;
+      }
+
+      @Override public boolean onSwipedRight(@NotNull SwipeActionView swipeActionView) {
+        swipeActionView.moveToOriginalPosition(2000);
+        return false;
+      }
+    });
   }
 
   @Override public int getItemCount() {
@@ -55,30 +64,15 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
     return mFieldsList.get(position);
   }
 
-  public static class FieldViewHolder extends RecyclerView.ViewHolder
-      implements SwipeGestureListener {
+  public static class FieldViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.text_name) TextView mNameText;
     @BindView(R.id.text_area) TextView mAreaText;
-    @BindView(R.id.l_layout_swipe_left_bgrnd) LinearLayout mSwipeLeftBackground;
-    @BindView(R.id.l_layout_swipe_right_bgrnd) LinearLayout mSwipeRightBackground;
     @BindView(R.id.button_delete) Button mDeleteBtn;
-
-    @Override public boolean onSwipedLeft(@NotNull SwipeActionView swipeActionView) {
-      swipeActionView.moveToOriginalPosition(2000);
-      Timber.d("DBG onSwipedLeft");
-      return false;
-    }
-
-    @Override public boolean onSwipedRight(@NotNull SwipeActionView swipeActionView) {
-      swipeActionView.moveToOriginalPosition(2000);
-      Timber.d("DBG onSwipedRight");
-      return false;
-    }
+    @BindView(R.id.swipe_action_view) SwipeActionView mSwipeActionView;
 
     public FieldViewHolder(View itemView) {
       super(itemView);
-      ((SwipeActionView) itemView).setSwipeGestureListener(this);
       ButterKnife.bind(this, itemView);
     }
   }

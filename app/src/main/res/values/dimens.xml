@@ -5,6 +5,9 @@
   <dimen name="common_margin">8dp</dimen>
   <dimen name="common_content_padding">8dp</dimen>
 
+  <!-- Fields list -->
+  <dimen name="field_item_margin">2dp</dimen>
+
   <!-- Field editing -->
   <dimen name="bottom_sheet_pick_height">48dp</dimen>
   <dimen name="bottom_sheet_elevation">15dp</dimen>
