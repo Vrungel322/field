@@ -62,9 +62,7 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
       notifyItemRangeChanged(position, mFieldsList.size());
     });
 
-    holder.mCancelButton.setOnClickListener(v -> {
-      holder.mSwipeLayout.close();
-    });
+    holder.mCancelButton.setOnClickListener(v -> holder.mSwipeLayout.close());
 
     //set show mode.
     holder.mSwipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
@@ -94,7 +92,7 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
     });
   }
 
-  public static class FieldViewHolder extends RecyclerView.ViewHolder {
+  static class FieldViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.text_name) TextView mNameText;
     @BindView(R.id.text_area) TextView mAreaText;
@@ -103,7 +101,7 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
     @BindView(R.id.btn_delete) Button mDeleteButton;
     @BindView(R.id.btn_cancel) Button mCancelButton;
 
-    public FieldViewHolder(View itemView) {
+    FieldViewHolder(View itemView) {
       super(itemView);
       ButterKnife.bind(this, itemView);
     }
