@@ -93,6 +93,9 @@ dependencies {
   //Timber
   compile 'com.jakewharton.timber:timber:4.5.1'
 
+  // AndroidSwipeLayout
+  compile "com.daimajia.swipelayout:library:1.2.0@aar"
+
   //Test
   testCompile "junit:junit:4.12"
   testCompile "org.mockito:mockito-all:1.10.19"
