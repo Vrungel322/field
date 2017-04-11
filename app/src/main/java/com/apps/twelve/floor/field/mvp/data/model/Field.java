@@ -97,7 +97,7 @@ public class Field implements Parcelable {
     this.mName = name;
   }
 
-  public double getArea() {
+  public Double getArea() {
     return mArea;
   }
 

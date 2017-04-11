@@ -50,7 +50,7 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
     Field field = mFieldsList.get(position);
 
     holder.mNameText.setText(field.getName());
-    holder.mAreaText.setText(String.valueOf((int) field.getArea()));
+    holder.mAreaText.setText(field.getArea().toString());
 
     setupSwipeLayout(holder, position);
   }
