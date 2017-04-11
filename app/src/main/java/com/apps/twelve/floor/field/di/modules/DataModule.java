@@ -14,7 +14,7 @@ import retrofit2.Retrofit;
  * Created by John on 27.03.2017.
  */
 
-@Module(includes = { RetrofitModule.class }) public class DataModule {
+@Module(includes = { RetrofitModule.class, DbModule.class }) public class DataModule {
 
   @Provides @AppScope FieldApi provideFieldApi(Retrofit retrofit) {
     return retrofit.create(FieldApi.class);

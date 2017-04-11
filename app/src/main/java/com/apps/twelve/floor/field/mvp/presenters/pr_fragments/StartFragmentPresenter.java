@@ -1,7 +1,7 @@
 package com.apps.twelve.floor.field.mvp.presenters.pr_fragments;
 
 import com.apps.twelve.floor.field.App;
-import com.apps.twelve.floor.field.mvp.data.DataManager;
+import com.apps.twelve.floor.field.mvp.data.local.DbManager;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
 import com.apps.twelve.floor.field.mvp.views.IStartFragmentView;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
@@ -16,7 +16,7 @@ import timber.log.Timber;
 
 @InjectViewState public class StartFragmentPresenter extends BasePresenter<IStartFragmentView> {
 
-  @Inject DataManager mDataManager;
+  @Inject DbManager mDbManager;
 
   private int mFieldTypePosition = -1;
 
@@ -26,7 +26,7 @@ import timber.log.Timber;
 
   @Override protected void onFirstViewAttach() {
     super.onFirstViewAttach();
-    fetchFields();
+    getAllFields();
   }
 
   public void showFieldTypeDialog() {
@@ -46,8 +46,8 @@ import timber.log.Timber;
     return mFieldTypePosition;
   }
 
-  private void fetchFields() {
-    Subscription subscription = mDataManager.fetchFields()
+  private void getAllFields() {
+    Subscription subscription = mDbManager.getAllFields()
         .compose(ThreadSchedulers.applySchedulers())
         .subscribe(fields -> getViewState().showFields(fields), Timber::e);
 
