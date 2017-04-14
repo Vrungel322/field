@@ -3,6 +3,7 @@ package com.apps.twelve.floor.field.mvp.views;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
+import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
 import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 import java.util.List;
@@ -20,7 +21,9 @@ import java.util.List;
 
   void hideFieldAddTypeDialog();
 
-  void addField(Field field);
+  @StateStrategyType(AddToEndStrategy.class) void addField(Field field);
 
-  void updateField(Field field);
+  @StateStrategyType(AddToEndStrategy.class) void updateField(Field field);
+
+  @StateStrategyType(AddToEndStrategy.class) void deleteFieldAtPosotion(Field field, int position);
 }

@@ -4,6 +4,7 @@ import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.local.tables.FieldsTable;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.pushtorefresh.storio.sqlite.StorIOSQLite;
+import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
 import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
 import java.util.List;
 import javax.inject.Inject;
@@ -32,5 +33,9 @@ public class DbManager {
 
   public PutResult putField(Field field) {
     return mStorIOSQLite.put().object(field).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteField(Field field) {
+    return mStorIOSQLite.delete().object(field).prepare().executeAsBlocking();
   }
 }

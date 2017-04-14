@@ -9,6 +9,7 @@ import com.apps.twelve.floor.field.utils.RxBus;
 import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
 import com.arellomobile.mvp.InjectViewState;
+import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
 import javax.inject.Inject;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -33,7 +34,8 @@ import timber.log.Timber;
     super.onFirstViewAttach();
     getAllFields();
 
-    subscribeToFieldsChanges();
+    subscribeToFieldsDbChanges();
+    subscribeToFieldsListChanges();
   }
 
   public void showFieldTypeDialog() {
@@ -61,7 +63,22 @@ import timber.log.Timber;
     addToUnsubscription(subscription);
   }
 
-  private void subscribeToFieldsChanges() {
+  private void subscribeToFieldsListChanges() {
+    Subscription subscription = mRxBus.filteredObservable(RxBusHelper.FieldDeletedFromList.class)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(msg -> onFieldDeletedFromList(msg.field, msg.position), Timber::e);
+    addToUnsubscription(subscription);
+  }
+
+  private void onFieldDeletedFromList(Field field, int position) {
+    DeleteResult deleteResult = mDbManager.deleteField(field);
+
+    if (deleteResult.numberOfRowsDeleted() > 0) {
+      getViewState().deleteFieldAtPosotion(field, position);
+    }
+  }
+
+  private void subscribeToFieldsDbChanges() {
     Subscription subscription = mRxBus.filteredObservable(RxBusHelper.FieldChangedInDb.class)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(msg -> onFieldChanged(msg.field, msg.change), Timber::e);

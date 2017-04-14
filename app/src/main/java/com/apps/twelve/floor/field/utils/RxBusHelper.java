@@ -10,6 +10,20 @@ import java.util.List;
 
 public final class RxBusHelper {
 
+  // Field list events =====================================================================
+
+  public static class FieldDeletedFromList {
+    public Field field;
+    public int position;
+
+    public FieldDeletedFromList(Field field, int position) {
+      this.field = field;
+      this.position = position;
+    }
+  }
+
+  // Field edit events =====================================================================
+
   public static class SwitchFieldEditMode {
     public boolean isEditMode;
 

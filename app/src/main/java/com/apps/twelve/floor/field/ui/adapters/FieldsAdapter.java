@@ -9,17 +9,29 @@ import android.widget.Button;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
+import com.apps.twelve.floor.field.utils.RxBus;
+import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.daimajia.swipe.SwipeLayout;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
+import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 28 03 2017.
  */
 
 public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewHolder> {
+
+  @Inject RxBus mRxBus;
+
+  public FieldsAdapter() {
+    super();
+    App.getAppComponent().inject(this);
+  }
 
   private ArrayList<Field> mFieldsList = new ArrayList<>();
 
@@ -55,6 +67,20 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
     }
   }
 
+  public void removeField(Field field, int position) {
+    if (position < 0 && field == null) {
+      Timber.e(new Throwable("Trying to remove incorrect field"));
+      return;
+    }
+    if (position < 0) position = mFieldsList.indexOf(field);
+
+    if (position >= 0) {
+      mFieldsList.remove(position);
+      notifyItemRemoved(position);
+      notifyItemRangeChanged(position, mFieldsList.size());
+    }
+  }
+
   public Field getFieldAt(int position) {
     return mFieldsList.get(position);
   }
@@ -69,11 +95,8 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
   }
 
   private void setupSwipeLayout(FieldViewHolder holder, int position) {
-    holder.mDeleteButton.setOnClickListener(v -> {
-      mFieldsList.remove(position);
-      notifyItemRemoved(position);
-      notifyItemRangeChanged(position, mFieldsList.size());
-    });
+    holder.mDeleteButton.setOnClickListener(v -> mRxBus.post(
+        new RxBusHelper.FieldDeletedFromList(mFieldsList.get(position), position)));
 
     holder.mCancelButton.setOnClickListener(v -> holder.mSwipeLayout.close());
 
