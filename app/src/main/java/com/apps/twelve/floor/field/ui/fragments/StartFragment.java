@@ -113,6 +113,14 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     if (mFieldAddTypeDialog != null) mFieldAddTypeDialog.dismiss();
   }
 
+  @Override public void addField(Field field) {
+    mFieldsAdapter.addField(field);
+  }
+
+  @Override public void updateField(Field field) {
+    mFieldsAdapter.updateField(field);
+  }
+
   private void onDialogPositiveButtonClicked(String[] fieldAddTypes) {
     int which = mStartFragmentPresenter.getFieldTypePosition();
 

@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.utils;
 
+import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
 
@@ -24,6 +25,22 @@ public final class RxBusHelper {
     public HandlePolygonEditResult(List<LatLng> points, double area) {
       this.points = points;
       this.area = area;
+    }
+  }
+
+  // DataBase events  =====================================================================
+
+  public static class FieldChangedInDb {
+    public static final int CHANGE_INSERT = 20;
+    public static final int CHANGE_UPDATE = 30;
+    public static final int CHANGE_DELETE = 40;
+
+    public Field field;
+    public int change;
+
+    public FieldChangedInDb(Field field, int change) {
+      this.field = field;
+      this.change = change;
     }
   }
 }

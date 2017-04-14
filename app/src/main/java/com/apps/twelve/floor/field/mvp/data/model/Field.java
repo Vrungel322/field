@@ -14,8 +14,7 @@ import timber.log.Timber;
  * Created by John on 27.03.2017.
  */
 
-@StorIOSQLiteType(table = FieldsTable.TABLE)
-public class Field implements Parcelable {
+@StorIOSQLiteType(table = FieldsTable.TABLE) public class Field implements Parcelable {
 
   public static final Creator<Field> CREATOR = new Creator<Field>() {
     @Override public Field createFromParcel(Parcel in) {
@@ -32,8 +31,8 @@ public class Field implements Parcelable {
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_AREA) Double mArea;
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_CROP) String mCrop;
 
+  // TODO: got to keep these in own tbl and get here or keep it as string
   private List<LatLng> mPoints = new ArrayList<>();
-      // TODO: got to keep these in own tbl and get here
 
   public Field() {
   }
@@ -87,6 +86,14 @@ public class Field implements Parcelable {
     dest.writeDouble(mArea);
     dest.writeString(mCrop);
     dest.writeTypedList(mPoints);
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getName() {

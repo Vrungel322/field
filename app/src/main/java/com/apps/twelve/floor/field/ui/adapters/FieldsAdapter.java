@@ -42,6 +42,19 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
     notifyDataSetChanged();
   }
 
+  public void addField(Field field) {
+    mFieldsList.add(field);
+    notifyItemInserted(mFieldsList.size() - 1);
+  }
+
+  public void updateField(Field field) {
+    int position = mFieldsList.indexOf(field);
+    if (position >= 0) {
+      mFieldsList.set(position, field);
+      notifyItemChanged(position);
+    }
+  }
+
   public Field getFieldAt(int position) {
     return mFieldsList.get(position);
   }
@@ -50,7 +63,7 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
     Field field = mFieldsList.get(position);
 
     holder.mNameText.setText(field.getName());
-    holder.mAreaText.setText(field.getArea().toString());
+    holder.mAreaText.setText(field.getArea() != null ? String.valueOf(field.getArea()) : "");
 
     setupSwipeLayout(holder, position);
   }

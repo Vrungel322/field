@@ -2,12 +2,16 @@ package com.apps.twelve.floor.field.mvp.presenters.pr_fragments;
 
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.local.DbManager;
+import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
 import com.apps.twelve.floor.field.mvp.views.IStartFragmentView;
+import com.apps.twelve.floor.field.utils.RxBus;
+import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
 import com.arellomobile.mvp.InjectViewState;
 import javax.inject.Inject;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
 import timber.log.Timber;
 
 /**
@@ -17,6 +21,7 @@ import timber.log.Timber;
 @InjectViewState public class StartFragmentPresenter extends BasePresenter<IStartFragmentView> {
 
   @Inject DbManager mDbManager;
+  @Inject RxBus mRxBus;
 
   private int mFieldTypePosition = -1;
 
@@ -27,6 +32,8 @@ import timber.log.Timber;
   @Override protected void onFirstViewAttach() {
     super.onFirstViewAttach();
     getAllFields();
+
+    subscribeToFieldsChanges();
   }
 
   public void showFieldTypeDialog() {
@@ -52,5 +59,25 @@ import timber.log.Timber;
         .subscribe(fields -> getViewState().showFields(fields), Timber::e);
 
     addToUnsubscription(subscription);
+  }
+
+  private void subscribeToFieldsChanges() {
+    Subscription subscription = mRxBus.filteredObservable(RxBusHelper.FieldChangedInDb.class)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(msg -> onFieldChanged(msg.field, msg.change), Timber::e);
+    addToUnsubscription(subscription);
+  }
+
+  private void onFieldChanged(Field field, int change) {
+    switch (change) {
+      case RxBusHelper.FieldChangedInDb.CHANGE_INSERT:
+        getViewState().addField(field);
+        break;
+      case RxBusHelper.FieldChangedInDb.CHANGE_UPDATE:
+        getViewState().updateField(field);
+        break;
+      default:
+        break;
+    }
   }
 }

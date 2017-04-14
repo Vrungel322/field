@@ -74,7 +74,7 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   @OnClick({ R.id.btn_ok, R.id.btn_cancel }) public void onViewClicked(View view) {
     switch (view.getId()) {
       case R.id.btn_ok:
-        showToastMessage("onOK");
+        updateFieldData();
         mEditFieldPresenter.saveField();
         mNavigator.popBackStack((AppCompatActivity) getActivity());
         break;
@@ -96,20 +96,12 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
       ViewUtil.hideKeyboard(getActivity());
     }
 
-    switch (editText.getId()) {
-      case R.id.ed_text_name:
-        mEditFieldPresenter.updateFieldName(editText.getText().toString());
-        break;
-      case R.id.ed_text_area:
-        mEditFieldPresenter.updateFieldArea(editText.getText().toString());
-        break;
-      case R.id.ed_text_crop:
-        mEditFieldPresenter.updateFieldCrop(editText.getText().toString());
-        break;
-      default:
-        break;
-    }
-
     return false; // pass on to other listeners.
+  }
+
+  private void updateFieldData() {
+    mEditFieldPresenter.updateFieldName(mEdTextName.getText().toString());
+    mEditFieldPresenter.updateFieldArea(mEdTextArea.getText().toString());
+    mEditFieldPresenter.updateFieldCrop(mEdTextCrop.getText().toString());
   }
 }

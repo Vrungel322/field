@@ -1,17 +1,18 @@
 package com.apps.twelve.floor.field.mvp.presenters.pr_fragments;
 
 import com.apps.twelve.floor.field.App;
+import com.apps.twelve.floor.field.mvp.data.local.DbManager;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
 import com.apps.twelve.floor.field.mvp.views.IEditFieldFragmentView;
 import com.apps.twelve.floor.field.utils.RxBus;
 import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.arellomobile.mvp.InjectViewState;
+import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
 import java.util.List;
 import javax.inject.Inject;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 03.04.2017.
@@ -19,7 +20,7 @@ import timber.log.Timber;
 
 @InjectViewState public class EditFieldPresenter extends BasePresenter<IEditFieldFragmentView> {
 
-  //@Inject DataManager mDataManager;
+  @Inject DbManager mDbManager;
   @Inject RxBus mRxBus;
 
   private Field mField;
@@ -30,7 +31,7 @@ import timber.log.Timber;
 
   @Override protected void onFirstViewAttach() {
     super.onFirstViewAttach();
-    subscribeToPlygonEditResult();
+    subscribeToPolygonEditResult();
   }
 
   public EditFieldPresenter(Field field) {
@@ -44,7 +45,8 @@ import timber.log.Timber;
   public void setField(Field field) {
     this.mField = field;
     getViewState().setFieldNameText(mField.getName());
-    getViewState().setFieldAreaText(mField.getArea().toString());
+    getViewState().setFieldAreaText(
+        mField.getArea() != null ? String.valueOf(mField.getArea()) : "");
     getViewState().setFieldCropText(mField.getCrop());
     if (field.hasPoints()) {
       // TODO: update markers, polyline and polygon on map
@@ -52,21 +54,25 @@ import timber.log.Timber;
   }
 
   public void updateFieldName(String name) {
+    if (name.equals(mField.getName())) return;
     mField.setName(name);
     getViewState().setFieldNameText(name);
   }
 
   public void updateFieldArea(String area) {
-    mField.setArea(Float.valueOf(area));
+    if (area.equals(String.valueOf(mField.getArea()))) return;
+    mField.setArea(Double.valueOf(area));
     getViewState().setFieldAreaText(area);
   }
 
   public void updateFieldArea(double area) {
+    if (mField.getArea() == area) return;
     mField.setArea(area);
     getViewState().setFieldAreaText(String.valueOf(area));
   }
 
   public void updateFieldCrop(String crop) {
+    if (crop.equals(mField.getCrop())) return;
     mField.setCrop(crop);
     getViewState().setFieldCropText(crop);
   }
@@ -77,24 +83,24 @@ import timber.log.Timber;
   }
 
   public void saveField() {
-    // TODO: save field to DB
-    String msg = "Saving field:"
-        + "\nname: "
-        + mField.getName()
-        + "\narea: "
-        + mField.getArea()
-        + "\ncrop:"
-        + mField.getCrop()
-        + "\npoints: "
-        + mField.getPoints();
-    Timber.d(msg);
+    PutResult putResult = mDbManager.putField(mField);
+
+    int changeId = -1;
+    if (putResult.wasInserted()) {
+      mField.setId(putResult.insertedId());
+      changeId = RxBusHelper.FieldChangedInDb.CHANGE_INSERT;
+    } else if (putResult.wasUpdated()) {
+      changeId = RxBusHelper.FieldChangedInDb.CHANGE_UPDATE;
+    }
+
+    mRxBus.post(new RxBusHelper.FieldChangedInDb(mField, changeId));
   }
 
   public void setEditMode(boolean isEditMode) {
     mRxBus.post(new RxBusHelper.SwitchFieldEditMode(isEditMode));
   }
 
-  private void subscribeToPlygonEditResult() {
+  private void subscribeToPolygonEditResult() {
     Subscription subscription = mRxBus.filteredObservable(RxBusHelper.HandlePolygonEditResult.class)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(msg -> {
