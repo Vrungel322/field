@@ -14,6 +14,7 @@ import java.util.List;
 import javax.inject.Inject;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 03.04.2017.
@@ -112,7 +113,7 @@ import rx.android.schedulers.AndroidSchedulers;
         .subscribe(msg -> {
           updateFieldPoints(msg.points);
           updateFieldArea(msg.area);
-        });
+        }, Timber::e);
     addToUnsubscription(subscription);
   }
 }

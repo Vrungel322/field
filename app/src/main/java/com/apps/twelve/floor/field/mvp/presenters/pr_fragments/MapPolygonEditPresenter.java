@@ -103,7 +103,7 @@ import timber.log.Timber;
   private void subscribeToEditModeSwitcher() {
     Subscription subscription = mRxBus.filteredObservable(RxBusHelper.SwitchFieldEditMode.class)
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(msg -> onEditModeSwitched(msg.isEditMode));
+        .subscribe(msg -> onEditModeSwitched(msg.isEditMode), Timber::e);
     addToUnsubscription(subscription);
   }
 

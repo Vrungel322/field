@@ -35,6 +35,7 @@ import timber.log.Timber;
   private List<LatLng> mPoints = new ArrayList<>();
 
   public Field() {
+    this("", "", 0.0D);
   }
 
   public Field(String name, String crop, Double area) {
