@@ -76,10 +76,12 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
       case R.id.btn_ok:
         updateFieldData();
         mEditFieldPresenter.saveField();
+        ViewUtil.hideKeyboard(getActivity());
         mNavigator.popBackStack((AppCompatActivity) getActivity());
         break;
       case R.id.btn_cancel:
         showToastMessage("onCancel");
+        ViewUtil.hideKeyboard(getActivity());
         mNavigator.popBackStack((AppCompatActivity) getActivity());
         break;
       default:
