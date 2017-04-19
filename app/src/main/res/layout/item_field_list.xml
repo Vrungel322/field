@@ -22,7 +22,7 @@
     <Button
         android:id="@+id/btn_cancel"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:paddingEnd="@dimen/common_content_padding"
         android:paddingLeft="@dimen/common_content_padding"
         android:paddingRight="@dimen/common_content_padding"
@@ -37,7 +37,7 @@
     <Button
         android:id="@+id/btn_delete"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:paddingEnd="@dimen/common_content_padding"
         android:paddingLeft="@dimen/common_content_padding"
         android:paddingRight="@dimen/common_content_padding"
@@ -70,6 +70,17 @@
         />
 
     <TextView
+        android:id="@+id/text_crop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_name"
+        style="@style/crop_field_list_item"
+        />
+
+    <TextView
         android:id="@+id/text_area"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -77,9 +88,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_name"
+        app:layout_constraintTop_toBottomOf="@+id/text_crop"
         style="@style/area_field_list_item"
         />
+
   </android.support.constraint.ConstraintLayout>
 
 </com.daimajia.swipe.SwipeLayout>

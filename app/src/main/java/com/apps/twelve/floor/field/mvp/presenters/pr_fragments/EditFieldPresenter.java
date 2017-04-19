@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.mvp.presenters.pr_fragments;
 
+import android.text.TextUtils;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.local.DbManager;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
@@ -61,7 +62,12 @@ import rx.android.schedulers.AndroidSchedulers;
 
   public void updateFieldArea(String area) {
     if (area.equals(String.valueOf(mField.getArea()))) return;
-    mField.setArea(Double.valueOf(area));
+    if (TextUtils.isEmpty(area)) {
+      mField.setArea(0);
+    } else {
+      mField.setArea(Double.valueOf(area));
+    }
+
     getViewState().setFieldAreaText(area);
   }
 

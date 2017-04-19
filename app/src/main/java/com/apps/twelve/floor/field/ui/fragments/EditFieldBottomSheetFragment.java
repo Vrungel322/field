@@ -3,6 +3,7 @@ package com.apps.twelve.floor.field.ui.fragments;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -14,6 +15,7 @@ import butterknife.BindView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
+import butterknife.OnTextChanged;
 import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.EditFieldPresenter;
@@ -23,6 +25,7 @@ import com.apps.twelve.floor.field.utils.Constants;
 import com.apps.twelve.floor.field.utils.ViewUtil;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 04.04.2017.
@@ -86,7 +89,7 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
         showToastMessage("onEdit");
         break;
       case R.id.btn_ok:
-        showToastMessage("onOK");
+        updateFieldData();
         mEditFieldPresenter.saveField();
         mNavigator.popBackStack((AppCompatActivity) getActivity());
         break;
@@ -105,27 +108,24 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
       editText.clearFocus();
       ViewUtil.hideKeyboard(getActivity());
     }
-
-    switch (editText.getId()) {
-      case R.id.ed_text_name:
-        mEditFieldPresenter.updateFieldName(editText.getText().toString());
-        break;
-      case R.id.ed_text_area:
-        mEditFieldPresenter.updateFieldArea(editText.getText().toString());
-        break;
-      case R.id.ed_text_crop:
-        mEditFieldPresenter.updateFieldCrop(editText.getText().toString());
-        break;
-      default:
-        break;
-    }
-
     return false; // pass on to other listeners.
+  }
+
+  @OnTextChanged(value = R.id.ed_text_name, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+  void afterNameChanged(Editable editable) {
+    Timber.d("DBG afterNameChanged: " + editable.toString());
+    mEditFieldPresenter.updateFieldName(editable.toString());
   }
 
   @OnCheckedChanged(R.id.toggle_button_edit_mode)
   public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
     // TODO: maybe block edTexts and btnOk
     mEditFieldPresenter.setEditMode(isChecked);
+  }
+
+  private void updateFieldData() {
+    mEditFieldPresenter.updateFieldName(mEdTextName.getText().toString());
+    mEditFieldPresenter.updateFieldArea(mEdTextArea.getText().toString());
+    mEditFieldPresenter.updateFieldCrop(mEdTextCrop.getText().toString());
   }
 }

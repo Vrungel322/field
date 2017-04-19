@@ -89,6 +89,7 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
     Field field = mFieldsList.get(position);
 
     holder.mNameText.setText(field.getName());
+    holder.mCropText.setText(field.getCrop());
     holder.mAreaText.setText(field.getArea() != null ? String.valueOf(field.getArea()) : "");
 
     setupSwipeLayout(holder, position);
@@ -131,6 +132,7 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
   static class FieldViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.text_name) TextView mNameText;
+    @BindView(R.id.text_crop) TextView mCropText;
     @BindView(R.id.text_area) TextView mAreaText;
     @BindView(R.id.swipe_layout) SwipeLayout mSwipeLayout;
     @BindView(R.id.swipe_background) ConstraintLayout mSwipeBackground;
