@@ -84,8 +84,8 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
   }
 
   @Override public void showFields(List<Field> fields) {
-    mNoDataText.setVisibility(fields.size() > 0 ? View.GONE : View.VISIBLE);
     mFieldsAdapter.addAllFields(fields);
+    showHideNoDataText();
   }
 
   @Override public void showFieldAddTypeDialog() {
@@ -115,6 +115,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
 
   @Override public void addField(Field field) {
     mFieldsAdapter.addField(field);
+    showHideNoDataText();
   }
 
   @Override public void updateField(Field field) {
@@ -123,6 +124,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
 
   @Override public void deleteFieldAtPosotion(Field field, int position) {
     mFieldsAdapter.removeField(field, position);
+    showHideNoDataText();
   }
 
   private void onDialogPositiveButtonClicked(String[] fieldAddTypes) {
@@ -160,5 +162,9 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
   private void showEditFieldFullScreenFragment() {
     mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
         EditFieldFullScreenFragment.newInstance());
+  }
+
+  private void showHideNoDataText() {
+    mNoDataText.setVisibility(mFieldsAdapter.getItemCount() > 0 ? View.GONE : View.VISIBLE);
   }
 }

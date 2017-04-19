@@ -105,6 +105,7 @@ import timber.log.Timber;
 
   public void setEditMode(boolean isEditMode) {
     mRxBus.post(new RxBusHelper.SwitchFieldEditMode(isEditMode));
+    getViewState().setBtnOkEnabled(!isEditMode);
   }
 
   private void subscribeToPolygonEditResult() {

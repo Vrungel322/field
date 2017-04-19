@@ -69,6 +69,10 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
     mEdTextCrop.setText(crop);
   }
 
+  @Override public void setBtnOkEnabled(boolean isEnabled) {
+    mBtnOk.setEnabled(isEnabled);
+  }
+
   // UI events ================================================================
 
   @OnClick({ R.id.btn_ok, R.id.btn_cancel }) public void onViewClicked(View view) {

@@ -16,4 +16,6 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
   void setFieldAreaText(String area);
 
   void setFieldCropText(String crop);
+
+  void setBtnOkEnabled(boolean isEnabled);
 }

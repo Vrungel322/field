@@ -76,6 +76,10 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
     mEdTextCrop.setText(crop);
   }
 
+  @Override public void setBtnOkEnabled(boolean isEnabled) {
+    mBtnOk.setEnabled(isEnabled);
+  }
+
   // UI events ================================================================
 
   @OnClick({ R.id.btn_edit_area, R.id.btn_ok, R.id.btn_cancel })
