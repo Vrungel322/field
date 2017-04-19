@@ -24,8 +24,8 @@ import retrofit2.Retrofit;
     return new RestApi(api);
   }
 
-  @Provides @AppScope DataManager provideDataManager(RestApi restApi) {
-    return new DataManager(restApi);
+  @Provides @AppScope DataManager provideDataManager() {
+    return new DataManager();
   }
 
   @Provides @AppScope PreferencesHelper providePreferencesHelper(Context context) {

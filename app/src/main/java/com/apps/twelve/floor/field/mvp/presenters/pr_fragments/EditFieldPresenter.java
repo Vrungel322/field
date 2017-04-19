@@ -2,7 +2,7 @@ package com.apps.twelve.floor.field.mvp.presenters.pr_fragments;
 
 import android.text.TextUtils;
 import com.apps.twelve.floor.field.App;
-import com.apps.twelve.floor.field.mvp.data.local.DbManager;
+import com.apps.twelve.floor.field.mvp.data.DataManager;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
 import com.apps.twelve.floor.field.mvp.views.IEditFieldFragmentView;
@@ -21,7 +21,7 @@ import rx.android.schedulers.AndroidSchedulers;
 
 @InjectViewState public class EditFieldPresenter extends BasePresenter<IEditFieldFragmentView> {
 
-  @Inject DbManager mDbManager;
+  @Inject DataManager mDataManager;
   @Inject RxBus mRxBus;
 
   private Field mField;
@@ -89,7 +89,7 @@ import rx.android.schedulers.AndroidSchedulers;
   }
 
   public void saveField() {
-    PutResult putResult = mDbManager.putField(mField);
+    PutResult putResult = mDataManager.putField(mField);
 
     int changeId = -1;
     if (putResult.wasInserted()) {

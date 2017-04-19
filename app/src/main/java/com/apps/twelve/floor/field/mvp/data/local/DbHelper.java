@@ -14,11 +14,11 @@ import rx.Observable;
  * Created by Yaroslav on 11.04.2017.
  */
 
-public class DbManager {
+public class DbHelper {
 
   @Inject StorIOSQLite mStorIOSQLite;
 
-  public DbManager() {
+  public DbHelper() {
     App.getAppComponent().inject(this);
   }
 

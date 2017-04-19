@@ -3,7 +3,6 @@ package com.apps.twelve.floor.field.ui.fragments;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -15,7 +14,6 @@ import butterknife.BindView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
-import butterknife.OnTextChanged;
 import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.EditFieldPresenter;
@@ -25,7 +23,6 @@ import com.apps.twelve.floor.field.utils.Constants;
 import com.apps.twelve.floor.field.utils.ViewUtil;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
-import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 04.04.2017.
@@ -109,12 +106,6 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
       ViewUtil.hideKeyboard(getActivity());
     }
     return false; // pass on to other listeners.
-  }
-
-  @OnTextChanged(value = R.id.ed_text_name, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-  void afterNameChanged(Editable editable) {
-    Timber.d("DBG afterNameChanged: " + editable.toString());
-    mEditFieldPresenter.updateFieldName(editable.toString());
   }
 
   @OnCheckedChanged(R.id.toggle_button_edit_mode)

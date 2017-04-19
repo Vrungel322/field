@@ -1,7 +1,7 @@
 package com.apps.twelve.floor.field.mvp.presenters.pr_fragments;
 
 import com.apps.twelve.floor.field.App;
-import com.apps.twelve.floor.field.mvp.data.local.DbManager;
+import com.apps.twelve.floor.field.mvp.data.DataManager;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
 import com.apps.twelve.floor.field.mvp.views.IStartFragmentView;
@@ -21,7 +21,7 @@ import timber.log.Timber;
 
 @InjectViewState public class StartFragmentPresenter extends BasePresenter<IStartFragmentView> {
 
-  @Inject DbManager mDbManager;
+  @Inject DataManager mDataManager;
   @Inject RxBus mRxBus;
 
   private int mFieldTypePosition = -1;
@@ -56,7 +56,7 @@ import timber.log.Timber;
   }
 
   private void getAllFields() {
-    Subscription subscription = mDbManager.getAllFields()
+    Subscription subscription = mDataManager.getAllFields()
         .compose(ThreadSchedulers.applySchedulers())
         .subscribe(fields -> getViewState().showFields(fields), Timber::e);
 
@@ -71,7 +71,7 @@ import timber.log.Timber;
   }
 
   private void onFieldDeletedFromList(Field field, int position) {
-    DeleteResult deleteResult = mDbManager.deleteField(field);
+    DeleteResult deleteResult = mDataManager.deleteField(field);
 
     if (deleteResult.numberOfRowsDeleted() > 0) {
       getViewState().deleteFieldAtPosotion(field, position);

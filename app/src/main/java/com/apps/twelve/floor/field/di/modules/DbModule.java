@@ -3,7 +3,7 @@ package com.apps.twelve.floor.field.di.modules;
 import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
-import com.apps.twelve.floor.field.mvp.data.local.DbManager;
+import com.apps.twelve.floor.field.mvp.data.local.DbHelper;
 import com.apps.twelve.floor.field.mvp.data.local.DbOpenHelper;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.apps.twelve.floor.field.mvp.data.model.FieldSQLiteTypeMapping;
@@ -18,8 +18,8 @@ import dagger.Provides;
 
 @Module public class DbModule {
 
-  @Provides @AppScope DbManager provideDbManager() {
-    return new DbManager();
+  @Provides @AppScope DbHelper provideDbManager() {
+    return new DbHelper();
   }
 
   @Provides @AppScope StorIOSQLite provideStorIOSQLite(SQLiteOpenHelper sqliteOpenHelper) {
