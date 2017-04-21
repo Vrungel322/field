@@ -25,10 +25,11 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 /**
- * Created by Yaroslav on 04.04.2017.
+ * Created by Yaroslav on 20.04.2017.
  */
 
-public class EditFieldBottomSheetFragment extends BaseFragment implements IEditFieldFragmentView {
+public class AddFieldTrackingBottomSheetFragment extends BaseFragment
+    implements IEditFieldFragmentView {
 
   @InjectPresenter EditFieldPresenter mEditFieldPresenter;
 
@@ -38,7 +39,7 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   }
 
   @BindView(R.id.constraint_layout_root) ConstraintLayout mConstraintLayoutRoot;
-  @BindView(R.id.toggle_button_edit_mode) ToggleButton mTglBtnEditMode;
+  @BindView(R.id.toggle_button_tracking_mode) ToggleButton mTglBtnTrackingMode;
   @BindView(R.id.ed_text_name) EditText mEdTextName;
   @BindView(R.id.ed_text_area) EditText mEdTextArea;
   @BindView(R.id.ed_text_crop) EditText mEdTextCrop;
@@ -46,18 +47,18 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
 
-  public EditFieldBottomSheetFragment() {
-    super(R.layout.fragment_edit_field_bottom_sheet);
+  public AddFieldTrackingBottomSheetFragment() {
+    super(R.layout.fragment_tracking_field_bottom_sheet);
   }
 
-  public static EditFieldBottomSheetFragment newInstance() {
+  public static AddFieldTrackingBottomSheetFragment newInstance() {
     return newInstance(new Field());
   }
 
-  public static EditFieldBottomSheetFragment newInstance(Field field) {
+  public static AddFieldTrackingBottomSheetFragment newInstance(Field field) {
     Bundle args = new Bundle();
     args.putParcelable(Constants.EditField.FIELD_BUNDLE_KEY, field);
-    EditFieldBottomSheetFragment fragment = new EditFieldBottomSheetFragment();
+    AddFieldTrackingBottomSheetFragment fragment = new AddFieldTrackingBottomSheetFragment();
     fragment.setArguments(args);
     return fragment;
   }
@@ -112,10 +113,10 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
     return false; // pass on to other listeners.
   }
 
-  @OnCheckedChanged(R.id.toggle_button_edit_mode)
+  @OnCheckedChanged(R.id.toggle_button_tracking_mode)
   public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
     // TODO: maybe block edTexts
-    mEditFieldPresenter.setEditMode(isChecked);
+    mEditFieldPresenter.setTrackingMode(isChecked);
   }
 
   private void updateFieldData() {

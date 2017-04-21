@@ -5,6 +5,7 @@ import com.apps.twelve.floor.field.di.scopes.AppScope;
 import com.apps.twelve.floor.field.mvp.data.DataManager;
 import com.apps.twelve.floor.field.mvp.data.local.DbHelper;
 import com.apps.twelve.floor.field.mvp.presenters.pr_activities.MainActivityPresenter;
+import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.AddFieldTrackingPresenter;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.EditFieldPresenter;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.MapPolygonEditPresenter;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.StartFragmentPresenter;
@@ -28,6 +29,8 @@ import dagger.Component;
   void inject(MapPolygonEditPresenter presenter);
 
   void inject(EditFieldPresenter presenter);
+
+  void inject(AddFieldTrackingPresenter presenter);
 
   //activities
   void inject(BaseActivity activity);

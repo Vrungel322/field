@@ -42,6 +42,24 @@ public final class RxBusHelper {
     }
   }
 
+  // Field tracking events =====================================================================
+
+  public static class SwitchFieldTrackingMode {
+    public boolean isTrackingMode;
+
+    public SwitchFieldTrackingMode(boolean isTrackingMode) {
+      this.isTrackingMode = isTrackingMode;
+    }
+  }
+
+  public static class TrackingNewLocation {
+    public LatLng locationPoint;
+
+    public TrackingNewLocation(LatLng locationPoint) {
+      this.locationPoint = locationPoint;
+    }
+  }
+
   // DataBase events  =====================================================================
 
   public static class FieldChangedInDb {

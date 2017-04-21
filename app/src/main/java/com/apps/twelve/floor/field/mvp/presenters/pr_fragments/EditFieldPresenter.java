@@ -108,6 +108,11 @@ import timber.log.Timber;
     getViewState().setBtnOkEnabled(!isEditMode);
   }
 
+  public void setTrackingMode(boolean isTrackingMode) {
+    mRxBus.post(new RxBusHelper.SwitchFieldTrackingMode(isTrackingMode));
+    getViewState().setBtnOkEnabled(!isTrackingMode);
+  }
+
   private void subscribeToPolygonEditResult() {
     Subscription subscription = mRxBus.filteredObservable(RxBusHelper.HandlePolygonEditResult.class)
         .observeOn(AndroidSchedulers.mainThread())

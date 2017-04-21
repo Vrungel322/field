@@ -142,7 +142,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
         showEditFieldOnMapFragment();
         break;
       case 1:
-        showToastMessage("Add Field type: " + fieldAddTypes[which]);
+        showEditFieldTrackingFragment();
         break;
       case 2:
         showEditFieldFullScreenFragment();
@@ -157,6 +157,11 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
   private void showEditFieldOnMapFragment() {
     mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
         EditFieldOnMapFragment.newInstance());
+  }
+
+  private void showEditFieldTrackingFragment() {
+    mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
+        AddFieldTrackingFragment.newInstance());
   }
 
   private void showEditFieldFullScreenFragment() {

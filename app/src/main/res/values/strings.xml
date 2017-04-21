@@ -22,6 +22,7 @@
 
   <!-- Field editing -->
   <string name="text_edit_mode">Режим редактирования</string>
+  <string name="text_tracking_mode">Режим обхода</string>
   <string name="toggle_button_text_on">Вкл</string>
   <string name="toggle_button_text_off">Выкл</string>
   <string name="edit_text_name_hint">Название</string>

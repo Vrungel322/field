@@ -10,21 +10,26 @@ import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
-import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.MapPolygonEditPresenter;
-import com.apps.twelve.floor.field.mvp.views.IEditFieldOnMapFragmentView;
+import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.AddFieldTrackingPresenter;
+import com.apps.twelve.floor.field.mvp.views.IAddFieldTrackingFragmentView;
 import com.apps.twelve.floor.field.ui.base.BaseManualAttachFragment;
 import com.apps.twelve.floor.field.utils.Constants;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnCameraIdleListener;
 import com.google.android.gms.maps.GoogleMap.OnCameraMoveStartedListener;
-import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerDragListener;
 import com.google.android.gms.maps.GoogleMap.OnPolygonClickListener;
@@ -49,13 +54,13 @@ import java.util.List;
 import timber.log.Timber;
 
 /**
- * Created by Yaroslav on 30.03.2017.
+ * Created by Yaroslav on 20.04.2017.
  */
 
-public class EditFieldOnMapFragment extends BaseManualAttachFragment
-    implements IEditFieldOnMapFragmentView, OnMapReadyCallback, OnMapClickListener,
-    OnCameraMoveStartedListener, OnCameraIdleListener, OnMarkerClickListener, OnMarkerDragListener,
-    OnPolygonClickListener, ConnectionCallbacks, OnConnectionFailedListener {
+public class AddFieldTrackingFragment extends BaseManualAttachFragment
+    implements IAddFieldTrackingFragmentView, OnMapReadyCallback, OnCameraMoveStartedListener,
+    OnCameraIdleListener, OnMarkerClickListener, OnMarkerDragListener, OnPolygonClickListener,
+    ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
 
   private static final int PATTERN_DASH_LENGTH_PX = 20;
   private static final int PATTERN_GAP_LENGTH_PX = 20;
@@ -63,7 +68,11 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   private static final PatternItem DASH = new Dash(PATTERN_DASH_LENGTH_PX);
   private static final PatternItem GAP = new Gap(PATTERN_GAP_LENGTH_PX);
 
-  @InjectPresenter MapPolygonEditPresenter mMapPolygonEditPresenter;
+  public static final long TRACKING_INTERVAL = 10000L;
+  public static final long TRACKING_FASTEST_INTERVAL = 5000L;
+  public static final float TRACKING_SMALLEST_DISPLACEMENT = 0f;
+
+  @InjectPresenter AddFieldTrackingPresenter mAddFieldTrackingPresenter;
 
   private GoogleMap mMap;
   private List<Marker> mMarkers = new ArrayList<>();
@@ -71,18 +80,27 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   private Polygon mPolygon;
   private boolean mIsCameraMovedByUser;
 
-  public EditFieldOnMapFragment() {
+  private boolean mIsTrackingMode = false;
+  private boolean mIsTrackingInitiated = false;
+  private boolean mIsTrackingNow = false;
+
+  private LocationRequest mLocationRequest = new LocationRequest().setInterval(TRACKING_INTERVAL)
+      .setFastestInterval(TRACKING_FASTEST_INTERVAL)
+      .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+      .setSmallestDisplacement(TRACKING_SMALLEST_DISPLACEMENT);
+
+  public AddFieldTrackingFragment() {
     super(R.layout.fragment_edit_filed_on_map);
   }
 
-  public static EditFieldOnMapFragment newInstance() {
+  public static AddFieldTrackingFragment newInstance() {
     return newInstance(new Field());
   }
 
-  public static EditFieldOnMapFragment newInstance(Field field) {
+  public static AddFieldTrackingFragment newInstance(Field field) {
     Bundle args = new Bundle();
     args.putParcelable(Constants.EditField.FIELD_BUNDLE_KEY, field);
-    EditFieldOnMapFragment fragment = new EditFieldOnMapFragment();
+    AddFieldTrackingFragment fragment = new AddFieldTrackingFragment();
     fragment.setArguments(args);
     return fragment;
   }
@@ -101,13 +119,15 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     super.onViewCreated(view, savedInstanceState);
     obtainMap();
     if (savedInstanceState == null) {
-      // if state is restored (f.e. after rotation) - no need to add new child fragment
-      addEditFieldFragment();
+      addTrackingFieldFragment();
     }
   }
 
   @Override public void onStart() {
-    if (mGoogleApiClient != null) mGoogleApiClient.connect();
+    if (mGoogleApiClient != null) {
+      mGoogleApiClient.connect();
+      initTrackingLocation();
+    }
     if (mMap != null) attachToPresenter();
     super.onStart();
   }
@@ -118,79 +138,14 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   }
 
   @Override public void onStop() {
-    if (mGoogleApiClient != null) mGoogleApiClient.disconnect();
+    if (mGoogleApiClient != null) {
+      stopLocationUpdates();
+      mGoogleApiClient.disconnect();
+    }
     super.onStop();
   }
 
-  // Map events ================================================
-
-  @Override public void onMapReady(GoogleMap googleMap) {
-    mMap = googleMap;
-    mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-
-    mMap.setOnMapClickListener(this);
-    mMap.setOnMarkerClickListener(this);
-    mMap.setOnMarkerDragListener(this);
-    mMap.setOnPolygonClickListener(this);
-    mMap.setOnCameraMoveStartedListener(this);
-    mMap.setOnCameraIdleListener(this);
-
-    mMapPolygonEditPresenter.setMapReady(true);
-    attachToPresenter();
-
-    // map can become ready before ApiClient connects
-    if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) moveCameraToCurrentLocation();
-  }
-
-  @Override public void onMapClick(LatLng latLng) {
-    mMapPolygonEditPresenter.handleNewPoint(latLng);
-  }
-
-  @Override public boolean onMarkerClick(Marker marker) {
-    return mMapPolygonEditPresenter.handlePointClicked(mMarkers.indexOf(marker),
-        marker.getPosition());
-  }
-
-  @Override public void onMarkerDragStart(Marker marker) {
-  }
-
-  @Override public void onMarkerDrag(Marker marker) {
-  }
-
-  @Override public void onMarkerDragEnd(Marker marker) {
-    mMapPolygonEditPresenter.handlePointChanged(mMarkers.indexOf(marker), marker.getPosition());
-  }
-
-  @Override public void onPolygonClick(Polygon polygon) {
-    mMapPolygonEditPresenter.clearPoints();
-  }
-
-  @Override public void onCameraMoveStarted(int i) {
-    mIsCameraMovedByUser = (i == OnCameraMoveStartedListener.REASON_GESTURE);
-  }
-
-  @Override public void onCameraIdle() {
-    if (mIsCameraMovedByUser) {
-      mMapPolygonEditPresenter.saveMapCameraUpdate(
-          CameraUpdateFactory.newCameraPosition(mMap.getCameraPosition()));
-    }
-  }
-
-  // GoogleApi events ===========================================================
-
-  @Override public void onConnected(@Nullable Bundle bundle) {
-    // ApiClient can connect before map is ready
-    if (mMap != null) moveCameraToCurrentLocation();
-  }
-
-  @Override public void onConnectionSuspended(int i) {
-  }
-
-  @Override public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-    Timber.e(new Throwable("Connection failed with result:\n" + connectionResult.toString()));
-  }
-
-  // MvpView methods ================================================
+  // Mvp events ================================================
 
   @Override public void addMarkerOnMap(LatLng latLng) {
     mMarkers.add(mMap.addMarker(new MarkerOptions().position(latLng).draggable(true)));
@@ -259,19 +214,122 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     mMap.moveCamera(cameraUpdate);
   }
 
+  @Override public void startTracking() {
+    // TODO
+    mIsTrackingMode = true;
+    startLocationUpdates();
+  }
+
+  @Override public void stopTracking() {
+    mIsTrackingMode = false;
+    stopLocationUpdates();
+  }
+
+  // Map events ================================================
+
+  @Override public void onMapReady(GoogleMap googleMap) {
+    mMap = googleMap;
+    mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
+    mMap.setOnMarkerClickListener(this);
+    mMap.setOnMarkerDragListener(this);
+    mMap.setOnPolygonClickListener(this);
+    mMap.setOnCameraMoveStartedListener(this);
+    mMap.setOnCameraIdleListener(this);
+
+    attachToPresenter();
+
+    // map can become ready before ApiClient connects
+    if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+      moveCameraToCurrentLocation();
+    }
+  }
+
+  @Override public boolean onMarkerClick(Marker marker) {
+    return mAddFieldTrackingPresenter.handlePointClicked(mMarkers.indexOf(marker),
+        marker.getPosition());
+  }
+
+  @Override public void onMarkerDragStart(Marker marker) {
+  }
+
+  @Override public void onMarkerDrag(Marker marker) {
+  }
+
+  @Override public void onMarkerDragEnd(Marker marker) {
+    mAddFieldTrackingPresenter.handlePointChanged(mMarkers.indexOf(marker), marker.getPosition());
+  }
+
+  @Override public void onPolygonClick(Polygon polygon) {
+    mAddFieldTrackingPresenter.clearPoints();
+  }
+
+  @Override public void onCameraMoveStarted(int i) {
+    mIsCameraMovedByUser = (i == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE);
+  }
+
+  @Override public void onCameraIdle() {
+    if (mIsCameraMovedByUser) {
+      mAddFieldTrackingPresenter.saveMapCameraUpdate(
+          CameraUpdateFactory.newCameraPosition(mMap.getCameraPosition()));
+    }
+  }
+
+  // GoogleApi events ===========================================================
+
+  @Override public void onConnected(@Nullable Bundle bundle) {
+    // ApiClient can connect before map is ready
+    if (mMap != null) moveCameraToCurrentLocation();
+    if (mIsTrackingMode && mIsTrackingInitiated) {
+      startLocationUpdates();
+    }
+  }
+
+  @Override public void onConnectionSuspended(int i) {
+  }
+
+  @Override public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+    Timber.e(new Throwable("Connection failed with result:\n" + connectionResult.toString()));
+  }
+
+  // Location events ======================================================================
+
+  @Override public void onLocationChanged(Location location) {
+
+    mAddFieldTrackingPresenter.handleNewPoint(
+        new LatLng(location.getLatitude(), location.getLongitude()));
+
+    Timber.d("DBG Location: thread " + Thread.currentThread().getId());
+    Timber.d("DBG Location: "
+        + "\n   lat lon: "
+        + location.getLatitude()
+        + "; "
+        + location.getLongitude()
+        + "\n   altitude: "
+        + location.getAltitude()
+        + "\n   accuracy: "
+        + location.getAccuracy()
+        + "\n   bearing (direction of travel): "
+        + location.getBearing()
+        + "\n   speed: "
+        + location.getSpeed()
+        + "\n   time: "
+        + location.getTime()
+        + "\n ");
+  }
+
   // Private section ================================================
 
   // Obtain the SupportMapFragment and get notified when the map is ready to use.
   private void obtainMap() {
-    mMapPolygonEditPresenter.setMapReady(false);
     SupportMapFragment mapFragment =
         (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map);
     mapFragment.getMapAsync(this);
   }
 
-  private void addEditFieldFragment() {
+  private void addTrackingFieldFragment() {
     mNavigator.addChildFragment(this, R.id.bottom_sheet_field_item_edition,
-        EditFieldBottomSheetFragment.newInstance());
+        AddFieldTrackingBottomSheetFragment.newInstance());
   }
 
   private void moveCameraToCurrentLocation() {
@@ -291,7 +349,7 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
     if (lastLocation != null) {
       float zoom = 17.0f;
-      mMapPolygonEditPresenter.initMapCameraUpdate(CameraUpdateFactory.newLatLngZoom(
+      mAddFieldTrackingPresenter.initMapCameraUpdate(CameraUpdateFactory.newLatLngZoom(
           new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude()), zoom));
     }
   }
@@ -340,5 +398,77 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
       mPolygon.remove();
       mPolygon = null;
     }
+  }
+
+  private void initTrackingLocation() {
+    if (mIsTrackingInitiated) {
+      return;
+    }
+
+    PendingResult<LocationSettingsResult> result =
+        LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient,
+            (new LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest)).build());
+
+    result.setResultCallback(locationSettingsResult -> {
+      switch (locationSettingsResult.getStatus().getStatusCode()) {
+        case LocationSettingsStatusCodes.SUCCESS:
+          // TODO: init location request
+          mIsTrackingInitiated = true;
+          break;
+        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+          // TODO: request resolution in dialog
+          requestLocationResolution();
+          break;
+        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+          Timber.e("Can not init location tracking: setting change unavailable");
+          mIsTrackingInitiated = false;
+          break;
+        default:
+          mIsTrackingInitiated = false;
+          break;
+      }
+    });
+  }
+
+  private void requestLocationResolution() {
+    showToastMessage("request location resolution");
+    // Location settings are not satisfied, but this can be fixed
+    // by showing the user a dialog.
+    /*try {
+      // Show the dialog by calling startResolutionForResult(),
+      // and check the result in onActivityResult().
+      status.startResolutionForResult(
+          OuterClass.this,
+          REQUEST_CHECK_SETTINGS);
+    } catch (SendIntentException e) {
+      // Ignore the error.
+    }*/
+  }
+
+  private void startLocationUpdates() {
+    if (!mIsTrackingInitiated || mIsTrackingNow) {
+      return;
+    }
+
+    if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION)
+        != PackageManager.PERMISSION_GRANTED
+        && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION)
+        != PackageManager.PERMISSION_GRANTED) {
+      return;
+    }
+
+    LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest,
+        this);
+
+    mIsTrackingNow = true;
+  }
+
+  private void stopLocationUpdates() {
+    if (mGoogleApiClient == null || !mGoogleApiClient.isConnected()) {
+      return;
+    }
+
+    LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+    mIsTrackingNow = false;
   }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.widget.Toast;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import com.apps.twelve.floor.field.App;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import javax.inject.Inject;
@@ -18,10 +19,17 @@ public abstract class BaseActivity extends MvpAppCompatActivity {
   @Inject protected Context mContext;
   @Inject protected Navigator mNavigator;
 
+  Unbinder unbinder;
+
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    ButterKnife.bind(this);
+    unbinder = ButterKnife.bind(this);
     App.getAppComponent().inject(this);
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    unbinder.unbind();
   }
 
   protected void showToastMessage(String message) {
