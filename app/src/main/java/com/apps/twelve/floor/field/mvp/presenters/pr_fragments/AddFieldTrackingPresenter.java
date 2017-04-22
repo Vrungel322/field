@@ -36,6 +36,7 @@ import timber.log.Timber;
 
   @Override protected void onFirstViewAttach() {
     super.onFirstViewAttach();
+    addEditFieldBottomSheet();
     subscribeToTrackingModeSwitcher();
     subscribeToTrackingLocation();
   }
@@ -81,6 +82,10 @@ import timber.log.Timber;
   public void saveMapCameraUpdate(CameraUpdate cameraUpdate) {
     this.mCameraUpdate = cameraUpdate;
     getViewState().moveCamera(mCameraUpdate);
+  }
+
+  private void addEditFieldBottomSheet() {
+    getViewState().addTrackingFieldFragment();
   }
 
   private boolean isOkIndex(int index) {

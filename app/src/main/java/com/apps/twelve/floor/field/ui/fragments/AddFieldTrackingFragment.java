@@ -118,9 +118,6 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     obtainMap();
-    if (savedInstanceState == null) {
-      addTrackingFieldFragment();
-    }
   }
 
   @Override public void onStart() {
@@ -146,6 +143,11 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
   }
 
   // Mvp events ================================================
+
+  @Override public void addTrackingFieldFragment() {
+    mNavigator.addChildFragment(this, R.id.bottom_sheet_field_item_edition,
+        AddFieldTrackingBottomSheetFragment.newInstance());
+  }
 
   @Override public void addMarkerOnMap(LatLng latLng) {
     mMarkers.add(mMap.addMarker(new MarkerOptions().position(latLng).draggable(true)));
@@ -229,7 +231,6 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
 
   @Override public void onMapReady(GoogleMap googleMap) {
     mMap = googleMap;
-    mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
     mMap.setOnMarkerClickListener(this);
     mMap.setOnMarkerDragListener(this);
@@ -325,11 +326,6 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
     SupportMapFragment mapFragment =
         (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map);
     mapFragment.getMapAsync(this);
-  }
-
-  private void addTrackingFieldFragment() {
-    mNavigator.addChildFragment(this, R.id.bottom_sheet_field_item_edition,
-        AddFieldTrackingBottomSheetFragment.newInstance());
   }
 
   private void moveCameraToCurrentLocation() {

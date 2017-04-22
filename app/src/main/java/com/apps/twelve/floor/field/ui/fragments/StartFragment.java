@@ -61,17 +61,9 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     mFieldsRecyclerView.setItemAnimator(new DefaultItemAnimator());
     // TODO: open field editing screen (give it to mNavigator)
     ItemClickSupport.addTo(mFieldsRecyclerView)
-        .setOnItemClickListener((recyclerView, position, v) -> mNavigator.addFragmentBackStack(
-            ((AppCompatActivity) getActivity()), R.id.container_start,
-            makeEditFieldFragment(mFieldsAdapter.getFieldAt(position))));
-  }
-
-  private Fragment makeEditFieldFragment(Field field) {
-    if (field.hasPoints()) {
-      return EditFieldOnMapFragment.newInstance(field);
-    } else {
-      return EditFieldFullScreenFragment.newInstance(field);
-    }
+        .setOnItemClickListener(
+            (recyclerView, position, v) -> mStartFragmentPresenter.onFiledClickedAtPosition(
+                position));
   }
 
   @Override public void onDestroy() {
@@ -85,7 +77,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
 
   @Override public void showFields(List<Field> fields) {
     mFieldsAdapter.addAllFields(fields);
-    showHideNoDataText();
+    updateTextNoDataVisibility();
   }
 
   @Override public void showFieldAddTypeDialog() {
@@ -115,16 +107,36 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
 
   @Override public void addField(Field field) {
     mFieldsAdapter.addField(field);
-    showHideNoDataText();
+    updateTextNoDataVisibility();
   }
 
   @Override public void updateField(Field field) {
     mFieldsAdapter.updateField(field);
   }
 
-  @Override public void deleteFieldAtPosotion(Field field, int position) {
+  @Override public void deleteFieldAtPosition(Field field, int position) {
     mFieldsAdapter.removeField(field, position);
-    showHideNoDataText();
+    updateTextNoDataVisibility();
+  }
+
+  @Override public void showEditFieldOnMapFragment() {
+    mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
+        EditFieldOnMapFragment.newInstance());
+  }
+
+  @Override public void showEditFieldTrackingFragment() {
+    mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
+        AddFieldTrackingFragment.newInstance());
+  }
+
+  @Override public void showEditFieldFullScreenFragment() {
+    mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
+        EditFieldFullScreenFragment.newInstance());
+  }
+
+  @Override public void openEditFieldFragment(int position) {
+    mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
+        makeEditFieldFragment(mFieldsAdapter.getFieldAt(position)));
   }
 
   private void onDialogPositiveButtonClicked(String[] fieldAddTypes) {
@@ -135,41 +147,19 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
       return;
     }
 
-    // open field editing screen (give it to mNavigator)
-    // TODO: replace literals with IDs
-    switch (which) {
-      case 0:
-        showEditFieldOnMapFragment();
-        break;
-      case 1:
-        showEditFieldTrackingFragment();
-        break;
-      case 2:
-        showEditFieldFullScreenFragment();
-        break;
-      default:
-        break;
-    }
-
+    mStartFragmentPresenter.onFieldTypeDialogPositiveButton(which);
     mStartFragmentPresenter.hideFieldTypeDialog();
   }
 
-  private void showEditFieldOnMapFragment() {
-    mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
-        EditFieldOnMapFragment.newInstance());
+  private Fragment makeEditFieldFragment(Field field) {
+    if (field.hasPoints()) {
+      return EditFieldOnMapFragment.newInstance(field);
+    } else {
+      return EditFieldFullScreenFragment.newInstance(field);
+    }
   }
 
-  private void showEditFieldTrackingFragment() {
-    mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
-        AddFieldTrackingFragment.newInstance());
-  }
-
-  private void showEditFieldFullScreenFragment() {
-    mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
-        EditFieldFullScreenFragment.newInstance());
-  }
-
-  private void showHideNoDataText() {
+  private void updateTextNoDataVisibility() {
     mNoDataText.setVisibility(mFieldsAdapter.getItemCount() > 0 ? View.GONE : View.VISIBLE);
   }
 }

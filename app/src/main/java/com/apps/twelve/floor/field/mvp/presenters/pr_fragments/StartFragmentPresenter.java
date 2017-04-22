@@ -74,7 +74,7 @@ import timber.log.Timber;
     DeleteResult deleteResult = mDataManager.deleteField(field);
 
     if (deleteResult.numberOfRowsDeleted() > 0) {
-      getViewState().deleteFieldAtPosotion(field, position);
+      getViewState().deleteFieldAtPosition(field, position);
     }
   }
 
@@ -96,5 +96,26 @@ import timber.log.Timber;
       default:
         break;
     }
+  }
+
+  public void onFieldTypeDialogPositiveButton(int which) {
+    // TODO: replace literals with IDs
+    switch (which) {
+      case 0:
+        getViewState().showEditFieldOnMapFragment();
+        break;
+      case 1:
+        getViewState().showEditFieldTrackingFragment();
+        break;
+      case 2:
+        getViewState().showEditFieldFullScreenFragment();
+        break;
+      default:
+        break;
+    }
+  }
+
+  public void onFiledClickedAtPosition(int position) {
+    getViewState().openEditFieldFragment(position);
   }
 }

@@ -100,10 +100,6 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     obtainMap();
-    if (savedInstanceState == null) {
-      // if state is restored (f.e. after rotation) - no need to add new child fragment
-      addEditFieldFragment();
-    }
   }
 
   @Override public void onStart() {
@@ -126,7 +122,6 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
 
   @Override public void onMapReady(GoogleMap googleMap) {
     mMap = googleMap;
-    mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
     mMap.setOnMapClickListener(this);
     mMap.setOnMarkerClickListener(this);
@@ -191,6 +186,11 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   }
 
   // MvpView methods ================================================
+
+  @Override public void addEditFieldFragment() {
+    mNavigator.addChildFragment(this, R.id.bottom_sheet_field_item_edition,
+        EditFieldBottomSheetFragment.newInstance());
+  }
 
   @Override public void addMarkerOnMap(LatLng latLng) {
     mMarkers.add(mMap.addMarker(new MarkerOptions().position(latLng).draggable(true)));
@@ -267,11 +267,6 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     SupportMapFragment mapFragment =
         (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map);
     mapFragment.getMapAsync(this);
-  }
-
-  private void addEditFieldFragment() {
-    mNavigator.addChildFragment(this, R.id.bottom_sheet_field_item_edition,
-        EditFieldBottomSheetFragment.newInstance());
   }
 
   private void moveCameraToCurrentLocation() {

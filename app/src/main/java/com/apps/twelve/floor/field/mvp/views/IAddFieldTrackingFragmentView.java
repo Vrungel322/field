@@ -4,6 +4,7 @@ import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
 import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy;
+import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.model.LatLng;
@@ -15,6 +16,8 @@ import java.util.List;
 
 @StateStrategyType(AddToEndSingleStrategy.class) public interface IAddFieldTrackingFragmentView
     extends MvpView {
+
+  @StateStrategyType(SkipStrategy.class) void addTrackingFieldFragment();
 
   @StateStrategyType(AddToEndStrategy.class) void addMarkerOnMap(LatLng point);
 
