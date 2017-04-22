@@ -116,6 +116,9 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   @Override public void onStop() {
     if (mGoogleApiClient != null) mGoogleApiClient.disconnect();
     super.onStop();
+    if (mMap != null) {
+      mMap.clear();
+    }
   }
 
   // Map events ================================================

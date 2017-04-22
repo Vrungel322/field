@@ -139,6 +139,9 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
       stopLocationUpdates();
       mGoogleApiClient.disconnect();
     }
+    if (mMap != null) {
+      mMap.clear();
+    }
     super.onStop();
   }
 
