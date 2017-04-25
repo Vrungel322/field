@@ -114,11 +114,8 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   }
 
   @Override public void onStop() {
-    if (mGoogleApiClient != null) mGoogleApiClient.disconnect();
+    cleanMapResources();
     super.onStop();
-    if (mMap != null) {
-      mMap.clear();
-    }
   }
 
   // Map events ================================================
@@ -337,6 +334,18 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     if (mPolygon != null) {
       mPolygon.remove();
       mPolygon = null;
+    }
+  }
+
+  private void cleanMapResources() {
+    if (mGoogleApiClient != null) {
+      mGoogleApiClient.unregisterConnectionCallbacks(this);
+      mGoogleApiClient.unregisterConnectionFailedListener(this);
+      mGoogleApiClient.disconnect();
+    }
+    clearObjects();
+    if (mMap != null) {
+      mMap.clear();
     }
   }
 }

@@ -121,7 +121,6 @@ import timber.log.Timber;
     getViewState().setPolygonVisibleAndClickable(!mIsTrackingMode);
 
     if (mIsTrackingMode) {
-      clearPoints();
       getViewState().startTracking();
     } else {
       getViewState().stopTracking();

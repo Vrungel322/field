@@ -135,13 +135,7 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
   }
 
   @Override public void onStop() {
-    if (mGoogleApiClient != null) {
-      stopLocationUpdates();
-      mGoogleApiClient.disconnect();
-    }
-    if (mMap != null) {
-      mMap.clear();
-    }
+    cleanMapResources();
     super.onStop();
   }
 
@@ -302,24 +296,6 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
 
     mAddFieldTrackingPresenter.handleNewPoint(
         new LatLng(location.getLatitude(), location.getLongitude()));
-
-    Timber.d("DBG Location: thread " + Thread.currentThread().getId());
-    Timber.d("DBG Location: "
-        + "\n   lat lon: "
-        + location.getLatitude()
-        + "; "
-        + location.getLongitude()
-        + "\n   altitude: "
-        + location.getAltitude()
-        + "\n   accuracy: "
-        + location.getAccuracy()
-        + "\n   bearing (direction of travel): "
-        + location.getBearing()
-        + "\n   speed: "
-        + location.getSpeed()
-        + "\n   time: "
-        + location.getTime()
-        + "\n ");
   }
 
   // Private section ================================================
@@ -469,5 +445,18 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
 
     LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
     mIsTrackingNow = false;
+  }
+
+  private void cleanMapResources() {
+    if (mGoogleApiClient != null) {
+      stopLocationUpdates();
+      mGoogleApiClient.unregisterConnectionCallbacks(this);
+      mGoogleApiClient.unregisterConnectionFailedListener(this);
+      mGoogleApiClient.disconnect();
+    }
+    clearObjects();
+    if (mMap != null) {
+      mMap.clear();
+    }
   }
 }
