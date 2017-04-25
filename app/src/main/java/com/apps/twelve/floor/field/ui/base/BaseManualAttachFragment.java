@@ -89,6 +89,9 @@ public abstract class BaseManualAttachFragment extends Fragment {
   @Override public void onDestroy() {
     super.onDestroy();
 
+    // leak canary
+    App.getRefWatcher(getActivity()).watch(this);
+
     //We leave the screen and respectively all fragments will be destroyed
     if (getActivity().isFinishing()) {
       getMvpDelegate().onDestroy();

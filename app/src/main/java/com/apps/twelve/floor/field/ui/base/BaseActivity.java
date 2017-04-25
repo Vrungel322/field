@@ -29,6 +29,7 @@ public abstract class BaseActivity extends MvpAppCompatActivity {
 
   @Override protected void onDestroy() {
     super.onDestroy();
+    App.getRefWatcher(this).watch(this);
     unbinder.unbind();
   }
 

@@ -49,6 +49,12 @@ public abstract class BaseFragment extends MvpAppCompatFragment {
     unbinder.unbind();
   }
 
+  @Override public void onDestroy() {
+    super.onDestroy();
+    // leak canary
+    App.getRefWatcher(getActivity()).watch(this);
+  }
+
   // TODO: remove toast methods on release version
   protected void showToastMessage(String message) {
     Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
