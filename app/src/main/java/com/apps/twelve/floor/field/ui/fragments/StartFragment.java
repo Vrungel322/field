@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -54,16 +56,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-
-    mFieldsAdapter = new FieldsAdapter();
-    mFieldsRecyclerView.setAdapter(mFieldsAdapter);
-    mFieldsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-    mFieldsRecyclerView.setItemAnimator(new DefaultItemAnimator());
-    // TODO: open field editing screen (give it to mNavigator)
-    ItemClickSupport.addTo(mFieldsRecyclerView)
-        .setOnItemClickListener(
-            (recyclerView, position, v) -> mStartFragmentPresenter.onFiledClickedAtPosition(
-                position));
+    setupRecyclerView();
   }
 
   @Override public void onDestroy() {
@@ -137,6 +130,25 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
   @Override public void openEditFieldFragment(int position) {
     mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
         makeEditFieldFragment(mFieldsAdapter.getFieldAt(position)));
+  }
+
+  private void setupRecyclerView() {
+    mFieldsAdapter = new FieldsAdapter();
+    mFieldsRecyclerView.setAdapter(mFieldsAdapter);
+    mFieldsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    mFieldsRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+    DividerItemDecoration dividerItemDecoration =
+        new DividerItemDecoration(getContext(), RecyclerView.VERTICAL);
+    dividerItemDecoration.setDrawable(
+        ContextCompat.getDrawable(getContext(), R.drawable.shape_list_item_divider));
+    mFieldsRecyclerView.addItemDecoration(dividerItemDecoration);
+
+    // TODO: open field editing screen (give it to mNavigator)
+    ItemClickSupport.addTo(mFieldsRecyclerView)
+        .setOnItemClickListener(
+            (recyclerView, position, v) -> mStartFragmentPresenter.onFiledClickedAtPosition(
+                position));
   }
 
   private void onDialogPositiveButtonClicked(String[] fieldAddTypes) {
