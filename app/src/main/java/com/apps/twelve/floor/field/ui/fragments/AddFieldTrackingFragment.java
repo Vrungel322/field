@@ -70,7 +70,7 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
 
   public static final long TRACKING_INTERVAL = 10000L;
   public static final long TRACKING_FASTEST_INTERVAL = 5000L;
-  public static final float TRACKING_SMALLEST_DISPLACEMENT = 0f;
+  public static final float TRACKING_SMALLEST_DISPLACEMENT = 5f;
 
   @InjectPresenter AddFieldTrackingPresenter mAddFieldTrackingPresenter;
 
@@ -227,16 +227,8 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
   // Map events ================================================
 
   @Override public void onMapReady(GoogleMap googleMap) {
-    mMap = googleMap;
-
-    mMap.setOnMarkerClickListener(this);
-    mMap.setOnMarkerDragListener(this);
-    mMap.setOnPolygonClickListener(this);
-    mMap.setOnCameraMoveStartedListener(this);
-    mMap.setOnCameraIdleListener(this);
-
+    setupMap(googleMap);
     attachToPresenter();
-
     // map can become ready before ApiClient connects
     if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
       moveCameraToCurrentLocation();
@@ -307,6 +299,29 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
     mapFragment.getMapAsync(this);
   }
 
+  private void setupMap(GoogleMap googleMap) {
+    mMap = googleMap;
+
+    mMap.setOnMarkerClickListener(this);
+    mMap.setOnMarkerDragListener(this);
+    mMap.setOnPolygonClickListener(this);
+    mMap.setOnCameraMoveStartedListener(this);
+    mMap.setOnCameraIdleListener(this);
+  }
+
+  private void cleanMapResources() {
+    if (mGoogleApiClient != null) {
+      stopLocationUpdates();
+      mGoogleApiClient.unregisterConnectionCallbacks(this);
+      mGoogleApiClient.unregisterConnectionFailedListener(this);
+      mGoogleApiClient.disconnect();
+    }
+    clearObjects();
+    if (mMap != null) {
+      mMap.clear();
+    }
+  }
+
   private void moveCameraToCurrentLocation() {
     // check components
     if (mGoogleApiClient == null || mMap == null || !mGoogleApiClient.isConnected()) return;
@@ -314,8 +329,8 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
     // check permissions
     if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION)
         != PackageManager.PERMISSION_GRANTED
-        && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION)
-        != PackageManager.PERMISSION_GRANTED) {
+        /*&& ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION)
+        != PackageManager.PERMISSION_GRANTED*/) {
       return;
     }
 
@@ -395,7 +410,7 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
           requestLocationResolution();
           break;
         case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-          Timber.e("Can not init location tracking: setting change unavailable");
+          Timber.e("Can not init location tracking: settings change unavailable");
           mIsTrackingInitiated = false;
           break;
         default:
@@ -427,8 +442,8 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
 
     if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION)
         != PackageManager.PERMISSION_GRANTED
-        && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION)
-        != PackageManager.PERMISSION_GRANTED) {
+        /*&& ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION)
+        != PackageManager.PERMISSION_GRANTED*/) {
       return;
     }
 
@@ -445,18 +460,5 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
 
     LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
     mIsTrackingNow = false;
-  }
-
-  private void cleanMapResources() {
-    if (mGoogleApiClient != null) {
-      stopLocationUpdates();
-      mGoogleApiClient.unregisterConnectionCallbacks(this);
-      mGoogleApiClient.unregisterConnectionFailedListener(this);
-      mGoogleApiClient.disconnect();
-    }
-    clearObjects();
-    if (mMap != null) {
-      mMap.clear();
-    }
   }
 }

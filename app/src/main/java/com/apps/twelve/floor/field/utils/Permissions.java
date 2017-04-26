@@ -20,13 +20,13 @@ public final class Permissions {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       int fineLocation =
           appCompatActivity.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION);
-      int coarseLocation =
-          appCompatActivity.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION);
+      /*int coarseLocation =
+          appCompatActivity.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION);*/
 
       if (fineLocation != PackageManager.PERMISSION_GRANTED
-          && coarseLocation != PackageManager.PERMISSION_GRANTED) {
+          /*&& coarseLocation != PackageManager.PERMISSION_GRANTED*/) {
         appCompatActivity.requestPermissions(new String[] {
-            Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
+            Manifest.permission.ACCESS_FINE_LOCATION/*, Manifest.permission.ACCESS_COARSE_LOCATION*/
         }, PERMISSION_LOCATION);
       }
     }
@@ -35,7 +35,7 @@ public final class Permissions {
   public static boolean isLocationPermissionGranted(Context context) {
     return ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
         == PackageManager.PERMISSION_GRANTED
-        || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
-        == PackageManager.PERMISSION_GRANTED;
+        /*|| ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
+        == PackageManager.PERMISSION_GRANTED*/;
   }
 }

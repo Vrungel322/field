@@ -121,18 +121,8 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   // Map events ================================================
 
   @Override public void onMapReady(GoogleMap googleMap) {
-    mMap = googleMap;
-
-    mMap.setOnMapClickListener(this);
-    mMap.setOnMarkerClickListener(this);
-    mMap.setOnMarkerDragListener(this);
-    mMap.setOnPolygonClickListener(this);
-    mMap.setOnCameraMoveStartedListener(this);
-    mMap.setOnCameraIdleListener(this);
-
-    mMapPolygonEditPresenter.setMapReady(true);
+    setupMap(googleMap);
     attachToPresenter();
-
     // map can become ready before ApiClient connects
     if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) moveCameraToCurrentLocation();
   }
@@ -269,6 +259,31 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     mapFragment.getMapAsync(this);
   }
 
+  public void setupMap(GoogleMap googleMap) {
+    mMap = googleMap;
+
+    mMap.setOnMapClickListener(this);
+    mMap.setOnMarkerClickListener(this);
+    mMap.setOnMarkerDragListener(this);
+    mMap.setOnPolygonClickListener(this);
+    mMap.setOnCameraMoveStartedListener(this);
+    mMap.setOnCameraIdleListener(this);
+
+    mMapPolygonEditPresenter.setMapReady(true);
+  }
+
+  private void cleanMapResources() {
+    if (mGoogleApiClient != null) {
+      mGoogleApiClient.unregisterConnectionCallbacks(this);
+      mGoogleApiClient.unregisterConnectionFailedListener(this);
+      mGoogleApiClient.disconnect();
+    }
+    clearObjects();
+    if (mMap != null) {
+      mMap.clear();
+    }
+  }
+
   private void moveCameraToCurrentLocation() {
     // check components
     if (mGoogleApiClient == null || mMap == null || !mGoogleApiClient.isConnected()) return;
@@ -276,8 +291,8 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     // check permissions
     if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION)
         != PackageManager.PERMISSION_GRANTED
-        && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION)
-        != PackageManager.PERMISSION_GRANTED) {
+        /*&& ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION)
+        != PackageManager.PERMISSION_GRANTED*/) {
       return;
     }
 
@@ -334,18 +349,6 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     if (mPolygon != null) {
       mPolygon.remove();
       mPolygon = null;
-    }
-  }
-
-  private void cleanMapResources() {
-    if (mGoogleApiClient != null) {
-      mGoogleApiClient.unregisterConnectionCallbacks(this);
-      mGoogleApiClient.unregisterConnectionFailedListener(this);
-      mGoogleApiClient.disconnect();
-    }
-    clearObjects();
-    if (mMap != null) {
-      mMap.clear();
     }
   }
 }
