@@ -107,14 +107,6 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
 
   // Fragment events ================================================
 
-  @Override public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    if (mGoogleApiClient != null) {
-      mGoogleApiClient.registerConnectionCallbacks(this);
-      mGoogleApiClient.registerConnectionFailedListener(this);
-    }
-  }
-
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     obtainMap();
@@ -122,6 +114,8 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
 
   @Override public void onStart() {
     if (mGoogleApiClient != null) {
+      mGoogleApiClient.registerConnectionCallbacks(this);
+      mGoogleApiClient.registerConnectionFailedListener(this);
       mGoogleApiClient.connect();
       initTrackingLocation();
     }

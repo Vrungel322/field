@@ -89,21 +89,17 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
 
   // Fragment events ================================================
 
-  @Override public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    if (mGoogleApiClient != null) {
-      mGoogleApiClient.registerConnectionCallbacks(this);
-      mGoogleApiClient.registerConnectionFailedListener(this);
-    }
-  }
-
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     obtainMap();
   }
 
   @Override public void onStart() {
-    if (mGoogleApiClient != null) mGoogleApiClient.connect();
+    if (mGoogleApiClient != null) {
+      mGoogleApiClient.registerConnectionCallbacks(this);
+      mGoogleApiClient.registerConnectionFailedListener(this);
+      mGoogleApiClient.connect();
+    }
     if (mMap != null) attachToPresenter();
     super.onStart();
   }
