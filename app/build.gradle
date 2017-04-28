@@ -69,20 +69,20 @@ dependencies {
   compile 'com.squareup.picasso:picasso:2.5.2'
 
   //Alerter
-  compile 'com.tapadoo.android:alerter:1.0.6'
+  compile 'com.tapadoo.android:alerter:1.0.7'
 
   //shortbread
   compile 'com.github.matthiasrobbers:shortbread:1.0.1'
   apt 'com.github.matthiasrobbers:shortbread-compiler:1.0.1'
 
   //RxJava, RxAndroid
-  compile 'io.reactivex:rxjava:1.2.9'
+  compile 'io.reactivex:rxjava:1.2.10'
   compile 'io.reactivex:rxandroid:1.2.1'
 
   //Dagger2
-  compile 'com.google.dagger:dagger:2.10'
+  compile 'com.google.dagger:dagger:2.11-rc1'
   provided 'org.glassfish:javax.annotation:10.0-b28'
-  apt "com.google.dagger:dagger-compiler:2.10"
+  apt "com.google.dagger:dagger-compiler:2.11-rc1"
 
   //Moxy
   compile 'com.arello-mobile:moxy:1.5.1'
