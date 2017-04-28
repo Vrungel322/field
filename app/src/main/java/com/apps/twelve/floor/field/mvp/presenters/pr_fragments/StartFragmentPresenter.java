@@ -99,7 +99,6 @@ import timber.log.Timber;
   }
 
   public void onFieldTypeDialogPositiveButton(int which) {
-    // TODO: replace literals with IDs
     switch (which) {
       case 0:
         getViewState().showEditFieldOnMapFragment();

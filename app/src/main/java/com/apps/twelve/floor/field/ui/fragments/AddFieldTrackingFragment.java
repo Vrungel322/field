@@ -208,7 +208,6 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
   }
 
   @Override public void startTracking() {
-    // TODO
     mIsTrackingMode = true;
     startLocationUpdates();
   }
@@ -396,11 +395,9 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
     result.setResultCallback(locationSettingsResult -> {
       switch (locationSettingsResult.getStatus().getStatusCode()) {
         case LocationSettingsStatusCodes.SUCCESS:
-          // TODO: init location request
           mIsTrackingInitiated = true;
           break;
         case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-          // TODO: request resolution in dialog
           requestLocationResolution();
           break;
         case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
@@ -415,6 +412,7 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
   }
 
   private void requestLocationResolution() {
+    // TODO: request resolution in dialog
     showToastMessage("request location resolution");
     // Location settings are not satisfied, but this can be fixed
     // by showing the user a dialog.

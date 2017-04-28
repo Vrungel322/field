@@ -9,6 +9,7 @@ import com.apps.twelve.floor.field.mvp.views.IEditFieldFragmentView;
 import com.apps.twelve.floor.field.utils.RxBus;
 import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.arellomobile.mvp.InjectViewState;
+import com.google.android.gms.maps.model.LatLng;
 import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
 import java.util.List;
 import javax.inject.Inject;
@@ -84,7 +85,7 @@ import timber.log.Timber;
     getViewState().setFieldCropText(crop);
   }
 
-  public void updateFieldPoints(List points) {
+  public void updateFieldPoints(List<LatLng> points) {
     mField.clearPoints();
     mField.addAllPoints(points);
   }
