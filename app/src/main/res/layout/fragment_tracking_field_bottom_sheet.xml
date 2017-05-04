@@ -98,7 +98,7 @@
       android:layout_marginEnd="@dimen/common_margin"
       android:layout_marginRight="@dimen/common_margin"
       android:layout_marginTop="@dimen/common_margin"
-      android:text="@string/button_edit_text"
+      android:text="@string/button_text_edit"
       android:textColor="@color/buttons_color"
       app:layout_constraintBottom_toBottomOf="@+id/it_layout_area"
       app:layout_constraintLeft_toRightOf="@+id/it_layout_area"

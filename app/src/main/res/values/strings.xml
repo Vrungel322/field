@@ -28,5 +28,5 @@
   <string name="edit_text_name_hint">Название</string>
   <string name="edit_text_area_hint">Площадь</string>
   <string name="edit_text_crop_hint">Культура</string>
-  <string name="button_edit_text">ИЗМЕНИТЬ</string>
+  <string name="button_text_edit">ИЗМЕНИТЬ</string>
 </resources>
