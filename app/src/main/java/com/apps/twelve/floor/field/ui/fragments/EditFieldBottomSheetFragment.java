@@ -125,7 +125,7 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   private void updateFieldData() {
     mEditFieldPresenter.updateFieldName(mEdTextName.getText().toString());
     mEditFieldPresenter.updateFieldArea(mEdTextArea.getText().toString());
-    // TODO: crops must be selected from list (spinner)
+    // TODO: crops must be selected from list
     //mEditFieldPresenter.updateFieldCrop(mEdTextCrop.getText().toString());
   }
 }
