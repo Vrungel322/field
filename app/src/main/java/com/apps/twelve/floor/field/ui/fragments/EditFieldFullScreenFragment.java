@@ -55,7 +55,9 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
     return fragment;
   }
 
-  // MvpView methods ========================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // MvpView methods
+  ///////////////////////////////////////////////////////////////////////////
 
   @Override public void setFieldNameText(String name) {
     mEdTextName.setText(name);
@@ -73,7 +75,9 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
     mBtnOk.setEnabled(isEnabled);
   }
 
-  // UI events ================================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // UI events
+  ///////////////////////////////////////////////////////////////////////////
 
   @OnClick({ R.id.btn_ok, R.id.btn_cancel }) public void onViewClicked(View view) {
     switch (view.getId()) {
@@ -108,6 +112,7 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   private void updateFieldData() {
     mEditFieldPresenter.updateFieldName(mEdTextName.getText().toString());
     mEditFieldPresenter.updateFieldArea(mEdTextArea.getText().toString());
-    mEditFieldPresenter.updateFieldCrop(mEdTextCrop.getText().toString());
+    // TODO: get crop name by id
+    //mEditFieldPresenter.updateFieldCrop(mEdTextCrop.getText().toString());
   }
 }

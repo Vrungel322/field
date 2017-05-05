@@ -4,28 +4,22 @@ import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;
 
 /**
- * Created by Yaroslav on 11.04.2017.
+ * Created by Yaroslav on 05.05.2017.
  */
 
-public class FieldsTable {
+public class PhasesTable {
 
-  @NonNull public static final String TABLE = "Fields";
+  @NonNull public static final String TABLE = "PhasesTable";
 
   @NonNull public static final String COLUMN_ID = "id";
 
   @NonNull public static final String COLUMN_NAME = "name";
 
-  @NonNull public static final String COLUMN_AREA = "area";
-
   @NonNull public static final String COLUMN_CROP_ID = "crop_id";
-
-  @NonNull public static final String COLUMN_COORDINATES = "coordinates";
-
-  @NonNull public static final String COLUMN_CLIMATE_ZONE_ID = "climate_zone_id";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public FieldsTable() {
+  public PhasesTable() {
     throw new IllegalStateException("No instances allowed");
   }
 
@@ -37,9 +31,8 @@ public class FieldsTable {
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_NAME
         + " TEXT NULL, "
-        + COLUMN_AREA
-        + " REAL NULL, " + COLUMN_CROP_ID + " INTEGER NULL " + COLUMN_COORDINATES
-        + " TEXT NULL " + COLUMN_CLIMATE_ZONE_ID + " INTEGER"
+        + COLUMN_CROP_ID
+        + " INTEGER NULL "
         + ");";
   }
 }

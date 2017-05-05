@@ -10,7 +10,9 @@ import java.util.List;
 
 public final class RxBusHelper {
 
-  // Field list events =====================================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // Field list events
+  ///////////////////////////////////////////////////////////////////////////
 
   public static class FieldDeletedFromList {
     public Field field;
@@ -22,7 +24,9 @@ public final class RxBusHelper {
     }
   }
 
-  // Field edit events =====================================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // Field edit events
+  ///////////////////////////////////////////////////////////////////////////
 
   public static class SwitchFieldEditMode {
     public boolean isEditMode;
@@ -42,7 +46,9 @@ public final class RxBusHelper {
     }
   }
 
-  // Field tracking events =====================================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // Field tracking events
+  ///////////////////////////////////////////////////////////////////////////
 
   public static class SwitchFieldTrackingMode {
     public boolean isTrackingMode;
@@ -60,7 +66,9 @@ public final class RxBusHelper {
     }
   }
 
-  // DataBase events  =====================================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // DataBase events
+  ///////////////////////////////////////////////////////////////////////////
 
   public static class FieldChangedInDb {
     public static final int CHANGE_INSERT = 20;

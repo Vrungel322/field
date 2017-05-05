@@ -1,7 +1,9 @@
 package com.apps.twelve.floor.field.mvp.data.local;
 
 import com.apps.twelve.floor.field.App;
+import com.apps.twelve.floor.field.mvp.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.mvp.data.local.tables.FieldsTable;
+import com.apps.twelve.floor.field.mvp.data.model.Crop;
 import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.pushtorefresh.storio.sqlite.StorIOSQLite;
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
@@ -22,6 +24,10 @@ public class DbHelper {
     App.getAppComponent().inject(this);
   }
 
+  ///////////////////////////////////////////////////////////////////////////
+  // Fields
+  ///////////////////////////////////////////////////////////////////////////
+
   public Observable<List<Field>> getAllFields() {
     return mStorIOSQLite.get()
         .listOfObjects(Field.class)
@@ -37,5 +43,26 @@ public class DbHelper {
 
   public DeleteResult deleteField(Field field) {
     return mStorIOSQLite.delete().object(field).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Crops
+  ///////////////////////////////////////////////////////////////////////////
+
+  public Observable<List<Crop>> getAllCrops() {
+    return mStorIOSQLite.get()
+        .listOfObjects(Crop.class)
+        .withQuery(CropsTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putCrop(Crop crop) {
+    return mStorIOSQLite.put().object(crop).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteCrop(Crop crop) {
+    return mStorIOSQLite.delete().object(crop).prepare().executeAsBlocking();
   }
 }

@@ -50,7 +50,7 @@ import timber.log.Timber;
     getViewState().setFieldNameText(mField.getName());
     getViewState().setFieldAreaText(
         mField.getArea() != null ? String.valueOf(mField.getArea()) : "");
-    getViewState().setFieldCropText(mField.getCrop());
+    getViewState().setFieldCropText(mField.getCrop().getmName());
     if (field.hasPoints()) {
       // TODO: update markers, polyline and polygon on map
     }
@@ -79,10 +79,11 @@ import timber.log.Timber;
     getViewState().setFieldAreaText(String.valueOf(area));
   }
 
-  public void updateFieldCrop(String crop) {
-    if (crop.equals(mField.getCrop())) return;
-    mField.setCrop(crop);
-    getViewState().setFieldCropText(crop);
+  public void updateFieldCrop(Integer cropId) {
+    if (cropId.equals(mField.getCropId())) return;
+    mField.setCropId(cropId);
+    // TODO: get crop name by id
+    //getViewState().setFieldCropText(cropId);
   }
 
   public void updateFieldPoints(List<LatLng> points) {

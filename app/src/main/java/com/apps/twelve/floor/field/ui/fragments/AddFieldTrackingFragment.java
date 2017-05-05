@@ -105,7 +105,9 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
     return fragment;
   }
 
-  // Fragment events ================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // Fragment events
+  ///////////////////////////////////////////////////////////////////////////
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
@@ -133,7 +135,9 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
     super.onStop();
   }
 
-  // Mvp events ================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // Mvp events
+  ///////////////////////////////////////////////////////////////////////////
 
   @Override public void addTrackingFieldFragment() {
     mNavigator.addChildFragment(this, R.id.bottom_sheet_field_item_edition,
@@ -217,7 +221,9 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
     stopLocationUpdates();
   }
 
-  // Map events ================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // Map events
+  ///////////////////////////////////////////////////////////////////////////
 
   @Override public void onMapReady(GoogleMap googleMap) {
     setupMap(googleMap);
@@ -258,7 +264,9 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
     }
   }
 
-  // GoogleApi events ===========================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // GoogleApi events
+  ///////////////////////////////////////////////////////////////////////////
 
   @Override public void onConnected(@Nullable Bundle bundle) {
     // ApiClient can connect before map is ready
@@ -275,7 +283,9 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
     Timber.e(new Throwable("Connection failed with result:\n" + connectionResult.toString()));
   }
 
-  // Location events ======================================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // Location events
+  ///////////////////////////////////////////////////////////////////////////
 
   @Override public void onLocationChanged(Location location) {
 
@@ -283,7 +293,9 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
         new LatLng(location.getLatitude(), location.getLongitude()));
   }
 
-  // Private section ================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // Private section
+  ///////////////////////////////////////////////////////////////////////////
 
   // Obtain the SupportMapFragment and get notified when the map is ready to use.
   private void obtainMap() {

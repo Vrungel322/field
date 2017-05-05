@@ -89,7 +89,8 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
     Field field = mFieldsList.get(position);
 
     holder.mNameText.setText(field.getName());
-    holder.mCropText.setText(field.getCrop());
+    // TODO: get crop name by id
+    //holder.mCropText.setText(field.getCrop());
     holder.mAreaText.setText(field.getArea() != null ? String.valueOf(field.getArea()) : "");
 
     setupSwipeLayout(holder, position);

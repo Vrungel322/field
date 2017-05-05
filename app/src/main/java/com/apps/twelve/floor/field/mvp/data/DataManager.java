@@ -22,7 +22,9 @@ public class DataManager {
     App.getAppComponent().inject(this);
   }
 
-  // DB methods =========================================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // DB methods
+  ///////////////////////////////////////////////////////////////////////////
 
   public Observable<List<Field>> getAllFields() {
     return mDbHelper.getAllFields();

@@ -20,4 +20,9 @@ public final class Constants {
 
   public class FragmentsArgumentKeys {
   }
+
+  public class StringSeparators {
+    public static final String SEPARATOR_OUTER = "\u16DD";
+    public static final String SEPARATOR_INNER = "\u16DC";
+  }
 }

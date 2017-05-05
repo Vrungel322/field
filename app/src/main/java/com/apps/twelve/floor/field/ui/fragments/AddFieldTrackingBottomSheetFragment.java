@@ -63,7 +63,9 @@ public class AddFieldTrackingBottomSheetFragment extends BaseFragment
     return fragment;
   }
 
-  // MvpView methods ================================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // MvpView methods
+  ///////////////////////////////////////////////////////////////////////////
 
   @Override public void setFieldNameText(String name) {
     mEdTextName.setText(name);
@@ -81,7 +83,9 @@ public class AddFieldTrackingBottomSheetFragment extends BaseFragment
     mBtnOk.setEnabled(isEnabled);
   }
 
-  // UI events ================================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // UI events
+  ///////////////////////////////////////////////////////////////////////////
 
   @OnClick({ R.id.btn_edit_area, R.id.btn_ok, R.id.btn_cancel })
   public void onViewClicked(View view) {
@@ -122,6 +126,7 @@ public class AddFieldTrackingBottomSheetFragment extends BaseFragment
   private void updateFieldData() {
     mEditFieldPresenter.updateFieldName(mEdTextName.getText().toString());
     mEditFieldPresenter.updateFieldArea(mEdTextArea.getText().toString());
-    mEditFieldPresenter.updateFieldCrop(mEdTextCrop.getText().toString());
+    // TODO: get crop name by id
+    //mEditFieldPresenter.updateFieldCrop(mEdTextCrop.getText().toString());
   }
 }

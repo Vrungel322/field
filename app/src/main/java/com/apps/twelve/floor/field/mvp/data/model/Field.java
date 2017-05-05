@@ -3,6 +3,7 @@ package com.apps.twelve.floor.field.mvp.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.apps.twelve.floor.field.mvp.data.local.tables.FieldsTable;
+import com.apps.twelve.floor.field.utils.Constants.StringSeparators;
 import com.google.android.gms.maps.model.LatLng;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
@@ -29,30 +30,52 @@ import timber.log.Timber;
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_NAME) String mName;
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_AREA) Double mArea;
-  @StorIOSQLiteColumn(name = FieldsTable.COLUMN_CROP) String mCrop;
+  @StorIOSQLiteColumn(name = FieldsTable.COLUMN_CROP_ID) Integer mCropId;
+  @StorIOSQLiteColumn(name = FieldsTable.COLUMN_COORDINATES) String mCoordinates;
+  @StorIOSQLiteColumn(name = FieldsTable.COLUMN_CLIMATE_ZONE_ID) Integer mClimateZoneId;
 
-  // TODO: got to keep these in own tbl and get here or keep it as string
   private List<LatLng> mPoints = new ArrayList<>();
+  //private Crop mCrop;
 
   public Field() {
-    this("", "", 0.0D);
+    this("", null, 0.0D);
   }
 
-  public Field(String name, String crop, Double area) {
+  public Field(String name, Integer cropId, Double area) {
+    this(name, cropId, area, "");
+  }
+
+  public Field(String name, Integer cropId, Double area, String coordinates) {
     this.mName = name;
-    this.mCrop = crop;
+    this.mCropId = cropId;
     this.mArea = area;
+    this.mCoordinates = coordinates;
   }
 
-  public static Field newField(String name, String crop, Double area) {
-    return new Field(name, crop, area);
+  public static Field newField(String name, Integer cropId, Double area) {
+    return new Field(name, cropId, area);
   }
 
   protected Field(Parcel in) {
     mName = in.readString();
     mArea = in.readDouble();
-    mCrop = in.readString();
+    mCropId = in.readInt();
+    mCoordinates = in.readString();
+    mClimateZoneId = in.readInt();
     mPoints = in.createTypedArrayList(LatLng.CREATOR);
+  }
+
+  @Override public int describeContents() {
+    return 0;
+  }
+
+  @Override public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(mName);
+    dest.writeDouble(mArea);
+    dest.writeInt(mCropId);
+    dest.writeString(mCoordinates);
+    dest.writeInt(mClimateZoneId);
+    dest.writeTypedList(mPoints);
   }
 
   @Override public boolean equals(Object obj) {
@@ -64,7 +87,15 @@ import timber.log.Timber;
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
     if (mName != null ? !mName.equals(that.mName) : that.mName != null) return false;
     if (mArea != null ? !mArea.equals(that.mArea) : that.mArea != null) return false;
-    if (mCrop != null ? !mCrop.equals(that.mCrop) : that.mCrop != null) return false;
+    if (mCropId != null ? !mCropId.equals(that.mCropId) : that.mCropId != null) return false;
+    if (mCoordinates != null ? !mCoordinates.equals(that.mCoordinates)
+        : that.mCoordinates != null) {
+      return false;
+    }
+    if (mClimateZoneId != null ? !mClimateZoneId.equals(that.mClimateZoneId)
+        : that.mClimateZoneId != null) {
+      return false;
+    }
 
     return mPoints != null ? mPoints.equals(that.mPoints) : that.mPoints == null;
   }
@@ -72,21 +103,12 @@ import timber.log.Timber;
   @Override public int hashCode() {
     int result = id != null ? id.hashCode() : 0;
     result = 31 * result + (mName != null ? mName.hashCode() : 0);
-    result = 31 * result + (mCrop != null ? mCrop.hashCode() : 0);
     result = 31 * result + (mArea != null ? mArea.hashCode() : 0);
+    result = 31 * result + (mCropId != null ? mCropId.hashCode() : 0);
+    result = 31 * result + (mCoordinates != null ? mCoordinates.hashCode() : 0);
+    result = 31 * result + (mClimateZoneId != null ? mClimateZoneId.hashCode() : 0);
     result = 31 * result + (mPoints != null ? mPoints.hashCode() : 0);
     return result;
-  }
-
-  @Override public int describeContents() {
-    return 0;
-  }
-
-  @Override public void writeToParcel(Parcel dest, int flags) {
-    dest.writeString(mName);
-    dest.writeDouble(mArea);
-    dest.writeString(mCrop);
-    dest.writeTypedList(mPoints);
   }
 
   public Long getId() {
@@ -113,42 +135,100 @@ import timber.log.Timber;
     this.mArea = area;
   }
 
+  public Integer getCropId() {
+    return mCropId;
+  }
+
+  public void setCropId(Integer cropId) {
+    this.mCropId = cropId;
+  }
+
+  /*public Crop getCrop() {
+    return mCrop;
+  }
+
+  public void setCrop(Crop mCrop) {
+    this.mCrop = mCrop;
+  }*/
+
+  public String getCoordinates() {
+    return mCoordinates;
+  }
+
+  public void setCoordinates(String mCoordinates) {
+    this.mCoordinates = mCoordinates;
+    saveStringCoordinatesToArray();
+  }
+
+  public Integer getClimateZoneId() {
+    return mClimateZoneId;
+  }
+
+  public void setClimateZoneId(Integer mClimateZoneId) {
+    this.mClimateZoneId = mClimateZoneId;
+  }
+
   public List<LatLng> getPoints() {
     return mPoints;
   }
 
   public void addAllPoints(List<LatLng> points) {
     this.mPoints.addAll(points);
+    saveCoordinatesArrayToString();
   }
 
   public void addPoint(LatLng point) {
     this.mPoints.add(point);
+    saveCoordinatesArrayToString();
   }
 
   public void updatePoint(int index, LatLng point) {
     if (!isOkIndex(index)) return;
     this.mPoints.set(index, point);
+    saveCoordinatesArrayToString();
   }
 
   public void removePoint(int index, LatLng point) {
     if (!isOkIndex(index)) return;
     this.mPoints.remove(point);
+    saveCoordinatesArrayToString();
   }
 
   public void clearPoints() {
     mPoints.clear();
-  }
-
-  public String getCrop() {
-    return mCrop;
-  }
-
-  public void setCrop(String crop) {
-    this.mCrop = crop;
+    mCoordinates = "";
   }
 
   public boolean hasPoints() {
     return mPoints != null && mPoints.size() > 0;
+  }
+
+  private void saveStringCoordinatesToArray() {
+
+    String[] latLngs;
+    String[] coords = mCoordinates.split(StringSeparators.SEPARATOR_OUTER);
+
+    List<LatLng> points = new ArrayList<>(coords.length);
+
+    for (String coord : coords) {
+      latLngs = coord.split(StringSeparators.SEPARATOR_INNER);
+      points.add(new LatLng(Double.valueOf(latLngs[0]), Double.valueOf(latLngs[1])));
+    }
+
+    clearPoints();
+    this.mPoints.addAll(points);
+  }
+
+  private void saveCoordinatesArrayToString() {
+    String res = "";
+
+    for (int i = 0; i < mPoints.size(); i++) {
+      res +=
+          mPoints.get(i).latitude + StringSeparators.SEPARATOR_INNER + mPoints.get(i).longitude + (
+              (i < mPoints.size() - 1) ? StringSeparators.SEPARATOR_OUTER : "");
+    }
+
+    this.mCoordinates = res;
   }
 
   private boolean isOkIndex(int index) {

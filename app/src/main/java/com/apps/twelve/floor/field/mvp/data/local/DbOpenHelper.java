@@ -3,6 +3,7 @@ package com.apps.twelve.floor.field.mvp.data.local;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import com.apps.twelve.floor.field.mvp.data.local.tables.ClimateZonesTable;
 import com.apps.twelve.floor.field.mvp.data.local.tables.FieldsTable;
 
 /**
@@ -20,6 +21,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
 
   @Override public void onCreate(SQLiteDatabase db) {
     db.execSQL(FieldsTable.getCreateTableQuery()); // create table for Fields
+    db.execSQL(ClimateZonesTable.getCreateTableQuery()); // create table for ClimateZones
   }
 
   @Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

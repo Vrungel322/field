@@ -87,7 +87,9 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     return fragment;
   }
 
-  // Fragment events ================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // Fragment events
+  ///////////////////////////////////////////////////////////////////////////
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
@@ -114,7 +116,9 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     super.onStop();
   }
 
-  // Map events ================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // Map events
+  ///////////////////////////////////////////////////////////////////////////
 
   @Override public void onMapReady(GoogleMap googleMap) {
     setupMap(googleMap);
@@ -157,7 +161,9 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     }
   }
 
-  // GoogleApi events ===========================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // GoogleApi events
+  ///////////////////////////////////////////////////////////////////////////
 
   @Override public void onConnected(@Nullable Bundle bundle) {
     // ApiClient can connect before map is ready
@@ -171,7 +177,9 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     Timber.e(new Throwable("Connection failed with result:\n" + connectionResult.toString()));
   }
 
-  // MvpView methods ================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // MvpView methods
+  ///////////////////////////////////////////////////////////////////////////
 
   @Override public void addEditFieldFragment() {
     mNavigator.addChildFragment(this, R.id.bottom_sheet_field_item_edition,
@@ -245,7 +253,9 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
     mMap.moveCamera(cameraUpdate);
   }
 
-  // Private section ================================================
+  ///////////////////////////////////////////////////////////////////////////
+  // Private section
+  ///////////////////////////////////////////////////////////////////////////
 
   // Obtain the SupportMapFragment and get notified when the map is ready to use.
   private void obtainMap() {
