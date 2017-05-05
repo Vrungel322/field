@@ -50,7 +50,8 @@ import timber.log.Timber;
     getViewState().setFieldNameText(mField.getName());
     getViewState().setFieldAreaText(
         mField.getArea() != null ? String.valueOf(mField.getArea()) : "");
-    getViewState().setFieldCropText(mField.getCrop().getmName());
+    // TODO: get crop name by id
+    //getViewState().setFieldCropText(mField.getCrop().getmName());
     if (field.hasPoints()) {
       // TODO: update markers, polyline and polygon on map
     }

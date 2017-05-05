@@ -39,4 +39,31 @@ public class CropsTable {
         + " INTEGER NULL "
         + ");";
   }
+
+  // TODO: for tests - remove after
+  @NonNull public static String getFillTableQuery() {
+    StringBuilder sb = new StringBuilder();
+
+    for (int i = 1; i <= 10; i++) {
+      sb.append("INSERT OR REPLACE INTO "
+          + TABLE
+          + " ("
+          + COLUMN_ID
+          + " , "
+          + COLUMN_NAME
+          + " , "
+          + COLUMN_PARENT_ID
+          + " , "
+          + COLUMN_IS_GROUP
+          + ") "
+          + " VALUES ("
+          + i
+          + ", 'crop "
+          + i
+          + "', 0, 0)"
+          + ";");
+    }
+
+    return sb.toString();
+  }
 }
