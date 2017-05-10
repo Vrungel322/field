@@ -31,6 +31,7 @@ import timber.log.Timber;
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_NAME) String mName;
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_AREA) Double mArea;
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_CROP_ID) Integer mCropId;
+  @StorIOSQLiteColumn(name = FieldsTable.COLUMN_PREV_CROP_ID) Integer mPreviousCropId;
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_COORDINATES) String mCoordinates;
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_CLIMATE_ZONE_ID) Integer mClimateZoneId;
 
@@ -38,28 +39,31 @@ import timber.log.Timber;
   //private Crop mCrop;
 
   public Field() {
-    this("", null, 0.0D);
+    this("", null, null, 0.0D);
   }
 
-  public Field(String name, Integer cropId, Double area) {
-    this(name, cropId, area, "");
+  public Field(String name, Integer cropId, Integer previousCropId, Double area) {
+    this(name, cropId, previousCropId, area, "");
   }
 
-  public Field(String name, Integer cropId, Double area, String coordinates) {
+  public Field(String name, Integer cropId, Integer previousCropId, Double area,
+      String coordinates) {
     this.mName = name;
     this.mCropId = cropId;
+    this.mPreviousCropId = previousCropId;
     this.mArea = area;
     this.mCoordinates = coordinates;
   }
 
-  public static Field newField(String name, Integer cropId, Double area) {
-    return new Field(name, cropId, area);
+  public static Field newField(String name, Integer cropId, Integer previousCropId, Double area) {
+    return new Field(name, cropId, previousCropId, area);
   }
 
   protected Field(Parcel in) {
     mName = in.readString();
     mArea = in.readDouble();
     mCropId = in.readInt();
+    mPreviousCropId = in.readInt();
     mCoordinates = in.readString();
     mClimateZoneId = in.readInt();
     mPoints = in.createTypedArrayList(LatLng.CREATOR);
@@ -73,6 +77,7 @@ import timber.log.Timber;
     dest.writeString(mName);
     dest.writeDouble(mArea);
     dest.writeInt(mCropId);
+    dest.writeInt(mPreviousCropId);
     dest.writeString(mCoordinates);
     dest.writeInt(mClimateZoneId);
     dest.writeTypedList(mPoints);
@@ -88,6 +93,10 @@ import timber.log.Timber;
     if (mName != null ? !mName.equals(that.mName) : that.mName != null) return false;
     if (mArea != null ? !mArea.equals(that.mArea) : that.mArea != null) return false;
     if (mCropId != null ? !mCropId.equals(that.mCropId) : that.mCropId != null) return false;
+    if (mPreviousCropId != null ? !mPreviousCropId.equals(that.mPreviousCropId)
+        : that.mPreviousCropId != null) {
+      return false;
+    }
     if (mCoordinates != null ? !mCoordinates.equals(that.mCoordinates)
         : that.mCoordinates != null) {
       return false;
@@ -105,6 +114,7 @@ import timber.log.Timber;
     result = 31 * result + (mName != null ? mName.hashCode() : 0);
     result = 31 * result + (mArea != null ? mArea.hashCode() : 0);
     result = 31 * result + (mCropId != null ? mCropId.hashCode() : 0);
+    result = 31 * result + (mPreviousCropId != null ? mPreviousCropId.hashCode() : 0);
     result = 31 * result + (mCoordinates != null ? mCoordinates.hashCode() : 0);
     result = 31 * result + (mClimateZoneId != null ? mClimateZoneId.hashCode() : 0);
     result = 31 * result + (mPoints != null ? mPoints.hashCode() : 0);
@@ -141,6 +151,14 @@ import timber.log.Timber;
 
   public void setCropId(Integer cropId) {
     this.mCropId = cropId;
+  }
+
+  public Integer getPreviousCropId() {
+    return mPreviousCropId;
+  }
+
+  public void setPreviousCropId(Integer cropId) {
+    this.mPreviousCropId = cropId;
   }
 
   /*public Crop getCrop() {

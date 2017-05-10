@@ -19,6 +19,8 @@ public class FieldsTable {
 
   @NonNull public static final String COLUMN_CROP_ID = "crop_id";
 
+  @NonNull public static final String COLUMN_PREV_CROP_ID = "previous_crop_id";
+
   @NonNull public static final String COLUMN_COORDINATES = "coordinates";
 
   @NonNull public static final String COLUMN_CLIMATE_ZONE_ID = "climate_zone_id";
@@ -38,8 +40,15 @@ public class FieldsTable {
         + COLUMN_NAME
         + " TEXT NULL, "
         + COLUMN_AREA
-        + " REAL NULL, " + COLUMN_CROP_ID + " INTEGER NULL " + COLUMN_COORDINATES
-        + " TEXT NULL " + COLUMN_CLIMATE_ZONE_ID + " INTEGER"
+        + " REAL NULL, "
+        + COLUMN_CROP_ID
+        + " INTEGER NULL "
+        + COLUMN_PREV_CROP_ID
+        + " INTEGER NULL "
+        + COLUMN_COORDINATES
+        + " TEXT NULL "
+        + COLUMN_CLIMATE_ZONE_ID
+        + " INTEGER"
         + ");";
   }
 }
