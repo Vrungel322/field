@@ -1,6 +1,6 @@
 package com.apps.twelve.floor.field.mvp.views;
 
-import com.apps.twelve.floor.field.mvp.data.model.Field;
+import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
@@ -16,7 +16,7 @@ import java.util.List;
 @StateStrategyType(AddToEndSingleStrategy.class) public interface IStartFragmentView
     extends MvpView {
 
-  @StateStrategyType(SingleStateStrategy.class) void showFields(List<Field> fields);
+  @StateStrategyType(SingleStateStrategy.class) void showFields(List<FieldObject> fieldObjects);
 
   void showFieldAddTypeDialog();
 
@@ -30,9 +30,10 @@ import java.util.List;
 
   @StateStrategyType(SkipStrategy.class) void openEditFieldFragment(int position);
 
-  @StateStrategyType(AddToEndStrategy.class) void addField(Field field);
+  @StateStrategyType(AddToEndStrategy.class) void addField(FieldObject fieldObject);
 
-  @StateStrategyType(AddToEndStrategy.class) void updateField(Field field);
+  @StateStrategyType(AddToEndStrategy.class) void updateField(FieldObject fieldObject);
 
-  @StateStrategyType(AddToEndStrategy.class) void deleteFieldAtPosition(Field field, int position);
+  @StateStrategyType(AddToEndStrategy.class) void deleteFieldAtPosition(FieldObject fieldObject,
+      int position);
 }

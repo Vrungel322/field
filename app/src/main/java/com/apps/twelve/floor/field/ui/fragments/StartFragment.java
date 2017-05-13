@@ -17,7 +17,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import com.apps.twelve.floor.field.R;
-import com.apps.twelve.floor.field.mvp.data.model.Field;
+import com.apps.twelve.floor.field.mvp.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.StartFragmentPresenter;
 import com.apps.twelve.floor.field.mvp.views.IStartFragmentView;
 import com.apps.twelve.floor.field.ui.adapters.FieldsAdapter;
@@ -68,8 +68,8 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     mStartFragmentPresenter.showFieldTypeDialog();
   }
 
-  @Override public void showFields(List<Field> fields) {
-    mFieldsAdapter.addAllFields(fields);
+  @Override public void showFields(List<FieldEntity> fieldEntities) {
+    mFieldsAdapter.addAllFields(fieldEntities);
     updateTextNoDataVisibility();
   }
 
@@ -98,17 +98,17 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     if (mFieldAddTypeDialog != null) mFieldAddTypeDialog.dismiss();
   }
 
-  @Override public void addField(Field field) {
-    mFieldsAdapter.addField(field);
+  @Override public void addField(FieldEntity fieldEntity) {
+    mFieldsAdapter.addField(fieldEntity);
     updateTextNoDataVisibility();
   }
 
-  @Override public void updateField(Field field) {
-    mFieldsAdapter.updateField(field);
+  @Override public void updateField(FieldEntity fieldEntity) {
+    mFieldsAdapter.updateField(fieldEntity);
   }
 
-  @Override public void deleteFieldAtPosition(Field field, int position) {
-    mFieldsAdapter.removeField(field, position);
+  @Override public void deleteFieldAtPosition(FieldEntity fieldEntity, int position) {
+    mFieldsAdapter.removeField(fieldEntity, position);
     updateTextNoDataVisibility();
   }
 
@@ -144,7 +144,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
         ContextCompat.getDrawable(getContext(), R.drawable.shape_list_item_divider));
     mFieldsRecyclerView.addItemDecoration(dividerItemDecoration);
 
-    // TODO: open field editing screen (give it to mNavigator)
+    // TODO: open fieldEntity editing screen (give it to mNavigator)
     ItemClickSupport.addTo(mFieldsRecyclerView)
         .setOnItemClickListener(
             (recyclerView, position, v) -> mStartFragmentPresenter.onFiledClickedAtPosition(
@@ -163,12 +163,14 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     mStartFragmentPresenter.hideFieldTypeDialog();
   }
 
-  private Fragment makeEditFieldFragment(Field field) {
-    if (field.hasPoints()) {
-      return EditFieldOnMapFragment.newInstance(field);
+  private Fragment makeEditFieldFragment(FieldEntity fieldEntity) {
+    /*if (fieldEntity.hasPoints()) {
+      return EditFieldOnMapFragment.newInstance(fieldEntity);
     } else {
-      return EditFieldFullScreenFragment.newInstance(field);
-    }
+      return EditFieldFullScreenFragment.newInstance(fieldEntity);
+    }*/
+
+    return EditFieldOnMapFragment.newInstance(null);
   }
 
   private void updateTextNoDataVisibility() {

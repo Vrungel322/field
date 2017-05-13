@@ -9,15 +9,19 @@ import com.pushtorefresh.storio.sqlite.queries.Query;
 
 public class CropsTable {
 
-  @NonNull public static final String TABLE = "CropsTable";
+  @NonNull public static final String TABLE = "Crops";
 
   @NonNull public static final String COLUMN_ID = "id";
-
   @NonNull public static final String COLUMN_NAME = "name";
-
   @NonNull public static final String COLUMN_PARENT_ID = "parent_id";
-
   @NonNull public static final String COLUMN_IS_GROUP = "is_group";
+
+  @NonNull public static final String COLUMN_ID_WITH_TABLE_PREFIX = TABLE + "." + COLUMN_ID;
+  @NonNull public static final String COLUMN_NAME_WITH_TABLE_PREFIX = TABLE + "." + COLUMN_NAME;
+  @NonNull public static final String COLUMN_PARENT_ID_WITH_TABLE_PREFIX =
+      TABLE + "." + COLUMN_PARENT_ID;
+  @NonNull public static final String COLUMN_IS_GROUP_WITH_TABLE_PREFIX =
+      TABLE + "." + COLUMN_IS_GROUP;
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
@@ -33,37 +37,12 @@ public class CropsTable {
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_NAME
         + " TEXT NULL, "
-        + COLUMN_PARENT_ID
-        + " INTEGER NULL, "
-        + COLUMN_IS_GROUP
-        + " INTEGER NULL "
+        + COLUMN_PARENT_ID + " TEXT NULL, "
+        + COLUMN_IS_GROUP + " TEXT NULL "
         + ");";
   }
 
-  // TODO: for tests - remove after
-  @NonNull public static String getFillTableQuery() {
-    StringBuilder sb = new StringBuilder();
-
-    for (int i = 1; i <= 10; i++) {
-      sb.append("INSERT OR REPLACE INTO "
-          + TABLE
-          + " ("
-          + COLUMN_ID
-          + " , "
-          + COLUMN_NAME
-          + " , "
-          + COLUMN_PARENT_ID
-          + " , "
-          + COLUMN_IS_GROUP
-          + ") "
-          + " VALUES ("
-          + i
-          + ", 'crop "
-          + i
-          + "', 0, 0)"
-          + ";");
-    }
-
-    return sb.toString();
+  public static Query getCropByIdQuery(Long id) {
+    return Query.builder().table(TABLE).where(COLUMN_ID).whereArgs(id).build();
   }
 }

@@ -9,12 +9,10 @@ import com.pushtorefresh.storio.sqlite.queries.Query;
 
 public class PhasesTable {
 
-  @NonNull public static final String TABLE = "PhasesTable";
+  @NonNull public static final String TABLE = "Phases";
 
   @NonNull public static final String COLUMN_ID = "id";
-
   @NonNull public static final String COLUMN_NAME = "name";
-
   @NonNull public static final String COLUMN_CROP_ID = "crop_id";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
@@ -31,8 +29,7 @@ public class PhasesTable {
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_NAME
         + " TEXT NULL, "
-        + COLUMN_CROP_ID
-        + " INTEGER NULL "
+        + COLUMN_CROP_ID + " TEXT NULL "
         + ");";
   }
 }

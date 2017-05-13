@@ -1,0 +1,55 @@
+package com.apps.twelve.floor.field.mvp.data.local.resolvers;
+
+import android.database.Cursor;
+import android.support.annotation.NonNull;
+import android.text.TextUtils;
+import com.apps.twelve.floor.field.mvp.data.local.DbRelationsHelper;
+import com.apps.twelve.floor.field.mvp.data.local.entities.ClimateZoneEntity;
+import com.apps.twelve.floor.field.mvp.data.local.entities.CropEntity;
+import com.apps.twelve.floor.field.mvp.data.local.entities.FieldCropClimateZoneEntity;
+import com.apps.twelve.floor.field.mvp.data.local.entities.FieldEntity;
+import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver;
+
+/**
+ * Created by Yaroslav on 13.05.2017.
+ */
+
+public class FieldCropClimateZoneGetResolver
+    extends DefaultGetResolver<FieldCropClimateZoneEntity> {
+
+  @NonNull @Override public FieldCropClimateZoneEntity mapFromCursor(@NonNull Cursor cursor) {
+    return new FieldCropClimateZoneEntity(fieldEntityFromCursor(cursor),
+        cropEntityFromCursor(cursor), climateZoneEntityFromCursor(cursor));
+  }
+
+  @NonNull private FieldEntity fieldEntityFromCursor(@NonNull Cursor cursor) {
+    return FieldEntity.newFieldEntity(
+        cursor.getLong(cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_FIELD_ID)),
+        cursor.getString(cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_FIELD_NAME)),
+        cursor.getLong(cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_CROP_ID)),
+        cursor.getLong(cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_PREV_CROP_ID)),
+        cursor.getString(
+            cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_FIELD_COORDINATES)),
+        cursor.getDouble(cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_FIELD_AREA)),
+        cursor.getLong(
+            cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_CLIMATE_ZONE_ID)));
+  }
+
+  @NonNull private CropEntity cropEntityFromCursor(@NonNull Cursor cursor) {
+    return CropEntity.newCropEntity(
+        cursor.getLong(cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_CROP_ID)),
+        cursor.getString(cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_CROP_NAME)),
+        cursor.getLong(cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_CROP_PARENT_ID)),
+        (!TextUtils.isEmpty(cursor.getString(
+            cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_CROP_IS_GROUP)))));
+  }
+
+  @NonNull private ClimateZoneEntity climateZoneEntityFromCursor(@NonNull Cursor cursor) {
+    return ClimateZoneEntity.newClimateZoneEntity(cursor.getLong(
+        cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_CLIMATE_ZONE_ID)),
+        cursor.getString(
+            cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_CLIMATE_ZONE_NAME)),
+        cursor.getString(
+            cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_CLIMATE_ZONE_COORDINATES)));
+  }
+}

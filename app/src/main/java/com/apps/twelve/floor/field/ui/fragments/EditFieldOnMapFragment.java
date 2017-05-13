@@ -9,11 +9,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import com.apps.twelve.floor.field.R;
-import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.MapPolygonEditPresenter;
 import com.apps.twelve.floor.field.mvp.views.IEditFieldOnMapFragmentView;
 import com.apps.twelve.floor.field.ui.base.BaseManualAttachFragment;
-import com.apps.twelve.floor.field.utils.Constants;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -76,12 +74,7 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   }
 
   public static EditFieldOnMapFragment newInstance() {
-    return newInstance(new Field());
-  }
-
-  public static EditFieldOnMapFragment newInstance(Field field) {
     Bundle args = new Bundle();
-    args.putParcelable(Constants.EditField.FIELD_BUNDLE_KEY, field);
     EditFieldOnMapFragment fragment = new EditFieldOnMapFragment();
     fragment.setArguments(args);
     return fragment;

@@ -25,8 +25,12 @@ public class DbOpenHelper extends SQLiteOpenHelper {
   @Override public void onCreate(SQLiteDatabase db) {
     createDbTables(db);
 
-    // TODO: for tests - remove
-    db.execSQL(CropsTable.getFillTableQuery()); // fill table for Crops
+    // TODO: for tests - remove after
+    fillDbWithTestData();
+  }
+
+  @Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
   }
 
   private void createDbTables(SQLiteDatabase db) {
@@ -37,7 +41,6 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(PestsTable.getCreateTableQuery()); // create table for Pests
   }
 
-  @Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+  private void fillDbWithTestData() {
   }
 }

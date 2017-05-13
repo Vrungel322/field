@@ -4,7 +4,7 @@ import android.content.Context;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
 import com.apps.twelve.floor.field.mvp.data.DataManager;
 import com.apps.twelve.floor.field.mvp.data.local.PreferencesHelper;
-import com.apps.twelve.floor.field.mvp.data.model.FieldApi;
+import com.apps.twelve.floor.field.mvp.data.remote.FieldRetrofitApi;
 import com.apps.twelve.floor.field.mvp.data.remote.RestApi;
 import dagger.Module;
 import dagger.Provides;
@@ -16,11 +16,11 @@ import retrofit2.Retrofit;
 
 @Module(includes = { RetrofitModule.class, DbModule.class }) public class DataModule {
 
-  @Provides @AppScope FieldApi provideFieldApi(Retrofit retrofit) {
-    return retrofit.create(FieldApi.class);
+  @Provides @AppScope FieldRetrofitApi provideFieldApi(Retrofit retrofit) {
+    return retrofit.create(FieldRetrofitApi.class);
   }
 
-  @Provides @AppScope RestApi provideRestApi(FieldApi api) {
+  @Provides @AppScope RestApi provideRestApi(FieldRetrofitApi api) {
     return new RestApi(api);
   }
 

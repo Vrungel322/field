@@ -9,11 +9,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import com.apps.twelve.floor.field.R;
-import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.AddFieldTrackingPresenter;
 import com.apps.twelve.floor.field.mvp.views.IAddFieldTrackingFragmentView;
 import com.apps.twelve.floor.field.ui.base.BaseManualAttachFragment;
-import com.apps.twelve.floor.field.utils.Constants;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -94,12 +92,7 @@ public class AddFieldTrackingFragment extends BaseManualAttachFragment
   }
 
   public static AddFieldTrackingFragment newInstance() {
-    return newInstance(new Field());
-  }
-
-  public static AddFieldTrackingFragment newInstance(Field field) {
     Bundle args = new Bundle();
-    args.putParcelable(Constants.EditField.FIELD_BUNDLE_KEY, field);
     AddFieldTrackingFragment fragment = new AddFieldTrackingFragment();
     fragment.setArguments(args);
     return fragment;

@@ -1,15 +1,13 @@
 package com.apps.twelve.floor.field.mvp.data.remote;
 
-import com.apps.twelve.floor.field.mvp.data.model.FieldApi;
-
 /**
  * Created by John on 26.01.2017.
  */
 
 public class RestApi {
-  private final FieldApi api;
+  private final FieldRetrofitApi api;
 
-  public RestApi(FieldApi api) {
+  public RestApi(FieldRetrofitApi api) {
     this.api = api;
   }
 

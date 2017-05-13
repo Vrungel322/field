@@ -1,16 +1,13 @@
 package com.apps.twelve.floor.field.mvp.presenters.pr_fragments;
 
-import android.text.TextUtils;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.DataManager;
-import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
 import com.apps.twelve.floor.field.mvp.views.IEditFieldFragmentView;
 import com.apps.twelve.floor.field.utils.RxBus;
 import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.arellomobile.mvp.InjectViewState;
 import com.google.android.gms.maps.model.LatLng;
-import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
 import java.util.List;
 import javax.inject.Inject;
 import rx.Subscription;
@@ -26,7 +23,7 @@ import timber.log.Timber;
   @Inject DataManager mDataManager;
   @Inject RxBus mRxBus;
 
-  private Field mField;
+  //private FieldEntity mFieldModel;
 
   @Override protected void inject() {
     App.getAppComponent().inject(this);
@@ -37,73 +34,75 @@ import timber.log.Timber;
     subscribeToPolygonEditResult();
   }
 
-  public EditFieldPresenter(Field field) {
-    if (field == null) {
-      setField(new Field());
+  public EditFieldPresenter(FieldEntity fieldEntity) {
+    if (fieldEntity == null) {
+      setField(new FieldEntity());
     } else {
-      setField(field);
+      setField(fieldEntity);
     }
   }
 
-  public void setField(Field field) {
-    this.mField = field;
-    getViewState().setFieldNameText(mField.getName());
+  public void setField(FieldEntity fieldEntity) {
+    /*this.mFieldModel = fieldEntity;
+    getViewState().setFieldNameText(mFieldModel.getName());
     getViewState().setFieldAreaText(
-        mField.getArea() != null ? String.valueOf(mField.getArea()) : "");
+        mFieldModel.getArea() != null ? String.valueOf(mFieldModel.getArea()) : "");*/
     // TODO: get crop name by id
-    //getViewState().setFieldCropText(mField.getCrop().getmName());
-    if (field.hasPoints()) {
-      // TODO: update markers, polyline and polygon on map
-    }
+    //getViewState().setFieldCropText(mFieldModel.getCrop().getmName());
+
+    // TODO: update markers, polyline and polygon on map
+    /*if (fieldEntity.hasPoints()) {
+
+    }*/
   }
 
   public void updateFieldName(String name) {
-    if (name.equals(mField.getName())) return;
-    mField.setName(name);
-    getViewState().setFieldNameText(name);
+    /*if (name.equals(mFieldModel.getName())) return;
+    mFieldModel.setName(name);
+    getViewState().setFieldNameText(name);*/
   }
 
   public void updateFieldArea(String area) {
-    if (area.equals(String.valueOf(mField.getArea()))) return;
+    /*if (area.equals(String.valueOf(mFieldModel.getArea()))) return;
     if (TextUtils.isEmpty(area)) {
-      mField.setArea(0);
+      mFieldModel.setArea(Double.valueOf(0));
     } else {
-      mField.setArea(Double.valueOf(area));
+      mFieldModel.setArea(Double.valueOf(area));
     }
 
-    getViewState().setFieldAreaText(area);
+    getViewState().setFieldAreaText(area);*/
   }
 
   public void updateFieldArea(double area) {
-    if (mField.getArea() == area) return;
-    mField.setArea(area);
-    getViewState().setFieldAreaText(String.valueOf(area));
+    /*if (mFieldModel.getArea() == area) return;
+    mFieldModel.setArea(area);
+    getViewState().setFieldAreaText(String.valueOf(area));*/
   }
 
-  public void updateFieldCrop(Integer cropId) {
-    if (cropId.equals(mField.getCropId())) return;
-    mField.setCropId(cropId);
+  public void updateFieldCrop(Long cropId) {
+    /*if (cropId.equals(mFieldModel.getCropId())) return;
+    mFieldModel.setCropId(cropId);*/
     // TODO: get crop name by id
     //getViewState().setFieldCropText(cropId);
   }
 
   public void updateFieldPoints(List<LatLng> points) {
-    mField.clearPoints();
-    mField.addAllPoints(points);
+    /*mFieldModel.clearPoints();
+    mFieldModel.addAllPoints(points);*/
   }
 
   public void saveField() {
-    PutResult putResult = mDataManager.putField(mField);
+    /*PutResult putResult = mDataManager.putField(mFieldModel);
 
     int changeId = -1;
     if (putResult.wasInserted()) {
-      mField.setId(putResult.insertedId());
+      mFieldModel.setId(putResult.insertedId());
       changeId = RxBusHelper.FieldChangedInDb.CHANGE_INSERT;
     } else if (putResult.wasUpdated()) {
       changeId = RxBusHelper.FieldChangedInDb.CHANGE_UPDATE;
     }
 
-    mRxBus.post(new RxBusHelper.FieldChangedInDb(mField, changeId));
+    mRxBus.post(new RxBusHelper.FieldChangedInDb(mFieldModel, changeId));*/
   }
 
   public void setEditMode(boolean isEditMode) {

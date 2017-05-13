@@ -2,7 +2,7 @@ package com.apps.twelve.floor.field.mvp.presenters.pr_fragments;
 
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.DataManager;
-import com.apps.twelve.floor.field.mvp.data.model.Field;
+import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
 import com.apps.twelve.floor.field.mvp.views.IStartFragmentView;
 import com.apps.twelve.floor.field.utils.RxBus;
@@ -70,7 +70,7 @@ import timber.log.Timber;
     addToUnsubscription(subscription);
   }
 
-  private void onFieldDeletedFromList(Field field, int position) {
+  private void onFieldDeletedFromList(FieldObject field, int position) {
     DeleteResult deleteResult = mDataManager.deleteField(field);
 
     if (deleteResult.numberOfRowsDeleted() > 0) {
@@ -79,19 +79,20 @@ import timber.log.Timber;
   }
 
   private void subscribeToFieldsDbChanges() {
-    Subscription subscription = mRxBus.filteredObservable(RxBusHelper.FieldChangedInDb.class)
+    // TODO: decide how to handle this event (where to map model to object)
+    /*Subscription subscription = mRxBus.filteredObservable(RxBusHelper.FieldChangedInDb.class)
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(msg -> onFieldChanged(msg.field, msg.change), Timber::e);
-    addToUnsubscription(subscription);
+        .subscribe(msg -> onFieldChanged(msg.fieldEntity, msg.change), Timber::e);
+    addToUnsubscription(subscription);*/
   }
 
-  private void onFieldChanged(Field field, int change) {
+  private void onFieldChanged(FieldObject fieldObject, int change) {
     switch (change) {
       case RxBusHelper.FieldChangedInDb.CHANGE_INSERT:
-        getViewState().addField(field);
+        getViewState().addField(fieldObject);
         break;
       case RxBusHelper.FieldChangedInDb.CHANGE_UPDATE:
-        getViewState().updateField(field);
+        getViewState().updateField(fieldObject);
         break;
       default:
         break;

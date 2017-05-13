@@ -11,7 +11,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import com.apps.twelve.floor.field.R;
-import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.EditFieldPresenter;
 import com.apps.twelve.floor.field.mvp.views.IEditFieldFragmentView;
 import com.apps.twelve.floor.field.ui.base.BaseFragment;
@@ -44,12 +43,7 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   }
 
   public static EditFieldFullScreenFragment newInstance() {
-    return newInstance(new Field());
-  }
-
-  public static EditFieldFullScreenFragment newInstance(Field field) {
     Bundle args = new Bundle();
-    args.putParcelable(Constants.EditField.FIELD_BUNDLE_KEY, field);
     EditFieldFullScreenFragment fragment = new EditFieldFullScreenFragment();
     fragment.setArguments(args);
     return fragment;

@@ -11,7 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.R;
-import com.apps.twelve.floor.field.mvp.data.model.Field;
+import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.utils.RxBus;
 import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.daimajia.swipe.SwipeLayout;
@@ -33,7 +33,7 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
     App.getAppComponent().inject(this);
   }
 
-  private ArrayList<Field> mFieldsList = new ArrayList<>();
+  private ArrayList<FieldObject> mFieldsList = new ArrayList<>();
 
   @Override public FieldViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view =
@@ -49,17 +49,17 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
     return mFieldsList.size();
   }
 
-  public void addAllFields(List<Field> fields) {
+  public void addAllFields(List<FieldObject> fields) {
     mFieldsList.addAll(fields);
     notifyDataSetChanged();
   }
 
-  public void addField(Field field) {
+  public void addField(FieldObject field) {
     mFieldsList.add(field);
     notifyItemInserted(mFieldsList.size() - 1);
   }
 
-  public void updateField(Field field) {
+  public void updateField(FieldObject field) {
     int position = mFieldsList.indexOf(field);
     if (position >= 0) {
       mFieldsList.set(position, field);
@@ -67,9 +67,9 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
     }
   }
 
-  public void removeField(Field field, int position) {
+  public void removeField(FieldObject field, int position) {
     if (position < 0 && field == null) {
-      Timber.e(new Throwable("Trying to remove incorrect field"));
+      Timber.e(new Throwable("Trying to remove incorrect fieldObject"));
       return;
     }
     if (position < 0) position = mFieldsList.indexOf(field);
@@ -81,16 +81,15 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
     }
   }
 
-  public Field getFieldAt(int position) {
+  public FieldObject getFieldAt(int position) {
     return mFieldsList.get(position);
   }
 
   private void updateHolder(FieldViewHolder holder, int position) {
-    Field field = mFieldsList.get(position);
+    FieldObject field = mFieldsList.get(position);
 
     holder.mNameText.setText(field.getName());
-    // TODO: get crop name by id
-    //holder.mCropText.setText(field.getCrop());
+    holder.mCropText.setText(field.getCrop().getName());
     holder.mAreaText.setText(field.getArea() != null ? String.valueOf(field.getArea()) : "");
 
     setupSwipeLayout(holder, position);

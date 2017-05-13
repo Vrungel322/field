@@ -1,6 +1,7 @@
 package com.apps.twelve.floor.field.utils;
 
-import com.apps.twelve.floor.field.mvp.data.model.Field;
+import com.apps.twelve.floor.field.mvp.data.local.entities.FieldEntity;
+import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
 
@@ -15,17 +16,17 @@ public final class RxBusHelper {
   ///////////////////////////////////////////////////////////////////////////
 
   public static class FieldDeletedFromList {
-    public Field field;
+    public FieldObject field;
     public int position;
 
-    public FieldDeletedFromList(Field field, int position) {
+    public FieldDeletedFromList(FieldObject field, int position) {
       this.field = field;
       this.position = position;
     }
   }
 
   ///////////////////////////////////////////////////////////////////////////
-  // Field edit events
+  // Field edit on map events
   ///////////////////////////////////////////////////////////////////////////
 
   public static class SwitchFieldEditMode {
@@ -75,11 +76,11 @@ public final class RxBusHelper {
     public static final int CHANGE_UPDATE = 30;
     public static final int CHANGE_DELETE = 40;
 
-    public Field field;
+    public FieldEntity fieldEntity;
     public int change;
 
-    public FieldChangedInDb(Field field, int change) {
-      this.field = field;
+    public FieldChangedInDb(FieldEntity fieldEntity, int change) {
+      this.fieldEntity = fieldEntity;
       this.change = change;
     }
   }

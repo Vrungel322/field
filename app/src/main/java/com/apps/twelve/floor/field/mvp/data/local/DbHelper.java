@@ -1,10 +1,11 @@
 package com.apps.twelve.floor.field.mvp.data.local;
 
 import com.apps.twelve.floor.field.App;
+import com.apps.twelve.floor.field.mvp.data.local.entities.CropEntity;
+import com.apps.twelve.floor.field.mvp.data.local.entities.FieldCropClimateZoneEntity;
+import com.apps.twelve.floor.field.mvp.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.mvp.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.mvp.data.local.tables.FieldsTable;
-import com.apps.twelve.floor.field.mvp.data.model.Crop;
-import com.apps.twelve.floor.field.mvp.data.model.Field;
 import com.pushtorefresh.storio.sqlite.StorIOSQLite;
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
 import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
@@ -28,41 +29,48 @@ public class DbHelper {
   // Fields
   ///////////////////////////////////////////////////////////////////////////
 
-  public Observable<List<Field>> getAllFields() {
-    return mStorIOSQLite.get()
-        .listOfObjects(Field.class)
+  public Observable<List<FieldCropClimateZoneEntity>> getAllFields() {
+    return mStorIOSQLite.get().listOfObjects(FieldCropClimateZoneEntity.class)
         .withQuery(FieldsTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
-  public PutResult putField(Field field) {
-    return mStorIOSQLite.put().object(field).prepare().executeAsBlocking();
+  public PutResult putField(FieldEntity fieldEntity) {
+    return mStorIOSQLite.put().object(fieldEntity).prepare().executeAsBlocking();
   }
 
-  public DeleteResult deleteField(Field field) {
-    return mStorIOSQLite.delete().object(field).prepare().executeAsBlocking();
+  public DeleteResult deleteField(FieldEntity fieldEntity) {
+    return mStorIOSQLite.delete().object(fieldEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
   // Crops
   ///////////////////////////////////////////////////////////////////////////
 
-  public Observable<List<Crop>> getAllCrops() {
-    return mStorIOSQLite.get()
-        .listOfObjects(Crop.class)
+  public Observable<List<CropEntity>> getAllCrops() {
+    return mStorIOSQLite.get().listOfObjects(CropEntity.class)
         .withQuery(CropsTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
-  public PutResult putCrop(Crop crop) {
-    return mStorIOSQLite.put().object(crop).prepare().executeAsBlocking();
+  public Observable<CropEntity> getCropById(Long id) {
+    return mStorIOSQLite.get()
+        .object(CropEntity.class)
+        .withQuery(CropsTable.getCropByIdQuery(id))
+        .prepare()
+        .asRxObservable()
+        .take(1);
   }
 
-  public DeleteResult deleteCrop(Crop crop) {
-    return mStorIOSQLite.delete().object(crop).prepare().executeAsBlocking();
+  public PutResult putCrop(CropEntity cropEntity) {
+    return mStorIOSQLite.put().object(cropEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteCrop(CropEntity cropEntity) {
+    return mStorIOSQLite.delete().object(cropEntity).prepare().executeAsBlocking();
   }
 }
