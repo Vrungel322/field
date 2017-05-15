@@ -2,7 +2,6 @@ package com.apps.twelve.floor.field.mvp.data;
 
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.local.DbHelper;
-import com.apps.twelve.floor.field.mvp.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.CropEntityToCropObject;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.FieldCropClimateZoneEntityToFieldObject;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.FieldObjectToFieldEntity;
@@ -39,8 +38,8 @@ public class DataManager {
         .toList();
   }
 
-  public PutResult putField(FieldEntity fieldEntity) {
-    return mDbHelper.putField(fieldEntity);
+  public PutResult putField(FieldObject fieldObject) {
+    return mDbHelper.putField(new FieldObjectToFieldEntity().transform(fieldObject));
   }
 
   public DeleteResult deleteField(FieldObject fieldObject) {
@@ -50,7 +49,13 @@ public class DataManager {
   public Observable<List<CropObject>> getAllCrops() {
     return mDbHelper.getAllCrops()
         .concatMap(Observable::from)
-        .map(cropModel -> new CropEntityToCropObject().transform(cropModel))
+        .map(cropEntity -> new CropEntityToCropObject().transform(cropEntity))
         .toList();
+  }
+
+  public Observable<CropObject> getCropById(long id) {
+    return mDbHelper.getCropById(id)
+        .map(cropEntity -> new CropEntityToCropObject().transform(cropEntity))
+        .take(1);
   }
 }

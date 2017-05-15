@@ -79,11 +79,10 @@ import timber.log.Timber;
   }
 
   private void subscribeToFieldsDbChanges() {
-    // TODO: decide how to handle this event (where to map model to object)
-    /*Subscription subscription = mRxBus.filteredObservable(RxBusHelper.FieldChangedInDb.class)
+    Subscription subscription = mRxBus.filteredObservable(RxBusHelper.FieldChangedInDb.class)
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(msg -> onFieldChanged(msg.fieldEntity, msg.change), Timber::e);
-    addToUnsubscription(subscription);*/
+        .subscribe(msg -> onFieldChanged(msg.fieldObject, msg.change), Timber::e);
+    addToUnsubscription(subscription);
   }
 
   private void onFieldChanged(FieldObject fieldObject, int change) {

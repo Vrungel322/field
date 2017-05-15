@@ -15,7 +15,7 @@ import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import com.apps.twelve.floor.field.R;
-import com.apps.twelve.floor.field.mvp.data.local.entities.FieldEntity;
+import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.EditFieldPresenter;
 import com.apps.twelve.floor.field.mvp.views.IEditFieldFragmentView;
 import com.apps.twelve.floor.field.ui.base.BaseFragment;
@@ -51,12 +51,12 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   }
 
   public static EditFieldBottomSheetFragment newInstance() {
-    return newInstance(new FieldEntity());
+    return newInstance(new FieldObject());
   }
 
-  public static EditFieldBottomSheetFragment newInstance(FieldEntity fieldEntity) {
+  public static EditFieldBottomSheetFragment newInstance(FieldObject fieldObject) {
     Bundle args = new Bundle();
-    args.putParcelable(Constants.EditField.FIELD_BUNDLE_KEY, fieldEntity);
+    args.putParcelable(Constants.EditField.FIELD_BUNDLE_KEY, fieldObject);
     EditFieldBottomSheetFragment fragment = new EditFieldBottomSheetFragment();
     fragment.setArguments(args);
     return fragment;

@@ -90,7 +90,7 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
 
     holder.mNameText.setText(field.getName());
     holder.mCropText.setText(field.getCrop().getName());
-    holder.mAreaText.setText(field.getArea() != null ? String.valueOf(field.getArea()) : "");
+    holder.mAreaText.setText(String.valueOf(field.getArea()));
 
     setupSwipeLayout(holder, position);
   }

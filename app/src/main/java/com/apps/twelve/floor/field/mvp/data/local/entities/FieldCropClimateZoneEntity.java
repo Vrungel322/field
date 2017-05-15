@@ -1,6 +1,7 @@
 package com.apps.twelve.floor.field.mvp.data.local.entities;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
  * Created by Yaroslav on 12.05.2017.
@@ -10,13 +11,16 @@ public class FieldCropClimateZoneEntity {
 
   @NonNull private final FieldEntity mFieldEntity;
   @NonNull private final CropEntity mCropEntity;
+  @Nullable private final CropEntity mPreviousCropEntity;
   @NonNull private final ClimateZoneEntity mClimateZoneEntity;
 
-  public FieldCropClimateZoneEntity(@NonNull FieldEntity mFieldEntity,
-      @NonNull CropEntity mCropEntity, @NonNull ClimateZoneEntity mClimateZoneEntity) {
-    this.mFieldEntity = mFieldEntity;
-    this.mCropEntity = mCropEntity;
-    this.mClimateZoneEntity = mClimateZoneEntity;
+  public FieldCropClimateZoneEntity(@NonNull FieldEntity fieldEntity,
+      @NonNull CropEntity cropEntity, @Nullable CropEntity previousCropEntity,
+      @NonNull ClimateZoneEntity climateZoneEntity) {
+    this.mFieldEntity = fieldEntity;
+    this.mCropEntity = cropEntity;
+    this.mPreviousCropEntity = previousCropEntity;
+    this.mClimateZoneEntity = climateZoneEntity;
   }
 
   @Override public boolean equals(Object obj) {
@@ -27,12 +31,17 @@ public class FieldCropClimateZoneEntity {
 
     if (!mFieldEntity.equals(that.mFieldEntity)) return false;
     if (!mCropEntity.equals(that.mCropEntity)) return false;
+    if (mPreviousCropEntity != null ? !mPreviousCropEntity.equals(that.mPreviousCropEntity)
+        : that.mPreviousCropEntity != null) {
+      return false;
+    }
     return mClimateZoneEntity.equals(that.mClimateZoneEntity);
   }
 
   @Override public int hashCode() {
     int result = mFieldEntity.hashCode();
     result = 31 * result + mCropEntity.hashCode();
+    result = 31 * result + mPreviousCropEntity.hashCode();
     result = 31 * result + mClimateZoneEntity.hashCode();
     return result;
   }
@@ -43,6 +52,10 @@ public class FieldCropClimateZoneEntity {
 
   @NonNull public CropEntity getCropEntity() {
     return mCropEntity;
+  }
+
+  @Nullable public CropEntity getPreviousCropEntity() {
+    return mPreviousCropEntity;
   }
 
   @NonNull public ClimateZoneEntity getClimateZoneEntity() {

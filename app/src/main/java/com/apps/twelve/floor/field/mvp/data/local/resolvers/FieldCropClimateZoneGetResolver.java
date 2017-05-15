@@ -2,6 +2,7 @@ package com.apps.twelve.floor.field.mvp.data.local.resolvers;
 
 import android.database.Cursor;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import com.apps.twelve.floor.field.mvp.data.local.DbRelationsHelper;
 import com.apps.twelve.floor.field.mvp.data.local.entities.ClimateZoneEntity;
@@ -19,8 +20,13 @@ public class FieldCropClimateZoneGetResolver
 
   @NonNull @Override public FieldCropClimateZoneEntity mapFromCursor(@NonNull Cursor cursor) {
     return new FieldCropClimateZoneEntity(fieldEntityFromCursor(cursor),
-        cropEntityFromCursor(cursor), climateZoneEntityFromCursor(cursor));
+        cropEntityFromCursor(cursor), previousCropEntityFromCursor(cursor),
+        climateZoneEntityFromCursor(cursor));
   }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Private section
+  ///////////////////////////////////////////////////////////////////////////
 
   @NonNull private FieldEntity fieldEntityFromCursor(@NonNull Cursor cursor) {
     return FieldEntity.newFieldEntity(
@@ -42,6 +48,17 @@ public class FieldCropClimateZoneGetResolver
         cursor.getLong(cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_CROP_PARENT_ID)),
         (!TextUtils.isEmpty(cursor.getString(
             cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_CROP_IS_GROUP)))));
+  }
+
+  @Nullable private CropEntity previousCropEntityFromCursor(@NonNull Cursor cursor) {
+    return CropEntity.newCropEntity(
+        cursor.getLong(cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_PREV_CROP_ID)),
+        cursor.getString(
+            cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_PREV_CROP_NAME)),
+        cursor.getLong(
+            cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_PREV_CROP_PARENT_ID)),
+        (!TextUtils.isEmpty(cursor.getString(
+            cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_PREV_CROP_IS_GROUP)))));
   }
 
   @NonNull private ClimateZoneEntity climateZoneEntityFromCursor(@NonNull Cursor cursor) {

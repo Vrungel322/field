@@ -57,7 +57,7 @@ public class DbHelper {
         .take(1);
   }
 
-  public Observable<CropEntity> getCropById(Long id) {
+  public Observable<CropEntity> getCropById(long id) {
     return mStorIOSQLite.get()
         .object(CropEntity.class)
         .withQuery(CropsTable.getCropByIdQuery(id))

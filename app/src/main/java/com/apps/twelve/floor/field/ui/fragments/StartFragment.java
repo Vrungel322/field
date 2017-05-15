@@ -17,7 +17,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import com.apps.twelve.floor.field.R;
-import com.apps.twelve.floor.field.mvp.data.local.entities.FieldEntity;
+import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.StartFragmentPresenter;
 import com.apps.twelve.floor.field.mvp.views.IStartFragmentView;
 import com.apps.twelve.floor.field.ui.adapters.FieldsAdapter;
@@ -68,8 +68,8 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     mStartFragmentPresenter.showFieldTypeDialog();
   }
 
-  @Override public void showFields(List<FieldEntity> fieldEntities) {
-    mFieldsAdapter.addAllFields(fieldEntities);
+  @Override public void showFields(List<FieldObject> fieldObjects) {
+    mFieldsAdapter.addAllFields(fieldObjects);
     updateTextNoDataVisibility();
   }
 
@@ -98,17 +98,17 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     if (mFieldAddTypeDialog != null) mFieldAddTypeDialog.dismiss();
   }
 
-  @Override public void addField(FieldEntity fieldEntity) {
-    mFieldsAdapter.addField(fieldEntity);
+  @Override public void addField(FieldObject fieldObject) {
+    mFieldsAdapter.addField(fieldObject);
     updateTextNoDataVisibility();
   }
 
-  @Override public void updateField(FieldEntity fieldEntity) {
-    mFieldsAdapter.updateField(fieldEntity);
+  @Override public void updateField(FieldObject fieldObject) {
+    mFieldsAdapter.updateField(fieldObject);
   }
 
-  @Override public void deleteFieldAtPosition(FieldEntity fieldEntity, int position) {
-    mFieldsAdapter.removeField(fieldEntity, position);
+  @Override public void deleteFieldAtPosition(FieldObject fieldObject, int position) {
+    mFieldsAdapter.removeField(fieldObject, position);
     updateTextNoDataVisibility();
   }
 
@@ -163,14 +163,14 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     mStartFragmentPresenter.hideFieldTypeDialog();
   }
 
-  private Fragment makeEditFieldFragment(FieldEntity fieldEntity) {
-    /*if (fieldEntity.hasPoints()) {
-      return EditFieldOnMapFragment.newInstance(fieldEntity);
+  private Fragment makeEditFieldFragment(FieldObject fieldObject) {
+    if (fieldObject.hasPoints()) {
+      return EditFieldOnMapFragment.newInstance(fieldObject);
     } else {
-      return EditFieldFullScreenFragment.newInstance(fieldEntity);
-    }*/
+      return EditFieldFullScreenFragment.newInstance(fieldObject);
+    }
 
-    return EditFieldOnMapFragment.newInstance(null);
+    //return EditFieldOnMapFragment.newInstance(null);
   }
 
   private void updateTextNoDataVisibility() {

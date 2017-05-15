@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.mvp.data.local.mappers;
 
+import android.support.annotation.Nullable;
 import com.apps.twelve.floor.field.mvp.data.local.entities.CropEntity;
 import com.apps.twelve.floor.field.mvp.data.local.objects.CropObject;
 
@@ -9,7 +10,8 @@ import com.apps.twelve.floor.field.mvp.data.local.objects.CropObject;
 
 public class CropEntityToCropObject implements Mapper<CropEntity, CropObject> {
 
-  @Override public CropObject transform(CropEntity entity) throws RuntimeException {
+  @Nullable @Override public CropObject transform(CropEntity entity) throws RuntimeException {
+    if (entity == null) return null;
     return new CropObject(entity.getId(), entity.getName(), entity.getParentId(), entity.isGroup());
   }
 }

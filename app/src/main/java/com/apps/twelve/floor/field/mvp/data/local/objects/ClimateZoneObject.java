@@ -1,6 +1,8 @@
 package com.apps.twelve.floor.field.mvp.data.local.objects;
 
-import com.apps.twelve.floor.field.utils.Constants;
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.apps.twelve.floor.field.utils.LatLngStringUtil;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,28 +11,55 @@ import java.util.List;
  * Created by Yaroslav on 12.05.2017.
  */
 
-public class ClimateZoneObject {
+public class ClimateZoneObject implements Parcelable {
 
-  private Long mId;
+  private long mId;
   private String mName;
   private List<LatLng> mPoints;
 
-  public ClimateZoneObject(Long id, String name, List<LatLng> points) {
+  public ClimateZoneObject(long id, String name, List<LatLng> points) {
     this.mId = id;
     this.mName = name;
     this.mPoints = points;
   }
 
-  public ClimateZoneObject(Long id, String name, String coordinates) {
+  public ClimateZoneObject(long id, String name, String coordinates) {
     this(id, name, new ArrayList<LatLng>());
-    transformStringToPoints(coordinates);
+    mPoints.clear();
+    mPoints.addAll(LatLngStringUtil.LatLngsFromString(coordinates));
   }
 
-  public Long getId() {
+  protected ClimateZoneObject(Parcel in) {
+    mId = in.readLong();
+    mName = in.readString();
+    mPoints = in.createTypedArrayList(LatLng.CREATOR);
+  }
+
+  public static final Creator<ClimateZoneObject> CREATOR = new Creator<ClimateZoneObject>() {
+    @Override public ClimateZoneObject createFromParcel(Parcel in) {
+      return new ClimateZoneObject(in);
+    }
+
+    @Override public ClimateZoneObject[] newArray(int size) {
+      return new ClimateZoneObject[size];
+    }
+  };
+
+  @Override public int describeContents() {
+    return 0;
+  }
+
+  @Override public void writeToParcel(Parcel dest, int flags) {
+    dest.writeLong(mId);
+    dest.writeString(mName);
+    dest.writeTypedList(mPoints);
+  }
+
+  public long getId() {
     return mId;
   }
 
-  public void setId(Long id) {
+  public void setId(long id) {
     this.mId = id;
   }
 
@@ -48,33 +77,5 @@ public class ClimateZoneObject {
 
   public void setPoints(List<LatLng> points) {
     this.mPoints = points;
-  }
-
-  private void transformStringToPoints(String coordinates) {
-    String[] latLngs;
-    String[] coords = coordinates.split(Constants.StringSeparators.SEPARATOR_OUTER);
-
-    List<LatLng> points = new ArrayList<>(coords.length);
-
-    for (String coord : coords) {
-      latLngs = coord.split(Constants.StringSeparators.SEPARATOR_INNER);
-      points.add(new LatLng(Double.valueOf(latLngs[0]), Double.valueOf(latLngs[1])));
-    }
-
-    mPoints.clear();
-    mPoints.addAll(points);
-  }
-
-  private String transformPointsToString() {
-    StringBuilder sb = new StringBuilder();
-
-    for (int i = 0; i < mPoints.size(); i++) {
-      sb.append(mPoints.get(i).latitude)
-          .append(Constants.StringSeparators.SEPARATOR_INNER)
-          .append(mPoints.get(i).longitude)
-          .append((i < mPoints.size() - 1) ? Constants.StringSeparators.SEPARATOR_OUTER : "");
-    }
-
-    return sb.toString();
   }
 }

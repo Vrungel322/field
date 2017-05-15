@@ -1,6 +1,9 @@
 package com.apps.twelve.floor.field.mvp.data.local.objects;
 
-import com.apps.twelve.floor.field.utils.Constants.StringSeparators;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.Nullable;
+import com.apps.twelve.floor.field.utils.LatLngStringUtil;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,24 +12,38 @@ import java.util.List;
  * Created by Yaroslav on 12.05.2017.
  */
 
-public class FieldObject {
+public class FieldObject implements Parcelable {
 
-  private Long mId;
-  private String mName;
+  public static final Creator<FieldObject> CREATOR = new Creator<FieldObject>() {
+    @Override public FieldObject createFromParcel(Parcel in) {
+      return new FieldObject(in);
+    }
+
+    @Override public FieldObject[] newArray(int size) {
+      return new FieldObject[size];
+    }
+  };
+
+  private long mId;
+  private String mName = "";
   private CropObject mCrop;
-  private CropObject mPreviousCrop;
+  @Nullable private CropObject mPreviousCrop;
   private List<LatLng> mPoints;
-  private Double mArea;
+  private double mArea;
   private ClimateZoneObject mClimateZone;
 
-  public FieldObject(Long id, String name, CropObject crop, CropObject previousCrop,
-      String coordinates, Double area, ClimateZoneObject climateZone) {
-    this(id, name, crop, previousCrop, new ArrayList<LatLng>(), area, climateZone);
-    transformStringToPoints(coordinates);
+  public FieldObject() {
   }
 
-  public FieldObject(Long id, String name, CropObject crop, CropObject previousCrop,
-      List<LatLng> points, Double area, ClimateZoneObject climateZone) {
+  public FieldObject(long id, String name, CropObject crop, CropObject previousCrop,
+      String coordinates, double area, ClimateZoneObject climateZone) {
+    this(id, name, crop, previousCrop, new ArrayList<LatLng>(), area, climateZone);
+    mPoints.clear();
+    mPoints.addAll(LatLngStringUtil.LatLngsFromString(coordinates));
+  }
+
+  public FieldObject(long id, String name, CropObject crop, @Nullable CropObject previousCrop,
+      List<LatLng> points, double area, ClimateZoneObject climateZone) {
     this.mId = id;
     this.mName = name;
     this.mCrop = crop;
@@ -36,11 +53,35 @@ public class FieldObject {
     this.mClimateZone = climateZone;
   }
 
-  public Long getId() {
+  protected FieldObject(Parcel in) {
+    mId = in.readLong();
+    mName = in.readString();
+    mCrop = in.readParcelable(CropObject.class.getClassLoader());
+    mPreviousCrop = in.readParcelable(CropObject.class.getClassLoader());
+    mPoints = in.createTypedArrayList(LatLng.CREATOR);
+    mArea = in.readDouble();
+    mClimateZone = in.readParcelable(ClimateZoneObject.class.getClassLoader());
+  }
+
+  @Override public int describeContents() {
+    return 0;
+  }
+
+  @Override public void writeToParcel(Parcel dest, int flags) {
+    dest.writeLong(mId);
+    dest.writeString(mName);
+    dest.writeParcelable(mCrop, flags);
+    dest.writeParcelable(mPreviousCrop, flags);
+    dest.writeTypedList(mPoints);
+    dest.writeDouble(mArea);
+    dest.writeParcelable(mClimateZone, flags);
+  }
+
+  public long getId() {
     return mId;
   }
 
-  public void setId(Long id) {
+  public void setId(long id) {
     this.mId = id;
   }
 
@@ -60,7 +101,7 @@ public class FieldObject {
     this.mCrop = crop;
   }
 
-  public CropObject getPreviousCrop() {
+  @Nullable public CropObject getPreviousCrop() {
     return mPreviousCrop;
   }
 
@@ -76,11 +117,11 @@ public class FieldObject {
     this.mPoints = points;
   }
 
-  public Double getArea() {
+  public double getArea() {
     return mArea;
   }
 
-  public void setArea(Double area) {
+  public void setArea(double area) {
     this.mArea = area;
   }
 
@@ -93,34 +134,18 @@ public class FieldObject {
   }
 
   public String getPointsAsCoordinatesString() {
-    return transformPointsToString();
+    return LatLngStringUtil.stringFromLatLngs(mPoints);
   }
 
-  private void transformStringToPoints(String coordinates) {
-    String[] latLngs;
-    String[] coords = coordinates.split(StringSeparators.SEPARATOR_OUTER);
+  public boolean hasPoints() {
+    return mPoints != null && mPoints.size() > 0;
+  }
 
-    List<LatLng> points = new ArrayList<>(coords.length);
-
-    for (String coord : coords) {
-      latLngs = coord.split(StringSeparators.SEPARATOR_INNER);
-      points.add(new LatLng(Double.valueOf(latLngs[0]), Double.valueOf(latLngs[1])));
-    }
-
+  public void clearPoints() {
     mPoints.clear();
-    mPoints.addAll(points);
   }
 
-  private String transformPointsToString() {
-    StringBuilder sb = new StringBuilder();
-
-    for (int i = 0; i < mPoints.size(); i++) {
-      sb.append(mPoints.get(i).latitude)
-          .append(StringSeparators.SEPARATOR_INNER)
-          .append(mPoints.get(i).longitude)
-          .append((i < mPoints.size() - 1) ? StringSeparators.SEPARATOR_OUTER : "");
-    }
-
-    return sb.toString();
+  public void addAllPoints(List<LatLng> points) {
+    mPoints.addAll(points);
   }
 }
