@@ -3,6 +3,7 @@ package com.apps.twelve.floor.field.mvp.data;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.local.DbHelper;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.CropEntityToCropObject;
+import com.apps.twelve.floor.field.mvp.data.local.mappers.CropObjectToCropEntity;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.FieldCropClimateZoneEntityToFieldObject;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.FieldObjectToFieldEntity;
 import com.apps.twelve.floor.field.mvp.data.local.objects.CropObject;
@@ -57,5 +58,9 @@ public class DataManager {
     return mDbHelper.getCropById(id)
         .map(cropEntity -> new CropEntityToCropObject().transform(cropEntity))
         .take(1);
+  }
+
+  public PutResult putCrop(CropObject cropObject) {
+    return mDbHelper.putCrop(new CropObjectToCropEntity().transform(cropObject));
   }
 }

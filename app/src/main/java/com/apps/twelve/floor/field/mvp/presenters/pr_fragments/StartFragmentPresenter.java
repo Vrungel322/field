@@ -2,6 +2,7 @@ package com.apps.twelve.floor.field.mvp.presenters.pr_fragments;
 
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.DataManager;
+import com.apps.twelve.floor.field.mvp.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
 import com.apps.twelve.floor.field.mvp.views.IStartFragmentView;
@@ -59,6 +60,10 @@ import timber.log.Timber;
     Subscription subscription = mDataManager.getAllFields()
         .compose(ThreadSchedulers.applySchedulers())
         .subscribe(fields -> getViewState().showFields(fields), Timber::e);
+
+    // TODO: this is for test - remove
+    mDataManager.putCrop(new CropObject(1, "Кукуруза", 0, false));
+    mDataManager.putCrop(new CropObject(2, "Картошка", 0, false));
 
     addToUnsubscription(subscription);
   }

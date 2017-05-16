@@ -36,9 +36,7 @@ public class CropsTable {
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_NAME
-        + " TEXT NULL, "
-        + COLUMN_PARENT_ID + " TEXT NULL, "
-        + COLUMN_IS_GROUP + " TEXT NULL "
+        + " TEXT NULL, " + COLUMN_PARENT_ID + " TEXT NULL, " + COLUMN_IS_GROUP + " TEXT NULL "
         + ");";
   }
 

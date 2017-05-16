@@ -24,9 +24,6 @@ public class DbOpenHelper extends SQLiteOpenHelper {
 
   @Override public void onCreate(SQLiteDatabase db) {
     createDbTables(db);
-
-    // TODO: for tests - remove after
-    fillDbWithTestData();
   }
 
   @Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -39,8 +36,5 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(ClimateZonesTable.getCreateTableQuery()); // create table for ClimateZones
     db.execSQL(PhasesTable.getCreateTableQuery()); // create table for Phases
     db.execSQL(PestsTable.getCreateTableQuery()); // create table for Pests
-  }
-
-  private void fillDbWithTestData() {
   }
 }
