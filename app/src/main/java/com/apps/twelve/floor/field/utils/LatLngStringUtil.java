@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.utils;
 
+import android.text.TextUtils;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ public final class LatLngStringUtil {
     String[] coords = coordinates.split(SEPARATOR_OUTER);
 
     List<LatLng> points = new ArrayList<>(coords.length);
+    if (TextUtils.isEmpty(coordinates)) return points;
 
     for (String coord : coords) {
       latLngs = coord.split(SEPARATOR_INNER);
@@ -28,6 +30,7 @@ public final class LatLngStringUtil {
   }
 
   public static String stringFromLatLngs(List<LatLng> points) {
+    if (points == null) return "";
     StringBuilder sb = new StringBuilder();
 
     for (int i = 0; i < points.size(); i++) {

@@ -49,6 +49,10 @@ public class CropObject implements Parcelable {
     dest.writeByte((byte) (isGroup ? 1 : 0));
   }
 
+  @Override public String toString() {
+    return name;
+  }
+
   public long getId() {
     return id;
   }

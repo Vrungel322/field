@@ -1,24 +1,35 @@
 package com.apps.twelve.floor.field.ui.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import com.apps.twelve.floor.field.R;
+import com.apps.twelve.floor.field.mvp.data.local.objects.ClimateZoneObject;
+import com.apps.twelve.floor.field.mvp.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.EditFieldPresenter;
 import com.apps.twelve.floor.field.mvp.views.IEditFieldFragmentView;
+import com.apps.twelve.floor.field.ui.adapters.ClimateZonesArrayAdapter;
+import com.apps.twelve.floor.field.ui.adapters.CropsArrayAdapter;
 import com.apps.twelve.floor.field.ui.base.BaseFragment;
 import com.apps.twelve.floor.field.utils.Constants;
 import com.apps.twelve.floor.field.utils.ViewUtil;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import java.util.ArrayList;
+import java.util.List;
+import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 05.04.2017.
@@ -35,9 +46,15 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
 
   @BindView(R.id.ed_text_name) EditText mEdTextName;
   @BindView(R.id.ed_text_area) EditText mEdTextArea;
-  @BindView(R.id.ed_text_crop) EditText mEdTextCrop; // TODO: this must be a list
+  @BindView(R.id.spinner_crop) Spinner mSpinnerCrop;
+  @BindView(R.id.spinner_previous_crop) Spinner mSpinnerPreviousCrop;
+  @BindView(R.id.spinner_climate_zone) Spinner mSpinnerClimateZone;
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
+
+  private CropsArrayAdapter mCropsAdapter;
+  private CropsArrayAdapter mPreviousCropsAdapter;
+  private ClimateZonesArrayAdapter mClimateZonesAdapter;
 
   public EditFieldFullScreenFragment() {
     super(R.layout.fragment_edit_field_full_screen);
@@ -55,6 +72,12 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
     return fragment;
   }
 
+  @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+
+    setupSpinnersAdapters();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // MvpView methods
   ///////////////////////////////////////////////////////////////////////////
@@ -67,12 +90,38 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
     mEdTextArea.setText(area);
   }
 
-  @Override public void setFieldCropText(String crop) {
-    mEdTextCrop.setText(crop);
-  }
-
   @Override public void setBtnOkEnabled(boolean isEnabled) {
     mBtnOk.setEnabled(isEnabled);
+  }
+
+  @Override public void addCropsToSpinnerAdapter(List<CropObject> crops) {
+    Timber.d("DBG EditFieldFullScreenFragment.addCropsToSpinnerAdapter");
+    mCropsAdapter.addAll(crops);
+  }
+
+  @Override public void addPreviousCropsToSpinnerAdapter(List<CropObject> crops) {
+    Timber.d("DBG EditFieldFullScreenFragment.addPreviousCropsToSpinnerAdapter");
+    mPreviousCropsAdapter.addAll(crops);
+  }
+
+  @Override public void addClimateZonesToSpinnerAdapter(List<ClimateZoneObject> climateZones) {
+    Timber.d("DBG EditFieldFullScreenFragment.addClimateZonesToSpinnerAdapter");
+    mClimateZonesAdapter.addAll(climateZones);
+  }
+
+  @Override public void setSelectedCrop(CropObject cropObject) {
+    int position = mCropsAdapter.getPosition(cropObject);
+    mSpinnerCrop.setSelection(position < 0 ? 0 : position);
+  }
+
+  @Override public void setSelectedPreviousCrop(CropObject cropObject) {
+    int position = mPreviousCropsAdapter.getPosition(cropObject);
+    mSpinnerPreviousCrop.setSelection(position < 0 ? 0 : position);
+  }
+
+  @Override public void setSelectedClimateZone(ClimateZoneObject climateZoneObject) {
+    int position = mClimateZonesAdapter.getPosition(climateZoneObject);
+    mSpinnerClimateZone.setSelection(position < 0 ? 0 : position);
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -98,8 +147,8 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   }
 
   // when finished editing text - clear EditText's focus
-  @OnEditorAction({ R.id.ed_text_area, R.id.ed_text_name, R.id.ed_text_crop })
-  public boolean onEditorAction(EditText editText, int actionId, KeyEvent event) {
+  @OnEditorAction({ R.id.ed_text_area, R.id.ed_text_name }) public boolean onEditorAction(
+      EditText editText, int actionId, KeyEvent event) {
     if (actionId == EditorInfo.IME_ACTION_DONE) {
       // user has done typing.
       editText.clearFocus();
@@ -107,6 +156,72 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
     }
 
     return false; // pass on to other listeners.
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Private section
+  ///////////////////////////////////////////////////////////////////////////
+
+  private void setupCropsSpinnerAdapter() {
+    mCropsAdapter = new CropsArrayAdapter(getContext(), android.R.layout.simple_spinner_item,
+        new ArrayList<>());
+    mCropsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+    mSpinnerCrop.setAdapter(mCropsAdapter);
+    mSpinnerCrop.setOnItemSelectedListener(new OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        mEditFieldPresenter.updateFieldCrop(mCropsAdapter.getItem(position));
+      }
+
+      @Override public void onNothingSelected(AdapterView<?> parent) {
+        mEditFieldPresenter.updateFieldCrop(null);
+      }
+    });
+  }
+
+  private void setupPreviousCropsSpinnerAdapter() {
+    mPreviousCropsAdapter =
+        new CropsArrayAdapter(getContext(), android.R.layout.simple_spinner_item,
+            new ArrayList<>());
+    mPreviousCropsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+    mSpinnerPreviousCrop.setAdapter(mPreviousCropsAdapter);
+    mSpinnerPreviousCrop.setOnItemSelectedListener(new OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        mEditFieldPresenter.updateFieldPreviousCrop(mPreviousCropsAdapter.getItem(position));
+      }
+
+      @Override public void onNothingSelected(AdapterView<?> parent) {
+        mEditFieldPresenter.updateFieldPreviousCrop(null);
+      }
+    });
+  }
+
+  private void setupClimateZonesSpinnerAdapter() {
+    mClimateZonesAdapter =
+        new ClimateZonesArrayAdapter(getContext(), android.R.layout.simple_spinner_item,
+            new ArrayList<>());
+    mClimateZonesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+    mSpinnerClimateZone.setAdapter(mClimateZonesAdapter);
+    mSpinnerClimateZone.setOnItemSelectedListener(new OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        mEditFieldPresenter.updateFieldClimateZone(mClimateZonesAdapter.getItem(position));
+      }
+
+      @Override public void onNothingSelected(AdapterView<?> parent) {
+        mEditFieldPresenter.updateFieldClimateZone(null);
+      }
+    });
+  }
+
+  private void setupSpinnersAdapters() {
+    setupCropsSpinnerAdapter();
+    setupPreviousCropsSpinnerAdapter();
+    setupClimateZonesSpinnerAdapter();
   }
 
   private void updateFieldData() {

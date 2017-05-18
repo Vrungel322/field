@@ -2,10 +2,13 @@ package com.apps.twelve.floor.field.mvp.data;
 
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.local.DbHelper;
+import com.apps.twelve.floor.field.mvp.data.local.mappers.ClimateZoneEntityToClimateZoneObject;
+import com.apps.twelve.floor.field.mvp.data.local.mappers.ClimateZoneObjectToClimateZoneEntity;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.CropEntityToCropObject;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.CropObjectToCropEntity;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.FieldCropClimateZoneEntityToFieldObject;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.FieldObjectToFieldEntity;
+import com.apps.twelve.floor.field.mvp.data.local.objects.ClimateZoneObject;
 import com.apps.twelve.floor.field.mvp.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
@@ -62,5 +65,18 @@ public class DataManager {
 
   public PutResult putCrop(CropObject cropObject) {
     return mDbHelper.putCrop(new CropObjectToCropEntity().transform(cropObject));
+  }
+
+  public PutResult putClimateZone(ClimateZoneObject climateZoneObject) {
+    return mDbHelper.putClimateZone(
+        new ClimateZoneObjectToClimateZoneEntity().transform(climateZoneObject));
+  }
+
+  public Observable<List<ClimateZoneObject>> getAllClimateZones() {
+    return mDbHelper.getAllClimateZones()
+        .concatMap(Observable::from)
+        .map(climateZoneEntity -> new ClimateZoneEntityToClimateZoneObject().transform(
+            climateZoneEntity))
+        .toList();
   }
 }

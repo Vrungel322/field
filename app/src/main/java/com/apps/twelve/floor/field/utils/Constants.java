@@ -15,6 +15,11 @@ public final class Constants {
     public static final String FIELD_BUNDLE_KEY = "field_bundle_key";
   }
 
+  public class Spinner {
+    public static final int ADAPTER_TYPE_CROPS = 10;
+    public static final int ADAPTER_TYPE_CLIMATE_ZONES = 20;
+  }
+
   public class FragmentTag {
   }
 

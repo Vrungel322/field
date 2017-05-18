@@ -28,5 +28,7 @@
   <string name="edit_text_name_hint">Название</string>
   <string name="edit_text_area_hint">Площадь</string>
   <string name="edit_text_crop_hint">Культура</string>
+  <string name="edit_text_previous_crop_hint">Предшественник</string>
+  <string name="edit_text_climate_zone">Климатическая зона</string>
   <string name="button_text_edit">ИЗМЕНИТЬ</string>
 </resources>

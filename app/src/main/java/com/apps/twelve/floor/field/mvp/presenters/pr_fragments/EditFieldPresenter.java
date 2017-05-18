@@ -3,12 +3,14 @@ package com.apps.twelve.floor.field.mvp.presenters.pr_fragments;
 import android.text.TextUtils;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.DataManager;
+import com.apps.twelve.floor.field.mvp.data.local.objects.ClimateZoneObject;
 import com.apps.twelve.floor.field.mvp.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
 import com.apps.twelve.floor.field.mvp.views.IEditFieldFragmentView;
 import com.apps.twelve.floor.field.utils.RxBus;
 import com.apps.twelve.floor.field.utils.RxBusHelper;
+import com.apps.twelve.floor.field.utils.ThreadSchedulers;
 import com.arellomobile.mvp.InjectViewState;
 import com.google.android.gms.maps.model.LatLng;
 import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
@@ -35,6 +37,11 @@ import timber.log.Timber;
 
   @Override protected void onFirstViewAttach() {
     super.onFirstViewAttach();
+
+    getCropsForSelect();
+    getPreviousCropsForSelect();
+    getClimateZonesForSelect();
+
     subscribeToPolygonEditResult();
   }
 
@@ -50,7 +57,6 @@ import timber.log.Timber;
     this.mFieldObject = fieldObject;
     getViewState().setFieldNameText(mFieldObject.getName());
     getViewState().setFieldAreaText(String.valueOf(mFieldObject.getArea()));
-    getViewState().setFieldCropText(mFieldObject.getCrop().getName());
 
     if (mFieldObject.hasPoints()) {
       // TODO: update markers, polyline and polygon on map
@@ -87,7 +93,17 @@ import timber.log.Timber;
 
   public void updateFieldCrop(CropObject cropObject) {
     mFieldObject.setCrop(cropObject);
-    getViewState().setFieldCropText(cropObject.getName());
+    getViewState().setSelectedCrop(cropObject);
+  }
+
+  public void updateFieldPreviousCrop(CropObject cropObject) {
+    mFieldObject.setPreviousCrop(cropObject);
+    getViewState().setSelectedPreviousCrop(cropObject);
+  }
+
+  public void updateFieldClimateZone(ClimateZoneObject climateZoneObject) {
+    mFieldObject.setClimateZone(climateZoneObject);
+    getViewState().setSelectedClimateZone(climateZoneObject);
   }
 
   public void updateFieldPoints(List<LatLng> points) {
@@ -123,6 +139,38 @@ import timber.log.Timber;
   public void setTrackingMode(boolean isTrackingMode) {
     mRxBus.post(new RxBusHelper.SwitchFieldTrackingMode(isTrackingMode));
     getViewState().setBtnOkEnabled(!isTrackingMode);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Private section
+  ///////////////////////////////////////////////////////////////////////////
+
+  private void getCropsForSelect() {
+    Timber.d("DBG EditFieldPresenter.getCropsForSelect()");
+    Subscription subscription = mDataManager.getAllCrops()
+        .compose(ThreadSchedulers.applySchedulers())
+        .subscribe(crops -> getViewState().addCropsToSpinnerAdapter(crops), Timber::e);
+
+    addToUnsubscription(subscription);
+  }
+
+  private void getPreviousCropsForSelect() {
+    Timber.d("DBG EditFieldPresenter.getPreviousCropsForSelect()");
+    Subscription subscription = mDataManager.getAllCrops()
+        .compose(ThreadSchedulers.applySchedulers())
+        .subscribe(crops -> getViewState().addPreviousCropsToSpinnerAdapter(crops), Timber::e);
+
+    addToUnsubscription(subscription);
+  }
+
+  private void getClimateZonesForSelect() {
+    Timber.d("DBG EditFieldPresenter.getClimateZonesForSelect()");
+    Subscription subscription = mDataManager.getAllClimateZones()
+        .compose(ThreadSchedulers.applySchedulers())
+        .subscribe(climateZones -> getViewState().addClimateZonesToSpinnerAdapter(climateZones),
+            Timber::e);
+
+    addToUnsubscription(subscription);
   }
 
   private void subscribeToPolygonEditResult() {

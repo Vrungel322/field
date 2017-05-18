@@ -15,6 +15,8 @@ import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import com.apps.twelve.floor.field.R;
+import com.apps.twelve.floor.field.mvp.data.local.objects.ClimateZoneObject;
+import com.apps.twelve.floor.field.mvp.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.EditFieldPresenter;
 import com.apps.twelve.floor.field.mvp.views.IEditFieldFragmentView;
@@ -23,6 +25,7 @@ import com.apps.twelve.floor.field.utils.Constants;
 import com.apps.twelve.floor.field.utils.ViewUtil;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import java.util.List;
 
 /**
  * Created by Yaroslav on 04.04.2017.
@@ -74,12 +77,32 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
     mEdTextArea.setText(area);
   }
 
-  @Override public void setFieldCropText(String crop) {
-    mEdTextCrop.setText(crop);
-  }
-
   @Override public void setBtnOkEnabled(boolean isEnabled) {
     mBtnOk.setEnabled(isEnabled);
+  }
+
+  @Override public void addCropsToSpinnerAdapter(List<CropObject> crops) {
+    // TODO
+  }
+
+  @Override public void addPreviousCropsToSpinnerAdapter(List<CropObject> crops) {
+    // TODO
+  }
+
+  @Override public void addClimateZonesToSpinnerAdapter(List<ClimateZoneObject> climateZones) {
+    // TODO
+  }
+
+  @Override public void setSelectedCrop(CropObject cropObject) {
+    // TODO
+  }
+
+  @Override public void setSelectedPreviousCrop(CropObject cropObject) {
+    // TODO
+  }
+
+  @Override public void setSelectedClimateZone(ClimateZoneObject climateZoneObject) {
+    // TODO
   }
 
   ///////////////////////////////////////////////////////////////////////////

@@ -55,6 +55,10 @@ public class ClimateZoneObject implements Parcelable {
     dest.writeTypedList(mPoints);
   }
 
+  @Override public String toString() {
+    return mName;
+  }
+
   public long getId() {
     return mId;
   }
@@ -77,5 +81,9 @@ public class ClimateZoneObject implements Parcelable {
 
   public void setPoints(List<LatLng> points) {
     this.mPoints = points;
+  }
+
+  public String getPointsAsCoordinatesString() {
+    return LatLngStringUtil.stringFromLatLngs(mPoints);
   }
 }

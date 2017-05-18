@@ -2,6 +2,7 @@ package com.apps.twelve.floor.field.mvp.presenters.pr_fragments;
 
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.DataManager;
+import com.apps.twelve.floor.field.mvp.data.local.objects.ClimateZoneObject;
 import com.apps.twelve.floor.field.mvp.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
@@ -11,6 +12,7 @@ import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
 import com.arellomobile.mvp.InjectViewState;
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
+import java.util.ArrayList;
 import javax.inject.Inject;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -37,6 +39,9 @@ import timber.log.Timber;
 
     subscribeToFieldsDbChanges();
     subscribeToFieldsListChanges();
+
+    // TODO: this is for test - remove
+    addTestData();
   }
 
   public void showFieldTypeDialog() {
@@ -61,11 +66,26 @@ import timber.log.Timber;
         .compose(ThreadSchedulers.applySchedulers())
         .subscribe(fields -> getViewState().showFields(fields), Timber::e);
 
-    // TODO: this is for test - remove
+    addToUnsubscription(subscription);
+  }
+
+  private void addTestData() {
     mDataManager.putCrop(new CropObject(1, "Кукуруза", 0, false));
     mDataManager.putCrop(new CropObject(2, "Картошка", 0, false));
+    mDataManager.putCrop(new CropObject(3, "Свекла", 0, false));
+    mDataManager.putCrop(new CropObject(4, "Пшеница", 0, false));
+    mDataManager.putCrop(new CropObject(5, "Виноград", 0, false));
+    mDataManager.putCrop(new CropObject(6, "Лен", 0, false));
 
-    addToUnsubscription(subscription);
+    mDataManager.putClimateZone(
+        new ClimateZoneObject(1, "Влажная, умеренно теплая", new ArrayList<>()));
+    mDataManager.putClimateZone(
+        new ClimateZoneObject(2, "Недостаточно влажная, теплая", new ArrayList<>()));
+    mDataManager.putClimateZone(
+        new ClimateZoneObject(3, "Засушливая, очень теплая", new ArrayList<>()));
+    mDataManager.putClimateZone(
+        new ClimateZoneObject(4, "Очень засушливая, умеренно жаркая с мягкой зимой",
+            new ArrayList<>()));
   }
 
   private void subscribeToFieldsListChanges() {

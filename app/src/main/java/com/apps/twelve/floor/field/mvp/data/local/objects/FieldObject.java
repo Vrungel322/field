@@ -33,6 +33,8 @@ public class FieldObject implements Parcelable {
   private ClimateZoneObject mClimateZone;
 
   public FieldObject() {
+    // TODO: remove it
+    this.mClimateZone = new ClimateZoneObject(1, "climate zone", new ArrayList<>());
   }
 
   public FieldObject(long id, String name, CropObject crop, CropObject previousCrop,
