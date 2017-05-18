@@ -3,7 +3,6 @@ package com.apps.twelve.floor.field.mvp.data.local;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.local.entities.ClimateZoneEntity;
 import com.apps.twelve.floor.field.mvp.data.local.entities.CropEntity;
-import com.apps.twelve.floor.field.mvp.data.local.entities.FieldCropClimateZoneEntity;
 import com.apps.twelve.floor.field.mvp.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.mvp.data.local.tables.ClimateZonesTable;
 import com.apps.twelve.floor.field.mvp.data.local.tables.CropsTable;
@@ -31,12 +30,20 @@ public class DbHelper {
   // Fields
   ///////////////////////////////////////////////////////////////////////////
 
-  public Observable<List<FieldCropClimateZoneEntity>> getAllFields() {
-    return mStorIOSQLite.get().listOfObjects(FieldCropClimateZoneEntity.class)
+  public Observable<List<FieldEntity>> getAllFields() {
+    return mStorIOSQLite.get().listOfObjects(FieldEntity.class)
         .withQuery(FieldsTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
+  }
+
+  public List<FieldEntity> getAllFieldsAsList() {
+    return mStorIOSQLite.get()
+        .listOfObjects(FieldEntity.class)
+        .withQuery(FieldsTable.QUERY_ALL)
+        .prepare()
+        .executeAsBlocking();
   }
 
   public PutResult putField(FieldEntity fieldEntity) {

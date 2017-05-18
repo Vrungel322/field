@@ -20,8 +20,8 @@ public class DbRelationsHelper {
 
   public static final String QUERY_COLUMN_FIELD_ID = "field_id";
   public static final String QUERY_COLUMN_FIELD_NAME = "field_name";
-  public static final String QUERY_COLUMN_FIELD_AREA = "field_";
-  public static final String QUERY_COLUMN_FIELD_COORDINATES = "field_";
+  public static final String QUERY_COLUMN_FIELD_AREA = "field_area";
+  public static final String QUERY_COLUMN_FIELD_COORDINATES = "field_coordinates";
   public static final String QUERY_COLUMN_CROP_ID = "crop_id";
   public static final String QUERY_COLUMN_CROP_NAME = "crop_name";
   public static final String QUERY_COLUMN_CROP_PARENT_ID = "crop_parent_id";
@@ -67,26 +67,22 @@ public class DbRelationsHelper {
       + " AS \""
       + QUERY_COLUMN_CROP_IS_GROUP
       + "\", "
-      + CropsTable.TABLE
-      + "_PREV"
+      + CropsTable.TABLE + "_PREV."
       + CropsTable.COLUMN_ID
       + " AS \""
       + QUERY_COLUMN_PREV_CROP_ID
       + "\", "
-      + CropsTable.TABLE
-      + "_PREV"
+      + CropsTable.TABLE + "_PREV."
       + CropsTable.COLUMN_NAME
       + " AS \""
       + QUERY_COLUMN_PREV_CROP_NAME
       + "\", "
-      + CropsTable.TABLE
-      + "_PREV"
+      + CropsTable.TABLE + "_PREV."
       + CropsTable.COLUMN_PARENT_ID
       + " AS \""
       + QUERY_COLUMN_PREV_CROP_PARENT_ID
       + "\", "
-      + CropsTable.TABLE
-      + "_PREV"
+      + CropsTable.TABLE + "_PREV."
       + CropsTable.COLUMN_IS_GROUP
       + " AS \""
       + QUERY_COLUMN_PREV_CROP_IS_GROUP
@@ -136,12 +132,20 @@ public class DbRelationsHelper {
     App.getAppComponent().inject(this);
   }
 
-  @NonNull Observable<List<FieldCropClimateZoneEntity>> getFieldCropClimateZoneEntities() {
+  public @NonNull Observable<List<FieldCropClimateZoneEntity>> getFieldCropClimateZoneEntities() {
     return mStorIOSQLite.get()
         .listOfObjects(FieldCropClimateZoneEntity.class)
         .withQuery(RawQuery.builder().query(QUERY_FIELD_CROP_CLIMATE_ZONE_ALL).build())
         .prepare()
         .asRxObservable()
         .take(1);
+  }
+
+  public @NonNull List<FieldCropClimateZoneEntity> getFieldCropClimateZoneEntitiesAsList() {
+    return mStorIOSQLite.get()
+        .listOfObjects(FieldCropClimateZoneEntity.class)
+        .withQuery(RawQuery.builder().query(QUERY_FIELD_CROP_CLIMATE_ZONE_ALL).build())
+        .prepare()
+        .executeAsBlocking();
   }
 }

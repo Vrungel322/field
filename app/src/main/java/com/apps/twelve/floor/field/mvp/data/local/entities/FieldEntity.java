@@ -34,6 +34,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
   public static FieldEntity newFieldEntity(Long id, String name, Long cropId, Long previousCropId,
       String coordinates, Double area, Long climateZoneId) {
+    if (id == 0) id = null;
     return new FieldEntity(id, name, cropId, previousCropId, coordinates, area, climateZoneId);
   }
 

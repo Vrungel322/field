@@ -24,6 +24,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
   }
 
   public static ClimateZoneEntity newClimateZoneEntity(Long id, String name, String coordinates) {
+    if (id == 0) id = null;
     return new ClimateZoneEntity(id, name, coordinates);
   }
 

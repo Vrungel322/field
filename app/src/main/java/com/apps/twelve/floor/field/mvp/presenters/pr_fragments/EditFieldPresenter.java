@@ -146,7 +146,6 @@ import timber.log.Timber;
   ///////////////////////////////////////////////////////////////////////////
 
   private void getCropsForSelect() {
-    Timber.d("DBG EditFieldPresenter.getCropsForSelect()");
     Subscription subscription = mDataManager.getAllCrops()
         .compose(ThreadSchedulers.applySchedulers())
         .subscribe(crops -> getViewState().addCropsToSpinnerAdapter(crops), Timber::e);
@@ -155,7 +154,6 @@ import timber.log.Timber;
   }
 
   private void getPreviousCropsForSelect() {
-    Timber.d("DBG EditFieldPresenter.getPreviousCropsForSelect()");
     Subscription subscription = mDataManager.getAllCrops()
         .compose(ThreadSchedulers.applySchedulers())
         .subscribe(crops -> getViewState().addPreviousCropsToSpinnerAdapter(crops), Timber::e);
@@ -164,7 +162,6 @@ import timber.log.Timber;
   }
 
   private void getClimateZonesForSelect() {
-    Timber.d("DBG EditFieldPresenter.getClimateZonesForSelect()");
     Subscription subscription = mDataManager.getAllClimateZones()
         .compose(ThreadSchedulers.applySchedulers())
         .subscribe(climateZones -> getViewState().addClimateZonesToSpinnerAdapter(climateZones),

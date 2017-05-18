@@ -24,6 +24,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
   }
 
   public static PhaseEntity newPhaseModel(Long id, String name, Long cropId) {
+    if (id == 0) id = null;
     return new PhaseEntity(id, name, cropId);
   }
 

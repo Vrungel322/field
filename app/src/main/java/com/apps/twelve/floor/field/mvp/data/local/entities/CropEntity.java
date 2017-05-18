@@ -26,6 +26,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
   }
 
   public static CropEntity newCropEntity(Long id, String name, Long parentId, boolean isGroup) {
+    if (id == 0) id = null;
     return new CropEntity(id, name, parentId, isGroup);
   }
 

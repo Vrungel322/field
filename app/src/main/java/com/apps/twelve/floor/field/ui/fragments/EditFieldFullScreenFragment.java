@@ -29,7 +29,6 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import java.util.ArrayList;
 import java.util.List;
-import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 05.04.2017.
@@ -95,17 +94,14 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   }
 
   @Override public void addCropsToSpinnerAdapter(List<CropObject> crops) {
-    Timber.d("DBG EditFieldFullScreenFragment.addCropsToSpinnerAdapter");
     mCropsAdapter.addAll(crops);
   }
 
   @Override public void addPreviousCropsToSpinnerAdapter(List<CropObject> crops) {
-    Timber.d("DBG EditFieldFullScreenFragment.addPreviousCropsToSpinnerAdapter");
     mPreviousCropsAdapter.addAll(crops);
   }
 
   @Override public void addClimateZonesToSpinnerAdapter(List<ClimateZoneObject> climateZones) {
-    Timber.d("DBG EditFieldFullScreenFragment.addClimateZonesToSpinnerAdapter");
     mClimateZonesAdapter.addAll(climateZones);
   }
 

@@ -30,8 +30,6 @@ public class FieldCropClimateZoneGetResolver
 
   @NonNull private FieldEntity fieldEntityFromCursor(@NonNull Cursor cursor) {
     return FieldEntity.newFieldEntity(
-        // TODO:
-        // Caused by: java.lang.IllegalArgumentException: column 'field_id' does not exist
         cursor.getLong(cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_FIELD_ID)),
         cursor.getString(cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_FIELD_NAME)),
         cursor.getLong(cursor.getColumnIndexOrThrow(DbRelationsHelper.QUERY_COLUMN_CROP_ID)),

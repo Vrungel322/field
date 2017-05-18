@@ -2,6 +2,7 @@ package com.apps.twelve.floor.field.mvp.data;
 
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.mvp.data.local.DbHelper;
+import com.apps.twelve.floor.field.mvp.data.local.DbRelationsHelper;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.ClimateZoneEntityToClimateZoneObject;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.ClimateZoneObjectToClimateZoneEntity;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.CropEntityToCropObject;
@@ -25,6 +26,7 @@ public class DataManager {
 
   //@Inject RestApi mRestApi;
   @Inject DbHelper mDbHelper;
+  @Inject DbRelationsHelper mDbRelationsHelper;
 
   public DataManager() {
     App.getAppComponent().inject(this);
@@ -35,7 +37,7 @@ public class DataManager {
   ///////////////////////////////////////////////////////////////////////////
 
   public Observable<List<FieldObject>> getAllFields() {
-    return mDbHelper.getAllFields()
+    return mDbRelationsHelper.getFieldCropClimateZoneEntities()
         .concatMap(Observable::from)
         .map(fieldCropClimateZoneEntity -> new FieldCropClimateZoneEntityToFieldObject().transform(
             fieldCropClimateZoneEntity))

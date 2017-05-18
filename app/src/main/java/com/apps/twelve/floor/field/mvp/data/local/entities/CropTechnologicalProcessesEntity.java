@@ -32,6 +32,7 @@ public class CropTechnologicalProcessesEntity {
 
   public static CropTechnologicalProcessesEntity newCropTechnologicalProcessesModel(Long id,
       String name, int order, Long cropId, Long techProcTimeId) {
+    if (id == 0) id = null;
     return new CropTechnologicalProcessesEntity(id, name, order, cropId, techProcTimeId);
   }
 
