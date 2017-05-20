@@ -2,7 +2,7 @@ package com.apps.twelve.floor.field.mvp.data.local;
 
 import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.App;
-import com.apps.twelve.floor.field.mvp.data.local.entities.FieldCropClimateZoneEntity;
+import com.apps.twelve.floor.field.mvp.data.local.entities.CombinedFieldEntity;
 import com.apps.twelve.floor.field.mvp.data.local.tables.ClimateZonesTable;
 import com.apps.twelve.floor.field.mvp.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.mvp.data.local.tables.FieldsTable;
@@ -66,23 +66,19 @@ public class DbRelationsHelper {
       + CropsTable.COLUMN_IS_GROUP_WITH_TABLE_PREFIX
       + " AS \""
       + QUERY_COLUMN_CROP_IS_GROUP
-      + "\", "
-      + CropsTable.TABLE + "_PREV."
+      + "\", " + CropsTable.TABLE + "_PREV."
       + CropsTable.COLUMN_ID
       + " AS \""
       + QUERY_COLUMN_PREV_CROP_ID
-      + "\", "
-      + CropsTable.TABLE + "_PREV."
+      + "\", " + CropsTable.TABLE + "_PREV."
       + CropsTable.COLUMN_NAME
       + " AS \""
       + QUERY_COLUMN_PREV_CROP_NAME
-      + "\", "
-      + CropsTable.TABLE + "_PREV."
+      + "\", " + CropsTable.TABLE + "_PREV."
       + CropsTable.COLUMN_PARENT_ID
       + " AS \""
       + QUERY_COLUMN_PREV_CROP_PARENT_ID
-      + "\", "
-      + CropsTable.TABLE + "_PREV."
+      + "\", " + CropsTable.TABLE + "_PREV."
       + CropsTable.COLUMN_IS_GROUP
       + " AS \""
       + QUERY_COLUMN_PREV_CROP_IS_GROUP
@@ -132,18 +128,16 @@ public class DbRelationsHelper {
     App.getAppComponent().inject(this);
   }
 
-  public @NonNull Observable<List<FieldCropClimateZoneEntity>> getFieldCropClimateZoneEntities() {
-    return mStorIOSQLite.get()
-        .listOfObjects(FieldCropClimateZoneEntity.class)
+  public @NonNull Observable<List<CombinedFieldEntity>> getCombinedFieldEntities() {
+    return mStorIOSQLite.get().listOfObjects(CombinedFieldEntity.class)
         .withQuery(RawQuery.builder().query(QUERY_FIELD_CROP_CLIMATE_ZONE_ALL).build())
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
-  public @NonNull List<FieldCropClimateZoneEntity> getFieldCropClimateZoneEntitiesAsList() {
-    return mStorIOSQLite.get()
-        .listOfObjects(FieldCropClimateZoneEntity.class)
+  public @NonNull List<CombinedFieldEntity> getCombinedFieldEntitiesAsList() {
+    return mStorIOSQLite.get().listOfObjects(CombinedFieldEntity.class)
         .withQuery(RawQuery.builder().query(QUERY_FIELD_CROP_CLIMATE_ZONE_ALL).build())
         .prepare()
         .executeAsBlocking();

@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import com.apps.twelve.floor.field.mvp.data.local.DbRelationsHelper;
 import com.apps.twelve.floor.field.mvp.data.local.entities.ClimateZoneEntity;
+import com.apps.twelve.floor.field.mvp.data.local.entities.CombinedFieldEntity;
 import com.apps.twelve.floor.field.mvp.data.local.entities.CropEntity;
-import com.apps.twelve.floor.field.mvp.data.local.entities.FieldCropClimateZoneEntity;
 import com.apps.twelve.floor.field.mvp.data.local.entities.FieldEntity;
 import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver;
 
@@ -15,13 +15,11 @@ import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver;
  * Created by Yaroslav on 13.05.2017.
  */
 
-public class FieldCropClimateZoneGetResolver
-    extends DefaultGetResolver<FieldCropClimateZoneEntity> {
+public class CombinedFieldGetResolver extends DefaultGetResolver<CombinedFieldEntity> {
 
-  @NonNull @Override public FieldCropClimateZoneEntity mapFromCursor(@NonNull Cursor cursor) {
-    return new FieldCropClimateZoneEntity(fieldEntityFromCursor(cursor),
-        cropEntityFromCursor(cursor), previousCropEntityFromCursor(cursor),
-        climateZoneEntityFromCursor(cursor));
+  @NonNull @Override public CombinedFieldEntity mapFromCursor(@NonNull Cursor cursor) {
+    return new CombinedFieldEntity(fieldEntityFromCursor(cursor), cropEntityFromCursor(cursor),
+        previousCropEntityFromCursor(cursor), climateZoneEntityFromCursor(cursor));
   }
 
   ///////////////////////////////////////////////////////////////////////////

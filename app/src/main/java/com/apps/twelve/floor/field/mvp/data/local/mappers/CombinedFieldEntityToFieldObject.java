@@ -1,7 +1,7 @@
 package com.apps.twelve.floor.field.mvp.data.local.mappers;
 
+import com.apps.twelve.floor.field.mvp.data.local.entities.CombinedFieldEntity;
 import com.apps.twelve.floor.field.mvp.data.local.entities.CropEntity;
-import com.apps.twelve.floor.field.mvp.data.local.entities.FieldCropClimateZoneEntity;
 import com.apps.twelve.floor.field.mvp.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
 
@@ -9,10 +9,9 @@ import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
  * Created by Yaroslav on 13.05.2017.
  */
 
-public class FieldCropClimateZoneEntityToFieldObject
-    implements Mapper<FieldCropClimateZoneEntity, FieldObject> {
+public class CombinedFieldEntityToFieldObject implements Mapper<CombinedFieldEntity, FieldObject> {
 
-  @Override public FieldObject transform(FieldCropClimateZoneEntity entity)
+  @Override public FieldObject transform(CombinedFieldEntity entity)
       throws RuntimeException {
 
     FieldEntity fieldEntity = entity.getFieldEntity();

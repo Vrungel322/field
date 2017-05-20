@@ -7,14 +7,14 @@ import android.support.annotation.Nullable;
  * Created by Yaroslav on 12.05.2017.
  */
 
-public class FieldCropClimateZoneEntity {
+public class CombinedFieldEntity {
 
   @NonNull private final FieldEntity mFieldEntity;
   @NonNull private final CropEntity mCropEntity;
   @Nullable private final CropEntity mPreviousCropEntity;
   @NonNull private final ClimateZoneEntity mClimateZoneEntity;
 
-  public FieldCropClimateZoneEntity(@NonNull FieldEntity fieldEntity,
+  public CombinedFieldEntity(@NonNull FieldEntity fieldEntity,
       @NonNull CropEntity cropEntity, @Nullable CropEntity previousCropEntity,
       @NonNull ClimateZoneEntity climateZoneEntity) {
     this.mFieldEntity = fieldEntity;
@@ -27,7 +27,7 @@ public class FieldCropClimateZoneEntity {
     if (this == obj) return true;
     if (obj == null || getClass() != obj.getClass()) return false;
 
-    FieldCropClimateZoneEntity that = (FieldCropClimateZoneEntity) obj;
+    CombinedFieldEntity that = (CombinedFieldEntity) obj;
 
     if (!mFieldEntity.equals(that.mFieldEntity)) return false;
     if (!mCropEntity.equals(that.mCropEntity)) return false;

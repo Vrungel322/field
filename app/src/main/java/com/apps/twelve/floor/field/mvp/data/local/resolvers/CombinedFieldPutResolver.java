@@ -1,7 +1,7 @@
 package com.apps.twelve.floor.field.mvp.data.local.resolvers;
 
 import android.support.annotation.NonNull;
-import com.apps.twelve.floor.field.mvp.data.local.entities.FieldCropClimateZoneEntity;
+import com.apps.twelve.floor.field.mvp.data.local.entities.CombinedFieldEntity;
 import com.apps.twelve.floor.field.mvp.data.local.tables.ClimateZonesTable;
 import com.apps.twelve.floor.field.mvp.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.mvp.data.local.tables.FieldsTable;
@@ -18,15 +18,14 @@ import static java.util.Arrays.asList;
  * Created by Yaroslav on 13.05.2017.
  */
 
-public class FieldCropClimateZonePutResolver extends PutResolver<FieldCropClimateZoneEntity> {
+public class CombinedFieldPutResolver extends PutResolver<CombinedFieldEntity> {
   @NonNull @Override public PutResult performPut(@NonNull StorIOSQLite storIOSQLite,
-      @NonNull FieldCropClimateZoneEntity fieldCropClimateZoneEntity) {
+      @NonNull CombinedFieldEntity combinedFieldEntity) {
 
     // We can even reuse StorIO methods
     final PutResults<Object> putResults = storIOSQLite.put()
-        .objects(asList(fieldCropClimateZoneEntity.getFieldEntity(),
-            fieldCropClimateZoneEntity.getCropEntity(),
-            fieldCropClimateZoneEntity.getClimateZoneEntity()))
+        .objects(asList(combinedFieldEntity.getFieldEntity(), combinedFieldEntity.getCropEntity(),
+            combinedFieldEntity.getClimateZoneEntity()))
         .prepare()
         .executeAsBlocking();
 

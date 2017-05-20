@@ -5,9 +5,9 @@ import com.apps.twelve.floor.field.mvp.data.local.DbHelper;
 import com.apps.twelve.floor.field.mvp.data.local.DbRelationsHelper;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.ClimateZoneEntityToClimateZoneObject;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.ClimateZoneObjectToClimateZoneEntity;
+import com.apps.twelve.floor.field.mvp.data.local.mappers.CombinedFieldEntityToFieldObject;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.CropEntityToCropObject;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.CropObjectToCropEntity;
-import com.apps.twelve.floor.field.mvp.data.local.mappers.FieldCropClimateZoneEntityToFieldObject;
 import com.apps.twelve.floor.field.mvp.data.local.mappers.FieldObjectToFieldEntity;
 import com.apps.twelve.floor.field.mvp.data.local.objects.ClimateZoneObject;
 import com.apps.twelve.floor.field.mvp.data.local.objects.CropObject;
@@ -37,10 +37,10 @@ public class DataManager {
   ///////////////////////////////////////////////////////////////////////////
 
   public Observable<List<FieldObject>> getAllFields() {
-    return mDbRelationsHelper.getFieldCropClimateZoneEntities()
+    return mDbRelationsHelper.getCombinedFieldEntities()
         .concatMap(Observable::from)
-        .map(fieldCropClimateZoneEntity -> new FieldCropClimateZoneEntityToFieldObject().transform(
-            fieldCropClimateZoneEntity))
+        .map(combinedFieldEntity -> new CombinedFieldEntityToFieldObject().transform(
+            combinedFieldEntity))
         .toList();
   }
 
