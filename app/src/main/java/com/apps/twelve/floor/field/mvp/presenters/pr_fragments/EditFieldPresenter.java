@@ -43,6 +43,7 @@ import timber.log.Timber;
     getClimateZonesForSelect();
 
     subscribeToPolygonEditResult();
+    updateViewState();
   }
 
   public EditFieldPresenter(FieldObject fieldObject) {
@@ -55,12 +56,6 @@ import timber.log.Timber;
 
   public void setField(FieldObject fieldObject) {
     this.mFieldObject = fieldObject;
-    getViewState().setFieldNameText(mFieldObject.getName());
-    getViewState().setFieldAreaText(String.valueOf(mFieldObject.getArea()));
-
-    if (mFieldObject.hasPoints()) {
-      // TODO: update markers, polyline and polygon on map
-    }
   }
 
   public void updateFieldName(String name) {
@@ -145,10 +140,20 @@ import timber.log.Timber;
   // Private section
   ///////////////////////////////////////////////////////////////////////////
 
+  private void updateViewState() {
+    getViewState().setFieldNameText(mFieldObject.getName());
+    getViewState().setFieldAreaText(String.valueOf(mFieldObject.getArea()));
+
+    if (mFieldObject.hasPoints()) {
+      // TODO: update markers, polyline and polygon on map
+    }
+  }
+
   private void getCropsForSelect() {
     Subscription subscription = mDataManager.getAllCrops()
         .compose(ThreadSchedulers.applySchedulers())
-        .subscribe(crops -> getViewState().addCropsToSpinnerAdapter(crops), Timber::e);
+        .map(this::syncFieldCrop)
+        .subscribe(this::updateCropsSpinner, Timber::e);
 
     addToUnsubscription(subscription);
   }
@@ -156,7 +161,8 @@ import timber.log.Timber;
   private void getPreviousCropsForSelect() {
     Subscription subscription = mDataManager.getAllCrops()
         .compose(ThreadSchedulers.applySchedulers())
-        .subscribe(crops -> getViewState().addPreviousCropsToSpinnerAdapter(crops), Timber::e);
+        .map(this::syncFieldPreviousCrop)
+        .subscribe(this::updatePreviousCropsSpinner, Timber::e);
 
     addToUnsubscription(subscription);
   }
@@ -164,10 +170,64 @@ import timber.log.Timber;
   private void getClimateZonesForSelect() {
     Subscription subscription = mDataManager.getAllClimateZones()
         .compose(ThreadSchedulers.applySchedulers())
-        .subscribe(climateZones -> getViewState().addClimateZonesToSpinnerAdapter(climateZones),
-            Timber::e);
+        .map(this::syncFieldClimateZone)
+        .subscribe(this::updateClimateZonesSpinner, Timber::e);
 
     addToUnsubscription(subscription);
+  }
+
+  private List<CropObject> syncFieldCrop(List<CropObject> crops) {
+    if (mFieldObject.getCrop() == null) return crops;
+    for (CropObject crop : crops) {
+      if (crop.getId() == mFieldObject.getCrop().getId()) {
+        mFieldObject.setCrop(crop);
+        break;
+      }
+    }
+    return crops;
+  }
+
+  private List<CropObject> syncFieldPreviousCrop(List<CropObject> crops) {
+    if (mFieldObject.getPreviousCrop() == null) return crops;
+    for (CropObject crop : crops) {
+      if (crop.getId() == mFieldObject.getPreviousCrop().getId()) {
+        mFieldObject.setPreviousCrop(crop);
+        break;
+      }
+    }
+    return crops;
+  }
+
+  private List<ClimateZoneObject> syncFieldClimateZone(List<ClimateZoneObject> climateZones) {
+    if (mFieldObject.getClimateZone() == null) return climateZones;
+    for (ClimateZoneObject climateZone : climateZones) {
+      if (climateZone.getId() == mFieldObject.getClimateZone().getId()) {
+        mFieldObject.setClimateZone(climateZone);
+        break;
+      }
+    }
+    return climateZones;
+  }
+
+  private void updateCropsSpinner(List<CropObject> crops) {
+    getViewState().addCropsToSpinnerAdapter(crops);
+    if (mFieldObject.getCrop() != null) {
+      getViewState().setSelectedCrop(mFieldObject.getCrop());
+    }
+  }
+
+  private void updatePreviousCropsSpinner(List<CropObject> crops) {
+    getViewState().addPreviousCropsToSpinnerAdapter(crops);
+    if (mFieldObject.getPreviousCrop() != null) {
+      getViewState().setSelectedPreviousCrop(mFieldObject.getPreviousCrop());
+    }
+  }
+
+  private void updateClimateZonesSpinner(List<ClimateZoneObject> climateZones) {
+    getViewState().addClimateZonesToSpinnerAdapter(climateZones);
+    if (mFieldObject.getClimateZone() != null) {
+      getViewState().setSelectedClimateZone(mFieldObject.getClimateZone());
+    }
   }
 
   private void subscribeToPolygonEditResult() {

@@ -122,7 +122,6 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
         mNavigator.popBackStack((AppCompatActivity) getActivity());
         break;
       case R.id.btn_cancel:
-        showToastMessage("onCancel");
         mNavigator.popBackStack((AppCompatActivity) getActivity());
         break;
     }

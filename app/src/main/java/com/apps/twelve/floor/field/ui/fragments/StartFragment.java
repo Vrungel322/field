@@ -68,6 +68,10 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     mStartFragmentPresenter.showFieldTypeDialog();
   }
 
+  ///////////////////////////////////////////////////////////////////////////
+  // MVP methods
+  ///////////////////////////////////////////////////////////////////////////
+
   @Override public void showFields(List<FieldObject> fieldObjects) {
     mFieldsAdapter.addAllFields(fieldObjects);
     updateTextNoDataVisibility();
@@ -131,6 +135,10 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
         makeEditFieldFragment(mFieldsAdapter.getFieldAt(position)));
   }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Private section
+  ///////////////////////////////////////////////////////////////////////////
 
   private void setupRecyclerView() {
     mFieldsAdapter = new FieldsAdapter();
