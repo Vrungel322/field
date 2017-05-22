@@ -44,8 +44,6 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   @BindView(R.id.toggle_button_edit_mode) ToggleButton mTglBtnEditMode;
   @BindView(R.id.ed_text_name) EditText mEdTextName;
   @BindView(R.id.ed_text_area) EditText mEdTextArea;
-  @BindView(R.id.ed_text_crop) EditText mEdTextCrop;
-  @BindView(R.id.btn_edit_area) Button mBtnEditArea;
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
 
@@ -109,13 +107,9 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   // UI events
   ///////////////////////////////////////////////////////////////////////////
 
-  @OnClick({ R.id.btn_edit_area, R.id.btn_ok, R.id.btn_cancel })
+  @OnClick({ R.id.btn_ok, R.id.btn_cancel })
   public void onViewClicked(View view) {
     switch (view.getId()) {
-      case R.id.btn_edit_area:
-        // TODO: send message to presenter
-        showToastMessage("onEdit");
-        break;
       case R.id.btn_ok:
         updateFieldData();
         mEditFieldPresenter.saveField();
@@ -128,7 +122,7 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   }
 
   // when finished editing text - clear EditText's focus
-  @OnEditorAction({ R.id.ed_text_area, R.id.ed_text_name, R.id.ed_text_crop })
+  @OnEditorAction({ R.id.ed_text_area, R.id.ed_text_name })
   public boolean onEditorAction(EditText editText, int actionId, KeyEvent event) {
     if (actionId == EditorInfo.IME_ACTION_DONE) {
       // user has done typing.
@@ -147,7 +141,5 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   private void updateFieldData() {
     mEditFieldPresenter.updateFieldName(mEdTextName.getText().toString());
     mEditFieldPresenter.updateFieldArea(mEdTextArea.getText().toString());
-    // TODO: crops must be selected from list
-    //mEditFieldPresenter.updateFieldCrop(mEdTextCrop.getText().toString());
   }
 }

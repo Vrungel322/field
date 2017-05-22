@@ -10,5 +10,6 @@
 
   <!-- Field editing -->
   <dimen name="bottom_sheet_pick_height">48dp</dimen>
+  <dimen name="bottom_sheet_margin_bottom">56dp</dimen>
 
 </resources>
