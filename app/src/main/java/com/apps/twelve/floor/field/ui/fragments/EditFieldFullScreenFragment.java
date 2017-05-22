@@ -22,6 +22,7 @@ import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.EditFieldPresente
 import com.apps.twelve.floor.field.mvp.views.IEditFieldFragmentView;
 import com.apps.twelve.floor.field.ui.adapters.ClimateZonesArrayAdapter;
 import com.apps.twelve.floor.field.ui.adapters.CropsArrayAdapter;
+import com.apps.twelve.floor.field.ui.adapters.SoilTypesArrayAdapter;
 import com.apps.twelve.floor.field.ui.base.BaseFragment;
 import com.apps.twelve.floor.field.utils.Constants;
 import com.apps.twelve.floor.field.utils.ViewUtil;
@@ -45,15 +46,20 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
 
   @BindView(R.id.ed_text_name) EditText mEdTextName;
   @BindView(R.id.ed_text_area) EditText mEdTextArea;
+  @BindView(R.id.ed_text_planned_yield) EditText mEdTextPlannedYield; // TODO
+  @BindView(R.id.ed_text_sowing_date) EditText mEdTextSowingDate; // TODO
   @BindView(R.id.spinner_crop) Spinner mSpinnerCrop;
   @BindView(R.id.spinner_previous_crop) Spinner mSpinnerPreviousCrop;
   @BindView(R.id.spinner_climate_zone) Spinner mSpinnerClimateZone;
+  @BindView(R.id.spinner_soil_type) Spinner mSpinnerSoilType;
+  @BindView(R.id.spinner_phase) Spinner mSpinnerPhase; // TODO
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
 
   private CropsArrayAdapter mCropsAdapter;
   private CropsArrayAdapter mPreviousCropsAdapter;
   private ClimateZonesArrayAdapter mClimateZonesAdapter;
+  private SoilTypesArrayAdapter mSoilTypesAdapter;
 
   public EditFieldFullScreenFragment() {
     super(R.layout.fragment_edit_field_full_screen);
@@ -157,6 +163,13 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   // Private section
   ///////////////////////////////////////////////////////////////////////////
 
+  private void setupSpinnersAdapters() {
+    setupCropsSpinnerAdapter();
+    setupPreviousCropsSpinnerAdapter();
+    setupClimateZonesSpinnerAdapter();
+    setupSoilTypesSpinnerAdapter();
+  }
+
   private void setupCropsSpinnerAdapter() {
     mCropsAdapter = new CropsArrayAdapter(getContext(), android.R.layout.simple_spinner_item,
         new ArrayList<>());
@@ -213,10 +226,23 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
     });
   }
 
-  private void setupSpinnersAdapters() {
-    setupCropsSpinnerAdapter();
-    setupPreviousCropsSpinnerAdapter();
-    setupClimateZonesSpinnerAdapter();
+  private void setupSoilTypesSpinnerAdapter() {
+    mSoilTypesAdapter =
+        new SoilTypesArrayAdapter(getContext(), android.R.layout.simple_spinner_item,
+            new ArrayList<>());
+    mSoilTypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+    mSpinnerSoilType.setAdapter(mSoilTypesAdapter);
+    mSpinnerSoilType.setOnItemSelectedListener(new OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        mEditFieldPresenter.updateFieldSoilType(mSoilTypesAdapter.getItem(position));
+      }
+
+      @Override public void onNothingSelected(AdapterView<?> parent) {
+        mEditFieldPresenter.updateFieldSoilType(null);
+      }
+    });
   }
 
   private void updateFieldData() {

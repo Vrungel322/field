@@ -29,6 +29,10 @@
   <string name="edit_text_area_hint">Площадь</string>
   <string name="edit_text_crop_hint">Культура</string>
   <string name="edit_text_previous_crop_hint">Предшественник</string>
+  <string name="edit_text_planned_yield_hint">Плановая урожайность</string>
+  <string name="edit_text_sowing_date_hint">Дата посева</string>
   <string name="edit_text_climate_zone">Климатическая зона</string>
+  <string name="edit_text_soil_type">Тип почвы</string>
+  <string name="edit_text_phase">Фаза</string>
   <string name="button_text_edit">ИЗМЕНИТЬ</string>
 </resources>

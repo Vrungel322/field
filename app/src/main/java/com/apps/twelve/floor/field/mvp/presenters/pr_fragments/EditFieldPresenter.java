@@ -6,6 +6,7 @@ import com.apps.twelve.floor.field.mvp.data.DataManager;
 import com.apps.twelve.floor.field.mvp.data.local.objects.ClimateZoneObject;
 import com.apps.twelve.floor.field.mvp.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
+import com.apps.twelve.floor.field.mvp.data.local.objects.SoilTypeObject;
 import com.apps.twelve.floor.field.mvp.presenters.BasePresenter;
 import com.apps.twelve.floor.field.mvp.views.IEditFieldFragmentView;
 import com.apps.twelve.floor.field.utils.RxBus;
@@ -99,6 +100,12 @@ import timber.log.Timber;
   public void updateFieldClimateZone(ClimateZoneObject climateZoneObject) {
     mFieldObject.setClimateZone(climateZoneObject);
     getViewState().setSelectedClimateZone(climateZoneObject);
+  }
+
+  public void updateFieldSoilType(SoilTypeObject soilTypeObject) {
+    // TODO:
+    /*mFieldObject.setSoilType(soilTypeObject);
+    getViewState().setSelectedSoilType(soilTypeObject);*/
   }
 
   public void updateFieldPoints(List<LatLng> points) {
