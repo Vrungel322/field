@@ -2,6 +2,7 @@ package com.apps.twelve.floor.field.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -131,9 +132,9 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
         EditFieldFullScreenFragment.newInstance());
   }
 
-  @Override public void openEditFieldFragment(int position) {
+  @Override public void openFieldTechnologicalMapFragment(int position) {
     mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
-        makeEditFieldFragment(mFieldsAdapter.getFieldAt(position)));
+        makeFieldTechnologicalMapFragment(mFieldsAdapter.getFieldAt(position)));
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -171,14 +172,8 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     mStartFragmentPresenter.hideFieldTypeDialog();
   }
 
-  private Fragment makeEditFieldFragment(FieldObject fieldObject) {
-    if (fieldObject.hasPoints()) {
-      return EditFieldOnMapFragment.newInstance(fieldObject);
-    } else {
-      return EditFieldFullScreenFragment.newInstance(fieldObject);
-    }
-
-    //return EditFieldOnMapFragment.newInstance(null);
+  private Fragment makeFieldTechnologicalMapFragment(@NonNull FieldObject fieldObject) {
+    return FieldTechnologicalMapFragment.newInstance(fieldObject);
   }
 
   private void updateTextNoDataVisibility() {

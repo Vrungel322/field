@@ -28,12 +28,12 @@ public class FieldsAdapter extends RecyclerView.Adapter<FieldsAdapter.FieldViewH
 
   @Inject RxBus mRxBus;
 
+  private ArrayList<FieldObject> mFieldsList = new ArrayList<>();
+
   public FieldsAdapter() {
     super();
     App.getAppComponent().inject(this);
   }
-
-  private ArrayList<FieldObject> mFieldsList = new ArrayList<>();
 
   @Override public FieldViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view =

@@ -12,6 +12,9 @@ import com.apps.twelve.floor.field.mvp.data.local.mappers.FieldObjectToFieldEnti
 import com.apps.twelve.floor.field.mvp.data.local.objects.ClimateZoneObject;
 import com.apps.twelve.floor.field.mvp.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
+import com.apps.twelve.floor.field.mvp.data.local.objects.FieldTechnologicalProcessObject;
+import com.apps.twelve.floor.field.mvp.data.local.objects.TechnologicalSolutionObject;
+import com.apps.twelve.floor.field.utils.TestUtils;
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
 import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
 import java.util.List;
@@ -80,5 +83,17 @@ public class DataManager {
         .map(climateZoneEntity -> new ClimateZoneEntityToClimateZoneObject().transform(
             climateZoneEntity))
         .toList();
+  }
+
+  public Observable<List<FieldTechnologicalProcessObject>> getFieldTechnologicalProcesses(
+      long mFieldObjectId) {
+    // TODO
+    return Observable.just(TestUtils.getFieldTechnologicalProcesses());
+  }
+
+  public Observable<List<TechnologicalSolutionObject>> getTechnologicalSolutions(
+      long mTechnologicalProcessId) {
+    // TODO
+    return Observable.just(TestUtils.getTechnologicalSolutions());
   }
 }

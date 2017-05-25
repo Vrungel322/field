@@ -34,5 +34,6 @@
   <string name="edit_text_climate_zone">Климатическая зона</string>
   <string name="edit_text_soil_type">Тип почвы</string>
   <string name="edit_text_phase">Фаза</string>
+  <string name="edit_text_tech_process_status">Статус</string>
   <string name="button_text_edit">ИЗМЕНИТЬ</string>
 </resources>

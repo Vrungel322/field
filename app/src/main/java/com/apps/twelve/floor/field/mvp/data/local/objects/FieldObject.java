@@ -28,7 +28,7 @@ public class FieldObject implements Parcelable {
   private String mName = "";
   private CropObject mCrop;
   @Nullable private CropObject mPreviousCrop;
-  private List<LatLng> mPoints;
+  private List<LatLng> mPoints = new ArrayList<>();
   private double mArea;
   private ClimateZoneObject mClimateZone;
 

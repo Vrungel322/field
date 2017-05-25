@@ -28,7 +28,7 @@ import java.util.List;
 
   @StateStrategyType(SkipStrategy.class) void showEditFieldFullScreenFragment();
 
-  @StateStrategyType(SkipStrategy.class) void openEditFieldFragment(int position);
+  @StateStrategyType(SkipStrategy.class) void openFieldTechnologicalMapFragment(int position);
 
   @StateStrategyType(AddToEndStrategy.class) void addField(FieldObject fieldObject);
 

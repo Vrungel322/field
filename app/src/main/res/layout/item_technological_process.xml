@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+  <TextView
+      android:id="@+id/text_process_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/common_margin"
+      android:layout_marginStart="@dimen/common_margin"
+      android:layout_marginTop="@dimen/common_margin"
+      android:text="Досходове боронування"
+      android:textStyle="bold"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      style="@style/text_large"
+      />
+
+  <TextView
+      android:id="@+id/text_process_period"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/common_margin"
+      android:layout_marginLeft="@dimen/common_margin"
+      android:layout_marginStart="@dimen/common_margin"
+      android:layout_marginTop="@dimen/common_margin"
+      android:text="01/05/2017 - 25/05/2017"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/text_process_name"
+      style="@style/text_large"
+      />
+
+  <ImageView
+      android:id="@+id/image_status"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="@dimen/common_margin"
+      android:layout_marginRight="@dimen/common_margin"
+      android:layout_marginTop="@dimen/common_margin"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="?android:attr/alertDialogIcon"
+      tools:ignore="ContentDescription"
+      />
+
+</android.support.constraint.ConstraintLayout>

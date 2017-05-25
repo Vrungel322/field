@@ -8,9 +8,13 @@ import com.apps.twelve.floor.field.mvp.data.local.DbRelationsHelper;
 import com.apps.twelve.floor.field.mvp.presenters.pr_activities.MainActivityPresenter;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.AddFieldTrackingPresenter;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.EditFieldPresenter;
+import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.FieldTechnologicalMapPresenter;
+import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.FieldTechnologicalProcessPresenter;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.MapPolygonEditPresenter;
 import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.StartFragmentPresenter;
+import com.apps.twelve.floor.field.ui.adapters.FieldTechnologicalProcessesAdapter;
 import com.apps.twelve.floor.field.ui.adapters.FieldsAdapter;
+import com.apps.twelve.floor.field.ui.adapters.TechnologicalSolutionAdapter;
 import com.apps.twelve.floor.field.ui.base.BaseActivity;
 import com.apps.twelve.floor.field.ui.base.BaseFragment;
 import com.apps.twelve.floor.field.ui.base.BaseManualAttachFragment;
@@ -33,6 +37,10 @@ import dagger.Component;
 
   void inject(AddFieldTrackingPresenter presenter);
 
+  void inject(FieldTechnologicalMapPresenter presenter);
+
+  void inject(FieldTechnologicalProcessPresenter presenter);
+
   //activities
   void inject(BaseActivity activity);
 
@@ -43,6 +51,10 @@ import dagger.Component;
 
   //adapters
   void inject(FieldsAdapter adapter);
+
+  void inject(FieldTechnologicalProcessesAdapter adapter);
+
+  void inject(TechnologicalSolutionAdapter adapter);
 
   // managers
   void inject(DataManager dataManager);

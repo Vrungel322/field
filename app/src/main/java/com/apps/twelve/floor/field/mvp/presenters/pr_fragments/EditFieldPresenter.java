@@ -32,6 +32,14 @@ import timber.log.Timber;
 
   private FieldObject mFieldObject;
 
+  public EditFieldPresenter(FieldObject fieldObject) {
+    if (fieldObject == null) {
+      setField(new FieldObject());
+    } else {
+      setField(fieldObject);
+    }
+  }
+
   @Override protected void inject() {
     App.getAppComponent().inject(this);
   }
@@ -45,14 +53,6 @@ import timber.log.Timber;
 
     subscribeToPolygonEditResult();
     updateViewState();
-  }
-
-  public EditFieldPresenter(FieldObject fieldObject) {
-    if (fieldObject == null) {
-      setField(new FieldObject());
-    } else {
-      setField(fieldObject);
-    }
   }
 
   public void setField(FieldObject fieldObject) {

@@ -140,6 +140,6 @@ import timber.log.Timber;
   }
 
   public void onFiledClickedAtPosition(int position) {
-    getViewState().openEditFieldFragment(position);
+    getViewState().openFieldTechnologicalMapFragment(position);
   }
 }

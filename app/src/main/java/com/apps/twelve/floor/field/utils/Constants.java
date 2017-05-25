@@ -13,6 +13,8 @@ public final class Constants {
 
   public class EditField {
     public static final String FIELD_BUNDLE_KEY = "field_bundle_key";
+    public static final String FIELD_TECHNOLOGICAL_PROCESS_BUNDLE_KEY =
+        "technological_process_bundle_key";
   }
 
   public class Spinner {

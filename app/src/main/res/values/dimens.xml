@@ -12,4 +12,7 @@
   <dimen name="bottom_sheet_pick_height">48dp</dimen>
   <dimen name="bottom_sheet_margin_bottom">56dp</dimen>
 
+  <!-- Field technological map-->
+  <dimen name="app_bar_layout_height">192dp</dimen>
+
 </resources>
