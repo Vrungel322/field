@@ -1,11 +1,11 @@
 package com.apps.twelve.floor.field.di.modules;
 
 import android.content.Context;
+import com.apps.twelve.floor.field.data.DataManager;
+import com.apps.twelve.floor.field.data.local.PreferencesHelper;
+import com.apps.twelve.floor.field.data.remote.FieldRetrofitApi;
+import com.apps.twelve.floor.field.data.remote.RestApi;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
-import com.apps.twelve.floor.field.mvp.data.DataManager;
-import com.apps.twelve.floor.field.mvp.data.local.PreferencesHelper;
-import com.apps.twelve.floor.field.mvp.data.remote.FieldRetrofitApi;
-import com.apps.twelve.floor.field.mvp.data.remote.RestApi;
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;

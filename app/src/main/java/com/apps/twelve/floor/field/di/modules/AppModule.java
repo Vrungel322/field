@@ -2,8 +2,8 @@ package com.apps.twelve.floor.field.di.modules;
 
 import android.app.Application;
 import android.content.Context;
+import com.apps.twelve.floor.field.base.Navigator;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
-import com.apps.twelve.floor.field.ui.base.Navigator;
 import com.apps.twelve.floor.field.utils.RxBus;
 import dagger.Module;
 import dagger.Provides;

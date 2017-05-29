@@ -1,6 +1,6 @@
 package com.apps.twelve.floor.field.utils;
 
-import com.apps.twelve.floor.field.mvp.data.local.objects.FieldObject;
+import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
 

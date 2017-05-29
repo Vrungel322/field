@@ -1,23 +1,23 @@
 package com.apps.twelve.floor.field.di.components;
 
+import com.apps.twelve.floor.field.base.BaseActivity;
+import com.apps.twelve.floor.field.base.BaseFragment;
+import com.apps.twelve.floor.field.base.BaseManualAttachFragment;
+import com.apps.twelve.floor.field.data.DataManager;
+import com.apps.twelve.floor.field.data.local.DbHelper;
+import com.apps.twelve.floor.field.data.local.DbRelationsHelper;
 import com.apps.twelve.floor.field.di.modules.AppModule;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
-import com.apps.twelve.floor.field.mvp.data.DataManager;
-import com.apps.twelve.floor.field.mvp.data.local.DbHelper;
-import com.apps.twelve.floor.field.mvp.data.local.DbRelationsHelper;
-import com.apps.twelve.floor.field.mvp.presenters.pr_activities.MainActivityPresenter;
-import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.AddFieldTrackingPresenter;
-import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.EditFieldPresenter;
-import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.FieldTechnologicalMapPresenter;
-import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.FieldTechnologicalProcessPresenter;
-import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.MapPolygonEditPresenter;
-import com.apps.twelve.floor.field.mvp.presenters.pr_fragments.StartFragmentPresenter;
-import com.apps.twelve.floor.field.ui.adapters.FieldTechnologicalProcessesAdapter;
-import com.apps.twelve.floor.field.ui.adapters.FieldsAdapter;
-import com.apps.twelve.floor.field.ui.adapters.TechnologicalSolutionAdapter;
-import com.apps.twelve.floor.field.ui.base.BaseActivity;
-import com.apps.twelve.floor.field.ui.base.BaseFragment;
-import com.apps.twelve.floor.field.ui.base.BaseManualAttachFragment;
+import com.apps.twelve.floor.field.feature.add_field.presenters.AddFieldTrackingPresenter;
+import com.apps.twelve.floor.field.feature.edit_field.presenters.EditFieldPresenter;
+import com.apps.twelve.floor.field.feature.edit_field.presenters.MapPolygonEditPresenter;
+import com.apps.twelve.floor.field.feature.field_technological_map.adapters.FieldTechnologicalProcessesAdapter;
+import com.apps.twelve.floor.field.feature.field_technological_map.presenters.FieldTechnologicalMapPresenter;
+import com.apps.twelve.floor.field.feature.field_technological_process.adapters.TechnologicalSolutionAdapter;
+import com.apps.twelve.floor.field.feature.field_technological_process.presenters.FieldTechnologicalProcessPresenter;
+import com.apps.twelve.floor.field.feature.start_point.adapters.FieldsAdapter;
+import com.apps.twelve.floor.field.feature.start_point.presenters.MainActivityPresenter;
+import com.apps.twelve.floor.field.feature.start_point.presenters.StartFragmentPresenter;
 import dagger.Component;
 
 /**
