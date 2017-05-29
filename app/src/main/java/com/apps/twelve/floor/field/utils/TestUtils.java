@@ -7,9 +7,10 @@ import com.apps.twelve.floor.field.data.local.objects.FieldTechnologicalProcessO
 import com.apps.twelve.floor.field.data.local.objects.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.ProcessPeriodObject;
 import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessObject;
+import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessStatusObject;
 import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessTimeObject;
-import com.apps.twelve.floor.field.data.local.objects.TechnologicalSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.TechnologicalSolutionTypeObject;
 import java.util.ArrayList;
 
 /**
@@ -95,15 +96,24 @@ public final class TestUtils {
     return list;
   }
 
-  public static ArrayList<TechnologicalSolutionObject> getTechnologicalSolutions() {
+  public static ArrayList<TechnologicalProcessSolutionObject> getTechnologicalSolutions() {
 
-    ArrayList<TechnologicalSolutionObject> res = new ArrayList<>();
+    ArrayList<TechnologicalProcessSolutionObject> res = new ArrayList<>();
 
-    res.add(new TechnologicalSolutionObject(1, null, null, 1));
-    res.add(new TechnologicalSolutionObject(2, null, null, 1));
-    res.add(new TechnologicalSolutionObject(3, null, null, 1));
-    res.add(new TechnologicalSolutionObject(4, null, null, 1));
-    res.add(new TechnologicalSolutionObject(5, null, null, 1));
+    res.add(new TechnologicalProcessSolutionObject(1, null, null, null));
+    res.add(new TechnologicalProcessSolutionObject(2, null, null, null));
+    res.add(new TechnologicalProcessSolutionObject(3, null, null, null));
+    res.add(new TechnologicalProcessSolutionObject(4, null, null, null));
+    res.add(new TechnologicalProcessSolutionObject(5, null, null, null));
+
+    return res;
+  }
+
+  public static ArrayList<TechnologicalSolutionTypeObject> getAllTechnologicalSolutionTypes() {
+    ArrayList<TechnologicalSolutionTypeObject> res = new ArrayList<>();
+
+    res.add(new TechnologicalSolutionTypeObject(1, "Агрегат"));
+    res.add(new TechnologicalSolutionTypeObject(2, "Препарат"));
 
     return res;
   }

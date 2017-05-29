@@ -5,19 +5,20 @@ package com.apps.twelve.floor.field.data.local.objects;
  */
 
 // TODO: make it Parcelable
-public class TechnologicalSolutionObject {
+public class TechnologicalProcessSolutionObject {
 
   private long mId;
   private FieldTechnologicalProcessObject mTechnologicalProcess;
   private TechnologicalSolutionTypeObject mType;
-  private long mSolutionValueId;
+  private BaseTechnologicalSolutionObject mSolutionValue;
 
-  public TechnologicalSolutionObject(long id, FieldTechnologicalProcessObject technologicalProcess,
-      TechnologicalSolutionTypeObject type, long solutionValueId) {
+  public TechnologicalProcessSolutionObject(long id,
+      FieldTechnologicalProcessObject technologicalProcess, TechnologicalSolutionTypeObject type,
+      BaseTechnologicalSolutionObject solutionValue) {
     this.mId = id;
     this.mTechnologicalProcess = technologicalProcess;
     this.mType = type;
-    this.mSolutionValueId = solutionValueId;
+    this.mSolutionValue = solutionValue;
   }
 
   public long getId() {
@@ -44,11 +45,11 @@ public class TechnologicalSolutionObject {
     this.mType = type;
   }
 
-  public long getSolutionValueId() {
-    return mSolutionValueId;
+  public BaseTechnologicalSolutionObject getmSolutionValue() {
+    return mSolutionValue;
   }
 
-  public void setSolutionValueId(long solutionValueId) {
-    this.mSolutionValueId = solutionValueId;
+  public void setSolutionValue(BaseTechnologicalSolutionObject solutionValue) {
+    this.mSolutionValue = solutionValue;
   }
 }

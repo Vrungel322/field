@@ -1,11 +1,11 @@
-package com.apps.twelve.floor.field.feature.field_technological_process.presenters;
+package com.apps.twelve.floor.field.feature.edit_field_technological_process.presenters;
 
 import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.base.BasePresenter;
 import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.objects.FieldTechnologicalProcessObject;
-import com.apps.twelve.floor.field.feature.field_technological_process.views.ITechnologicalProcessFragmentView;
+import com.apps.twelve.floor.field.feature.edit_field_technological_process.views.ITechnologicalProcessFragmentView;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
 import com.arellomobile.mvp.InjectViewState;
 import javax.inject.Inject;
@@ -50,6 +50,10 @@ import timber.log.Timber;
   }
 
   public void onSolutionClickedAtPosition(int position) {
-    // TODO: open tech process solution edit screen
+    getViewState().openEditFieldTechnologicalSolutionFragment(position);
+  }
+
+  public void onAddNewSolutionClicked() {
+    // TODO: open add tech process solution screen
   }
 }

@@ -13,7 +13,8 @@ import com.apps.twelve.floor.field.data.local.objects.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldTechnologicalProcessObject;
-import com.apps.twelve.floor.field.data.local.objects.TechnologicalSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.utils.TestUtils;
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
 import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
@@ -91,9 +92,14 @@ public class DataManager {
     return Observable.just(TestUtils.getFieldTechnologicalProcesses());
   }
 
-  public Observable<List<TechnologicalSolutionObject>> getTechnologicalSolutions(
+  public Observable<List<TechnologicalProcessSolutionObject>> getTechnologicalSolutions(
       long mTechnologicalProcessId) {
     // TODO
     return Observable.just(TestUtils.getTechnologicalSolutions());
+  }
+
+  public Observable<List<TechnologicalSolutionTypeObject>> getAllTechnologicalSolutionTypes() {
+    // TODO
+    return Observable.just(TestUtils.getAllTechnologicalSolutionTypes());
   }
 }

@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.feature.field_technological_process.adapters;
+package com.apps.twelve.floor.field.feature.edit_field_technological_process.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.ButterKnife;
 import com.apps.twelve.floor.field.R;
-import com.apps.twelve.floor.field.data.local.objects.TechnologicalSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessSolutionObject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class TechnologicalSolutionAdapter
     extends RecyclerView.Adapter<TechnologicalSolutionAdapter.TechnologicalSolutionViewHolder> {
 
-  private ArrayList<TechnologicalSolutionObject> mTechnologicalSolutionObjectsList =
+  private ArrayList<TechnologicalProcessSolutionObject> mTechnologicalProcessSolutionObjectsList =
       new ArrayList<>();
 
   public TechnologicalSolutionAdapter() {
@@ -36,21 +36,21 @@ public class TechnologicalSolutionAdapter
   }
 
   @Override public int getItemCount() {
-    return mTechnologicalSolutionObjectsList.size();
+    return mTechnologicalProcessSolutionObjectsList.size();
   }
 
-  public void addAllTechnologicalSolutions(List<TechnologicalSolutionObject> solutions) {
-    mTechnologicalSolutionObjectsList.addAll(solutions);
+  public void addAllTechnologicalSolutions(List<TechnologicalProcessSolutionObject> solutions) {
+    mTechnologicalProcessSolutionObjectsList.addAll(solutions);
     notifyDataSetChanged();
   }
 
-  public void addTechnologicalSolution(TechnologicalSolutionObject solution) {
-    mTechnologicalSolutionObjectsList.add(solution);
-    notifyItemInserted(mTechnologicalSolutionObjectsList.size() - 1);
+  public void addTechnologicalSolution(TechnologicalProcessSolutionObject solution) {
+    mTechnologicalProcessSolutionObjectsList.add(solution);
+    notifyItemInserted(mTechnologicalProcessSolutionObjectsList.size() - 1);
   }
 
-  public TechnologicalSolutionObject getSolutionAt(int position) {
-    return mTechnologicalSolutionObjectsList.get(position);
+  public TechnologicalProcessSolutionObject getSolutionAt(int position) {
+    return mTechnologicalProcessSolutionObjectsList.get(position);
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -58,8 +58,8 @@ public class TechnologicalSolutionAdapter
   ///////////////////////////////////////////////////////////////////////////
 
   private void updateViewHolder(TechnologicalSolutionViewHolder holder, int position) {
-    TechnologicalSolutionObject technologicalSolution =
-        mTechnologicalSolutionObjectsList.get(position);
+    TechnologicalProcessSolutionObject technologicalSolution =
+        mTechnologicalProcessSolutionObjectsList.get(position);
 
     // TODO: update view holder
   }

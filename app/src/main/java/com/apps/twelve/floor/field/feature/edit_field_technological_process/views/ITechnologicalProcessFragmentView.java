@@ -1,9 +1,10 @@
-package com.apps.twelve.floor.field.feature.field_technological_process.views;
+package com.apps.twelve.floor.field.feature.edit_field_technological_process.views;
 
-import com.apps.twelve.floor.field.data.local.objects.TechnologicalSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessSolutionObject;
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy;
+import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 import java.util.List;
 
@@ -15,5 +16,8 @@ import java.util.List;
     extends MvpView {
 
   @StateStrategyType(SingleStateStrategy.class) void showTechnologicalSolutions(
-      List<TechnologicalSolutionObject> technologicalSolutionsObjectList);
+      List<TechnologicalProcessSolutionObject> technologicalSolutionsObjectList);
+
+  @StateStrategyType(SkipStrategy.class) void openEditFieldTechnologicalSolutionFragment(
+      int position);
 }
