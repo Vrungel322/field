@@ -4,6 +4,7 @@ package com.apps.twelve.floor.field.mvp.data.local.objects;
  * Created by Yaroslav on 23.05.2017.
  */
 
+// TODO: make it Parcelable
 public class PhaseObject {
 
   private long mId;

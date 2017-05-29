@@ -6,6 +6,7 @@ import com.apps.twelve.floor.field.R;
  * Created by Yaroslav on 23.05.2017.
  */
 
+// TODO: make it Parcelable
 public class TechnologicalProcessStatusObject {
 
   private long mId;

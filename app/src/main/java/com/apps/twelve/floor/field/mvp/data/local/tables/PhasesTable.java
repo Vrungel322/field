@@ -22,7 +22,7 @@ public class PhasesTable {
   }
 
   @NonNull public static String getCreateTableQuery() {
-    return "CREATE TABLE "
+    return "CREATE TABLE IF NOT EXISTS "
         + TABLE
         + " ("
         + COLUMN_ID
