@@ -1,5 +1,7 @@
 package com.apps.twelve.floor.field.utils;
 
+import com.apps.twelve.floor.field.data.local.objects.AggregateObject;
+import com.apps.twelve.floor.field.data.local.objects.BaseTechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
@@ -100,21 +102,37 @@ public final class TestUtils {
 
     ArrayList<TechnologicalProcessSolutionObject> res = new ArrayList<>();
 
-    res.add(new TechnologicalProcessSolutionObject(1, null, null, null));
-    res.add(new TechnologicalProcessSolutionObject(2, null, null, null));
-    res.add(new TechnologicalProcessSolutionObject(3, null, null, null));
-    res.add(new TechnologicalProcessSolutionObject(4, null, null, null));
-    res.add(new TechnologicalProcessSolutionObject(5, null, null, null));
+    res.add(makeTechnologicalProcessSolutionObject(1, null, null, null));
+    res.add(makeTechnologicalProcessSolutionObject(2, null, null, null));
+    res.add(makeTechnologicalProcessSolutionObject(3, null, null, null));
+    res.add(makeTechnologicalProcessSolutionObject(4, null, null, null));
+    res.add(makeTechnologicalProcessSolutionObject(5, null, null, null));
 
     return res;
+  }
+
+  public static TechnologicalProcessSolutionObject makeTechnologicalProcessSolutionObject(long id,
+      FieldTechnologicalProcessObject process, TechnologicalSolutionTypeObject type,
+      BaseTechnologicalSolutionObject value) {
+    return new TechnologicalProcessSolutionObject(id, process, type, value);
   }
 
   public static ArrayList<TechnologicalSolutionTypeObject> getAllTechnologicalSolutionTypes() {
     ArrayList<TechnologicalSolutionTypeObject> res = new ArrayList<>();
 
-    res.add(new TechnologicalSolutionTypeObject(1, "Агрегат"));
-    res.add(new TechnologicalSolutionTypeObject(2, "Препарат"));
+    res.add(makeTechnologicalSolutionTypeObject(1, "Агрегат"));
+    res.add(makeTechnologicalSolutionTypeObject(2, "Препарат"));
 
     return res;
+  }
+
+  public static TechnologicalSolutionTypeObject makeTechnologicalSolutionTypeObject(long id,
+      String name) {
+    return new TechnologicalSolutionTypeObject(id, name);
+  }
+
+  public static AggregateObject makeAggregateObject(long id, String name,
+      TechnologicalSolutionTypeObject type, long price) {
+    return new AggregateObject(id, name, type, price);
   }
 }

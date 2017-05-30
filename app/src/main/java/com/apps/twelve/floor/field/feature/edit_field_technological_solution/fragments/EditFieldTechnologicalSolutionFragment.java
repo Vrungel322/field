@@ -14,8 +14,10 @@ import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessSoluti
 import com.apps.twelve.floor.field.data.local.objects.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.feature.edit_field_technological_solution.presenters.EditFieldTechnologicalSolutionPresenter;
 import com.apps.twelve.floor.field.feature.edit_field_technological_solution.views.ITechnologicalSolutionFragmentView;
+import com.apps.twelve.floor.field.utils.TestUtils;
 import com.apps.twelve.floor.field.utils.ViewUtil;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import java.util.List;
 
 /**
@@ -36,6 +38,16 @@ public class EditFieldTechnologicalSolutionFragment extends BaseFragment
   @BindView(R.id.text_total) TextView mTextTotal;
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
+
+  @ProvidePresenter
+  EditFieldTechnologicalSolutionPresenter provideEditFieldTechnologicalSolutionPresenter() {
+    // TODO: uncomment this when TechnologicalSolutionObject will be Parcelable
+    return new EditFieldTechnologicalSolutionPresenter(
+        TestUtils.makeAggregateObject(1, "Plow", null, 100500L));
+    /*
+    return new EditFieldTechnologicalSolutionPresenter(
+        getArguments().getParcelable(Constants.EditField.FIELD_TECHNOLOGICAL_PROCESS_SOLUTION_BUNDLE_KEY));*/
+  }
 
   public EditFieldTechnologicalSolutionFragment() {
     super(R.layout.fragment_field_technological_solution);
