@@ -11,8 +11,9 @@ import java.util.List;
 
 public final class LatLngStringUtil {
 
-  public static final String SEPARATOR_OUTER = "\u16DD";
-  public static final String SEPARATOR_INNER = "\u16DC";
+  private static final String SEPARATOR_OUTER = "\u16DD";
+  private static final String SEPARATOR_MIDDLE = "\u16DF";
+  private static final String SEPARATOR_INNER = "\u16DC";
 
   public static List<LatLng> LatLngsFromString(String coordinates) {
     String[] latLngs;
