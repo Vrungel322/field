@@ -1,7 +1,6 @@
-package com.apps.twelve.floor.field.data.local.objects;
+package com.apps.twelve.floor.field.data.local.objects.conditions;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 import com.apps.twelve.floor.field.utils.LatLngStringUtil;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
@@ -10,7 +9,17 @@ import java.util.List;
  * Created by Yaroslav on 20.05.2017.
  */
 
-public class SoilTypeObject implements Parcelable {
+public class SoilTypeObject extends BaseConditionValueObject {
+
+  public static final Creator<SoilTypeObject> CREATOR = new Creator<SoilTypeObject>() {
+    @Override public SoilTypeObject createFromParcel(Parcel in) {
+      return new SoilTypeObject(in);
+    }
+
+    @Override public SoilTypeObject[] newArray(int size) {
+      return new SoilTypeObject[size];
+    }
+  };
 
   private long mId;
   private String mName;
@@ -40,16 +49,6 @@ public class SoilTypeObject implements Parcelable {
     mPoints = in.createTypedArrayList(LatLng.CREATOR);
   }
 
-  public static final Creator<SoilTypeObject> CREATOR = new Creator<SoilTypeObject>() {
-    @Override public SoilTypeObject createFromParcel(Parcel in) {
-      return new SoilTypeObject(in);
-    }
-
-    @Override public SoilTypeObject[] newArray(int size) {
-      return new SoilTypeObject[size];
-    }
-  };
-
   @Override public int describeContents() {
     return 0;
   }
@@ -61,28 +60,28 @@ public class SoilTypeObject implements Parcelable {
     dest.writeTypedList(mPoints);
   }
 
-  public long getId() {
+  @Override public long getId() {
     return mId;
   }
 
-  public void setId(long id) {
+  @Override public void setId(long id) {
     this.mId = id;
   }
 
-  public String getName() {
+  @Override public String getName() {
     return mName;
   }
 
-  public void setName(String name) {
+  @Override public void setName(String name) {
     this.mName = name;
   }
 
-  public ConditionTypeObject getmConditionType() {
+  @Override public ConditionTypeObject getType() {
     return mConditionType;
   }
 
-  public void setConditionType(ConditionTypeObject conditionType) {
-    this.mConditionType = conditionType;
+  @Override public void setType(ConditionTypeObject type) {
+    this.mConditionType = type;
   }
 
   public List<LatLng> getPoints() {

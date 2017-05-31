@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.data.local.objects;
+package com.apps.twelve.floor.field.data.local.objects.conditions;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -8,6 +8,16 @@ import android.os.Parcelable;
  */
 
 public class ConditionTypeObject implements Parcelable {
+
+  public static final Creator<ConditionTypeObject> CREATOR = new Creator<ConditionTypeObject>() {
+    @Override public ConditionTypeObject createFromParcel(Parcel in) {
+      return new ConditionTypeObject(in);
+    }
+
+    @Override public ConditionTypeObject[] newArray(int size) {
+      return new ConditionTypeObject[size];
+    }
+  };
 
   private long mId;
   private String mName;
@@ -21,16 +31,6 @@ public class ConditionTypeObject implements Parcelable {
     mId = in.readLong();
     mName = in.readString();
   }
-
-  public static final Creator<ConditionTypeObject> CREATOR = new Creator<ConditionTypeObject>() {
-    @Override public ConditionTypeObject createFromParcel(Parcel in) {
-      return new ConditionTypeObject(in);
-    }
-
-    @Override public ConditionTypeObject[] newArray(int size) {
-      return new ConditionTypeObject[size];
-    }
-  };
 
   @Override public int describeContents() {
     return 0;

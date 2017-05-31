@@ -15,7 +15,7 @@ public class ConditionsTable {
   @NonNull public static final String COLUMN_CROP_ID = "crop_id";
   @NonNull public static final String COLUMN_PRIORITY = "priority";
   @NonNull public static final String COLUMN_CONDITION_TYPE_ID = "condition_type_id";
-  @NonNull public static final String COLUMN_VALUE_ID = "value_id";
+  @NonNull public static final String COLUMN_CONDITION_VALUE_ID = "condition_value_id";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
@@ -34,8 +34,7 @@ public class ConditionsTable {
         + COLUMN_PRIORITY
         + " TEXT NULL, "
         + COLUMN_CONDITION_TYPE_ID
-        + " TEXT NULL, "
-        + COLUMN_VALUE_ID
+        + " TEXT NULL, " + COLUMN_CONDITION_VALUE_ID
         + " TEXT NULL "
         + ");";
   }
