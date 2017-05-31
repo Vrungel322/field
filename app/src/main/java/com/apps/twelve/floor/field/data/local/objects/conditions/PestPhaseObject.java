@@ -1,6 +1,7 @@
 package com.apps.twelve.floor.field.data.local.objects.conditions;
 
 import android.os.Parcel;
+import android.support.annotation.NonNull;
 
 /**
  * Created by Yaroslav on 31.05.2017.
@@ -19,11 +20,12 @@ public class PestPhaseObject extends BaseConditionValueObject {
   };
 
   private long mId;
-  private String mName;
-  private ConditionTypeObject mType;
-  private PestObject mPest;
+  @NonNull private String mName;
+  @NonNull private ConditionTypeObject mType;
+  @NonNull private PestObject mPest;
 
-  public PestPhaseObject(long id, String name, ConditionTypeObject type, PestObject pest) {
+  public PestPhaseObject(long id, @NonNull String name, @NonNull ConditionTypeObject type,
+      @NonNull PestObject pest) {
     this.mId = id;
     this.mName = name;
     this.mType = type;
@@ -60,7 +62,7 @@ public class PestPhaseObject extends BaseConditionValueObject {
     return mName;
   }
 
-  @Override public void setName(String name) {
+  @Override public void setName(@NonNull String name) {
     this.mName = name;
   }
 
@@ -68,7 +70,7 @@ public class PestPhaseObject extends BaseConditionValueObject {
     return mType;
   }
 
-  @Override public void setType(ConditionTypeObject type) {
+  @Override public void setType(@NonNull ConditionTypeObject type) {
     this.mType = type;
   }
 
@@ -76,7 +78,7 @@ public class PestPhaseObject extends BaseConditionValueObject {
     return mPest;
   }
 
-  public void setPest(PestObject pest) {
+  public void setPest(@NonNull PestObject pest) {
     this.mPest = pest;
   }
 }

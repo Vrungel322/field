@@ -2,17 +2,17 @@ package com.apps.twelve.floor.field.utils;
 
 import com.apps.twelve.floor.field.data.local.objects.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.BaseTechnologicalSolutionObject;
-import com.apps.twelve.floor.field.data.local.objects.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldTechnologicalProcessObject;
-import com.apps.twelve.floor.field.data.local.objects.PhaseObject;
-import com.apps.twelve.floor.field.data.local.objects.ProcessPeriodObject;
 import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessStatusObject;
 import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessTimeObject;
 import com.apps.twelve.floor.field.data.local.objects.TechnologicalSolutionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
 import java.util.ArrayList;
 
 /**

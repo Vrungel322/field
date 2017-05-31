@@ -2,6 +2,7 @@ package com.apps.twelve.floor.field.data.local.objects.conditions;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 /**
  * Created by Yaroslav on 20.05.2017.
@@ -20,9 +21,9 @@ public class ConditionTypeObject implements Parcelable {
   };
 
   private long mId;
-  private String mName;
+  @NonNull private String mName;
 
-  public ConditionTypeObject(long mId, String mName) {
+  public ConditionTypeObject(long mId, @NonNull String mName) {
     this.mId = mId;
     this.mName = mName;
   }
@@ -53,7 +54,7 @@ public class ConditionTypeObject implements Parcelable {
     return mName;
   }
 
-  public void setName(String name) {
+  public void setName(@NonNull String name) {
     this.mName = name;
   }
 }

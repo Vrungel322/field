@@ -2,6 +2,7 @@ package com.apps.twelve.floor.field.data.local.objects.conditions;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 
 /**
@@ -21,13 +22,14 @@ public class ConditionObject implements Parcelable {
   };
 
   private long mId;
-  private CropObject mCrop;
+  @NonNull private CropObject mCrop;
   private int mPriority;
-  private ConditionTypeObject mConditionType;
-  private BaseConditionValueObject mConditionValue;
+  @NonNull private ConditionTypeObject mConditionType;
+  @NonNull private BaseConditionValueObject mConditionValue;
 
-  public ConditionObject(long id, CropObject crop, int priority, ConditionTypeObject conditionType,
-      BaseConditionValueObject conditionValue) {
+  public ConditionObject(long id, @NonNull CropObject crop, int priority,
+      @NonNull ConditionTypeObject conditionType,
+      @NonNull BaseConditionValueObject conditionValue) {
     this.mId = id;
     this.mCrop = crop;
     this.mPriority = priority;
@@ -67,7 +69,7 @@ public class ConditionObject implements Parcelable {
     return mCrop;
   }
 
-  public void setCrop(CropObject crop) {
+  public void setCrop(@NonNull CropObject crop) {
     this.mCrop = crop;
   }
 
@@ -83,7 +85,7 @@ public class ConditionObject implements Parcelable {
     return mConditionType;
   }
 
-  public void setConditionType(ConditionTypeObject conditionType) {
+  public void setConditionType(@NonNull ConditionTypeObject conditionType) {
     this.mConditionType = conditionType;
   }
 
@@ -91,7 +93,7 @@ public class ConditionObject implements Parcelable {
     return mConditionValue;
   }
 
-  public void setConditionValue(BaseConditionValueObject conditionValue) {
+  public void setConditionValue(@NonNull BaseConditionValueObject conditionValue) {
     this.mConditionValue = conditionValue;
   }
 }

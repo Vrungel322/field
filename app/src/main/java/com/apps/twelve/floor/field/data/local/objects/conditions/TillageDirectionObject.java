@@ -1,6 +1,7 @@
 package com.apps.twelve.floor.field.data.local.objects.conditions;
 
 import android.os.Parcel;
+import android.support.annotation.NonNull;
 
 /**
  * Created by Yaroslav on 31.05.2017.
@@ -20,10 +21,10 @@ public class TillageDirectionObject extends BaseConditionValueObject {
       };
 
   private long mId;
-  private String mName;
-  private ConditionTypeObject mType;
+  @NonNull private String mName;
+  @NonNull private ConditionTypeObject mType;
 
-  public TillageDirectionObject(long id, String name, ConditionTypeObject type) {
+  public TillageDirectionObject(long id, @NonNull String name, @NonNull ConditionTypeObject type) {
     this.mId = id;
     this.mName = name;
     this.mType = type;
@@ -57,7 +58,7 @@ public class TillageDirectionObject extends BaseConditionValueObject {
     return mName;
   }
 
-  @Override public void setName(String name) {
+  @Override public void setName(@NonNull String name) {
     this.mName = name;
   }
 
@@ -65,7 +66,7 @@ public class TillageDirectionObject extends BaseConditionValueObject {
     return mType;
   }
 
-  @Override public void setType(ConditionTypeObject type) {
+  @Override public void setType(@NonNull ConditionTypeObject type) {
     this.mType = type;
   }
 }

@@ -1,7 +1,7 @@
 package com.apps.twelve.floor.field.feature.edit_field.views;
 
-import com.apps.twelve.floor.field.data.local.objects.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;

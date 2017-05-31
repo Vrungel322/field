@@ -9,12 +9,12 @@ import com.apps.twelve.floor.field.data.local.mappers.CombinedFieldEntityToField
 import com.apps.twelve.floor.field.data.local.mappers.CropEntityToCropObject;
 import com.apps.twelve.floor.field.data.local.mappers.CropObjectToCropEntity;
 import com.apps.twelve.floor.field.data.local.mappers.FieldObjectToFieldEntity;
-import com.apps.twelve.floor.field.data.local.objects.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.TechnologicalSolutionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.utils.TestUtils;
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
 import com.pushtorefresh.storio.sqlite.operations.put.PutResult;

@@ -2,6 +2,7 @@ package com.apps.twelve.floor.field.data.local.objects.conditions;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 /**
  * Created by Yaroslav on 31.05.2017.
@@ -20,11 +21,11 @@ public class PestObject implements Parcelable {
   };
 
   private long mId;
-  private String mName;
+  @NonNull private String mName;
   private long mParentId;
   private boolean mIsGroup;
 
-  public PestObject(long id, String name, long parentId, boolean isGroup) {
+  public PestObject(long id, @NonNull String name, long parentId, boolean isGroup) {
     this.mId = id;
     this.mName = name;
     this.mParentId = parentId;
@@ -61,7 +62,7 @@ public class PestObject implements Parcelable {
     return mName;
   }
 
-  public void setName(String name) {
+  public void setName(@NonNull String name) {
     this.mName = name;
   }
 

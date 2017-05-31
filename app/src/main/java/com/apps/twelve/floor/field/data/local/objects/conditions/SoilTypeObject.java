@@ -1,8 +1,10 @@
 package com.apps.twelve.floor.field.data.local.objects.conditions;
 
 import android.os.Parcel;
+import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.utils.LatLngStringUtil;
 import com.google.android.gms.maps.model.LatLng;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,20 +24,20 @@ public class SoilTypeObject extends BaseConditionValueObject {
   };
 
   private long mId;
-  private String mName;
-  private ConditionTypeObject mConditionType;
-  private List<LatLng> mPoints;
+  @NonNull private String mName;
+  @NonNull private ConditionTypeObject mConditionType;
+  @NonNull private List<LatLng> mPoints = new ArrayList<>();
 
-  public SoilTypeObject(long mId, String mName, ConditionTypeObject conditionType,
-      List<LatLng> mPoints) {
+  public SoilTypeObject(long mId, @NonNull String mName, @NonNull ConditionTypeObject conditionType,
+      @NonNull List<LatLng> mPoints) {
     this.mId = mId;
     this.mName = mName;
     this.mConditionType = conditionType;
     this.mPoints = mPoints;
   }
 
-  public SoilTypeObject(long mId, String mName, ConditionTypeObject conditionType,
-      String coordinates) {
+  public SoilTypeObject(long mId, @NonNull String mName, @NonNull ConditionTypeObject conditionType,
+      @NonNull String coordinates) {
     this.mId = mId;
     this.mName = mName;
     this.mConditionType = conditionType;
@@ -72,7 +74,7 @@ public class SoilTypeObject extends BaseConditionValueObject {
     return mName;
   }
 
-  @Override public void setName(String name) {
+  @Override public void setName(@NonNull String name) {
     this.mName = name;
   }
 
@@ -80,7 +82,7 @@ public class SoilTypeObject extends BaseConditionValueObject {
     return mConditionType;
   }
 
-  @Override public void setType(ConditionTypeObject type) {
+  @Override public void setType(@NonNull ConditionTypeObject type) {
     this.mConditionType = type;
   }
 
@@ -88,7 +90,7 @@ public class SoilTypeObject extends BaseConditionValueObject {
     return mPoints;
   }
 
-  public void setPoints(List<LatLng> points) {
+  public void setPoints(@NonNull List<LatLng> points) {
     this.mPoints = points;
   }
 

@@ -1,6 +1,7 @@
 package com.apps.twelve.floor.field.data.local.objects.conditions;
 
 import android.os.Parcel;
+import android.support.annotation.NonNull;
 
 /**
  * Created by Yaroslav on 31.05.2017.
@@ -20,11 +21,12 @@ public class ConditionSpanValueObject extends BaseConditionValueObject {
       };
 
   private long mId;
-  private ConditionTypeObject mType;
+  @NonNull private ConditionTypeObject mType;
   private long mValueFrom;
   private long mValueTo;
 
-  public ConditionSpanValueObject(long id, ConditionTypeObject type, long valueFrom, long valueTo) {
+  public ConditionSpanValueObject(long id, @NonNull ConditionTypeObject type, long valueFrom,
+      long valueTo) {
     this.mId = id;
     this.mType = type;
     this.mValueFrom = valueFrom;
@@ -68,7 +70,7 @@ public class ConditionSpanValueObject extends BaseConditionValueObject {
     return mType;
   }
 
-  @Override public void setType(ConditionTypeObject type) {
+  @Override public void setType(@NonNull ConditionTypeObject type) {
     this.mType = type;
   }
 

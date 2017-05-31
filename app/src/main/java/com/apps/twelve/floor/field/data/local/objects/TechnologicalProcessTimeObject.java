@@ -1,5 +1,9 @@
 package com.apps.twelve.floor.field.data.local.objects;
 
+import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
+
 /**
  * Created by Yaroslav on 23.05.2017.
  */
