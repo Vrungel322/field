@@ -41,7 +41,11 @@ import com.apps.twelve.floor.field.data.local.entities.SoilTypeEntitySQLiteTypeM
 import com.apps.twelve.floor.field.data.local.entities.PestPhaseEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.TillageDirectionEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.PhenologicalCharacteristicEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.ConditionEntitySQLiteTypeMapping;*/
+import com.apps.twelve.floor.field.data.local.entities.ConditionEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.DealerEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.FieldCropTechnologicalProcessEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.ProductPestCropEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcessSolutionEntitySQLiteTypeMapping;*/
 
 /**
  * Created by Yaroslav on 11.04.2017.
@@ -58,56 +62,66 @@ import com.apps.twelve.floor.field.data.local.entities.ConditionEntitySQLiteType
   }
 
   @Provides @AppScope StorIOSQLite provideStorIOSQLite(SQLiteOpenHelper sqliteOpenHelper) {
-    return DefaultStorIOSQLite.builder()
-        .sqliteOpenHelper(sqliteOpenHelper)
-        .addTypeMapping(FieldEntity.class,
-            new FieldEntitySQLiteTypeMapping()) // for FieldEntity mapping
-        .addTypeMapping(ClimateZoneEntity.class,
-            new ClimateZoneEntitySQLiteTypeMapping()) // for ClimateZoneEntity mapping
-        .addTypeMapping(CropEntity.class,
-            new CropEntitySQLiteTypeMapping()) // for CropEntity mapping
+    return DefaultStorIOSQLite.builder().sqliteOpenHelper(sqliteOpenHelper)
+        // FieldEntity mapping
+        .addTypeMapping(FieldEntity.class, new FieldEntitySQLiteTypeMapping())
+        // ClimateZoneEntity mapping
+        .addTypeMapping(ClimateZoneEntity.class, new ClimateZoneEntitySQLiteTypeMapping())
+        // CropEntity mapping
+        .addTypeMapping(CropEntity.class, new CropEntitySQLiteTypeMapping())
+        // CropTechnologicalProcessesEntity  mapping
         .addTypeMapping(CropTechnologicalProcessesEntity.class,
-            new CropTechnologicalProcessesEntitySQLiteTypeMapping()) // for CropTechnologicalProcessesEntity  mapping
-        .addTypeMapping(PestEntity.class,
-            new PestEntitySQLiteTypeMapping()) // for PestEntity mapping
-        .addTypeMapping(PhaseEntity.class,
-            new PhaseEntitySQLiteTypeMapping()) // for PhaseEntity mapping
+            new CropTechnologicalProcessesEntitySQLiteTypeMapping())
+        // PestEntity mapping
+        .addTypeMapping(PestEntity.class, new PestEntitySQLiteTypeMapping())
+        // PhaseEntity mapping
+        .addTypeMapping(PhaseEntity.class, new PhaseEntitySQLiteTypeMapping())
 
         // TODO: uncomment this when entities will be ready
-        /*.addTypeMapping(TechnologicalProcessStateEntity.class,
-            new TechnologicalProcessStateEntitySQLiteTypeMapping()) // for TechnologicalProcessStateEntity mapping
-        .addTypeMapping(TechnologicalSolutionTypeEntity.class,
-            new TechnologicalSolutionTypeEntitySQLiteTypeMapping()) // for TechnologicalSolutionTypeEntity mapping
-        .addTypeMapping(ProductCategoryEntity.class,
-            new ProductCategoryEntitySQLiteTypeMapping()) // for ProductCategoryEntity mapping
-        .addTypeMapping(ProductEntity.class,
-            new ProductEntitySQLiteTypeMapping()) // for ProductEntity mapping
-        .addTypeMapping(AggregateEntity.class,
-            new AggregateEntitySQLiteTypeMapping()) // for AggregateEntity mapping
-        .addTypeMapping(ProcessPeriodEntity.class,
-            new ProcessPeriodEntitySQLiteTypeMapping()) // for ProcessPeriodEntity mapping
-        .addTypeMapping(ConditionTypeEntity.class,
-            new ConditionTypeEntitySQLiteTypeMapping()) // for ConditionTypeEntity mapping
-        .addTypeMapping(ConditionSpanValueEntity.class,
-            new ConditionSpanValueEntitySQLiteTypeMapping()) // for ConditionSpanValueEntity mapping
-        .addTypeMapping(SoilTypeEntity.class,
-            new SoilTypeEntitySQLiteTypeMapping()) // for SoilTypeEntity mapping
-        .addTypeMapping(PestPhaseEntity.class,
-            new PestPhaseEntitySQLiteTypeMapping()) // for PestPhaseEntity mapping
-        .addTypeMapping(TillageDirectionEntity.class,
-            new TillageDirectionEntitySQLiteTypeMapping()) // for TillageDirectionEntity mapping
-        .addTypeMapping(PhenologicalCharacteristicEntity.class,
-            new PhenologicalCharacteristicEntitySQLiteTypeMapping()) // for PhenologicalCharacteristicEntity mapping
-        .addTypeMapping(ConditionEntity.class,
-            new ConditionEntitySQLiteTypeMapping()) // for ConditionEntity mapping
-            */
+        // TODO: for some entities custom resolvers needed
+        /*
+        // TechnologicalProcessStateEntity mapping
+        .addTypeMapping(TechnologicalProcessStateEntity.class, new TechnologicalProcessStateEntitySQLiteTypeMapping())
+        // TechnologicalSolutionTypeEntity mapping
+        .addTypeMapping(TechnologicalSolutionTypeEntity.class, new TechnologicalSolutionTypeEntitySQLiteTypeMapping())
+        // ProductCategoryEntity mapping
+        .addTypeMapping(ProductCategoryEntity.class, new ProductCategoryEntitySQLiteTypeMapping())
+        // ProductEntity mapping
+        .addTypeMapping(ProductEntity.class, new ProductEntitySQLiteTypeMapping())
+        // AggregateEntity mapping
+        .addTypeMapping(AggregateEntity.class, new AggregateEntitySQLiteTypeMapping())
+        // ProcessPeriodEntity mapping
+        .addTypeMapping(ProcessPeriodEntity.class, new ProcessPeriodEntitySQLiteTypeMapping())
+        // ConditionTypeEntity mapping
+        .addTypeMapping(ConditionTypeEntity.class, new ConditionTypeEntitySQLiteTypeMapping())
+        // ConditionSpanValueEntity mapping
+        .addTypeMapping(ConditionSpanValueEntity.class, new ConditionSpanValueEntitySQLiteTypeMapping())
+        // SoilTypeEntity mapping
+        .addTypeMapping(SoilTypeEntity.class, new SoilTypeEntitySQLiteTypeMapping())
+        // PestPhaseEntity mapping
+        .addTypeMapping(PestPhaseEntity.class, new PestPhaseEntitySQLiteTypeMapping())
+        // TillageDirectionEntity mapping
+        .addTypeMapping(TillageDirectionEntity.class, new TillageDirectionEntitySQLiteTypeMapping())
+        // PhenologicalCharacteristicEntity mapping
+        .addTypeMapping(PhenologicalCharacteristicEntity.class, new PhenologicalCharacteristicEntitySQLiteTypeMapping())
+        // ConditionEntity mapping
+        .addTypeMapping(ConditionEntity.class, new ConditionEntitySQLiteTypeMapping())
+        // DealerEntity mapping
+        .addTypeMapping(DealerEntity.class, new DealerEntitySQLiteTypeMapping())
+        // FieldCropTechnologicalProcessEntity mapping
+        .addTypeMapping(FieldCropTechnologicalProcessEntity.class, new FieldCropTechnologicalProcessEntitySQLiteTypeMapping())
+        // ProductPestCropEntity mapping
+        .addTypeMapping(ProductPestCropEntity.class, new ProductPestCropEntitySQLiteTypeMapping())
+        // FieldTechnologicalProcessSolutionEntity mapping
+        .addTypeMapping(FieldTechnologicalProcessSolutionEntity.class, new FieldTechnologicalProcessSolutionEntitySQLiteTypeMapping())
+        */
 
+        // CombinedFieldEntity mapping
         .addTypeMapping(CombinedFieldEntity.class,
             SQLiteTypeMapping.<CombinedFieldEntity>builder().putResolver(
                 new CombinedFieldPutResolver())
                 .getResolver(new CombinedFieldGetResolver())
-                .deleteResolver(new CombinedFieldDeleteResolver())
-                .build()) // for CombinedFieldEntity mapping
+                .deleteResolver(new CombinedFieldDeleteResolver()).build())
         // TODO: need mappers for all entities
         .build();
   }

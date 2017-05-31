@@ -15,25 +15,31 @@ public class CropTechnologicalProcessesEntity {
   @StorIOSQLiteColumn(name = CropTechnologicalProcessesTable.COLUMN_NAME) String name;
   @StorIOSQLiteColumn(name = CropTechnologicalProcessesTable.COLUMN_ORDER) int order;
   @StorIOSQLiteColumn(name = CropTechnologicalProcessesTable.COLUMN_CROP_ID) Long cropId;
-  @StorIOSQLiteColumn(name = CropTechnologicalProcessesTable.COLUMN_TECH_PROC_TIME_ID) Long
-      techProcessTimeId;
+  @StorIOSQLiteColumn(name = CropTechnologicalProcessesTable.COLUMN_CLIMATE_ZONE_ID) Long
+      climateZoneId;
+  @StorIOSQLiteColumn(name = CropTechnologicalProcessesTable.COLUMN_PROCESS_PERIOD_ID) Long
+      processPeriodId;
+  @StorIOSQLiteColumn(name = CropTechnologicalProcessesTable.COLUMN_PHASE_ID) Long phaseId;
 
   public CropTechnologicalProcessesEntity() {
   }
 
   private CropTechnologicalProcessesEntity(Long id, String name, int order, Long cropId,
-      Long techProcTimeId) {
+      Long climateZoneId, Long processPeriodId, Long phaseId) {
     this.id = id;
     this.name = name;
     this.order = order;
     this.cropId = cropId;
-    this.techProcessTimeId = techProcTimeId;
+    this.climateZoneId = climateZoneId;
+    this.processPeriodId = processPeriodId;
+    this.phaseId = phaseId;
   }
 
   public static CropTechnologicalProcessesEntity newCropTechnologicalProcessesModel(Long id,
-      String name, int order, Long cropId, Long techProcTimeId) {
+      String name, int order, Long cropId, Long climateZoneId, Long processPeriodId, Long phaseId) {
     if (id == 0) id = null;
-    return new CropTechnologicalProcessesEntity(id, name, order, cropId, techProcTimeId);
+    return new CropTechnologicalProcessesEntity(id, name, order, cropId, climateZoneId,
+        processPeriodId, phaseId);
   }
 
   @Override public boolean equals(Object obj) {
@@ -46,9 +52,16 @@ public class CropTechnologicalProcessesEntity {
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
     if (name != null ? !name.equals(that.name) : that.name != null) return false;
     if (cropId != null ? !cropId.equals(that.cropId) : that.cropId != null) return false;
+    if (climateZoneId != null ? !climateZoneId.equals(that.climateZoneId)
+        : that.climateZoneId != null) {
+      return false;
+    }
+    if (processPeriodId != null ? !processPeriodId.equals(that.processPeriodId)
+        : that.processPeriodId != null) {
+      return false;
+    }
 
-    return techProcessTimeId != null ? techProcessTimeId.equals(that.techProcessTimeId)
-        : that.techProcessTimeId == null;
+    return phaseId != null ? phaseId.equals(that.phaseId) : that.phaseId == null;
   }
 
   @Override public int hashCode() {
@@ -56,7 +69,9 @@ public class CropTechnologicalProcessesEntity {
     result = 31 * result + (name != null ? name.hashCode() : 0);
     result = 31 * result + order;
     result = 31 * result + (cropId != null ? cropId.hashCode() : 0);
-    result = 31 * result + (techProcessTimeId != null ? techProcessTimeId.hashCode() : 0);
+    result = 31 * result + (climateZoneId != null ? climateZoneId.hashCode() : 0);
+    result = 31 * result + (processPeriodId != null ? processPeriodId.hashCode() : 0);
+    result = 31 * result + (phaseId != null ? phaseId.hashCode() : 0);
 
     return result;
   }
@@ -93,11 +108,27 @@ public class CropTechnologicalProcessesEntity {
     this.cropId = cropId;
   }
 
-  public Long getTechProcessTimeId() {
-    return techProcessTimeId;
+  public Long getClimateZoneId() {
+    return climateZoneId;
   }
 
-  public void setTechProcessTimeId(Long techProcessTimeId) {
-    this.techProcessTimeId = techProcessTimeId;
+  public void setClimateZoneId(Long climateZoneId) {
+    this.climateZoneId = climateZoneId;
+  }
+
+  public Long getProcessPeriodId() {
+    return processPeriodId;
+  }
+
+  public void setProcessPeriodId(Long processPeriodId) {
+    this.processPeriodId = processPeriodId;
+  }
+
+  public Long getPhaseId() {
+    return phaseId;
+  }
+
+  public void setPhaseId(Long phaseId) {
+    this.phaseId = phaseId;
   }
 }

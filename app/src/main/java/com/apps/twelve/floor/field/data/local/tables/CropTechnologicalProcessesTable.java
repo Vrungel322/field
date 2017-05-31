@@ -15,7 +15,9 @@ public class CropTechnologicalProcessesTable {
   @NonNull public static final String COLUMN_NAME = "name";
   @NonNull public static final String COLUMN_ORDER = "order";
   @NonNull public static final String COLUMN_CROP_ID = "crop_id";
-  @NonNull public static final String COLUMN_TECH_PROC_TIME_ID = "tech_process_time_id";
+  @NonNull public static final String COLUMN_CLIMATE_ZONE_ID = "climate_zone_id";
+  @NonNull public static final String COLUMN_PROCESS_PERIOD_ID = "period_id";
+  @NonNull public static final String COLUMN_PHASE_ID = "phase_id";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
@@ -35,7 +37,11 @@ public class CropTechnologicalProcessesTable {
         + " TEXT NULL, "
         + COLUMN_CROP_ID
         + " TEXT NULL, "
-        + COLUMN_TECH_PROC_TIME_ID
+        + COLUMN_CLIMATE_ZONE_ID
+        + " TEXT NULL, "
+        + COLUMN_PROCESS_PERIOD_ID
+        + " TEXT NULL, "
+        + COLUMN_PHASE_ID
         + " TEXT NULL "
         + ");";
   }

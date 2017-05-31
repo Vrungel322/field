@@ -9,6 +9,9 @@ import com.apps.twelve.floor.field.data.local.tables.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.ConditionsTable;
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
+import com.apps.twelve.floor.field.data.local.tables.DealersTable;
+import com.apps.twelve.floor.field.data.local.tables.FieldCropTechnologicalProcessesTable;
+import com.apps.twelve.floor.field.data.local.tables.FieldTechnologicalProcessSolutionsTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
 import com.apps.twelve.floor.field.data.local.tables.PestPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.PestsTable;
@@ -16,6 +19,7 @@ import com.apps.twelve.floor.field.data.local.tables.PhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.PhenologicalCharacteristicsTable;
 import com.apps.twelve.floor.field.data.local.tables.ProcessPeriodsTable;
 import com.apps.twelve.floor.field.data.local.tables.ProductCategoriesTable;
+import com.apps.twelve.floor.field.data.local.tables.ProductsPestsCropsTable;
 import com.apps.twelve.floor.field.data.local.tables.ProductsTable;
 import com.apps.twelve.floor.field.data.local.tables.SoilTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.TechnologicalProcessStatesTable;
@@ -66,5 +70,12 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(
         PhenologicalCharacteristicsTable.getCreateTableQuery()); // create table for PhenologicalCharacteristics
     db.execSQL(ConditionsTable.getCreateTableQuery()); // create table for Conditions
+    db.execSQL(DealersTable.getCreateTableQuery()); // create table for Dealers
+    db.execSQL(
+        FieldCropTechnologicalProcessesTable.getCreateTableQuery()); // create table for FieldCropTechnologicalProcesses
+    db.execSQL(
+        ProductsPestsCropsTable.getCreateTableQuery()); // create table for ProductsPestsCrops
+    db.execSQL(
+        FieldTechnologicalProcessSolutionsTable.getCreateTableQuery()); // create table for FieldTechnologicalProcessSolutions
   }
 }

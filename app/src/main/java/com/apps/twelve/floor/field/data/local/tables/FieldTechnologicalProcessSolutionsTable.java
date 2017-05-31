@@ -4,21 +4,21 @@ import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;
 
 /**
- * Created by Yaroslav on 30.05.2017.
+ * Created by Yaroslav on 31.05.2017.
  */
 
-public class AggregatesTable {
+public class FieldTechnologicalProcessSolutionsTable {
 
-  @NonNull public static final String TABLE = "Aggregates";
+  @NonNull public static final String TABLE = "FieldTechnologicalProcessSolutions";
 
   @NonNull public static final String COLUMN_ID = "id";
-  @NonNull public static final String COLUMN_NAME = "name";
-  @NonNull public static final String COLUMN_TECHNOLOGICAL_SOLUTION_TYPE_ID = "solution_type_id";
-  @NonNull public static final String COLUMN_PRICE = "price";
+  @NonNull public static final String COLUMN_FIELD_TECH_PROCESS_ID = "process_id";
+  @NonNull public static final String COLUMN_SOLUTION_TYPE_ID = "solution_type_id";
+  @NonNull public static final String COLUMN_SOLUTION_VALUE_ID = "solution_value_id";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public AggregatesTable() {
+  public FieldTechnologicalProcessSolutionsTable() {
     throw new IllegalStateException("No instances allowed");
   }
 
@@ -28,11 +28,11 @@ public class AggregatesTable {
         + " ("
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
-        + COLUMN_NAME
+        + COLUMN_FIELD_TECH_PROCESS_ID
         + " TEXT NULL, "
-        + COLUMN_TECHNOLOGICAL_SOLUTION_TYPE_ID
+        + COLUMN_SOLUTION_TYPE_ID
         + " TEXT NULL, "
-        + COLUMN_PRICE
+        + COLUMN_SOLUTION_VALUE_ID
         + " TEXT NULL "
         + ");";
   }
