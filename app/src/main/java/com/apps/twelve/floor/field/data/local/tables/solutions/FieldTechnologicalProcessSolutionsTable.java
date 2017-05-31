@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.data.local.tables;
+package com.apps.twelve.floor.field.data.local.tables.solutions;
 
 import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;

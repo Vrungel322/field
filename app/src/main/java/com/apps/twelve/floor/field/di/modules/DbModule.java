@@ -2,9 +2,9 @@ package com.apps.twelve.floor.field.di.modules;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
+import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
 import com.apps.twelve.floor.field.data.local.DbHelper;
 import com.apps.twelve.floor.field.data.local.DbOpenHelper;
-import com.apps.twelve.floor.field.data.local.DbRelationsHelper;
 import com.apps.twelve.floor.field.data.local.entities.ClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.entities.ClimateZoneEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
@@ -57,8 +57,8 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
     return new DbHelper();
   }
 
-  @Provides @AppScope DbRelationsHelper provideDbRelationsHelper() {
-    return new DbRelationsHelper();
+  @Provides @AppScope DbCombinedFieldRelationsHelper provideDbRelationsHelper() {
+    return new DbCombinedFieldRelationsHelper();
   }
 
   @Provides @AppScope StorIOSQLite provideStorIOSQLite(SQLiteOpenHelper sqliteOpenHelper) {
@@ -121,7 +121,8 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
             SQLiteTypeMapping.<CombinedFieldEntity>builder().putResolver(
                 new CombinedFieldPutResolver())
                 .getResolver(new CombinedFieldGetResolver())
-                .deleteResolver(new CombinedFieldDeleteResolver()).build())
+                .deleteResolver(new CombinedFieldDeleteResolver())
+                .build())
         // TODO: need mappers for all entities
         .build();
   }

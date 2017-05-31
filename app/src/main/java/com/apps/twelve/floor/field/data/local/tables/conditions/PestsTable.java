@@ -1,23 +1,24 @@
-package com.apps.twelve.floor.field.data.local.tables;
+package com.apps.twelve.floor.field.data.local.tables.conditions;
 
 import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;
 
 /**
- * Created by Yaroslav on 05.05.2017.
+ * Created by Yaroslav on 10.05.2017.
  */
 
-public class PhasesTable {
+public class PestsTable {
 
-  @NonNull public static final String TABLE = "Phases";
+  @NonNull public static final String TABLE = "Pests";
 
   @NonNull public static final String COLUMN_ID = "id";
   @NonNull public static final String COLUMN_NAME = "name";
-  @NonNull public static final String COLUMN_CROP_ID = "crop_id";
+  @NonNull public static final String COLUMN_PARENT_ID = "parent_id";
+  @NonNull public static final String COLUMN_IS_GROUP = "is_group";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public PhasesTable() {
+  public PestsTable() {
     throw new IllegalStateException("No instances allowed");
   }
 
@@ -28,7 +29,7 @@ public class PhasesTable {
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_NAME
-        + " TEXT NULL, " + COLUMN_CROP_ID + " TEXT NULL "
+        + " TEXT NULL, " + COLUMN_PARENT_ID + " TEXT NULL, " + COLUMN_IS_GROUP + " TEXT NULL "
         + ");";
   }
 }

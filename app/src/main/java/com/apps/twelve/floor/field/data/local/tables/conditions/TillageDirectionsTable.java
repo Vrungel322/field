@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.data.local.tables;
+package com.apps.twelve.floor.field.data.local.tables.conditions;
 
 import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;
@@ -7,18 +7,17 @@ import com.pushtorefresh.storio.sqlite.queries.Query;
  * Created by Yaroslav on 30.05.2017.
  */
 
-public class SoilTypesTable {
+public class TillageDirectionsTable {
 
-  @NonNull public static final String TABLE = "SoilTypes";
+  @NonNull public static final String TABLE = "TillageDirections";
 
   @NonNull public static final String COLUMN_ID = "id";
   @NonNull public static final String COLUMN_NAME = "name";
   @NonNull public static final String COLUMN_CONDITION_TYPE_ID = "condition_type_id";
-  @NonNull public static final String COLUMN_COORDINATES = "coordinates";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public SoilTypesTable() {
+  public TillageDirectionsTable() {
     throw new IllegalStateException("No instances allowed");
   }
 
@@ -31,8 +30,6 @@ public class SoilTypesTable {
         + COLUMN_NAME
         + " TEXT NULL, "
         + COLUMN_CONDITION_TYPE_ID
-        + " TEXT NULL, "
-        + COLUMN_COORDINATES
         + " TEXT NULL "
         + ");";
   }

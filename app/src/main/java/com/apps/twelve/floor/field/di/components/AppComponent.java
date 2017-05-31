@@ -4,8 +4,8 @@ import com.apps.twelve.floor.field.base.BaseActivity;
 import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.base.BaseManualAttachFragment;
 import com.apps.twelve.floor.field.data.DataManager;
+import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
 import com.apps.twelve.floor.field.data.local.DbHelper;
-import com.apps.twelve.floor.field.data.local.DbRelationsHelper;
 import com.apps.twelve.floor.field.di.modules.AppModule;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
 import com.apps.twelve.floor.field.feature.add_field.presenters.AddFieldTrackingPresenter;
@@ -65,5 +65,5 @@ import dagger.Component;
   // helpers
   void inject(DbHelper dbHelper);
 
-  void inject(DbRelationsHelper dbRelationsHelper);
+  void inject(DbCombinedFieldRelationsHelper dbCombinedFieldRelationsHelper);
 }

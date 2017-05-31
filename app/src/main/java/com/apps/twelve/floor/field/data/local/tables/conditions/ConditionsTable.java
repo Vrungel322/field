@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.data.local.tables;
+package com.apps.twelve.floor.field.data.local.tables.conditions;
 
 import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;
@@ -7,17 +7,19 @@ import com.pushtorefresh.storio.sqlite.queries.Query;
  * Created by Yaroslav on 30.05.2017.
  */
 
-public class PhenologicalCharacteristicsTable {
+public class ConditionsTable {
 
-  @NonNull public static final String TABLE = "PhenologicalCharacteristics";
+  @NonNull public static final String TABLE = "Conditions";
 
   @NonNull public static final String COLUMN_ID = "id";
-  @NonNull public static final String COLUMN_NAME = "name";
+  @NonNull public static final String COLUMN_CROP_ID = "crop_id";
+  @NonNull public static final String COLUMN_PRIORITY = "priority";
   @NonNull public static final String COLUMN_CONDITION_TYPE_ID = "condition_type_id";
+  @NonNull public static final String COLUMN_VALUE_ID = "value_id";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public PhenologicalCharacteristicsTable() {
+  public ConditionsTable() {
     throw new IllegalStateException("No instances allowed");
   }
 
@@ -27,9 +29,13 @@ public class PhenologicalCharacteristicsTable {
         + " ("
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
-        + COLUMN_NAME
+        + COLUMN_CROP_ID
+        + " TEXT NULL, "
+        + COLUMN_PRIORITY
         + " TEXT NULL, "
         + COLUMN_CONDITION_TYPE_ID
+        + " TEXT NULL, "
+        + COLUMN_VALUE_ID
         + " TEXT NULL "
         + ");";
   }

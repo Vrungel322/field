@@ -1,28 +1,23 @@
-package com.apps.twelve.floor.field.data.local.tables;
+package com.apps.twelve.floor.field.data.local.tables.conditions;
 
 import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;
 
 /**
- * Created by Yaroslav on 04.05.2017.
+ * Created by Yaroslav on 30.05.2017.
  */
 
-public class ClimateZonesTable {
+public class PhenologicalCharacteristicsTable {
 
-  @NonNull public static final String TABLE = "ClimateZones";
+  @NonNull public static final String TABLE = "PhenologicalCharacteristics";
 
   @NonNull public static final String COLUMN_ID = "id";
   @NonNull public static final String COLUMN_NAME = "name";
-  @NonNull public static final String COLUMN_COORDINATES = "coordinates";
-
-  @NonNull public static final String COLUMN_ID_WITH_TABLE_PREFIX = TABLE + "." + COLUMN_ID;
-  @NonNull public static final String COLUMN_NAME_WITH_TABLE_PREFIX = TABLE + "." + COLUMN_NAME;
-  @NonNull public static final String COLUMN_COORDINATES_WITH_TABLE_PREFIX =
-      TABLE + "." + COLUMN_COORDINATES;
+  @NonNull public static final String COLUMN_CONDITION_TYPE_ID = "condition_type_id";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public ClimateZonesTable() {
+  public PhenologicalCharacteristicsTable() {
     throw new IllegalStateException("No instances allowed");
   }
 
@@ -34,7 +29,7 @@ public class ClimateZonesTable {
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_NAME
         + " TEXT NULL, "
-        + COLUMN_COORDINATES
+        + COLUMN_CONDITION_TYPE_ID
         + " TEXT NULL "
         + ");";
   }

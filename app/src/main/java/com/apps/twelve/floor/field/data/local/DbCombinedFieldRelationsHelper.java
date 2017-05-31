@@ -3,9 +3,9 @@ package com.apps.twelve.floor.field.data.local;
 import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
-import com.apps.twelve.floor.field.data.local.tables.ClimateZonesTable;
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
+import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;
 import com.pushtorefresh.storio.sqlite.StorIOSQLite;
 import com.pushtorefresh.storio.sqlite.queries.RawQuery;
 import java.util.List;
@@ -16,7 +16,7 @@ import rx.Observable;
  * Created by Yaroslav on 12.05.2017.
  */
 
-public class DbRelationsHelper {
+public class DbCombinedFieldRelationsHelper {
 
   public static final String QUERY_COLUMN_FIELD_ID = "field_id";
   public static final String QUERY_COLUMN_FIELD_NAME = "field_name";
@@ -120,7 +120,7 @@ public class DbRelationsHelper {
 
   @Inject StorIOSQLite mStorIOSQLite;
 
-  public DbRelationsHelper() {
+  public DbCombinedFieldRelationsHelper() {
     App.getAppComponent().inject(this);
   }
 

@@ -1,8 +1,8 @@
 package com.apps.twelve.floor.field.data;
 
 import com.apps.twelve.floor.field.App;
+import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
 import com.apps.twelve.floor.field.data.local.DbHelper;
-import com.apps.twelve.floor.field.data.local.DbRelationsHelper;
 import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneEntityToClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneObjectToClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.mappers.CombinedFieldEntityToFieldObject;
@@ -30,7 +30,7 @@ public class DataManager {
 
   //@Inject RestApi mRestApi;
   @Inject DbHelper mDbHelper;
-  @Inject DbRelationsHelper mDbRelationsHelper;
+  @Inject DbCombinedFieldRelationsHelper mDbCombinedFieldRelationsHelper;
 
   public DataManager() {
     App.getAppComponent().inject(this);
@@ -41,7 +41,7 @@ public class DataManager {
   ///////////////////////////////////////////////////////////////////////////
 
   public Observable<List<FieldObject>> getAllFields() {
-    return mDbRelationsHelper.getCombinedFieldEntities()
+    return mDbCombinedFieldRelationsHelper.getCombinedFieldEntities()
         .concatMap(Observable::from)
         .map(combinedFieldEntity -> new CombinedFieldEntityToFieldObject().transform(
             combinedFieldEntity))

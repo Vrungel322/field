@@ -2,9 +2,9 @@ package com.apps.twelve.floor.field.data.local.resolvers;
 
 import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
-import com.apps.twelve.floor.field.data.local.tables.ClimateZonesTable;
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
+import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;
 import com.pushtorefresh.storio.sqlite.StorIOSQLite;
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResolver;
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
