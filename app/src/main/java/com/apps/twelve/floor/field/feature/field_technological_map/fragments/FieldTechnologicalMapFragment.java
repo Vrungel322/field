@@ -20,7 +20,7 @@ import butterknife.BindView;
 import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
-import com.apps.twelve.floor.field.data.local.objects.FieldTechnologicalProcessObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.feature.edit_field_technological_process.fragments.FieldTechnologicalProcessFragment;
 import com.apps.twelve.floor.field.feature.field_technological_map.adapters.FieldTechnologicalProcessesAdapter;
 import com.apps.twelve.floor.field.feature.field_technological_map.presenters.FieldTechnologicalMapPresenter;
@@ -78,7 +78,7 @@ public class FieldTechnologicalMapFragment extends BaseFragment
   // MVP methods
   ///////////////////////////////////////////////////////////////////////////
   @Override public void showTechnologicalMap(
-      List<FieldTechnologicalProcessObject> technologicalProcessObjectList) {
+      List<FieldCropTechnologicalProcessObject> technologicalProcessObjectList) {
     mFieldTechnologicalProcessesAdapter.addAllFieldTechnologicalProcesses(
         technologicalProcessObjectList);
   }
@@ -112,7 +112,7 @@ public class FieldTechnologicalMapFragment extends BaseFragment
   }
 
   private Fragment makeFieldTechnologicalProcessFragment(
-      @NonNull FieldTechnologicalProcessObject processObject) {
+      @NonNull FieldCropTechnologicalProcessObject processObject) {
     return FieldTechnologicalProcessFragment.newInstance(processObject);
   }
 }

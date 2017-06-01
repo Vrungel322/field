@@ -2,6 +2,7 @@ package com.apps.twelve.floor.field.data.local.objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 /**
  * Created by Yaroslav on 12.05.2017.
@@ -19,23 +20,23 @@ public class CropObject implements Parcelable {
     }
   };
 
-  private long id;
-  private String name;
-  private long parentId;
-  private boolean isGroup;
+  private long mId;
+  @NonNull private String mName;
+  private long mParentId;
+  private boolean mIsGroup;
 
-  public CropObject(long id, String name, long parentId, boolean isGroup) {
-    this.id = id;
-    this.name = name;
-    this.parentId = parentId;
-    this.isGroup = isGroup;
+  public CropObject(long id, @NonNull String name, long parentId, boolean isGroup) {
+    this.mId = id;
+    this.mName = name;
+    this.mParentId = parentId;
+    this.mIsGroup = isGroup;
   }
 
   protected CropObject(Parcel in) {
-    id = in.readLong();
-    name = in.readString();
-    parentId = in.readLong();
-    isGroup = in.readByte() != 0;
+    this.mId = in.readLong();
+    this.mName = in.readString();
+    this.mParentId = in.readLong();
+    this.mIsGroup = in.readByte() != 0;
   }
 
   @Override public int describeContents() {
@@ -43,42 +44,42 @@ public class CropObject implements Parcelable {
   }
 
   @Override public void writeToParcel(Parcel dest, int flags) {
-    dest.writeLong(id);
-    dest.writeString(name);
-    dest.writeLong(parentId);
-    dest.writeByte((byte) (isGroup ? 1 : 0));
+    dest.writeLong(mId);
+    dest.writeString(mName);
+    dest.writeLong(mParentId);
+    dest.writeByte((byte) (mIsGroup ? 1 : 0));
   }
 
   @Override public String toString() {
-    return name;
+    return mName;
   }
 
   public long getId() {
-    return id;
+    return mId;
   }
 
   public void setId(long id) {
-    this.id = id;
+    this.mId = id;
   }
 
   public String getName() {
-    return name;
+    return mName;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setName(@NonNull String name) {
+    this.mName = name;
   }
 
   public long getParentId() {
-    return parentId;
+    return mParentId;
   }
 
   public void setParentId(long parentId) {
-    this.parentId = parentId;
+    this.mParentId = parentId;
   }
 
   public boolean isGroup() {
-    return isGroup;
+    return mIsGroup;
   }
 
   public void setIsGroup(boolean isGroup) {

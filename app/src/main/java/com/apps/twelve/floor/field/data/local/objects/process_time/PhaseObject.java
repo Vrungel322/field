@@ -32,9 +32,9 @@ public class PhaseObject implements Parcelable {
   }
 
   protected PhaseObject(Parcel in) {
-    mId = in.readLong();
-    mName = in.readString();
-    mCrop = in.readParcelable(CropObject.class.getClassLoader());
+    this.mId = in.readLong();
+    this.mName = in.readString();
+    this.mCrop = in.readParcelable(CropObject.class.getClassLoader());
   }
 
   @Override public int describeContents() {

@@ -20,8 +20,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.base.BaseFragment;
-import com.apps.twelve.floor.field.data.local.objects.FieldTechnologicalProcessObject;
-import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.feature.edit_field_technological_process.adapters.TechnologicalSolutionAdapter;
 import com.apps.twelve.floor.field.feature.edit_field_technological_process.presenters.FieldTechnologicalProcessPresenter;
 import com.apps.twelve.floor.field.feature.edit_field_technological_process.views.ITechnologicalProcessFragmentView;
@@ -54,7 +54,7 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
   @BindView(R.id.btn_cancel) Button mBtnCancel;
 
   @ProvidePresenter FieldTechnologicalProcessPresenter provideTechnologicalProcessPresenter() {
-    // TODO: uncomment this when TechnologicalProcessObject will be Parcelable
+    // TODO: uncomment this when CropTechnologicalProcessObject will be Parcelable
     return new FieldTechnologicalProcessPresenter(TestUtils.makeFieldTechnologicalProcessObject());
     /*
     return new FieldTechnologicalProcessPresenter(
@@ -66,8 +66,8 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
   }
 
   public static FieldTechnologicalProcessFragment newInstance(
-      FieldTechnologicalProcessObject processObject) {
-    // TODO: uncomment this when TechnologicalProcessObject will be Parcelable
+      FieldCropTechnologicalProcessObject processObject) {
+    // TODO: uncomment this when CropTechnologicalProcessObject will be Parcelable
     //Bundle args = new Bundle();
     FieldTechnologicalProcessFragment fragment = new FieldTechnologicalProcessFragment();
     //args.putParcelable(Constants.EditField.FIELD_TECHNOLOGICAL_PROCESS_BUNDLE_KEY, processObject);
@@ -85,7 +85,7 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
   ///////////////////////////////////////////////////////////////////////////
 
   @Override public void showTechnologicalSolutions(
-      List<TechnologicalProcessSolutionObject> technologicalSolutionsObjectList) {
+      List<FieldTechnologicalProcessSolutionObject> technologicalSolutionsObjectList) {
     mTechnologicalSolutionAdapter.addAllTechnologicalSolutions(technologicalSolutionsObjectList);
   }
 
@@ -96,7 +96,7 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
   }
 
   private Fragment makeEditFieldTechnologicalSolutionFragment(
-      @NonNull TechnologicalProcessSolutionObject solution) {
+      @NonNull FieldTechnologicalProcessSolutionObject solution) {
     return EditFieldTechnologicalSolutionFragment.newInstance(solution);
   }
 

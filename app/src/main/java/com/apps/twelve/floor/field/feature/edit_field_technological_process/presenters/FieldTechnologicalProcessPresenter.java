@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.base.BasePresenter;
 import com.apps.twelve.floor.field.data.DataManager;
-import com.apps.twelve.floor.field.data.local.objects.FieldTechnologicalProcessObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.feature.edit_field_technological_process.views.ITechnologicalProcessFragmentView;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
 import com.arellomobile.mvp.InjectViewState;
@@ -21,10 +21,10 @@ import timber.log.Timber;
 
   @Inject DataManager mDataManager;
 
-  @NonNull private FieldTechnologicalProcessObject mFieldTechnologicalProcess;
+  @NonNull private FieldCropTechnologicalProcessObject mFieldTechnologicalProcess;
 
   public FieldTechnologicalProcessPresenter(
-      @NonNull FieldTechnologicalProcessObject technologicalProcess) {
+      @NonNull FieldCropTechnologicalProcessObject technologicalProcess) {
     this.mFieldTechnologicalProcess = technologicalProcess;
   }
 

@@ -1,24 +1,23 @@
-package com.apps.twelve.floor.field.data.local.tables;
+package com.apps.twelve.floor.field.data.local.tables.technological_map;
 
 import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;
 
 /**
- * Created by Yaroslav on 31.05.2017.
+ * Created by Yaroslav on 01.06.2017.
  */
 
-public class FieldCropTechnologicalProcessesTable {
+public class TechnologicalProcessesConditionsTable {
 
-  @NonNull public static final String TABLE = "FieldCropTechnologicalProcesses";
+  @NonNull public static final String TABLE = "TechnologicalProcessesConditions";
 
   @NonNull public static final String COLUMN_ID = "id";
-  @NonNull public static final String COLUMN_FIELD_ID = "field_id";
-  @NonNull public static final String COLUMN_CROP_TECH_PROCESS_ID = "process_id";
-  @NonNull public static final String COLUMN_TECH_PROCESS_STATE_ID = "state_id";
+  @NonNull public static final String COLUMN_CROP_TECH_PROCESS_ID = "crop_technological_process_id";
+  @NonNull public static final String COLUMN_CONDITION_ID = "condition_id";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public FieldCropTechnologicalProcessesTable() {
+  public TechnologicalProcessesConditionsTable() {
     throw new IllegalStateException("No instances allowed");
   }
 
@@ -28,11 +27,9 @@ public class FieldCropTechnologicalProcessesTable {
         + " ("
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
-        + COLUMN_FIELD_ID
-        + " TEXT NULL, "
         + COLUMN_CROP_TECH_PROCESS_ID
         + " TEXT NULL, "
-        + COLUMN_TECH_PROCESS_STATE_ID
+        + COLUMN_CONDITION_ID
         + " TEXT NULL "
         + ");";
   }

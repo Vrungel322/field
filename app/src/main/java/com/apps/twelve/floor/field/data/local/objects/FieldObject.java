@@ -2,6 +2,7 @@ package com.apps.twelve.floor.field.data.local.objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.utils.LatLngStringUtil;
@@ -26,17 +27,12 @@ public class FieldObject implements Parcelable {
   };
 
   private long mId;
-  private String mName = "";
-  private CropObject mCrop;
+  @NonNull private String mName = "";
+  @NonNull private CropObject mCrop;
   @Nullable private CropObject mPreviousCrop;
-  private List<LatLng> mPoints = new ArrayList<>();
+  @NonNull private List<LatLng> mPoints = new ArrayList<>();
   private double mArea;
-  private ClimateZoneObject mClimateZone;
-
-  public FieldObject() {
-    // TODO: remove it
-    this.mClimateZone = new ClimateZoneObject(1, "climate zone", new ArrayList<>());
-  }
+  @NonNull private ClimateZoneObject mClimateZone;
 
   public FieldObject(long id, String name, CropObject crop, CropObject previousCrop,
       String coordinates, double area, ClimateZoneObject climateZone) {
@@ -45,8 +41,9 @@ public class FieldObject implements Parcelable {
     mPoints.addAll(LatLngStringUtil.LatLngsFromString(coordinates));
   }
 
-  public FieldObject(long id, String name, CropObject crop, @Nullable CropObject previousCrop,
-      List<LatLng> points, double area, ClimateZoneObject climateZone) {
+  public FieldObject(long id, @NonNull String name, @NonNull CropObject crop,
+      @Nullable CropObject previousCrop, @NonNull List<LatLng> points, double area,
+      @NonNull ClimateZoneObject climateZone) {
     this.mId = id;
     this.mName = name;
     this.mCrop = crop;
@@ -57,13 +54,13 @@ public class FieldObject implements Parcelable {
   }
 
   protected FieldObject(Parcel in) {
-    mId = in.readLong();
-    mName = in.readString();
-    mCrop = in.readParcelable(CropObject.class.getClassLoader());
-    mPreviousCrop = in.readParcelable(CropObject.class.getClassLoader());
-    mPoints = in.createTypedArrayList(LatLng.CREATOR);
-    mArea = in.readDouble();
-    mClimateZone = in.readParcelable(ClimateZoneObject.class.getClassLoader());
+    this.mId = in.readLong();
+    this.mName = in.readString();
+    this.mCrop = in.readParcelable(CropObject.class.getClassLoader());
+    this.mPreviousCrop = in.readParcelable(CropObject.class.getClassLoader());
+    this.mPoints = in.createTypedArrayList(LatLng.CREATOR);
+    this.mArea = in.readDouble();
+    this.mClimateZone = in.readParcelable(ClimateZoneObject.class.getClassLoader());
   }
 
   @Override public int describeContents() {

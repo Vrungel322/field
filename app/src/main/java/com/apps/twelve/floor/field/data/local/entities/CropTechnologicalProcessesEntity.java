@@ -1,6 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities;
 
-import com.apps.twelve.floor.field.data.local.tables.CropTechnologicalProcessesTable;
+import com.apps.twelve.floor.field.data.local.tables.technological_map.CropTechnologicalProcessesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 

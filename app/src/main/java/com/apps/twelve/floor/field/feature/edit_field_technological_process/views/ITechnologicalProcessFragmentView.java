@@ -1,6 +1,6 @@
 package com.apps.twelve.floor.field.feature.edit_field_technological_process.views;
 
-import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy;
@@ -16,7 +16,7 @@ import java.util.List;
     extends MvpView {
 
   @StateStrategyType(SingleStateStrategy.class) void showTechnologicalSolutions(
-      List<TechnologicalProcessSolutionObject> technologicalSolutionsObjectList);
+      List<FieldTechnologicalProcessSolutionObject> technologicalSolutionsObjectList);
 
   @StateStrategyType(SkipStrategy.class) void openEditFieldTechnologicalSolutionFragment(
       int position);

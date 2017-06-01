@@ -38,11 +38,11 @@ public class ConditionObject implements Parcelable {
   }
 
   protected ConditionObject(Parcel in) {
-    mId = in.readLong();
-    mCrop = in.readParcelable(CropObject.class.getClassLoader());
-    mPriority = in.readInt();
-    mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
-    mConditionValue = in.readParcelable(BaseConditionValueObject.class.getClassLoader());
+    this.mId = in.readLong();
+    this.mCrop = in.readParcelable(CropObject.class.getClassLoader());
+    this.mPriority = in.readInt();
+    this.mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
+    this.mConditionValue = in.readParcelable(BaseConditionValueObject.class.getClassLoader());
   }
 
   @Override public int describeContents() {

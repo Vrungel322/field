@@ -41,9 +41,9 @@ public class ClimateZoneObject implements Parcelable {
   }
 
   protected ClimateZoneObject(Parcel in) {
-    mId = in.readLong();
-    mName = in.readString();
-    mPoints = in.createTypedArrayList(LatLng.CREATOR);
+    this.mId = in.readLong();
+    this.mName = in.readString();
+    this.mPoints = in.createTypedArrayList(LatLng.CREATOR);
   }
 
   @Override public int describeContents() {
@@ -56,7 +56,7 @@ public class ClimateZoneObject implements Parcelable {
     dest.writeTypedList(mPoints);
   }
 
-  // TODO: don't override this method and change adapter instead
+  // TODO: don't override this method - change adapter instead
   @Override public String toString() {
     return mName;
   }

@@ -1,34 +1,35 @@
-package com.apps.twelve.floor.field.data.local.objects.conditions;
+package com.apps.twelve.floor.field.data.local.objects.solutions;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 /**
- * Created by Yaroslav on 20.05.2017.
+ * Created by Yaroslav on 29.05.2017.
  */
 
-public class ConditionTypeObject implements Parcelable {
+public class ProductCategoryObject implements Parcelable {
 
-  public static final Creator<ConditionTypeObject> CREATOR = new Creator<ConditionTypeObject>() {
-    @Override public ConditionTypeObject createFromParcel(Parcel in) {
-      return new ConditionTypeObject(in);
-    }
+  public static final Creator<ProductCategoryObject> CREATOR =
+      new Creator<ProductCategoryObject>() {
+        @Override public ProductCategoryObject createFromParcel(Parcel in) {
+          return new ProductCategoryObject(in);
+        }
 
-    @Override public ConditionTypeObject[] newArray(int size) {
-      return new ConditionTypeObject[size];
-    }
-  };
+        @Override public ProductCategoryObject[] newArray(int size) {
+          return new ProductCategoryObject[size];
+        }
+      };
 
   private long mId;
   @NonNull private String mName;
 
-  public ConditionTypeObject(long mId, @NonNull String mName) {
+  public ProductCategoryObject(long mId, @NonNull String mName) {
     this.mId = mId;
     this.mName = mName;
   }
 
-  protected ConditionTypeObject(Parcel in) {
+  protected ProductCategoryObject(Parcel in) {
     this.mId = in.readLong();
     this.mName = in.readString();
   }

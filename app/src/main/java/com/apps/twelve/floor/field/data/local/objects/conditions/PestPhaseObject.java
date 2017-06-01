@@ -33,10 +33,10 @@ public class PestPhaseObject extends BaseConditionValueObject {
   }
 
   protected PestPhaseObject(Parcel in) {
-    mId = in.readLong();
-    mName = in.readString();
-    mType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
-    mPest = in.readParcelable(PestObject.class.getClassLoader());
+    this.mId = in.readLong();
+    this.mName = in.readString();
+    this.mType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
+    this.mPest = in.readParcelable(PestObject.class.getClassLoader());
   }
 
   @Override public int describeContents() {

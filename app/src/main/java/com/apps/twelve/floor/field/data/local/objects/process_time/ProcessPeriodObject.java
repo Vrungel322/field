@@ -32,9 +32,9 @@ public class ProcessPeriodObject implements Parcelable {
   }
 
   protected ProcessPeriodObject(Parcel in) {
-    mId = in.readLong();
-    mDateFrom = in.readLong();
-    mDateTo = in.readLong();
+    this.mId = in.readLong();
+    this.mDateFrom = in.readLong();
+    this.mDateTo = in.readLong();
   }
 
   @Override public int describeContents() {

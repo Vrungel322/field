@@ -1,18 +1,11 @@
 package com.apps.twelve.floor.field.utils;
 
-import com.apps.twelve.floor.field.data.local.objects.AggregateObject;
-import com.apps.twelve.floor.field.data.local.objects.BaseTechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
-import com.apps.twelve.floor.field.data.local.objects.FieldObject;
-import com.apps.twelve.floor.field.data.local.objects.FieldTechnologicalProcessObject;
-import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessObject;
-import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessSolutionObject;
-import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessStatusObject;
-import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessTimeObject;
-import com.apps.twelve.floor.field.data.local.objects.TechnologicalSolutionTypeObject;
-import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
-import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
-import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.BaseTechnologicalSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import java.util.ArrayList;
 
 /**
@@ -25,8 +18,8 @@ public final class TestUtils {
     return new CropObject(id, name, parentId, isGroup);
   }
 
-  public static FieldTechnologicalProcessObject makeFieldTechnologicalProcessObject() {
-    CropObject crop = new CropObject(1, "Crop 1", 0, false);
+  public static FieldCropTechnologicalProcessObject makeFieldTechnologicalProcessObject() {
+    /*CropObject crop = new CropObject(1, "Crop 1", 0, false);
     CropObject prevCrop = new CropObject(2, "Crop 2", 0, false);
     ClimateZoneObject climateZone = new ClimateZoneObject(1, "Climate zone", "");
     PhaseObject phase = new PhaseObject(1, "Phase 1", crop);
@@ -34,21 +27,22 @@ public final class TestUtils {
         new ProcessPeriodObject(1, System.currentTimeMillis(), System.currentTimeMillis());
     TechnologicalProcessTimeObject time =
         new TechnologicalProcessTimeObject(1, "Time 1", climateZone, phase, period);
-    TechnologicalProcessObject technologicalProcess =
-        new TechnologicalProcessObject(1, "Tech process", 1, crop, time);
-    TechnologicalProcessStatusObject technologicalProcessStatus =
-        new TechnologicalProcessStatusObject(1, "Current");
+    CropTechnologicalProcessObject technologicalProcess =
+        new CropTechnologicalProcessObject(1, "Tech process", 1, crop, time);
+    TechnologicalProcessStateObject technologicalProcessStatus =
+        new TechnologicalProcessStateObject(1, "Current");
 
     FieldObject field = new FieldObject(1, "Field 1", crop, prevCrop, "", 11111D, climateZone);
 
-    return new FieldTechnologicalProcessObject(4, field, technologicalProcess,
-        technologicalProcessStatus);
+    return new FieldCropTechnologicalProcessObject(4, field, technologicalProcess,
+        technologicalProcessStatus);*/
+    return null;
   }
 
-  public static ArrayList<FieldTechnologicalProcessObject> getFieldTechnologicalProcesses() {
-    ArrayList<FieldTechnologicalProcessObject> list = new ArrayList<>();
+  public static ArrayList<FieldCropTechnologicalProcessObject> getFieldTechnologicalProcesses() {
+    ArrayList<FieldCropTechnologicalProcessObject> list = new ArrayList<>();
 
-    CropObject crop = new CropObject(1, "Crop 1", 0, false);
+    /*CropObject crop = new CropObject(1, "Crop 1", 0, false);
     CropObject prevCrop = new CropObject(2, "Crop 2", 0, false);
     ClimateZoneObject climateZone = new ClimateZoneObject(1, "Climate zone", "");
     PhaseObject phase = new PhaseObject(1, "Phase 1", crop);
@@ -56,31 +50,31 @@ public final class TestUtils {
         new ProcessPeriodObject(1, System.currentTimeMillis(), System.currentTimeMillis());
     TechnologicalProcessTimeObject time =
         new TechnologicalProcessTimeObject(1, "Time 1", climateZone, phase, period);
-    TechnologicalProcessObject technologicalProcess =
-        new TechnologicalProcessObject(1, "Tech process", 1, crop, time);
-    TechnologicalProcessStatusObject technologicalProcessStatus =
-        new TechnologicalProcessStatusObject(1, "Current");
+    CropTechnologicalProcessObject technologicalProcess =
+        new CropTechnologicalProcessObject(1, "Tech process", 1, crop, time);
+    TechnologicalProcessStateObject technologicalProcessStatus =
+        new TechnologicalProcessStateObject(1, "Current");
 
     FieldObject field = null;
-    FieldTechnologicalProcessObject fieldTechProcess = null;
+    FieldCropTechnologicalProcessObject fieldTechProcess = null;
 
     field = new FieldObject(1, "Field 1", crop, prevCrop, "", 11111D, climateZone);
-    fieldTechProcess = new FieldTechnologicalProcessObject(1, field, technologicalProcess,
+    fieldTechProcess = new FieldCropTechnologicalProcessObject(1, field, technologicalProcess,
         technologicalProcessStatus);
     list.add(fieldTechProcess);
 
     field = new FieldObject(2, "Field 2", crop, prevCrop, "", 22222D, climateZone);
-    fieldTechProcess = new FieldTechnologicalProcessObject(2, field, technologicalProcess,
+    fieldTechProcess = new FieldCropTechnologicalProcessObject(2, field, technologicalProcess,
         technologicalProcessStatus);
     list.add(fieldTechProcess);
 
     field = new FieldObject(3, "Field 3", crop, prevCrop, "", 33333D, climateZone);
-    fieldTechProcess = new FieldTechnologicalProcessObject(3, field, technologicalProcess,
+    fieldTechProcess = new FieldCropTechnologicalProcessObject(3, field, technologicalProcess,
         technologicalProcessStatus);
     list.add(fieldTechProcess);
 
     field = new FieldObject(4, "Field 4", crop, prevCrop, "", 44444D, climateZone);
-    fieldTechProcess = new FieldTechnologicalProcessObject(4, field, technologicalProcess,
+    fieldTechProcess = new FieldCropTechnologicalProcessObject(4, field, technologicalProcess,
         technologicalProcessStatus);
     list.add(fieldTechProcess);
 
@@ -93,14 +87,14 @@ public final class TestUtils {
     list.add(fieldTechProcess);
     list.add(fieldTechProcess);
     list.add(fieldTechProcess);
-    list.add(fieldTechProcess);
+    list.add(fieldTechProcess);*/
 
     return list;
   }
 
-  public static ArrayList<TechnologicalProcessSolutionObject> getTechnologicalSolutions() {
+  public static ArrayList<FieldTechnologicalProcessSolutionObject> getTechnologicalSolutions() {
 
-    ArrayList<TechnologicalProcessSolutionObject> res = new ArrayList<>();
+    ArrayList<FieldTechnologicalProcessSolutionObject> res = new ArrayList<>();
 
     res.add(makeTechnologicalProcessSolutionObject(1, null, null, null));
     res.add(makeTechnologicalProcessSolutionObject(2, null, null, null));
@@ -111,10 +105,10 @@ public final class TestUtils {
     return res;
   }
 
-  public static TechnologicalProcessSolutionObject makeTechnologicalProcessSolutionObject(long id,
-      FieldTechnologicalProcessObject process, TechnologicalSolutionTypeObject type,
+  public static FieldTechnologicalProcessSolutionObject makeTechnologicalProcessSolutionObject(
+      long id, FieldCropTechnologicalProcessObject process, TechnologicalSolutionTypeObject type,
       BaseTechnologicalSolutionObject value) {
-    return new TechnologicalProcessSolutionObject(id, process, type, value);
+    return new FieldTechnologicalProcessSolutionObject(id, process, type, value);
   }
 
   public static ArrayList<TechnologicalSolutionTypeObject> getAllTechnologicalSolutionTypes() {

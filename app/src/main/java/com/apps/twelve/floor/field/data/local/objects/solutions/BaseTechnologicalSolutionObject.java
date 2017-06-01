@@ -1,13 +1,12 @@
-package com.apps.twelve.floor.field.data.local.objects;
+package com.apps.twelve.floor.field.data.local.objects.solutions;
 
-/*import android.os.Parcelable;*/
+import android.os.Parcelable;
 
 /**
  * Created by Yaroslav on 29.05.2017.
  */
 
-// TODO: implement Parcelable - for children-objects
-public abstract class BaseTechnologicalSolutionObject /*implements Parcelable*/ {
+public abstract class BaseTechnologicalSolutionObject implements Parcelable {
 
   abstract public long getId();
 

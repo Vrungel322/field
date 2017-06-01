@@ -32,9 +32,9 @@ public class PhenologicalCharacteristicObject extends BaseConditionValueObject {
   }
 
   protected PhenologicalCharacteristicObject(Parcel in) {
-    mId = in.readLong();
-    mName = in.readString();
-    mType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
+    this.mId = in.readLong();
+    this.mName = in.readString();
+    this.mType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
   }
 
   @Override public int describeContents() {

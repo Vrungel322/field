@@ -33,10 +33,10 @@ public class PestObject implements Parcelable {
   }
 
   protected PestObject(Parcel in) {
-    mId = in.readLong();
-    mName = in.readString();
-    mParentId = in.readLong();
-    mIsGroup = in.readByte() != 0;
+    this.mId = in.readLong();
+    this.mName = in.readString();
+    this.mParentId = in.readLong();
+    this.mIsGroup = in.readByte() != 0;
   }
 
   @Override public int describeContents() {

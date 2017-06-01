@@ -1,6 +1,6 @@
 package com.apps.twelve.floor.field.feature.field_technological_map.views;
 
-import com.apps.twelve.floor.field.data.local.objects.FieldTechnologicalProcessObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy;
@@ -16,7 +16,7 @@ import java.util.List;
     extends MvpView {
 
   @StateStrategyType(SingleStateStrategy.class) void showTechnologicalMap(
-      List<FieldTechnologicalProcessObject> technologicalProcessObjectList);
+      List<FieldCropTechnologicalProcessObject> technologicalProcessObjectList);
 
   @StateStrategyType(SkipStrategy.class) void openTechnologicalProcessFragment(int position);
 }

@@ -45,10 +45,10 @@ public class SoilTypeObject extends BaseConditionValueObject {
   }
 
   protected SoilTypeObject(Parcel in) {
-    mId = in.readLong();
-    mName = in.readString();
-    mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
-    mPoints = in.createTypedArrayList(LatLng.CREATOR);
+    this.mId = in.readLong();
+    this.mName = in.readString();
+    this.mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
+    this.mPoints = in.createTypedArrayList(LatLng.CREATOR);
   }
 
   @Override public int describeContents() {

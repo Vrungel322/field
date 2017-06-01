@@ -9,7 +9,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.apps.twelve.floor.field.R;
-import com.apps.twelve.floor.field.data.local.objects.FieldTechnologicalProcessObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +20,7 @@ import java.util.List;
 public class FieldTechnologicalProcessesAdapter extends
     RecyclerView.Adapter<FieldTechnologicalProcessesAdapter.FieldTechnologicalProcessesViewHolder> {
 
-  private ArrayList<FieldTechnologicalProcessObject> mTechProcessesList = new ArrayList<>();
+  private ArrayList<FieldCropTechnologicalProcessObject> mTechProcessesList = new ArrayList<>();
 
   public FieldTechnologicalProcessesAdapter() {
     super();
@@ -42,17 +42,18 @@ public class FieldTechnologicalProcessesAdapter extends
     return mTechProcessesList.size();
   }
 
-  public void addAllFieldTechnologicalProcesses(List<FieldTechnologicalProcessObject> processes) {
+  public void addAllFieldTechnologicalProcesses(
+      List<FieldCropTechnologicalProcessObject> processes) {
     mTechProcessesList.addAll(processes);
     notifyDataSetChanged();
   }
 
-  public void addFieldTechnologicalProcess(FieldTechnologicalProcessObject process) {
+  public void addFieldTechnologicalProcess(FieldCropTechnologicalProcessObject process) {
     mTechProcessesList.add(process);
     notifyItemInserted(mTechProcessesList.size() - 1);
   }
 
-  public FieldTechnologicalProcessObject getTechProcessAt(int position) {
+  public FieldCropTechnologicalProcessObject getTechProcessAt(int position) {
     return mTechProcessesList.get(position);
   }
 
@@ -61,7 +62,7 @@ public class FieldTechnologicalProcessesAdapter extends
   ///////////////////////////////////////////////////////////////////////////
 
   private void updateViewHolder(FieldTechnologicalProcessesViewHolder holder, int position) {
-    FieldTechnologicalProcessObject fieldTechProcess = mTechProcessesList.get(position);
+    FieldCropTechnologicalProcessObject fieldTechProcess = mTechProcessesList.get(position);
 
     // TODO: shorten method chains
     /*holder.mTextProcessName.setText(fieldTechProcess.getTechProcess().getName());

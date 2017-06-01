@@ -34,10 +34,10 @@ public class ConditionSpanValueObject extends BaseConditionValueObject {
   }
 
   protected ConditionSpanValueObject(Parcel in) {
-    mId = in.readLong();
-    mType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
-    mValueFrom = in.readLong();
-    mValueTo = in.readLong();
+    this.mId = in.readLong();
+    this.mType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
+    this.mValueFrom = in.readLong();
+    this.mValueTo = in.readLong();
   }
 
   @Override public int describeContents() {

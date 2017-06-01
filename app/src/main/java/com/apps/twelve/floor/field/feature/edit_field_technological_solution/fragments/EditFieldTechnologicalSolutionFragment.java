@@ -10,8 +10,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.base.BaseFragment;
-import com.apps.twelve.floor.field.data.local.objects.TechnologicalProcessSolutionObject;
-import com.apps.twelve.floor.field.data.local.objects.TechnologicalSolutionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.feature.edit_field_technological_solution.presenters.EditFieldTechnologicalSolutionPresenter;
 import com.apps.twelve.floor.field.feature.edit_field_technological_solution.views.ITechnologicalSolutionFragmentView;
 import com.apps.twelve.floor.field.utils.TestUtils;
@@ -54,8 +54,8 @@ public class EditFieldTechnologicalSolutionFragment extends BaseFragment
   }
 
   public static EditFieldTechnologicalSolutionFragment newInstance(
-      TechnologicalProcessSolutionObject solution) {
-    // TODO: uncomment this when TechnologicalProcessSolutionObject will be Parcelable
+      FieldTechnologicalProcessSolutionObject solution) {
+    // TODO: uncomment this when FieldTechnologicalProcessSolutionObject will be Parcelable
     //Bundle args = new Bundle();
     EditFieldTechnologicalSolutionFragment fragment = new EditFieldTechnologicalSolutionFragment();
     //args.putParcelable(Constants.EditField.FIELD_TECHNOLOGICAL_SOLUTION_BUNDLE_KEY, solution);
