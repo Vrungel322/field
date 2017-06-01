@@ -2,6 +2,7 @@ package com.apps.twelve.floor.field.data.local.entities;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
 
 /**
  * Created by Yaroslav on 12.05.2017.

@@ -1,6 +1,6 @@
 package com.apps.twelve.floor.field.data.local.mappers;
 
-import com.apps.twelve.floor.field.data.local.entities.ClimateZoneEntity;
+import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 
 /**

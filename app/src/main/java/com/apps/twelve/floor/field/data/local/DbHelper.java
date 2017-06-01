@@ -1,9 +1,9 @@
 package com.apps.twelve.floor.field.data.local;
 
 import com.apps.twelve.floor.field.App;
-import com.apps.twelve.floor.field.data.local.entities.ClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.entities.CropEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
+import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;

@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.data.local.entities;
+package com.apps.twelve.floor.field.data.local.entities.process_time;
 
 import com.apps.twelve.floor.field.data.local.tables.process_time.PhasesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;

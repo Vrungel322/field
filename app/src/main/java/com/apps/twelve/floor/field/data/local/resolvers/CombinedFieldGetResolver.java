@@ -5,10 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
-import com.apps.twelve.floor.field.data.local.entities.ClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.CropEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
+import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
 import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver;
 
 /**
