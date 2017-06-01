@@ -25,7 +25,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
     this.isGroup = isGroup;
   }
 
-  public static PestEntity newPestModel(Long id, String name, Long parentId, boolean isGroup) {
+  public static PestEntity newPestEntity(Long id, String name, Long parentId, boolean isGroup) {
     if (id == 0) id = null;
     return new PestEntity(id, name, parentId, isGroup);
   }
