@@ -24,6 +24,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
   }
 
   public static ProcessPeriodEntity newProcessPeriodEntity(Long id, Long dateFrom, Long dateTo) {
+    if (id == 0) id = null;
     return new ProcessPeriodEntity(id, dateFrom, dateTo);
   }
 

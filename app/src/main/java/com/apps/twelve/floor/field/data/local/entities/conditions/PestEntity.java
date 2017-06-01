@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.data.local.entities;
+package com.apps.twelve.floor.field.data.local.entities.conditions;
 
 import com.apps.twelve.floor.field.data.local.tables.conditions.PestsTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;

@@ -9,15 +9,15 @@ import com.apps.twelve.floor.field.data.local.entities.ClimateZoneEntitySQLiteTy
 import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.CropEntity;
 import com.apps.twelve.floor.field.data.local.entities.CropEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.CropTechnologicalProcessesEntity;
 import com.apps.twelve.floor.field.data.local.entities.CropTechnologicalProcessesEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.PestEntity;
 import com.apps.twelve.floor.field.data.local.entities.PestEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.PhaseEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PestEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
+import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessesEntity;
 import com.apps.twelve.floor.field.data.local.resolvers.CombinedFieldDeleteResolver;
 import com.apps.twelve.floor.field.data.local.resolvers.CombinedFieldGetResolver;
 import com.apps.twelve.floor.field.data.local.resolvers.CombinedFieldPutResolver;
