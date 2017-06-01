@@ -46,6 +46,10 @@ public class ClimateZoneObject implements Parcelable {
     this.mPoints = in.createTypedArrayList(LatLng.CREATOR);
   }
 
+  public static ClimateZoneObject makeEmptyClimateZone() {
+    return new ClimateZoneObject(-1, "", "");
+  }
+
   @Override public int describeContents() {
     return 0;
   }

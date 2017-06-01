@@ -76,10 +76,7 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   }
 
   public static EditFieldOnMapFragment newInstance() {
-    Bundle args = new Bundle();
-    EditFieldOnMapFragment fragment = new EditFieldOnMapFragment();
-    fragment.setArguments(args);
-    return fragment;
+    return newInstance(FieldObject.makeEmptyField());
   }
 
   public static EditFieldOnMapFragment newInstance(FieldObject fieldObject) {

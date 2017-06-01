@@ -34,7 +34,7 @@ import timber.log.Timber;
 
   public EditFieldPresenter(FieldObject fieldObject) {
     if (fieldObject == null) {
-      setField(new FieldObject());
+      setField(FieldObject.makeEmptyField());
     } else {
       setField(fieldObject);
     }

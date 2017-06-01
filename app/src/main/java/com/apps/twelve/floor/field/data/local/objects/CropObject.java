@@ -39,6 +39,10 @@ public class CropObject implements Parcelable {
     this.mIsGroup = in.readByte() != 0;
   }
 
+  public static CropObject makeEmptyCrop() {
+    return new CropObject(-1, "", 0, false);
+  }
+
   @Override public int describeContents() {
     return 0;
   }

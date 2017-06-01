@@ -63,6 +63,11 @@ public class FieldObject implements Parcelable {
     this.mClimateZone = in.readParcelable(ClimateZoneObject.class.getClassLoader());
   }
 
+  public static FieldObject makeEmptyField() {
+    return new FieldObject(-1, "", CropObject.makeEmptyCrop(), null, "", 0,
+        ClimateZoneObject.makeEmptyClimateZone());
+  }
+
   @Override public int describeContents() {
     return 0;
   }
