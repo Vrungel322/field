@@ -83,6 +83,11 @@ public class DbHelper {
         .take(1);
   }
 
+  public PutResult putCondition(ConditionEntity conditionEntity) {
+    return mStorIOSQLite.put().object(conditionEntity).prepare().executeAsBlocking();
+  }
+
+
   ///////////////////////////////////////////////////////////////////////////
   // Condition span value
   ///////////////////////////////////////////////////////////////////////////
@@ -93,6 +98,10 @@ public class DbHelper {
         .prepare()
         .asRxObservable()
         .take(1);
+  }
+
+  public PutResult putConditionSpanValue(ConditionSpanValueEntity conditionSpanValueEntity) {
+    return mStorIOSQLite.put().object(conditionSpanValueEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -107,6 +116,10 @@ public class DbHelper {
         .take(1);
   }
 
+  public PutResult putConditionType(ConditionTypeEntity conditionTypeEntity) {
+    return mStorIOSQLite.put().object(conditionTypeEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Pest
   ///////////////////////////////////////////////////////////////////////////
@@ -117,6 +130,10 @@ public class DbHelper {
         .prepare()
         .asRxObservable()
         .take(1);
+  }
+
+  public PutResult putPest(PestEntity pestEntity) {
+    return mStorIOSQLite.put().object(pestEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -131,6 +148,10 @@ public class DbHelper {
         .take(1);
   }
 
+  public PutResult putPestPhase(PestPhaseEntity pestPhaseEntity) {
+    return mStorIOSQLite.put().object(pestPhaseEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Phenological characteristic
   ///////////////////////////////////////////////////////////////////////////
@@ -141,6 +162,14 @@ public class DbHelper {
         .prepare()
         .asRxObservable()
         .take(1);
+  }
+
+  public PutResult putPhenologicalCharacteristic(
+      PhenologicalCharacteristicEntity phenologicalCharacteristicEntity) {
+    return mStorIOSQLite.put()
+        .object(phenologicalCharacteristicEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -155,6 +184,10 @@ public class DbHelper {
         .take(1);
   }
 
+  public PutResult putSoilType(SoilTypeEntity soilTypeEntity) {
+    return mStorIOSQLite.put().object(soilTypeEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Tillage direction
   ///////////////////////////////////////////////////////////////////////////
@@ -165,6 +198,10 @@ public class DbHelper {
         .prepare()
         .asRxObservable()
         .take(1);
+  }
+
+  public PutResult putTillageDirection(TillageDirectionEntity tillageDirectionEntity) {
+    return mStorIOSQLite.put().object(tillageDirectionEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -198,6 +235,10 @@ public class DbHelper {
         .take(1);
   }
 
+  public PutResult putPhase(PhaseEntity phaseEntity) {
+    return mStorIOSQLite.put().object(phaseEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Process period
   ///////////////////////////////////////////////////////////////////////////
@@ -208,6 +249,10 @@ public class DbHelper {
         .prepare()
         .asRxObservable()
         .take(1);
+  }
+
+  public PutResult putProcessPeriod(ProcessPeriodEntity processPeriodEntity) {
+    return mStorIOSQLite.put().object(processPeriodEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -225,6 +270,10 @@ public class DbHelper {
         .take(1);
   }
 
+  public PutResult putAggregate(AggregateEntity aggregateEntity) {
+    return mStorIOSQLite.put().object(aggregateEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Field Technological Process Solution
   ///////////////////////////////////////////////////////////////////////////
@@ -235,6 +284,14 @@ public class DbHelper {
         .prepare()
         .asRxObservable()
         .take(1);
+  }
+
+  public PutResult putFieldTechnologicalProcessSolution(
+      FieldTechnologicalProcessSolutionEntity fieldTechnologicalProcessSolutionEntity) {
+    return mStorIOSQLite.put()
+        .object(fieldTechnologicalProcessSolutionEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -249,6 +306,10 @@ public class DbHelper {
         .take(1);
   }
 
+  public PutResult putProductCategory(ProductCategoryEntity productCategoryEntity) {
+    return mStorIOSQLite.put().object(productCategoryEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Product
   ///////////////////////////////////////////////////////////////////////////
@@ -261,6 +322,10 @@ public class DbHelper {
         .take(1);
   }
 
+  public PutResult putProduct(ProductEntity productEntity) {
+    return mStorIOSQLite.put().object(productEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Technological Solution Type
   ///////////////////////////////////////////////////////////////////////////
@@ -271,6 +336,14 @@ public class DbHelper {
         .prepare()
         .asRxObservable()
         .take(1);
+  }
+
+  public PutResult putTechnologicalSolutionType(
+      TechnologicalSolutionTypeEntity technologicalSolutionTypeEntity) {
+    return mStorIOSQLite.put()
+        .object(technologicalSolutionTypeEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -288,6 +361,11 @@ public class DbHelper {
         .take(1);
   }
 
+  public PutResult putCropTechnologicalProcess(
+      CropTechnologicalProcessEntity cropTechnologicalProcessEntity) {
+    return mStorIOSQLite.put().object(cropTechnologicalProcessEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Field Crop Technological Process
   ///////////////////////////////////////////////////////////////////////////
@@ -298,6 +376,14 @@ public class DbHelper {
         .prepare()
         .asRxObservable()
         .take(1);
+  }
+
+  public PutResult putFieldCropTechnologicalProcess(
+      FieldCropTechnologicalProcessEntity fieldCropTechnologicalProcessEntity) {
+    return mStorIOSQLite.put()
+        .object(fieldCropTechnologicalProcessEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -312,6 +398,14 @@ public class DbHelper {
         .take(1);
   }
 
+  public PutResult putTechnologicalProcessesCondition(
+      TechnologicalProcessesConditionEntity technologicalProcessesConditionEntity) {
+    return mStorIOSQLite.put()
+        .object(technologicalProcessesConditionEntity)
+        .prepare()
+        .executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Technological Process State
   ///////////////////////////////////////////////////////////////////////////
@@ -322,6 +416,14 @@ public class DbHelper {
         .prepare()
         .asRxObservable()
         .take(1);
+  }
+
+  public PutResult putTechnologicalProcessState(
+      TechnologicalProcessStateEntity technologicalProcessStateEntity) {
+    return mStorIOSQLite.put()
+        .object(technologicalProcessStateEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -367,6 +469,10 @@ public class DbHelper {
         .take(1);
   }
 
+  public PutResult putDealer(DealerEntity dealerEntity) {
+    return mStorIOSQLite.put().object(dealerEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Field
   ///////////////////////////////////////////////////////////////////////////
@@ -403,5 +509,9 @@ public class DbHelper {
         .prepare()
         .asRxObservable()
         .take(1);
+  }
+
+  public PutResult putProductPestCrop(ProductPestCropEntity productPestCropEntity) {
+    return mStorIOSQLite.put().object(productPestCropEntity).prepare().executeAsBlocking();
   }
 }
