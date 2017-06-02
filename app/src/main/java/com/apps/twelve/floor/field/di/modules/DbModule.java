@@ -16,7 +16,7 @@ import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneE
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessesEntity;
+import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessesEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.resolvers.CombinedFieldDeleteResolver;
 import com.apps.twelve.floor.field.data.local.resolvers.CombinedFieldGetResolver;
@@ -69,8 +69,8 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
         .addTypeMapping(ClimateZoneEntity.class, new ClimateZoneEntitySQLiteTypeMapping())
         // CropEntity mapping
         .addTypeMapping(CropEntity.class, new CropEntitySQLiteTypeMapping())
-        // CropTechnologicalProcessesEntity  mapping
-        .addTypeMapping(CropTechnologicalProcessesEntity.class,
+        // CropTechnologicalProcessEntity  mapping
+        .addTypeMapping(CropTechnologicalProcessEntity.class,
             new CropTechnologicalProcessesEntitySQLiteTypeMapping())
         // PestEntity mapping
         .addTypeMapping(PestEntity.class, new PestEntitySQLiteTypeMapping())

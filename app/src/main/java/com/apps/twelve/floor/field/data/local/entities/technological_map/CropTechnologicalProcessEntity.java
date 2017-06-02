@@ -9,7 +9,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  */
 
 @StorIOSQLiteType(table = CropTechnologicalProcessesTable.TABLE)
-public class CropTechnologicalProcessesEntity {
+public class CropTechnologicalProcessEntity {
 
   @StorIOSQLiteColumn(name = CropTechnologicalProcessesTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = CropTechnologicalProcessesTable.COLUMN_NAME) String name;
@@ -21,10 +21,10 @@ public class CropTechnologicalProcessesEntity {
       processPeriodId;
   @StorIOSQLiteColumn(name = CropTechnologicalProcessesTable.COLUMN_PHASE_ID) Long phaseId;
 
-  public CropTechnologicalProcessesEntity() {
+  public CropTechnologicalProcessEntity() {
   }
 
-  private CropTechnologicalProcessesEntity(Long id, String name, int order, Long cropId,
+  private CropTechnologicalProcessEntity(Long id, String name, int order, Long cropId,
       Long climateZoneId, Long processPeriodId, Long phaseId) {
     this.id = id;
     this.name = name;
@@ -35,10 +35,10 @@ public class CropTechnologicalProcessesEntity {
     this.phaseId = phaseId;
   }
 
-  public static CropTechnologicalProcessesEntity newCropTechnologicalProcessesModel(Long id,
+  public static CropTechnologicalProcessEntity newCropTechnologicalProcessesModel(Long id,
       String name, int order, Long cropId, Long climateZoneId, Long processPeriodId, Long phaseId) {
     if (id == 0) id = null;
-    return new CropTechnologicalProcessesEntity(id, name, order, cropId, climateZoneId,
+    return new CropTechnologicalProcessEntity(id, name, order, cropId, climateZoneId,
         processPeriodId, phaseId);
   }
 
@@ -46,7 +46,7 @@ public class CropTechnologicalProcessesEntity {
     if (this == obj) return true;
     if (obj == null || getClass() != obj.getClass()) return false;
 
-    CropTechnologicalProcessesEntity that = (CropTechnologicalProcessesEntity) obj;
+    CropTechnologicalProcessEntity that = (CropTechnologicalProcessEntity) obj;
 
     if (order != that.order) return false;
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
