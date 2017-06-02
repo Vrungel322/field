@@ -23,6 +23,7 @@ import com.apps.twelve.floor.field.data.local.tables.solutions.FieldTechnologica
 import com.apps.twelve.floor.field.data.local.tables.solutions.ProductCategoriesTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.ProductsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.TechnologicalSolutionTypesTable;
+import com.apps.twelve.floor.field.data.local.tables.technological_map.CropTechnologicalProcessesTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.FieldCropTechnologicalProcessesTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.TechnologicalProcessStatesTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.TechnologicalProcessesConditionsTable;
@@ -49,51 +50,63 @@ public class DbOpenHelper extends SQLiteOpenHelper {
   }
 
   private void createDbTables(SQLiteDatabase db) {
-    // for Fields
-    db.execSQL(FieldsTable.getCreateTableQuery());
-    // for Crops
-    db.execSQL(CropsTable.getCreateTableQuery());
-    // for ClimateZones
-    db.execSQL(ClimateZonesTable.getCreateTableQuery());
-    // for Phases
-    db.execSQL(PhasesTable.getCreateTableQuery());
-    // for Pests
-    db.execSQL(PestsTable.getCreateTableQuery());
-    // for TechnologicalProcessStates
-    db.execSQL(TechnologicalProcessStatesTable.getCreateTableQuery());
-    // for TechnologicalSolutionTypes
-    db.execSQL(TechnologicalSolutionTypesTable.getCreateTableQuery());
-    // for ProductCategories
-    db.execSQL(ProductCategoriesTable.getCreateTableQuery());
-    // for Products
-    db.execSQL(ProductsTable.getCreateTableQuery());
-    // for Aggregates
-    db.execSQL(AggregatesTable.getCreateTableQuery());
-    // for ProcessPeriods
-    db.execSQL(ProcessPeriodsTable.getCreateTableQuery());
-    // for ConditionTypes
-    db.execSQL(ConditionTypesTable.getCreateTableQuery());
-    //for ConditionSpanValues
+
+    // CONDITIONS
+    // ConditionSpanValues
     db.execSQL(ConditionSpanValuesTable.getCreateTableQuery());
-    // for SoilTypes
-    db.execSQL(SoilTypesTable.getCreateTableQuery());
-    // for PestPhases
-    db.execSQL(PestPhasesTable.getCreateTableQuery());
-    // for TillageDirections
-    db.execSQL(TillageDirectionsTable.getCreateTableQuery());
-    // for PhenologicalCharacteristics
-    db.execSQL(PhenologicalCharacteristicsTable.getCreateTableQuery());
-    // for Conditions
+    // Conditions
     db.execSQL(ConditionsTable.getCreateTableQuery());
-    // for Dealers
-    db.execSQL(DealersTable.getCreateTableQuery());
-    // for FieldCropTechnologicalProcesses
-    db.execSQL(FieldCropTechnologicalProcessesTable.getCreateTableQuery());
-    // for ProductsPestsCrops
-    db.execSQL(ProductsPestsCropsTable.getCreateTableQuery());
-    // for FieldTechnologicalProcessSolutions
+    // ConditionTypes
+    db.execSQL(ConditionTypesTable.getCreateTableQuery());
+    // PestPhases
+    db.execSQL(PestPhasesTable.getCreateTableQuery());
+    // Pests
+    db.execSQL(PestsTable.getCreateTableQuery());
+    // PhenologicalCharacteristics
+    db.execSQL(PhenologicalCharacteristicsTable.getCreateTableQuery());
+    // SoilTypes
+    db.execSQL(SoilTypesTable.getCreateTableQuery());
+    // TillageDirections
+    db.execSQL(TillageDirectionsTable.getCreateTableQuery());
+
+    // PROCESS TIME
+    // ClimateZones
+    db.execSQL(ClimateZonesTable.getCreateTableQuery());
+    // Phases
+    db.execSQL(PhasesTable.getCreateTableQuery());
+    // ProcessPeriods
+    db.execSQL(ProcessPeriodsTable.getCreateTableQuery());
+
+    // SOLUTIONS
+    // Aggregates
+    db.execSQL(AggregatesTable.getCreateTableQuery());
+    // FieldTechnologicalProcessSolutions
     db.execSQL(FieldTechnologicalProcessSolutionsTable.getCreateTableQuery());
-    // for TechnologicalProcessesConditions
+    // ProductCategories
+    db.execSQL(ProductCategoriesTable.getCreateTableQuery());
+    // Products
+    db.execSQL(ProductsTable.getCreateTableQuery());
+    // TechnologicalSolutionTypes
+    db.execSQL(TechnologicalSolutionTypesTable.getCreateTableQuery());
+
+    // TECHNOLOGICAL MAP
+    // FieldCropTechnologicalProcesses
+    db.execSQL(FieldCropTechnologicalProcessesTable.getCreateTableQuery());
+    // CropTechnologicalProcesses
+    db.execSQL(CropTechnologicalProcessesTable.getCreateTableQuery());
+    // TechnologicalProcessesConditions
     db.execSQL(TechnologicalProcessesConditionsTable.getCreateTableQuery());
+    // TechnologicalProcessStates
+    db.execSQL(TechnologicalProcessStatesTable.getCreateTableQuery());
+
+    // OTHER
+    // Fields
+    db.execSQL(FieldsTable.getCreateTableQuery());
+    // Crops
+    db.execSQL(CropsTable.getCreateTableQuery());
+    // Dealers
+    db.execSQL(DealersTable.getCreateTableQuery());
+    // ProductsPestsCrops
+    db.execSQL(ProductsPestsCropsTable.getCreateTableQuery());
   }
 }
