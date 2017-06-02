@@ -11,8 +11,9 @@ public class FieldObjectToFieldEntity implements Mapper<FieldObject, FieldEntity
 
   @Override public FieldEntity transform(FieldObject obj) throws RuntimeException {
 
-    return FieldEntity.newFieldEntity(obj.getId(), obj.getName(), obj.getCrop().getId(),
+    return FieldEntity.newFieldEntity(obj.getId(), obj.getName(), obj.getArea(),
+        obj.getCrop().getId(),
         (obj.getPreviousCrop() != null ? obj.getPreviousCrop().getId() : null),
-        obj.getPointsAsCoordinatesString(), obj.getArea(), obj.getClimateZone().getId());
+        obj.getPointsAsCoordinatesString(), obj.getClimateZone().getId());
   }
 }

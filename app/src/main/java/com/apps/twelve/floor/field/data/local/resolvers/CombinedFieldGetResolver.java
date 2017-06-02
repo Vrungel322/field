@@ -31,15 +31,16 @@ public class CombinedFieldGetResolver extends DefaultGetResolver<CombinedFieldEn
         cursor.getColumnIndexOrThrow(DbCombinedFieldRelationsHelper.QUERY_COLUMN_FIELD_ID)),
         cursor.getString(
             cursor.getColumnIndexOrThrow(DbCombinedFieldRelationsHelper.QUERY_COLUMN_FIELD_NAME)),
+        cursor.getDouble(
+            cursor.getColumnIndexOrThrow(DbCombinedFieldRelationsHelper.QUERY_COLUMN_FIELD_AREA)),
         cursor.getLong(
             cursor.getColumnIndexOrThrow(DbCombinedFieldRelationsHelper.QUERY_COLUMN_CROP_ID)),
         cursor.getLong(
             cursor.getColumnIndexOrThrow(DbCombinedFieldRelationsHelper.QUERY_COLUMN_PREV_CROP_ID)),
         cursor.getString(cursor.getColumnIndexOrThrow(
-            DbCombinedFieldRelationsHelper.QUERY_COLUMN_FIELD_COORDINATES)), cursor.getDouble(
-            cursor.getColumnIndexOrThrow(DbCombinedFieldRelationsHelper.QUERY_COLUMN_FIELD_AREA)),
-        cursor.getLong(cursor.getColumnIndexOrThrow(
-            DbCombinedFieldRelationsHelper.QUERY_COLUMN_CLIMATE_ZONE_ID)));
+            DbCombinedFieldRelationsHelper.QUERY_COLUMN_FIELD_COORDINATES)), cursor.getLong(
+            cursor.getColumnIndexOrThrow(
+                DbCombinedFieldRelationsHelper.QUERY_COLUMN_CLIMATE_ZONE_ID)));
   }
 
   @NonNull private CropEntity cropEntityFromCursor(@NonNull Cursor cursor) {
