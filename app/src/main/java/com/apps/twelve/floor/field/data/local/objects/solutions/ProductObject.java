@@ -23,6 +23,7 @@ public class ProductObject extends BaseTechnologicalSolutionObject {
   @NonNull private String mName;
   @NonNull private TechnologicalSolutionTypeObject mType;
   private long mPrice;
+  // TODO: doze needed ???
   @NonNull private ProductCategoryObject mCategory;
 
   public ProductObject(long mId, @NonNull String mName,
