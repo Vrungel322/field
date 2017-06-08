@@ -87,6 +87,9 @@ public class DbHelper {
     return mStorIOSQLite.put().object(conditionEntity).prepare().executeAsBlocking();
   }
 
+  public DeleteResult deleteCondition(ConditionEntity conditionEntity) {
+    return mStorIOSQLite.delete().object(conditionEntity).prepare().executeAsBlocking();
+  }
 
   ///////////////////////////////////////////////////////////////////////////
   // Condition span value
@@ -102,6 +105,10 @@ public class DbHelper {
 
   public PutResult putConditionSpanValue(ConditionSpanValueEntity conditionSpanValueEntity) {
     return mStorIOSQLite.put().object(conditionSpanValueEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteConditionSpanValue(ConditionSpanValueEntity conditionSpanValueEntity) {
+    return mStorIOSQLite.delete().object(conditionSpanValueEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -120,6 +127,10 @@ public class DbHelper {
     return mStorIOSQLite.put().object(conditionTypeEntity).prepare().executeAsBlocking();
   }
 
+  public DeleteResult deleteConditionType(ConditionTypeEntity conditionTypeEntity) {
+    return mStorIOSQLite.delete().object(conditionTypeEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Pest
   ///////////////////////////////////////////////////////////////////////////
@@ -136,7 +147,11 @@ public class DbHelper {
     return mStorIOSQLite.put().object(pestEntity).prepare().executeAsBlocking();
   }
 
+  public DeleteResult deletePest(PestEntity pestEntity) {
+    return mStorIOSQLite.delete().object(pestEntity).prepare().executeAsBlocking();
+  }
   ///////////////////////////////////////////////////////////////////////////
+
   // Pest phase
   ///////////////////////////////////////////////////////////////////////////
   public Observable<List<PestPhaseEntity>> getAllPestPhases() {
@@ -150,6 +165,10 @@ public class DbHelper {
 
   public PutResult putPestPhase(PestPhaseEntity pestPhaseEntity) {
     return mStorIOSQLite.put().object(pestPhaseEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deletePestPhase(PestPhaseEntity pestPhaseEntity) {
+    return mStorIOSQLite.delete().object(pestPhaseEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -172,6 +191,14 @@ public class DbHelper {
         .executeAsBlocking();
   }
 
+  public DeleteResult deletePhenologicalCharacteristic(
+      PhenologicalCharacteristicEntity phenologicalCharacteristicEntity) {
+    return mStorIOSQLite.delete()
+        .object(phenologicalCharacteristicEntity)
+        .prepare()
+        .executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Soil type
   ///////////////////////////////////////////////////////////////////////////
@@ -188,6 +215,10 @@ public class DbHelper {
     return mStorIOSQLite.put().object(soilTypeEntity).prepare().executeAsBlocking();
   }
 
+  public DeleteResult deleteSoilType(SoilTypeEntity soilTypeEntity) {
+    return mStorIOSQLite.delete().object(soilTypeEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Tillage direction
   ///////////////////////////////////////////////////////////////////////////
@@ -202,6 +233,10 @@ public class DbHelper {
 
   public PutResult putTillageDirection(TillageDirectionEntity tillageDirectionEntity) {
     return mStorIOSQLite.put().object(tillageDirectionEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteTillageDirection(TillageDirectionEntity tillageDirectionEntity) {
+    return mStorIOSQLite.delete().object(tillageDirectionEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -223,6 +258,10 @@ public class DbHelper {
     return mStorIOSQLite.put().object(climateZoneEntity).prepare().executeAsBlocking();
   }
 
+  public DeleteResult deleteClimateZone(ClimateZoneEntity climateZoneEntity) {
+    return mStorIOSQLite.delete().object(climateZoneEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Phase
   ///////////////////////////////////////////////////////////////////////////
@@ -239,6 +278,10 @@ public class DbHelper {
     return mStorIOSQLite.put().object(phaseEntity).prepare().executeAsBlocking();
   }
 
+  public DeleteResult deletePhase(PhaseEntity phaseEntity) {
+    return mStorIOSQLite.delete().object(phaseEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Process period
   ///////////////////////////////////////////////////////////////////////////
@@ -253,6 +296,10 @@ public class DbHelper {
 
   public PutResult putProcessPeriod(ProcessPeriodEntity processPeriodEntity) {
     return mStorIOSQLite.put().object(processPeriodEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteProcessPeriod(ProcessPeriodEntity processPeriodEntity) {
+    return mStorIOSQLite.delete().object(processPeriodEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -272,6 +319,10 @@ public class DbHelper {
 
   public PutResult putAggregate(AggregateEntity aggregateEntity) {
     return mStorIOSQLite.put().object(aggregateEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteAggregate(AggregateEntity aggregateEntity) {
+    return mStorIOSQLite.delete().object(aggregateEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -294,6 +345,14 @@ public class DbHelper {
         .executeAsBlocking();
   }
 
+  public DeleteResult deleteFieldTechnologicalProcessSolution(
+      FieldTechnologicalProcessSolutionEntity fieldTechnologicalProcessSolutionEntity) {
+    return mStorIOSQLite.delete()
+        .object(fieldTechnologicalProcessSolutionEntity)
+        .prepare()
+        .executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Product Category
   ///////////////////////////////////////////////////////////////////////////
@@ -308,6 +367,10 @@ public class DbHelper {
 
   public PutResult putProductCategory(ProductCategoryEntity productCategoryEntity) {
     return mStorIOSQLite.put().object(productCategoryEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteProductCategory(ProductCategoryEntity productCategoryEntity) {
+    return mStorIOSQLite.delete().object(productCategoryEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -326,6 +389,10 @@ public class DbHelper {
     return mStorIOSQLite.put().object(productEntity).prepare().executeAsBlocking();
   }
 
+  public DeleteResult deleteProduct(ProductEntity productEntity) {
+    return mStorIOSQLite.delete().object(productEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Technological Solution Type
   ///////////////////////////////////////////////////////////////////////////
@@ -341,6 +408,14 @@ public class DbHelper {
   public PutResult putTechnologicalSolutionType(
       TechnologicalSolutionTypeEntity technologicalSolutionTypeEntity) {
     return mStorIOSQLite.put()
+        .object(technologicalSolutionTypeEntity)
+        .prepare()
+        .executeAsBlocking();
+  }
+
+  public DeleteResult deleteTechnologicalSolutionType(
+      TechnologicalSolutionTypeEntity technologicalSolutionTypeEntity) {
+    return mStorIOSQLite.delete()
         .object(technologicalSolutionTypeEntity)
         .prepare()
         .executeAsBlocking();
@@ -366,6 +441,14 @@ public class DbHelper {
     return mStorIOSQLite.put().object(cropTechnologicalProcessEntity).prepare().executeAsBlocking();
   }
 
+  public DeleteResult deleteCropTechnologicalProcess(
+      CropTechnologicalProcessEntity cropTechnologicalProcessEntity) {
+    return mStorIOSQLite.delete()
+        .object(cropTechnologicalProcessEntity)
+        .prepare()
+        .executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Field Crop Technological Process
   ///////////////////////////////////////////////////////////////////////////
@@ -381,6 +464,14 @@ public class DbHelper {
   public PutResult putFieldCropTechnologicalProcess(
       FieldCropTechnologicalProcessEntity fieldCropTechnologicalProcessEntity) {
     return mStorIOSQLite.put()
+        .object(fieldCropTechnologicalProcessEntity)
+        .prepare()
+        .executeAsBlocking();
+  }
+
+  public DeleteResult deleteFieldCropTechnologicalProcess(
+      FieldCropTechnologicalProcessEntity fieldCropTechnologicalProcessEntity) {
+    return mStorIOSQLite.delete()
         .object(fieldCropTechnologicalProcessEntity)
         .prepare()
         .executeAsBlocking();
@@ -406,6 +497,14 @@ public class DbHelper {
         .executeAsBlocking();
   }
 
+  public DeleteResult deleteTechnologicalProcessesCondition(
+      TechnologicalProcessesConditionEntity technologicalProcessesConditionEntity) {
+    return mStorIOSQLite.delete()
+        .object(technologicalProcessesConditionEntity)
+        .prepare()
+        .executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Technological Process State
   ///////////////////////////////////////////////////////////////////////////
@@ -421,6 +520,14 @@ public class DbHelper {
   public PutResult putTechnologicalProcessState(
       TechnologicalProcessStateEntity technologicalProcessStateEntity) {
     return mStorIOSQLite.put()
+        .object(technologicalProcessStateEntity)
+        .prepare()
+        .executeAsBlocking();
+  }
+
+  public DeleteResult deleteTechnologicalProcessState(
+      TechnologicalProcessStateEntity technologicalProcessStateEntity) {
+    return mStorIOSQLite.delete()
         .object(technologicalProcessStateEntity)
         .prepare()
         .executeAsBlocking();
@@ -473,6 +580,10 @@ public class DbHelper {
     return mStorIOSQLite.put().object(dealerEntity).prepare().executeAsBlocking();
   }
 
+  public DeleteResult deleteDealer(DealerEntity dealerEntity) {
+    return mStorIOSQLite.delete().object(dealerEntity).prepare().executeAsBlocking();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Field
   ///////////////////////////////////////////////////////////////////////////
@@ -513,5 +624,9 @@ public class DbHelper {
 
   public PutResult putProductPestCrop(ProductPestCropEntity productPestCropEntity) {
     return mStorIOSQLite.put().object(productPestCropEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteProductPestCrop(ProductPestCropEntity productPestCropEntity) {
+    return mStorIOSQLite.delete().object(productPestCropEntity).prepare().executeAsBlocking();
   }
 }
