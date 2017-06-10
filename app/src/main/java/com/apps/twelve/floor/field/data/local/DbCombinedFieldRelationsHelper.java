@@ -6,6 +6,7 @@ import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;
+import com.apps.twelve.floor.field.data.local.tables.process_time.PhasesTable;
 import com.pushtorefresh.storio.sqlite.StorIOSQLite;
 import com.pushtorefresh.storio.sqlite.queries.RawQuery;
 import java.util.List;
@@ -33,6 +34,8 @@ public class DbCombinedFieldRelationsHelper {
   public static final String QUERY_COLUMN_CLIMATE_ZONE_ID = "climate_zone_id";
   public static final String QUERY_COLUMN_CLIMATE_ZONE_NAME = "climate_zone_name";
   public static final String QUERY_COLUMN_CLIMATE_ZONE_COORDINATES = "climate_zone_coordinates";
+  public static final String QUERY_COLUMN_PHASE_ID = "phase_id";
+  public static final String QUERY_COLUMN_PHASE_NAME = "phase_name";
 
   public static final String QUERY_FIELD_CROP_CLIMATE_ZONE_ALL = "SELECT "
       + FieldsTable.COLUMN_ID_WITH_TABLE_PREFIX
@@ -90,6 +93,14 @@ public class DbCombinedFieldRelationsHelper {
       + ClimateZonesTable.COLUMN_COORDINATES_WITH_TABLE_PREFIX
       + " AS \""
       + QUERY_COLUMN_CLIMATE_ZONE_COORDINATES
+      + "\", "
+      + PhasesTable.COLUMN_ID_WITH_TABLE_PREFIX
+      + " AS \""
+      + QUERY_COLUMN_PHASE_ID
+      + "\", "
+      + PhasesTable.COLUMN_NAME_WITH_TABLE_PREFIX
+      + " AS \""
+      + QUERY_COLUMN_PHASE_NAME
       + "\""
       + " FROM "
       + FieldsTable.TABLE
@@ -116,7 +127,17 @@ public class DbCombinedFieldRelationsHelper {
       + " ON "
       + FieldsTable.COLUMN_CLIMATE_ZONE_ID_WITH_TABLE_PREFIX
       + " = "
-      + ClimateZonesTable.COLUMN_ID_WITH_TABLE_PREFIX;
+      + ClimateZonesTable.COLUMN_ID_WITH_TABLE_PREFIX
+      + " JOIN "
+      + PhasesTable.TABLE
+      + " ON "
+      + FieldsTable.COLUMN_PHASE_ID_WITH_TABLE_PREFIX
+      + " = "
+      + PhasesTable.COLUMN_ID_WITH_TABLE_PREFIX
+      + " WHERE "
+      + PhasesTable.COLUMN_CROP_ID_WITH_TABLE_PREFIX
+      + " = "
+      + FieldsTable.COLUMN_CROP_ID_WITH_TABLE_PREFIX;
 
   @Inject StorIOSQLite mStorIOSQLite;
 

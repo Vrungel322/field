@@ -19,6 +19,7 @@ import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.utils.Constants;
 import com.apps.twelve.floor.field.utils.ViewUtil;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -50,7 +51,7 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   }
 
   public static EditFieldBottomSheetFragment newInstance() {
-    return newInstance(FieldObject.makeEmptyField());
+    return newInstance(FieldObject.getEmpty());
   }
 
   public static EditFieldBottomSheetFragment newInstance(FieldObject fieldObject) {
@@ -89,6 +90,10 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
     // TODO
   }
 
+  @Override public void addPhasesToSpinnerAdapter(List<PhaseObject> phases) {
+    // TODO
+  }
+
   @Override public void setSelectedCrop(CropObject cropObject) {
     // TODO
   }
@@ -98,6 +103,10 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   }
 
   @Override public void setSelectedClimateZone(ClimateZoneObject climateZoneObject) {
+    // TODO
+  }
+
+  @Override public void setSelectedPhase(PhaseObject phase) {
     // TODO
   }
 

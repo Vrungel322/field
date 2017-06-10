@@ -15,6 +15,11 @@ public class PhasesTable {
   @NonNull public static final String COLUMN_NAME = "name";
   @NonNull public static final String COLUMN_CROP_ID = "crop_id";
 
+  @NonNull public static final String COLUMN_ID_WITH_TABLE_PREFIX = TABLE + "." + COLUMN_ID;
+  @NonNull public static final String COLUMN_NAME_WITH_TABLE_PREFIX = TABLE + "." + COLUMN_NAME;
+  @NonNull public static final String COLUMN_CROP_ID_WITH_TABLE_PREFIX =
+      TABLE + "." + COLUMN_CROP_ID;
+
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
   public PhasesTable() {

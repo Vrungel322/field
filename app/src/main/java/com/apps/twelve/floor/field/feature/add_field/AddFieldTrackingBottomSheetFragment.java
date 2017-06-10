@@ -18,6 +18,7 @@ import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.feature.edit_field.EditFieldPresenter;
 import com.apps.twelve.floor.field.feature.edit_field.IEditFieldFragmentView;
 import com.apps.twelve.floor.field.utils.Constants;
@@ -86,6 +87,10 @@ public class AddFieldTrackingBottomSheetFragment extends BaseFragment
     // TODO
   }
 
+  @Override public void addPhasesToSpinnerAdapter(List<PhaseObject> phases) {
+    // TODO
+  }
+
   @Override public void setSelectedCrop(CropObject cropObject) {
     // TODO
   }
@@ -95,6 +100,10 @@ public class AddFieldTrackingBottomSheetFragment extends BaseFragment
   }
 
   @Override public void setSelectedClimateZone(ClimateZoneObject climateZoneObject) {
+    // TODO
+  }
+
+  @Override public void setSelectedPhase(PhaseObject phase) {
     // TODO
   }
 

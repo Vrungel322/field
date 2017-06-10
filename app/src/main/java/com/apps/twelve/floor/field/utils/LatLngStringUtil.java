@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.utils;
 
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
@@ -15,7 +16,11 @@ public final class LatLngStringUtil {
   private static final String SEPARATOR_MIDDLE = "\u16DF";
   private static final String SEPARATOR_INNER = "\u16DC";
 
-  public static List<LatLng> LatLngsFromString(String coordinates) {
+  @NonNull public static List<LatLng> LatLngsFromString(String coordinates) {
+    if (TextUtils.isEmpty(coordinates)) {
+      return new ArrayList<>();
+    }
+
     String[] latLngs;
     String[] coords = coordinates.split(SEPARATOR_OUTER);
 
@@ -30,7 +35,7 @@ public final class LatLngStringUtil {
     return points;
   }
 
-  public static String stringFromLatLngs(List<LatLng> points) {
+  @NonNull public static String stringFromLatLngs(List<LatLng> points) {
     if (points == null) return "";
     StringBuilder sb = new StringBuilder();
 

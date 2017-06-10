@@ -9,6 +9,7 @@ import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.CropEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
+import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
 import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver;
 
 /**
@@ -19,7 +20,8 @@ public class CombinedFieldGetResolver extends DefaultGetResolver<CombinedFieldEn
 
   @NonNull @Override public CombinedFieldEntity mapFromCursor(@NonNull Cursor cursor) {
     return new CombinedFieldEntity(fieldEntityFromCursor(cursor), cropEntityFromCursor(cursor),
-        previousCropEntityFromCursor(cursor), climateZoneEntityFromCursor(cursor));
+        previousCropEntityFromCursor(cursor), climateZoneEntityFromCursor(cursor),
+        phaseEntityFromCursor(cursor));
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -72,5 +74,14 @@ public class CombinedFieldGetResolver extends DefaultGetResolver<CombinedFieldEn
             DbCombinedFieldRelationsHelper.QUERY_COLUMN_CLIMATE_ZONE_NAME)), cursor.getString(
             cursor.getColumnIndexOrThrow(
                 DbCombinedFieldRelationsHelper.QUERY_COLUMN_CLIMATE_ZONE_COORDINATES)));
+  }
+
+  @NonNull private PhaseEntity phaseEntityFromCursor(@NonNull Cursor cursor) {
+    return PhaseEntity.newPhaseEntity(cursor.getLong(
+        cursor.getColumnIndexOrThrow(DbCombinedFieldRelationsHelper.QUERY_COLUMN_PHASE_ID)),
+        cursor.getString(
+            cursor.getColumnIndexOrThrow(DbCombinedFieldRelationsHelper.QUERY_COLUMN_PHASE_NAME)),
+        cursor.getLong(
+            cursor.getColumnIndexOrThrow(DbCombinedFieldRelationsHelper.QUERY_COLUMN_CROP_ID)));
   }
 }

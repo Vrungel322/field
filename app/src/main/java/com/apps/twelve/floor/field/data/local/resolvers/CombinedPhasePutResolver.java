@@ -1,10 +1,8 @@
 package com.apps.twelve.floor.field.data.local.resolvers;
 
 import android.support.annotation.NonNull;
-import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
+import com.apps.twelve.floor.field.data.local.entities.process_time.CombinedPhaseEntity;
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
-import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
-import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.PhasesTable;
 import com.pushtorefresh.storio.sqlite.StorIOSQLite;
 import com.pushtorefresh.storio.sqlite.operations.put.PutResolver;
@@ -16,30 +14,26 @@ import java.util.Set;
 import static java.util.Arrays.asList;
 
 /**
- * Created by Yaroslav on 13.05.2017.
+ * Created by Yaroslav on 09.06.2017.
  */
 
-public class CombinedFieldPutResolver extends PutResolver<CombinedFieldEntity> {
+public class CombinedPhasePutResolver extends PutResolver<CombinedPhaseEntity> {
 
-  private static final int NUMBER_OF_TABLES = 4;
+  private static final int NUMBER_OF_TABLES = 2;
 
   @NonNull @Override public PutResult performPut(@NonNull StorIOSQLite storIOSQLite,
-      @NonNull CombinedFieldEntity combinedFieldEntity) {
+      @NonNull CombinedPhaseEntity combinedPhaseEntity) {
 
     // We can even reuse StorIO methods
-    // TODO: maybe we don't need to put other entities - only field
     final PutResults<Object> putResults = storIOSQLite.put()
-        .objects(asList(combinedFieldEntity.getFieldEntity(), combinedFieldEntity.getCropEntity(),
-            combinedFieldEntity.getClimateZoneEntity(), combinedFieldEntity.getPhaseEntity()))
+        .objects(asList(combinedPhaseEntity.getPhaseEntity(), combinedPhaseEntity.getCropEntity()))
         .prepare()
         .executeAsBlocking();
 
     final Set<String> affectedTables = new HashSet<String>(NUMBER_OF_TABLES);
 
-    affectedTables.add(FieldsTable.TABLE);
-    affectedTables.add(CropsTable.TABLE);
-    affectedTables.add(ClimateZonesTable.TABLE);
     affectedTables.add(PhasesTable.TABLE);
+    affectedTables.add(CropsTable.TABLE);
 
     return PutResult.newUpdateResult(putResults.numberOfUpdates(), affectedTables);
   }

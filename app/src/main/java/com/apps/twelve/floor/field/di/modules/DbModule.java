@@ -3,6 +3,7 @@ package com.apps.twelve.floor.field.di.modules;
 import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
+import com.apps.twelve.floor.field.data.local.DbCombinedPhaseRelationsHelper;
 import com.apps.twelve.floor.field.data.local.DbHelper;
 import com.apps.twelve.floor.field.data.local.DbOpenHelper;
 import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
@@ -14,6 +15,7 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.PestEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PestEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.process_time.CombinedPhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntity;
@@ -21,6 +23,9 @@ import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTec
 import com.apps.twelve.floor.field.data.local.resolvers.CombinedFieldDeleteResolver;
 import com.apps.twelve.floor.field.data.local.resolvers.CombinedFieldGetResolver;
 import com.apps.twelve.floor.field.data.local.resolvers.CombinedFieldPutResolver;
+import com.apps.twelve.floor.field.data.local.resolvers.CombinedPhaseDeleteResolver;
+import com.apps.twelve.floor.field.data.local.resolvers.CombinedPhaseGetResolver;
+import com.apps.twelve.floor.field.data.local.resolvers.CombinedPhasePutResolver;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
 import com.pushtorefresh.storio.sqlite.SQLiteTypeMapping;
 import com.pushtorefresh.storio.sqlite.StorIOSQLite;
@@ -57,8 +62,12 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
     return new DbHelper();
   }
 
-  @Provides @AppScope DbCombinedFieldRelationsHelper provideDbRelationsHelper() {
+  @Provides @AppScope DbCombinedFieldRelationsHelper provideCombinedFieldRelationsHelper() {
     return new DbCombinedFieldRelationsHelper();
+  }
+
+  @Provides @AppScope DbCombinedPhaseRelationsHelper provideCombinedPhaseRelationsHelper() {
+    return new DbCombinedPhaseRelationsHelper();
   }
 
   @Provides @AppScope StorIOSQLite provideStorIOSQLite(SQLiteOpenHelper sqliteOpenHelper) {
@@ -121,7 +130,13 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
             SQLiteTypeMapping.<CombinedFieldEntity>builder().putResolver(
                 new CombinedFieldPutResolver())
                 .getResolver(new CombinedFieldGetResolver())
-                .deleteResolver(new CombinedFieldDeleteResolver())
+                .deleteResolver(new CombinedFieldDeleteResolver()).build())
+        // CombinedPhaseEntity mapping
+        .addTypeMapping(CombinedPhaseEntity.class,
+            SQLiteTypeMapping.<CombinedPhaseEntity>builder().putResolver(
+                new CombinedPhasePutResolver())
+                .getResolver(new CombinedPhaseGetResolver())
+                .deleteResolver(new CombinedPhaseDeleteResolver())
                 .build())
         // TODO: need mappers for all entities
         .build();

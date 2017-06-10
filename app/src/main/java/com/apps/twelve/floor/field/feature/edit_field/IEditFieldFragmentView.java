@@ -2,6 +2,7 @@ package com.apps.twelve.floor.field.feature.edit_field;
 
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
@@ -26,9 +27,13 @@ import java.util.List;
 
   void addClimateZonesToSpinnerAdapter(List<ClimateZoneObject> climateZones);
 
+  void addPhasesToSpinnerAdapter(List<PhaseObject> phases);
+
   void setSelectedCrop(CropObject cropObject);
 
   void setSelectedPreviousCrop(CropObject cropObject);
 
   void setSelectedClimateZone(ClimateZoneObject climateZoneObject);
+
+  void setSelectedPhase(PhaseObject phase);
 }

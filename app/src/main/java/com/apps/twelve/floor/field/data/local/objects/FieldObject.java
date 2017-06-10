@@ -5,16 +5,25 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.utils.LatLngStringUtil;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
+import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 12.05.2017.
  */
 
-public class FieldObject implements Parcelable {
+public class FieldObject implements Parcelable, Cloneable {
+
+  private static final FieldObject EMPTY;
+
+  static {
+    EMPTY = new FieldObject(0, "", CropObject.getEmpty(), null, "", 0, ClimateZoneObject.getEmpty(),
+        PhaseObject.getEmpty());
+  }
 
   public static final Creator<FieldObject> CREATOR = new Creator<FieldObject>() {
     @Override public FieldObject createFromParcel(Parcel in) {
@@ -33,17 +42,19 @@ public class FieldObject implements Parcelable {
   @NonNull private List<LatLng> mPoints = new ArrayList<>();
   private double mArea;
   @NonNull private ClimateZoneObject mClimateZone;
+  @NonNull private PhaseObject mPhase;
 
-  public FieldObject(long id, String name, CropObject crop, CropObject previousCrop,
-      String coordinates, double area, ClimateZoneObject climateZone) {
-    this(id, name, crop, previousCrop, new ArrayList<LatLng>(), area, climateZone);
+  public FieldObject(long id, @NonNull String name, @NonNull CropObject crop,
+      @Nullable CropObject previousCrop, @NonNull String coordinates, double area,
+      @NonNull ClimateZoneObject climateZone, @NonNull PhaseObject phase) {
+    this(id, name, crop, previousCrop, new ArrayList<LatLng>(), area, climateZone, phase);
     mPoints.clear();
     mPoints.addAll(LatLngStringUtil.LatLngsFromString(coordinates));
   }
 
   public FieldObject(long id, @NonNull String name, @NonNull CropObject crop,
       @Nullable CropObject previousCrop, @NonNull List<LatLng> points, double area,
-      @NonNull ClimateZoneObject climateZone) {
+      @NonNull ClimateZoneObject climateZone, @NonNull PhaseObject phase) {
     this.mId = id;
     this.mName = name;
     this.mCrop = crop;
@@ -51,6 +62,7 @@ public class FieldObject implements Parcelable {
     this.mPoints = points;
     this.mArea = area;
     this.mClimateZone = climateZone;
+    this.mPhase = phase;
   }
 
   protected FieldObject(Parcel in) {
@@ -61,11 +73,24 @@ public class FieldObject implements Parcelable {
     this.mPoints = in.createTypedArrayList(LatLng.CREATOR);
     this.mArea = in.readDouble();
     this.mClimateZone = in.readParcelable(ClimateZoneObject.class.getClassLoader());
+    this.mPhase = in.readParcelable(PhaseObject.class.getClassLoader());
   }
 
-  public static FieldObject makeEmptyField() {
-    return new FieldObject(-1, "", CropObject.makeEmptyCrop(), null, "", 0,
-        ClimateZoneObject.makeEmptyClimateZone());
+  public static FieldObject getEmpty() {
+    FieldObject instance = null;
+    try {
+      instance = (FieldObject) EMPTY.clone();
+    } catch (CloneNotSupportedException e) {
+      Timber.e(e);
+    }
+
+    if (instance == null) {
+      instance =
+          new FieldObject(0, "", CropObject.getEmpty(), null, "", 0, ClimateZoneObject.getEmpty(),
+              PhaseObject.getEmpty());
+    }
+
+    return instance;
   }
 
   @Override public int describeContents() {
@@ -80,6 +105,7 @@ public class FieldObject implements Parcelable {
     dest.writeTypedList(mPoints);
     dest.writeDouble(mArea);
     dest.writeParcelable(mClimateZone, flags);
+    dest.writeParcelable(mPhase, flags);
   }
 
   public long getId() {
@@ -90,19 +116,19 @@ public class FieldObject implements Parcelable {
     this.mId = id;
   }
 
-  public String getName() {
+  @NonNull public String getName() {
     return mName;
   }
 
-  public void setName(String name) {
+  public void setName(@NonNull String name) {
     this.mName = name;
   }
 
-  public CropObject getCrop() {
+  @NonNull public CropObject getCrop() {
     return mCrop;
   }
 
-  public void setCrop(CropObject crop) {
+  public void setCrop(@NonNull CropObject crop) {
     this.mCrop = crop;
   }
 
@@ -110,15 +136,15 @@ public class FieldObject implements Parcelable {
     return mPreviousCrop;
   }
 
-  public void setPreviousCrop(CropObject previousCrop) {
+  public void setPreviousCrop(@Nullable CropObject previousCrop) {
     this.mPreviousCrop = previousCrop;
   }
 
-  public List<LatLng> getPoints() {
+  @NonNull public List<LatLng> getPoints() {
     return mPoints;
   }
 
-  public void setPoints(List<LatLng> points) {
+  public void setPoints(@NonNull List<LatLng> points) {
     this.mPoints = points;
   }
 
@@ -130,15 +156,23 @@ public class FieldObject implements Parcelable {
     this.mArea = area;
   }
 
-  public ClimateZoneObject getClimateZone() {
+  @NonNull public ClimateZoneObject getClimateZone() {
     return mClimateZone;
   }
 
-  public void setClimateZone(ClimateZoneObject climateZone) {
+  public void setClimateZone(@NonNull ClimateZoneObject climateZone) {
     this.mClimateZone = climateZone;
   }
 
-  public String getPointsAsCoordinatesString() {
+  @NonNull public PhaseObject getPhase() {
+    return mPhase;
+  }
+
+  public void setPhase(@NonNull PhaseObject phase) {
+    this.mPhase = phase;
+  }
+
+  @NonNull public String getPointsAsCoordinatesString() {
     return LatLngStringUtil.stringFromLatLngs(mPoints);
   }
 

@@ -24,6 +24,7 @@ public class CombinedFieldEntityToFieldObject implements Mapper<CombinedFieldEnt
         cropEntityToCropObject.transform(cropEntity),
         cropEntityToCropObject.transform(prevCropEntity), fieldEntity.getCoordinates(),
         fieldEntity.getArea(),
-        new ClimateZoneEntityToClimateZoneObject().transform(entity.getClimateZoneEntity()));
+        new ClimateZoneEntityToClimateZoneObject().transform(entity.getClimateZoneEntity()),
+        new PhaseEntityToPhaseObject().transform(entity.getPhaseEntity()));
   }
 }

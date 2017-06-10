@@ -19,6 +19,7 @@ import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.utils.Constants;
 import com.apps.twelve.floor.field.utils.ViewUtil;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -55,13 +56,14 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   private CropsArrayAdapter mPreviousCropsAdapter;
   private ClimateZonesArrayAdapter mClimateZonesAdapter;
   private SoilTypesArrayAdapter mSoilTypesAdapter;
+  private PhasesArrayAdapter mPhasesAdapter;
 
   public EditFieldFullScreenFragment() {
     super(R.layout.fragment_edit_field_full_screen);
   }
 
   public static EditFieldFullScreenFragment newInstance() {
-    return newInstance(FieldObject.makeEmptyField());
+    return newInstance(FieldObject.getEmpty());
   }
 
   public static EditFieldFullScreenFragment newInstance(FieldObject fieldObject) {
@@ -106,6 +108,10 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
     mClimateZonesAdapter.addAll(climateZones);
   }
 
+  @Override public void addPhasesToSpinnerAdapter(List<PhaseObject> phases) {
+    mPhasesAdapter.addAll(phases);
+  }
+
   @Override public void setSelectedCrop(CropObject cropObject) {
     int position = mCropsAdapter.getPosition(cropObject);
     mSpinnerCrop.setSelection(position < 0 ? 0 : position);
@@ -119,6 +125,11 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   @Override public void setSelectedClimateZone(ClimateZoneObject climateZoneObject) {
     int position = mClimateZonesAdapter.getPosition(climateZoneObject);
     mSpinnerClimateZone.setSelection(position < 0 ? 0 : position);
+  }
+
+  @Override public void setSelectedPhase(PhaseObject phase) {
+    int position = mPhasesAdapter.getPosition(phase);
+    mSpinnerPhase.setSelection(position < 0 ? 0 : position);
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -163,6 +174,7 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
     setupPreviousCropsSpinnerAdapter();
     setupClimateZonesSpinnerAdapter();
     setupSoilTypesSpinnerAdapter();
+    setupPhasesSpinnerAdapter();
   }
 
   private void setupCropsSpinnerAdapter() {
@@ -236,6 +248,24 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
 
       @Override public void onNothingSelected(AdapterView<?> parent) {
         mEditFieldPresenter.updateFieldSoilType(null);
+      }
+    });
+  }
+
+  private void setupPhasesSpinnerAdapter() {
+    mPhasesAdapter = new PhasesArrayAdapter(getContext(), android.R.layout.simple_spinner_item,
+        new ArrayList<>());
+    mPhasesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+    mSpinnerPhase.setAdapter(mPhasesAdapter);
+    mSpinnerPhase.setOnItemSelectedListener(new OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        mEditFieldPresenter.updateFieldPhase(mPhasesAdapter.getItem(position));
+      }
+
+      @Override public void onNothingSelected(AdapterView<?> parent) {
+        mEditFieldPresenter.updateFieldPhase(null);
       }
     });
   }

@@ -8,6 +8,7 @@ import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.utils.RxBus;
 import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
@@ -33,7 +34,7 @@ import timber.log.Timber;
 
   public EditFieldPresenter(FieldObject fieldObject) {
     if (fieldObject == null) {
-      setField(FieldObject.makeEmptyField());
+      setField(FieldObject.getEmpty());
     } else {
       setField(fieldObject);
     }
@@ -49,6 +50,7 @@ import timber.log.Timber;
     getCropsForSelect();
     getPreviousCropsForSelect();
     getClimateZonesForSelect();
+    getPhasesForSelect();
 
     subscribeToPolygonEditResult();
     updateViewState();
@@ -99,6 +101,11 @@ import timber.log.Timber;
   public void updateFieldClimateZone(ClimateZoneObject climateZoneObject) {
     mFieldObject.setClimateZone(climateZoneObject);
     getViewState().setSelectedClimateZone(climateZoneObject);
+  }
+
+  public void updateFieldPhase(PhaseObject phaseObject) {
+    mFieldObject.setPhase(phaseObject);
+    getViewState().setSelectedPhase(phaseObject);
   }
 
   public void updateFieldSoilType(SoilTypeObject soilTypeObject) {
@@ -182,6 +189,15 @@ import timber.log.Timber;
     addToUnsubscription(subscription);
   }
 
+  private void getPhasesForSelect() {
+    Subscription subscription = mDataManager.getAllPhases()
+        .compose(ThreadSchedulers.applySchedulers())
+        .map(this::syncFieldPhase)
+        .subscribe(this::updatePhasesSpinner, Timber::e);
+
+    addToUnsubscription(subscription);
+  }
+
   private List<CropObject> syncFieldCrop(List<CropObject> crops) {
     if (mFieldObject.getCrop() == null) return crops;
     for (CropObject crop : crops) {
@@ -215,6 +231,17 @@ import timber.log.Timber;
     return climateZones;
   }
 
+  private List<PhaseObject> syncFieldPhase(List<PhaseObject> phases) {
+    if (mFieldObject.getPhase() == null) return phases;
+    for (PhaseObject phase : phases) {
+      if (phase.getId() == mFieldObject.getPhase().getId()) {
+        mFieldObject.setPhase(phase);
+        break;
+      }
+    }
+    return phases;
+  }
+
   private void updateCropsSpinner(List<CropObject> crops) {
     getViewState().addCropsToSpinnerAdapter(crops);
     if (mFieldObject.getCrop() != null) {
@@ -233,6 +260,13 @@ import timber.log.Timber;
     getViewState().addClimateZonesToSpinnerAdapter(climateZones);
     if (mFieldObject.getClimateZone() != null) {
       getViewState().setSelectedClimateZone(mFieldObject.getClimateZone());
+    }
+  }
+
+  private void updatePhasesSpinner(List<PhaseObject> phases) {
+    getViewState().addPhasesToSpinnerAdapter(phases);
+    if (mFieldObject.getPhase() != null) {
+      getViewState().setSelectedPhase(mFieldObject.getPhase());
     }
   }
 

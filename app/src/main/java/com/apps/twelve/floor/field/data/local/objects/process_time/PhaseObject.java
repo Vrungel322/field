@@ -4,12 +4,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
+import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 23.05.2017.
  */
 
-public class PhaseObject implements Parcelable {
+public class PhaseObject implements Parcelable, Cloneable {
+
+  private static final PhaseObject EMPTY;
+
+  static {
+    EMPTY = new PhaseObject(0, "", CropObject.getEmpty());
+  }
 
   public static final Creator<PhaseObject> CREATOR = new Creator<PhaseObject>() {
     @Override public PhaseObject createFromParcel(Parcel in) {
@@ -47,6 +54,26 @@ public class PhaseObject implements Parcelable {
     dest.writeParcelable(mCrop, flags);
   }
 
+  public static PhaseObject getEmpty() {
+    PhaseObject instance = null;
+    try {
+      instance = (PhaseObject) EMPTY.clone();
+    } catch (CloneNotSupportedException e) {
+      Timber.e(e);
+    }
+
+    if (instance == null) {
+      instance = new PhaseObject(0, "", CropObject.getEmpty());
+    }
+
+    return instance;
+  }
+
+  // TODO: don't override this method - change adapter instead
+  @Override public String toString() {
+    return mName;
+  }
+
   public long getId() {
     return mId;
   }
@@ -55,7 +82,7 @@ public class PhaseObject implements Parcelable {
     this.mId = id;
   }
 
-  public String getName() {
+  @NonNull public String getName() {
     return mName;
   }
 
@@ -63,7 +90,7 @@ public class PhaseObject implements Parcelable {
     this.mName = name;
   }
 
-  public CropObject getCrop() {
+  @NonNull public CropObject getCrop() {
     return mCrop;
   }
 
