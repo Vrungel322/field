@@ -63,7 +63,7 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   }
 
   public static EditFieldFullScreenFragment newInstance() {
-    return newInstance(FieldObject.getEmpty());
+    return newInstance(FieldObject.newInstance());
   }
 
   public static EditFieldFullScreenFragment newInstance(FieldObject fieldObject) {

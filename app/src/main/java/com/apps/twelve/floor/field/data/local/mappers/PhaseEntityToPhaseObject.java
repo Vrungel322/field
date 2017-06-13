@@ -11,6 +11,6 @@ import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 public class PhaseEntityToPhaseObject implements Mapper<PhaseEntity, PhaseObject> {
   @Override public PhaseObject transform(PhaseEntity phaseEntity) throws RuntimeException {
     // TODO: for now we don't need crop object, maybe there is no need to keep it in PhaseObject at all
-    return new PhaseObject(phaseEntity.getId(), phaseEntity.getName(), CropObject.getEmpty());
+    return new PhaseObject(phaseEntity.getId(), phaseEntity.getName(), CropObject.EMPTY);
   }
 }

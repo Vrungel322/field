@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
-import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 23.05.2017.
@@ -12,10 +11,10 @@ import timber.log.Timber;
 
 public class PhaseObject implements Parcelable, Cloneable {
 
-  private static final PhaseObject EMPTY;
+  public static final PhaseObject EMPTY;
 
   static {
-    EMPTY = new PhaseObject(0, "", CropObject.getEmpty());
+    EMPTY = new PhaseObject(0, "", CropObject.EMPTY);
   }
 
   public static final Creator<PhaseObject> CREATOR = new Creator<PhaseObject>() {
@@ -44,6 +43,10 @@ public class PhaseObject implements Parcelable, Cloneable {
     this.mCrop = in.readParcelable(CropObject.class.getClassLoader());
   }
 
+  public static PhaseObject newInstance() {
+    return new PhaseObject(0, "", CropObject.EMPTY);
+  }
+
   @Override public int describeContents() {
     return 0;
   }
@@ -52,21 +55,6 @@ public class PhaseObject implements Parcelable, Cloneable {
     dest.writeLong(mId);
     dest.writeString(mName);
     dest.writeParcelable(mCrop, flags);
-  }
-
-  public static PhaseObject getEmpty() {
-    PhaseObject instance = null;
-    try {
-      instance = (PhaseObject) EMPTY.clone();
-    } catch (CloneNotSupportedException e) {
-      Timber.e(e);
-    }
-
-    if (instance == null) {
-      instance = new PhaseObject(0, "", CropObject.getEmpty());
-    }
-
-    return instance;
   }
 
   // TODO: don't override this method - change adapter instead

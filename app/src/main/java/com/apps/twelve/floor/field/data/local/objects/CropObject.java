@@ -3,7 +3,6 @@ package com.apps.twelve.floor.field.data.local.objects;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 12.05.2017.
@@ -11,7 +10,7 @@ import timber.log.Timber;
 
 public class CropObject implements Parcelable, Cloneable {
 
-  private static final CropObject EMPTY;
+  public static final CropObject EMPTY;
 
   static {
     EMPTY = new CropObject(0, "", 0, false);
@@ -46,19 +45,8 @@ public class CropObject implements Parcelable, Cloneable {
     this.mIsGroup = in.readByte() != 0;
   }
 
-  public static CropObject getEmpty() {
-    CropObject instance = null;
-    try {
-      instance = (CropObject) EMPTY.clone();
-    } catch (CloneNotSupportedException e) {
-      Timber.e(e);
-    }
-
-    if (instance == null) {
-      instance = new CropObject(0, "", 0, false);
-    }
-
-    return instance;
+  public static CropObject newInstance() {
+    return new CropObject(0, "", 0, false);
   }
 
   @Override public int describeContents() {

@@ -69,7 +69,7 @@ public class DataManager {
         .toList();
   }*/
   public Observable<List<PhaseObject>> getAllPhases() {
-    return Observable.concat(Observable.just(PhaseObject.getEmpty()), mDbHelper.getAllPhases()
+    return Observable.concat(Observable.just(PhaseObject.EMPTY), mDbHelper.getAllPhases()
         .concatMap(Observable::from)
         .map(phaseEntity -> new PhaseEntityToPhaseObject().transform(phaseEntity))).toList();
   }

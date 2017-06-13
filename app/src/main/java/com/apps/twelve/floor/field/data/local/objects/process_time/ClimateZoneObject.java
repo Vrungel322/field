@@ -7,7 +7,6 @@ import com.apps.twelve.floor.field.utils.LatLngStringUtil;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
-import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 12.05.2017.
@@ -15,7 +14,7 @@ import timber.log.Timber;
 
 public class ClimateZoneObject implements Parcelable, Cloneable {
 
-  private static final ClimateZoneObject EMPTY;
+  public static final ClimateZoneObject EMPTY;
 
   static {
     EMPTY = new ClimateZoneObject(0, "", "");
@@ -53,19 +52,8 @@ public class ClimateZoneObject implements Parcelable, Cloneable {
     this.mPoints = in.createTypedArrayList(LatLng.CREATOR);
   }
 
-  public static ClimateZoneObject getEmpty() {
-    ClimateZoneObject instance = null;
-    try {
-      instance = (ClimateZoneObject) EMPTY.clone();
-    } catch (CloneNotSupportedException e) {
-      Timber.e(e);
-    }
-
-    if (instance == null) {
-      instance = new ClimateZoneObject(0, "", "");
-    }
-
-    return instance;
+  public static ClimateZoneObject newInstance() {
+    return new ClimateZoneObject(0, "", "");
   }
 
   @Override public int describeContents() {

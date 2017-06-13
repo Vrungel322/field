@@ -51,7 +51,7 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   }
 
   public static EditFieldBottomSheetFragment newInstance() {
-    return newInstance(FieldObject.getEmpty());
+    return newInstance(FieldObject.newInstance());
   }
 
   public static EditFieldBottomSheetFragment newInstance(FieldObject fieldObject) {

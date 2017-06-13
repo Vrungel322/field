@@ -10,7 +10,6 @@ import com.apps.twelve.floor.field.utils.LatLngStringUtil;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
-import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 12.05.2017.
@@ -18,11 +17,11 @@ import timber.log.Timber;
 
 public class FieldObject implements Parcelable, Cloneable {
 
-  private static final FieldObject EMPTY;
+  public static final FieldObject EMPTY;
 
   static {
-    EMPTY = new FieldObject(0, "", CropObject.getEmpty(), null, "", 0, ClimateZoneObject.getEmpty(),
-        PhaseObject.getEmpty());
+    EMPTY = new FieldObject(0, "", CropObject.EMPTY, null, "", 0, ClimateZoneObject.EMPTY,
+        PhaseObject.EMPTY);
   }
 
   public static final Creator<FieldObject> CREATOR = new Creator<FieldObject>() {
@@ -76,21 +75,9 @@ public class FieldObject implements Parcelable, Cloneable {
     this.mPhase = in.readParcelable(PhaseObject.class.getClassLoader());
   }
 
-  public static FieldObject getEmpty() {
-    FieldObject instance = null;
-    try {
-      instance = (FieldObject) EMPTY.clone();
-    } catch (CloneNotSupportedException e) {
-      Timber.e(e);
-    }
-
-    if (instance == null) {
-      instance =
-          new FieldObject(0, "", CropObject.getEmpty(), null, "", 0, ClimateZoneObject.getEmpty(),
-              PhaseObject.getEmpty());
-    }
-
-    return instance;
+  public static FieldObject newInstance() {
+    return new FieldObject(0, "", CropObject.EMPTY, null, "", 0, ClimateZoneObject.EMPTY,
+        PhaseObject.EMPTY);
   }
 
   @Override public int describeContents() {
