@@ -8,6 +8,7 @@ import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
 import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.CropEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
 import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver;
@@ -21,7 +22,7 @@ public class CombinedFieldGetResolver extends DefaultGetResolver<CombinedFieldEn
   @NonNull @Override public CombinedFieldEntity mapFromCursor(@NonNull Cursor cursor) {
     return new CombinedFieldEntity(fieldEntityFromCursor(cursor), cropEntityFromCursor(cursor),
         previousCropEntityFromCursor(cursor), climateZoneEntityFromCursor(cursor),
-        phaseEntityFromCursor(cursor));
+        phaseEntityFromCursor(cursor), soilTypeEntityFromCursor(cursor));
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -42,7 +43,9 @@ public class CombinedFieldGetResolver extends DefaultGetResolver<CombinedFieldEn
         cursor.getString(cursor.getColumnIndexOrThrow(
             DbCombinedFieldRelationsHelper.QUERY_COLUMN_FIELD_COORDINATES)), cursor.getLong(
             cursor.getColumnIndexOrThrow(
-                DbCombinedFieldRelationsHelper.QUERY_COLUMN_CLIMATE_ZONE_ID)));
+                DbCombinedFieldRelationsHelper.QUERY_COLUMN_CLIMATE_ZONE_ID)), cursor.getLong(
+            cursor.getColumnIndexOrThrow(
+                DbCombinedFieldRelationsHelper.QUERY_COLUMN_SOIL_TYPE_ID)));
   }
 
   @NonNull private CropEntity cropEntityFromCursor(@NonNull Cursor cursor) {
@@ -83,5 +86,16 @@ public class CombinedFieldGetResolver extends DefaultGetResolver<CombinedFieldEn
             cursor.getColumnIndexOrThrow(DbCombinedFieldRelationsHelper.QUERY_COLUMN_PHASE_NAME)),
         cursor.getLong(
             cursor.getColumnIndexOrThrow(DbCombinedFieldRelationsHelper.QUERY_COLUMN_CROP_ID)));
+  }
+
+  @NonNull private SoilTypeEntity soilTypeEntityFromCursor(Cursor cursor) {
+    return SoilTypeEntity.newSoilTypeEntity(cursor.getLong(
+        cursor.getColumnIndexOrThrow(DbCombinedFieldRelationsHelper.QUERY_COLUMN_SOIL_TYPE_ID)),
+        cursor.getString(cursor.getColumnIndexOrThrow(
+            DbCombinedFieldRelationsHelper.QUERY_COLUMN_SOIL_TYPE_NAME)), cursor.getLong(
+            cursor.getColumnIndexOrThrow(
+                DbCombinedFieldRelationsHelper.QUERY_COLUMN_SOIL_TYPE_CONDITION_TYPE_ID)),
+        cursor.getString(cursor.getColumnIndexOrThrow(
+            DbCombinedFieldRelationsHelper.QUERY_COLUMN_SOIL_TYPE_COORDINATES)));
   }
 }

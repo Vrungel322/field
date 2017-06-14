@@ -18,6 +18,7 @@ import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.utils.Constants;
@@ -112,6 +113,10 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
     mPhasesAdapter.addAll(phases);
   }
 
+  @Override public void addSoilTypesToSpinnerAdapter(List<SoilTypeObject> soilTypes) {
+    mSoilTypesAdapter.addAll(soilTypes);
+  }
+
   @Override public void setSelectedCrop(CropObject cropObject) {
     int position = mCropsAdapter.getPosition(cropObject);
     mSpinnerCrop.setSelection(position < 0 ? 0 : position);
@@ -130,6 +135,11 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   @Override public void setSelectedPhase(PhaseObject phase) {
     int position = mPhasesAdapter.getPosition(phase);
     mSpinnerPhase.setSelection(position < 0 ? 0 : position);
+  }
+
+  @Override public void setSelectedSoilType(SoilTypeObject soilType) {
+    int position = mSoilTypesAdapter.getPosition(soilType);
+    mSpinnerSoilType.setSelection(position);
   }
 
   ///////////////////////////////////////////////////////////////////////////

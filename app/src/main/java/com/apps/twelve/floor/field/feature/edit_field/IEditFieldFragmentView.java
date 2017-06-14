@@ -1,6 +1,7 @@
 package com.apps.twelve.floor.field.feature.edit_field;
 
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.arellomobile.mvp.MvpView;
@@ -36,4 +37,8 @@ import java.util.List;
   void setSelectedClimateZone(ClimateZoneObject climateZoneObject);
 
   void setSelectedPhase(PhaseObject phase);
+
+  void addSoilTypesToSpinnerAdapter(List<SoilTypeObject> soilTypes);
+
+  void setSelectedSoilType(SoilTypeObject soilType);
 }

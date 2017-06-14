@@ -6,7 +6,7 @@ import android.os.Parcelable;
  * Created by Yaroslav on 31.05.2017.
  */
 
-public abstract class BaseConditionValueObject implements Parcelable {
+public abstract class BaseConditionValueObject implements Parcelable, Cloneable {
 
   abstract public long getId();
 

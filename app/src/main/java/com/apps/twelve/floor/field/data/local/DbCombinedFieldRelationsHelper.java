@@ -5,6 +5,7 @@ import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.PhasesTable;
 import com.pushtorefresh.storio.sqlite.StorIOSQLite;
@@ -37,6 +38,12 @@ public class DbCombinedFieldRelationsHelper {
   public static final String QUERY_COLUMN_PHASE_ID = "phase_id";
   public static final String QUERY_COLUMN_PHASE_NAME = "phase_name";
 
+  public static final String QUERY_COLUMN_SOIL_TYPE_ID = "soil_type_id";
+  public static final String QUERY_COLUMN_SOIL_TYPE_NAME = "soil_type_name";
+  public static final String QUERY_COLUMN_SOIL_TYPE_CONDITION_TYPE_ID =
+      "soil_type_condition_type_id";
+  public static final String QUERY_COLUMN_SOIL_TYPE_COORDINATES = "soil_type_coordinates";
+
   public static final String QUERY_FIELD_CROP_CLIMATE_ZONE_ALL = "SELECT "
       + FieldsTable.COLUMN_ID_WITH_TABLE_PREFIX
       + " AS \""
@@ -68,16 +75,28 @@ public class DbCombinedFieldRelationsHelper {
       + "\", "
       + CropsTable.COLUMN_IS_GROUP_WITH_TABLE_PREFIX
       + " AS \""
-      + QUERY_COLUMN_CROP_IS_GROUP + "\", " + CropsTable.TABLE + "_PREV."
+      + QUERY_COLUMN_CROP_IS_GROUP
+      + "\", "
+      + CropsTable.TABLE
+      + "_PREV."
       + CropsTable.COLUMN_ID
       + " AS \""
-      + QUERY_COLUMN_PREV_CROP_ID + "\", " + CropsTable.TABLE + "_PREV."
+      + QUERY_COLUMN_PREV_CROP_ID
+      + "\", "
+      + CropsTable.TABLE
+      + "_PREV."
       + CropsTable.COLUMN_NAME
       + " AS \""
-      + QUERY_COLUMN_PREV_CROP_NAME + "\", " + CropsTable.TABLE + "_PREV."
+      + QUERY_COLUMN_PREV_CROP_NAME
+      + "\", "
+      + CropsTable.TABLE
+      + "_PREV."
       + CropsTable.COLUMN_PARENT_ID
       + " AS \""
-      + QUERY_COLUMN_PREV_CROP_PARENT_ID + "\", " + CropsTable.TABLE + "_PREV."
+      + QUERY_COLUMN_PREV_CROP_PARENT_ID
+      + "\", "
+      + CropsTable.TABLE
+      + "_PREV."
       + CropsTable.COLUMN_IS_GROUP
       + " AS \""
       + QUERY_COLUMN_PREV_CROP_IS_GROUP
@@ -101,6 +120,22 @@ public class DbCombinedFieldRelationsHelper {
       + PhasesTable.COLUMN_NAME_WITH_TABLE_PREFIX
       + " AS \""
       + QUERY_COLUMN_PHASE_NAME
+      + "\", "
+      + SoilTypesTable.COLUMN_ID_WITH_TABLE_PREFIX
+      + " AS \""
+      + QUERY_COLUMN_SOIL_TYPE_ID
+      + "\", "
+      + SoilTypesTable.COLUMN_NAME_WITH_TABLE_PREFIX
+      + " AS \""
+      + QUERY_COLUMN_SOIL_TYPE_NAME
+      + "\", "
+      + SoilTypesTable.COLUMN_CONDITION_TYPE_ID_WITH_TABLE_PREFIX
+      + " AS \""
+      + QUERY_COLUMN_SOIL_TYPE_CONDITION_TYPE_ID
+      + "\", "
+      + SoilTypesTable.COLUMN_COORDINATES_WITH_TABLE_PREFIX
+      + " AS \""
+      + QUERY_COLUMN_SOIL_TYPE_COORDINATES
       + "\""
       + " FROM "
       + FieldsTable.TABLE
@@ -134,6 +169,12 @@ public class DbCombinedFieldRelationsHelper {
       + FieldsTable.COLUMN_PHASE_ID_WITH_TABLE_PREFIX
       + " = "
       + PhasesTable.COLUMN_ID_WITH_TABLE_PREFIX
+      + " JOIN "
+      + SoilTypesTable.TABLE
+      + " ON "
+      + FieldsTable.COLUMN_SOIL_TYPE_ID
+      + " = "
+      + SoilTypesTable.COLUMN_ID_WITH_TABLE_PREFIX
       + " WHERE "
       + PhasesTable.COLUMN_CROP_ID_WITH_TABLE_PREFIX
       + " = "

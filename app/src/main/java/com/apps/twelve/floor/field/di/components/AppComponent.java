@@ -5,7 +5,6 @@ import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.base.BaseManualAttachFragment;
 import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
-import com.apps.twelve.floor.field.data.local.DbCombinedPhaseRelationsHelper;
 import com.apps.twelve.floor.field.data.local.DbHelper;
 import com.apps.twelve.floor.field.di.modules.AppModule;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
@@ -67,6 +66,4 @@ import dagger.Component;
   void inject(DbHelper dbHelper);
 
   void inject(DbCombinedFieldRelationsHelper dbCombinedFieldRelationsHelper);
-
-  void inject(DbCombinedPhaseRelationsHelper dbCombinedPhaseRelationsHelper);
 }

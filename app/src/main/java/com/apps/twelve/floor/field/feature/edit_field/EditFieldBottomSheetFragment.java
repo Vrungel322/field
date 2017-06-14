@@ -18,6 +18,7 @@ import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.utils.Constants;
@@ -107,6 +108,14 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   }
 
   @Override public void setSelectedPhase(PhaseObject phase) {
+    // TODO
+  }
+
+  @Override public void addSoilTypesToSpinnerAdapter(List<SoilTypeObject> soilTypes) {
+    // TODO
+  }
+
+  @Override public void setSelectedSoilType(SoilTypeObject soilType) {
     // TODO
   }
 

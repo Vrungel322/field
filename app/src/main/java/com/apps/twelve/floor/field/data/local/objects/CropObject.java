@@ -60,6 +60,7 @@ public class CropObject implements Parcelable, Cloneable {
     dest.writeByte((byte) (mIsGroup ? 1 : 0));
   }
 
+  // TODO: don't override this method - change adapter instead
   @Override public String toString() {
     return mName;
   }

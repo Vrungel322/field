@@ -50,6 +50,7 @@ import timber.log.Timber;
     getCropsForSelect();
     getPreviousCropsForSelect();
     getClimateZonesForSelect();
+    getSoilTypesForSelect();
     getPhasesForSelect();
 
     subscribeToPolygonEditResult();
@@ -198,6 +199,15 @@ import timber.log.Timber;
     addToUnsubscription(subscription);
   }
 
+  private void getSoilTypesForSelect() {
+    Subscription subscription = mDataManager.getAllSoilTypes()
+        .compose(ThreadSchedulers.applySchedulers())
+        .map(this::syncSoilType)
+        .subscribe(this::updateSoilTypesSpinner, Timber::e);
+
+    addToUnsubscription(subscription);
+  }
+
   private List<CropObject> syncFieldCrop(List<CropObject> crops) {
     if (mFieldObject.getCrop() == null) return crops;
     for (CropObject crop : crops) {
@@ -242,6 +252,17 @@ import timber.log.Timber;
     return phases;
   }
 
+  private List<SoilTypeObject> syncSoilType(List<SoilTypeObject> soilTypes) {
+    if (mFieldObject.getSoilType() == null) return soilTypes;
+    for (SoilTypeObject soilType : soilTypes) {
+      if (soilType.getId() == mFieldObject.getSoilType().getId()) {
+        mFieldObject.setSoilType(soilType);
+        break;
+      }
+    }
+    return soilTypes;
+  }
+
   private void updateCropsSpinner(List<CropObject> crops) {
     getViewState().addCropsToSpinnerAdapter(crops);
     if (mFieldObject.getCrop() != null) {
@@ -267,6 +288,13 @@ import timber.log.Timber;
     getViewState().addPhasesToSpinnerAdapter(phases);
     if (mFieldObject.getPhase() != null) {
       getViewState().setSelectedPhase(mFieldObject.getPhase());
+    }
+  }
+
+  private void updateSoilTypesSpinner(List<SoilTypeObject> soilTypes) {
+    getViewState().addSoilTypesToSpinnerAdapter(soilTypes);
+    if (mFieldObject.getSoilType() != null) {
+      getViewState().setSelectedSoilType(mFieldObject.getSoilType());
     }
   }
 

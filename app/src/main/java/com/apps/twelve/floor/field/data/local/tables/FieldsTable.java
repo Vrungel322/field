@@ -19,6 +19,7 @@ public class FieldsTable {
   @NonNull public static final String COLUMN_COORDINATES = "coordinates";
   @NonNull public static final String COLUMN_CLIMATE_ZONE_ID = "climate_zone_id";
   @NonNull public static final String COLUMN_PHASE_ID = "phase_id";
+  @NonNull public static final String COLUMN_SOIL_TYPE_ID = "soil_type_id";
 
   @NonNull public static final String COLUMN_ID_WITH_TABLE_PREFIX = TABLE + "." + COLUMN_ID;
   @NonNull public static final String COLUMN_NAME_WITH_TABLE_PREFIX = TABLE + "." + COLUMN_NAME;
@@ -33,6 +34,8 @@ public class FieldsTable {
       TABLE + "." + COLUMN_CLIMATE_ZONE_ID;
   @NonNull public static final String COLUMN_PHASE_ID_WITH_TABLE_PREFIX =
       TABLE + "." + COLUMN_PHASE_ID;
+  @NonNull public static final String COLUMN_SOIL_TYPE_ID_WITH_TABLE_PREFIX =
+      TABLE + "." + COLUMN_SOIL_TYPE_ID;
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
@@ -56,7 +59,11 @@ public class FieldsTable {
         + " TEXT NULL, "
         + COLUMN_COORDINATES
         + " TEXT NULL, "
-        + COLUMN_CLIMATE_ZONE_ID + " TEXT NULL, " + COLUMN_PHASE_ID
+        + COLUMN_CLIMATE_ZONE_ID
+        + " TEXT NULL, "
+        + COLUMN_PHASE_ID
+        + " TEXT NULL, "
+        + COLUMN_SOIL_TYPE_ID
         + " TEXT NULL"
         + ");";
   }

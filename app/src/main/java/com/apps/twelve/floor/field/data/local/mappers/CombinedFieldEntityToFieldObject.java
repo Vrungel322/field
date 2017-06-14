@@ -18,13 +18,14 @@ public class CombinedFieldEntityToFieldObject implements Mapper<CombinedFieldEnt
     CropEntity cropEntity = entity.getCropEntity();
     CropEntity prevCropEntity = entity.getPreviousCropEntity();
 
-    CropEntityToCropObject cropEntityToCropObject = new CropEntityToCropObject();
+    CropEntityToCropObject cropMapperEO = new CropEntityToCropObject(); // entity to object
 
     return new FieldObject(fieldEntity.getId(), fieldEntity.getName(),
-        cropEntityToCropObject.transform(cropEntity),
-        cropEntityToCropObject.transform(prevCropEntity), fieldEntity.getCoordinates(),
+        cropMapperEO.transform(cropEntity), cropMapperEO.transform(prevCropEntity),
+        fieldEntity.getCoordinates(),
         fieldEntity.getArea(),
         new ClimateZoneEntityToClimateZoneObject().transform(entity.getClimateZoneEntity()),
-        new PhaseEntityToPhaseObject().transform(entity.getPhaseEntity()));
+        new PhaseEntityToPhaseObject().transform(entity.getPhaseEntity()),
+        new SoilTypeEntityToSoilTypeObject().transform(entity.getSoilTypeEntity()));
   }
 }

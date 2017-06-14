@@ -2,6 +2,7 @@ package com.apps.twelve.floor.field.data.local.entities;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
 
@@ -16,15 +17,17 @@ public class CombinedFieldEntity {
   @Nullable private final CropEntity mPreviousCropEntity;
   @NonNull private final ClimateZoneEntity mClimateZoneEntity;
   @NonNull private final PhaseEntity mPhaseEntity;
+  @NonNull private final SoilTypeEntity mSoilTypeEntity;
 
   public CombinedFieldEntity(@NonNull FieldEntity fieldEntity, @NonNull CropEntity cropEntity,
       @Nullable CropEntity previousCropEntity, @NonNull ClimateZoneEntity climateZoneEntity,
-      @NonNull PhaseEntity phaseEntity) {
+      @NonNull PhaseEntity phaseEntity, @NonNull SoilTypeEntity soilTypeEntity) {
     this.mFieldEntity = fieldEntity;
     this.mCropEntity = cropEntity;
     this.mPreviousCropEntity = previousCropEntity;
     this.mClimateZoneEntity = climateZoneEntity;
     this.mPhaseEntity = phaseEntity;
+    this.mSoilTypeEntity = soilTypeEntity;
   }
 
   @Override public boolean equals(Object obj) {
@@ -43,15 +46,21 @@ public class CombinedFieldEntity {
         : that.mClimateZoneEntity != null) {
       return false;
     }
-    return mPhaseEntity.equals(that.mPhaseEntity);
+    if (mPhaseEntity != null ? !mPhaseEntity.equals(that.mPhaseEntity)
+        : that.mPhaseEntity != null) {
+      return false;
+    }
+
+    return mSoilTypeEntity.equals(that.mSoilTypeEntity);
   }
 
   @Override public int hashCode() {
     int result = mFieldEntity.hashCode();
     result = 31 * result + mCropEntity.hashCode();
-    result = 31 * result + mPreviousCropEntity.hashCode();
+    result = 31 * result + (mPreviousCropEntity != null ? mPreviousCropEntity.hashCode() : 0);
     result = 31 * result + mClimateZoneEntity.hashCode();
     result = 31 * result + mPhaseEntity.hashCode();
+    result = 31 * result + mSoilTypeEntity.hashCode();
     return result;
   }
 
@@ -73,5 +82,9 @@ public class CombinedFieldEntity {
 
   @NonNull public PhaseEntity getPhaseEntity() {
     return mPhaseEntity;
+  }
+
+  @NonNull public SoilTypeEntity getSoilTypeEntity() {
+    return mSoilTypeEntity;
   }
 }

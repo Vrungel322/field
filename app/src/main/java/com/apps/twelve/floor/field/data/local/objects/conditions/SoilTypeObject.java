@@ -13,6 +13,12 @@ import java.util.List;
 
 public class SoilTypeObject extends BaseConditionValueObject {
 
+  public static final SoilTypeObject EMPTY;
+
+  static {
+    EMPTY = new SoilTypeObject(0, "", new ConditionTypeObject(1, "Тип почвы"), "");
+  }
+
   public static final Creator<SoilTypeObject> CREATOR = new Creator<SoilTypeObject>() {
     @Override public SoilTypeObject createFromParcel(Parcel in) {
       return new SoilTypeObject(in);
@@ -25,7 +31,7 @@ public class SoilTypeObject extends BaseConditionValueObject {
 
   private long mId;
   @NonNull private String mName;
-  @NonNull private ConditionTypeObject mConditionType;
+  @NonNull private ConditionTypeObject mConditionType; // TODO: maybe we don't need this field
   @NonNull private List<LatLng> mPoints = new ArrayList<>();
 
   public SoilTypeObject(long mId, @NonNull String mName, @NonNull ConditionTypeObject conditionType,
@@ -60,6 +66,11 @@ public class SoilTypeObject extends BaseConditionValueObject {
     dest.writeString(mName);
     dest.writeParcelable(mConditionType, flags);
     dest.writeTypedList(mPoints);
+  }
+
+  // TODO: don't override this method - change adapter instead
+  @Override public String toString() {
+    return mName;
   }
 
   @Override public long getId() {

@@ -14,6 +14,7 @@ public class FieldObjectToFieldEntity implements Mapper<FieldObject, FieldEntity
     return FieldEntity.newFieldEntity(obj.getId(), obj.getName(), obj.getArea(),
         obj.getCrop().getId(),
         (obj.getPreviousCrop() != null ? obj.getPreviousCrop().getId() : null),
-        obj.getPointsAsCoordinatesString(), obj.getClimateZone().getId());
+        obj.getPointsAsCoordinatesString(), obj.getClimateZone().getId(),
+        obj.getSoilType().getId());
   }
 }

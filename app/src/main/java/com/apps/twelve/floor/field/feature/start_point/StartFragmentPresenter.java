@@ -5,6 +5,8 @@ import com.apps.twelve.floor.field.base.BasePresenter;
 import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.utils.RxBus;
@@ -133,6 +135,44 @@ import timber.log.Timber;
     mDataManager.putPhase(new PhaseObject(18,
         "У фазі розетки у багаторічних дводольних та за висоти 10-20 см у багаторічних злакових",
         cornCropObject));
+
+    // Condition types
+    ConditionTypeObject conditionTypeSoilType = new ConditionTypeObject(1, "Тип почвы");
+    mDataManager.putConditionType(conditionTypeSoilType);
+    mDataManager.putConditionType(new ConditionTypeObject(2, "Фаза развития вредного объекта"));
+    mDataManager.putConditionType(
+        new ConditionTypeObject(3, "Направление обработки почвы, посева, опрыскивания"));
+    mDataManager.putConditionType(new ConditionTypeObject(4, "Фенологическая характеристика"));
+    mDataManager.putConditionType(new ConditionTypeObject(5, "Числовой диапазон"));
+    mDataManager.putConditionType(new ConditionTypeObject(6, "Число"));
+
+    // Soil types
+    mDataManager.putSoilType(
+        new SoilTypeObject(1, "Дернисто-підзолисті", conditionTypeSoilType, ""));
+    mDataManager.putSoilType(
+        new SoilTypeObject(2, "Сірі, ясно-сірі та темно-сірі опідзолені", conditionTypeSoilType,
+            ""));
+    mDataManager.putSoilType(
+        new SoilTypeObject(3, "Черноземи опідзолені і темно-сірі опідзолені", conditionTypeSoilType,
+            ""));
+    mDataManager.putSoilType(new SoilTypeObject(4, "Черноземи типові", conditionTypeSoilType, ""));
+    mDataManager.putSoilType(
+        new SoilTypeObject(5, "Черноземи звичайні", conditionTypeSoilType, ""));
+    mDataManager.putSoilType(
+        new SoilTypeObject(6, "Черноземи південні частково солонцюваті", conditionTypeSoilType,
+            ""));
+    mDataManager.putSoilType(
+        new SoilTypeObject(7, "Черноземи дернові щебенясті на продуктах вивітрювання твердих порід",
+            conditionTypeSoilType, ""));
+    mDataManager.putSoilType(
+        new SoilTypeObject(8, "Темно-каштанові в комплексі з солонцями", conditionTypeSoilType,
+            ""));
+    mDataManager.putSoilType(
+        new SoilTypeObject(9, "Лучно-чорноземні, лучні, лучно-болотні", conditionTypeSoilType, ""));
+    mDataManager.putSoilType(
+        new SoilTypeObject(10, "Бурі гірськолісові", conditionTypeSoilType, ""));
+    mDataManager.putSoilType(
+        new SoilTypeObject(11, "Коричневі щебенясті", conditionTypeSoilType, ""));
   }
 
   private void subscribeToFieldsListChanges() {
