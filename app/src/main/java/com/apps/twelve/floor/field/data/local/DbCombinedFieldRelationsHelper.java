@@ -44,7 +44,8 @@ public class DbCombinedFieldRelationsHelper {
       "soil_type_condition_type_id";
   public static final String QUERY_COLUMN_SOIL_TYPE_COORDINATES = "soil_type_coordinates";
 
-  public static final String QUERY_FIELD_CROP_CLIMATE_ZONE_ALL = "SELECT "
+  public static final String QUERY_COMBINED_FIELD_SELECT_ALL = "SELECT "
+      // Field data
       + FieldsTable.COLUMN_ID_WITH_TABLE_PREFIX
       + " AS \""
       + QUERY_COLUMN_FIELD_ID
@@ -61,6 +62,8 @@ public class DbCombinedFieldRelationsHelper {
       + " AS \""
       + QUERY_COLUMN_FIELD_COORDINATES
       + "\", "
+
+      // Crop data
       + CropsTable.COLUMN_ID_WITH_TABLE_PREFIX
       + " AS \""
       + QUERY_COLUMN_CROP_ID
@@ -77,6 +80,8 @@ public class DbCombinedFieldRelationsHelper {
       + " AS \""
       + QUERY_COLUMN_CROP_IS_GROUP
       + "\", "
+
+      // Previous crop data
       + CropsTable.TABLE
       + "_PREV."
       + CropsTable.COLUMN_ID
@@ -101,6 +106,8 @@ public class DbCombinedFieldRelationsHelper {
       + " AS \""
       + QUERY_COLUMN_PREV_CROP_IS_GROUP
       + "\", "
+
+      // Climate zone data
       + ClimateZonesTable.COLUMN_ID_WITH_TABLE_PREFIX
       + " AS \""
       + QUERY_COLUMN_CLIMATE_ZONE_ID
@@ -113,6 +120,8 @@ public class DbCombinedFieldRelationsHelper {
       + " AS \""
       + QUERY_COLUMN_CLIMATE_ZONE_COORDINATES
       + "\", "
+
+      // Phase data
       + PhasesTable.COLUMN_ID_WITH_TABLE_PREFIX
       + " AS \""
       + QUERY_COLUMN_PHASE_ID
@@ -121,6 +130,8 @@ public class DbCombinedFieldRelationsHelper {
       + " AS \""
       + QUERY_COLUMN_PHASE_NAME
       + "\", "
+
+      // Soil type data
       + SoilTypesTable.COLUMN_ID_WITH_TABLE_PREFIX
       + " AS \""
       + QUERY_COLUMN_SOIL_TYPE_ID
@@ -137,6 +148,7 @@ public class DbCombinedFieldRelationsHelper {
       + " AS \""
       + QUERY_COLUMN_SOIL_TYPE_COORDINATES
       + "\""
+
       + " FROM "
       + FieldsTable.TABLE
       + " JOIN "
@@ -146,8 +158,7 @@ public class DbCombinedFieldRelationsHelper {
       + " = "
       + CropsTable.COLUMN_ID_WITH_TABLE_PREFIX
       + " JOIN "
-      + CropsTable.TABLE
-      + " "
+      + CropsTable.TABLE + " AS "
       + CropsTable.TABLE
       + "_PREV"
       + " ON "
@@ -175,6 +186,7 @@ public class DbCombinedFieldRelationsHelper {
       + FieldsTable.COLUMN_SOIL_TYPE_ID
       + " = "
       + SoilTypesTable.COLUMN_ID_WITH_TABLE_PREFIX
+
       + " WHERE "
       + PhasesTable.COLUMN_CROP_ID_WITH_TABLE_PREFIX
       + " = "
@@ -186,17 +198,17 @@ public class DbCombinedFieldRelationsHelper {
     App.getAppComponent().inject(this);
   }
 
-  public @NonNull Observable<List<CombinedFieldEntity>> getCombinedFieldEntities() {
+  public @NonNull Observable<List<CombinedFieldEntity>> getCombinedFieldEntitiesAsync() {
     return mStorIOSQLite.get().listOfObjects(CombinedFieldEntity.class)
-        .withQuery(RawQuery.builder().query(QUERY_FIELD_CROP_CLIMATE_ZONE_ALL).build())
+        .withQuery(RawQuery.builder().query(QUERY_COMBINED_FIELD_SELECT_ALL).build())
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
-  public @NonNull List<CombinedFieldEntity> getCombinedFieldEntitiesAsList() {
+  public @NonNull List<CombinedFieldEntity> getCombinedFieldEntitiesBlocking() {
     return mStorIOSQLite.get().listOfObjects(CombinedFieldEntity.class)
-        .withQuery(RawQuery.builder().query(QUERY_FIELD_CROP_CLIMATE_ZONE_ALL).build())
+        .withQuery(RawQuery.builder().query(QUERY_COMBINED_FIELD_SELECT_ALL).build())
         .prepare()
         .executeAsBlocking();
   }

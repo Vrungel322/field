@@ -49,7 +49,7 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   @BindView(R.id.spinner_previous_crop) Spinner mSpinnerPreviousCrop;
   @BindView(R.id.spinner_climate_zone) Spinner mSpinnerClimateZone;
   @BindView(R.id.spinner_soil_type) Spinner mSpinnerSoilType;
-  @BindView(R.id.spinner_phase) Spinner mSpinnerPhase; // TODO
+  @BindView(R.id.spinner_phase) Spinner mSpinnerPhase;
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
 

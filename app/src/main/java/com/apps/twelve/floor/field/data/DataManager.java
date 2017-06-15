@@ -49,7 +49,7 @@ public class DataManager {
   ///////////////////////////////////////////////////////////////////////////
 
   public Observable<List<FieldObject>> getAllFields() {
-    return mDbCombinedFieldRelationsHelper.getCombinedFieldEntities()
+    return mDbCombinedFieldRelationsHelper.getCombinedFieldEntitiesAsync()
         .concatMap(Observable::from)
         .map(combinedFieldEntity -> new CombinedFieldEntityToFieldObject().transform(
             combinedFieldEntity))

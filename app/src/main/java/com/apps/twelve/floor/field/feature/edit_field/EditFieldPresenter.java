@@ -110,9 +110,8 @@ import timber.log.Timber;
   }
 
   public void updateFieldSoilType(SoilTypeObject soilTypeObject) {
-    // TODO:
-    /*mFieldObject.setSoilType(soilTypeObject);
-    getViewState().setSelectedSoilType(soilTypeObject);*/
+    mFieldObject.setSoilType(soilTypeObject);
+    getViewState().setSelectedSoilType(soilTypeObject);
   }
 
   public void updateFieldPoints(List<LatLng> points) {
