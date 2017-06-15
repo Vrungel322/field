@@ -29,13 +29,10 @@ public class ConditionsTable {
         + " ("
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
-        + COLUMN_CROP_ID
-        + " TEXT NULL, "
+        + COLUMN_CROP_ID + " INTEGER, "
         + COLUMN_PRIORITY
         + " TEXT NULL, "
-        + COLUMN_CONDITION_TYPE_ID
-        + " TEXT NULL, " + COLUMN_CONDITION_VALUE_ID
-        + " TEXT NULL "
+        + COLUMN_CONDITION_TYPE_ID + " INTEGER, " + COLUMN_CONDITION_VALUE_ID + " INTEGER "
         + ");";
   }
 }

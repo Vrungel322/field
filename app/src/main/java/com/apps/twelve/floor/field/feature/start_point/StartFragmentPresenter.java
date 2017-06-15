@@ -37,6 +37,7 @@ import timber.log.Timber;
 
   @Override protected void onFirstViewAttach() {
     super.onFirstViewAttach();
+
     getAllFields();
 
     subscribeToFieldsDbChanges();

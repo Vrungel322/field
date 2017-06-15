@@ -28,12 +28,9 @@ public class FieldCropTechnologicalProcessesTable {
         + " ("
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
-        + COLUMN_FIELD_ID
-        + " TEXT NULL, "
-        + COLUMN_CROP_TECH_PROCESS_ID
-        + " TEXT NULL, "
-        + COLUMN_TECH_PROCESS_STATE_ID
-        + " TEXT NULL "
+        + COLUMN_FIELD_ID + " INTEGER, "
+        + COLUMN_CROP_TECH_PROCESS_ID + " INTEGER, "
+        + COLUMN_TECH_PROCESS_STATE_ID + " INTEGER "
         + ");";
   }
 }

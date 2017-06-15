@@ -27,10 +27,8 @@ public class TechnologicalProcessesConditionsTable {
         + " ("
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
-        + COLUMN_CROP_TECH_PROCESS_ID
-        + " TEXT NULL, "
-        + COLUMN_CONDITION_ID
-        + " TEXT NULL "
+        + COLUMN_CROP_TECH_PROCESS_ID + " INTEGER, "
+        + COLUMN_CONDITION_ID + " INTEGER "
         + ");";
   }
 }

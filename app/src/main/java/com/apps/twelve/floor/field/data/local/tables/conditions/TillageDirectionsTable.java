@@ -29,8 +29,7 @@ public class TillageDirectionsTable {
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_NAME
         + " TEXT NULL, "
-        + COLUMN_CONDITION_TYPE_ID
-        + " TEXT NULL "
+        + COLUMN_CONDITION_TYPE_ID + " INTEGER "
         + ");";
   }
 }

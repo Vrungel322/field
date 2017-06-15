@@ -47,117 +47,117 @@ public class DbCombinedFieldRelationsHelper {
   public static final String QUERY_COMBINED_FIELD_SELECT_ALL = "SELECT "
       // Field data
       + FieldsTable.COLUMN_ID_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_FIELD_ID
-      + "\", "
+      + ", "
       + FieldsTable.COLUMN_NAME_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_FIELD_NAME
-      + "\", "
+      + ", "
       + FieldsTable.COLUMN_AREA_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_FIELD_AREA
-      + "\", "
+      + ", "
       + FieldsTable.COLUMN_COORDINATES_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_FIELD_COORDINATES
-      + "\", "
+      + ", "
 
       // Crop data
       + CropsTable.COLUMN_ID_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_CROP_ID
-      + "\", "
+      + ", "
       + CropsTable.COLUMN_NAME_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_CROP_NAME
-      + "\", "
+      + ", "
       + CropsTable.COLUMN_PARENT_ID_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_CROP_PARENT_ID
-      + "\", "
+      + ", "
       + CropsTable.COLUMN_IS_GROUP_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_CROP_IS_GROUP
-      + "\", "
+      + ", "
 
       // Previous crop data
       + CropsTable.TABLE
       + "_PREV."
       + CropsTable.COLUMN_ID
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_PREV_CROP_ID
-      + "\", "
+      + ", "
       + CropsTable.TABLE
       + "_PREV."
       + CropsTable.COLUMN_NAME
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_PREV_CROP_NAME
-      + "\", "
+      + ", "
       + CropsTable.TABLE
       + "_PREV."
       + CropsTable.COLUMN_PARENT_ID
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_PREV_CROP_PARENT_ID
-      + "\", "
+      + ", "
       + CropsTable.TABLE
       + "_PREV."
       + CropsTable.COLUMN_IS_GROUP
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_PREV_CROP_IS_GROUP
-      + "\", "
+      + ", "
 
       // Climate zone data
       + ClimateZonesTable.COLUMN_ID_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_CLIMATE_ZONE_ID
-      + "\", "
+      + ", "
       + ClimateZonesTable.COLUMN_NAME_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_CLIMATE_ZONE_NAME
-      + "\", "
+      + ", "
       + ClimateZonesTable.COLUMN_COORDINATES_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_CLIMATE_ZONE_COORDINATES
-      + "\", "
+      + ", "
 
       // Phase data
       + PhasesTable.COLUMN_ID_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_PHASE_ID
-      + "\", "
+      + ", "
       + PhasesTable.COLUMN_NAME_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_PHASE_NAME
-      + "\", "
+      + ", "
 
       // Soil type data
       + SoilTypesTable.COLUMN_ID_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_SOIL_TYPE_ID
-      + "\", "
+      + ", "
       + SoilTypesTable.COLUMN_NAME_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_SOIL_TYPE_NAME
-      + "\", "
+      + ", "
       + SoilTypesTable.COLUMN_CONDITION_TYPE_ID_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_SOIL_TYPE_CONDITION_TYPE_ID
-      + "\", "
+      + ", "
       + SoilTypesTable.COLUMN_COORDINATES_WITH_TABLE_PREFIX
-      + " AS \""
+      + " AS "
       + QUERY_COLUMN_SOIL_TYPE_COORDINATES
-      + "\""
+      + ""
 
       + " FROM "
       + FieldsTable.TABLE
-      + " JOIN "
+      + " INNER JOIN "
       + CropsTable.TABLE
       + " ON "
       + FieldsTable.COLUMN_CROP_ID_WITH_TABLE_PREFIX
       + " = "
       + CropsTable.COLUMN_ID_WITH_TABLE_PREFIX
-      + " JOIN "
+      + " INNER JOIN "
       + CropsTable.TABLE + " AS "
       + CropsTable.TABLE
       + "_PREV"
@@ -168,29 +168,28 @@ public class DbCombinedFieldRelationsHelper {
       + "_PREV"
       + "."
       + CropsTable.COLUMN_ID
-      + " JOIN "
+      + " INNER JOIN "
       + ClimateZonesTable.TABLE
       + " ON "
       + FieldsTable.COLUMN_CLIMATE_ZONE_ID_WITH_TABLE_PREFIX
       + " = "
       + ClimateZonesTable.COLUMN_ID_WITH_TABLE_PREFIX
-      + " JOIN "
+      + " INNER JOIN "
       + PhasesTable.TABLE
       + " ON "
       + FieldsTable.COLUMN_PHASE_ID_WITH_TABLE_PREFIX
       + " = "
       + PhasesTable.COLUMN_ID_WITH_TABLE_PREFIX
-      + " JOIN "
+      + " AND "
+      + FieldsTable.COLUMN_CROP_ID_WITH_TABLE_PREFIX
+      + " = "
+      + PhasesTable.COLUMN_CROP_ID_WITH_TABLE_PREFIX
+      + " INNER JOIN "
       + SoilTypesTable.TABLE
       + " ON "
-      + FieldsTable.COLUMN_SOIL_TYPE_ID
+      + FieldsTable.COLUMN_SOIL_TYPE_ID_WITH_TABLE_PREFIX
       + " = "
-      + SoilTypesTable.COLUMN_ID_WITH_TABLE_PREFIX
-
-      + " WHERE "
-      + PhasesTable.COLUMN_CROP_ID_WITH_TABLE_PREFIX
-      + " = "
-      + FieldsTable.COLUMN_CROP_ID_WITH_TABLE_PREFIX;
+      + SoilTypesTable.COLUMN_ID_WITH_TABLE_PREFIX;
 
   @Inject StorIOSQLite mStorIOSQLite;
 

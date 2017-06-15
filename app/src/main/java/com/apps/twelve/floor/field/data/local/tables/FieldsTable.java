@@ -53,18 +53,13 @@ public class FieldsTable {
         + " TEXT NULL, "
         + COLUMN_AREA
         + " TEXT NULL, "
-        + COLUMN_CROP_ID
-        + " TEXT NULL, "
-        + COLUMN_PREV_CROP_ID
-        + " TEXT NULL, "
+        + COLUMN_CROP_ID + " INTEGER, "
+        + COLUMN_PREV_CROP_ID + " INTEGER, "
         + COLUMN_COORDINATES
         + " TEXT NULL, "
-        + COLUMN_CLIMATE_ZONE_ID
-        + " TEXT NULL, "
-        + COLUMN_PHASE_ID
-        + " TEXT NULL, "
-        + COLUMN_SOIL_TYPE_ID
-        + " TEXT NULL"
+        + COLUMN_CLIMATE_ZONE_ID + " INTEGER, "
+        + COLUMN_PHASE_ID + " INTEGER, "
+        + COLUMN_SOIL_TYPE_ID + " INTEGER"
         + ");";
   }
 }

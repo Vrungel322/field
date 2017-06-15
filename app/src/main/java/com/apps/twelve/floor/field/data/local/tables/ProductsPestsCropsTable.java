@@ -28,12 +28,9 @@ public class ProductsPestsCropsTable {
         + " ("
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
-        + COLUMN_PRODUCT_ID
-        + " TEXT NULL, "
-        + COLUMN_PEST_ID
-        + " TEXT NULL, "
-        + COLUMN_CROP_ID
-        + " TEXT NULL "
+        + COLUMN_PRODUCT_ID + " INTEGER, "
+        + COLUMN_PEST_ID + " INTEGER, "
+        + COLUMN_CROP_ID + " INTEGER "
         + ");";
   }
 }

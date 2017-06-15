@@ -30,8 +30,7 @@ public class AggregatesTable {
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_NAME
         + " TEXT NULL, "
-        + COLUMN_TECHNOLOGICAL_SOLUTION_TYPE_ID
-        + " TEXT NULL, "
+        + COLUMN_TECHNOLOGICAL_SOLUTION_TYPE_ID + " INTEGER, "
         + COLUMN_PRICE
         + " TEXT NULL "
         + ");";

@@ -28,12 +28,9 @@ public class FieldTechnologicalProcessSolutionsTable {
         + " ("
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
-        + COLUMN_FIELD_TECH_PROCESS_ID
-        + " TEXT NULL, "
-        + COLUMN_SOLUTION_TYPE_ID
-        + " TEXT NULL, "
-        + COLUMN_SOLUTION_VALUE_ID
-        + " TEXT NULL "
+        + COLUMN_FIELD_TECH_PROCESS_ID + " INTEGER, "
+        + COLUMN_SOLUTION_TYPE_ID + " INTEGER, "
+        + COLUMN_SOLUTION_VALUE_ID + " INTEGER "
         + ");";
   }
 }

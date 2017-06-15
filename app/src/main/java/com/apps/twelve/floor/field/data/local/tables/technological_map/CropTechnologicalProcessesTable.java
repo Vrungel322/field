@@ -34,14 +34,10 @@ public class CropTechnologicalProcessesTable {
         + COLUMN_NAME + " TEXT NULL, "
         + COLUMN_ORDER
         + " TEXT NULL, "
-        + COLUMN_CROP_ID
-        + " TEXT NULL, "
-        + COLUMN_CLIMATE_ZONE_ID
-        + " TEXT NULL, "
-        + COLUMN_PROCESS_PERIOD_ID
-        + " TEXT NULL, "
-        + COLUMN_PHASE_ID
-        + " TEXT NULL "
+        + COLUMN_CROP_ID + " INTEGER, "
+        + COLUMN_CLIMATE_ZONE_ID + " INTEGER, "
+        + COLUMN_PROCESS_PERIOD_ID + " INTEGER, "
+        + COLUMN_PHASE_ID + " INTEGER "
         + ");";
   }
 }
