@@ -1,19 +1,21 @@
 package com.apps.twelve.floor.field.utils;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by John on 27.03.2017.
  */
 
 public final class Constants {
   public class Remote {
-    private static final String DOMAIN = "api.simple-website.in.ua";
+    @NonNull private static final String DOMAIN = "api.simple-website.in.ua";
     // TODO: do not forget to paste base url
-    public static final String BASE_URL = "http://" + DOMAIN + "/";
+    @NonNull public static final String BASE_URL = "http://" + DOMAIN + "/";
   }
 
   public class EditField {
-    public static final String FIELD_BUNDLE_KEY = "field_bundle_key";
-    public static final String FIELD_TECHNOLOGICAL_PROCESS_BUNDLE_KEY =
+    @NonNull public static final String FIELD_BUNDLE_KEY = "field_bundle_key";
+    @NonNull public static final String FIELD_TECHNOLOGICAL_PROCESS_BUNDLE_KEY =
         "technological_process_bundle_key";
   }
 

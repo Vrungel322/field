@@ -39,8 +39,8 @@ import timber.log.Timber;
 
   private void getAllTechnologicalSolutions() {
     // TODO
-    Subscription subscription =
-        mDataManager.getTechnologicalSolutions(mFieldTechnologicalProcess.getId())
+    Subscription subscription = mDataManager.getTechnologicalSolutions(/*TODO: uncomment after test*//*mFieldTechnologicalProcess.getId()*/
+        1)
             .compose(ThreadSchedulers.applySchedulers())
             .subscribe(technologicalSolutions -> getViewState().showTechnologicalSolutions(
                 technologicalSolutions), Timber::e);

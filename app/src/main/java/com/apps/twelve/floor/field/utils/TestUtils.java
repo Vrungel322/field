@@ -1,11 +1,19 @@
 package com.apps.twelve.floor.field.utils;
 
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
+import com.apps.twelve.floor.field.data.local.objects.FieldObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.BaseTechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.CropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import java.util.ArrayList;
 
 /**
@@ -42,41 +50,23 @@ public final class TestUtils {
   public static ArrayList<FieldCropTechnologicalProcessObject> getFieldTechnologicalProcesses() {
     ArrayList<FieldCropTechnologicalProcessObject> list = new ArrayList<>();
 
-    /*CropObject crop = new CropObject(1, "Crop 1", 0, false);
-    CropObject prevCrop = new CropObject(2, "Crop 2", 0, false);
-    ClimateZoneObject climateZone = new ClimateZoneObject(1, "Climate zone", "");
-    PhaseObject phase = new PhaseObject(1, "Phase 1", crop);
+    CropObject crop = new CropObject(1, "Тестовая культура", 0, false);
+    ClimateZoneObject climateZone = new ClimateZoneObject(1, "Тестовая климатическая зона", "");
+    PhaseObject phase = new PhaseObject(1, "Тестовая фаза", crop);
+    SoilTypeObject soilType = new SoilTypeObject(1, "Тестовый тип почвы",
+        new ConditionTypeObject(1, "Тестовый тип условия"), "");
+    FieldObject field =
+        new FieldObject(1, "Тестовое поле", crop, crop, "", 11111D, climateZone, phase, soilType);
     ProcessPeriodObject period =
         new ProcessPeriodObject(1, System.currentTimeMillis(), System.currentTimeMillis());
-    TechnologicalProcessTimeObject time =
-        new TechnologicalProcessTimeObject(1, "Time 1", climateZone, phase, period);
-    CropTechnologicalProcessObject technologicalProcess =
-        new CropTechnologicalProcessObject(1, "Tech process", 1, crop, time);
-    TechnologicalProcessStateObject technologicalProcessStatus =
-        new TechnologicalProcessStateObject(1, "Current");
+    CropTechnologicalProcessObject cropTp =
+        new CropTechnologicalProcessObject(1, "Тестовый тех процесс", 1, crop, climateZone, phase,
+            period);
+    TechnologicalProcessStateObject status =
+        new TechnologicalProcessStateObject(1, "Тестовое состояние", -1);
 
-    FieldObject field = null;
-    FieldCropTechnologicalProcessObject fieldTechProcess = null;
-
-    field = new FieldObject(1, "Field 1", crop, prevCrop, "", 11111D, climateZone);
-    fieldTechProcess = new FieldCropTechnologicalProcessObject(1, field, technologicalProcess,
-        technologicalProcessStatus);
-    list.add(fieldTechProcess);
-
-    field = new FieldObject(2, "Field 2", crop, prevCrop, "", 22222D, climateZone);
-    fieldTechProcess = new FieldCropTechnologicalProcessObject(2, field, technologicalProcess,
-        technologicalProcessStatus);
-    list.add(fieldTechProcess);
-
-    field = new FieldObject(3, "Field 3", crop, prevCrop, "", 33333D, climateZone);
-    fieldTechProcess = new FieldCropTechnologicalProcessObject(3, field, technologicalProcess,
-        technologicalProcessStatus);
-    list.add(fieldTechProcess);
-
-    field = new FieldObject(4, "Field 4", crop, prevCrop, "", 44444D, climateZone);
-    fieldTechProcess = new FieldCropTechnologicalProcessObject(4, field, technologicalProcess,
-        technologicalProcessStatus);
-    list.add(fieldTechProcess);
+    FieldCropTechnologicalProcessObject fieldTechProcess =
+        new FieldCropTechnologicalProcessObject(1, field, cropTp, status);
 
     list.add(fieldTechProcess);
     list.add(fieldTechProcess);
@@ -87,7 +77,8 @@ public final class TestUtils {
     list.add(fieldTechProcess);
     list.add(fieldTechProcess);
     list.add(fieldTechProcess);
-    list.add(fieldTechProcess);*/
+    list.add(fieldTechProcess);
+    list.add(fieldTechProcess);
 
     return list;
   }
