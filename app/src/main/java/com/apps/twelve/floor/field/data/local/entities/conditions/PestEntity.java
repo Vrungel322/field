@@ -18,7 +18,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
   public PestEntity() {
   }
 
-  private PestEntity(Long id, String name, Long parentId, boolean isGroup) {
+  public PestEntity(Long id, String name, Long parentId, boolean isGroup) {
     this.id = id;
     this.name = name;
     this.parentId = parentId;

@@ -6,9 +6,13 @@ import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import com.apps.twelve.floor.field.utils.RxBus;
 import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
@@ -86,6 +90,12 @@ import timber.log.Timber;
     // Climate zones
     mDataManager.putClimateZone(
         new ClimateZoneObject(1, "Влажная, умеренно теплая зона", new ArrayList<>()));
+    mDataManager.putClimateZone(new ClimateZoneObject(2, "Лісо-степ", new ArrayList<>()));
+    mDataManager.putClimateZone(new ClimateZoneObject(3, "Полісся", new ArrayList<>()));
+    mDataManager.putClimateZone(
+        new ClimateZoneObject(4, "Карпатські та Кримські гори", new ArrayList<>()));
+    /*mDataManager.putClimateZone(
+        new ClimateZoneObject(1, "Влажная, умеренно теплая зона", new ArrayList<>()));
     mDataManager.putClimateZone(
         new ClimateZoneObject(2, "Подзона достаточно увлажненной почвы", new ArrayList<>()));
     mDataManager.putClimateZone(
@@ -110,7 +120,7 @@ import timber.log.Timber;
             new ArrayList<>()));
     mDataManager.putClimateZone(
         new ClimateZoneObject(11, "Крымский раен вертикальной климатической поясности",
-            new ArrayList<>()));
+            new ArrayList<>()));*/
 
     // Phases
     mDataManager.putPhase(new PhaseObject(1, "Фізично стиглий ґрунт", cornCropObject));
@@ -141,14 +151,29 @@ import timber.log.Timber;
     ConditionTypeObject conditionTypeSoilType = new ConditionTypeObject(1, "Тип почвы");
     mDataManager.putConditionType(conditionTypeSoilType);
     mDataManager.putConditionType(new ConditionTypeObject(2, "Фаза развития вредного объекта"));
-    mDataManager.putConditionType(
-        new ConditionTypeObject(3, "Направление обработки почвы, посева, опрыскивания"));
-    mDataManager.putConditionType(new ConditionTypeObject(4, "Фенологическая характеристика"));
+    ConditionTypeObject conditionTypeTillageDirection =
+        new ConditionTypeObject(3, "Направление обработки почвы, посева, опрыскивания");
+    mDataManager.putConditionType(conditionTypeTillageDirection);
+    ConditionTypeObject conditionPhenologicalCharacteristic =
+        new ConditionTypeObject(4, "Фенологическая характеристика");
+    mDataManager.putConditionType(conditionPhenologicalCharacteristic);
     mDataManager.putConditionType(new ConditionTypeObject(5, "Числовой диапазон"));
     mDataManager.putConditionType(new ConditionTypeObject(6, "Число"));
 
     // Soil types
     mDataManager.putSoilType(
+        new SoilTypeObject(1, "Піщані, або легкі грунти", conditionTypeSoilType, ""));
+    mDataManager.putSoilType(
+        new SoilTypeObject(2, "Глинисті, або важкі грунти ", conditionTypeSoilType, ""));
+    mDataManager.putSoilType(new SoilTypeObject(3, "Кам'янисті грунти", conditionTypeSoilType, ""));
+    mDataManager.putSoilType(
+        new SoilTypeObject(4, "Торф'яно-болотні грунти", conditionTypeSoilType, ""));
+    mDataManager.putSoilType(new SoilTypeObject(5, "Супіщані грунти", conditionTypeSoilType, ""));
+    mDataManager.putSoilType(
+        new SoilTypeObject(6, "Суглинні, або середні грунти", conditionTypeSoilType, ""));
+
+    // Soils
+    /*mDataManager.putSoilType(
         new SoilTypeObject(1, "Дернисто-підзолисті", conditionTypeSoilType, ""));
     mDataManager.putSoilType(
         new SoilTypeObject(2, "Сірі, ясно-сірі та темно-сірі опідзолені", conditionTypeSoilType,
@@ -173,7 +198,79 @@ import timber.log.Timber;
     mDataManager.putSoilType(
         new SoilTypeObject(10, "Бурі гірськолісові", conditionTypeSoilType, ""));
     mDataManager.putSoilType(
-        new SoilTypeObject(11, "Коричневі щебенясті", conditionTypeSoilType, ""));
+        new SoilTypeObject(11, "Коричневі щебенясті", conditionTypeSoilType, ""));*/
+
+    // Technological Process State
+    mDataManager.putTechnologicalProcessState(
+        new TechnologicalProcessStateObject(1, "В очереди", 0));
+    mDataManager.putTechnologicalProcessState(
+        new TechnologicalProcessStateObject(2, "Актуален", 0));
+    mDataManager.putTechnologicalProcessState(
+        new TechnologicalProcessStateObject(3, "Выполнен", 0));
+    mDataManager.putTechnologicalProcessState(new TechnologicalProcessStateObject(4, "Отменен", 0));
+    mDataManager.putTechnologicalProcessState(
+        new TechnologicalProcessStateObject(5, "Пропущен", 0));
+
+    // Pests
+    mDataManager.putPest(new PestObject(1, "злакові бур’яни", 0, false));
+    mDataManager.putPest(new PestObject(2, "ярі дводольні бур’яни", 0, false));
+    mDataManager.putPest(new PestObject(3, "Однорічні зимуючі бур’яни", 0, false));
+    mDataManager.putPest(new PestObject(4, "Збудники пліснявіння  насіння", 0, false));
+    mDataManager.putPest(new PestObject(5, "Збудники фузаріозу", 0, false));
+    mDataManager.putPest(new PestObject(6, "Дротяники", 0, false));
+    mDataManager.putPest(new PestObject(7, "ківсяки", 0, false));
+    mDataManager.putPest(new PestObject(8, "личинки хрущів", 0, false));
+    mDataManager.putPest(new PestObject(9, "личинки хлібних жуків", 0, false));
+    mDataManager.putPest(new PestObject(10, "ярі дводольні бур’яни", 0, false));
+    mDataManager.putPest(new PestObject(11, "ярі злакові бур’яни", 0, false));
+    mDataManager.putPest(new PestObject(12, "Однорічні ярі дводольні бур’яни", 0, false));
+    mDataManager.putPest(new PestObject(13, "Однорічні ярі злакові бур’яни", 0, false));
+    mDataManager.putPest(new PestObject(14, "Однорічні дводольні бур’яни", 0, false));
+    mDataManager.putPest(new PestObject(15, "Однорічні злакові бур’яни", 0, false));
+    mDataManager.putPest(new PestObject(16, "багаторічні дводольні бур’яни", 0, false));
+    mDataManager.putPest(new PestObject(17, "багаторічні злакові бур’яни", 0, false));
+    mDataManager.putPest(new PestObject(18, "Шведська муха", 0, false));
+    mDataManager.putPest(new PestObject(19, "попелиці", 0, false));
+    mDataManager.putPest(new PestObject(20, "кукурудзяний метелик", 0, false));
+    mDataManager.putPest(new PestObject(21, "лучний метелик", 0, false));
+    mDataManager.putPest(new PestObject(22, "бавовникова совка", 0, false));
+
+    // Tillage directions
+    mDataManager.putTillageDirection(
+        new TillageDirectionObject(1, "під кутом 45⁰ до напряму оранки",
+            conditionTypeTillageDirection));
+    mDataManager.putTillageDirection(new TillageDirectionObject(2, "Човнико-вий або діагональ-ний",
+        conditionTypeTillageDirection));
+    mDataManager.putTillageDirection(
+        new TillageDirectionObject(3, "міжряддя вздовж рядків", conditionTypeTillageDirection));
+    mDataManager.putTillageDirection(
+        new TillageDirectionObject(4, "суцільний обробіток", conditionTypeTillageDirection));
+
+    // Phenological Characteristic
+    mDataManager.putPhenologicalCharacteristic(
+        new PhenologicalCharacteristicObject(1, "Цвітіння черемухи",
+            conditionPhenologicalCharacteristic));
+    mDataManager.putPhenologicalCharacteristic(
+        new PhenologicalCharacteristicObject(2, "Цвітіння черешні",
+            conditionPhenologicalCharacteristic));
+    mDataManager.putPhenologicalCharacteristic(new PhenologicalCharacteristicObject(3,
+        "Активна вегетація. Рослини не повинні перебувати в стресовому стані",
+        conditionPhenologicalCharacteristic));
+    mDataManager.putPhenologicalCharacteristic(new PhenologicalCharacteristicObject(4,
+        "Початок масового льоту кукурудзяного метелика -визначається за допомогою феромонних пасток. ",
+        conditionPhenologicalCharacteristic));
+    mDataManager.putPhenologicalCharacteristic(
+        new PhenologicalCharacteristicObject(5, "масове відкладання яєць кукурудзяним метеликом",
+            conditionPhenologicalCharacteristic));
+    mDataManager.putPhenologicalCharacteristic(
+        new PhenologicalCharacteristicObject(6, "проникнення перших гусениць у стебла",
+            conditionPhenologicalCharacteristic));
+    mDataManager.putPhenologicalCharacteristic(
+        new PhenologicalCharacteristicObject(7, "Активна вегетація бур’янів",
+            conditionPhenologicalCharacteristic));
+    mDataManager.putPhenologicalCharacteristic(new PhenologicalCharacteristicObject(9,
+        "Візуально визначається по наявності чор-ного прошарку (чорної точки) між зерном і місцем прикріплення його до качана",
+        conditionPhenologicalCharacteristic));
   }
 
   private void subscribeToFieldsListChanges() {

@@ -10,19 +10,27 @@ import com.apps.twelve.floor.field.data.local.mappers.ConditionTypeObjectToCondi
 import com.apps.twelve.floor.field.data.local.mappers.CropEntityToCropObject;
 import com.apps.twelve.floor.field.data.local.mappers.CropObjectToCropEntity;
 import com.apps.twelve.floor.field.data.local.mappers.FieldObjectToFieldEntity;
+import com.apps.twelve.floor.field.data.local.mappers.PestObjectToPestEntity;
 import com.apps.twelve.floor.field.data.local.mappers.PhaseEntityToPhaseObject;
 import com.apps.twelve.floor.field.data.local.mappers.PhaseObjectToPhaseEntity;
+import com.apps.twelve.floor.field.data.local.mappers.PhenologicalCharacteristicObjectToPhenologicalCharacteristicEntity;
 import com.apps.twelve.floor.field.data.local.mappers.SoilTypeEntityToSoilTypeObject;
 import com.apps.twelve.floor.field.data.local.mappers.SoilTypeObjectToSoilTypeEntity;
+import com.apps.twelve.floor.field.data.local.mappers.TechnologicalProcessStateObjectToTechnologicalProcessStateEntity;
+import com.apps.twelve.floor.field.data.local.mappers.TillageDirectionObjectToTillageDirectionEntity;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import com.apps.twelve.floor.field.utils.TestUtils;
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
 import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
@@ -117,6 +125,29 @@ public class DataManager {
         .concatMap(Observable::from)
         .map(soilTypeEntity -> new SoilTypeEntityToSoilTypeObject().transform(soilTypeEntity)))
         .toList();
+  }
+
+  public PutResult putTechnologicalProcessState(
+      TechnologicalProcessStateObject technologicalProcessStateObject) {
+    return mDbHelper.putTechnologicalProcessState(
+        new TechnologicalProcessStateObjectToTechnologicalProcessStateEntity().transform(
+            technologicalProcessStateObject));
+  }
+
+  public PutResult putPest(PestObject pestObject) {
+    return mDbHelper.putPest(new PestObjectToPestEntity().transform(pestObject));
+  }
+
+  public PutResult putTillageDirection(TillageDirectionObject tillageDirectionObject) {
+    return mDbHelper.putTillageDirection(
+        new TillageDirectionObjectToTillageDirectionEntity().transform(tillageDirectionObject));
+  }
+
+  public PutResult putPhenologicalCharacteristic(
+      PhenologicalCharacteristicObject phenologicalCharacteristicObject) {
+    return mDbHelper.putPhenologicalCharacteristic(
+        new PhenologicalCharacteristicObjectToPhenologicalCharacteristicEntity().transform(
+            phenologicalCharacteristicObject));
   }
 
   public Observable<List<FieldCropTechnologicalProcessObject>> getFieldTechnologicalProcesses(
