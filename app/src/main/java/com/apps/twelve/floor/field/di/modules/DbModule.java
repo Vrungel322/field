@@ -14,14 +14,20 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeE
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PestEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PestEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessStateEntity;
+import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessStateEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.resolvers.CombinedFieldDeleteResolver;
 import com.apps.twelve.floor.field.data.local.resolvers.CombinedFieldGetResolver;
 import com.apps.twelve.floor.field.data.local.resolvers.CombinedFieldPutResolver;
@@ -84,12 +90,19 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
         .addTypeMapping(ConditionTypeEntity.class, new ConditionTypeEntitySQLiteTypeMapping())
         // SoilTypeEntity mapping
         .addTypeMapping(SoilTypeEntity.class, new SoilTypeEntitySQLiteTypeMapping())
+        // TechnologicalProcessStateEntity mapping
+        .addTypeMapping(TechnologicalProcessStateEntity.class,
+            new TechnologicalProcessStateEntitySQLiteTypeMapping())
+        // TillageDirectionEntity mapping
+        .addTypeMapping(TillageDirectionEntity.class, new TillageDirectionEntitySQLiteTypeMapping())
+        // PhenologicalCharacteristicEntity mapping
+        .addTypeMapping(PhenologicalCharacteristicEntity.class,
+            new PhenologicalCharacteristicEntitySQLiteTypeMapping())
 
         // TODO: uncomment this when entities will be ready
         // TODO: for some entities custom resolvers needed
         /*
-        // TechnologicalProcessStateEntity mapping
-        .addTypeMapping(TechnologicalProcessStateEntity.class, new TechnologicalProcessStateEntitySQLiteTypeMapping())
+
         // TechnologicalSolutionTypeEntity mapping
         .addTypeMapping(TechnologicalSolutionTypeEntity.class, new TechnologicalSolutionTypeEntitySQLiteTypeMapping())
         // ProductCategoryEntity mapping
@@ -104,10 +117,6 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
         .addTypeMapping(ConditionSpanValueEntity.class, new ConditionSpanValueEntitySQLiteTypeMapping())
         // PestPhaseEntity mapping
         .addTypeMapping(PestPhaseEntity.class, new PestPhaseEntitySQLiteTypeMapping())
-        // TillageDirectionEntity mapping
-        .addTypeMapping(TillageDirectionEntity.class, new TillageDirectionEntitySQLiteTypeMapping())
-        // PhenologicalCharacteristicEntity mapping
-        .addTypeMapping(PhenologicalCharacteristicEntity.class, new PhenologicalCharacteristicEntitySQLiteTypeMapping())
         // ConditionEntity mapping
         .addTypeMapping(ConditionEntity.class, new ConditionEntitySQLiteTypeMapping())
         // DealerEntity mapping
