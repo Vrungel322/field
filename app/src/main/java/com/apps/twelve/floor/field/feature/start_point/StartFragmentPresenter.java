@@ -5,6 +5,8 @@ import com.apps.twelve.floor.field.base.BasePresenter;
 import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
@@ -157,8 +159,47 @@ import timber.log.Timber;
     ConditionTypeObject conditionPhenologicalCharacteristic =
         new ConditionTypeObject(4, "Фенологическая характеристика");
     mDataManager.putConditionType(conditionPhenologicalCharacteristic);
-    mDataManager.putConditionType(new ConditionTypeObject(5, "Числовой диапазон"));
+    ConditionTypeObject conditionTypeSpanValueObject =
+        new ConditionTypeObject(5, "Числовой диапазон");
+    mDataManager.putConditionType(conditionTypeSpanValueObject);
     mDataManager.putConditionType(new ConditionTypeObject(6, "Число"));
+
+    //SpanValues
+    ArrayList<ConditionSpanValueObject> conditionSpanValueObjects = new ArrayList<>();
+    conditionSpanValueObjects.add(
+        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 10));
+    conditionSpanValueObjects.add(
+        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 10));
+    conditionSpanValueObjects.add(
+        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 10, 300));
+    conditionSpanValueObjects.add(
+        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 12, 20));
+    conditionSpanValueObjects.add(
+        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 8, 10));
+    conditionSpanValueObjects.add(
+        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 25));
+    conditionSpanValueObjects.add(
+        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 25));
+    conditionSpanValueObjects.add(
+        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 25));
+    conditionSpanValueObjects.add(
+        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 25));
+    conditionSpanValueObjects.add(
+        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 25));
+    conditionSpanValueObjects.add(
+        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 25));
+    conditionSpanValueObjects.add(
+        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 25));
+
+    for (int i = 0; i < conditionSpanValueObjects.size(); i++) {
+      mDataManager.putSpanValue(conditionSpanValueObjects.get(i));
+    }
+
+    //Temperature
+    for (int i = 0; i < conditionSpanValueObjects.size(); i++) {
+      mDataManager.putCondition(new ConditionObject(i, "T воздуха", 1, conditionTypeSpanValueObject,
+          conditionSpanValueObjects.get(i)));
+    }
 
     // Soil types
     mDataManager.putSoilType(
