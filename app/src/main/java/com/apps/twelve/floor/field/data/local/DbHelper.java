@@ -540,7 +540,8 @@ public class DbHelper {
   // Crop
   ///////////////////////////////////////////////////////////////////////////
   public Observable<List<CropEntity>> getAllCrops() {
-    return mStorIOSQLite.get().listOfObjects(CropEntity.class)
+    return mStorIOSQLite.get()
+        .listOfObjects(CropEntity.class)
         .withQuery(CropsTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
@@ -588,7 +589,9 @@ public class DbHelper {
   // Field
   ///////////////////////////////////////////////////////////////////////////
   public Observable<List<FieldEntity>> getAllFields() {
-    return mStorIOSQLite.get().listOfObjects(FieldEntity.class).withQuery(FieldsTable.QUERY_ALL)
+    return mStorIOSQLite.get()
+        .listOfObjects(FieldEntity.class)
+        .withQuery(FieldsTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
@@ -628,5 +631,21 @@ public class DbHelper {
 
   public DeleteResult deleteProductPestCrop(ProductPestCropEntity productPestCropEntity) {
     return mStorIOSQLite.delete().object(productPestCropEntity).prepare().executeAsBlocking();
+  }
+
+  public PutResult putConditionEntity(ConditionEntity conditionEntity) {
+    return mStorIOSQLite.put().object(conditionEntity).prepare().executeAsBlocking();
+  }
+
+  public List<ConditionEntity> getAllConditionEntityAsList() {
+    return mStorIOSQLite.get()
+        .listOfObjects(ConditionEntity.class)
+        .withQuery(ConditionsTable.QUERY_ALL)
+        .prepare()
+        .executeAsBlocking();
+  }
+
+  public PutResult putConditionSpanValueEntity(ConditionSpanValueEntity conditionSpanValueEntity) {
+    return mStorIOSQLite.put().object(conditionSpanValueEntity).prepare().executeAsBlocking();
   }
 }

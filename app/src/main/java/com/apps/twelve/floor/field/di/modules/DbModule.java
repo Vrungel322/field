@@ -10,6 +10,10 @@ import com.apps.twelve.floor.field.data.local.entities.CropEntity;
 import com.apps.twelve.floor.field.data.local.entities.CropEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PestEntity;
@@ -104,11 +108,25 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
         // PhenologicalCharacteristicEntity mapping
         .addTypeMapping(PhenologicalCharacteristicEntity.class,
             new PhenologicalCharacteristicEntitySQLiteTypeMapping())
+        // ConditionSpanValueEntity mapping
+        .addTypeMapping(ConditionSpanValueEntity.class,
+            new ConditionSpanValueEntitySQLiteTypeMapping())
+        // ConditionEntity mapping
+        .addTypeMapping(ConditionEntity.class, new ConditionEntitySQLiteTypeMapping())
         // TechnologicalSolutionTypeEntity mapping
         .addTypeMapping(TechnologicalSolutionTypeEntity.class,
             new TechnologicalSolutionTypeEntitySQLiteTypeMapping())
         // AggregateEntity mapping
         .addTypeMapping(AggregateEntity.class, new AggregateEntitySQLiteTypeMapping())
+        // ProductCategoryEntity mapping
+        .addTypeMapping(ProductCategoryEntity.class, new ProductCategoryEntitySQLiteTypeMapping())
+
+        // TODO: uncomment this when entities will be ready
+        // TODO: for some entities custom resolvers needed
+        /*
+
+        // TechnologicalSolutionTypeEntity mapping
+        .addTypeMapping(TechnologicalSolutionTypeEntity.class, new TechnologicalSolutionTypeEntitySQLiteTypeMapping())
         // ProductCategoryEntity mapping
         .addTypeMapping(ProductCategoryEntity.class, new ProductCategoryEntitySQLiteTypeMapping())
 
@@ -140,7 +158,8 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
             SQLiteTypeMapping.<CombinedFieldEntity>builder().putResolver(
                 new CombinedFieldPutResolver())
                 .getResolver(new CombinedFieldGetResolver())
-                .deleteResolver(new CombinedFieldDeleteResolver()).build())
+                .deleteResolver(new CombinedFieldDeleteResolver())
+                .build())
         // TODO: need mappers for all entities
         .build();
   }

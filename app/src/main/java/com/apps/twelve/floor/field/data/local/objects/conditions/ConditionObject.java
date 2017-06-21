@@ -20,41 +20,41 @@ public class ConditionObject implements Parcelable {
       return new ConditionObject[size];
     }
   };
-
   private long mId;
-  @NonNull private CropObject mCrop;
+  @NonNull private String mName;
   private int mPriority;
   @NonNull private ConditionTypeObject mConditionType;
+
   @NonNull private BaseConditionValueObject mConditionValue;
 
-  public ConditionObject(long id, @NonNull CropObject crop, int priority,
+  public ConditionObject(long id, @NonNull String  name, int priority,
       @NonNull ConditionTypeObject conditionType,
       @NonNull BaseConditionValueObject conditionValue) {
     this.mId = id;
-    this.mCrop = crop;
+    this.mName = name;
     this.mPriority = priority;
     this.mConditionType = conditionType;
     this.mConditionValue = conditionValue;
   }
 
   protected ConditionObject(Parcel in) {
-    this.mId = in.readLong();
-    this.mCrop = in.readParcelable(CropObject.class.getClassLoader());
-    this.mPriority = in.readInt();
-    this.mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
-    this.mConditionValue = in.readParcelable(BaseConditionValueObject.class.getClassLoader());
-  }
-
-  @Override public int describeContents() {
-    return 0;
+    mId = in.readLong();
+    mName = in.readString();
+    mPriority = in.readInt();
+    mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
+    mConditionValue = in.readParcelable(BaseConditionValueObject.class.getClassLoader());
   }
 
   @Override public void writeToParcel(Parcel dest, int flags) {
     dest.writeLong(mId);
-    dest.writeParcelable(mCrop, flags);
+    dest.writeString(mName);
     dest.writeInt(mPriority);
     dest.writeParcelable(mConditionType, flags);
     dest.writeParcelable(mConditionValue, flags);
+  }
+
+  @Override public int describeContents() {
+    return 0;
   }
 
   public long getId() {
@@ -65,12 +65,12 @@ public class ConditionObject implements Parcelable {
     this.mId = id;
   }
 
-  public CropObject getCrop() {
-    return mCrop;
+  public String getName() {
+    return mName;
   }
 
-  public void setCrop(@NonNull CropObject crop) {
-    this.mCrop = crop;
+  public void setCrop(@NonNull String  crop) {
+    this.mName = crop;
   }
 
   public int getPriority() {

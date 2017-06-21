@@ -4,9 +4,12 @@ import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
 import com.apps.twelve.floor.field.data.local.DbHelper;
 import com.apps.twelve.floor.field.data.local.mappers.AggregateObjectToAggregateEntityMapper;
+import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
 import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneEntityToClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneObjectToClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.mappers.CombinedFieldEntityToFieldObject;
+import com.apps.twelve.floor.field.data.local.mappers.ConditionObjectToConditionEntity;
+import com.apps.twelve.floor.field.data.local.mappers.ConditionSpanValueObjectToConditionSpanValueEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ConditionTypeObjectToConditionTypeEntity;
 import com.apps.twelve.floor.field.data.local.mappers.CropEntityToCropObject;
 import com.apps.twelve.floor.field.data.local.mappers.CropObjectToCropEntity;
@@ -23,6 +26,8 @@ import com.apps.twelve.floor.field.data.local.mappers.TechnologicalSolutionTypeO
 import com.apps.twelve.floor.field.data.local.mappers.TillageDirectionObjectToTillageDirectionEntity;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
@@ -187,5 +192,20 @@ public class DataManager {
   public Observable<List<TechnologicalSolutionTypeObject>> getAllTechnologicalSolutionTypes() {
     // TODO
     return Observable.just(TestUtils.getAllTechnologicalSolutionTypes());
+  }
+
+  public PutResult putCondition(ConditionObject conditionObject) {
+    return mDbHelper.putConditionEntity(
+        new ConditionObjectToConditionEntity().transform(conditionObject));
+  }
+
+  public PutResult putSpanValue(ConditionSpanValueObject conditionSpanValueObject) {
+    return mDbHelper.putConditionSpanValueEntity(
+        new ConditionSpanValueObjectToConditionSpanValueEntityMapper().transform(
+            conditionSpanValueObject));
+  }
+
+  public List<ConditionEntity> getAllConditionEntitiesAsList() {
+    return mDbHelper.getAllConditionEntityAsList();
   }
 }
