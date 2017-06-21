@@ -3,6 +3,7 @@ package com.apps.twelve.floor.field.data;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
 import com.apps.twelve.floor.field.data.local.DbHelper;
+import com.apps.twelve.floor.field.data.local.mappers.AggregateObjectToAggregateEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneEntityToClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneObjectToClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.mappers.CombinedFieldEntityToFieldObject;
@@ -14,9 +15,11 @@ import com.apps.twelve.floor.field.data.local.mappers.PestObjectToPestEntity;
 import com.apps.twelve.floor.field.data.local.mappers.PhaseEntityToPhaseObject;
 import com.apps.twelve.floor.field.data.local.mappers.PhaseObjectToPhaseEntity;
 import com.apps.twelve.floor.field.data.local.mappers.PhenologicalCharacteristicObjectToPhenologicalCharacteristicEntity;
+import com.apps.twelve.floor.field.data.local.mappers.ProductCategoryObjectToProductCategoryEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.SoilTypeEntityToSoilTypeObject;
 import com.apps.twelve.floor.field.data.local.mappers.SoilTypeObjectToSoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.mappers.TechnologicalProcessStateObjectToTechnologicalProcessStateEntity;
+import com.apps.twelve.floor.field.data.local.mappers.TechnologicalSolutionTypeObjectToTechnologicalSolutionTypeEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.TillageDirectionObjectToTillageDirectionEntity;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
@@ -27,7 +30,9 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.ProductCategoryObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
@@ -148,6 +153,23 @@ public class DataManager {
     return mDbHelper.putPhenologicalCharacteristic(
         new PhenologicalCharacteristicObjectToPhenologicalCharacteristicEntity().transform(
             phenologicalCharacteristicObject));
+  }
+
+  public PutResult putTechnologicalSolutionType(
+      TechnologicalSolutionTypeObject technologicalSolutionTypeObject) {
+    return mDbHelper.putTechnologicalSolutionType(
+        new TechnologicalSolutionTypeObjectToTechnologicalSolutionTypeEntityMapper().transform(
+            technologicalSolutionTypeObject));
+  }
+
+  public PutResult putAggregate(AggregateObject aggregateObject) {
+    return mDbHelper.putAggregate(
+        new AggregateObjectToAggregateEntityMapper().transform(aggregateObject));
+  }
+
+  public PutResult putProductCategory(ProductCategoryObject productCategoryObject) {
+    return mDbHelper.putProductCategory(
+        new ProductCategoryObjectToProductCategoryEntityMapper().transform(productCategoryObject));
   }
 
   public Observable<List<FieldCropTechnologicalProcessObject>> getFieldTechnologicalProcesses(

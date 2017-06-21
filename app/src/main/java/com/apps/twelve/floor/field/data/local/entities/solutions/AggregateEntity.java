@@ -11,7 +11,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 @StorIOSQLiteType(table = AggregatesTable.TABLE) public class AggregateEntity {
 
   @StorIOSQLiteColumn(name = AggregatesTable.COLUMN_ID, key = true) Long id;
-  @StorIOSQLiteColumn(name = AggregatesTable.COLUMN_NAME) Long name;
+  @StorIOSQLiteColumn(name = AggregatesTable.COLUMN_NAME) String name;
   @StorIOSQLiteColumn(name = AggregatesTable.COLUMN_TECHNOLOGICAL_SOLUTION_TYPE_ID) Long
       solutionTypeId;
   @StorIOSQLiteColumn(name = AggregatesTable.COLUMN_PRICE) Long price;
@@ -19,14 +19,14 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
   public AggregateEntity() {
   }
 
-  public AggregateEntity(Long id, Long name, Long solutionTypeId, Long price) {
+  public AggregateEntity(Long id, String name, Long solutionTypeId, Long price) {
     this.id = id;
     this.name = name;
     this.solutionTypeId = solutionTypeId;
     this.price = price;
   }
 
-  public static AggregateEntity newAggregateEntity(Long id, Long name, Long solutionTypeId,
+  public static AggregateEntity newAggregateEntity(Long id, String name, Long solutionTypeId,
       Long price) {
     if (id == 0) id = null;
     return new AggregateEntity(id, name, solutionTypeId, price);
@@ -64,11 +64,11 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
     this.id = id;
   }
 
-  public Long getName() {
+  public String getName() {
     return name;
   }
 
-  public void setName(Long name) {
+  public void setName(String name) {
     this.name = name;
   }
 

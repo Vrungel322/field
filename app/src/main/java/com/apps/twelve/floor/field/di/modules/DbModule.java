@@ -24,6 +24,12 @@ import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneE
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.solutions.AggregateEntity;
+import com.apps.twelve.floor.field.data.local.entities.solutions.AggregateEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.solutions.ProductCategoryEntity;
+import com.apps.twelve.floor.field.data.local.entities.solutions.ProductCategoryEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntity;
+import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessStateEntity;
@@ -98,19 +104,19 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
         // PhenologicalCharacteristicEntity mapping
         .addTypeMapping(PhenologicalCharacteristicEntity.class,
             new PhenologicalCharacteristicEntitySQLiteTypeMapping())
+        // TechnologicalSolutionTypeEntity mapping
+        .addTypeMapping(TechnologicalSolutionTypeEntity.class,
+            new TechnologicalSolutionTypeEntitySQLiteTypeMapping())
+        // AggregateEntity mapping
+        .addTypeMapping(AggregateEntity.class, new AggregateEntitySQLiteTypeMapping())
+        // ProductCategoryEntity mapping
+        .addTypeMapping(ProductCategoryEntity.class, new ProductCategoryEntitySQLiteTypeMapping())
 
         // TODO: uncomment this when entities will be ready
         // TODO: for some entities custom resolvers needed
         /*
-
-        // TechnologicalSolutionTypeEntity mapping
-        .addTypeMapping(TechnologicalSolutionTypeEntity.class, new TechnologicalSolutionTypeEntitySQLiteTypeMapping())
-        // ProductCategoryEntity mapping
-        .addTypeMapping(ProductCategoryEntity.class, new ProductCategoryEntitySQLiteTypeMapping())
         // ProductEntity mapping
         .addTypeMapping(ProductEntity.class, new ProductEntitySQLiteTypeMapping())
-        // AggregateEntity mapping
-        .addTypeMapping(AggregateEntity.class, new AggregateEntitySQLiteTypeMapping())
         // ProcessPeriodEntity mapping
         .addTypeMapping(ProcessPeriodEntity.class, new ProcessPeriodEntitySQLiteTypeMapping())
         // ConditionSpanValueEntity mapping

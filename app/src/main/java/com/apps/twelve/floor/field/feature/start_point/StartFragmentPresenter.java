@@ -12,6 +12,9 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.ProductCategoryObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import com.apps.twelve.floor.field.utils.RxBus;
 import com.apps.twelve.floor.field.utils.RxBusHelper;
@@ -88,8 +91,7 @@ import timber.log.Timber;
     mDataManager.putCrop(new CropObject(6, "Лен", 0, false));
 
     // Climate zones
-    mDataManager.putClimateZone(
-        new ClimateZoneObject(1, "Влажная, умеренно теплая зона", new ArrayList<>()));
+    mDataManager.putClimateZone(new ClimateZoneObject(1, "Степ", new ArrayList<>()));
     mDataManager.putClimateZone(new ClimateZoneObject(2, "Лісо-степ", new ArrayList<>()));
     mDataManager.putClimateZone(new ClimateZoneObject(3, "Полісся", new ArrayList<>()));
     mDataManager.putClimateZone(
@@ -271,6 +273,55 @@ import timber.log.Timber;
     mDataManager.putPhenologicalCharacteristic(new PhenologicalCharacteristicObject(9,
         "Візуально визначається по наявності чор-ного прошарку (чорної точки) між зерном і місцем прикріплення його до качана",
         conditionPhenologicalCharacteristic));
+
+    // Technological Solution Types
+    TechnologicalSolutionTypeObject techSolutionTypeAggregates =
+        new TechnologicalSolutionTypeObject(1, "Агрегаты");
+    TechnologicalSolutionTypeObject techSolutionTypeInsects =
+        new TechnologicalSolutionTypeObject(3, "Насекомые");
+    mDataManager.putTechnologicalSolutionType(techSolutionTypeAggregates);
+    mDataManager.putTechnologicalSolutionType(new TechnologicalSolutionTypeObject(2, "Препараты"));
+    mDataManager.putTechnologicalSolutionType(techSolutionTypeInsects);
+    mDataManager.putTechnologicalSolutionType(
+        new TechnologicalSolutionTypeObject(4, "Другие решения"));
+
+    // Aggregates
+    mDataManager.putAggregate(
+        new AggregateObject(1, "Важка борона", techSolutionTypeAggregates, 0));
+    mDataManager.putAggregate(
+        new AggregateObject(2, "Волокуша-вирівнювач", techSolutionTypeAggregates, 0));
+    mDataManager.putAggregate(new AggregateObject(3, "Культиватор", techSolutionTypeAggregates, 0));
+    mDataManager.putAggregate(
+        new AggregateObject(4, "Гладкорубчасті котки", techSolutionTypeAggregates, 0));
+    mDataManager.putAggregate(
+        new AggregateObject(5, "Кільчасті котки", techSolutionTypeAggregates, 0));
+    mDataManager.putAggregate(
+        new AggregateObject(6, "Борона ЗБП-0.6", techSolutionTypeAggregates, 0));
+    mDataManager.putAggregate(
+        new AggregateObject(7, "Борона БЗСС-1", techSolutionTypeAggregates, 0));
+    mDataManager.putAggregate(
+        new AggregateObject(8, "Культиватор КРН-4.2", techSolutionTypeAggregates, 0));
+    mDataManager.putAggregate(
+        new AggregateObject(9, "Культиватор КРН-5.6", techSolutionTypeAggregates, 0));
+    mDataManager.putAggregate(
+        new AggregateObject(11, "Дисковий лущильник", techSolutionTypeAggregates, 0));
+    mDataManager.putAggregate(
+        new AggregateObject(12, "Оприскувачі навісні", techSolutionTypeAggregates, 0));
+    mDataManager.putAggregate(
+        new AggregateObject(13, "Оприскувачі причіпні", techSolutionTypeAggregates, 0));
+    mDataManager.putAggregate(
+        new AggregateObject(14, "Кукурудзозбиральні комбайни", techSolutionTypeAggregates, 0));
+    mDataManager.putAggregate(
+        new AggregateObject(15, "Зернозбиральні комбайни", techSolutionTypeAggregates, 0));
+
+    // TODO: Insects
+    //mDataManager.putInsect(new InsectObject(1, "Вогнівкова раса трихограми", techSolutionTypeInsects, 0));
+
+    // Product categories
+    mDataManager.putProductCategory(new ProductCategoryObject(1, "Гербіциди"));
+    mDataManager.putProductCategory(new ProductCategoryObject(2, "Фунгiциди"));
+    mDataManager.putProductCategory(new ProductCategoryObject(3, "Протруйники"));
+    mDataManager.putProductCategory(new ProductCategoryObject(4, "Iнсектициди"));
   }
 
   private void subscribeToFieldsListChanges() {
