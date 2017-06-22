@@ -11,7 +11,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 @StorIOSQLiteType(table = ConditionsTable.TABLE) public class ConditionEntity {
 
   @StorIOSQLiteColumn(name = ConditionsTable.COLUMN_ID, key = true) Long id;
-  @StorIOSQLiteColumn(name = ConditionsTable.COLUMN_CROP_NAME) String name;
+  @StorIOSQLiteColumn(name = ConditionsTable.COLUMN_NAME) String name;
   @StorIOSQLiteColumn(name = ConditionsTable.COLUMN_PRIORITY) Integer priority;
   @StorIOSQLiteColumn(name = ConditionsTable.COLUMN_CONDITION_TYPE_ID) Long conditionTypeId;
   @StorIOSQLiteColumn(name = ConditionsTable.COLUMN_CONDITION_VALUE_ID) Long conditionValueId;
