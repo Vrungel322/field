@@ -20,6 +20,7 @@ import com.apps.twelve.floor.field.data.local.tables.process_time.PhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ProcessPeriodsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.AggregatesTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.FieldTechnologicalProcessSolutionsTable;
+import com.apps.twelve.floor.field.data.local.tables.solutions.InsectsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.ProductCategoriesTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.ProductsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.TechnologicalSolutionTypesTable;
@@ -80,6 +81,8 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     // SOLUTIONS
     // Aggregates
     db.execSQL(AggregatesTable.getCreateTableQuery());
+    // Insects
+    db.execSQL(InsectsTable.getCreateTableQuery());
     // FieldTechnologicalProcessSolutions
     db.execSQL(FieldTechnologicalProcessSolutionsTable.getCreateTableQuery());
     // ProductCategories

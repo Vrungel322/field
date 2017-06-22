@@ -18,6 +18,7 @@ import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ProcessPeriodEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.AggregateEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.FieldTechnologicalProcessSolutionEntity;
+import com.apps.twelve.floor.field.data.local.entities.solutions.InsectEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.ProductCategoryEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.ProductEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntity;
@@ -42,6 +43,7 @@ import com.apps.twelve.floor.field.data.local.tables.process_time.PhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ProcessPeriodsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.AggregatesTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.FieldTechnologicalProcessSolutionsTable;
+import com.apps.twelve.floor.field.data.local.tables.solutions.InsectsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.ProductCategoriesTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.ProductsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.TechnologicalSolutionTypesTable;
@@ -323,6 +325,26 @@ public class DbHelper {
 
   public DeleteResult deleteAggregate(AggregateEntity aggregateEntity) {
     return mStorIOSQLite.delete().object(aggregateEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Insect
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<InsectEntity>> getAllInsects() {
+    return mStorIOSQLite.get()
+        .listOfObjects(InsectEntity.class)
+        .withQuery(InsectsTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putInsect(InsectEntity insectEntity) {
+    return mStorIOSQLite.put().object(insectEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteInsect(InsectEntity insectEntity) {
+    return mStorIOSQLite.delete().object(insectEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////

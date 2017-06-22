@@ -30,6 +30,8 @@ import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.solutions.AggregateEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.AggregateEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.solutions.InsectEntity;
+import com.apps.twelve.floor.field.data.local.entities.solutions.InsectEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.solutions.ProductCategoryEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.ProductCategoryEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntity;
@@ -118,15 +120,8 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
             new TechnologicalSolutionTypeEntitySQLiteTypeMapping())
         // AggregateEntity mapping
         .addTypeMapping(AggregateEntity.class, new AggregateEntitySQLiteTypeMapping())
-        // ProductCategoryEntity mapping
-        .addTypeMapping(ProductCategoryEntity.class, new ProductCategoryEntitySQLiteTypeMapping())
-
-        // TODO: uncomment this when entities will be ready
-        // TODO: for some entities custom resolvers needed
-        /*
-
-        // TechnologicalSolutionTypeEntity mapping
-        .addTypeMapping(TechnologicalSolutionTypeEntity.class, new TechnologicalSolutionTypeEntitySQLiteTypeMapping())
+        // InsectEntityEntity mapping
+        .addTypeMapping(InsectEntity.class, new InsectEntitySQLiteTypeMapping())
         // ProductCategoryEntity mapping
         .addTypeMapping(ProductCategoryEntity.class, new ProductCategoryEntitySQLiteTypeMapping())
 
@@ -137,12 +132,8 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
         .addTypeMapping(ProductEntity.class, new ProductEntitySQLiteTypeMapping())
         // ProcessPeriodEntity mapping
         .addTypeMapping(ProcessPeriodEntity.class, new ProcessPeriodEntitySQLiteTypeMapping())
-        // ConditionSpanValueEntity mapping
-        .addTypeMapping(ConditionSpanValueEntity.class, new ConditionSpanValueEntitySQLiteTypeMapping())
         // PestPhaseEntity mapping
         .addTypeMapping(PestPhaseEntity.class, new PestPhaseEntitySQLiteTypeMapping())
-        // ConditionEntity mapping
-        .addTypeMapping(ConditionEntity.class, new ConditionEntitySQLiteTypeMapping())
         // DealerEntity mapping
         .addTypeMapping(DealerEntity.class, new DealerEntitySQLiteTypeMapping())
         // FieldCropTechnologicalProcessEntity mapping
@@ -160,7 +151,6 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
                 .getResolver(new CombinedFieldGetResolver())
                 .deleteResolver(new CombinedFieldDeleteResolver())
                 .build())
-        // TODO: need mappers for all entities
         .build();
   }
 

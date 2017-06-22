@@ -15,6 +15,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectio
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.InsectObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.ProductCategoryObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
@@ -73,12 +74,67 @@ import timber.log.Timber;
     return mFieldTypePosition;
   }
 
+  public void onFieldTypeDialogPositiveButton(int which) {
+    switch (which) {
+      case 0:
+        getViewState().showEditFieldOnMapFragment();
+        break;
+      case 1:
+        getViewState().showEditFieldTrackingFragment();
+        break;
+      case 2:
+        getViewState().showEditFieldFullScreenFragment();
+        break;
+      default:
+        break;
+    }
+  }
+
+  public void onFiledClickedAtPosition(int position) {
+    getViewState().openFieldTechnologicalMapFragment(position);
+  }
+
   private void getAllFields() {
     Subscription subscription = mDataManager.getAllFields()
         .compose(ThreadSchedulers.applySchedulers())
         .subscribe(fields -> getViewState().showFields(fields), Timber::e);
 
     addToUnsubscription(subscription);
+  }
+
+  private void subscribeToFieldsListChanges() {
+    Subscription subscription = mRxBus.filteredObservable(RxBusHelper.FieldDeletedFromList.class)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(msg -> onFieldDeletedFromList(msg.field, msg.position), Timber::e);
+    addToUnsubscription(subscription);
+  }
+
+  private void onFieldDeletedFromList(FieldObject field, int position) {
+    DeleteResult deleteResult = mDataManager.deleteField(field);
+
+    if (deleteResult.numberOfRowsDeleted() > 0) {
+      getViewState().deleteFieldAtPosition(field, position);
+    }
+  }
+
+  private void subscribeToFieldsDbChanges() {
+    Subscription subscription = mRxBus.filteredObservable(RxBusHelper.FieldChangedInDb.class)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(msg -> onFieldChanged(msg.fieldObject, msg.change), Timber::e);
+    addToUnsubscription(subscription);
+  }
+
+  private void onFieldChanged(FieldObject fieldObject, int change) {
+    switch (change) {
+      case RxBusHelper.FieldChangedInDb.CHANGE_INSERT:
+        getViewState().addField(fieldObject);
+        break;
+      case RxBusHelper.FieldChangedInDb.CHANGE_UPDATE:
+        getViewState().updateField(fieldObject);
+        break;
+      default:
+        break;
+    }
   }
 
   private void addTestData() {
@@ -355,68 +411,14 @@ import timber.log.Timber;
     mDataManager.putAggregate(
         new AggregateObject(15, "Зернозбиральні комбайни", techSolutionTypeAggregates, 0));
 
-    // TODO: Insects
-    //mDataManager.putInsect(new InsectObject(1, "Вогнівкова раса трихограми", techSolutionTypeInsects, 0));
+    // Insects
+    mDataManager.putInsect(
+        new InsectObject(1, "Вогнівкова раса трихограми", techSolutionTypeInsects, 0));
 
     // Product categories
     mDataManager.putProductCategory(new ProductCategoryObject(1, "Гербіциди"));
     mDataManager.putProductCategory(new ProductCategoryObject(2, "Фунгiциди"));
     mDataManager.putProductCategory(new ProductCategoryObject(3, "Протруйники"));
     mDataManager.putProductCategory(new ProductCategoryObject(4, "Iнсектициди"));
-  }
-
-  private void subscribeToFieldsListChanges() {
-    Subscription subscription = mRxBus.filteredObservable(RxBusHelper.FieldDeletedFromList.class)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(msg -> onFieldDeletedFromList(msg.field, msg.position), Timber::e);
-    addToUnsubscription(subscription);
-  }
-
-  private void onFieldDeletedFromList(FieldObject field, int position) {
-    DeleteResult deleteResult = mDataManager.deleteField(field);
-
-    if (deleteResult.numberOfRowsDeleted() > 0) {
-      getViewState().deleteFieldAtPosition(field, position);
-    }
-  }
-
-  private void subscribeToFieldsDbChanges() {
-    Subscription subscription = mRxBus.filteredObservable(RxBusHelper.FieldChangedInDb.class)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(msg -> onFieldChanged(msg.fieldObject, msg.change), Timber::e);
-    addToUnsubscription(subscription);
-  }
-
-  private void onFieldChanged(FieldObject fieldObject, int change) {
-    switch (change) {
-      case RxBusHelper.FieldChangedInDb.CHANGE_INSERT:
-        getViewState().addField(fieldObject);
-        break;
-      case RxBusHelper.FieldChangedInDb.CHANGE_UPDATE:
-        getViewState().updateField(fieldObject);
-        break;
-      default:
-        break;
-    }
-  }
-
-  public void onFieldTypeDialogPositiveButton(int which) {
-    switch (which) {
-      case 0:
-        getViewState().showEditFieldOnMapFragment();
-        break;
-      case 1:
-        getViewState().showEditFieldTrackingFragment();
-        break;
-      case 2:
-        getViewState().showEditFieldFullScreenFragment();
-        break;
-      default:
-        break;
-    }
-  }
-
-  public void onFiledClickedAtPosition(int position) {
-    getViewState().openFieldTechnologicalMapFragment(position);
   }
 }
