@@ -15,6 +15,7 @@ public class CropsTable {
   @NonNull public static final String COLUMN_NAME = "name";
   @NonNull public static final String COLUMN_PARENT_ID = "parent_id";
   @NonNull public static final String COLUMN_IS_GROUP = "is_group";
+  @NonNull public static final String COLUMN_IS_SUPPORTED = "is_supported";
 
   @NonNull public static final String COLUMN_ID_WITH_TABLE_PREFIX = TABLE + "." + COLUMN_ID;
   @NonNull public static final String COLUMN_NAME_WITH_TABLE_PREFIX = TABLE + "." + COLUMN_NAME;
@@ -22,8 +23,12 @@ public class CropsTable {
       TABLE + "." + COLUMN_PARENT_ID;
   @NonNull public static final String COLUMN_IS_GROUP_WITH_TABLE_PREFIX =
       TABLE + "." + COLUMN_IS_GROUP;
+  @NonNull public static final String COLUMN_IS_SUPPORTED_WITH_TABLE_PREFIX =
+      TABLE + "." + COLUMN_IS_SUPPORTED;
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
+  @NonNull public static final Query QUERY_ALL_SUPPORTED =
+      Query.builder().table(TABLE).where(COLUMN_IS_SUPPORTED + " = 1")/*.whereArgs(1)*/.build();
 
   public CropsTable() {
     throw new IllegalStateException("No instances allowed");
@@ -36,10 +41,8 @@ public class CropsTable {
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_NAME
-        + " TEXT NULL, "
-        + COLUMN_PARENT_ID + " INTEGER, "
-        + COLUMN_IS_GROUP
-        + " TEXT NULL "
+        + " TEXT NULL, " + COLUMN_PARENT_ID + " INTEGER, "
+        + COLUMN_IS_GROUP + " INTEGER, " + COLUMN_IS_SUPPORTED + " INTEGER "
         + ");";
   }
 

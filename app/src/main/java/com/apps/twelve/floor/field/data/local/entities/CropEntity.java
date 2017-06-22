@@ -14,20 +14,23 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
   @StorIOSQLiteColumn(name = CropsTable.COLUMN_NAME) String name;
   @StorIOSQLiteColumn(name = CropsTable.COLUMN_PARENT_ID) Long parentId;
   @StorIOSQLiteColumn(name = CropsTable.COLUMN_IS_GROUP) boolean isGroup;
+  @StorIOSQLiteColumn(name = CropsTable.COLUMN_IS_SUPPORTED) boolean isSupported;
 
   public CropEntity() {
   }
 
-  private CropEntity(Long id, String name, Long parentId, boolean isGroup) {
+  private CropEntity(Long id, String name, Long parentId, boolean isGroup, boolean isSupported) {
     this.id = id;
     this.name = name;
     this.parentId = parentId;
     this.isGroup = isGroup;
+    this.isSupported = isSupported;
   }
 
-  public static CropEntity newCropEntity(Long id, String name, Long parentId, boolean isGroup) {
+  public static CropEntity newCropEntity(Long id, String name, Long parentId, boolean isGroup,
+      boolean isSupported) {
     if (id == 0) id = null;
-    return new CropEntity(id, name, parentId, isGroup);
+    return new CropEntity(id, name, parentId, isGroup, isSupported);
   }
 
   @Override public boolean equals(Object obj) {
@@ -37,6 +40,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
     CropEntity that = (CropEntity) obj;
 
     if (isGroup != that.isGroup) return false;
+    if (isSupported != that.isSupported) return false;
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
     if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
@@ -48,6 +52,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
     result = 31 * result + (name != null ? name.hashCode() : 0);
     result = 31 * result + (parentId != null ? parentId.hashCode() : 0);
     result = 31 * result + (isGroup ? 1 : 0);
+    result = 31 * result + (isSupported ? 1 : 0);
 
     return result;
   }
@@ -82,5 +87,13 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
   public void setGroup(boolean group) {
     isGroup = group;
+  }
+
+  public boolean isSupported() {
+    return isSupported;
+  }
+
+  public void setSupported(boolean supported) {
+    isSupported = supported;
   }
 }

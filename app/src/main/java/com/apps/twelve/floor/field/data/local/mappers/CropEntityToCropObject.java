@@ -12,6 +12,7 @@ public class CropEntityToCropObject implements Mapper<CropEntity, CropObject> {
 
   @Nullable @Override public CropObject transform(CropEntity entity) throws RuntimeException {
     if (entity == null) return null;
-    return new CropObject(entity.getId(), entity.getName(), entity.getParentId(), entity.isGroup());
+    return new CropObject(entity.getId(), entity.getName(), entity.getParentId(), entity.isGroup(),
+        entity.isSupported());
   }
 }

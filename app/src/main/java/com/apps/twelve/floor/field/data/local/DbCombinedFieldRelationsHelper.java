@@ -28,10 +28,12 @@ public class DbCombinedFieldRelationsHelper {
   public static final String QUERY_COLUMN_CROP_NAME = "crop_name";
   public static final String QUERY_COLUMN_CROP_PARENT_ID = "crop_parent_id";
   public static final String QUERY_COLUMN_CROP_IS_GROUP = "crop_is_group";
+  public static final String QUERY_COLUMN_CROP_IS_SUPPORTED = "crop_is_supported";
   public static final String QUERY_COLUMN_PREV_CROP_ID = "prev_crop_id";
   public static final String QUERY_COLUMN_PREV_CROP_NAME = "prev_crop_name";
   public static final String QUERY_COLUMN_PREV_CROP_PARENT_ID = "prev_crop_parent_id";
   public static final String QUERY_COLUMN_PREV_CROP_IS_GROUP = "prev_crop_is_group";
+  public static final String QUERY_COLUMN_PREV_CROP_IS_SUPPORTED = "prev_crop_is_supported";
   public static final String QUERY_COLUMN_CLIMATE_ZONE_ID = "climate_zone_id";
   public static final String QUERY_COLUMN_CLIMATE_ZONE_NAME = "climate_zone_name";
   public static final String QUERY_COLUMN_CLIMATE_ZONE_COORDINATES = "climate_zone_coordinates";
@@ -80,6 +82,10 @@ public class DbCombinedFieldRelationsHelper {
       + " AS "
       + QUERY_COLUMN_CROP_IS_GROUP
       + ", "
+      + CropsTable.COLUMN_IS_SUPPORTED_WITH_TABLE_PREFIX
+      + " AS "
+      + QUERY_COLUMN_CROP_IS_SUPPORTED
+      + ", "
 
       // Previous crop data
       + CropsTable.TABLE
@@ -105,6 +111,12 @@ public class DbCombinedFieldRelationsHelper {
       + CropsTable.COLUMN_IS_GROUP
       + " AS "
       + QUERY_COLUMN_PREV_CROP_IS_GROUP
+      + ", "
+      + CropsTable.TABLE
+      + "_PREV."
+      + CropsTable.COLUMN_IS_SUPPORTED
+      + " AS "
+      + QUERY_COLUMN_PREV_CROP_IS_SUPPORTED
       + ", "
 
       // Climate zone data

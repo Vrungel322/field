@@ -570,6 +570,22 @@ public class DbHelper {
         .take(1);
   }
 
+  public Observable<List<CropEntity>> getSupportedCrops() {
+
+    List<CropEntity> cropEntities = mStorIOSQLite.get()
+        .listOfObjects(CropEntity.class)
+        .withQuery(CropsTable.QUERY_ALL_SUPPORTED)
+        .prepare()
+        .executeAsBlocking();
+
+    return mStorIOSQLite.get()
+        .listOfObjects(CropEntity.class)
+        .withQuery(CropsTable.QUERY_ALL_SUPPORTED)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
   public Observable<CropEntity> getCropById(long id) {
     return mStorIOSQLite.get()
         .object(CropEntity.class)

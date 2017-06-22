@@ -22,8 +22,9 @@ import java.util.ArrayList;
 
 public final class TestUtils {
 
-  public static CropObject makeCropObject(long id, String name, long parentId, boolean isGroup) {
-    return new CropObject(id, name, parentId, isGroup);
+  public static CropObject makeCropObject(long id, String name, long parentId, boolean isGroup,
+      boolean isSupported) {
+    return new CropObject(id, name, parentId, isGroup, isSupported);
   }
 
   public static FieldCropTechnologicalProcessObject makeFieldTechnologicalProcessObject() {
@@ -50,7 +51,7 @@ public final class TestUtils {
   public static ArrayList<FieldCropTechnologicalProcessObject> getFieldTechnologicalProcesses() {
     ArrayList<FieldCropTechnologicalProcessObject> list = new ArrayList<>();
 
-    CropObject crop = new CropObject(1, "Тестовая культура", 0, false);
+    CropObject crop = new CropObject(1, "Тестовая культура", 0, false, false);
     ClimateZoneObject climateZone = new ClimateZoneObject(1, "Тестовая климатическая зона", "");
     PhaseObject phase = new PhaseObject(1, "Тестовая фаза", crop);
     SoilTypeObject soilType = new SoilTypeObject(1, "Тестовый тип почвы",

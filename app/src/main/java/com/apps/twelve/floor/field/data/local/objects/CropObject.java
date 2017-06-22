@@ -13,7 +13,7 @@ public class CropObject implements Parcelable, Cloneable {
   public static final CropObject EMPTY;
 
   static {
-    EMPTY = new CropObject(0, "", 0, false);
+    EMPTY = new CropObject(0, "", 0, false, false);
   }
 
   public static final Creator<CropObject> CREATOR = new Creator<CropObject>() {
@@ -30,12 +30,15 @@ public class CropObject implements Parcelable, Cloneable {
   @NonNull private String mName;
   private long mParentId;
   private boolean mIsGroup;
+  private boolean mIsSupported;
 
-  public CropObject(long id, @NonNull String name, long parentId, boolean isGroup) {
+  public CropObject(long id, @NonNull String name, long parentId, boolean isGroup,
+      boolean isSupported) {
     this.mId = id;
     this.mName = name;
     this.mParentId = parentId;
     this.mIsGroup = isGroup;
+    this.mIsSupported = isSupported;
   }
 
   protected CropObject(Parcel in) {
@@ -43,10 +46,11 @@ public class CropObject implements Parcelable, Cloneable {
     this.mName = in.readString();
     this.mParentId = in.readLong();
     this.mIsGroup = in.readByte() != 0;
+    this.mIsSupported = in.readByte() != 0;
   }
 
   public static CropObject newInstance() {
-    return new CropObject(0, "", 0, false);
+    return new CropObject(0, "", 0, false, false);
   }
 
   @Override public int describeContents() {
@@ -58,6 +62,7 @@ public class CropObject implements Parcelable, Cloneable {
     dest.writeString(mName);
     dest.writeLong(mParentId);
     dest.writeByte((byte) (mIsGroup ? 1 : 0));
+    dest.writeByte((byte) (mIsSupported ? 1 : 0));
   }
 
   // TODO: don't override this method - change adapter instead
@@ -94,6 +99,14 @@ public class CropObject implements Parcelable, Cloneable {
   }
 
   public void setIsGroup(boolean isGroup) {
-    isGroup = isGroup;
+    this.mIsGroup = isGroup;
+  }
+
+  public boolean isSupported() {
+    return mIsSupported;
+  }
+
+  public void setIsSupported(boolean isSupported) {
+    this.mIsSupported = isSupported;
   }
 }

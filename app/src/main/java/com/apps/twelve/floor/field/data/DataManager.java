@@ -100,6 +100,12 @@ public class DataManager {
         .map(cropEntity -> new CropEntityToCropObject().transform(cropEntity))).toList();
   }
 
+  public Observable<List<CropObject>> getSupportedCrops() {
+    return Observable.concat(Observable.just(CropObject.EMPTY), mDbHelper.getSupportedCrops()
+        .concatMap(Observable::from)
+        .map(cropEntity -> new CropEntityToCropObject().transform(cropEntity))).toList();
+  }
+
   public Observable<CropObject> getCropById(long id) {
     return mDbHelper.getCropById(id)
         .map(cropEntity -> new CropEntityToCropObject().transform(cropEntity))

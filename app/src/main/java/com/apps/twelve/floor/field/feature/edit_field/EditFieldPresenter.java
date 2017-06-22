@@ -163,7 +163,7 @@ import timber.log.Timber;
   }
 
   private void getCropsForSelect() {
-    Subscription subscription = mDataManager.getAllCrops()
+    Subscription subscription = mDataManager.getSupportedCrops()
         .compose(ThreadSchedulers.applySchedulers())
         .map(this::syncFieldCrop)
         .subscribe(this::updateCropsSpinner, Timber::e);

@@ -140,13 +140,13 @@ import timber.log.Timber;
   private void addTestData() {
 
     // Crops
-    CropObject cornCropObject = new CropObject(1, "Кукуруза", 0, false);
+    CropObject cornCropObject = new CropObject(1, "Кукуруза", 0, false, true);
     mDataManager.putCrop(cornCropObject);
-    mDataManager.putCrop(new CropObject(2, "Картошка", 0, false));
-    mDataManager.putCrop(new CropObject(3, "Свекла", 0, false));
-    mDataManager.putCrop(new CropObject(4, "Пшеница", 0, false));
-    mDataManager.putCrop(new CropObject(5, "Виноград", 0, false));
-    mDataManager.putCrop(new CropObject(6, "Лен", 0, false));
+    mDataManager.putCrop(new CropObject(2, "Картошка", 0, false, false));
+    mDataManager.putCrop(new CropObject(3, "Свекла", 0, false, false));
+    mDataManager.putCrop(new CropObject(4, "Пшеница", 0, false, false));
+    mDataManager.putCrop(new CropObject(5, "Виноград", 0, false, false));
+    mDataManager.putCrop(new CropObject(6, "Лен", 0, false, false));
 
     // Climate zones
     mDataManager.putClimateZone(new ClimateZoneObject(1, "Степ", new ArrayList<>()));

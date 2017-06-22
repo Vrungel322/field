@@ -57,7 +57,9 @@ public class CombinedFieldGetResolver extends DefaultGetResolver<CombinedFieldEn
         cursor.getLong(cursor.getColumnIndexOrThrow(
             DbCombinedFieldRelationsHelper.QUERY_COLUMN_CROP_PARENT_ID)), (!TextUtils.isEmpty(
             cursor.getString(cursor.getColumnIndexOrThrow(
-                DbCombinedFieldRelationsHelper.QUERY_COLUMN_CROP_IS_GROUP)))));
+                DbCombinedFieldRelationsHelper.QUERY_COLUMN_CROP_IS_GROUP)))), (!TextUtils.isEmpty(
+            cursor.getString(cursor.getColumnIndexOrThrow(
+                DbCombinedFieldRelationsHelper.QUERY_COLUMN_CROP_IS_SUPPORTED)))));
   }
 
   @Nullable private CropEntity previousCropEntityFromCursor(@NonNull Cursor cursor) {
@@ -68,7 +70,9 @@ public class CombinedFieldGetResolver extends DefaultGetResolver<CombinedFieldEn
             cursor.getColumnIndexOrThrow(
                 DbCombinedFieldRelationsHelper.QUERY_COLUMN_PREV_CROP_PARENT_ID)),
         (!TextUtils.isEmpty(cursor.getString(cursor.getColumnIndexOrThrow(
-            DbCombinedFieldRelationsHelper.QUERY_COLUMN_PREV_CROP_IS_GROUP)))));
+            DbCombinedFieldRelationsHelper.QUERY_COLUMN_PREV_CROP_IS_GROUP)))), (!TextUtils.isEmpty(
+            cursor.getString(cursor.getColumnIndexOrThrow(
+                DbCombinedFieldRelationsHelper.QUERY_COLUMN_PREV_CROP_IS_SUPPORTED)))));
   }
 
   @NonNull private ClimateZoneEntity climateZoneEntityFromCursor(@NonNull Cursor cursor) {
