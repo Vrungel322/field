@@ -34,6 +34,8 @@ import com.apps.twelve.floor.field.data.local.entities.solutions.InsectEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.InsectEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.solutions.ProductCategoryEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.ProductCategoryEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.solutions.ProductEntity;
+import com.apps.twelve.floor.field.data.local.entities.solutions.ProductEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntity;
@@ -124,12 +126,12 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
         .addTypeMapping(InsectEntity.class, new InsectEntitySQLiteTypeMapping())
         // ProductCategoryEntity mapping
         .addTypeMapping(ProductCategoryEntity.class, new ProductCategoryEntitySQLiteTypeMapping())
+        // ProductEntity mapping
+        .addTypeMapping(ProductEntity.class, new ProductEntitySQLiteTypeMapping())
 
         // TODO: uncomment this when entities will be ready
         // TODO: for some entities custom resolvers needed
         /*
-        // ProductEntity mapping
-        .addTypeMapping(ProductEntity.class, new ProductEntitySQLiteTypeMapping())
         // ProcessPeriodEntity mapping
         .addTypeMapping(ProcessPeriodEntity.class, new ProcessPeriodEntitySQLiteTypeMapping())
         // PestPhaseEntity mapping

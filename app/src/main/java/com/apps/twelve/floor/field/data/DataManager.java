@@ -20,6 +20,7 @@ import com.apps.twelve.floor.field.data.local.mappers.PhaseEntityToPhaseObject;
 import com.apps.twelve.floor.field.data.local.mappers.PhaseObjectToPhaseEntity;
 import com.apps.twelve.floor.field.data.local.mappers.PhenologicalCharacteristicObjectToPhenologicalCharacteristicEntity;
 import com.apps.twelve.floor.field.data.local.mappers.ProductCategoryObjectToProductCategoryEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.ProductObjectToProductEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.SoilTypeEntityToSoilTypeObject;
 import com.apps.twelve.floor.field.data.local.mappers.SoilTypeObjectToSoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.mappers.TechnologicalProcessStateObjectToTechnologicalProcessStateEntity;
@@ -40,6 +41,7 @@ import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.InsectObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.ProductCategoryObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.ProductObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
@@ -187,6 +189,10 @@ public class DataManager {
   public PutResult putProductCategory(ProductCategoryObject productCategoryObject) {
     return mDbHelper.putProductCategory(
         new ProductCategoryObjectToProductCategoryEntityMapper().transform(productCategoryObject));
+  }
+
+  public PutResult putProduct(ProductObject productObject) {
+    return mDbHelper.putProduct(new ProductObjectToProductEntityMapper().transform(productObject));
   }
 
   public Observable<List<FieldCropTechnologicalProcessObject>> getFieldTechnologicalProcesses(

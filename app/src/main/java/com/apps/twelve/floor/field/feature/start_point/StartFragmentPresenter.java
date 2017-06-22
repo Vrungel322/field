@@ -17,6 +17,7 @@ import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.InsectObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.ProductCategoryObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.ProductObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import com.apps.twelve.floor.field.utils.RxBus;
@@ -374,10 +375,12 @@ import timber.log.Timber;
     // Technological Solution Types
     TechnologicalSolutionTypeObject techSolutionTypeAggregates =
         new TechnologicalSolutionTypeObject(1, "Агрегаты");
+    TechnologicalSolutionTypeObject techSolutionTypeProducts =
+        new TechnologicalSolutionTypeObject(2, "Препараты");
     TechnologicalSolutionTypeObject techSolutionTypeInsects =
         new TechnologicalSolutionTypeObject(3, "Насекомые");
     mDataManager.putTechnologicalSolutionType(techSolutionTypeAggregates);
-    mDataManager.putTechnologicalSolutionType(new TechnologicalSolutionTypeObject(2, "Препараты"));
+    mDataManager.putTechnologicalSolutionType(techSolutionTypeProducts);
     mDataManager.putTechnologicalSolutionType(techSolutionTypeInsects);
     mDataManager.putTechnologicalSolutionType(
         new TechnologicalSolutionTypeObject(4, "Другие решения"));
@@ -416,9 +419,49 @@ import timber.log.Timber;
         new InsectObject(1, "Вогнівкова раса трихограми", techSolutionTypeInsects, 0));
 
     // Product categories
-    mDataManager.putProductCategory(new ProductCategoryObject(1, "Гербіциди"));
-    mDataManager.putProductCategory(new ProductCategoryObject(2, "Фунгiциди"));
-    mDataManager.putProductCategory(new ProductCategoryObject(3, "Протруйники"));
-    mDataManager.putProductCategory(new ProductCategoryObject(4, "Iнсектициди"));
+    ArrayList<ProductCategoryObject> productCategoryObjects = new ArrayList<>();
+    productCategoryObjects.add(new ProductCategoryObject(1, "Гербіциди"));
+    productCategoryObjects.add(new ProductCategoryObject(2, "Фунгiциди"));
+    productCategoryObjects.add(new ProductCategoryObject(3, "Протруйники"));
+    productCategoryObjects.add(new ProductCategoryObject(4, "Iнсектициди"));
+    for (ProductCategoryObject productCategoryObject : productCategoryObjects) {
+      mDataManager.putProductCategory(productCategoryObject);
+    }
+
+    // Products
+    mDataManager.putProduct(new ProductObject(1, "Агрощит Супер", techSolutionTypeProducts, 0,
+        productCategoryObjects.get(0)));
+    mDataManager.putProduct(
+        new ProductObject(2, "Азимут", techSolutionTypeProducts, 0, productCategoryObjects.get(1)));
+    mDataManager.putProduct(
+        new ProductObject(3, "Аліот", techSolutionTypeProducts, 0, productCategoryObjects.get(1)));
+    mDataManager.putProduct(
+        new ProductObject(4, "Велес", techSolutionTypeProducts, 0, productCategoryObjects.get(3)));
+    mDataManager.putProduct(new ProductObject(5, "Вершина", techSolutionTypeProducts, 0,
+        productCategoryObjects.get(2)));
+    mDataManager.putProduct(
+        new ProductObject(6, "Вирій", techSolutionTypeProducts, 0, productCategoryObjects.get(3)));
+    mDataManager.putProduct(new ProductObject(7, "Екстракорн", techSolutionTypeProducts, 0,
+        productCategoryObjects.get(0)));
+    mDataManager.putProduct(new ProductObject(8, "Карбеназол", techSolutionTypeProducts, 0,
+        productCategoryObjects.get(1)));
+    mDataManager.putProduct(
+        new ProductObject(9, "Кіаніт", techSolutionTypeProducts, 0, productCategoryObjects.get(0)));
+    mDataManager.putProduct(
+        new ProductObject(10, "Койот", techSolutionTypeProducts, 0, productCategoryObjects.get(2)));
+    mDataManager.putProduct(new ProductObject(11, "Лавина", techSolutionTypeProducts, 0,
+        productCategoryObjects.get(0)));
+    mDataManager.putProduct(new ProductObject(12, "Ратник", techSolutionTypeProducts, 0,
+        productCategoryObjects.get(0)));
+    mDataManager.putProduct(new ProductObject(13, "Ріпіус", techSolutionTypeProducts, 0,
+        productCategoryObjects.get(0)));
+    mDataManager.putProduct(new ProductObject(14, "Сатурн", techSolutionTypeProducts, 0,
+        productCategoryObjects.get(0)));
+    mDataManager.putProduct(
+        new ProductObject(15, "Скат", techSolutionTypeProducts, 0, productCategoryObjects.get(0)));
+    mDataManager.putProduct(new ProductObject(16, "Сотейра", techSolutionTypeProducts, 0,
+        productCategoryObjects.get(0)));
+    mDataManager.putProduct(new ProductObject(17, "Таймень", techSolutionTypeProducts, 0,
+        productCategoryObjects.get(2)));
   }
 }
