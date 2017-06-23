@@ -47,11 +47,11 @@ import timber.log.Timber;
   @Override protected void onFirstViewAttach() {
     super.onFirstViewAttach();
 
-    getCropsForSelect();
-    getPreviousCropsForSelect();
-    getClimateZonesForSelect();
-    getSoilTypesForSelect();
-    getPhasesForSelect();
+    subscribeToCropsForSelect();
+    subscribeToPreviousCropsForSelect();
+    subscribeToClimateZonesForSelect();
+    subscribeToSoilTypesForSelect();
+    subscribeToPhasesForSelect();
 
     subscribeToPolygonEditResult();
     updateViewState();
@@ -162,7 +162,7 @@ import timber.log.Timber;
     }
   }
 
-  private void getCropsForSelect() {
+  private void subscribeToCropsForSelect() {
     Subscription subscription = mDataManager.getSupportedCrops()
         .compose(ThreadSchedulers.applySchedulers())
         .map(this::syncFieldCrop)
@@ -171,7 +171,7 @@ import timber.log.Timber;
     addToUnsubscription(subscription);
   }
 
-  private void getPreviousCropsForSelect() {
+  private void subscribeToPreviousCropsForSelect() {
     Subscription subscription = mDataManager.getAllCrops()
         .compose(ThreadSchedulers.applySchedulers())
         .map(this::syncFieldPreviousCrop)
@@ -180,7 +180,7 @@ import timber.log.Timber;
     addToUnsubscription(subscription);
   }
 
-  private void getClimateZonesForSelect() {
+  private void subscribeToClimateZonesForSelect() {
     Subscription subscription = mDataManager.getAllClimateZones()
         .compose(ThreadSchedulers.applySchedulers())
         .map(this::syncFieldClimateZone)
@@ -189,7 +189,7 @@ import timber.log.Timber;
     addToUnsubscription(subscription);
   }
 
-  private void getPhasesForSelect() {
+  private void subscribeToPhasesForSelect() {
     Subscription subscription = mDataManager.getAllPhases()
         .compose(ThreadSchedulers.applySchedulers())
         .map(this::syncFieldPhase)
@@ -198,7 +198,7 @@ import timber.log.Timber;
     addToUnsubscription(subscription);
   }
 
-  private void getSoilTypesForSelect() {
+  private void subscribeToSoilTypesForSelect() {
     Subscription subscription = mDataManager.getAllSoilTypes()
         .compose(ThreadSchedulers.applySchedulers())
         .map(this::syncSoilType)

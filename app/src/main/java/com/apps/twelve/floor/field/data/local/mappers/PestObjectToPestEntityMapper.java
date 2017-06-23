@@ -9,6 +9,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
 
 public class PestObjectToPestEntityMapper implements Mapper<PestObject, PestEntity> {
   @Override public PestEntity transform(PestObject obj) throws RuntimeException {
-    return new PestEntity(obj.getId(), obj.getName(), obj.getParentId(), obj.isGroup());
+    return new PestEntity(obj.getId(), obj.getName(), obj.getConditionType().getId(),
+        obj.getParentId(), obj.isGroup());
   }
 }

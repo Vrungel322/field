@@ -22,12 +22,15 @@ public class PestObject implements Parcelable {
 
   private long mId;
   @NonNull private String mName;
+  @NonNull private ConditionTypeObject mConditionType; // TODO: maybe we don't need this field
   private long mParentId;
   private boolean mIsGroup;
 
-  public PestObject(long id, @NonNull String name, long parentId, boolean isGroup) {
+  public PestObject(long id, @NonNull String name, @NonNull ConditionTypeObject conditionType,
+      long parentId, boolean isGroup) {
     this.mId = id;
     this.mName = name;
+    this.mConditionType = conditionType;
     this.mParentId = parentId;
     this.mIsGroup = isGroup;
   }
@@ -35,6 +38,7 @@ public class PestObject implements Parcelable {
   protected PestObject(Parcel in) {
     this.mId = in.readLong();
     this.mName = in.readString();
+    this.mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
     this.mParentId = in.readLong();
     this.mIsGroup = in.readByte() != 0;
   }
@@ -46,6 +50,7 @@ public class PestObject implements Parcelable {
   @Override public void writeToParcel(Parcel dest, int flags) {
     dest.writeLong(mId);
     dest.writeString(mName);
+    dest.writeParcelable(mConditionType, flags);
     dest.writeLong(mParentId);
     dest.writeByte((byte) (mIsGroup ? 1 : 0));
   }
@@ -64,6 +69,14 @@ public class PestObject implements Parcelable {
 
   public void setName(@NonNull String name) {
     this.mName = name;
+  }
+
+  @NonNull public ConditionTypeObject getConditionType() {
+    return mConditionType;
+  }
+
+  public void setConditionType(@NonNull ConditionTypeObject conditionType) {
+    this.mConditionType = conditionType;
   }
 
   public long getParentId() {

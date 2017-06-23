@@ -209,46 +209,33 @@ import timber.log.Timber;
         cornCropObject));
 
     // Condition types
-    ConditionTypeObject conditionTypeSoilType = new ConditionTypeObject(1, "Тип почвы");
-    mDataManager.putConditionType(conditionTypeSoilType);
-    mDataManager.putConditionType(new ConditionTypeObject(2, "Фаза развития вредного объекта"));
-    ConditionTypeObject conditionTypeTillageDirection =
-        new ConditionTypeObject(3, "Направление обработки почвы, посева, опрыскивания");
-    mDataManager.putConditionType(conditionTypeTillageDirection);
-    ConditionTypeObject conditionPhenologicalCharacteristic =
-        new ConditionTypeObject(4, "Фенологическая характеристика");
-    mDataManager.putConditionType(conditionPhenologicalCharacteristic);
-    ConditionTypeObject conditionTypeSpanValueObject =
-        new ConditionTypeObject(5, "Числовой диапазон");
-    mDataManager.putConditionType(conditionTypeSpanValueObject);
-    mDataManager.putConditionType(new ConditionTypeObject(6, "Число"));
+    ArrayList<ConditionTypeObject> conditionTypes = new ArrayList<>();
+    conditionTypes.add(new ConditionTypeObject(1, "Тип почвы"));
+    conditionTypes.add(new ConditionTypeObject(2, "Фаза развития вредного объекта"));
+    conditionTypes.add(
+        new ConditionTypeObject(3, "Направление обработки почвы, посева, опрыскивания"));
+    conditionTypes.add(new ConditionTypeObject(4, "Фенологическая характеристика"));
+    conditionTypes.add(new ConditionTypeObject(5, "Числовой диапазон"));
+    conditionTypes.add(new ConditionTypeObject(6, "Число"));
+    conditionTypes.add(new ConditionTypeObject(7, "Вредный объект"));
+    for (ConditionTypeObject conditionType : conditionTypes) {
+      mDataManager.putConditionType(conditionType);
+    }
 
     //SpanValues
     ArrayList<ConditionSpanValueObject> conditionSpanValueObjects = new ArrayList<>();
-    conditionSpanValueObjects.add(
-        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 10));
-    conditionSpanValueObjects.add(
-        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 10));
-    conditionSpanValueObjects.add(
-        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 10, 300));
-    conditionSpanValueObjects.add(
-        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 12, 20));
-    conditionSpanValueObjects.add(
-        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 8, 10));
-    conditionSpanValueObjects.add(
-        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 25));
-    conditionSpanValueObjects.add(
-        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 25));
-    conditionSpanValueObjects.add(
-        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 25));
-    conditionSpanValueObjects.add(
-        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 25));
-    conditionSpanValueObjects.add(
-        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 25));
-    conditionSpanValueObjects.add(
-        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 25));
-    conditionSpanValueObjects.add(
-        new ConditionSpanValueObject(1, conditionTypeSpanValueObject, 0, 25));
+    conditionSpanValueObjects.add(new ConditionSpanValueObject(1, conditionTypes.get(4), 0, 10));
+    conditionSpanValueObjects.add(new ConditionSpanValueObject(1, conditionTypes.get(4), 0, 10));
+    conditionSpanValueObjects.add(new ConditionSpanValueObject(1, conditionTypes.get(4), 10, 300));
+    conditionSpanValueObjects.add(new ConditionSpanValueObject(1, conditionTypes.get(4), 12, 20));
+    conditionSpanValueObjects.add(new ConditionSpanValueObject(1, conditionTypes.get(4), 8, 10));
+    conditionSpanValueObjects.add(new ConditionSpanValueObject(1, conditionTypes.get(4), 0, 25));
+    conditionSpanValueObjects.add(new ConditionSpanValueObject(1, conditionTypes.get(4), 0, 25));
+    conditionSpanValueObjects.add(new ConditionSpanValueObject(1, conditionTypes.get(4), 0, 25));
+    conditionSpanValueObjects.add(new ConditionSpanValueObject(1, conditionTypes.get(4), 0, 25));
+    conditionSpanValueObjects.add(new ConditionSpanValueObject(1, conditionTypes.get(4), 0, 25));
+    conditionSpanValueObjects.add(new ConditionSpanValueObject(1, conditionTypes.get(4), 0, 25));
+    conditionSpanValueObjects.add(new ConditionSpanValueObject(1, conditionTypes.get(4), 0, 25));
 
     for (int i = 0; i < conditionSpanValueObjects.size(); i++) {
       mDataManager.putSpanValue(conditionSpanValueObjects.get(i));
@@ -256,49 +243,49 @@ import timber.log.Timber;
 
     //Temperature
     for (int i = 0; i < conditionSpanValueObjects.size(); i++) {
-      mDataManager.putCondition(new ConditionObject(i, "T воздуха", 1, conditionTypeSpanValueObject,
+      mDataManager.putCondition(new ConditionObject(i, "T воздуха", 1, conditionTypes.get(4),
           conditionSpanValueObjects.get(i)));
     }
 
     // Soil types
     mDataManager.putSoilType(
-        new SoilTypeObject(1, "Піщані, або легкі грунти", conditionTypeSoilType, ""));
+        new SoilTypeObject(1, "Піщані, або легкі грунти", conditionTypes.get(0), ""));
     mDataManager.putSoilType(
-        new SoilTypeObject(2, "Глинисті, або важкі грунти ", conditionTypeSoilType, ""));
-    mDataManager.putSoilType(new SoilTypeObject(3, "Кам'янисті грунти", conditionTypeSoilType, ""));
+        new SoilTypeObject(2, "Глинисті, або важкі грунти ", conditionTypes.get(0), ""));
+    mDataManager.putSoilType(new SoilTypeObject(3, "Кам'янисті грунти", conditionTypes.get(0), ""));
     mDataManager.putSoilType(
-        new SoilTypeObject(4, "Торф'яно-болотні грунти", conditionTypeSoilType, ""));
-    mDataManager.putSoilType(new SoilTypeObject(5, "Супіщані грунти", conditionTypeSoilType, ""));
+        new SoilTypeObject(4, "Торф'яно-болотні грунти", conditionTypes.get(0), ""));
+    mDataManager.putSoilType(new SoilTypeObject(5, "Супіщані грунти", conditionTypes.get(0), ""));
     mDataManager.putSoilType(
-        new SoilTypeObject(6, "Суглинні, або середні грунти", conditionTypeSoilType, ""));
+        new SoilTypeObject(6, "Суглинні, або середні грунти", conditionTypes.get(0), ""));
 
     // Soils
     /*mDataManager.putSoilType(
-        new SoilTypeObject(1, "Дернисто-підзолисті", conditionTypeSoilType, ""));
+        new SoilTypeObject(1, "Дернисто-підзолисті", conditionTypes.get(0), ""));
     mDataManager.putSoilType(
-        new SoilTypeObject(2, "Сірі, ясно-сірі та темно-сірі опідзолені", conditionTypeSoilType,
+        new SoilTypeObject(2, "Сірі, ясно-сірі та темно-сірі опідзолені", conditionTypes.get(0),
             ""));
     mDataManager.putSoilType(
-        new SoilTypeObject(3, "Черноземи опідзолені і темно-сірі опідзолені", conditionTypeSoilType,
+        new SoilTypeObject(3, "Черноземи опідзолені і темно-сірі опідзолені", conditionTypes.get(0),
             ""));
-    mDataManager.putSoilType(new SoilTypeObject(4, "Черноземи типові", conditionTypeSoilType, ""));
+    mDataManager.putSoilType(new SoilTypeObject(4, "Черноземи типові", conditionTypes.get(0), ""));
     mDataManager.putSoilType(
-        new SoilTypeObject(5, "Черноземи звичайні", conditionTypeSoilType, ""));
+        new SoilTypeObject(5, "Черноземи звичайні", conditionTypes.get(0), ""));
     mDataManager.putSoilType(
-        new SoilTypeObject(6, "Черноземи південні частково солонцюваті", conditionTypeSoilType,
+        new SoilTypeObject(6, "Черноземи південні частково солонцюваті", conditionTypes.get(0),
             ""));
     mDataManager.putSoilType(
         new SoilTypeObject(7, "Черноземи дернові щебенясті на продуктах вивітрювання твердих порід",
-            conditionTypeSoilType, ""));
+            conditionTypes.get(0), ""));
     mDataManager.putSoilType(
-        new SoilTypeObject(8, "Темно-каштанові в комплексі з солонцями", conditionTypeSoilType,
+        new SoilTypeObject(8, "Темно-каштанові в комплексі з солонцями", conditionTypes.get(0),
             ""));
     mDataManager.putSoilType(
-        new SoilTypeObject(9, "Лучно-чорноземні, лучні, лучно-болотні", conditionTypeSoilType, ""));
+        new SoilTypeObject(9, "Лучно-чорноземні, лучні, лучно-болотні", conditionTypes.get(0), ""));
     mDataManager.putSoilType(
-        new SoilTypeObject(10, "Бурі гірськолісові", conditionTypeSoilType, ""));
+        new SoilTypeObject(10, "Бурі гірськолісові", conditionTypes.get(0), ""));
     mDataManager.putSoilType(
-        new SoilTypeObject(11, "Коричневі щебенясті", conditionTypeSoilType, ""));*/
+        new SoilTypeObject(11, "Коричневі щебенясті", conditionTypes.get(0), ""));*/
 
     // Technological Process State
     mDataManager.putTechnologicalProcessState(
@@ -312,65 +299,75 @@ import timber.log.Timber;
         new TechnologicalProcessStateObject(5, "Пропущен", 0));
 
     // Pests
-    mDataManager.putPest(new PestObject(1, "злакові бур’яни", 0, false));
-    mDataManager.putPest(new PestObject(2, "ярі дводольні бур’яни", 0, false));
-    mDataManager.putPest(new PestObject(3, "Однорічні зимуючі бур’яни", 0, false));
-    mDataManager.putPest(new PestObject(4, "Збудники пліснявіння  насіння", 0, false));
-    mDataManager.putPest(new PestObject(5, "Збудники фузаріозу", 0, false));
-    mDataManager.putPest(new PestObject(6, "Дротяники", 0, false));
-    mDataManager.putPest(new PestObject(7, "ківсяки", 0, false));
-    mDataManager.putPest(new PestObject(8, "личинки хрущів", 0, false));
-    mDataManager.putPest(new PestObject(9, "личинки хлібних жуків", 0, false));
-    mDataManager.putPest(new PestObject(10, "ярі дводольні бур’яни", 0, false));
-    mDataManager.putPest(new PestObject(11, "ярі злакові бур’яни", 0, false));
-    mDataManager.putPest(new PestObject(12, "Однорічні ярі дводольні бур’яни", 0, false));
-    mDataManager.putPest(new PestObject(13, "Однорічні ярі злакові бур’яни", 0, false));
-    mDataManager.putPest(new PestObject(14, "Однорічні дводольні бур’яни", 0, false));
-    mDataManager.putPest(new PestObject(15, "Однорічні злакові бур’яни", 0, false));
-    mDataManager.putPest(new PestObject(16, "багаторічні дводольні бур’яни", 0, false));
-    mDataManager.putPest(new PestObject(17, "багаторічні злакові бур’яни", 0, false));
-    mDataManager.putPest(new PestObject(18, "Шведська муха", 0, false));
-    mDataManager.putPest(new PestObject(19, "попелиці", 0, false));
-    mDataManager.putPest(new PestObject(20, "кукурудзяний метелик", 0, false));
-    mDataManager.putPest(new PestObject(21, "лучний метелик", 0, false));
-    mDataManager.putPest(new PestObject(22, "бавовникова совка", 0, false));
+    mDataManager.putPest(new PestObject(1, "злакові бур’яни", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(
+        new PestObject(2, "ярі дводольні бур’яни", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(
+        new PestObject(3, "Однорічні зимуючі бур’яни", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(
+        new PestObject(4, "Збудники пліснявіння  насіння", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(new PestObject(5, "Збудники фузаріозу", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(new PestObject(6, "Дротяники", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(new PestObject(7, "ківсяки", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(new PestObject(8, "личинки хрущів", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(
+        new PestObject(9, "личинки хлібних жуків", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(
+        new PestObject(10, "ярі дводольні бур’яни", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(
+        new PestObject(11, "ярі злакові бур’яни", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(
+        new PestObject(12, "Однорічні ярі дводольні бур’яни", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(
+        new PestObject(13, "Однорічні ярі злакові бур’яни", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(
+        new PestObject(14, "Однорічні дводольні бур’яни", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(
+        new PestObject(15, "Однорічні злакові бур’яни", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(
+        new PestObject(16, "багаторічні дводольні бур’яни", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(
+        new PestObject(17, "багаторічні злакові бур’яни", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(new PestObject(18, "Шведська муха", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(new PestObject(19, "попелиці", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(
+        new PestObject(20, "кукурудзяний метелик", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(new PestObject(21, "лучний метелик", conditionTypes.get(6), 0, false));
+    mDataManager.putPest(new PestObject(22, "бавовникова совка", conditionTypes.get(6), 0, false));
 
     // Tillage directions
     mDataManager.putTillageDirection(
-        new TillageDirectionObject(1, "під кутом 45⁰ до напряму оранки",
-            conditionTypeTillageDirection));
+        new TillageDirectionObject(1, "під кутом 45⁰ до напряму оранки", conditionTypes.get(2)));
     mDataManager.putTillageDirection(new TillageDirectionObject(2, "Човнико-вий або діагональ-ний",
-        conditionTypeTillageDirection));
+        conditionTypes.get(2)));
     mDataManager.putTillageDirection(
-        new TillageDirectionObject(3, "міжряддя вздовж рядків", conditionTypeTillageDirection));
+        new TillageDirectionObject(3, "міжряддя вздовж рядків", conditionTypes.get(2)));
     mDataManager.putTillageDirection(
-        new TillageDirectionObject(4, "суцільний обробіток", conditionTypeTillageDirection));
+        new TillageDirectionObject(4, "суцільний обробіток", conditionTypes.get(2)));
 
     // Phenological Characteristic
     mDataManager.putPhenologicalCharacteristic(
-        new PhenologicalCharacteristicObject(1, "Цвітіння черемухи",
-            conditionPhenologicalCharacteristic));
+        new PhenologicalCharacteristicObject(1, "Цвітіння черемухи", conditionTypes.get(3)));
     mDataManager.putPhenologicalCharacteristic(
-        new PhenologicalCharacteristicObject(2, "Цвітіння черешні",
-            conditionPhenologicalCharacteristic));
+        new PhenologicalCharacteristicObject(2, "Цвітіння черешні", conditionTypes.get(3)));
     mDataManager.putPhenologicalCharacteristic(new PhenologicalCharacteristicObject(3,
         "Активна вегетація. Рослини не повинні перебувати в стресовому стані",
-        conditionPhenologicalCharacteristic));
+        conditionTypes.get(3)));
     mDataManager.putPhenologicalCharacteristic(new PhenologicalCharacteristicObject(4,
         "Початок масового льоту кукурудзяного метелика -визначається за допомогою феромонних пасток. ",
-        conditionPhenologicalCharacteristic));
+        conditionTypes.get(3)));
     mDataManager.putPhenologicalCharacteristic(
         new PhenologicalCharacteristicObject(5, "масове відкладання яєць кукурудзяним метеликом",
-            conditionPhenologicalCharacteristic));
+            conditionTypes.get(3)));
     mDataManager.putPhenologicalCharacteristic(
         new PhenologicalCharacteristicObject(6, "проникнення перших гусениць у стебла",
-            conditionPhenologicalCharacteristic));
+            conditionTypes.get(3)));
     mDataManager.putPhenologicalCharacteristic(
         new PhenologicalCharacteristicObject(7, "Активна вегетація бур’янів",
-            conditionPhenologicalCharacteristic));
+            conditionTypes.get(3)));
     mDataManager.putPhenologicalCharacteristic(new PhenologicalCharacteristicObject(9,
         "Візуально визначається по наявності чор-ного прошарку (чорної точки) між зерном і місцем прикріплення його до качана",
-        conditionPhenologicalCharacteristic));
+        conditionTypes.get(3)));
 
     // Technological Solution Types
     TechnologicalSolutionTypeObject techSolutionTypeAggregates =

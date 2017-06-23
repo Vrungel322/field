@@ -30,6 +30,8 @@ import java.util.List;
 
   void addPhasesToSpinnerAdapter(List<PhaseObject> phases);
 
+  void addSoilTypesToSpinnerAdapter(List<SoilTypeObject> soilTypes);
+
   void setSelectedCrop(CropObject cropObject);
 
   void setSelectedPreviousCrop(CropObject cropObject);
@@ -37,8 +39,6 @@ import java.util.List;
   void setSelectedClimateZone(ClimateZoneObject climateZoneObject);
 
   void setSelectedPhase(PhaseObject phase);
-
-  void addSoilTypesToSpinnerAdapter(List<SoilTypeObject> soilTypes);
 
   void setSelectedSoilType(SoilTypeObject soilType);
 }

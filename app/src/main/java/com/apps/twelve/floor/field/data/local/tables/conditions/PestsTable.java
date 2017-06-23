@@ -13,6 +13,7 @@ public class PestsTable {
 
   @NonNull public static final String COLUMN_ID = "id";
   @NonNull public static final String COLUMN_NAME = "name";
+  @NonNull public static final String COLUMN_CONDITION_TYPE_ID = "condition_type_id";
   @NonNull public static final String COLUMN_PARENT_ID = "parent_id";
   @NonNull public static final String COLUMN_IS_GROUP = "is_group";
 
@@ -29,7 +30,7 @@ public class PestsTable {
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_NAME
-        + " TEXT NULL, "
+        + " TEXT NULL, " + COLUMN_CONDITION_TYPE_ID + " INTEGER, "
         + COLUMN_PARENT_ID
         + " INTEGER, "
         + COLUMN_IS_GROUP

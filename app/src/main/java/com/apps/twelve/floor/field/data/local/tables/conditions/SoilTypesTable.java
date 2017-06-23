@@ -36,8 +36,7 @@ public class SoilTypesTable {
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_NAME
-        + " TEXT NULL, "
-        + COLUMN_CONDITION_TYPE_ID + " INTEGER, "
+        + " TEXT NULL, " + COLUMN_CONDITION_TYPE_ID + " INTEGER, "
         + COLUMN_COORDINATES
         + " TEXT NULL "
         + ");";
