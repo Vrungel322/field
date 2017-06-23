@@ -2,7 +2,6 @@ package com.apps.twelve.floor.field.feature.add_field;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -50,7 +49,6 @@ public class AddFieldTrackingBottomSheetFragment extends BaseFragment
         getArguments().getParcelable(Constants.EditField.FIELD_BUNDLE_KEY));
   }
 
-  @BindView(R.id.constraint_layout_root) ConstraintLayout mConstraintLayoutRoot;
   @BindView(R.id.toggle_button_tracking_mode) ToggleButton mTglBtnTrackingMode;
   @BindView(R.id.ed_text_name) EditText mEdTextName;
   @BindView(R.id.ed_text_area) EditText mEdTextArea;

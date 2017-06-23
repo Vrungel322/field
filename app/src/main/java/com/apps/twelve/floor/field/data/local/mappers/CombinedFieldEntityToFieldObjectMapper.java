@@ -9,7 +9,8 @@ import com.apps.twelve.floor.field.data.local.objects.FieldObject;
  * Created by Yaroslav on 13.05.2017.
  */
 
-public class CombinedFieldEntityToFieldObject implements Mapper<CombinedFieldEntity, FieldObject> {
+public class CombinedFieldEntityToFieldObjectMapper
+    implements Mapper<CombinedFieldEntity, FieldObject> {
 
   @Override public FieldObject transform(CombinedFieldEntity entity)
       throws RuntimeException {
@@ -18,14 +19,15 @@ public class CombinedFieldEntityToFieldObject implements Mapper<CombinedFieldEnt
     CropEntity cropEntity = entity.getCropEntity();
     CropEntity prevCropEntity = entity.getPreviousCropEntity();
 
-    CropEntityToCropObject cropMapperEO = new CropEntityToCropObject(); // entity to object
+    CropEntityToCropObjectMapper cropMapperEO =
+        new CropEntityToCropObjectMapper(); // entity to object
 
     return new FieldObject(fieldEntity.getId(), fieldEntity.getName(),
         cropMapperEO.transform(cropEntity), cropMapperEO.transform(prevCropEntity),
         fieldEntity.getCoordinates(),
         fieldEntity.getArea(),
-        new ClimateZoneEntityToClimateZoneObject().transform(entity.getClimateZoneEntity()),
-        new PhaseEntityToPhaseObject().transform(entity.getPhaseEntity()),
-        new SoilTypeEntityToSoilTypeObject().transform(entity.getSoilTypeEntity()));
+        new ClimateZoneEntityToClimateZoneObjectMapper().transform(entity.getClimateZoneEntity()),
+        new PhaseEntityToPhaseObjectMapper().transform(entity.getPhaseEntity()),
+        new SoilTypeEntityToSoilTypeObjectMapper().transform(entity.getSoilTypeEntity()));
   }
 }

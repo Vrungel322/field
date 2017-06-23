@@ -7,7 +7,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeOb
  * Created by Yaroslav on 13.06.2017.
  */
 
-public class ConditionTypeObjectToConditionTypeEntity
+public class ConditionTypeObjectToConditionTypeEntityMapper
     implements Mapper<ConditionTypeObject, ConditionTypeEntity> {
   @Override public ConditionTypeEntity transform(ConditionTypeObject obj) throws RuntimeException {
     return ConditionTypeEntity.newConditionTypeEntity(obj.getId(), obj.getName());

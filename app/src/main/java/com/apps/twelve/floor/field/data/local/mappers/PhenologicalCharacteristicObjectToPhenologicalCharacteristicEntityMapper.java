@@ -7,7 +7,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCha
  * Created by Yaroslav on 20.06.2017.
  */
 
-public class PhenologicalCharacteristicObjectToPhenologicalCharacteristicEntity
+public class PhenologicalCharacteristicObjectToPhenologicalCharacteristicEntityMapper
     implements Mapper<PhenologicalCharacteristicObject, PhenologicalCharacteristicEntity> {
   @Override public PhenologicalCharacteristicEntity transform(PhenologicalCharacteristicObject obj)
       throws RuntimeException {

@@ -5,27 +5,27 @@ import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
 import com.apps.twelve.floor.field.data.local.DbHelper;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
 import com.apps.twelve.floor.field.data.local.mappers.AggregateObjectToAggregateEntityMapper;
-import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneEntityToClimateZoneObject;
-import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneObjectToClimateZoneEntity;
-import com.apps.twelve.floor.field.data.local.mappers.CombinedFieldEntityToFieldObject;
-import com.apps.twelve.floor.field.data.local.mappers.ConditionObjectToConditionEntity;
+import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneEntityToClimateZoneObjectMapper;
+import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneObjectToClimateZoneEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.CombinedFieldEntityToFieldObjectMapper;
+import com.apps.twelve.floor.field.data.local.mappers.ConditionObjectToConditionEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ConditionSpanValueObjectToConditionSpanValueEntityMapper;
-import com.apps.twelve.floor.field.data.local.mappers.ConditionTypeObjectToConditionTypeEntity;
-import com.apps.twelve.floor.field.data.local.mappers.CropEntityToCropObject;
-import com.apps.twelve.floor.field.data.local.mappers.CropObjectToCropEntity;
-import com.apps.twelve.floor.field.data.local.mappers.FieldObjectToFieldEntity;
+import com.apps.twelve.floor.field.data.local.mappers.ConditionTypeObjectToConditionTypeEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.CropEntityToCropObjectMapper;
+import com.apps.twelve.floor.field.data.local.mappers.CropObjectToCropEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.FieldObjectToFieldEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.InsectObjectToInsectEntityMapper;
-import com.apps.twelve.floor.field.data.local.mappers.PestObjectToPestEntity;
-import com.apps.twelve.floor.field.data.local.mappers.PhaseEntityToPhaseObject;
-import com.apps.twelve.floor.field.data.local.mappers.PhaseObjectToPhaseEntity;
-import com.apps.twelve.floor.field.data.local.mappers.PhenologicalCharacteristicObjectToPhenologicalCharacteristicEntity;
+import com.apps.twelve.floor.field.data.local.mappers.PestObjectToPestEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.PhaseEntityToPhaseObjectMapper;
+import com.apps.twelve.floor.field.data.local.mappers.PhaseObjectToPhaseEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.PhenologicalCharacteristicObjectToPhenologicalCharacteristicEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ProductCategoryObjectToProductCategoryEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ProductObjectToProductEntityMapper;
-import com.apps.twelve.floor.field.data.local.mappers.SoilTypeEntityToSoilTypeObject;
-import com.apps.twelve.floor.field.data.local.mappers.SoilTypeObjectToSoilTypeEntity;
-import com.apps.twelve.floor.field.data.local.mappers.TechnologicalProcessStateObjectToTechnologicalProcessStateEntity;
+import com.apps.twelve.floor.field.data.local.mappers.SoilTypeEntityToSoilTypeObjectMapper;
+import com.apps.twelve.floor.field.data.local.mappers.SoilTypeObjectToSoilTypeEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.TechnologicalProcessStateObjectToTechnologicalProcessStateEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.TechnologicalSolutionTypeObjectToTechnologicalSolutionTypeEntityMapper;
-import com.apps.twelve.floor.field.data.local.mappers.TillageDirectionObjectToTillageDirectionEntity;
+import com.apps.twelve.floor.field.data.local.mappers.TillageDirectionObjectToTillageDirectionEntityMapper;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
@@ -73,100 +73,103 @@ public class DataManager {
   public Observable<List<FieldObject>> getAllFields() {
     return mDbCombinedFieldRelationsHelper.getCombinedFieldEntitiesAsync()
         .concatMap(Observable::from)
-        .map(combinedFieldEntity -> new CombinedFieldEntityToFieldObject().transform(
+        .map(combinedFieldEntity -> new CombinedFieldEntityToFieldObjectMapper().transform(
             combinedFieldEntity))
         .toList();
   }
 
   public PutResult putField(FieldObject fieldObject) {
-    return mDbHelper.putField(new FieldObjectToFieldEntity().transform(fieldObject));
+    return mDbHelper.putField(new FieldObjectToFieldEntityMapper().transform(fieldObject));
   }
 
   public PutResult putPhase(PhaseObject phaseObject) {
-    return mDbHelper.putPhase(new PhaseObjectToPhaseEntity().transform(phaseObject));
+    return mDbHelper.putPhase(new PhaseObjectToPhaseEntityMapper().transform(phaseObject));
   }
 
   public Observable<List<PhaseObject>> getAllPhases() {
     return Observable.concat(Observable.just(PhaseObject.EMPTY), mDbHelper.getAllPhases()
         .concatMap(Observable::from)
-        .map(phaseEntity -> new PhaseEntityToPhaseObject().transform(phaseEntity))).toList();
+        .map(phaseEntity -> new PhaseEntityToPhaseObjectMapper().transform(phaseEntity))).toList();
   }
 
   public DeleteResult deleteField(FieldObject fieldObject) {
-    return mDbHelper.deleteField(new FieldObjectToFieldEntity().transform(fieldObject));
+    return mDbHelper.deleteField(new FieldObjectToFieldEntityMapper().transform(fieldObject));
   }
 
   public Observable<List<CropObject>> getAllCrops() {
     return Observable.concat(Observable.just(CropObject.EMPTY), mDbHelper.getAllCrops()
         .concatMap(Observable::from)
-        .map(cropEntity -> new CropEntityToCropObject().transform(cropEntity))).toList();
+        .map(cropEntity -> new CropEntityToCropObjectMapper().transform(cropEntity))).toList();
   }
 
   public Observable<List<CropObject>> getSupportedCrops() {
     return Observable.concat(Observable.just(CropObject.EMPTY), mDbHelper.getSupportedCrops()
         .concatMap(Observable::from)
-        .map(cropEntity -> new CropEntityToCropObject().transform(cropEntity))).toList();
+        .map(cropEntity -> new CropEntityToCropObjectMapper().transform(cropEntity))).toList();
   }
 
   public Observable<CropObject> getCropById(long id) {
     return mDbHelper.getCropById(id)
-        .map(cropEntity -> new CropEntityToCropObject().transform(cropEntity))
+        .map(cropEntity -> new CropEntityToCropObjectMapper().transform(cropEntity))
         .take(1);
   }
 
   public PutResult putCrop(CropObject cropObject) {
-    return mDbHelper.putCrop(new CropObjectToCropEntity().transform(cropObject));
+    return mDbHelper.putCrop(new CropObjectToCropEntityMapper().transform(cropObject));
   }
 
   public PutResult putClimateZone(ClimateZoneObject climateZoneObject) {
     return mDbHelper.putClimateZone(
-        new ClimateZoneObjectToClimateZoneEntity().transform(climateZoneObject));
+        new ClimateZoneObjectToClimateZoneEntityMapper().transform(climateZoneObject));
   }
 
   public Observable<List<ClimateZoneObject>> getAllClimateZones() {
     return Observable.concat(Observable.just(ClimateZoneObject.EMPTY),
         mDbHelper.getAllClimateZones()
             .concatMap(Observable::from)
-            .map(climateZoneEntity -> new ClimateZoneEntityToClimateZoneObject().transform(
+            .map(climateZoneEntity -> new ClimateZoneEntityToClimateZoneObjectMapper().transform(
                 climateZoneEntity))).toList();
   }
 
   public PutResult putConditionType(ConditionTypeObject conditionTypeObject) {
     return mDbHelper.putConditionType(
-        new ConditionTypeObjectToConditionTypeEntity().transform(conditionTypeObject));
+        new ConditionTypeObjectToConditionTypeEntityMapper().transform(conditionTypeObject));
   }
 
   public PutResult putSoilType(SoilTypeObject soilTypeObject) {
-    return mDbHelper.putSoilType(new SoilTypeObjectToSoilTypeEntity().transform(soilTypeObject));
+    return mDbHelper.putSoilType(
+        new SoilTypeObjectToSoilTypeEntityMapper().transform(soilTypeObject));
   }
 
   public Observable<List<SoilTypeObject>> getAllSoilTypes() {
     return Observable.concat(Observable.just(SoilTypeObject.EMPTY), mDbHelper.getAllSoilTypes()
         .concatMap(Observable::from)
-        .map(soilTypeEntity -> new SoilTypeEntityToSoilTypeObject().transform(soilTypeEntity)))
+        .map(
+            soilTypeEntity -> new SoilTypeEntityToSoilTypeObjectMapper().transform(soilTypeEntity)))
         .toList();
   }
 
   public PutResult putTechnologicalProcessState(
       TechnologicalProcessStateObject technologicalProcessStateObject) {
     return mDbHelper.putTechnologicalProcessState(
-        new TechnologicalProcessStateObjectToTechnologicalProcessStateEntity().transform(
+        new TechnologicalProcessStateObjectToTechnologicalProcessStateEntityMapper().transform(
             technologicalProcessStateObject));
   }
 
   public PutResult putPest(PestObject pestObject) {
-    return mDbHelper.putPest(new PestObjectToPestEntity().transform(pestObject));
+    return mDbHelper.putPest(new PestObjectToPestEntityMapper().transform(pestObject));
   }
 
   public PutResult putTillageDirection(TillageDirectionObject tillageDirectionObject) {
     return mDbHelper.putTillageDirection(
-        new TillageDirectionObjectToTillageDirectionEntity().transform(tillageDirectionObject));
+        new TillageDirectionObjectToTillageDirectionEntityMapper().transform(
+            tillageDirectionObject));
   }
 
   public PutResult putPhenologicalCharacteristic(
       PhenologicalCharacteristicObject phenologicalCharacteristicObject) {
     return mDbHelper.putPhenologicalCharacteristic(
-        new PhenologicalCharacteristicObjectToPhenologicalCharacteristicEntity().transform(
+        new PhenologicalCharacteristicObjectToPhenologicalCharacteristicEntityMapper().transform(
             phenologicalCharacteristicObject));
   }
 
@@ -214,7 +217,7 @@ public class DataManager {
 
   public PutResult putCondition(ConditionObject conditionObject) {
     return mDbHelper.putConditionEntity(
-        new ConditionObjectToConditionEntity().transform(conditionObject));
+        new ConditionObjectToConditionEntityMapper().transform(conditionObject));
   }
 
   public PutResult putSpanValue(ConditionSpanValueObject conditionSpanValueObject) {

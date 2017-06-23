@@ -7,7 +7,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
  * Created by Yaroslav on 20.06.2017.
  */
 
-public class PestObjectToPestEntity implements Mapper<PestObject, PestEntity> {
+public class PestObjectToPestEntityMapper implements Mapper<PestObject, PestEntity> {
   @Override public PestEntity transform(PestObject obj) throws RuntimeException {
     return new PestEntity(obj.getId(), obj.getName(), obj.getParentId(), obj.isGroup());
   }

@@ -7,7 +7,7 @@ import com.apps.twelve.floor.field.data.local.objects.technological_map.Technolo
  * Created by Yaroslav on 20.06.2017.
  */
 
-public class TechnologicalProcessStateObjectToTechnologicalProcessStateEntity
+public class TechnologicalProcessStateObjectToTechnologicalProcessStateEntityMapper
     implements Mapper<TechnologicalProcessStateObject, TechnologicalProcessStateEntity> {
   @Override public TechnologicalProcessStateEntity transform(TechnologicalProcessStateObject obj)
       throws RuntimeException {

@@ -7,7 +7,7 @@ import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneOb
  * Created by Yaroslav on 16.05.2017.
  */
 
-public class ClimateZoneObjectToClimateZoneEntity
+public class ClimateZoneObjectToClimateZoneEntityMapper
     implements Mapper<ClimateZoneObject, ClimateZoneEntity> {
   @Override public ClimateZoneEntity transform(ClimateZoneObject obj) throws RuntimeException {
     return ClimateZoneEntity.newClimateZoneEntity(obj.getId(), obj.getName(),

@@ -7,7 +7,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectio
  * Created by Yaroslav on 20.06.2017.
  */
 
-public class TillageDirectionObjectToTillageDirectionEntity
+public class TillageDirectionObjectToTillageDirectionEntityMapper
     implements Mapper<TillageDirectionObject, TillageDirectionEntity> {
   @Override public TillageDirectionEntity transform(TillageDirectionObject obj)
       throws RuntimeException {

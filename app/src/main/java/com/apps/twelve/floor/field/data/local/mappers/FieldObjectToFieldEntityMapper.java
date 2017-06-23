@@ -7,7 +7,7 @@ import com.apps.twelve.floor.field.data.local.objects.FieldObject;
  * Created by Yaroslav on 12.05.2017.
  */
 
-public class FieldObjectToFieldEntity implements Mapper<FieldObject, FieldEntity> {
+public class FieldObjectToFieldEntityMapper implements Mapper<FieldObject, FieldEntity> {
 
   @Override public FieldEntity transform(FieldObject obj) throws RuntimeException {
 
