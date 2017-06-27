@@ -3,6 +3,7 @@ package com.apps.twelve.floor.field.feature.start_point;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.base.BasePresenter;
 import com.apps.twelve.floor.field.data.DataManager;
+import com.apps.twelve.floor.field.data.local.mappers.ProcessPeriodObjectToProcessPeriodEntity;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
@@ -14,6 +15,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.InsectObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.ProductCategoryObject;
@@ -338,8 +340,8 @@ import timber.log.Timber;
     // Tillage directions
     mDataManager.putTillageDirection(
         new TillageDirectionObject(1, "під кутом 45⁰ до напряму оранки", conditionTypes.get(2)));
-    mDataManager.putTillageDirection(new TillageDirectionObject(2, "Човнико-вий або діагональ-ний",
-        conditionTypes.get(2)));
+    mDataManager.putTillageDirection(
+        new TillageDirectionObject(2, "Човнико-вий або діагональ-ний", conditionTypes.get(2)));
     mDataManager.putTillageDirection(
         new TillageDirectionObject(3, "міжряддя вздовж рядків", conditionTypes.get(2)));
     mDataManager.putTillageDirection(
@@ -460,5 +462,67 @@ import timber.log.Timber;
         productCategoryObjects.get(0)));
     mDataManager.putProduct(new ProductObject(17, "Таймень", techSolutionTypeProducts, 0,
         productCategoryObjects.get(2)));
+
+    //Process Period
+    ArrayList<ProcessPeriodObject> processPeriodObjects = new ArrayList<>();
+    //tech process - 1
+    processPeriodObjects.add(new ProcessPeriodObject(1, 10, 20, 3, 3));
+    //tech process - 2
+    processPeriodObjects.add(new ProcessPeriodObject(2, 23, 5, 3, 4));
+
+    //tech process - 3, zone - step
+    processPeriodObjects.add(new ProcessPeriodObject(3, 13, 13, 4, 5));
+    //tech process - 3, zone - lisostep
+    processPeriodObjects.add(new ProcessPeriodObject(4, 20, 20, 4, 5));
+    //tech process - 3, zone - polisya
+    processPeriodObjects.add(new ProcessPeriodObject(5, 23, 13, 4, 5));
+
+    //tech process - 4a, zone - step
+    processPeriodObjects.add(new ProcessPeriodObject(6, 15, 15, 4, 5));
+    //tech process - 4a, zone - lisostep
+    processPeriodObjects.add(new ProcessPeriodObject(7, 20, 20, 4, 5));
+    //tech process - 4a, zone - polisya
+    processPeriodObjects.add(new ProcessPeriodObject(8, 25, 15, 4, 5));
+
+    //tech process - 4aa same as 4a
+
+    //tech process - 4b, zone - step
+    processPeriodObjects.add(new ProcessPeriodObject(9, 15, 15, 4, 5));
+    //tech process - 4b, zone - lisostep
+    processPeriodObjects.add(new ProcessPeriodObject(10, 20, 20, 4, 5));
+    //tech process - 4b, zone - polisya
+    processPeriodObjects.add(new ProcessPeriodObject(11, 25, 15, 4, 5));
+
+    //tech process - 5a, zone - step
+    processPeriodObjects.add(new ProcessPeriodObject(12, 21, 21, 4, 5));
+    //tech process - 5a, zone - lisostep
+    processPeriodObjects.add(new ProcessPeriodObject(13, 26, 26, 4, 5));
+    //tech process - 5a, zone - polisya
+    processPeriodObjects.add(new ProcessPeriodObject(14, 1, 21, 5, 5));
+
+    //tech process - 6
+    processPeriodObjects.add(new ProcessPeriodObject(15, 25, 15, 5, 6));
+
+    //tech process - 7a voobsche hz
+
+    //tech process - 7b
+    processPeriodObjects.add(new ProcessPeriodObject(16, 1, 20, 6, 6));
+
+    //tech process - 8 voobsche hz
+
+    //tech process - 9a 9a2 9b hz
+
+    //tech process - 10
+    processPeriodObjects.add(new ProcessPeriodObject(17, 1, 1, 7, 8));
+
+    //tech process - 11 hz
+
+    //tech process - 12 hz
+    for (int i = 0; i < processPeriodObjects.size(); i++) {
+      mDataManager.putProcessPeriod(
+          new ProcessPeriodObjectToProcessPeriodEntity().transform(processPeriodObjects.get(i)));
+    }
+
+    Timber.e(String.valueOf(mDataManager.getAllProcessPeriodEntitiesAsList().size()));
   }
 }

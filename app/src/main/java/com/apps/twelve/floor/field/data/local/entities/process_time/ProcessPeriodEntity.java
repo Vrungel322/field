@@ -11,40 +11,22 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 @StorIOSQLiteType(table = ProcessPeriodsTable.TABLE) public class ProcessPeriodEntity {
 
   @StorIOSQLiteColumn(name = ProcessPeriodsTable.COLUMN_ID, key = true) Long id;
-  @StorIOSQLiteColumn(name = ProcessPeriodsTable.COLUMN_DATE_FROM, key = true) Long dateFrom;
-  @StorIOSQLiteColumn(name = ProcessPeriodsTable.COLUMN_DATE_TO, key = true) Long dateTo;
+  @StorIOSQLiteColumn(name = ProcessPeriodsTable.COLUMN_DATE_DAY_FROM, key = true) Long dateDayFrom;
+  @StorIOSQLiteColumn(name = ProcessPeriodsTable.COLUMN_DATE_DAY_TO, key = true) Long dateDayTo;
+  @StorIOSQLiteColumn(name = ProcessPeriodsTable.COLUMN_DATE_MONTH_FROM, key = true) Long
+      dateMonthFrom;
+  @StorIOSQLiteColumn(name = ProcessPeriodsTable.COLUMN_DATE_MONTH_TO, key = true) Long dateMonthTo;
 
   public ProcessPeriodEntity() {
   }
 
-  public ProcessPeriodEntity(Long id, Long dateFrom, Long dateTo) {
+  public ProcessPeriodEntity(Long id, Long dateDayFrom, Long dateDayTo, Long dateMonthFrom,
+      Long dateMonthTo) {
     this.id = id;
-    this.dateFrom = dateFrom;
-    this.dateTo = dateTo;
-  }
-
-  public static ProcessPeriodEntity newProcessPeriodEntity(Long id, Long dateFrom, Long dateTo) {
-    if (id == 0) id = null;
-    return new ProcessPeriodEntity(id, dateFrom, dateTo);
-  }
-
-  @Override public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null || getClass() != obj.getClass()) return false;
-
-    ProcessPeriodEntity that = (ProcessPeriodEntity) obj;
-
-    if (id != null ? !id.equals(that.id) : that.id != null) return false;
-    if (dateFrom != null ? !dateFrom.equals(that.dateFrom) : that.dateFrom != null) return false;
-
-    return dateTo != null ? dateTo.equals(that.dateTo) : that.dateTo == null;
-  }
-
-  @Override public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
-    result = 31 * result + (dateFrom != null ? dateFrom.hashCode() : 0);
-    result = 31 * result + (dateTo != null ? dateTo.hashCode() : 0);
-    return result;
+    this.dateDayFrom = dateDayFrom;
+    this.dateDayTo = dateDayTo;
+    this.dateMonthFrom = dateMonthFrom;
+    this.dateMonthTo = dateMonthTo;
   }
 
   public Long getId() {
@@ -55,19 +37,64 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
     this.id = id;
   }
 
-  public Long getDateFrom() {
-    return dateFrom;
+  public Long getDateDayFrom() {
+    return dateDayFrom;
   }
 
-  public void setDateFrom(Long dateFrom) {
-    this.dateFrom = dateFrom;
+  public void setDateDayFrom(Long dateDayFrom) {
+    this.dateDayFrom = dateDayFrom;
   }
 
-  public Long getDateTo() {
-    return dateTo;
+  public Long getDateDayTo() {
+    return dateDayTo;
   }
 
-  public void setDateTo(Long dateTo) {
-    this.dateTo = dateTo;
+  public void setDateDayTo(Long dateDayTo) {
+    this.dateDayTo = dateDayTo;
+  }
+
+  public Long getDateMonthFrom() {
+    return dateMonthFrom;
+  }
+
+  public void setDateMonthFrom(Long dateMonthFrom) {
+    this.dateMonthFrom = dateMonthFrom;
+  }
+
+  public Long getDateMonthTo() {
+    return dateMonthTo;
+  }
+
+  public void setDateMonthTo(Long dateMonthTo) {
+    this.dateMonthTo = dateMonthTo;
+  }
+
+  public static ProcessPeriodEntity newProcessPeriodEntity(Long id, Long dateDayFrom,
+      Long dateDayTo, Long dateMonthFrom, Long dateMonthTo) {
+    if (id == 0) id = null;
+    return new ProcessPeriodEntity(id, dateDayFrom, dateDayTo, dateMonthFrom, dateMonthTo);
+  }
+
+  @Override public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+
+    ProcessPeriodEntity that = (ProcessPeriodEntity) obj;
+
+    if (id != null ? !id.equals(that.id) : that.id != null) return false;
+    if (dateDayFrom != null ? !dateDayFrom.equals(that.dateDayFrom) : that.dateDayFrom != null) return false;
+    if (dateDayTo != null ? !dateDayTo.equals(that.dateDayTo) : that.dateDayTo != null) return false;
+    if (dateMonthFrom != null ? !dateMonthFrom.equals(that.dateMonthFrom) : that.dateMonthFrom != null) return false;
+
+    return dateMonthTo != null ? dateMonthTo.equals(that.dateMonthTo) : that.dateMonthTo == null;
+  }
+
+  @Override public int hashCode() {
+    int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (dateDayFrom != null ? dateDayFrom.hashCode() : 0);
+    result = 31 * result + (dateDayTo != null ? dateDayTo.hashCode() : 0);
+    result = 31 * result + (dateMonthFrom != null ? dateMonthFrom.hashCode() : 0);
+    result = 31 * result + (dateMonthTo != null ? dateMonthTo.hashCode() : 0);
+    return result;
   }
 }

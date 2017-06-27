@@ -12,8 +12,10 @@ public class ProcessPeriodsTable {
   @NonNull public static final String TABLE = "ProcessPeriods";
 
   @NonNull public static final String COLUMN_ID = "id";
-  @NonNull public static final String COLUMN_DATE_FROM = "date_from";
-  @NonNull public static final String COLUMN_DATE_TO = "date_to";
+  @NonNull public static final String COLUMN_DATE_DAY_FROM = "COLUMN_DATE_DAY_FROM";
+  @NonNull public static final String COLUMN_DATE_DAY_TO = "COLUMN_DATE_DAY_TO";
+  @NonNull public static final String COLUMN_DATE_MONTH_FROM = "COLUMN_DATE_MONTH_FROM";
+  @NonNull public static final String COLUMN_DATE_MONTH_TO = "COLUMN_DATE_MONTH_TO";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
@@ -27,9 +29,13 @@ public class ProcessPeriodsTable {
         + " ("
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
-        + COLUMN_DATE_FROM
+        + COLUMN_DATE_DAY_FROM
         + " TEXT NULL, "
-        + COLUMN_DATE_TO
+        + COLUMN_DATE_DAY_TO
+        + " TEXT NULL, "
+        + COLUMN_DATE_MONTH_FROM
+        + " TEXT NULL, "
+        + COLUMN_DATE_MONTH_TO
         + " TEXT NULL "
         + ");";
   }

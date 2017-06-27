@@ -51,35 +51,35 @@ public final class TestUtils {
   public static ArrayList<FieldCropTechnologicalProcessObject> getFieldTechnologicalProcesses() {
     ArrayList<FieldCropTechnologicalProcessObject> list = new ArrayList<>();
 
-    CropObject crop = new CropObject(1, "Тестовая культура", 0, false, false);
-    ClimateZoneObject climateZone = new ClimateZoneObject(1, "Тестовая климатическая зона", "");
-    PhaseObject phase = new PhaseObject(1, "Тестовая фаза", crop);
-    SoilTypeObject soilType = new SoilTypeObject(1, "Тестовый тип почвы",
-        new ConditionTypeObject(1, "Тестовый тип условия"), "");
-    FieldObject field =
-        new FieldObject(1, "Тестовое поле", crop, crop, "", 11111D, climateZone, phase, soilType);
-    ProcessPeriodObject period =
-        new ProcessPeriodObject(1, System.currentTimeMillis(), System.currentTimeMillis());
-    CropTechnologicalProcessObject cropTp =
-        new CropTechnologicalProcessObject(1, "Тестовый тех процесс", 1, crop, climateZone, phase,
-            period);
-    TechnologicalProcessStateObject status =
-        new TechnologicalProcessStateObject(1, "Тестовое состояние", -1);
-
-    FieldCropTechnologicalProcessObject fieldTechProcess =
-        new FieldCropTechnologicalProcessObject(1, field, cropTp, status);
-
-    list.add(fieldTechProcess);
-    list.add(fieldTechProcess);
-    list.add(fieldTechProcess);
-    list.add(fieldTechProcess);
-    list.add(fieldTechProcess);
-    list.add(fieldTechProcess);
-    list.add(fieldTechProcess);
-    list.add(fieldTechProcess);
-    list.add(fieldTechProcess);
-    list.add(fieldTechProcess);
-    list.add(fieldTechProcess);
+    //CropObject crop = new CropObject(1, "Тестовая культура", 0, false, false);
+    //ClimateZoneObject climateZone = new ClimateZoneObject(1, "Тестовая климатическая зона", "");
+    //PhaseObject phase = new PhaseObject(1, "Тестовая фаза", crop);
+    //SoilTypeObject soilType = new SoilTypeObject(1, "Тестовый тип почвы",
+    //    new ConditionTypeObject(1, "Тестовый тип условия"), "");
+    //FieldObject field =
+    //    new FieldObject(1, "Тестовое поле", crop, crop, "", 11111D, climateZone, phase, soilType);
+    //ProcessPeriodObject period =
+    //    new ProcessPeriodObject(1, System.currentTimeMillis(), System.currentTimeMillis());
+    //CropTechnologicalProcessObject cropTp =
+    //    new CropTechnologicalProcessObject(1, "Тестовый тех процесс", 1, crop, climateZone, phase,
+    //        period);
+    //TechnologicalProcessStateObject status =
+    //    new TechnologicalProcessStateObject(1, "Тестовое состояние", -1);
+    //
+    //FieldCropTechnologicalProcessObject fieldTechProcess =
+    //    new FieldCropTechnologicalProcessObject(1, field, cropTp, status);
+    //
+    //list.add(fieldTechProcess);
+    //list.add(fieldTechProcess);
+    //list.add(fieldTechProcess);
+    //list.add(fieldTechProcess);
+    //list.add(fieldTechProcess);
+    //list.add(fieldTechProcess);
+    //list.add(fieldTechProcess);
+    //list.add(fieldTechProcess);
+    //list.add(fieldTechProcess);
+    //list.add(fieldTechProcess);
+    //list.add(fieldTechProcess);
 
     return list;
   }

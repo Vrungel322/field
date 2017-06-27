@@ -10,6 +10,84 @@ import android.text.format.DateUtils;
  */
 
 public class ProcessPeriodObject implements Parcelable {
+  private long mId;
+  private long mDateDayFrom;
+  private long mDateDayTo;
+  private long mDateMonthFrom;
+  private long mDateMonthTo;
+
+  public ProcessPeriodObject(long id, long dateDayFrom, long dateDayTo, long dateMonthFrom,
+      long dateMonthTo) {
+    mId = id;
+    mDateDayFrom = dateDayFrom;
+    mDateDayTo = dateDayTo;
+    mDateMonthFrom = dateMonthFrom;
+    mDateMonthTo = dateMonthTo;
+  }
+
+  protected ProcessPeriodObject(Parcel in) {
+    mId = in.readLong();
+    mDateDayFrom = in.readLong();
+    mDateDayTo = in.readLong();
+    mDateMonthFrom = in.readLong();
+    mDateMonthTo = in.readLong();
+  }
+
+  public long getId() {
+    return mId;
+  }
+
+  public void setId(long id) {
+    mId = id;
+  }
+
+  public long getDateDayFrom() {
+    return mDateDayFrom;
+  }
+
+  public void setDateDayFrom(long dateDayFrom) {
+    mDateDayFrom = dateDayFrom;
+  }
+
+  public long getDateDayTo() {
+    return mDateDayTo;
+  }
+
+  public void setDateDayTo(long dateDayTo) {
+    mDateDayTo = dateDayTo;
+  }
+
+  public long getDateMonthFrom() {
+    return mDateMonthFrom;
+  }
+
+  public void setDateMonthFrom(long dateMonthFrom) {
+    mDateMonthFrom = dateMonthFrom;
+  }
+
+  public long getDateMonthTo() {
+    return mDateMonthTo;
+  }
+
+  public void setDateMonthTo(long dateMonthTo) {
+    mDateMonthTo = dateMonthTo;
+  }
+
+  public static Creator<ProcessPeriodObject> getCREATOR() {
+    return CREATOR;
+  }
+
+  @Override public void writeToParcel(Parcel dest, int flags) {
+    dest.writeLong(mId);
+    dest.writeLong(mDateDayFrom);
+    dest.writeLong(mDateDayTo);
+    dest.writeLong(mDateMonthFrom);
+    dest.writeLong(mDateMonthTo);
+  }
+
+  @Override public int describeContents() {
+    return 0;
+  }
 
   public static final Creator<ProcessPeriodObject> CREATOR = new Creator<ProcessPeriodObject>() {
     @Override public ProcessPeriodObject createFromParcel(Parcel in) {
@@ -20,58 +98,4 @@ public class ProcessPeriodObject implements Parcelable {
       return new ProcessPeriodObject[size];
     }
   };
-
-  private long mId;
-  private long mDateFrom;
-  private long mDateTo;
-
-  public ProcessPeriodObject(long id, long dateFrom, long dateTo) {
-    this.mId = id;
-    this.mDateFrom = dateFrom;
-    this.mDateTo = dateTo;
-  }
-
-  protected ProcessPeriodObject(Parcel in) {
-    this.mId = in.readLong();
-    this.mDateFrom = in.readLong();
-    this.mDateTo = in.readLong();
-  }
-
-  @Override public int describeContents() {
-    return 0;
-  }
-
-  @Override public void writeToParcel(Parcel dest, int flags) {
-    dest.writeLong(mId);
-    dest.writeLong(mDateFrom);
-    dest.writeLong(mDateTo);
-  }
-
-  public long getId() {
-    return mId;
-  }
-
-  public void setId(long id) {
-    this.mId = id;
-  }
-
-  public long getDateFrom() {
-    return mDateFrom;
-  }
-
-  public void setDateFrom(long dateFrom) {
-    this.mDateFrom = dateFrom;
-  }
-
-  public long getDateTo() {
-    return mDateTo;
-  }
-
-  public void setDateTo(long dateTo) {
-    this.mDateTo = dateTo;
-  }
-
-  public String getRepresentation(Context context) {
-    return DateUtils.formatDateRange(context, mDateFrom, mDateTo, DateUtils.FORMAT_SHOW_DATE);
-  }
 }

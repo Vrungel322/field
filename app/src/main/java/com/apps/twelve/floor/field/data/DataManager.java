@@ -4,6 +4,7 @@ import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
 import com.apps.twelve.floor.field.data.local.DbHelper;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
+import com.apps.twelve.floor.field.data.local.entities.process_time.ProcessPeriodEntity;
 import com.apps.twelve.floor.field.data.local.mappers.AggregateObjectToAggregateEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneEntityToClimateZoneObjectMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneObjectToClimateZoneEntityMapper;
@@ -228,5 +229,13 @@ public class DataManager {
 
   public List<ConditionEntity> getAllConditionEntitiesAsList() {
     return mDbHelper.getAllConditionEntityAsList();
+  }
+
+  public PutResult putProcessPeriod(ProcessPeriodEntity processPeriodEntity) {
+    return mDbHelper.putProcessPeriod(processPeriodEntity);
+  }
+
+  public List<ProcessPeriodEntity> getAllProcessPeriodEntitiesAsList() {
+    return mDbHelper.getAllProcessPeriodEntitiesAsList();
   }
 }

@@ -686,4 +686,12 @@ public class DbHelper {
   public PutResult putConditionSpanValueEntity(ConditionSpanValueEntity conditionSpanValueEntity) {
     return mStorIOSQLite.put().object(conditionSpanValueEntity).prepare().executeAsBlocking();
   }
+
+  public List<ProcessPeriodEntity> getAllProcessPeriodEntitiesAsList() {
+    return mStorIOSQLite.get()
+        .listOfObjects(ProcessPeriodEntity.class)
+        .withQuery(ProcessPeriodsTable.QUERY_ALL)
+        .prepare()
+        .executeAsBlocking();
+  }
 }
