@@ -24,6 +24,8 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.WeedNutritionTypeEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.WeedNutritionTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
@@ -132,6 +134,9 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
         .addTypeMapping(ProductEntity.class, new ProductEntitySQLiteTypeMapping())
         // ProcessPeriodEntity mapping
         .addTypeMapping(ProcessPeriodEntity.class, new ProcessPeriodEntitySQLiteTypeMapping())
+        // WeedNutritionTypeEntity mapping
+        .addTypeMapping(WeedNutritionTypeEntity.class,
+            new WeedNutritionTypeEntitySQLiteTypeMapping())
 
         // TODO: uncomment this when entities will be ready
         // TODO: for some entities custom resolvers needed
@@ -154,8 +159,7 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
                 new CombinedFieldPutResolver())
                 .getResolver(new CombinedFieldGetResolver())
                 .deleteResolver(new CombinedFieldDeleteResolver())
-                .build())
-        .build();
+                .build()).build();
   }
 
   @Provides @AppScope SQLiteOpenHelper provideSqLiteOpenHelper(Context context) {

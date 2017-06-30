@@ -13,6 +13,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.WeedNutritionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
@@ -69,12 +70,12 @@ import timber.log.Timber;
     getViewState().hideFieldAddTypeDialog();
   }
 
-  public void setFieldTypePosition(int position) {
-    mFieldTypePosition = position;
-  }
-
   public int getFieldTypePosition() {
     return mFieldTypePosition;
+  }
+
+  public void setFieldTypePosition(int position) {
+    mFieldTypePosition = position;
   }
 
   public void onFieldTypeDialogPositiveButton(int which) {
@@ -524,5 +525,11 @@ import timber.log.Timber;
     }
 
     Timber.e(String.valueOf(mDataManager.getAllProcessPeriodEntitiesAsList().size()));
+
+    // WeedNutritionTypes
+    ArrayList<WeedNutritionTypeObject> weedNutritionTypeObjects = new ArrayList<>();
+    weedNutritionTypeObjects.add(new WeedNutritionTypeObject(1, "Непаразити"));
+    weedNutritionTypeObjects.add(new WeedNutritionTypeObject(2, "Напівпаразити"));
+    weedNutritionTypeObjects.add(new WeedNutritionTypeObject(3, "Паразити"));
   }
 }

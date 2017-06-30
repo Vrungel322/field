@@ -27,6 +27,7 @@ import com.apps.twelve.floor.field.data.local.mappers.SoilTypeObjectToSoilTypeEn
 import com.apps.twelve.floor.field.data.local.mappers.TechnologicalProcessStateObjectToTechnologicalProcessStateEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.TechnologicalSolutionTypeObjectToTechnologicalSolutionTypeEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.TillageDirectionObjectToTillageDirectionEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.WeedNutritionTypeObjectToWeedNutritionTypeEntityMapper;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
@@ -36,6 +37,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.WeedNutritionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
@@ -165,6 +167,12 @@ public class DataManager {
     return mDbHelper.putTillageDirection(
         new TillageDirectionObjectToTillageDirectionEntityMapper().transform(
             tillageDirectionObject));
+  }
+
+  public PutResult putWeedNutritionType(WeedNutritionTypeObject weedNutritionTypeObject) {
+    return mDbHelper.putWeedNutritionType(
+        new WeedNutritionTypeObjectToWeedNutritionTypeEntityMapper().transform(
+            weedNutritionTypeObject));
   }
 
   public PutResult putPhenologicalCharacteristic(
