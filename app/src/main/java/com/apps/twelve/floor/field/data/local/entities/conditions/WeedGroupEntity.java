@@ -1,51 +1,47 @@
 package com.apps.twelve.floor.field.data.local.entities.conditions;
 
-import com.apps.twelve.floor.field.data.local.tables.conditions.PestsTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.WeedGroupsTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
 /**
- * Created by Yaroslav on 10.05.2017.
+ * Created by yarrick on 30.06.17.
  */
 
-@StorIOSQLiteType(table = PestsTable.TABLE) public class PestEntity {
+@StorIOSQLiteType(table = WeedGroupsTable.TABLE) public class WeedGroupEntity {
 
-  @StorIOSQLiteColumn(name = PestsTable.COLUMN_ID, key = true) Long id;
-  @StorIOSQLiteColumn(name = PestsTable.COLUMN_NAME) String name;
-  @StorIOSQLiteColumn(name = PestsTable.COLUMN_CONDITION_TYPE_ID) Long conditionTypeId;
-  @StorIOSQLiteColumn(name = PestsTable.COLUMN_PARENT_ID) Long parentId;
-  @StorIOSQLiteColumn(name = PestsTable.COLUMN_IS_GROUP) boolean isGroup;
+  @StorIOSQLiteColumn(name = WeedGroupsTable.COLUMN_ID, key = true) Long id;
+  @StorIOSQLiteColumn(name = WeedGroupsTable.COLUMN_NAME) String name;
+  @StorIOSQLiteColumn(name = WeedGroupsTable.COLUMN_PARENT_ID) Long parentId;
+  @StorIOSQLiteColumn(name = WeedGroupsTable.COLUMN_IS_GROUP) boolean isGroup;
 
-  public PestEntity() {
+  public WeedGroupEntity() {
   }
 
-  public PestEntity(Long id, String name, Long conditionTypeId, Long parentId, boolean isGroup) {
+  public WeedGroupEntity(Long id, String name, Long parentId, boolean isGroup) {
     this.id = id;
     this.name = name;
-    this.conditionTypeId = conditionTypeId;
     this.parentId = parentId;
     this.isGroup = isGroup;
   }
 
-  public static PestEntity newPestEntity(Long id, String name, Long conditionTypeId, Long parentId,
+  public static WeedGroupEntity newWeedGroupEntity(Long id, String name, Long parentId,
       boolean isGroup) {
     if (id == 0) id = null;
-    return new PestEntity(id, name, conditionTypeId, parentId, isGroup);
+    return new WeedGroupEntity(id, name, parentId, isGroup);
   }
 
   @Override public boolean equals(Object obj) {
     if (this == obj) return true;
     if (obj == null || getClass() != obj.getClass()) return false;
 
-    PestEntity that = (PestEntity) obj;
+    WeedGroupEntity that = (WeedGroupEntity) obj;
 
     if (isGroup != that.isGroup) return false;
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
     if (name != null ? !name.equals(that.name) : that.name != null) return false;
-    if (parentId != null ? !parentId.equals(that.parentId) : that.parentId != null) return false;
 
-    return conditionTypeId != null ? conditionTypeId.equals(that.conditionTypeId)
-        : that.conditionTypeId == null;
+    return parentId != null ? parentId.equals(that.parentId) : that.parentId == null;
   }
 
   @Override public int hashCode() {
@@ -53,7 +49,6 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
     result = 31 * result + (name != null ? name.hashCode() : 0);
     result = 31 * result + (parentId != null ? parentId.hashCode() : 0);
     result = 31 * result + (isGroup ? 1 : 0);
-    result = 31 * result + (conditionTypeId != null ? conditionTypeId.hashCode() : 0);
 
     return result;
   }
@@ -72,14 +67,6 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public Long getConditionTypeId() {
-    return conditionTypeId;
-  }
-
-  public void setConditionTypeId(Long conditionTypeId) {
-    this.conditionTypeId = conditionTypeId;
   }
 
   public Long getParentId() {

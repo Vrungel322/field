@@ -13,6 +13,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.WeedGroupObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.WeedNutritionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
@@ -531,5 +532,30 @@ import timber.log.Timber;
     weedNutritionTypeObjects.add(new WeedNutritionTypeObject(1, "Непаразити"));
     weedNutritionTypeObjects.add(new WeedNutritionTypeObject(2, "Напівпаразити"));
     weedNutritionTypeObjects.add(new WeedNutritionTypeObject(3, "Паразити"));
+    for (int i = 0; i < weedNutritionTypeObjects.size(); i++) {
+      mDataManager.putWeedNutritionType(weedNutritionTypeObjects.get(i));
+    }
+
+    // WeedGroups
+    ArrayList<WeedGroupObject> weedGroupObjects = new ArrayList<>();
+    weedGroupObjects.add(new WeedGroupObject(1, "Малорічні", 0, true));
+    weedGroupObjects.add(new WeedGroupObject(2, "Ярі", 1, true));
+    weedGroupObjects.add(new WeedGroupObject(3, "Ефемери", 2, false));
+    weedGroupObjects.add(new WeedGroupObject(4, "Ранні", 2, false));
+    weedGroupObjects.add(new WeedGroupObject(5, "Пізні", 2, false));
+    weedGroupObjects.add(new WeedGroupObject(6, "Озимі", 1, false));
+    weedGroupObjects.add(new WeedGroupObject(7, "Зимуючі", 1, false));
+    weedGroupObjects.add(new WeedGroupObject(8, "Дворічні", 1, false));
+    weedGroupObjects.add(new WeedGroupObject(9, "Багаторічні", 0, true));
+    weedGroupObjects.add(new WeedGroupObject(10, "Кореневищні", 9, false));
+    weedGroupObjects.add(new WeedGroupObject(11, "Коренепаросткові", 9, false));
+    weedGroupObjects.add(new WeedGroupObject(12, "Коренемичкуваті", 9, false));
+    weedGroupObjects.add(new WeedGroupObject(13, "Стрижнекореневі", 9, false));
+    weedGroupObjects.add(new WeedGroupObject(14, "Повзучі", 9, false));
+    weedGroupObjects.add(new WeedGroupObject(15, "Бульбові", 9, false));
+    weedGroupObjects.add(new WeedGroupObject(16, "Цибулинні", 9, false));
+    for (int i = 0; i < weedGroupObjects.size(); i++) {
+      mDataManager.putWeedGroup(weedGroupObjects.get(i));
+    }
   }
 }
