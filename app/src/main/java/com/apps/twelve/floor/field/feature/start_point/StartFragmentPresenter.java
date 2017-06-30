@@ -13,6 +13,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.WeedClassObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.WeedGroupObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.WeedNutritionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
@@ -534,6 +535,53 @@ import timber.log.Timber;
     weedNutritionTypeObjects.add(new WeedNutritionTypeObject(3, "Паразити"));
     for (int i = 0; i < weedNutritionTypeObjects.size(); i++) {
       mDataManager.putWeedNutritionType(weedNutritionTypeObjects.get(i));
+    }
+
+    // WeedClasses
+    ArrayList<WeedClassObject> weedClassObjects = new ArrayList<>();
+    weedClassObjects.add(new WeedClassObject(1, "Дводольні", 0, true));
+    weedClassObjects.add(new WeedClassObject(2, "Губоцвіті ", 1, false));
+    weedClassObjects.add(new WeedClassObject(3, "Капустяні", 1, false));
+    weedClassObjects.add(new WeedClassObject(4, "Фіалкові", 1, false));
+    weedClassObjects.add(new WeedClassObject(5, "Макові", 1, false));
+    weedClassObjects.add(new WeedClassObject(6, "Геранієві", 1, false));
+    weedClassObjects.add(new WeedClassObject(7, "Айстрові", 1, false));
+    weedClassObjects.add(new WeedClassObject(8, "Бурачникові", 1, false));
+    weedClassObjects.add(new WeedClassObject(9, "Жовтецеві", 1, false));
+    weedClassObjects.add(new WeedClassObject(10, "Гвоздикові", 1, false));
+    weedClassObjects.add(new WeedClassObject(11, "Лободові", 1, false));
+    weedClassObjects.add(new WeedClassObject(12, "Мальвові", 1, false));
+    weedClassObjects.add(new WeedClassObject(13, "Бобові", 1, false));
+    weedClassObjects.add(new WeedClassObject(14, "Зонтичні", 1, false));
+    weedClassObjects.add(new WeedClassObject(15, "Паролистові", 1, false));
+    weedClassObjects.add(new WeedClassObject(16, "Маренові", 1, false));
+    weedClassObjects.add(new WeedClassObject(17, "Гречкові", 1, false));
+    weedClassObjects.add(new WeedClassObject(18, "Резедові", 1, false));
+    weedClassObjects.add(new WeedClassObject(19, "Амарантові", 1, false));
+    weedClassObjects.add(new WeedClassObject(20, "Складноцвіті", 1, false));
+    weedClassObjects.add(new WeedClassObject(21, "Пасльонові", 1, false));
+    weedClassObjects.add(new WeedClassObject(22, "Первоцвітові", 1, false));
+    weedClassObjects.add(new WeedClassObject(23, "Кропивні", 1, false));
+    weedClassObjects.add(new WeedClassObject(24, "Конопляні", 1, false));
+    weedClassObjects.add(new WeedClassObject(25, "Камелінові", 1, false));
+    weedClassObjects.add(new WeedClassObject(26, "Портулакові", 1, false));
+    weedClassObjects.add(new WeedClassObject(27, "Щирицеві", 1, false));
+    weedClassObjects.add(new WeedClassObject(28, "Барвінкові", 1, false));
+    weedClassObjects.add(new WeedClassObject(29, "Квасеницюваті", 1, false));
+    weedClassObjects.add(new WeedClassObject(30, "Хвилівникові", 1, false));
+    weedClassObjects.add(new WeedClassObject(31, "Онагрові", 1, false));
+    weedClassObjects.add(new WeedClassObject(32, "Молочайні", 1, false));
+    weedClassObjects.add(new WeedClassObject(33, "Ранникові", 1, false));
+    weedClassObjects.add(new WeedClassObject(34, "Березкові", 1, false));
+    weedClassObjects.add(new WeedClassObject(35, "Подорожникові", 1, false));
+    weedClassObjects.add(new WeedClassObject(36, "Розові", 1, false));
+    weedClassObjects.add(new WeedClassObject(37, "Лілійні", 1, false));
+    weedClassObjects.add(new WeedClassObject(38, "Шорстколисті", 1, false));
+    weedClassObjects.add(new WeedClassObject(39, "Однодольні", 0, true));
+    weedClassObjects.add(new WeedClassObject(40, "Злакові (тонконогові)", 39, false));
+    weedClassObjects.add(new WeedClassObject(41, "Хвощовидні (спорові)", 0, true));
+    for (int i = 0; i < weedClassObjects.size(); i++) {
+      mDataManager.putWeedClass(weedClassObjects.get(i));
     }
 
     // WeedGroups

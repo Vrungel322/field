@@ -24,6 +24,8 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.WeedClassEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.WeedClassEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.WeedGroupEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.WeedGroupEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.WeedNutritionTypeEntity;
@@ -139,6 +141,8 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
         // WeedNutritionTypeEntity mapping
         .addTypeMapping(WeedNutritionTypeEntity.class,
             new WeedNutritionTypeEntitySQLiteTypeMapping())
+        // WeedClassEntity mapping
+        .addTypeMapping(WeedClassEntity.class, new WeedClassEntitySQLiteTypeMapping())
         // WeedGroupEntity mapping
         .addTypeMapping(WeedGroupEntity.class, new WeedGroupEntitySQLiteTypeMapping())
 

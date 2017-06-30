@@ -13,6 +13,7 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.PestPhaseEntit
 import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.WeedClassEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.WeedGroupEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.WeedNutritionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
@@ -40,6 +41,7 @@ import com.apps.twelve.floor.field.data.local.tables.conditions.PestsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionsTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.WeedClassesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.WeedGroupsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.WeedNutritionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;
@@ -263,6 +265,26 @@ public class DbHelper {
 
   public DeleteResult deleteWeedNutritionType(WeedNutritionTypeEntity weedNutritionTypeEntity) {
     return mStorIOSQLite.delete().object(weedNutritionTypeEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Weed class
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<WeedClassEntity>> getAllWeedClasses() {
+    return mStorIOSQLite.get()
+        .listOfObjects(WeedClassEntity.class)
+        .withQuery(WeedClassesTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putWeedClass(WeedClassEntity weedClassEntity) {
+    return mStorIOSQLite.put().object(weedClassEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteWeedClass(WeedClassEntity weedClassEntity) {
+    return mStorIOSQLite.delete().object(weedClassEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
