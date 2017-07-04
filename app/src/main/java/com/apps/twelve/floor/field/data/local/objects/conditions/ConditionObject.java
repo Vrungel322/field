@@ -3,7 +3,6 @@ package com.apps.twelve.floor.field.data.local.objects.conditions;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import com.apps.twelve.floor.field.data.local.objects.CropObject;
 
 /**
  * Created by Yaroslav on 31.05.2017.
@@ -11,89 +10,100 @@ import com.apps.twelve.floor.field.data.local.objects.CropObject;
 
 public class ConditionObject implements Parcelable {
 
-  public static final Creator<ConditionObject> CREATOR = new Creator<ConditionObject>() {
-    @Override public ConditionObject createFromParcel(Parcel in) {
-      return new ConditionObject(in);
+    public static final Creator<ConditionObject> CREATOR = new Creator<ConditionObject>() {
+        @Override
+        public ConditionObject createFromParcel(Parcel in) {
+            return new ConditionObject(in);
+        }
+
+        @Override
+        public ConditionObject[] newArray(int size) {
+            return new ConditionObject[size];
+        }
+    };
+
+    public static final int HIGEST_PRIORITY = 1;
+    public static final int LOWEST_PRIORITY = 999;
+
+    private long mId;
+    @NonNull
+    private String mName;
+    private int mPriority;
+    @NonNull
+    private ConditionTypeObject mConditionType;
+
+    @NonNull
+    private BaseConditionValueObject mConditionValue;
+
+    public ConditionObject(long id, @NonNull String name, int priority,
+                           @NonNull ConditionTypeObject conditionType,
+                           @NonNull BaseConditionValueObject conditionValue) {
+        this.mId = id;
+        this.mName = name;
+        this.mPriority = priority;
+        this.mConditionType = conditionType;
+        this.mConditionValue = conditionValue;
     }
 
-    @Override public ConditionObject[] newArray(int size) {
-      return new ConditionObject[size];
+    protected ConditionObject(Parcel in) {
+        mId = in.readLong();
+        mName = in.readString();
+        mPriority = in.readInt();
+        mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
+        mConditionValue = in.readParcelable(BaseConditionValueObject.class.getClassLoader());
     }
-  };
-  private long mId;
-  @NonNull private String mName;
-  private int mPriority;
-  @NonNull private ConditionTypeObject mConditionType;
 
-  @NonNull private BaseConditionValueObject mConditionValue;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(mId);
+        dest.writeString(mName);
+        dest.writeInt(mPriority);
+        dest.writeParcelable(mConditionType, flags);
+        dest.writeParcelable(mConditionValue, flags);
+    }
 
-  public ConditionObject(long id, @NonNull String  name, int priority,
-      @NonNull ConditionTypeObject conditionType,
-      @NonNull BaseConditionValueObject conditionValue) {
-    this.mId = id;
-    this.mName = name;
-    this.mPriority = priority;
-    this.mConditionType = conditionType;
-    this.mConditionValue = conditionValue;
-  }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-  protected ConditionObject(Parcel in) {
-    mId = in.readLong();
-    mName = in.readString();
-    mPriority = in.readInt();
-    mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
-    mConditionValue = in.readParcelable(BaseConditionValueObject.class.getClassLoader());
-  }
+    public long getId() {
+        return mId;
+    }
 
-  @Override public void writeToParcel(Parcel dest, int flags) {
-    dest.writeLong(mId);
-    dest.writeString(mName);
-    dest.writeInt(mPriority);
-    dest.writeParcelable(mConditionType, flags);
-    dest.writeParcelable(mConditionValue, flags);
-  }
+    public void setId(long id) {
+        this.mId = id;
+    }
 
-  @Override public int describeContents() {
-    return 0;
-  }
+    public String getName() {
+        return mName;
+    }
 
-  public long getId() {
-    return mId;
-  }
+    public void setCrop(@NonNull String crop) {
+        this.mName = crop;
+    }
 
-  public void setId(long id) {
-    this.mId = id;
-  }
+    public int getPriority() {
+        return mPriority;
+    }
 
-  public String getName() {
-    return mName;
-  }
+    public void setPriority(int priority) {
+        this.mPriority = priority;
+    }
 
-  public void setCrop(@NonNull String  crop) {
-    this.mName = crop;
-  }
+    public ConditionTypeObject getConditionType() {
+        return mConditionType;
+    }
 
-  public int getPriority() {
-    return mPriority;
-  }
+    public void setConditionType(@NonNull ConditionTypeObject conditionType) {
+        this.mConditionType = conditionType;
+    }
 
-  public void setPriority(int priority) {
-    this.mPriority = priority;
-  }
+    public BaseConditionValueObject getConditionValue() {
+        return mConditionValue;
+    }
 
-  public ConditionTypeObject getConditionType() {
-    return mConditionType;
-  }
-
-  public void setConditionType(@NonNull ConditionTypeObject conditionType) {
-    this.mConditionType = conditionType;
-  }
-
-  public BaseConditionValueObject getConditionValue() {
-    return mConditionValue;
-  }
-
-  public void setConditionValue(@NonNull BaseConditionValueObject conditionValue) {
-    this.mConditionValue = conditionValue;
-  }
+    public void setConditionValue(@NonNull BaseConditionValueObject conditionValue) {
+        this.mConditionValue = conditionValue;
+    }
 }
