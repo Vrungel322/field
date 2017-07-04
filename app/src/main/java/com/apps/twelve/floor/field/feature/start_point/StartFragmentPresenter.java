@@ -16,6 +16,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectio
 import com.apps.twelve.floor.field.data.local.objects.conditions.WeedClassObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.WeedGroupObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.WeedNutritionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.WeedObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
@@ -605,5 +606,279 @@ import timber.log.Timber;
     for (int i = 0; i < weedGroupObjects.size(); i++) {
       mDataManager.putWeedGroup(weedGroupObjects.get(i));
     }
+
+    //Weed harmful_type_id for all weeds = 1 !!!!!
+    ArrayList<WeedObject> weedObjects = new ArrayList<>();
+    weedObjects.add(new WeedObject(1,1,"Зірочник середній, або мокрець",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(9).getId(),weedGroupObjects.get(2).getId()));
+    weedObjects.add(new WeedObject(2,1,"Гостриця лежача",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(37).getId(),weedGroupObjects.get(2).getId()));
+    weedObjects.add(new WeedObject(3,1,"Червець однорічний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(9).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(4,1,"Кукіль звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(9).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(5,1,"Наземка польова",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(10).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(6,1,"Лобода біла",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(10).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(7,1,"Редька дика",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(2).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(8,1,"Гірчиця польова",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(2).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(9,1,"Гібіск трійчастий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(11).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(10,1,"Горошок волохатий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(12).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(11,1,"Біфора промениста",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(13).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(12,1,"Якірці сланкі",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(14).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(13,1,"Рутка лікарська",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(4).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(14,1,"Підмаренник чіпкий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(15).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(15,1,"Гречка татарська",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(15).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(16,1,"Гірчак березковидний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(15).getId(),weedGroupObjects.get(3).getId()));
+
+
+    weedObjects.add(new WeedObject(17,1,"Резеда жовта",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(17).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(18,1,"Щириця жминдовидна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(26).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(19,1,"Щириця біла",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(26).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(20,1,"Череда трироздільна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(21,1,"Паслін чорний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(20).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(22,1,"Дурман звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(20).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(23,1,"Очка курячі польові",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(21).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(24,1,"Остудник голий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(9).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(25,1,"Шпергель звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(9).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(26,1,"Кропива жалка",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(22).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(27,1,"Коноплі дикі",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(23).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(28,1,"Комеліна звичайна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(24).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(29,1,"Комеліна звичайна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(2).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(30,1,"Залізниця гірська",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(1).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(31,1,"Жабрій ладанний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(1).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(32,1,"Жабрій звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(1).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(33,1,"Геліотроп європейський",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(37).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(34,1,"Портулак городній",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(25).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(35,1,"Курай руський",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(10).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(36,1,"Щириця звичайна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(26).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(37,1,"Спориш звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(16).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(38,1,"Гірчак шорсткий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(16).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(39,1,"Осот жовтий городній",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(40,1,"Чорнощир звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(41,1,"Соняшник смітний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(42,1,"Нетреба звичайна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(43,1,"Галінсога дрібноквіткова, або незбутниця",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(44,1,"Амброзія трироздільна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(45,1,"Амброзія полинолиста",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(4).getId()));
+
+    weedObjects.add(new WeedObject(46,1,"Хрінниця смердюча",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(2).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(47,1,"Хориспора ніжна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(2).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(48,1,"Сухоребрик льозеліїв",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(2).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(49,1,"Талабан польовий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(2).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(50,1,"Кучерявець Софії",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(2).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(51,1,"Грицики звичайні",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(2).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(52,1,"Латук дикий, компасний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(53,1,"Злинка канадська",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(54,1,"Триреберник непахучий, ромашка непахуча",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(55,1,"Жовтозілля весняне",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(56,1,"Волошка синя",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(57,1,"Фіалка триколірна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(3).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(58,1,"Фіалка польова",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(3).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(59,1,"Чистець однорічний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(1).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(60,1,"Глуха кропива стеблеобгортаюча",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(1).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(61,1,"Мак дикий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(4).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(62,1,"Грабельки звичайні",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(5).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(63,1,"Кривоцвіт польовий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(37).getId(),weedGroupObjects.get(6).getId()));
+    weedObjects.add(new WeedObject(64,1,"Сокирки польові",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(8).getId(),weedGroupObjects.get(6).getId()));
+
+    weedObjects.add(new WeedObject(65,1,"Чорнокорінь лікарський",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(37).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(66,1,"Липучка їжакова",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(37).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(67,1,"Татарник звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(68,1,"Будяк акантовидний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(69,1,"Скереда покрівельна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(70,1,"Суріпиця звичайна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(2).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(71,1,"Свербига східна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(2).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(72,1,"Гикавка сіра",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(2).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(73,1,"Петрушка собача звичайна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(13).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(74,1,"Морква дика",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(13).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(75,1,"Болиголов плямистий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(13).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(76,1,"Куколиця біла",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(9).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(77,1,"Кропива глуха пурпурова",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(1).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(78,1,"Енотера дворічна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(30).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(79,1,"Вероніка плющолиста",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(32).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(80,1,"Блекота чорна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(20).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(81,1,"Синяк звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(37).getId(),weedGroupObjects.get(7).getId()));
+    weedObjects.add(new WeedObject(82,1,"Буркун лікарський",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(12).getId(),weedGroupObjects.get(7).getId()));
+
+    weedObjects.add(new WeedObject(83,1,"Тонконіг однорічний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(2).getId()));
+    weedObjects.add(new WeedObject(84,1,"Тонконіг однорічний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(85,1,"Пажитниця льонова",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(3).getId()));
+    weedObjects.add(new WeedObject(86,1,"Вівсюг звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(3).getId()));
+
+    weedObjects.add(new WeedObject(87,1,"Просо волосовидне",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(88,1,"Пальчатка кровоспиняюча",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(89,1,"Ценхрус якірцевий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(90,1,"Плоскуха звичайна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(91,1,"Мишій зелений",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(4).getId()));
+    weedObjects.add(new WeedObject(92,1,"Мишій сизий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(4).getId()));
+
+    weedObjects.add(new WeedObject(93,1,"Метлюг звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(5).getId()));
+    weedObjects.add(new WeedObject(94,1,"Бромус житній, або стоколос",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(5).getId()));
+
+    weedObjects.add(new WeedObject(95,1,"Чистець болотний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(1).getId(),weedGroupObjects.get(9).getId()));
+    weedObjects.add(new WeedObject(96,1,"Ластовень гострий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(27).getId(),weedGroupObjects.get(9).getId()));
+    weedObjects.add(new WeedObject(97,1,"Кропива дводомна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(22).getId(),weedGroupObjects.get(9).getId()));
+    weedObjects.add(new WeedObject(98,1,"Квасениця прямостояча",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(28).getId(),weedGroupObjects.get(9).getId()));
+    weedObjects.add(new WeedObject(99,1,"Деревій звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(9).getId()));
+
+    weedObjects.add(new WeedObject(100,1,"Хрінниця крупковидна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(2).getId(),weedGroupObjects.get(10).getId()));
+    weedObjects.add(new WeedObject(101,1,"Хвилівник звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(29).getId(),weedGroupObjects.get(10).getId()));
+    weedObjects.add(new WeedObject(102,1,"Хаменерій вузьколистий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(30).getId(),weedGroupObjects.get(10).getId()));
+    weedObjects.add(new WeedObject(103,1,"Молочай лозяний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(31).getId(),weedGroupObjects.get(10).getId()));
+    weedObjects.add(new WeedObject(104,1,"Льонок звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(32).getId(),weedGroupObjects.get(10).getId()));
+    weedObjects.add(new WeedObject(105,1,"Щавель горобиний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(16).getId(),weedGroupObjects.get(10).getId()));
+    weedObjects.add(new WeedObject(106,1,"Осот рожевий польовий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(10).getId()));
+    weedObjects.add(new WeedObject(107,1,"Осот жовтий польовий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(10).getId()));
+    weedObjects.add(new WeedObject(108,1,"Гірчак степовий звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(10).getId()));
+    weedObjects.add(new WeedObject(109,1,"Березка польова",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(33).getId(),weedGroupObjects.get(10).getId()));
+
+    weedObjects.add(new WeedObject(110,1,"Подорожник великий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(34).getId(),weedGroupObjects.get(11).getId()));
+
+    weedObjects.add(new WeedObject(111,1,"Щавель кінський",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(16).getId(),weedGroupObjects.get(12).getId()));
+    weedObjects.add(new WeedObject(112,1,"Чистотіл звичайний",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(4).getId(),weedGroupObjects.get(12).getId()));
+    weedObjects.add(new WeedObject(113,1,"Миколайчики польові",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(13).getId(),weedGroupObjects.get(12).getId()));
+    weedObjects.add(new WeedObject(114,1,"Гравілат міський",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(35).getId(),weedGroupObjects.get(12).getId()));
+    weedObjects.add(new WeedObject(115,1,"Подорожник ланцетолистий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(34).getId(),weedGroupObjects.get(12).getId()));
+    weedObjects.add(new WeedObject(116,1,"Полин звичайний та полин гіркий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(12).getId()));
+    weedObjects.add(new WeedObject(117,1,"Хондрила ситниковидна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(12).getId()));
+    weedObjects.add(new WeedObject(118,1,"Кульбаба лікарська",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(6).getId(),weedGroupObjects.get(12).getId()));
+
+    weedObjects.add(new WeedObject(119,1,"Перстач гусячий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(35).getId(),weedGroupObjects.get(13).getId()));
+    weedObjects.add(new WeedObject(120,1,"Жовтець повзучий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(8).getId(),weedGroupObjects.get(13).getId()));
+
+    weedObjects.add(new WeedObject(121,1,"Чина бульбиста",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(12).getId(),weedGroupObjects.get(14).getId()));
+
+    weedObjects.add(new WeedObject(122,1,"Цибуля Вальдштейна",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(36).getId(),weedGroupObjects.get(15).getId()));
+
+    weedObjects.add(new WeedObject(123,1,"Свинорий пальчастий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(9).getId()));
+    weedObjects.add(new WeedObject(124,1,"Гумай, сорго алепське",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(9).getId()));
+    weedObjects.add(new WeedObject(125,1,"Пирій повзучий",weedNutritionTypeObjects.get(0).getId(),
+        weedClassObjects.get(39).getId(),weedGroupObjects.get(9).getId()));
+
+    for (int i = 0; i < weedObjects.size(); i++) {
+      mDataManager.putWeed(weedObjects.get(i));
+    }
+
+    Timber.e(String.valueOf(mDataManager.getAllWeedEntitiesAsList().size()));
   }
 }

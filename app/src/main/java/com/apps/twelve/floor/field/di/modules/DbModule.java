@@ -26,6 +26,8 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirecti
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.WeedClassEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.WeedClassEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.WeedEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.WeedEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.WeedGroupEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.WeedGroupEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.WeedNutritionTypeEntity;
@@ -145,6 +147,8 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
         .addTypeMapping(WeedClassEntity.class, new WeedClassEntitySQLiteTypeMapping())
         // WeedGroupEntity mapping
         .addTypeMapping(WeedGroupEntity.class, new WeedGroupEntitySQLiteTypeMapping())
+        //Weed mapping
+        .addTypeMapping(WeedEntity.class, new WeedEntitySQLiteTypeMapping())
 
         // TODO: uncomment this when entities will be ready
         // TODO: for some entities custom resolvers needed
