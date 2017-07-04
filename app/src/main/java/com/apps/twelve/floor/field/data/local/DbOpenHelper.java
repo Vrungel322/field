@@ -18,6 +18,7 @@ import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirection
 import com.apps.twelve.floor.field.data.local.tables.conditions.WeedClassesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.WeedGroupsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.WeedNutritionTypesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.WeedTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.PhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ProcessPeriodsTable;
@@ -78,6 +79,8 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(WeedClassesTable.getCreateTableQuery());
     // WeedGroups
     db.execSQL(WeedGroupsTable.getCreateTableQuery());
+    //Weed
+    db.execSQL(WeedTable.getCreateTableQuery());
 
     // PROCESS TIME
     // ClimateZones

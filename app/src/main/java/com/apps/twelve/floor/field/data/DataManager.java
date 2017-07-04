@@ -4,6 +4,7 @@ import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
 import com.apps.twelve.floor.field.data.local.DbHelper;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.WeedEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ProcessPeriodEntity;
 import com.apps.twelve.floor.field.data.local.mappers.AggregateObjectToAggregateEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneEntityToClimateZoneObjectMapper;
@@ -30,6 +31,7 @@ import com.apps.twelve.floor.field.data.local.mappers.TillageDirectionObjectToTi
 import com.apps.twelve.floor.field.data.local.mappers.WeedClassObjectToWeedClassEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.WeedGroupObjectToWeedGroupEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.WeedNutritionTypeObjectToWeedNutritionTypeEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.WeedObjectToWeedEntityMapper;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
@@ -42,6 +44,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectio
 import com.apps.twelve.floor.field.data.local.objects.conditions.WeedClassObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.WeedGroupObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.WeedNutritionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.WeedObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
@@ -189,6 +192,16 @@ public class DataManager {
     return mDbHelper.putWeedGroup(
         new WeedGroupObjectToWeedGroupEntityMapper().transform(
             weedGroupObject));
+  }
+
+  public PutResult putWeed(WeedObject weedObject) {
+    return mDbHelper.putWeed(
+        new WeedObjectToWeedEntityMapper().transform(
+            weedObject));
+  }
+
+  public List<WeedEntity> getAllWeedEntitiesAsList() {
+    return mDbHelper.getAllWeed();
   }
 
   public PutResult putPhenologicalCharacteristic(

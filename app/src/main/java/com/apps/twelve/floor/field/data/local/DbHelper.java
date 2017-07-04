@@ -14,6 +14,7 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCh
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.WeedClassEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.WeedEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.WeedGroupEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.WeedNutritionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
@@ -44,6 +45,7 @@ import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirection
 import com.apps.twelve.floor.field.data.local.tables.conditions.WeedClassesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.WeedGroupsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.WeedNutritionTypesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.WeedTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.PhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ProcessPeriodsTable;
@@ -305,6 +307,29 @@ public class DbHelper {
 
   public DeleteResult deleteWeedGroup(WeedGroupEntity weedGroupEntity) {
     return mStorIOSQLite.delete().object(weedGroupEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Weed
+  ///////////////////////////////////////////////////////////////////////////
+  public List<WeedEntity> getAllWeed() {
+    return mStorIOSQLite.get()
+        .listOfObjects(WeedEntity.class)
+        .withQuery(WeedTable.QUERY_ALL)
+        .prepare()
+
+        .executeAsBlocking()
+        //.asRxObservable()
+        //.take(1)
+     ;
+  }
+
+  public PutResult putWeed(WeedEntity weedEntity) {
+    return mStorIOSQLite.put().object(weedEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteWeed(WeedEntity weedEntity) {
+    return mStorIOSQLite.delete().object(weedEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
