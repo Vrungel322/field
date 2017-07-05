@@ -7,6 +7,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionNameOb
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
@@ -62,6 +63,7 @@ public final class PrimaryDataFiller {
   private WeedFiller mWeedFiller;
   private HarmfulObjectTypeFiller mHarmfulObjectTypeFiller;
   private ConditionNamesFiller mConditionNamesFiller;
+  private HarmfulObjectsFiller mHarmfulObjectsFiller;
 
   public PrimaryDataFiller(DataManager dataManager) {
     this.mDataManager = dataManager;
@@ -97,6 +99,7 @@ public final class PrimaryDataFiller {
     mWeedGroupFiller = new WeedGroupFiller();
     mProcessPeriodFiller = new ProcessPeriodFiller();
     mHarmfulObjectTypeFiller = new HarmfulObjectTypeFiller();
+    mHarmfulObjectsFiller = new HarmfulObjectsFiller();
     mWeedFiller = new WeedFiller();
     mConditionNamesFiller = new ConditionNamesFiller();
     // TODO
@@ -124,6 +127,7 @@ public final class PrimaryDataFiller {
     mWeedGroupFiller.makeObjects();
     mProcessPeriodFiller.makeObjects();
     mHarmfulObjectTypeFiller.makeObjects();
+    mHarmfulObjectsFiller.makeObjects();
     mWeedFiller.makeObjects();
     mConditionNamesFiller.makeObjects();
     // TODO
@@ -151,6 +155,7 @@ public final class PrimaryDataFiller {
     mWeedGroupFiller.saveObjects();
     mProcessPeriodFiller.saveObjects();
     mHarmfulObjectTypeFiller.saveObjects();
+    mHarmfulObjectsFiller.saveObjects();
     mWeedFiller.saveObjects();
     mConditionNamesFiller.saveObjects();
     // TODO
@@ -254,10 +259,12 @@ public final class PrimaryDataFiller {
   private class ConditionTypeFiller {
 
     static final int SOIL_TYPE_KEY = 1;
-    static final int TILLAGE_DIRECTION_KEY = 3;
-    static final int PHENOLOGICAL_CHARACTERISTIC_KEY = 4;
-    static final int SPAN_VALUE_KEY = 5;
-    static final int PEST_KEY = 7;
+    static final int HARMFUL_OBJECT_KEY = 2;
+    static final int HARMFUL_OBJECT_PHASE_KEY = 3;
+    static final int TILLAGE_DIRECTION_KEY = 4;
+    static final int PHENOLOGICAL_CHARACTERISTIC_KEY = 5;
+    static final int SPAN_VALUE_KEY = 6;
+    static final int NUMBER_VALUE_KEY = 7;
 
     private static final int CAPACITY = 7;
 
@@ -266,14 +273,15 @@ public final class PrimaryDataFiller {
     void makeObjects() {
 
       objects.put(SOIL_TYPE_KEY, new ConditionTypeObject(1, "Тип почвы"));
-      objects.put(2, new ConditionTypeObject(2, "Фаза развития вредного объекта"));
+      objects.put(HARMFUL_OBJECT_KEY, new ConditionTypeObject(2, "Вредный объект"));
+      objects.put(HARMFUL_OBJECT_PHASE_KEY,
+          new ConditionTypeObject(3, "Фаза развития вредного объекта"));
       objects.put(TILLAGE_DIRECTION_KEY,
-          new ConditionTypeObject(3, "Направление обработки почвы, посева, опрыскивания"));
+          new ConditionTypeObject(4, "Направление обработки почвы, посева, опрыскивания"));
       objects.put(PHENOLOGICAL_CHARACTERISTIC_KEY,
-          new ConditionTypeObject(4, "Фенологическая характеристика"));
-      objects.put(SPAN_VALUE_KEY, new ConditionTypeObject(5, "Числовой диапазон"));
-      objects.put(6, new ConditionTypeObject(6, "Число"));
-      objects.put(PEST_KEY, new ConditionTypeObject(7, "Вредный объект"));
+          new ConditionTypeObject(5, "Фенологическая характеристика"));
+      objects.put(SPAN_VALUE_KEY, new ConditionTypeObject(6, "Числовой диапазон"));
+      objects.put(NUMBER_VALUE_KEY, new ConditionTypeObject(7, "Число"));
     }
 
     void saveObjects() {
@@ -358,7 +366,7 @@ public final class PrimaryDataFiller {
     void makeObjects() {
 
       ConditionTypeObject pestConditionTypeObject =
-          mConditionTypeFiller.objects.get(ConditionTypeFiller.PEST_KEY);
+          mConditionTypeFiller.objects.get(ConditionTypeFiller.HARMFUL_OBJECT_KEY);
 
       objects.put(1, new PestObject(1, "злакові бур’яни", pestConditionTypeObject, 0, false));
       objects.put(2, new PestObject(2, "ярі дводольні бур’яни", pestConditionTypeObject, 0, false));
@@ -482,7 +490,9 @@ public final class PrimaryDataFiller {
           mConditionTypeFiller.objects.get(ConditionTypeFiller.SPAN_VALUE_KEY);
 
       // air temperatures
-      String airTemperatureConditionName = "t⁰ повітря"; // TODO: this must be in a different table
+      ConditionNameObject airTemperatureConditionName =
+          mConditionNamesFiller.objects.get(ConditionNamesFiller.AIR_TEMPERATURE_KEY);
+
       ConditionSpanValueObject temperature0to10 =
           mSpanValueFiller.objects.get(SpanValueFiller.SPAN_0_10_KEY);
       ConditionSpanValueObject temperature10to300 =
@@ -496,19 +506,19 @@ public final class PrimaryDataFiller {
 
       // air temperatures
       objects.put(1,
-          new ConditionObject(1, airTemperatureConditionName, ConditionObject.LOWEST_PRIORITY,
+          new ConditionObject(1, ConditionObject.LOWEST_PRIORITY, airTemperatureConditionName,
               spanValueConditionType, temperature0to10));
       objects.put(2,
-          new ConditionObject(2, airTemperatureConditionName, ConditionObject.LOWEST_PRIORITY,
+          new ConditionObject(2, ConditionObject.LOWEST_PRIORITY, airTemperatureConditionName,
               spanValueConditionType, temperature10to300));
       objects.put(3,
-          new ConditionObject(3, airTemperatureConditionName, ConditionObject.LOWEST_PRIORITY,
+          new ConditionObject(3, ConditionObject.LOWEST_PRIORITY, airTemperatureConditionName,
               spanValueConditionType, temperature12to20));
       objects.put(4,
-          new ConditionObject(4, airTemperatureConditionName, ConditionObject.LOWEST_PRIORITY,
+          new ConditionObject(4, ConditionObject.LOWEST_PRIORITY, airTemperatureConditionName,
               spanValueConditionType, temperature8to10));
       objects.put(5,
-          new ConditionObject(5, airTemperatureConditionName, ConditionObject.LOWEST_PRIORITY,
+          new ConditionObject(5, ConditionObject.LOWEST_PRIORITY, airTemperatureConditionName,
               spanValueConditionType, temperature0to25));
     }
 
@@ -1252,29 +1262,73 @@ public final class PrimaryDataFiller {
   }
 
   private class ConditionNamesFiller {
+    private static final int PREVIOUS_CROP_KEY = 1;
+    private static final int SOIL_TYPE_KEY = 2;
+    private static final int SOIL_MOISTURE_KEY = 3;
+    private static final int SOIL_TEMPERATURE_KEY = 4;
+    private static final int PLANNED_YIELD_KEY = 5;
+    private static final int HARMFUL_OBJECT_KEY = 6;
+    private static final int HARMFUL_OBJECT_PHASE_KEY = 7;
+    private static final int AIR_TEMPERATURE_KEY = 8;
+    private static final int AIR_MOISTURE_KEY = 9;
+    private static final int WEED_AMOUNT_KEY = 10;
+    private static final int GRAIN_MOISTURE_KEY = 11;
+    private static final int TILLAGE_DIRECTION_KEY = 12;
+    private static final int TILLAGE_DEPTH_KEY = 13;
+    private static final int PHENOLOGICAL_CHARACTERISTIC_KEY = 14;
+
     private static final int CAPACITY = 14;
 
     private SparseArrayCompat<ConditionNameObject> objects = new SparseArrayCompat<>(CAPACITY);
+
     public void makeObjects() {
-      objects.put(1,new ConditionNameObject(1,"Crop (previous)"));
-      objects.put(2,new ConditionNameObject(2,"Soil Type"));
-      objects.put(3,new ConditionNameObject(3,"Soil Moisture"));
-      objects.put(4,new ConditionNameObject(4,"Soil Temperature"));
-      objects.put(5,new ConditionNameObject(5,"Planned yield"));
-      objects.put(6,new ConditionNameObject(6,"Pest"));
-      objects.put(7,new ConditionNameObject(7,"Pest Phase"));
-      objects.put(8,new ConditionNameObject(8,"Air Temperature"));
-      objects.put(9,new ConditionNameObject(9,"Air Moisture"));
-      objects.put(10,new ConditionNameObject(10,"Weed amount"));
-      objects.put(11,new ConditionNameObject(11,"Grain moisture"));
-      objects.put(12,new ConditionNameObject(12,"Tillage Direction"));
-      objects.put(13,new ConditionNameObject(13,"Tillage Depth"));
-      objects.put(14,new ConditionNameObject(14,"Phenological Characteristic"));
+      objects.put(PREVIOUS_CROP_KEY, new ConditionNameObject(1, "Предшественник"));
+      objects.put(SOIL_TYPE_KEY, new ConditionNameObject(2, "Тип почвы"));
+      objects.put(SOIL_MOISTURE_KEY, new ConditionNameObject(3, "Влажность почвы"));
+      objects.put(SOIL_TEMPERATURE_KEY, new ConditionNameObject(4, "Температура почвы"));
+      objects.put(PLANNED_YIELD_KEY, new ConditionNameObject(5, "Планируемая урожайность"));
+      objects.put(HARMFUL_OBJECT_KEY, new ConditionNameObject(6, "Вредный объект"));
+      objects.put(HARMFUL_OBJECT_PHASE_KEY, new ConditionNameObject(7, "Фаза вредного объекта"));
+      objects.put(AIR_TEMPERATURE_KEY, new ConditionNameObject(8, "Температура воздуха"));
+      objects.put(AIR_MOISTURE_KEY, new ConditionNameObject(9, "Влажность воздуха"));
+      objects.put(WEED_AMOUNT_KEY, new ConditionNameObject(10, "Количество сорняков"));
+      objects.put(GRAIN_MOISTURE_KEY, new ConditionNameObject(11, "Влажность зерна"));
+      objects.put(TILLAGE_DIRECTION_KEY, new ConditionNameObject(12, "Напраление обработки"));
+      objects.put(TILLAGE_DEPTH_KEY, new ConditionNameObject(13, "Глубина обработки"));
+      objects.put(PHENOLOGICAL_CHARACTERISTIC_KEY,
+          new ConditionNameObject(14, "Фенологческая характеристика"));
     }
 
     public void saveObjects() {
       for (int i = 0; i < objects.size(); i++) {
         mDataManager.putConditionName(objects.valueAt(i));
+      }
+    }
+  }
+
+  private class HarmfulObjectsFiller {
+
+    private static final int CAPACITY = 125;
+
+    private SparseArrayCompat<HarmfulObjectObject> objects = new SparseArrayCompat<>(CAPACITY);
+
+    public void makeObjects() {
+
+      long weedHarmfulObjectTypeId =
+          mHarmfulObjectTypeFiller.objects.get(HarmfulObjectTypeFiller.WEED_KEY).getId();
+
+      int currentId = 1;
+
+      // Weeds
+      for (int i = 0; i < mWeedFiller.objects.size(); i++) {
+        objects.put(currentId, new HarmfulObjectObject(currentId, weedHarmfulObjectTypeId,
+            mWeedFiller.objects.valueAt(i).getId()));
+      }
+    }
+
+    public void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putHarmfulObject(objects.valueAt(i));
       }
     }
   }

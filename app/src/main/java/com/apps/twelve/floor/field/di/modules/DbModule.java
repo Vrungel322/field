@@ -18,6 +18,8 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanV
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PestEntity;
@@ -95,6 +97,8 @@ import dagger.Provides;
         .addTypeMapping(PestEntity.class, new PestEntitySQLiteTypeMapping())
         // HarmfulObjectTypeEntity mapping
         .addTypeMapping(HarmfulObjectTypeEntity.class, new HarmfulObjectTypeEntitySQLiteTypeMapping())
+        // HarmfulObjectEntity mapping
+        .addTypeMapping(HarmfulObjectEntity.class, new HarmfulObjectEntitySQLiteTypeMapping())
         // PhaseEntity mapping
         .addTypeMapping(PhaseEntity.class, new PhaseEntitySQLiteTypeMapping())
         // ConditionTypeEntity mapping

@@ -11,27 +11,27 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 @StorIOSQLiteType(table = ConditionsTable.TABLE) public class ConditionEntity {
 
   @StorIOSQLiteColumn(name = ConditionsTable.COLUMN_ID, key = true) Long id;
-  @StorIOSQLiteColumn(name = ConditionsTable.COLUMN_NAME) String name;
   @StorIOSQLiteColumn(name = ConditionsTable.COLUMN_PRIORITY) Integer priority;
+  @StorIOSQLiteColumn(name = ConditionsTable.COLUMN_NAME_ID) Long nameId;
   @StorIOSQLiteColumn(name = ConditionsTable.COLUMN_CONDITION_TYPE_ID) Long conditionTypeId;
   @StorIOSQLiteColumn(name = ConditionsTable.COLUMN_CONDITION_VALUE_ID) Long conditionValueId;
 
   public ConditionEntity() {
   }
 
-  public ConditionEntity(Long id, String name, Integer priority, Long conditionTypeId,
+  public ConditionEntity(Long id, Integer priority, Long nameId, Long conditionTypeId,
       Long conditionValueId) {
     this.id = id;
-    this.name = name;
     this.priority = priority;
+    this.nameId = nameId;
     this.conditionTypeId = conditionTypeId;
     this.conditionValueId = conditionValueId;
   }
 
-  public static ConditionEntity newConditionEntity(Long id, String name, Integer priority,
+  public static ConditionEntity newConditionEntity(Long id, Integer priority, Long nameId,
       Long conditionTypeId, Long conditionValueId) {
     if (id == 0) id = null;
-    return new ConditionEntity(id, name, priority, conditionTypeId, conditionValueId);
+    return new ConditionEntity(id, priority, nameId, conditionTypeId, conditionValueId);
   }
 
   @Override public boolean equals(Object obj) {
@@ -41,8 +41,8 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
     ConditionEntity that = (ConditionEntity) obj;
 
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
-    if (name != null ? !name.equals(that.name) : that.name != null) return false;
     if (priority != null ? !priority.equals(that.priority) : that.priority != null) return false;
+    if (nameId != null ? !nameId.equals(that.nameId) : that.nameId != null) return false;
     if (conditionTypeId != null ? !conditionTypeId.equals(that.conditionTypeId)
         : that.conditionTypeId != null) {
       return false;
@@ -54,8 +54,8 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
   @Override public int hashCode() {
     int result = id != null ? id.hashCode() : 0;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
     result = 31 * result + (priority != null ? priority.hashCode() : 0);
+    result = 31 * result + (nameId != null ? nameId.hashCode() : 0);
     result = 31 * result + (conditionTypeId != null ? conditionTypeId.hashCode() : 0);
     result = 31 * result + (conditionValueId != null ? conditionValueId.hashCode() : 0);
     return result;
@@ -69,20 +69,20 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
     this.id = id;
   }
 
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public Integer getPriority() {
     return priority;
   }
 
   public void setPriority(Integer priority) {
     this.priority = priority;
+  }
+
+  public Long getNameId() {
+    return nameId;
+  }
+
+  public void setNameId(Long nameId) {
+    this.nameId = nameId;
   }
 
   public Long getConditionTypeId() {

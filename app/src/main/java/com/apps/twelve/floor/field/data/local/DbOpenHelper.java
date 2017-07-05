@@ -12,6 +12,7 @@ import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanVal
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectTypesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PestPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PestsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicsTable;
@@ -69,6 +70,8 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(PestPhasesTable.getCreateTableQuery());
     // HarmfulObjectTypes
     db.execSQL(HarmfulObjectTypesTable.getCreateTableQuery());
+    // HarmfulObjects
+    db.execSQL(HarmfulObjectsTable.getCreateTableQuery());
     // Pests
     db.execSQL(PestsTable.getCreateTableQuery());
     // PhenologicalCharacteristics

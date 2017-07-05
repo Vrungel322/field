@@ -4,22 +4,20 @@ import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;
 
 /**
- * Created by Yaroslav on 30.05.2017.
+ * Created by yarrick on 05.07.17.
  */
 
-public class ConditionsTable {
+public class HarmfulObjectsTable {
 
-  @NonNull public static final String TABLE = "Conditions";
+  @NonNull public static final String TABLE = "HarmfulObjects";
 
   @NonNull public static final String COLUMN_ID = "id";
-  @NonNull public static final String COLUMN_PRIORITY = "priority";
-  @NonNull public static final String COLUMN_NAME_ID = "name_id";
-  @NonNull public static final String COLUMN_CONDITION_TYPE_ID = "condition_type_id";
-  @NonNull public static final String COLUMN_CONDITION_VALUE_ID = "condition_value_id";
+  @NonNull public static final String COLUMN_TYPE_ID = "type_id";
+  @NonNull public static final String COLUMN_VALUE_ID = "value_id";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public ConditionsTable() {
+  public HarmfulObjectsTable() {
     throw new IllegalStateException("No instances allowed");
   }
 
@@ -29,13 +27,9 @@ public class ConditionsTable {
         + " ("
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
-        + COLUMN_PRIORITY
-        + " TEXT NULL, "
-        + COLUMN_NAME_ID
+        + COLUMN_TYPE_ID
         + " INTEGER, "
-        + COLUMN_CONDITION_TYPE_ID
-        + " INTEGER, "
-        + COLUMN_CONDITION_VALUE_ID
+        + COLUMN_VALUE_ID
         + " INTEGER "
         + ");";
   }

@@ -26,29 +26,25 @@ public class ConditionObject implements Parcelable {
     public static final int LOWEST_PRIORITY = 999;
 
     private long mId;
-    @NonNull
-    private String mName;
     private int mPriority;
-    @NonNull
-    private ConditionTypeObject mConditionType;
+    @NonNull private ConditionNameObject mName;
+    @NonNull private ConditionTypeObject mConditionType;
+    @NonNull private BaseConditionValueObject mConditionValue;
 
-    @NonNull
-    private BaseConditionValueObject mConditionValue;
-
-    public ConditionObject(long id, @NonNull String name, int priority,
+    public ConditionObject(long id, int priority, @NonNull ConditionNameObject name,
                            @NonNull ConditionTypeObject conditionType,
                            @NonNull BaseConditionValueObject conditionValue) {
         this.mId = id;
-        this.mName = name;
         this.mPriority = priority;
+        this.mName = name;
         this.mConditionType = conditionType;
         this.mConditionValue = conditionValue;
     }
 
     protected ConditionObject(Parcel in) {
         mId = in.readLong();
-        mName = in.readString();
         mPriority = in.readInt();
+        mName = in.readParcelable(ConditionNameObject.class.getClassLoader());
         mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
         mConditionValue = in.readParcelable(BaseConditionValueObject.class.getClassLoader());
     }
@@ -56,8 +52,8 @@ public class ConditionObject implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(mId);
-        dest.writeString(mName);
         dest.writeInt(mPriority);
+        dest.writeParcelable(mName, flags);
         dest.writeParcelable(mConditionType, flags);
         dest.writeParcelable(mConditionValue, flags);
     }
@@ -75,20 +71,20 @@ public class ConditionObject implements Parcelable {
         this.mId = id;
     }
 
-    public String getName() {
-        return mName;
-    }
-
-    public void setCrop(@NonNull String crop) {
-        this.mName = crop;
-    }
-
     public int getPriority() {
         return mPriority;
     }
 
     public void setPriority(int priority) {
         this.mPriority = priority;
+    }
+
+    public ConditionNameObject getName() {
+        return mName;
+    }
+
+    public void setName(@NonNull ConditionNameObject name) {
+        this.mName = name;
     }
 
     public ConditionTypeObject getConditionType() {

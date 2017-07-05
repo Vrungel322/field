@@ -9,6 +9,7 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntit
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PestEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PestPhaseEntity;
@@ -41,6 +42,7 @@ import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanVal
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectTypesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PestPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PestsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicsTable;
@@ -166,7 +168,7 @@ public class DbHelper {
   }
 
   ///////////////////////////////////////////////////////////////////////////
-  // Harmful object
+  // Harmful object type
   ///////////////////////////////////////////////////////////////////////////
   public Observable<List<HarmfulObjectTypeEntity>> getAllHarmfulObjectTypes() {
     return mStorIOSQLite.get()
@@ -183,6 +185,25 @@ public class DbHelper {
 
   public DeleteResult deleteHarmfulObjectType(HarmfulObjectTypeEntity harmfulObjectTypeEntity) {
     return mStorIOSQLite.delete().object(harmfulObjectTypeEntity).prepare().executeAsBlocking();
+  }
+  ///////////////////////////////////////////////////////////////////////////
+  // Harmful object
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<HarmfulObjectEntity>> getAllHarmfulObjects() {
+    return mStorIOSQLite.get()
+        .listOfObjects(HarmfulObjectEntity.class)
+        .withQuery(HarmfulObjectsTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putHarmfulObject(HarmfulObjectEntity harmfulObjectEntity) {
+    return mStorIOSQLite.put().object(harmfulObjectEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteHarmfulObject(HarmfulObjectEntity harmfulObjectEntity) {
+    return mStorIOSQLite.delete().object(harmfulObjectEntity).prepare().executeAsBlocking();
   }
   ///////////////////////////////////////////////////////////////////////////
 

@@ -18,6 +18,7 @@ import com.apps.twelve.floor.field.data.local.mappers.ConditionTypeObjectToCondi
 import com.apps.twelve.floor.field.data.local.mappers.CropEntityToCropObjectMapper;
 import com.apps.twelve.floor.field.data.local.mappers.CropObjectToCropEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.FieldObjectToFieldEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.HarmfulObjectObjectToHarmfulObjectEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.HarmfulObjectTypeObjectToHarmfulObjectTypeEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.InsectObjectToInsectEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.PestObjectToPestEntityMapper;
@@ -42,6 +43,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionNameOb
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
@@ -175,6 +177,10 @@ public class DataManager {
 
   public PutResult putHarmfulObjectType(HarmfulObjectTypeObject harmfulObjectTypeObject) {
     return mDbHelper.putHarmfulObjectType(new HarmfulObjectTypeObjectToHarmfulObjectTypeEntityMapper().transform(harmfulObjectTypeObject));
+  }
+
+  public PutResult putHarmfulObject(HarmfulObjectObject harmfulObjectObject) {
+    return mDbHelper.putHarmfulObject(new HarmfulObjectObjectToHarmfulObjectEntityMapper().transform(harmfulObjectObject));
   }
 
   public PutResult putPest(PestObject pestObject) {
