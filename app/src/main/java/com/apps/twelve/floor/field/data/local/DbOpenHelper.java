@@ -7,6 +7,7 @@ import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.DealersTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
 import com.apps.twelve.floor.field.data.local.tables.ProductsPestsCropsTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
@@ -84,6 +85,8 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(WeedGroupsTable.getCreateTableQuery());
     //Weed
     db.execSQL(WeedTable.getCreateTableQuery());
+    //ConditionNames
+    db.execSQL(ConditionNamesTable.getCreateTableQuery());
 
     // PROCESS TIME
     // ClimateZones
