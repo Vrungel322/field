@@ -4,12 +4,14 @@ import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
 import com.apps.twelve.floor.field.data.local.DbHelper;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.WeedEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ProcessPeriodEntity;
 import com.apps.twelve.floor.field.data.local.mappers.AggregateObjectToAggregateEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneEntityToClimateZoneObjectMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ClimateZoneObjectToClimateZoneEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.CombinedFieldEntityToFieldObjectMapper;
+import com.apps.twelve.floor.field.data.local.mappers.ConditionNameObjectToConditionNameEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ConditionObjectToConditionEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ConditionSpanValueObjectToConditionSpanValueEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ConditionTypeObjectToConditionTypeEntityMapper;
@@ -36,6 +38,7 @@ import com.apps.twelve.floor.field.data.local.mappers.WeedNutritionTypeObjectToW
 import com.apps.twelve.floor.field.data.local.mappers.WeedObjectToWeedEntityMapper;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionNameObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
@@ -284,5 +287,14 @@ public class DataManager {
 
   public List<ProcessPeriodEntity> getAllProcessPeriodEntitiesAsList() {
     return mDbHelper.getAllProcessPeriodEntitiesAsList();
+  }
+
+  public PutResult putConditionName(ConditionNameObject conditionNameObject) {
+    return mDbHelper.putConditionName(
+        new ConditionNameObjectToConditionNameEntityMapper().transform(conditionNameObject)
+    );
+  }
+  public List<ConditionNameEntity> getAllConditionNameEntitiesAsList() {
+    return mDbHelper.getAllConditionNameEntitiesAsList();
   }
 }

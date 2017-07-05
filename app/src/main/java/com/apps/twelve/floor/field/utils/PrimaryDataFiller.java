@@ -3,6 +3,7 @@ package com.apps.twelve.floor.field.utils;
 import android.support.v4.util.SparseArrayCompat;
 import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionNameObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
@@ -60,6 +61,7 @@ public final class PrimaryDataFiller {
   private ProcessPeriodFiller mProcessPeriodFiller;
   private WeedFiller mWeedFiller;
   private HarmfulObjectTypeFiller mHarmfulObjectTypeFiller;
+  private ConditionNamesFiller mConditionNamesFiller;
 
   public PrimaryDataFiller(DataManager dataManager) {
     this.mDataManager = dataManager;
@@ -96,6 +98,7 @@ public final class PrimaryDataFiller {
     mProcessPeriodFiller = new ProcessPeriodFiller();
     mHarmfulObjectTypeFiller = new HarmfulObjectTypeFiller();
     mWeedFiller = new WeedFiller();
+    mConditionNamesFiller = new ConditionNamesFiller();
     // TODO
   }
 
@@ -122,6 +125,7 @@ public final class PrimaryDataFiller {
     mProcessPeriodFiller.makeObjects();
     mHarmfulObjectTypeFiller.makeObjects();
     mWeedFiller.makeObjects();
+    mConditionNamesFiller.makeObjects();
     // TODO
   }
 
@@ -148,12 +152,14 @@ public final class PrimaryDataFiller {
     mProcessPeriodFiller.saveObjects();
     mHarmfulObjectTypeFiller.saveObjects();
     mWeedFiller.saveObjects();
+    mConditionNamesFiller.saveObjects();
     // TODO
   }
 
   private void checkObjects() {
-    Timber.e(String.valueOf(mDataManager.getAllProcessPeriodEntitiesAsList().size()));
-    Timber.e(String.valueOf(mDataManager.getAllWeedEntitiesAsList().size()));
+    //Timber.e(String.valueOf(mDataManager.getAllProcessPeriodEntitiesAsList().size()));
+    //Timber.e(String.valueOf(mDataManager.getAllWeedEntitiesAsList().size()));
+    Timber.e(String.valueOf(mDataManager.getAllConditionNameEntitiesAsList().size()));
     // TODO
   }
 
@@ -1241,6 +1247,34 @@ public final class PrimaryDataFiller {
     void saveObjects() {
       for (int i = 0; i < objects.size(); i++) {
         mDataManager.putWeed(objects.valueAt(i));
+      }
+    }
+  }
+
+  private class ConditionNamesFiller {
+    private static final int CAPACITY = 14;
+
+    private SparseArrayCompat<ConditionNameObject> objects = new SparseArrayCompat<>(CAPACITY);
+    public void makeObjects() {
+      objects.put(1,new ConditionNameObject(1,"Crop (previous)"));
+      objects.put(2,new ConditionNameObject(2,"Soil Type"));
+      objects.put(3,new ConditionNameObject(3,"Soil Moisture"));
+      objects.put(4,new ConditionNameObject(4,"Soil Temperature"));
+      objects.put(5,new ConditionNameObject(5,"Planned yield"));
+      objects.put(6,new ConditionNameObject(6,"Pest"));
+      objects.put(7,new ConditionNameObject(7,"Pest Phase"));
+      objects.put(8,new ConditionNameObject(8,"Air Temperature"));
+      objects.put(9,new ConditionNameObject(9,"Air Moisture"));
+      objects.put(10,new ConditionNameObject(10,"Weed amount"));
+      objects.put(11,new ConditionNameObject(11,"Grain moisture"));
+      objects.put(12,new ConditionNameObject(12,"Tillage Direction"));
+      objects.put(13,new ConditionNameObject(13,"Tillage Depth"));
+      objects.put(14,new ConditionNameObject(14,"Phenological Characteristic"));
+    }
+
+    public void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putConditionName(objects.valueAt(i));
       }
     }
   }

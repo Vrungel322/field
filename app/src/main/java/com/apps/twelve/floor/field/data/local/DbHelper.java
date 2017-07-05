@@ -6,6 +6,7 @@ import com.apps.twelve.floor.field.data.local.entities.DealerEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.ProductPestCropEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectTypeEntity;
@@ -35,6 +36,7 @@ import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.DealersTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
 import com.apps.twelve.floor.field.data.local.tables.ProductsPestsCropsTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
@@ -804,6 +806,18 @@ public class DbHelper {
     return mStorIOSQLite.get()
         .listOfObjects(ProcessPeriodEntity.class)
         .withQuery(ProcessPeriodsTable.QUERY_ALL)
+        .prepare()
+        .executeAsBlocking();
+  }
+
+  public PutResult putConditionName(ConditionNameEntity conditionNameEntity) {
+    return mStorIOSQLite.put().object(conditionNameEntity).prepare().executeAsBlocking();
+  }
+
+  public List<ConditionNameEntity> getAllConditionNameEntitiesAsList() {
+    return mStorIOSQLite.get()
+        .listOfObjects(ConditionNameEntity.class)
+        .withQuery(ConditionNamesTable.QUERY_ALL)
         .prepare()
         .executeAsBlocking();
   }
