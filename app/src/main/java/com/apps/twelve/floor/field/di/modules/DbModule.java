@@ -12,6 +12,8 @@ import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
@@ -134,6 +136,8 @@ import dagger.Provides;
         .addTypeMapping(WeedGroupEntity.class, new WeedGroupEntitySQLiteTypeMapping())
         //Weed mapping
         .addTypeMapping(WeedEntity.class, new WeedEntitySQLiteTypeMapping())
+        //ConditionNames
+        .addTypeMapping(ConditionNameEntity.class, new ConditionNameEntitySQLiteTypeMapping())
 
         // CombinedFieldEntity mapping
         .addTypeMapping(CombinedFieldEntity.class,
