@@ -16,6 +16,8 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanV
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectTypeEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PestEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PestEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicEntity;
@@ -62,25 +64,6 @@ import com.pushtorefresh.storio.sqlite.impl.DefaultStorIOSQLite;
 import dagger.Module;
 import dagger.Provides;
 
-// TODO: uncomment this when entities will be ready
-/*import com.apps.twelve.floor.field.data.local.entities.TechnologicalProcessStateEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.TechnologicalSolutionTypeEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.ProductCategoryEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.ProductEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.AggregateEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.ProcessPeriodEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.ConditionTypeEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.ConditionSpanValueEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.SoilTypeEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.PestPhaseEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.TillageDirectionEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.PhenologicalCharacteristicEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.ConditionEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.DealerEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.FieldCropTechnologicalProcessEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.ProductPestCropEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcessSolutionEntitySQLiteTypeMapping;*/
-
 /**
  * Created by Yaroslav on 11.04.2017.
  */
@@ -108,6 +91,8 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
             new CropTechnologicalProcessEntitySQLiteTypeMapping())
         // PestEntity mapping
         .addTypeMapping(PestEntity.class, new PestEntitySQLiteTypeMapping())
+        // HarmfulObjectTypeEntity mapping
+        .addTypeMapping(HarmfulObjectTypeEntity.class, new HarmfulObjectTypeEntitySQLiteTypeMapping())
         // PhaseEntity mapping
         .addTypeMapping(PhaseEntity.class, new PhaseEntitySQLiteTypeMapping())
         // ConditionTypeEntity mapping
@@ -149,21 +134,6 @@ import com.apps.twelve.floor.field.data.local.entities.FieldTechnologicalProcess
         .addTypeMapping(WeedGroupEntity.class, new WeedGroupEntitySQLiteTypeMapping())
         //Weed mapping
         .addTypeMapping(WeedEntity.class, new WeedEntitySQLiteTypeMapping())
-
-        // TODO: uncomment this when entities will be ready
-        // TODO: for some entities custom resolvers needed
-        /*
-        // PestPhaseEntity mapping
-        .addTypeMapping(PestPhaseEntity.class, new PestPhaseEntitySQLiteTypeMapping())
-        // DealerEntity mapping
-        .addTypeMapping(DealerEntity.class, new DealerEntitySQLiteTypeMapping())
-        // FieldCropTechnologicalProcessEntity mapping
-        .addTypeMapping(FieldCropTechnologicalProcessEntity.class, new FieldCropTechnologicalProcessEntitySQLiteTypeMapping())
-        // ProductPestCropEntity mapping
-        .addTypeMapping(ProductPestCropEntity.class, new ProductPestCropEntitySQLiteTypeMapping())
-        // FieldTechnologicalProcessSolutionEntity mapping
-        .addTypeMapping(FieldTechnologicalProcessSolutionEntity.class, new FieldTechnologicalProcessSolutionEntitySQLiteTypeMapping())
-        */
 
         // CombinedFieldEntity mapping
         .addTypeMapping(CombinedFieldEntity.class,

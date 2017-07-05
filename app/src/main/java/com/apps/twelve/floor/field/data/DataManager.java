@@ -16,11 +16,13 @@ import com.apps.twelve.floor.field.data.local.mappers.ConditionTypeObjectToCondi
 import com.apps.twelve.floor.field.data.local.mappers.CropEntityToCropObjectMapper;
 import com.apps.twelve.floor.field.data.local.mappers.CropObjectToCropEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.FieldObjectToFieldEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.HarmfulObjectTypeObjectToHarmfulObjectTypeEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.InsectObjectToInsectEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.PestObjectToPestEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.PhaseEntityToPhaseObjectMapper;
 import com.apps.twelve.floor.field.data.local.mappers.PhaseObjectToPhaseEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.PhenologicalCharacteristicObjectToPhenologicalCharacteristicEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.ProcessPeriodObjectToProcessPeriodEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ProductCategoryObjectToProductCategoryEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.ProductObjectToProductEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.SoilTypeEntityToSoilTypeObjectMapper;
@@ -37,6 +39,7 @@ import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
@@ -47,6 +50,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.WeedNutritionTy
 import com.apps.twelve.floor.field.data.local.objects.conditions.WeedObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.InsectObject;
@@ -166,6 +170,10 @@ public class DataManager {
             technologicalProcessStateObject));
   }
 
+  public PutResult putHarmfulObjectType(HarmfulObjectTypeObject harmfulObjectTypeObject) {
+    return mDbHelper.putHarmfulObjectType(new HarmfulObjectTypeObjectToHarmfulObjectTypeEntityMapper().transform(harmfulObjectTypeObject));
+  }
+
   public PutResult putPest(PestObject pestObject) {
     return mDbHelper.putPest(new PestObjectToPestEntityMapper().transform(pestObject));
   }
@@ -268,8 +276,10 @@ public class DataManager {
     return mDbHelper.getAllConditionEntityAsList();
   }
 
-  public PutResult putProcessPeriod(ProcessPeriodEntity processPeriodEntity) {
-    return mDbHelper.putProcessPeriod(processPeriodEntity);
+  public PutResult putProcessPeriod(ProcessPeriodObject processPeriodObject) {
+    return mDbHelper.putProcessPeriod(
+        new ProcessPeriodObjectToProcessPeriodEntityMapper().transform(processPeriodObject)
+    );
   }
 
   public List<ProcessPeriodEntity> getAllProcessPeriodEntitiesAsList() {

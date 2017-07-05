@@ -1,11 +1,12 @@
 package com.apps.twelve.floor.field.utils;
 
-import android.util.SparseArray;
+import android.support.v4.util.SparseArrayCompat;
 import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
@@ -13,6 +14,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectio
 import com.apps.twelve.floor.field.data.local.objects.conditions.WeedClassObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.WeedGroupObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.WeedNutritionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.WeedObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
@@ -56,6 +58,8 @@ public final class PrimaryDataFiller {
   private WeedGroupFiller mWeedGroupFiller;
   private ConditionsFiller mConditionsFiller;
   private ProcessPeriodFiller mProcessPeriodFiller;
+  private WeedFiller mWeedFiller;
+  private HarmfulObjectTypeFiller mHarmfulObjectTypeFiller;
 
   public PrimaryDataFiller(DataManager dataManager) {
     this.mDataManager = dataManager;
@@ -90,6 +94,8 @@ public final class PrimaryDataFiller {
     mWeedClassFiller = new WeedClassFiller();
     mWeedGroupFiller = new WeedGroupFiller();
     mProcessPeriodFiller = new ProcessPeriodFiller();
+    mHarmfulObjectTypeFiller = new HarmfulObjectTypeFiller();
+    mWeedFiller = new WeedFiller();
     // TODO
   }
 
@@ -114,6 +120,8 @@ public final class PrimaryDataFiller {
     mWeedClassFiller.makeObjects();
     mWeedGroupFiller.makeObjects();
     mProcessPeriodFiller.makeObjects();
+    mHarmfulObjectTypeFiller.makeObjects();
+    mWeedFiller.makeObjects();
     // TODO
   }
 
@@ -138,11 +146,14 @@ public final class PrimaryDataFiller {
     mWeedClassFiller.saveObjects();
     mWeedGroupFiller.saveObjects();
     mProcessPeriodFiller.saveObjects();
+    mHarmfulObjectTypeFiller.saveObjects();
+    mWeedFiller.saveObjects();
     // TODO
   }
 
   private void checkObjects() {
     Timber.e(String.valueOf(mDataManager.getAllProcessPeriodEntitiesAsList().size()));
+    Timber.e(String.valueOf(mDataManager.getAllWeedEntitiesAsList().size()));
     // TODO
   }
 
@@ -156,7 +167,7 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 6;
 
-    private SparseArray<CropObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<CropObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
       objects.put(CORN_KEY, new CropObject(1, "Кукуруза", 0, false, true));
@@ -178,7 +189,7 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 4;
 
-    private SparseArray<ClimateZoneObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<ClimateZoneObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
       objects.put(1, new ClimateZoneObject(1, "Степ", new ArrayList<>()));
@@ -198,7 +209,7 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 18;
 
-    private SparseArray<PhaseObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<PhaseObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
       CropObject cornCropObject = mCropFiller.objects.get(CropFiller.CORN_KEY);
@@ -244,7 +255,7 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 7;
 
-    private SparseArray<ConditionTypeObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<ConditionTypeObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
 
@@ -270,7 +281,7 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 6;
 
-    private SparseArray<SoilTypeObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<SoilTypeObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
 
@@ -306,7 +317,7 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 5;
 
-    private SparseArray<ConditionSpanValueObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<ConditionSpanValueObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
 
@@ -336,7 +347,7 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 22;
 
-    private SparseArray<PestObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<PestObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
 
@@ -388,7 +399,7 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 4;
 
-    private SparseArray<TillageDirectionObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<TillageDirectionObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
 
@@ -416,7 +427,8 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 8;
 
-    private SparseArray<PhenologicalCharacteristicObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<PhenologicalCharacteristicObject> objects =
+        new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
 
@@ -456,7 +468,7 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 5;
 
-    private SparseArray<ConditionObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<ConditionObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
 
@@ -505,7 +517,8 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 5;
 
-    private SparseArray<TechnologicalProcessStateObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<TechnologicalProcessStateObject> objects =
+        new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
       objects.put(1, new TechnologicalProcessStateObject(1, "В очереди", 0));
@@ -531,7 +544,8 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 4;
 
-    private SparseArray<TechnologicalSolutionTypeObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<TechnologicalSolutionTypeObject> objects =
+        new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
       objects.put(AGGREGATES_KEY, new TechnologicalSolutionTypeObject(1, "Агрегаты"));
@@ -551,7 +565,7 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 15;
 
-    private SparseArray<AggregateObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<AggregateObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
       TechnologicalSolutionTypeObject aggregateTechSolutionType =
@@ -589,7 +603,7 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 1;
 
-    private SparseArray<InsectObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<InsectObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
       TechnologicalSolutionTypeObject insectTechSolutionType =
@@ -614,7 +628,7 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 4;
 
-    private SparseArray<ProductCategoryObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<ProductCategoryObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
       objects.put(HERBICIDES_KEY, new ProductCategoryObject(1, "Гербіциди"));
@@ -634,7 +648,7 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 17;
 
-    private SparseArray<ProductObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<ProductObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
 
@@ -698,7 +712,7 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 32;
 
-    private SparseArray<ProcessPeriodObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<ProcessPeriodObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
 
@@ -738,21 +752,22 @@ public final class PrimaryDataFiller {
 
     void saveObjects() {
       for (int i = 0; i < objects.size(); i++) {
-        // TODO: dataManager must take Objects not Entities
-        //mDataManager.putProcessPeriod(objects.valueAt(i));
+        mDataManager.putProcessPeriod(objects.valueAt(i));
       }
     }
   }
 
   private class WeedNutritionTypeFiller {
 
+    private static final int NON_PARASITES_KEY = 1;
+
     private static final int CAPACITY = 3;
 
-    private SparseArray<WeedNutritionTypeObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<WeedNutritionTypeObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
 
-      objects.put(1, new WeedNutritionTypeObject(1, "Непаразити"));
+      objects.put(NON_PARASITES_KEY, new WeedNutritionTypeObject(1, "Непаразити"));
       objects.put(2, new WeedNutritionTypeObject(2, "Напівпаразити"));
       objects.put(3, new WeedNutritionTypeObject(3, "Паразити"));
     }
@@ -766,52 +781,57 @@ public final class PrimaryDataFiller {
 
   private class WeedClassFiller {
 
+    private static final int DICOT_KEY = 1;
+    private static final int MONOCOT_KEY = 39;
+    private static final int CEREAL_KEY = 40;
+    private static final int SPORE_KEY = 41;
+
     private static final int CAPACITY = 41;
 
-    private SparseArray<WeedClassObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<WeedClassObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
-      objects.put(1, new WeedClassObject(1, "Дводольні", 0, true));
-      objects.put(2, new WeedClassObject(2, "Губоцвіті ", 1, false));
-      objects.put(3, new WeedClassObject(3, "Капустяні", 1, false));
-      objects.put(4, new WeedClassObject(4, "Фіалкові", 1, false));
-      objects.put(5, new WeedClassObject(5, "Макові", 1, false));
-      objects.put(6, new WeedClassObject(6, "Геранієві", 1, false));
-      objects.put(7, new WeedClassObject(7, "Айстрові", 1, false));
-      objects.put(8, new WeedClassObject(8, "Бурачникові", 1, false));
-      objects.put(9, new WeedClassObject(9, "Жовтецеві", 1, false));
-      objects.put(10, new WeedClassObject(10, "Гвоздикові", 1, false));
-      objects.put(11, new WeedClassObject(11, "Лободові", 1, false));
-      objects.put(12, new WeedClassObject(12, "Мальвові", 1, false));
-      objects.put(13, new WeedClassObject(13, "Бобові", 1, false));
-      objects.put(14, new WeedClassObject(14, "Зонтичні", 1, false));
-      objects.put(15, new WeedClassObject(15, "Паролистові", 1, false));
-      objects.put(16, new WeedClassObject(16, "Маренові", 1, false));
-      objects.put(17, new WeedClassObject(17, "Гречкові", 1, false));
-      objects.put(18, new WeedClassObject(18, "Резедові", 1, false));
-      objects.put(19, new WeedClassObject(19, "Амарантові", 1, false));
-      objects.put(20, new WeedClassObject(20, "Складноцвіті", 1, false));
-      objects.put(21, new WeedClassObject(21, "Пасльонові", 1, false));
-      objects.put(22, new WeedClassObject(22, "Первоцвітові", 1, false));
-      objects.put(23, new WeedClassObject(23, "Кропивні", 1, false));
-      objects.put(24, new WeedClassObject(24, "Конопляні", 1, false));
-      objects.put(25, new WeedClassObject(25, "Камелінові", 1, false));
-      objects.put(26, new WeedClassObject(26, "Портулакові", 1, false));
-      objects.put(27, new WeedClassObject(27, "Щирицеві", 1, false));
-      objects.put(28, new WeedClassObject(28, "Барвінкові", 1, false));
-      objects.put(29, new WeedClassObject(29, "Квасеницюваті", 1, false));
-      objects.put(30, new WeedClassObject(30, "Хвилівникові", 1, false));
-      objects.put(31, new WeedClassObject(31, "Онагрові", 1, false));
-      objects.put(32, new WeedClassObject(32, "Молочайні", 1, false));
-      objects.put(33, new WeedClassObject(33, "Ранникові", 1, false));
-      objects.put(34, new WeedClassObject(34, "Березкові", 1, false));
-      objects.put(35, new WeedClassObject(35, "Подорожникові", 1, false));
-      objects.put(36, new WeedClassObject(36, "Розові", 1, false));
-      objects.put(37, new WeedClassObject(37, "Лілійні", 1, false));
-      objects.put(38, new WeedClassObject(38, "Шорстколисті", 1, false));
-      objects.put(39, new WeedClassObject(39, "Однодольні", 0, true));
-      objects.put(40, new WeedClassObject(40, "Злакові (тонконогові)", 39, false));
-      objects.put(41, new WeedClassObject(41, "Хвощовидні (спорові)", 0, true));
+      objects.put(1, new WeedClassObject(DICOT_KEY, "Дводольні", 0, true));
+      objects.put(2, new WeedClassObject(2, "Губоцвіті ", DICOT_KEY, false));
+      objects.put(3, new WeedClassObject(3, "Капустяні", DICOT_KEY, false));
+      objects.put(4, new WeedClassObject(4, "Фіалкові", DICOT_KEY, false));
+      objects.put(5, new WeedClassObject(5, "Макові", DICOT_KEY, false));
+      objects.put(6, new WeedClassObject(6, "Геранієві", DICOT_KEY, false));
+      objects.put(7, new WeedClassObject(7, "Айстрові", DICOT_KEY, false));
+      objects.put(8, new WeedClassObject(8, "Бурачникові", DICOT_KEY, false));
+      objects.put(9, new WeedClassObject(9, "Жовтецеві", DICOT_KEY, false));
+      objects.put(10, new WeedClassObject(10, "Гвоздикові", DICOT_KEY, false));
+      objects.put(11, new WeedClassObject(11, "Лободові", DICOT_KEY, false));
+      objects.put(12, new WeedClassObject(12, "Мальвові", DICOT_KEY, false));
+      objects.put(13, new WeedClassObject(13, "Бобові", DICOT_KEY, false));
+      objects.put(14, new WeedClassObject(14, "Зонтичні", DICOT_KEY, false));
+      objects.put(15, new WeedClassObject(15, "Паролистові", DICOT_KEY, false));
+      objects.put(16, new WeedClassObject(16, "Маренові", DICOT_KEY, false));
+      objects.put(17, new WeedClassObject(17, "Гречкові", DICOT_KEY, false));
+      objects.put(18, new WeedClassObject(18, "Резедові", DICOT_KEY, false));
+      objects.put(19, new WeedClassObject(19, "Амарантові", DICOT_KEY, false));
+      objects.put(20, new WeedClassObject(20, "Складноцвіті", DICOT_KEY, false));
+      objects.put(21, new WeedClassObject(21, "Пасльонові", DICOT_KEY, false));
+      objects.put(22, new WeedClassObject(22, "Первоцвітові", DICOT_KEY, false));
+      objects.put(23, new WeedClassObject(23, "Кропивні", DICOT_KEY, false));
+      objects.put(24, new WeedClassObject(24, "Конопляні", DICOT_KEY, false));
+      objects.put(25, new WeedClassObject(25, "Камелінові", DICOT_KEY, false));
+      objects.put(26, new WeedClassObject(26, "Портулакові", DICOT_KEY, false));
+      objects.put(27, new WeedClassObject(27, "Щирицеві", DICOT_KEY, false));
+      objects.put(28, new WeedClassObject(28, "Барвінкові", DICOT_KEY, false));
+      objects.put(29, new WeedClassObject(29, "Квасеницюваті", DICOT_KEY, false));
+      objects.put(30, new WeedClassObject(30, "Хвилівникові", DICOT_KEY, false));
+      objects.put(31, new WeedClassObject(31, "Онагрові", DICOT_KEY, false));
+      objects.put(32, new WeedClassObject(32, "Молочайні", DICOT_KEY, false));
+      objects.put(33, new WeedClassObject(33, "Ранникові", DICOT_KEY, false));
+      objects.put(34, new WeedClassObject(34, "Березкові", DICOT_KEY, false));
+      objects.put(35, new WeedClassObject(35, "Подорожникові", DICOT_KEY, false));
+      objects.put(36, new WeedClassObject(36, "Розові", DICOT_KEY, false));
+      objects.put(37, new WeedClassObject(37, "Лілійні", DICOT_KEY, false));
+      objects.put(38, new WeedClassObject(38, "Шорстколисті", DICOT_KEY, false));
+      objects.put(39, new WeedClassObject(MONOCOT_KEY, "Однодольні", 0, true));
+      objects.put(40, new WeedClassObject(CEREAL_KEY, "Злакові (тонконогові)", MONOCOT_KEY, false));
+      objects.put(41, new WeedClassObject(SPORE_KEY, "Хвощовидні (спорові)", 0, true));
     }
 
     void saveObjects() {
@@ -823,27 +843,44 @@ public final class PrimaryDataFiller {
 
   private class WeedGroupFiller {
 
+    private static final int SEMI_YEAR_KEY = 1;
+    private static final int ARDENT_KEY = 2;
+    private static final int EPHEMERAL_KEY = 3;
+    private static final int EARLY_KEY = 4;
+    private static final int LATE_KEY = 5;
+    private static final int WINTER_KEY = 6;
+    private static final int WINTERING_KEY = 7;
+    private static final int TWO_YEAR_KEY = 8;
+    private static final int POLY_YEAR_KEY = 9;
+    private static final int ROOT_KEY = 10;
+    private static final int ROOT_SPROUT_KEY = 11;
+    private static final int ROOT_FIBER_KEY = 12;
+    private static final int STEM_ROOT_KEY = 13;
+    private static final int REPENT_KEY = 14;
+    private static final int TUBEROUS_KEY = 15;
+    private static final int ONION_KEY = 16;
+
     private static final int CAPACITY = 16;
 
-    private SparseArray<WeedGroupObject> objects = new SparseArray<>(CAPACITY);
+    private SparseArrayCompat<WeedGroupObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
-      objects.put(1, new WeedGroupObject(1, "Малорічні", 0, true));
-      objects.put(2, new WeedGroupObject(2, "Ярі", 1, true));
-      objects.put(3, new WeedGroupObject(3, "Ефемери", 2, false));
-      objects.put(4, new WeedGroupObject(4, "Ранні", 2, false));
-      objects.put(5, new WeedGroupObject(5, "Пізні", 2, false));
-      objects.put(6, new WeedGroupObject(6, "Озимі", 1, false));
-      objects.put(7, new WeedGroupObject(7, "Зимуючі", 1, false));
-      objects.put(8, new WeedGroupObject(8, "Дворічні", 1, false));
-      objects.put(9, new WeedGroupObject(9, "Багаторічні", 0, true));
-      objects.put(10, new WeedGroupObject(10, "Кореневищні", 9, false));
-      objects.put(11, new WeedGroupObject(11, "Коренепаросткові", 9, false));
-      objects.put(12, new WeedGroupObject(12, "Коренемичкуваті", 9, false));
-      objects.put(13, new WeedGroupObject(13, "Стрижнекореневі", 9, false));
-      objects.put(14, new WeedGroupObject(14, "Повзучі", 9, false));
-      objects.put(15, new WeedGroupObject(15, "Бульбові", 9, false));
-      objects.put(16, new WeedGroupObject(16, "Цибулинні", 9, false));
+      objects.put(1, new WeedGroupObject(SEMI_YEAR_KEY, "Малорічні", 0, true));
+      objects.put(2, new WeedGroupObject(ARDENT_KEY, "Ярі", 1, true));
+      objects.put(3, new WeedGroupObject(EPHEMERAL_KEY, "Ефемери", 2, false));
+      objects.put(4, new WeedGroupObject(EARLY_KEY, "Ранні", 2, false));
+      objects.put(5, new WeedGroupObject(LATE_KEY, "Пізні", 2, false));
+      objects.put(6, new WeedGroupObject(WINTER_KEY, "Озимі", 1, false));
+      objects.put(7, new WeedGroupObject(WINTERING_KEY, "Зимуючі", 1, false));
+      objects.put(8, new WeedGroupObject(TWO_YEAR_KEY, "Дворічні", 1, false));
+      objects.put(9, new WeedGroupObject(POLY_YEAR_KEY, "Багаторічні", 0, true));
+      objects.put(10, new WeedGroupObject(ROOT_KEY, "Кореневищні", 9, false));
+      objects.put(11, new WeedGroupObject(ROOT_SPROUT_KEY, "Коренепаросткові", 9, false));
+      objects.put(12, new WeedGroupObject(ROOT_FIBER_KEY, "Коренемичкуваті", 9, false));
+      objects.put(13, new WeedGroupObject(STEM_ROOT_KEY, "Стрижнекореневі", 9, false));
+      objects.put(14, new WeedGroupObject(REPENT_KEY, "Повзучі", 9, false));
+      objects.put(15, new WeedGroupObject(TUBEROUS_KEY, "Бульбові", 9, false));
+      objects.put(16, new WeedGroupObject(ONION_KEY, "Цибулинні", 9, false));
     }
 
     void saveObjects() {
@@ -853,4 +890,358 @@ public final class PrimaryDataFiller {
     }
   }
 
+  private class HarmfulObjectTypeFiller {
+
+    static final int WEED_KEY = 1;
+    static final int PEST_KEY = 2;
+    static final int DISEASE_KEY = 3;
+
+    private static final int CAPACITY = 3;
+
+    private SparseArrayCompat<HarmfulObjectTypeObject> objects = new SparseArrayCompat<>(CAPACITY);
+
+    void makeObjects() {
+
+      objects.put(WEED_KEY, new HarmfulObjectTypeObject(1, "Сорняки"));
+      objects.put(PEST_KEY, new HarmfulObjectTypeObject(2, "Вредители"));
+      objects.put(DISEASE_KEY, new HarmfulObjectTypeObject(3, "Болезни"));
+    }
+
+    void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putHarmfulObjectType(objects.valueAt(i));
+      }
+    }
+  }
+
+  private class WeedFiller {
+
+    private static final int CAPACITY = 125;
+
+    private SparseArrayCompat<WeedObject> objects = new SparseArrayCompat<>(CAPACITY);
+
+    void makeObjects() {
+      long weedHarmfulObjectTypeId =
+          mHarmfulObjectTypeFiller.objects.get(HarmfulObjectTypeFiller.WEED_KEY).getId();
+
+      long nonParasiteNutritionTypeId =
+          mWeedNutritionTypeFiller.objects.get(WeedNutritionTypeFiller.NON_PARASITES_KEY).getId();
+
+      long ephemeralWeedGroupId =
+          mWeedGroupFiller.objects.get(WeedGroupFiller.EPHEMERAL_KEY).getId();
+      long earlyWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.EARLY_KEY).getId();
+      long lateWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.LATE_KEY).getId();
+      long winterWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.WINTER_KEY).getId();
+      long winteringWeedGroupId =
+          mWeedGroupFiller.objects.get(WeedGroupFiller.WINTERING_KEY).getId();
+      long twoYearWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.TWO_YEAR_KEY).getId();
+      long rootWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.ROOT_KEY).getId();
+      long rootSproutWeedGroupId =
+          mWeedGroupFiller.objects.get(WeedGroupFiller.ROOT_SPROUT_KEY).getId();
+      long rootFiberWeedGroupId =
+          mWeedGroupFiller.objects.get(WeedGroupFiller.ROOT_FIBER_KEY).getId();
+      long stemRootWeedGroupId =
+          mWeedGroupFiller.objects.get(WeedGroupFiller.STEM_ROOT_KEY).getId();
+      long repentWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.REPENT_KEY).getId();
+      long tuberousWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.TUBEROUS_KEY).getId();
+      long onionWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.ONION_KEY).getId();
+
+      long cerealWeedClassId = mWeedClassFiller.objects.get(WeedClassFiller.CEREAL_KEY).getId();
+
+      // 5th parameter is hardcoded (look for values in WeedClassFiller)
+      objects.put(1, new WeedObject(1, weedHarmfulObjectTypeId, "Зірочник середній, або мокрець",
+          nonParasiteNutritionTypeId, 10, ephemeralWeedGroupId));
+      objects.put(2,
+          new WeedObject(2, weedHarmfulObjectTypeId, "Гостриця лежача", nonParasiteNutritionTypeId,
+              38, ephemeralWeedGroupId));
+      objects.put(3, new WeedObject(3, weedHarmfulObjectTypeId, "Червець однорічний",
+          nonParasiteNutritionTypeId, 10, earlyWeedGroupId));
+      objects.put(4,
+          new WeedObject(4, weedHarmfulObjectTypeId, "Кукіль звичайний", nonParasiteNutritionTypeId,
+              10, earlyWeedGroupId));
+      objects.put(5,
+          new WeedObject(5, weedHarmfulObjectTypeId, "Наземка польова", nonParasiteNutritionTypeId,
+              11, earlyWeedGroupId));
+      objects.put(6,
+          new WeedObject(6, weedHarmfulObjectTypeId, "Лобода біла", nonParasiteNutritionTypeId, 11,
+              earlyWeedGroupId));
+      objects.put(7,
+          new WeedObject(7, weedHarmfulObjectTypeId, "Редька дика", nonParasiteNutritionTypeId, 3,
+              earlyWeedGroupId));
+      objects.put(8,
+          new WeedObject(8, weedHarmfulObjectTypeId, "Гірчиця польова", nonParasiteNutritionTypeId,
+              3, earlyWeedGroupId));
+      objects.put(9, new WeedObject(9, weedHarmfulObjectTypeId, "Гібіск трійчастий",
+          nonParasiteNutritionTypeId, 12, earlyWeedGroupId));
+      objects.put(10, new WeedObject(10, weedHarmfulObjectTypeId, "Горошок волохатий",
+          nonParasiteNutritionTypeId, 13, earlyWeedGroupId));
+      objects.put(11, new WeedObject(11, weedHarmfulObjectTypeId, "Біфора промениста",
+          nonParasiteNutritionTypeId, 14, earlyWeedGroupId));
+      objects.put(12,
+          new WeedObject(12, weedHarmfulObjectTypeId, "Якірці сланкі", nonParasiteNutritionTypeId,
+              15, earlyWeedGroupId));
+      objects.put(13,
+          new WeedObject(13, weedHarmfulObjectTypeId, "Рутка лікарська", nonParasiteNutritionTypeId,
+              5, earlyWeedGroupId));
+      objects.put(14, new WeedObject(14, weedHarmfulObjectTypeId, "Підмаренник чіпкий",
+          nonParasiteNutritionTypeId, 16, earlyWeedGroupId));
+      objects.put(15, new WeedObject(15, weedHarmfulObjectTypeId, "Гречка татарська",
+          nonParasiteNutritionTypeId, 16, earlyWeedGroupId));
+      objects.put(16, new WeedObject(16, weedHarmfulObjectTypeId, "Гірчак березковидний",
+          nonParasiteNutritionTypeId, 16, earlyWeedGroupId));
+      objects.put(17,
+          new WeedObject(17, weedHarmfulObjectTypeId, "Резеда жовта", nonParasiteNutritionTypeId,
+              18, lateWeedGroupId));
+      objects.put(18, new WeedObject(18, weedHarmfulObjectTypeId, "Щириця жминдовидна",
+          nonParasiteNutritionTypeId, 27, lateWeedGroupId));
+      objects.put(19,
+          new WeedObject(19, weedHarmfulObjectTypeId, "Щириця біла", nonParasiteNutritionTypeId, 27,
+              lateWeedGroupId));
+      objects.put(20, new WeedObject(20, weedHarmfulObjectTypeId, "Череда трироздільна",
+          nonParasiteNutritionTypeId, 7, lateWeedGroupId));
+      objects.put(21,
+          new WeedObject(21, weedHarmfulObjectTypeId, "Паслін чорний", nonParasiteNutritionTypeId,
+              21, lateWeedGroupId));
+      objects.put(22, new WeedObject(22, weedHarmfulObjectTypeId, "Дурман звичайний",
+          nonParasiteNutritionTypeId, 21, lateWeedGroupId));
+      objects.put(23, new WeedObject(23, weedHarmfulObjectTypeId, "Очка курячі польові",
+          nonParasiteNutritionTypeId, 22, lateWeedGroupId));
+      objects.put(24,
+          new WeedObject(24, weedHarmfulObjectTypeId, "Остудник голий", nonParasiteNutritionTypeId,
+              10, lateWeedGroupId));
+      objects.put(25, new WeedObject(25, weedHarmfulObjectTypeId, "Шпергель звичайний",
+          nonParasiteNutritionTypeId, 10, lateWeedGroupId));
+      objects.put(26,
+          new WeedObject(26, weedHarmfulObjectTypeId, "Кропива жалка", nonParasiteNutritionTypeId,
+              23, lateWeedGroupId));
+      objects.put(27,
+          new WeedObject(27, weedHarmfulObjectTypeId, "Коноплі дикі", nonParasiteNutritionTypeId,
+              24, lateWeedGroupId));
+      objects.put(28, new WeedObject(28, weedHarmfulObjectTypeId, "Комеліна звичайна",
+          nonParasiteNutritionTypeId, 25, lateWeedGroupId));
+      objects.put(29, new WeedObject(29, weedHarmfulObjectTypeId, "Комеліна звичайна",
+          nonParasiteNutritionTypeId, 3, lateWeedGroupId));
+      objects.put(30, new WeedObject(30, weedHarmfulObjectTypeId, "Залізниця гірська",
+          nonParasiteNutritionTypeId, 2, lateWeedGroupId));
+      objects.put(31,
+          new WeedObject(31, weedHarmfulObjectTypeId, "Жабрій ладанний", nonParasiteNutritionTypeId,
+              2, lateWeedGroupId));
+      objects.put(32, new WeedObject(32, weedHarmfulObjectTypeId, "Жабрій звичайний",
+          nonParasiteNutritionTypeId, 2, lateWeedGroupId));
+      objects.put(33, new WeedObject(33, weedHarmfulObjectTypeId, "Геліотроп європейський",
+          nonParasiteNutritionTypeId, 38, lateWeedGroupId));
+      objects.put(34, new WeedObject(34, weedHarmfulObjectTypeId, "Портулак городній",
+          nonParasiteNutritionTypeId, 26, lateWeedGroupId));
+      objects.put(35,
+          new WeedObject(35, weedHarmfulObjectTypeId, "Курай руський", nonParasiteNutritionTypeId,
+              11, lateWeedGroupId));
+      objects.put(36,
+          new WeedObject(36, weedHarmfulObjectTypeId, "Щириця звичайна", nonParasiteNutritionTypeId,
+              27, lateWeedGroupId));
+      objects.put(37, new WeedObject(37, weedHarmfulObjectTypeId, "Спориш звичайний",
+          nonParasiteNutritionTypeId, 17, lateWeedGroupId));
+      objects.put(38,
+          new WeedObject(38, weedHarmfulObjectTypeId, "Гірчак шорсткий", nonParasiteNutritionTypeId,
+              17, lateWeedGroupId));
+      objects.put(39, new WeedObject(39, weedHarmfulObjectTypeId, "Осот жовтий городній",
+          nonParasiteNutritionTypeId, 7, lateWeedGroupId));
+      objects.put(40, new WeedObject(40, weedHarmfulObjectTypeId, "Чорнощир звичайний",
+          nonParasiteNutritionTypeId, 7, lateWeedGroupId));
+      objects.put(41, new WeedObject(41, weedHarmfulObjectTypeId, "Соняшник смітний",
+          nonParasiteNutritionTypeId, 7, lateWeedGroupId));
+      objects.put(42, new WeedObject(42, weedHarmfulObjectTypeId, "Нетреба звичайна",
+          nonParasiteNutritionTypeId, 7, lateWeedGroupId));
+      objects.put(43,
+          new WeedObject(43, weedHarmfulObjectTypeId, "Галінсога дрібноквіткова, або незбутниця",
+              nonParasiteNutritionTypeId, 7, lateWeedGroupId));
+      objects.put(44, new WeedObject(44, weedHarmfulObjectTypeId, "Амброзія трироздільна",
+          nonParasiteNutritionTypeId, 7, lateWeedGroupId));
+      objects.put(45, new WeedObject(45, weedHarmfulObjectTypeId, "Амброзія полинолиста",
+          nonParasiteNutritionTypeId, 7, lateWeedGroupId));
+      objects.put(46, new WeedObject(46, weedHarmfulObjectTypeId, "Хрінниця смердюча",
+          nonParasiteNutritionTypeId, 3, winteringWeedGroupId));
+      objects.put(47,
+          new WeedObject(47, weedHarmfulObjectTypeId, "Хориспора ніжна", nonParasiteNutritionTypeId,
+              3, winteringWeedGroupId));
+      objects.put(48, new WeedObject(48, weedHarmfulObjectTypeId, "Сухоребрик льозеліїв",
+          nonParasiteNutritionTypeId, 3, winteringWeedGroupId));
+      objects.put(49, new WeedObject(49, weedHarmfulObjectTypeId, "Талабан польовий",
+          nonParasiteNutritionTypeId, 3, winteringWeedGroupId));
+      objects.put(50, new WeedObject(50, weedHarmfulObjectTypeId, "Кучерявець Софії",
+          nonParasiteNutritionTypeId, 3, winteringWeedGroupId));
+      objects.put(51, new WeedObject(51, weedHarmfulObjectTypeId, "Грицики звичайні",
+          nonParasiteNutritionTypeId, 3, winteringWeedGroupId));
+      objects.put(52, new WeedObject(52, weedHarmfulObjectTypeId, "Латук дикий, компасний",
+          nonParasiteNutritionTypeId, 7, winteringWeedGroupId));
+      objects.put(53, new WeedObject(53, weedHarmfulObjectTypeId, "Злинка канадська",
+          nonParasiteNutritionTypeId, 7, winteringWeedGroupId));
+      objects.put(54,
+          new WeedObject(54, weedHarmfulObjectTypeId, "Триреберник непахучий, ромашка непахуча",
+              nonParasiteNutritionTypeId, 7, winteringWeedGroupId));
+      objects.put(55, new WeedObject(55, weedHarmfulObjectTypeId, "Жовтозілля весняне",
+          nonParasiteNutritionTypeId, 7, winteringWeedGroupId));
+      objects.put(56,
+          new WeedObject(56, weedHarmfulObjectTypeId, "Волошка синя", nonParasiteNutritionTypeId, 7,
+              winteringWeedGroupId));
+      objects.put(57, new WeedObject(57, weedHarmfulObjectTypeId, "Фіалка триколірна",
+          nonParasiteNutritionTypeId, 4, winteringWeedGroupId));
+      objects.put(58,
+          new WeedObject(58, weedHarmfulObjectTypeId, "Фіалка польова", nonParasiteNutritionTypeId,
+              4, winteringWeedGroupId));
+      objects.put(59, new WeedObject(59, weedHarmfulObjectTypeId, "Чистець однорічний",
+          nonParasiteNutritionTypeId, 2, winteringWeedGroupId));
+      objects.put(60, new WeedObject(60, weedHarmfulObjectTypeId, "Глуха кропива стеблеобгортаюча",
+          nonParasiteNutritionTypeId, 2, winteringWeedGroupId));
+      objects.put(61,
+          new WeedObject(61, weedHarmfulObjectTypeId, "Мак дикий", nonParasiteNutritionTypeId, 5,
+              winteringWeedGroupId));
+      objects.put(62, new WeedObject(62, weedHarmfulObjectTypeId, "Грабельки звичайні",
+          nonParasiteNutritionTypeId, 6, winteringWeedGroupId));
+      objects.put(63, new WeedObject(63, weedHarmfulObjectTypeId, "Кривоцвіт польовий",
+          nonParasiteNutritionTypeId, 38, winteringWeedGroupId));
+      objects.put(64,
+          new WeedObject(64, weedHarmfulObjectTypeId, "Сокирки польові", nonParasiteNutritionTypeId,
+              9, winteringWeedGroupId));
+      objects.put(65, new WeedObject(65, weedHarmfulObjectTypeId, "Чорнокорінь лікарський",
+          nonParasiteNutritionTypeId, 38, twoYearWeedGroupId));
+      objects.put(66,
+          new WeedObject(66, weedHarmfulObjectTypeId, "Липучка їжакова", nonParasiteNutritionTypeId,
+              38, twoYearWeedGroupId));
+      objects.put(67, new WeedObject(67, weedHarmfulObjectTypeId, "Татарник звичайний",
+          nonParasiteNutritionTypeId, 7, twoYearWeedGroupId));
+      objects.put(68, new WeedObject(68, weedHarmfulObjectTypeId, "Будяк акантовидний",
+          nonParasiteNutritionTypeId, 7, twoYearWeedGroupId));
+      objects.put(69, new WeedObject(69, weedHarmfulObjectTypeId, "Скереда покрівельна",
+          nonParasiteNutritionTypeId, 7, twoYearWeedGroupId));
+      objects.put(70, new WeedObject(70, weedHarmfulObjectTypeId, "Суріпиця звичайна",
+          nonParasiteNutritionTypeId, 3, twoYearWeedGroupId));
+      objects.put(71,
+          new WeedObject(71, weedHarmfulObjectTypeId, "Свербига східна", nonParasiteNutritionTypeId,
+              3, twoYearWeedGroupId));
+      objects.put(72,
+          new WeedObject(72, weedHarmfulObjectTypeId, "Гикавка сіра", nonParasiteNutritionTypeId, 3,
+              twoYearWeedGroupId));
+      objects.put(73, new WeedObject(73, weedHarmfulObjectTypeId, "Петрушка собача звичайна",
+          nonParasiteNutritionTypeId, 14, twoYearWeedGroupId));
+      objects.put(74,
+          new WeedObject(74, weedHarmfulObjectTypeId, "Морква дика", nonParasiteNutritionTypeId, 14,
+              twoYearWeedGroupId));
+      objects.put(75, new WeedObject(75, weedHarmfulObjectTypeId, "Болиголов плямистий",
+          nonParasiteNutritionTypeId, 14, twoYearWeedGroupId));
+      objects.put(76,
+          new WeedObject(76, weedHarmfulObjectTypeId, "Куколиця біла", nonParasiteNutritionTypeId,
+              10, twoYearWeedGroupId));
+      objects.put(77, new WeedObject(77, weedHarmfulObjectTypeId, "Кропива глуха пурпурова",
+          nonParasiteNutritionTypeId, 2, twoYearWeedGroupId));
+      objects.put(78, new WeedObject(78, weedHarmfulObjectTypeId, "Енотера дворічна",
+          nonParasiteNutritionTypeId, 31, twoYearWeedGroupId));
+      objects.put(79, new WeedObject(79, weedHarmfulObjectTypeId, "Вероніка плющолиста",
+          nonParasiteNutritionTypeId, 33, twoYearWeedGroupId));
+      objects.put(80,
+          new WeedObject(80, weedHarmfulObjectTypeId, "Блекота чорна", nonParasiteNutritionTypeId,
+              21, twoYearWeedGroupId));
+      objects.put(81,
+          new WeedObject(81, weedHarmfulObjectTypeId, "Синяк звичайний", nonParasiteNutritionTypeId,
+              38, twoYearWeedGroupId));
+      objects.put(82, new WeedObject(82, weedHarmfulObjectTypeId, "Буркун лікарський",
+          nonParasiteNutritionTypeId, 13, twoYearWeedGroupId));
+      objects.put(83, new WeedObject(83, weedHarmfulObjectTypeId, "Тонконіг однорічний",
+          nonParasiteNutritionTypeId, cerealWeedClassId, ephemeralWeedGroupId));
+      objects.put(84, new WeedObject(84, weedHarmfulObjectTypeId, "Тонконіг однорічний",
+          nonParasiteNutritionTypeId, cerealWeedClassId, earlyWeedGroupId));
+      objects.put(85, new WeedObject(85, weedHarmfulObjectTypeId, "Пажитниця льонова",
+          nonParasiteNutritionTypeId, cerealWeedClassId, earlyWeedGroupId));
+      objects.put(86, new WeedObject(86, weedHarmfulObjectTypeId, "Вівсюг звичайний",
+          nonParasiteNutritionTypeId, cerealWeedClassId, earlyWeedGroupId));
+      objects.put(87, new WeedObject(87, weedHarmfulObjectTypeId, "Просо волосовидне",
+          nonParasiteNutritionTypeId, cerealWeedClassId, lateWeedGroupId));
+      objects.put(88, new WeedObject(88, weedHarmfulObjectTypeId, "Пальчатка кровоспиняюча",
+          nonParasiteNutritionTypeId, cerealWeedClassId, lateWeedGroupId));
+      objects.put(89, new WeedObject(89, weedHarmfulObjectTypeId, "Ценхрус якірцевий",
+          nonParasiteNutritionTypeId, cerealWeedClassId, lateWeedGroupId));
+      objects.put(90, new WeedObject(90, weedHarmfulObjectTypeId, "Плоскуха звичайна",
+          nonParasiteNutritionTypeId, cerealWeedClassId, lateWeedGroupId));
+      objects.put(91,
+          new WeedObject(91, weedHarmfulObjectTypeId, "Мишій зелений", nonParasiteNutritionTypeId,
+              cerealWeedClassId, lateWeedGroupId));
+      objects.put(92,
+          new WeedObject(92, weedHarmfulObjectTypeId, "Мишій сизий", nonParasiteNutritionTypeId,
+              cerealWeedClassId, lateWeedGroupId));
+      objects.put(93, new WeedObject(93, weedHarmfulObjectTypeId, "Метлюг звичайний",
+          nonParasiteNutritionTypeId, cerealWeedClassId, winterWeedGroupId));
+      objects.put(94, new WeedObject(94, weedHarmfulObjectTypeId, "Бромус житній, або стоколос",
+          nonParasiteNutritionTypeId, cerealWeedClassId, winterWeedGroupId));
+      objects.put(95, new WeedObject(95, weedHarmfulObjectTypeId, "Чистець болотний",
+          nonParasiteNutritionTypeId, 2, rootWeedGroupId));
+      objects.put(96, new WeedObject(96, weedHarmfulObjectTypeId, "Ластовень гострий",
+          nonParasiteNutritionTypeId, 28, rootWeedGroupId));
+      objects.put(97, new WeedObject(97, weedHarmfulObjectTypeId, "Кропива дводомна",
+          nonParasiteNutritionTypeId, 23, rootWeedGroupId));
+      objects.put(98, new WeedObject(98, weedHarmfulObjectTypeId, "Квасениця прямостояча",
+          nonParasiteNutritionTypeId, 29, rootWeedGroupId));
+      objects.put(99, new WeedObject(99, weedHarmfulObjectTypeId, "Деревій звичайний",
+          nonParasiteNutritionTypeId, 7, rootWeedGroupId));
+      objects.put(100, new WeedObject(100, weedHarmfulObjectTypeId, "Хрінниця крупковидна",
+          nonParasiteNutritionTypeId, 3, rootSproutWeedGroupId));
+      objects.put(101, new WeedObject(101, weedHarmfulObjectTypeId, "Хвилівник звичайний",
+          nonParasiteNutritionTypeId, 30, rootSproutWeedGroupId));
+      objects.put(102, new WeedObject(102, weedHarmfulObjectTypeId, "Хаменерій вузьколистий",
+          nonParasiteNutritionTypeId, 31, rootSproutWeedGroupId));
+      objects.put(103, new WeedObject(103, weedHarmfulObjectTypeId, "Молочай лозяний",
+          nonParasiteNutritionTypeId, 32, rootSproutWeedGroupId));
+      objects.put(104, new WeedObject(104, weedHarmfulObjectTypeId, "Льонок звичайний",
+          nonParasiteNutritionTypeId, 33, rootSproutWeedGroupId));
+      objects.put(105, new WeedObject(105, weedHarmfulObjectTypeId, "Щавель горобиний",
+          nonParasiteNutritionTypeId, 17, rootSproutWeedGroupId));
+      objects.put(106, new WeedObject(106, weedHarmfulObjectTypeId, "Осот рожевий польовий",
+          nonParasiteNutritionTypeId, 7, rootSproutWeedGroupId));
+      objects.put(107, new WeedObject(107, weedHarmfulObjectTypeId, "Осот жовтий польовий",
+          nonParasiteNutritionTypeId, 7, rootSproutWeedGroupId));
+      objects.put(108, new WeedObject(108, weedHarmfulObjectTypeId, "Гірчак степовий звичайний",
+          nonParasiteNutritionTypeId, 7, rootSproutWeedGroupId));
+      objects.put(109, new WeedObject(109, weedHarmfulObjectTypeId, "Березка польова",
+          nonParasiteNutritionTypeId, 34, rootSproutWeedGroupId));
+      objects.put(110, new WeedObject(110, weedHarmfulObjectTypeId, "Подорожник великий",
+          nonParasiteNutritionTypeId, 35, rootFiberWeedGroupId));
+      objects.put(111, new WeedObject(111, weedHarmfulObjectTypeId, "Щавель кінський",
+          nonParasiteNutritionTypeId, 17, stemRootWeedGroupId));
+      objects.put(112, new WeedObject(112, weedHarmfulObjectTypeId, "Чистотіл звичайний",
+          nonParasiteNutritionTypeId, 5, stemRootWeedGroupId));
+      objects.put(113, new WeedObject(113, weedHarmfulObjectTypeId, "Миколайчики польові",
+          nonParasiteNutritionTypeId, 14, stemRootWeedGroupId));
+      objects.put(114, new WeedObject(114, weedHarmfulObjectTypeId, "Гравілат міський",
+          nonParasiteNutritionTypeId, 36, stemRootWeedGroupId));
+      objects.put(115, new WeedObject(115, weedHarmfulObjectTypeId, "Подорожник ланцетолистий",
+          nonParasiteNutritionTypeId, 35, stemRootWeedGroupId));
+      objects.put(116,
+          new WeedObject(116, weedHarmfulObjectTypeId, "Полин звичайний та полин гіркий",
+              nonParasiteNutritionTypeId, 7, stemRootWeedGroupId));
+      objects.put(117, new WeedObject(117, weedHarmfulObjectTypeId, "Хондрила ситниковидна",
+          nonParasiteNutritionTypeId, 7, stemRootWeedGroupId));
+      objects.put(118, new WeedObject(118, weedHarmfulObjectTypeId, "Кульбаба лікарська",
+          nonParasiteNutritionTypeId, 7, stemRootWeedGroupId));
+      objects.put(119, new WeedObject(119, weedHarmfulObjectTypeId, "Перстач гусячий",
+          nonParasiteNutritionTypeId, 36, repentWeedGroupId));
+      objects.put(120, new WeedObject(120, weedHarmfulObjectTypeId, "Жовтець повзучий",
+          nonParasiteNutritionTypeId, 9, repentWeedGroupId));
+      objects.put(121,
+          new WeedObject(121, weedHarmfulObjectTypeId, "Чина бульбиста", nonParasiteNutritionTypeId,
+              13, tuberousWeedGroupId));
+      objects.put(122, new WeedObject(122, weedHarmfulObjectTypeId, "Цибуля Вальдштейна",
+          nonParasiteNutritionTypeId, 37, onionWeedGroupId));
+      objects.put(123, new WeedObject(123, weedHarmfulObjectTypeId, "Свинорий пальчастий",
+          nonParasiteNutritionTypeId, cerealWeedClassId, rootWeedGroupId));
+      objects.put(124, new WeedObject(124, weedHarmfulObjectTypeId, "Гумай, сорго алепське",
+          nonParasiteNutritionTypeId, cerealWeedClassId, rootWeedGroupId));
+      objects.put(125,
+          new WeedObject(125, weedHarmfulObjectTypeId, "Пирій повзучий", nonParasiteNutritionTypeId,
+              cerealWeedClassId, rootWeedGroupId));
+    }
+
+    void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putWeed(objects.valueAt(i));
+      }
+    }
+  }
 }
