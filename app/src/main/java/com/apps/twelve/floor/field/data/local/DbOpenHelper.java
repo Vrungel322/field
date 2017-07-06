@@ -3,10 +3,10 @@ package com.apps.twelve.floor.field.data.local;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import com.apps.twelve.floor.field.data.local.tables.CropsActiveComponentsHarmfulObjectsTable;
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.DealersTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
-import com.apps.twelve.floor.field.data.local.tables.ProductsPestsCropsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
@@ -133,7 +133,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(CropsTable.getCreateTableQuery());
     // Dealers
     db.execSQL(DealersTable.getCreateTableQuery());
-    // ProductsPestsCrops
-    db.execSQL(ProductsPestsCropsTable.getCreateTableQuery());
+    // CropsActiveComponentsHarmfulObjects
+    db.execSQL(CropsActiveComponentsHarmfulObjectsTable.getCreateTableQuery());
   }
 }

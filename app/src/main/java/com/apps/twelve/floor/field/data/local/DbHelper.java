@@ -1,10 +1,10 @@
 package com.apps.twelve.floor.field.data.local;
 
 import com.apps.twelve.floor.field.App;
+import com.apps.twelve.floor.field.data.local.entities.CropActiveComponentHarmfulObjectEntity;
 import com.apps.twelve.floor.field.data.local.entities.CropEntity;
 import com.apps.twelve.floor.field.data.local.entities.DealerEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
-import com.apps.twelve.floor.field.data.local.entities.ProductPestCropEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
@@ -35,10 +35,10 @@ import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTec
 import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessStateEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessesConditionEntity;
+import com.apps.twelve.floor.field.data.local.tables.CropsActiveComponentsHarmfulObjectsTable;
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.DealersTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
-import com.apps.twelve.floor.field.data.local.tables.ProductsPestsCropsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
@@ -819,21 +819,21 @@ public class DbHelper {
   ///////////////////////////////////////////////////////////////////////////
   // Product Pest Crop
   ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<ProductPestCropEntity>> getAllProductsPestsCrops() {
+  public Observable<List<CropActiveComponentHarmfulObjectEntity>> getAllCropsActiveComponentsHarmfulObjects() {
     return mStorIOSQLite.get()
-        .listOfObjects(ProductPestCropEntity.class)
-        .withQuery(ProductsPestsCropsTable.QUERY_ALL)
+        .listOfObjects(CropActiveComponentHarmfulObjectEntity.class)
+        .withQuery(CropsActiveComponentsHarmfulObjectsTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
-  public PutResult putProductPestCrop(ProductPestCropEntity productPestCropEntity) {
-    return mStorIOSQLite.put().object(productPestCropEntity).prepare().executeAsBlocking();
+  public PutResult putCropActiveComponentHarmfulObject(CropActiveComponentHarmfulObjectEntity cropActiveComponentHarmfulObjectEntity) {
+    return mStorIOSQLite.put().object(cropActiveComponentHarmfulObjectEntity).prepare().executeAsBlocking();
   }
 
-  public DeleteResult deleteProductPestCrop(ProductPestCropEntity productPestCropEntity) {
-    return mStorIOSQLite.delete().object(productPestCropEntity).prepare().executeAsBlocking();
+  public DeleteResult deleteCropActiveComponentHarmfulObject(CropActiveComponentHarmfulObjectEntity cropActiveComponentHarmfulObjectEntity) {
+    return mStorIOSQLite.delete().object(cropActiveComponentHarmfulObjectEntity).prepare().executeAsBlocking();
   }
 
   public PutResult putConditionEntity(ConditionEntity conditionEntity) {
