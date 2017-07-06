@@ -8,7 +8,7 @@ import com.pushtorefresh.storio.sqlite.queries.Query;
  */
 
 public class ConditionNamesTable {
-  @NonNull public static final String TABLE = "ConditionNamesTable";
+  @NonNull public static final String TABLE = "ConditionNames";
 
   @NonNull public static final String COLUMN_ID = "id";
   @NonNull public static final String COLUMN_NAME = "name";

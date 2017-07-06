@@ -9,7 +9,7 @@ import com.pushtorefresh.storio.sqlite.queries.Query;
 
 public class HarmfulObjectPhasesTable {
 
-  @NonNull public static final String TABLE = "PestPhases";
+  @NonNull public static final String TABLE = "HarmfulObjectPhases";
 
   @NonNull public static final String COLUMN_ID = "id";
   @NonNull public static final String COLUMN_NAME = "name";

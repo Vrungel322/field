@@ -1,20 +1,20 @@
 package com.apps.twelve.floor.field.data.local.entities.harmful_objects;
 
-import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedsTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
 /**
  * Created by Vrungel on 04.07.2017.
  */
-@StorIOSQLiteType(table = WeedTable.TABLE) public class WeedEntity {
+@StorIOSQLiteType(table = WeedsTable.TABLE) public class WeedEntity {
 
-  @StorIOSQLiteColumn(name = WeedTable.COLUMN_ID, key = true) Long id;
-  @StorIOSQLiteColumn(name = WeedTable.COLUMN_HARMFUL_OBJ_TYPE_ID) Long harmfulObjTypeId;
-  @StorIOSQLiteColumn(name = WeedTable.COLUMN_NAME) String name;
-  @StorIOSQLiteColumn(name = WeedTable.COLUMN_NUTRITION_TYPE_ID) Long nutritionTypeId;
-  @StorIOSQLiteColumn(name = WeedTable.COLUMN_CLASS_ID) Long classId;
-  @StorIOSQLiteColumn(name = WeedTable.COLUMN_GROUP_ID) Long groupId;
+  @StorIOSQLiteColumn(name = WeedsTable.COLUMN_ID, key = true) Long id;
+  @StorIOSQLiteColumn(name = WeedsTable.COLUMN_HARMFUL_OBJ_TYPE_ID) Long harmfulObjTypeId;
+  @StorIOSQLiteColumn(name = WeedsTable.COLUMN_NAME) String name;
+  @StorIOSQLiteColumn(name = WeedsTable.COLUMN_NUTRITION_TYPE_ID) Long nutritionTypeId;
+  @StorIOSQLiteColumn(name = WeedsTable.COLUMN_CLASS_ID) Long classId;
+  @StorIOSQLiteColumn(name = WeedsTable.COLUMN_GROUP_ID) Long groupId;
 
   public WeedEntity() {
   }

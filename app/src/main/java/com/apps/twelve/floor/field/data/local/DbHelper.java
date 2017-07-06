@@ -51,7 +51,7 @@ import com.apps.twelve.floor.field.data.local.tables.harmful_objects.PestsTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedClassesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedGroupsTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedNutritionTypesTable;
-import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedsTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.PhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ProcessPeriodsTable;
@@ -361,7 +361,7 @@ public class DbHelper {
   public List<WeedEntity> getAllWeed() {
     return mStorIOSQLite.get()
         .listOfObjects(WeedEntity.class)
-        .withQuery(WeedTable.QUERY_ALL)
+        .withQuery(WeedsTable.QUERY_ALL)
         .prepare()
 
         .executeAsBlocking()

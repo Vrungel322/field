@@ -7,8 +7,8 @@ import com.pushtorefresh.storio.sqlite.queries.Query;
  * Created by Vrungel on 04.07.2017.
  */
 
-public class WeedTable {
-  @NonNull public static final String TABLE = "WeedTable";
+public class WeedsTable {
+  @NonNull public static final String TABLE = "Weeds";
 
   @NonNull public static final String COLUMN_ID = "id";
   @NonNull public static final String COLUMN_HARMFUL_OBJ_TYPE_ID = "harmful_obj_type_id";
@@ -19,7 +19,7 @@ public class WeedTable {
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public WeedTable() {
+  public WeedsTable() {
     throw new IllegalStateException("No instances allowed");
   }
 
