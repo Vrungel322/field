@@ -23,6 +23,7 @@ import com.apps.twelve.floor.field.data.local.entities.harmful_objects.WeedNutri
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ProcessPeriodEntity;
+import com.apps.twelve.floor.field.data.local.entities.solutions.ActiveComponentEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.AggregateEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.FieldTechnologicalProcessSolutionEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.InsectEntity;
@@ -55,6 +56,7 @@ import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedsTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.PhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ProcessPeriodsTable;
+import com.apps.twelve.floor.field.data.local.tables.solutions.ActiveComponentsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.AggregatesTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.FieldTechnologicalProcessSolutionsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.InsectsTable;
@@ -482,6 +484,26 @@ public class DbHelper {
 
   public DeleteResult deleteInsect(InsectEntity insectEntity) {
     return mStorIOSQLite.delete().object(insectEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Active Component
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<ActiveComponentEntity>> getAllActiveComponents() {
+    return mStorIOSQLite.get()
+        .listOfObjects(ActiveComponentEntity.class)
+        .withQuery(ActiveComponentsTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putActiveComponent(ActiveComponentEntity activeComponentEntity) {
+    return mStorIOSQLite.put().object(activeComponentEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteActiveComponent(ActiveComponentEntity activeComponentEntity) {
+    return mStorIOSQLite.delete().object(activeComponentEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////

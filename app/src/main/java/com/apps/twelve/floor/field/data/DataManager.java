@@ -32,6 +32,7 @@ import com.apps.twelve.floor.field.data.local.mappers.process_time.ClimateZoneOb
 import com.apps.twelve.floor.field.data.local.mappers.process_time.PhaseEntityToPhaseObjectMapper;
 import com.apps.twelve.floor.field.data.local.mappers.process_time.PhaseObjectToPhaseEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.process_time.ProcessPeriodObjectToProcessPeriodEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.solutions.ActiveComponentObjectToActiveComponentEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.solutions.AggregateObjectToAggregateEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.solutions.InsectObjectToInsectEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.solutions.ProductCategoryObjectToProductCategoryEntityMapper;
@@ -58,6 +59,7 @@ import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedObject
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.ActiveComponentObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.InsectObject;
@@ -249,6 +251,10 @@ public class DataManager {
 
   public PutResult putInsect(InsectObject insectObject) {
     return mDbHelper.putInsect(new InsectObjectToInsectEntityMapper().transform(insectObject));
+  }
+
+  public PutResult putActiveComponent(ActiveComponentObject activeComponentObject) {
+    return mDbHelper.putActiveComponent(new ActiveComponentObjectToActiveComponentEntityMapper().transform(activeComponentObject));
   }
 
   public PutResult putProductCategory(ProductCategoryObject productCategoryObject) {
