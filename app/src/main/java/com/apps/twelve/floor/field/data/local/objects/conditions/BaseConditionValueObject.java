@@ -12,10 +12,6 @@ public abstract class BaseConditionValueObject implements Parcelable, Cloneable 
 
   abstract public void setId(long id);
 
-  abstract public String getName();
-
-  abstract public void setName(String name);
-
   abstract public ConditionTypeObject getType();
 
   abstract public void setType(ConditionTypeObject type);

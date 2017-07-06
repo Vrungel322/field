@@ -3,13 +3,13 @@ package com.apps.twelve.floor.field.utils;
 import android.support.v4.util.SparseArrayCompat;
 import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
+import com.apps.twelve.floor.field.data.local.objects.TillageDirectionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionNameObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.PestObject;
@@ -420,14 +420,10 @@ public final class PrimaryDataFiller {
       ConditionTypeObject tillageDirectionConditionTypeObject =
           mConditionTypeFiller.objects.get(ConditionTypeFiller.TILLAGE_DIRECTION_KEY);
 
-      objects.put(1, new TillageDirectionObject(1, "під кутом 45⁰ до напряму оранки",
-          tillageDirectionConditionTypeObject));
-      objects.put(2, new TillageDirectionObject(2, "Човнико-вий або діагональ-ний",
-          tillageDirectionConditionTypeObject));
-      objects.put(3, new TillageDirectionObject(3, "міжряддя вздовж рядків",
-          tillageDirectionConditionTypeObject));
-      objects.put(4, new TillageDirectionObject(4, "суцільний обробіток",
-          tillageDirectionConditionTypeObject));
+      objects.put(1, new TillageDirectionObject(1, "під кутом 45⁰ до напряму оранки"));
+      objects.put(2, new TillageDirectionObject(2, "Човнико-вий або діагональ-ний"));
+      objects.put(3, new TillageDirectionObject(3, "міжряддя вздовж рядків"));
+      objects.put(4, new TillageDirectionObject(4, "суцільний обробіток"));
     }
 
     void saveObjects() {

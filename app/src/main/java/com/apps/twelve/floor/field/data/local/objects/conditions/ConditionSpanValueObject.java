@@ -59,19 +59,19 @@ public class ConditionSpanValueObject extends BaseConditionValueObject {
     this.mId = id;
   }
 
-  @Override public String getName() {
-    return mValueFrom + " : " + mValueTo;
-  }
-
-  @Override public void setName(String name) {
-  }
-
   @Override public ConditionTypeObject getType() {
     return mType;
   }
 
   @Override public void setType(@NonNull ConditionTypeObject type) {
     this.mType = type;
+  }
+
+  public String getName() {
+    return mValueFrom + " : " + mValueTo;
+  }
+
+  public void setName(String name) {
   }
 
   public long getValueFrom() {

@@ -55,19 +55,19 @@ public class PhenologicalCharacteristicObject extends BaseConditionValueObject {
     this.mId = id;
   }
 
-  @Override public String getName() {
-    return mName;
-  }
-
-  @Override public void setName(@NonNull String name) {
-    this.mName = name;
-  }
-
   @Override public ConditionTypeObject getType() {
     return mType;
   }
 
   @Override public void setType(@NonNull ConditionTypeObject type) {
     this.mType = type;
+  }
+
+  public String getName() {
+    return mName;
+  }
+
+  public void setName(@NonNull String name) {
+    this.mName = name;
   }
 }

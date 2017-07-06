@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.data.local.tables.conditions;
+package com.apps.twelve.floor.field.data.local.tables;
 
 import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;
@@ -13,7 +13,6 @@ public class TillageDirectionsTable {
 
   @NonNull public static final String COLUMN_ID = "id";
   @NonNull public static final String COLUMN_NAME = "name";
-  @NonNull public static final String COLUMN_CONDITION_TYPE_ID = "condition_type_id";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
@@ -28,8 +27,7 @@ public class TillageDirectionsTable {
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_NAME
-        + " TEXT NULL, "
-        + COLUMN_CONDITION_TYPE_ID + " INTEGER "
+        + " TEXT NULL "
         + ");";
   }
 }

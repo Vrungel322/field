@@ -5,13 +5,14 @@ import com.apps.twelve.floor.field.data.local.entities.CropActiveComponentHarmfu
 import com.apps.twelve.floor.field.data.local.entities.CropEntity;
 import com.apps.twelve.floor.field.data.local.entities.DealerEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
+import com.apps.twelve.floor.field.data.local.entities.TillageDirectionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectPhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectTypeEntity;
@@ -39,13 +40,14 @@ import com.apps.twelve.floor.field.data.local.tables.CropsActiveComponentsHarmfu
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.DealersTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
+import com.apps.twelve.floor.field.data.local.tables.TillageDirectionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionsTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectsTable;
@@ -209,9 +211,9 @@ public class DbHelper {
   public DeleteResult deleteHarmfulObject(HarmfulObjectEntity harmfulObjectEntity) {
     return mStorIOSQLite.delete().object(harmfulObjectEntity).prepare().executeAsBlocking();
   }
-  ///////////////////////////////////////////////////////////////////////////
 
-  // Pest phase
+  ///////////////////////////////////////////////////////////////////////////
+  // Harmful Object phase
   ///////////////////////////////////////////////////////////////////////////
   public Observable<List<HarmfulObjectPhaseEntity>> getAllHarmfulObjectPhases() {
     return mStorIOSQLite.get()
@@ -279,23 +281,25 @@ public class DbHelper {
   }
 
   ///////////////////////////////////////////////////////////////////////////
-  // Tillage direction
+  // Tillage direction value
   ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<TillageDirectionEntity>> getAllTillageDirections() {
+  public Observable<List<TillageDirectionValueEntity>> getAllTillageDirectionValues() {
     return mStorIOSQLite.get()
-        .listOfObjects(TillageDirectionEntity.class)
-        .withQuery(TillageDirectionsTable.QUERY_ALL)
+        .listOfObjects(TillageDirectionValueEntity.class)
+        .withQuery(TillageDirectionValuesTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
-  public PutResult putTillageDirection(TillageDirectionEntity tillageDirectionEntity) {
-    return mStorIOSQLite.put().object(tillageDirectionEntity).prepare().executeAsBlocking();
+  public PutResult putTillageDirectionValue(
+      TillageDirectionValueEntity tillageDirectionValueEntity) {
+    return mStorIOSQLite.put().object(tillageDirectionValueEntity).prepare().executeAsBlocking();
   }
 
-  public DeleteResult deleteTillageDirection(TillageDirectionEntity tillageDirectionEntity) {
-    return mStorIOSQLite.delete().object(tillageDirectionEntity).prepare().executeAsBlocking();
+  public DeleteResult deleteTillageDirectionValue(
+      TillageDirectionValueEntity tillageDirectionValueEntity) {
+    return mStorIOSQLite.delete().object(tillageDirectionValueEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -817,7 +821,7 @@ public class DbHelper {
   }
 
   ///////////////////////////////////////////////////////////////////////////
-  // Product Pest Crop
+  // Crop Active component Harmful object
   ///////////////////////////////////////////////////////////////////////////
   public Observable<List<CropActiveComponentHarmfulObjectEntity>> getAllCropsActiveComponentsHarmfulObjects() {
     return mStorIOSQLite.get()
@@ -828,12 +832,20 @@ public class DbHelper {
         .take(1);
   }
 
-  public PutResult putCropActiveComponentHarmfulObject(CropActiveComponentHarmfulObjectEntity cropActiveComponentHarmfulObjectEntity) {
-    return mStorIOSQLite.put().object(cropActiveComponentHarmfulObjectEntity).prepare().executeAsBlocking();
+  public PutResult putCropActiveComponentHarmfulObject(
+      CropActiveComponentHarmfulObjectEntity cropActiveComponentHarmfulObjectEntity) {
+    return mStorIOSQLite.put()
+        .object(cropActiveComponentHarmfulObjectEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 
-  public DeleteResult deleteCropActiveComponentHarmfulObject(CropActiveComponentHarmfulObjectEntity cropActiveComponentHarmfulObjectEntity) {
-    return mStorIOSQLite.delete().object(cropActiveComponentHarmfulObjectEntity).prepare().executeAsBlocking();
+  public DeleteResult deleteCropActiveComponentHarmfulObject(
+      CropActiveComponentHarmfulObjectEntity cropActiveComponentHarmfulObjectEntity) {
+    return mStorIOSQLite.delete()
+        .object(cropActiveComponentHarmfulObjectEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 
   public PutResult putConditionEntity(ConditionEntity conditionEntity) {
@@ -870,5 +882,25 @@ public class DbHelper {
         .withQuery(ConditionNamesTable.QUERY_ALL)
         .prepare()
         .executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Tillage direction
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<TillageDirectionEntity>> getAllTillageDirections() {
+    return mStorIOSQLite.get()
+        .listOfObjects(TillageDirectionEntity.class)
+        .withQuery(TillageDirectionsTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putTillageDirection(TillageDirectionEntity tillageDirectionEntity) {
+    return mStorIOSQLite.put().object(tillageDirectionEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteTillageDirection(TillageDirectionEntity tillageDirectionEntity) {
+    return mStorIOSQLite.delete().object(tillageDirectionEntity).prepare().executeAsBlocking();
   }
 }

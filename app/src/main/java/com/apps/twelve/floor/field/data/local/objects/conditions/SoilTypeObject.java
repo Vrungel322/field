@@ -14,11 +14,6 @@ import java.util.List;
 public class SoilTypeObject extends BaseConditionValueObject {
 
   public static final SoilTypeObject EMPTY;
-
-  static {
-    EMPTY = new SoilTypeObject(0, "", new ConditionTypeObject(1, "Тип почвы"), "");
-  }
-
   public static final Creator<SoilTypeObject> CREATOR = new Creator<SoilTypeObject>() {
     @Override public SoilTypeObject createFromParcel(Parcel in) {
       return new SoilTypeObject(in);
@@ -28,6 +23,10 @@ public class SoilTypeObject extends BaseConditionValueObject {
       return new SoilTypeObject[size];
     }
   };
+
+  static {
+    EMPTY = new SoilTypeObject(0, "", new ConditionTypeObject(1, "Тип почвы"), "");
+  }
 
   private long mId;
   @NonNull private String mName;
@@ -81,20 +80,20 @@ public class SoilTypeObject extends BaseConditionValueObject {
     this.mId = id;
   }
 
-  @Override public String getName() {
-    return mName;
-  }
-
-  @Override public void setName(@NonNull String name) {
-    this.mName = name;
-  }
-
   @Override public ConditionTypeObject getType() {
     return mConditionType;
   }
 
   @Override public void setType(@NonNull ConditionTypeObject type) {
     this.mConditionType = type;
+  }
+
+  public String getName() {
+    return mName;
+  }
+
+  public void setName(@NonNull String name) {
+    this.mName = name;
   }
 
   public List<LatLng> getPoints() {

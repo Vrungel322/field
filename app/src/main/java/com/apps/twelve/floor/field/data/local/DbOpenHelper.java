@@ -7,13 +7,14 @@ import com.apps.twelve.floor.field.data.local.tables.CropsActiveComponentsHarmfu
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.DealersTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
+import com.apps.twelve.floor.field.data.local.tables.TillageDirectionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionsTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectsTable;
@@ -59,14 +60,32 @@ public class DbOpenHelper extends SQLiteOpenHelper {
   }
 
   private void createDbTables(SQLiteDatabase db) {
+    createConditionsTables(db);
+    createHarmfulObjectsTables(db);
+    createProcessTimeTables(db);
+    createSolutionsTables(db);
+    createTechnologicalMapTables(db);
+    createOtherTables(db);
+  }
 
-    // CONDITIONS
+  private void createConditionsTables(SQLiteDatabase db) {
     // ConditionSpanValues
     db.execSQL(ConditionSpanValuesTable.getCreateTableQuery());
     // Conditions
     db.execSQL(ConditionsTable.getCreateTableQuery());
     // ConditionTypes
     db.execSQL(ConditionTypesTable.getCreateTableQuery());
+    // PhenologicalCharacteristics
+    db.execSQL(PhenologicalCharacteristicsTable.getCreateTableQuery());
+    // SoilTypes
+    db.execSQL(SoilTypesTable.getCreateTableQuery());
+    // TillageDirectionValues
+    db.execSQL(TillageDirectionValuesTable.getCreateTableQuery());
+    // ConditionNames
+    db.execSQL(ConditionNamesTable.getCreateTableQuery());
+  }
+
+  private void createHarmfulObjectsTables(SQLiteDatabase db) {
     // HarmfulObjectTypes
     db.execSQL(HarmfulObjectTypesTable.getCreateTableQuery());
     // HarmfulObjects
@@ -75,32 +94,26 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(HarmfulObjectPhasesTable.getCreateTableQuery());
     // Pests
     db.execSQL(PestsTable.getCreateTableQuery());
-    // PhenologicalCharacteristics
-    db.execSQL(PhenologicalCharacteristicsTable.getCreateTableQuery());
-    // SoilTypes
-    db.execSQL(SoilTypesTable.getCreateTableQuery());
-    // TillageDirections
-    db.execSQL(TillageDirectionsTable.getCreateTableQuery());
     // WeedNutritionTypes
     db.execSQL(WeedNutritionTypesTable.getCreateTableQuery());
     // WeedClasses
     db.execSQL(WeedClassesTable.getCreateTableQuery());
     // WeedGroups
     db.execSQL(WeedGroupsTable.getCreateTableQuery());
-    //Weed
+    // Weeds
     db.execSQL(WeedsTable.getCreateTableQuery());
-    //ConditionNames
-    db.execSQL(ConditionNamesTable.getCreateTableQuery());
+  }
 
-    // PROCESS TIME
+  private void createProcessTimeTables(SQLiteDatabase db) {
     // ClimateZones
     db.execSQL(ClimateZonesTable.getCreateTableQuery());
     // Phases
     db.execSQL(PhasesTable.getCreateTableQuery());
     // ProcessPeriods
     db.execSQL(ProcessPeriodsTable.getCreateTableQuery());
+  }
 
-    // SOLUTIONS
+  private void createSolutionsTables(SQLiteDatabase db) {
     // Aggregates
     db.execSQL(AggregatesTable.getCreateTableQuery());
     // Insects
@@ -115,8 +128,9 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(ProductsTable.getCreateTableQuery());
     // TechnologicalSolutionTypes
     db.execSQL(TechnologicalSolutionTypesTable.getCreateTableQuery());
+  }
 
-    // TECHNOLOGICAL MAP
+  private void createTechnologicalMapTables(SQLiteDatabase db) {
     // FieldCropTechnologicalProcesses
     db.execSQL(FieldCropTechnologicalProcessesTable.getCreateTableQuery());
     // CropTechnologicalProcesses
@@ -125,8 +139,9 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(TechnologicalProcessesConditionsTable.getCreateTableQuery());
     // TechnologicalProcessStates
     db.execSQL(TechnologicalProcessStatesTable.getCreateTableQuery());
+  }
 
-    // OTHER
+  private void createOtherTables(SQLiteDatabase db) {
     // Fields
     db.execSQL(FieldsTable.getCreateTableQuery());
     // Crops
@@ -135,5 +150,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(DealersTable.getCreateTableQuery());
     // CropsActiveComponentsHarmfulObjects
     db.execSQL(CropsActiveComponentsHarmfulObjectsTable.getCreateTableQuery());
+    // TillageDirections
+    db.execSQL(TillageDirectionsTable.getCreateTableQuery());
   }
 }

@@ -10,6 +10,8 @@ import com.apps.twelve.floor.field.data.local.entities.CropEntity;
 import com.apps.twelve.floor.field.data.local.entities.CropEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.TillageDirectionEntity;
+import com.apps.twelve.floor.field.data.local.entities.TillageDirectionEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
@@ -22,8 +24,8 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCh
 import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectTypeEntity;
@@ -115,6 +117,9 @@ import dagger.Provides;
             new TechnologicalProcessStateEntitySQLiteTypeMapping())
         // TillageDirectionEntity mapping
         .addTypeMapping(TillageDirectionEntity.class, new TillageDirectionEntitySQLiteTypeMapping())
+        // TillageDirectionValueEntity mapping
+        .addTypeMapping(TillageDirectionValueEntity.class,
+            new TillageDirectionValueEntitySQLiteTypeMapping())
         // PhenologicalCharacteristicEntity mapping
         .addTypeMapping(PhenologicalCharacteristicEntity.class,
             new PhenologicalCharacteristicEntitySQLiteTypeMapping())
@@ -133,7 +138,8 @@ import dagger.Provides;
         // ActiveComponentEntity mapping
         .addTypeMapping(ActiveComponentEntity.class, new ActiveComponentEntitySQLiteTypeMapping())
         // ActiveComponentInProductEntity mapping
-        .addTypeMapping(ActiveComponentInProductEntity.class, new ActiveComponentInProductEntitySQLiteTypeMapping())
+        .addTypeMapping(ActiveComponentInProductEntity.class,
+            new ActiveComponentInProductEntitySQLiteTypeMapping())
         // ProductCategoryEntity mapping
         .addTypeMapping(ProductCategoryEntity.class, new ProductCategoryEntitySQLiteTypeMapping())
         // ProductEntity mapping
