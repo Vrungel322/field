@@ -32,6 +32,7 @@ import com.apps.twelve.floor.field.data.local.mappers.process_time.ClimateZoneOb
 import com.apps.twelve.floor.field.data.local.mappers.process_time.PhaseEntityToPhaseObjectMapper;
 import com.apps.twelve.floor.field.data.local.mappers.process_time.PhaseObjectToPhaseEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.process_time.ProcessPeriodObjectToProcessPeriodEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.solutions.ActiveComponentInProductObjectToActiveComponentInProductEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.solutions.ActiveComponentObjectToActiveComponentEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.solutions.AggregateObjectToAggregateEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.solutions.InsectObjectToInsectEntityMapper;
@@ -59,6 +60,7 @@ import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedObject
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.ActiveComponentInProductObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.ActiveComponentObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
@@ -254,7 +256,15 @@ public class DataManager {
   }
 
   public PutResult putActiveComponent(ActiveComponentObject activeComponentObject) {
-    return mDbHelper.putActiveComponent(new ActiveComponentObjectToActiveComponentEntityMapper().transform(activeComponentObject));
+    return mDbHelper.putActiveComponent(
+        new ActiveComponentObjectToActiveComponentEntityMapper().transform(activeComponentObject));
+  }
+
+  public PutResult putActiveComponentInProduct(
+      ActiveComponentInProductObject activeComponentInProductObject) {
+    return mDbHelper.putActiveComponentInProduct(
+        new ActiveComponentInProductObjectToActiveComponentInProductEntityMapper().transform(
+            activeComponentInProductObject));
   }
 
   public PutResult putProductCategory(ProductCategoryObject productCategoryObject) {

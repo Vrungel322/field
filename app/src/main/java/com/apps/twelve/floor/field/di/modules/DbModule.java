@@ -46,6 +46,8 @@ import com.apps.twelve.floor.field.data.local.entities.process_time.ProcessPerio
 import com.apps.twelve.floor.field.data.local.entities.process_time.ProcessPeriodEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.solutions.ActiveComponentEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.ActiveComponentEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.solutions.ActiveComponentInProductEntity;
+import com.apps.twelve.floor.field.data.local.entities.solutions.ActiveComponentInProductEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.solutions.AggregateEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.AggregateEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.solutions.InsectEntity;
@@ -130,6 +132,8 @@ import dagger.Provides;
         .addTypeMapping(InsectEntity.class, new InsectEntitySQLiteTypeMapping())
         // ActiveComponentEntity mapping
         .addTypeMapping(ActiveComponentEntity.class, new ActiveComponentEntitySQLiteTypeMapping())
+        // ActiveComponentInProductEntity mapping
+        .addTypeMapping(ActiveComponentInProductEntity.class, new ActiveComponentInProductEntitySQLiteTypeMapping())
         // ProductCategoryEntity mapping
         .addTypeMapping(ProductCategoryEntity.class, new ProductCategoryEntitySQLiteTypeMapping())
         // ProductEntity mapping

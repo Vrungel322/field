@@ -24,6 +24,7 @@ import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneE
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ProcessPeriodEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.ActiveComponentEntity;
+import com.apps.twelve.floor.field.data.local.entities.solutions.ActiveComponentInProductEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.AggregateEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.FieldTechnologicalProcessSolutionEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.InsectEntity;
@@ -500,6 +501,11 @@ public class DbHelper {
 
   public PutResult putActiveComponent(ActiveComponentEntity activeComponentEntity) {
     return mStorIOSQLite.put().object(activeComponentEntity).prepare().executeAsBlocking();
+  }
+
+  public PutResult putActiveComponentInProduct(
+      ActiveComponentInProductEntity activeComponentInProductEntity) {
+    return mStorIOSQLite.put().object(activeComponentInProductEntity).prepare().executeAsBlocking();
   }
 
   public DeleteResult deleteActiveComponent(ActiveComponentEntity activeComponentEntity) {
