@@ -19,6 +19,7 @@ import com.apps.twelve.floor.field.data.local.mappers.CropEntityToCropObjectMapp
 import com.apps.twelve.floor.field.data.local.mappers.CropObjectToCropEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.FieldObjectToFieldEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.HarmfulObjectObjectToHarmfulObjectEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.HarmfulObjectPhaseObjectToHarmfulObjectPhaseEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.HarmfulObjectTypeObjectToHarmfulObjectTypeEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.InsectObjectToInsectEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.PestObjectToPestEntityMapper;
@@ -44,6 +45,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectPhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
@@ -176,11 +178,20 @@ public class DataManager {
   }
 
   public PutResult putHarmfulObjectType(HarmfulObjectTypeObject harmfulObjectTypeObject) {
-    return mDbHelper.putHarmfulObjectType(new HarmfulObjectTypeObjectToHarmfulObjectTypeEntityMapper().transform(harmfulObjectTypeObject));
+    return mDbHelper.putHarmfulObjectType(
+        new HarmfulObjectTypeObjectToHarmfulObjectTypeEntityMapper().transform(
+            harmfulObjectTypeObject));
   }
 
   public PutResult putHarmfulObject(HarmfulObjectObject harmfulObjectObject) {
-    return mDbHelper.putHarmfulObject(new HarmfulObjectObjectToHarmfulObjectEntityMapper().transform(harmfulObjectObject));
+    return mDbHelper.putHarmfulObject(
+        new HarmfulObjectObjectToHarmfulObjectEntityMapper().transform(harmfulObjectObject));
+  }
+
+  public PutResult putHarmfulObjectPhase(HarmfulObjectPhaseObject harmfulObjectPhaseObject) {
+    return mDbHelper.putHarmfulObjectPhase(
+        new HarmfulObjectPhaseObjectToHarmfulObjectPhaseEntityMapper().transform(
+            harmfulObjectPhaseObject));
   }
 
   public PutResult putPest(PestObject pestObject) {
@@ -201,20 +212,16 @@ public class DataManager {
 
   public PutResult putWeedClass(WeedClassObject weedClassObject) {
     return mDbHelper.putWeedClass(
-        new WeedClassObjectToWeedClassEntityMapper().transform(
-            weedClassObject));
+        new WeedClassObjectToWeedClassEntityMapper().transform(weedClassObject));
   }
 
   public PutResult putWeedGroup(WeedGroupObject weedGroupObject) {
     return mDbHelper.putWeedGroup(
-        new WeedGroupObjectToWeedGroupEntityMapper().transform(
-            weedGroupObject));
+        new WeedGroupObjectToWeedGroupEntityMapper().transform(weedGroupObject));
   }
 
   public PutResult putWeed(WeedObject weedObject) {
-    return mDbHelper.putWeed(
-        new WeedObjectToWeedEntityMapper().transform(
-            weedObject));
+    return mDbHelper.putWeed(new WeedObjectToWeedEntityMapper().transform(weedObject));
   }
 
   public List<WeedEntity> getAllWeedEntitiesAsList() {
@@ -255,18 +262,18 @@ public class DataManager {
 
   public Observable<List<FieldCropTechnologicalProcessObject>> getFieldTechnologicalProcesses(
       long mFieldObjectId) {
-    // TODO
+    // TODO get data from DB, not from test util
     return Observable.just(TestUtils.getFieldTechnologicalProcesses());
   }
 
   public Observable<List<FieldTechnologicalProcessSolutionObject>> getTechnologicalSolutions(
       long mTechnologicalProcessId) {
-    // TODO
+    // TODO get data from DB, not from test util
     return Observable.just(TestUtils.getTechnologicalSolutions());
   }
 
   public Observable<List<TechnologicalSolutionTypeObject>> getAllTechnologicalSolutionTypes() {
-    // TODO
+    // TODO get data from DB, not from test util
     return Observable.just(TestUtils.getAllTechnologicalSolutionTypes());
   }
 
@@ -287,8 +294,7 @@ public class DataManager {
 
   public PutResult putProcessPeriod(ProcessPeriodObject processPeriodObject) {
     return mDbHelper.putProcessPeriod(
-        new ProcessPeriodObjectToProcessPeriodEntityMapper().transform(processPeriodObject)
-    );
+        new ProcessPeriodObjectToProcessPeriodEntityMapper().transform(processPeriodObject));
   }
 
   public List<ProcessPeriodEntity> getAllProcessPeriodEntitiesAsList() {
@@ -297,9 +303,9 @@ public class DataManager {
 
   public PutResult putConditionName(ConditionNameObject conditionNameObject) {
     return mDbHelper.putConditionName(
-        new ConditionNameObjectToConditionNameEntityMapper().transform(conditionNameObject)
-    );
+        new ConditionNameObjectToConditionNameEntityMapper().transform(conditionNameObject));
   }
+
   public List<ConditionNameEntity> getAllConditionNameEntitiesAsList() {
     return mDbHelper.getAllConditionNameEntitiesAsList();
   }

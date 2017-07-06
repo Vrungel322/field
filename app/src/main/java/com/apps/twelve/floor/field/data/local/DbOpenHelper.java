@@ -11,9 +11,9 @@ import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTa
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectsTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.PestPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PestsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypesTable;
@@ -66,12 +66,12 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(ConditionsTable.getCreateTableQuery());
     // ConditionTypes
     db.execSQL(ConditionTypesTable.getCreateTableQuery());
-    // PestPhases
-    db.execSQL(PestPhasesTable.getCreateTableQuery());
     // HarmfulObjectTypes
     db.execSQL(HarmfulObjectTypesTable.getCreateTableQuery());
     // HarmfulObjects
     db.execSQL(HarmfulObjectsTable.getCreateTableQuery());
+    // HarmfulObjectPhases
+    db.execSQL(HarmfulObjectPhasesTable.getCreateTableQuery());
     // Pests
     db.execSQL(PestsTable.getCreateTableQuery());
     // PhenologicalCharacteristics

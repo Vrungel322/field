@@ -10,9 +10,9 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameE
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectPhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PestEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.PestPhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionEntity;
@@ -41,9 +41,9 @@ import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTa
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectsTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.PestPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PestsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypesTable;
@@ -209,21 +209,21 @@ public class DbHelper {
 
   // Pest phase
   ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<PestPhaseEntity>> getAllPestPhases() {
+  public Observable<List<HarmfulObjectPhaseEntity>> getAllHarmfulObjectPhases() {
     return mStorIOSQLite.get()
-        .listOfObjects(PestPhaseEntity.class)
-        .withQuery(PestPhasesTable.QUERY_ALL)
+        .listOfObjects(HarmfulObjectPhaseEntity.class)
+        .withQuery(HarmfulObjectPhasesTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
-  public PutResult putPestPhase(PestPhaseEntity pestPhaseEntity) {
-    return mStorIOSQLite.put().object(pestPhaseEntity).prepare().executeAsBlocking();
+  public PutResult putHarmfulObjectPhase(HarmfulObjectPhaseEntity harmfulObjectPhaseEntity) {
+    return mStorIOSQLite.put().object(harmfulObjectPhaseEntity).prepare().executeAsBlocking();
   }
 
-  public DeleteResult deletePestPhase(PestPhaseEntity pestPhaseEntity) {
-    return mStorIOSQLite.delete().object(pestPhaseEntity).prepare().executeAsBlocking();
+  public DeleteResult deleteHarmfulObjectPhase(HarmfulObjectPhaseEntity harmfulObjectPhaseEntity) {
+    return mStorIOSQLite.delete().object(harmfulObjectPhaseEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
