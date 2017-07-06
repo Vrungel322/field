@@ -9,17 +9,17 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntit
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectPhaseEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectTypeEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.PestEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.WeedClassEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.WeedEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.WeedGroupEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.WeedNutritionTypeEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectPhaseEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectTypeEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.PestEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.WeedClassEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.WeedEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.WeedGroupEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.WeedNutritionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ProcessPeriodEntity;
@@ -41,17 +41,17 @@ import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTa
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectPhasesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectTypesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectsTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.PestsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionsTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.WeedClassesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.WeedGroupsTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.WeedNutritionTypesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.WeedTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectTypesTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectsTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.PestsTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedClassesTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedGroupsTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedNutritionTypesTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.PhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ProcessPeriodsTable;
@@ -186,6 +186,7 @@ public class DbHelper {
   public DeleteResult deleteHarmfulObjectType(HarmfulObjectTypeEntity harmfulObjectTypeEntity) {
     return mStorIOSQLite.delete().object(harmfulObjectTypeEntity).prepare().executeAsBlocking();
   }
+
   ///////////////////////////////////////////////////////////////////////////
   // Harmful object
   ///////////////////////////////////////////////////////////////////////////
@@ -366,7 +367,7 @@ public class DbHelper {
         .executeAsBlocking()
         //.asRxObservable()
         //.take(1)
-     ;
+        ;
   }
 
   public PutResult putWeed(WeedEntity weedEntity) {

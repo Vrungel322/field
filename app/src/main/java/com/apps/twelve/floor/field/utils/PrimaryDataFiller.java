@@ -7,16 +7,16 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionNameOb
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectTypeObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.WeedClassObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.WeedGroupObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.WeedNutritionTypeObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.WeedObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.PestObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedClassObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedGroupObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedNutritionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
@@ -81,6 +81,7 @@ public final class PrimaryDataFiller {
     mCropFiller = new CropFiller();
     mClimateZoneFiller = new ClimateZoneFiller();
     mPhaseFiller = new PhaseFiller();
+    mConditionNamesFiller = new ConditionNamesFiller();
     mConditionTypeFiller = new ConditionTypeFiller();
     mSpanValueFiller = new SpanValueFiller();
     mSoilTypeFiller = new SoilTypeFiller();
@@ -101,7 +102,6 @@ public final class PrimaryDataFiller {
     mHarmfulObjectTypeFiller = new HarmfulObjectTypeFiller();
     mHarmfulObjectsFiller = new HarmfulObjectsFiller();
     mWeedFiller = new WeedFiller();
-    mConditionNamesFiller = new ConditionNamesFiller();
     // TODO
   }
 
@@ -109,6 +109,7 @@ public final class PrimaryDataFiller {
     mCropFiller.makeObjects();
     mClimateZoneFiller.makeObjects();
     mPhaseFiller.makeObjects();
+    mConditionNamesFiller.makeObjects();
     mConditionTypeFiller.makeObjects();
     mSpanValueFiller.makeObjects();
     mSoilTypeFiller.makeObjects();
@@ -129,7 +130,6 @@ public final class PrimaryDataFiller {
     mHarmfulObjectTypeFiller.makeObjects();
     mHarmfulObjectsFiller.makeObjects();
     mWeedFiller.makeObjects();
-    mConditionNamesFiller.makeObjects();
     // TODO
   }
 
@@ -137,6 +137,7 @@ public final class PrimaryDataFiller {
     mCropFiller.saveObjects();
     mClimateZoneFiller.saveObjects();
     mPhaseFiller.saveObjects();
+    mConditionNamesFiller.saveObjects();
     mConditionTypeFiller.saveObjects();
     mSpanValueFiller.saveObjects();
     mSoilTypeFiller.saveObjects();
@@ -157,7 +158,6 @@ public final class PrimaryDataFiller {
     mHarmfulObjectTypeFiller.saveObjects();
     mHarmfulObjectsFiller.saveObjects();
     mWeedFiller.saveObjects();
-    mConditionNamesFiller.saveObjects();
     // TODO
   }
 

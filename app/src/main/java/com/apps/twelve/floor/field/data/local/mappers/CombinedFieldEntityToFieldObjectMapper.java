@@ -3,6 +3,8 @@ package com.apps.twelve.floor.field.data.local.mappers;
 import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.CropEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
+import com.apps.twelve.floor.field.data.local.mappers.process_time.ClimateZoneEntityToClimateZoneObjectMapper;
+import com.apps.twelve.floor.field.data.local.mappers.process_time.PhaseEntityToPhaseObjectMapper;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 
 /**

@@ -1,7 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities.conditions;
 
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.WeedNutritionTypesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
@@ -21,6 +20,11 @@ public class ConditionNameEntity {
     this.name = name;
   }
 
+  public static ConditionNameEntity newConditionNameEntity(Long id, String name) {
+    if (id == 0) id = null;
+    return new ConditionNameEntity(id, name);
+  }
+
   public Long getId() {
     return id;
   }
@@ -35,11 +39,6 @@ public class ConditionNameEntity {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public static ConditionNameEntity newConditionNameEntity(Long id, String name) {
-    if (id == 0) id = null;
-    return new ConditionNameEntity(id, name);
   }
 
   @Override public boolean equals(Object obj) {

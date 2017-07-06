@@ -3,7 +3,7 @@ package com.apps.twelve.floor.field.data.local.objects;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import com.apps.twelve.floor.field.data.local.objects.conditions.PestObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.PestObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.ProductObject;
 
 /**
