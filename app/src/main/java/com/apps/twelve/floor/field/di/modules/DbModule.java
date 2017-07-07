@@ -10,6 +10,8 @@ import com.apps.twelve.floor.field.data.local.entities.CropEntity;
 import com.apps.twelve.floor.field.data.local.entities.CropEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.PhenologicalCharacteristicEntity;
+import com.apps.twelve.floor.field.data.local.entities.PhenologicalCharacteristicEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.TillageDirectionEntity;
 import com.apps.twelve.floor.field.data.local.entities.TillageDirectionEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
@@ -20,8 +22,8 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanV
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntity;
@@ -123,6 +125,9 @@ import dagger.Provides;
         // PhenologicalCharacteristicEntity mapping
         .addTypeMapping(PhenologicalCharacteristicEntity.class,
             new PhenologicalCharacteristicEntitySQLiteTypeMapping())
+        // PhenologicalCharacteristicValueEntity mapping
+        .addTypeMapping(PhenologicalCharacteristicValueEntity.class,
+            new PhenologicalCharacteristicValueEntitySQLiteTypeMapping())
         // ConditionSpanValueEntity mapping
         .addTypeMapping(ConditionSpanValueEntity.class,
             new ConditionSpanValueEntitySQLiteTypeMapping())

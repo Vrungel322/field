@@ -7,12 +7,13 @@ import com.apps.twelve.floor.field.data.local.tables.CropsActiveComponentsHarmfu
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.DealersTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
+import com.apps.twelve.floor.field.data.local.tables.PhenologicalCharacteristicsTable;
 import com.apps.twelve.floor.field.data.local.tables.TillageDirectionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicsTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
@@ -75,8 +76,8 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(ConditionsTable.getCreateTableQuery());
     // ConditionTypes
     db.execSQL(ConditionTypesTable.getCreateTableQuery());
-    // PhenologicalCharacteristics
-    db.execSQL(PhenologicalCharacteristicsTable.getCreateTableQuery());
+    // PhenologicalCharacteristicValues
+    db.execSQL(PhenologicalCharacteristicValuesTable.getCreateTableQuery());
     // SoilTypes
     db.execSQL(SoilTypesTable.getCreateTableQuery());
     // TillageDirectionValues
@@ -152,5 +153,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(CropsActiveComponentsHarmfulObjectsTable.getCreateTableQuery());
     // TillageDirections
     db.execSQL(TillageDirectionsTable.getCreateTableQuery());
+    // PhenologicalCharacteristics
+    db.execSQL(PhenologicalCharacteristicsTable.getCreateTableQuery());
   }
 }

@@ -19,6 +19,7 @@ import com.apps.twelve.floor.field.data.local.mappers.conditions.ConditionNameOb
 import com.apps.twelve.floor.field.data.local.mappers.conditions.ConditionObjectToConditionEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.conditions.ConditionSpanValueObjectToConditionSpanValueEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.conditions.ConditionTypeObjectToConditionTypeEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.conditions.PhenologicalCharacteristicValueObjectToPhenologicalCharacteristicValueEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.conditions.TillageDirectionValueObjectToTillageDirectionValueEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectObjectToHarmfulObjectEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectPhaseObjectToHarmfulObjectPhaseEntityMapper;
@@ -43,12 +44,13 @@ import com.apps.twelve.floor.field.data.local.mappers.solutions.TechnologicalSol
 import com.apps.twelve.floor.field.data.local.mappers.technological_map.TechnologicalProcessStateObjectToTechnologicalProcessStateEntityMapper;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
+import com.apps.twelve.floor.field.data.local.objects.PhenologicalCharacteristicObject;
 import com.apps.twelve.floor.field.data.local.objects.TillageDirectionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionNameObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionValueObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
@@ -246,6 +248,13 @@ public class DataManager {
     return mDbHelper.putPhenologicalCharacteristic(
         new PhenologicalCharacteristicObjectToPhenologicalCharacteristicEntityMapper().transform(
             phenologicalCharacteristicObject));
+  }
+
+  public PutResult putPhenologicalCharacteristicValue(
+      PhenologicalCharacteristicValueObject phenologicalCharacteristicValueObject) {
+    return mDbHelper.putPhenologicalCharacteristicValue(
+        new PhenologicalCharacteristicValueObjectToPhenologicalCharacteristicValueEntityMapper().transform(
+            phenologicalCharacteristicValueObject));
   }
 
   public PutResult putTechnologicalSolutionType(

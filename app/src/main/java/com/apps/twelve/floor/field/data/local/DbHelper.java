@@ -5,12 +5,13 @@ import com.apps.twelve.floor.field.data.local.entities.CropActiveComponentHarmfu
 import com.apps.twelve.floor.field.data.local.entities.CropEntity;
 import com.apps.twelve.floor.field.data.local.entities.DealerEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
+import com.apps.twelve.floor.field.data.local.entities.PhenologicalCharacteristicEntity;
 import com.apps.twelve.floor.field.data.local.entities.TillageDirectionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntity;
@@ -40,12 +41,13 @@ import com.apps.twelve.floor.field.data.local.tables.CropsActiveComponentsHarmfu
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.DealersTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
+import com.apps.twelve.floor.field.data.local.tables.PhenologicalCharacteristicsTable;
 import com.apps.twelve.floor.field.data.local.tables.TillageDirectionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicsTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
@@ -233,29 +235,29 @@ public class DbHelper {
   }
 
   ///////////////////////////////////////////////////////////////////////////
-  // Phenological characteristic
+  // Phenological characteristic value
   ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<PhenologicalCharacteristicEntity>> getAllPhenologicalCharacteristics() {
+  public Observable<List<PhenologicalCharacteristicValueEntity>> getAllPhenologicalCharacteristicValues() {
     return mStorIOSQLite.get()
-        .listOfObjects(PhenologicalCharacteristicEntity.class)
-        .withQuery(PhenologicalCharacteristicsTable.QUERY_ALL)
+        .listOfObjects(PhenologicalCharacteristicValueEntity.class)
+        .withQuery(PhenologicalCharacteristicValuesTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
-  public PutResult putPhenologicalCharacteristic(
-      PhenologicalCharacteristicEntity phenologicalCharacteristicEntity) {
+  public PutResult putPhenologicalCharacteristicValue(
+      PhenologicalCharacteristicValueEntity phenologicalCharacteristicValueEntity) {
     return mStorIOSQLite.put()
-        .object(phenologicalCharacteristicEntity)
+        .object(phenologicalCharacteristicValueEntity)
         .prepare()
         .executeAsBlocking();
   }
 
-  public DeleteResult deletePhenologicalCharacteristic(
-      PhenologicalCharacteristicEntity phenologicalCharacteristicEntity) {
+  public DeleteResult deletePhenologicalCharacteristicValue(
+      PhenologicalCharacteristicValueEntity phenologicalCharacteristicValueEntity) {
     return mStorIOSQLite.delete()
-        .object(phenologicalCharacteristicEntity)
+        .object(phenologicalCharacteristicValueEntity)
         .prepare()
         .executeAsBlocking();
   }
@@ -902,5 +904,33 @@ public class DbHelper {
 
   public DeleteResult deleteTillageDirection(TillageDirectionEntity tillageDirectionEntity) {
     return mStorIOSQLite.delete().object(tillageDirectionEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Phenological characteristic
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<PhenologicalCharacteristicEntity>> getAllPhenologicalCharacteristics() {
+    return mStorIOSQLite.get()
+        .listOfObjects(PhenologicalCharacteristicEntity.class)
+        .withQuery(PhenologicalCharacteristicsTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putPhenologicalCharacteristic(
+      PhenologicalCharacteristicEntity phenologicalCharacteristicEntity) {
+    return mStorIOSQLite.put()
+        .object(phenologicalCharacteristicEntity)
+        .prepare()
+        .executeAsBlocking();
+  }
+
+  public DeleteResult deletePhenologicalCharacteristic(
+      PhenologicalCharacteristicEntity phenologicalCharacteristicEntity) {
+    return mStorIOSQLite.delete()
+        .object(phenologicalCharacteristicEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 }

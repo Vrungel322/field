@@ -4,20 +4,21 @@ import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;
 
 /**
- * Created by Yaroslav on 30.05.2017.
+ * Created by yarrick on 07.07.17.
  */
 
-public class PhenologicalCharacteristicsTable {
+public class PhenologicalCharacteristicValuesTable {
 
-  @NonNull public static final String TABLE = "PhenologicalCharacteristics";
+  @NonNull public static final String TABLE = "PhenologicalCharacteristicValues";
 
   @NonNull public static final String COLUMN_ID = "id";
-  @NonNull public static final String COLUMN_NAME = "name";
   @NonNull public static final String COLUMN_CONDITION_TYPE_ID = "condition_type_id";
+  @NonNull public static final String COLUMN_PHENOLOGICAL_CHARACTERISTIC_ID =
+      "phenological_characteristic_id";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public PhenologicalCharacteristicsTable() {
+  public PhenologicalCharacteristicValuesTable() {
     throw new IllegalStateException("No instances allowed");
   }
 
@@ -27,9 +28,10 @@ public class PhenologicalCharacteristicsTable {
         + " ("
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
-        + COLUMN_NAME
-        + " TEXT NULL, "
-        + COLUMN_CONDITION_TYPE_ID + " INTEGER "
+        + COLUMN_CONDITION_TYPE_ID
+        + " INTEGER, "
+        + COLUMN_PHENOLOGICAL_CHARACTERISTIC_ID
+        + " INTEGER "
         + ");";
   }
 }

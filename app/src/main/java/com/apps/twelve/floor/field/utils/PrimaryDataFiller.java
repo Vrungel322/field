@@ -3,13 +3,15 @@ package com.apps.twelve.floor.field.utils;
 import android.support.v4.util.SparseArrayCompat;
 import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
+import com.apps.twelve.floor.field.data.local.objects.PhenologicalCharacteristicObject;
 import com.apps.twelve.floor.field.data.local.objects.TillageDirectionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionNameObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionValueObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.PestObject;
@@ -49,7 +51,9 @@ public final class PrimaryDataFiller {
   private TechnologicalProcessStateFiller mTechnologicalProcessStateFiller;
   private PestFiller mPestFiller;
   private TillageDirectionFiller mTillageDirectionFiller;
+  private TillageDirectionValueFiller mTillageDirectionValueFiller;
   private PhenologicalCharacteristicFiller mPhenologicalCharacteristicFiller;
+  private PhenologicalCharacteristicValueFiller mPhenologicalCharacteristicValueFiller;
   private TechnologicalSolutionTypeFiller mTechnologicalSolutionTypeFiller;
   private AggregateFiller mAggregateFiller;
   private InsectFiller mInsectFiller;
@@ -87,7 +91,9 @@ public final class PrimaryDataFiller {
     mSoilTypeFiller = new SoilTypeFiller();
     mPestFiller = new PestFiller();
     mTillageDirectionFiller = new TillageDirectionFiller();
+    mTillageDirectionValueFiller = new TillageDirectionValueFiller();
     mPhenologicalCharacteristicFiller = new PhenologicalCharacteristicFiller();
+    mPhenologicalCharacteristicValueFiller = new PhenologicalCharacteristicValueFiller();
     mConditionsFiller = new ConditionsFiller();
     mTechnologicalProcessStateFiller = new TechnologicalProcessStateFiller();
     mTechnologicalSolutionTypeFiller = new TechnologicalSolutionTypeFiller();
@@ -115,7 +121,9 @@ public final class PrimaryDataFiller {
     mSoilTypeFiller.makeObjects();
     mPestFiller.makeObjects();
     mTillageDirectionFiller.makeObjects();
+    mTillageDirectionValueFiller.makeObjects();
     mPhenologicalCharacteristicFiller.makeObjects();
+    mPhenologicalCharacteristicValueFiller.makeObjects();
     mConditionsFiller.makeObjects();
     mTechnologicalProcessStateFiller.makeObjects();
     mTechnologicalSolutionTypeFiller.makeObjects();
@@ -143,7 +151,9 @@ public final class PrimaryDataFiller {
     mSoilTypeFiller.saveObjects();
     mPestFiller.saveObjects();
     mTillageDirectionFiller.saveObjects();
+    mTillageDirectionValueFiller.saveObjects();
     mPhenologicalCharacteristicFiller.saveObjects();
+    mPhenologicalCharacteristicValueFiller.saveObjects();
     mConditionsFiller.saveObjects();
     mTechnologicalProcessStateFiller.saveObjects();
     mTechnologicalSolutionTypeFiller.saveObjects();
@@ -416,10 +426,6 @@ public final class PrimaryDataFiller {
     private SparseArrayCompat<TillageDirectionObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
-
-      ConditionTypeObject tillageDirectionConditionTypeObject =
-          mConditionTypeFiller.objects.get(ConditionTypeFiller.TILLAGE_DIRECTION_KEY);
-
       objects.put(1, new TillageDirectionObject(1, "під кутом 45⁰ до напряму оранки"));
       objects.put(2, new TillageDirectionObject(2, "Човнико-вий або діагональ-ний"));
       objects.put(3, new TillageDirectionObject(3, "міжряддя вздовж рядків"));
@@ -433,6 +439,33 @@ public final class PrimaryDataFiller {
     }
   }
 
+  private class TillageDirectionValueFiller {
+
+    private static final int CAPACITY = 4;
+
+    private SparseArrayCompat<TillageDirectionValueObject> objects = new SparseArrayCompat<>(CAPACITY);
+
+    void makeObjects() {
+
+      ConditionTypeObject tillageDirectionConditionTypeObject =
+          mConditionTypeFiller.objects.get(ConditionTypeFiller.TILLAGE_DIRECTION_KEY);
+
+      int currentId = 1;
+      for (int i = 0; i < mTillageDirectionFiller.objects.size(); i++) {
+        objects.put(currentId, new TillageDirectionValueObject(currentId, tillageDirectionConditionTypeObject, mTillageDirectionFiller.objects.valueAt(i)));
+        currentId++;
+      }
+
+
+    }
+
+    void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putTillageDirectionValue(objects.valueAt(i));
+      }
+    }
+  }
+
   private class PhenologicalCharacteristicFiller {
 
     private static final int CAPACITY = 8;
@@ -441,35 +474,52 @@ public final class PrimaryDataFiller {
         new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
-
-      ConditionTypeObject phenologicalCharacteristicConditionTypeObject =
-          mConditionTypeFiller.objects.get(ConditionTypeFiller.PHENOLOGICAL_CHARACTERISTIC_KEY);
-
-      objects.put(1, new PhenologicalCharacteristicObject(1, "Цвітіння черемухи",
-          phenologicalCharacteristicConditionTypeObject));
-      objects.put(2, new PhenologicalCharacteristicObject(2, "Цвітіння черешні",
-          phenologicalCharacteristicConditionTypeObject));
+      objects.put(1, new PhenologicalCharacteristicObject(1, "Цвітіння черемухи"));
+      objects.put(2, new PhenologicalCharacteristicObject(2, "Цвітіння черешні"));
       objects.put(3, new PhenologicalCharacteristicObject(3,
-          "Активна вегетація. Рослини не повинні перебувати в стресовому стані",
-          phenologicalCharacteristicConditionTypeObject));
+          "Активна вегетація. Рослини не повинні перебувати в стресовому стані"));
       objects.put(4, new PhenologicalCharacteristicObject(4,
-          "Початок масового льоту кукурудзяного метелика -визначається за допомогою феромонних пасток. ",
-          phenologicalCharacteristicConditionTypeObject));
-      objects.put(5,
-          new PhenologicalCharacteristicObject(5, "масове відкладання яєць кукурудзяним метеликом",
-              phenologicalCharacteristicConditionTypeObject));
-      objects.put(6, new PhenologicalCharacteristicObject(6, "проникнення перших гусениць у стебла",
-          phenologicalCharacteristicConditionTypeObject));
-      objects.put(7, new PhenologicalCharacteristicObject(7, "Активна вегетація бур’янів",
-          phenologicalCharacteristicConditionTypeObject));
+          "Початок масового льоту кукурудзяного метелика -визначається за допомогою феромонних пасток. "));
+      objects.put(5, new PhenologicalCharacteristicObject(5,
+          "масове відкладання яєць кукурудзяним метеликом"));
+      objects.put(6,
+          new PhenologicalCharacteristicObject(6, "проникнення перших гусениць у стебла"));
+      objects.put(7, new PhenologicalCharacteristicObject(7, "Активна вегетація бур’янів"));
       objects.put(8, new PhenologicalCharacteristicObject(8,
-          "Візуально визначається по наявності чор-ного прошарку (чорної точки) між зерном і місцем прикріплення його до качана",
-          phenologicalCharacteristicConditionTypeObject));
+          "Візуально визначається по наявності чор-ного прошарку (чорної точки) між зерном і місцем прикріплення його до качана"));
     }
 
     void saveObjects() {
       for (int i = 0; i < objects.size(); i++) {
         mDataManager.putPhenologicalCharacteristic(objects.valueAt(i));
+      }
+    }
+  }
+
+  private class PhenologicalCharacteristicValueFiller {
+
+    private static final int CAPACITY = 8;
+
+    private SparseArrayCompat<PhenologicalCharacteristicValueObject> objects =
+        new SparseArrayCompat<>(CAPACITY);
+
+    void makeObjects() {
+
+      ConditionTypeObject phenologicalCharacteristicConditionType =
+          mConditionTypeFiller.objects.get(ConditionTypeFiller.PHENOLOGICAL_CHARACTERISTIC_KEY);
+
+      int currentId = 1;
+      for (int i = 0; i < mPhenologicalCharacteristicFiller.objects.size(); i++) {
+        objects.put(currentId, new PhenologicalCharacteristicValueObject(currentId,
+            phenologicalCharacteristicConditionType,
+            mPhenologicalCharacteristicFiller.objects.valueAt(i)));
+        currentId++;
+      }
+    }
+
+    void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putPhenologicalCharacteristicValue(objects.valueAt(i));
       }
     }
   }
@@ -1319,6 +1369,7 @@ public final class PrimaryDataFiller {
       for (int i = 0; i < mWeedFiller.objects.size(); i++) {
         objects.put(currentId, new HarmfulObjectObject(currentId, weedHarmfulObjectTypeId,
             mWeedFiller.objects.valueAt(i).getId()));
+        currentId++;
       }
     }
 

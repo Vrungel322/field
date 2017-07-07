@@ -1,6 +1,6 @@
-package com.apps.twelve.floor.field.data.local.entities.conditions;
+package com.apps.twelve.floor.field.data.local.entities;
 
-import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicsTable;
+import com.apps.twelve.floor.field.data.local.tables.PhenologicalCharacteristicsTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
@@ -13,22 +13,19 @@ public class PhenologicalCharacteristicEntity {
 
   @StorIOSQLiteColumn(name = PhenologicalCharacteristicsTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = PhenologicalCharacteristicsTable.COLUMN_NAME) String name;
-  @StorIOSQLiteColumn(name = PhenologicalCharacteristicsTable.COLUMN_CONDITION_TYPE_ID) Long
-      conditionTypeId;
 
   public PhenologicalCharacteristicEntity() {
   }
 
-  public PhenologicalCharacteristicEntity(Long id, String name, Long conditionTypeId) {
+  public PhenologicalCharacteristicEntity(Long id, String name) {
     this.id = id;
     this.name = name;
-    this.conditionTypeId = conditionTypeId;
   }
 
   public static PhenologicalCharacteristicEntity newPhenologicalCharacteristicEntity(Long id,
-      String name, Long conditionTypeId) {
+      String name) {
     if (id == 0) id = null;
-    return new PhenologicalCharacteristicEntity(id, name, conditionTypeId);
+    return new PhenologicalCharacteristicEntity(id, name);
   }
 
   @Override public boolean equals(Object obj) {
@@ -38,16 +35,13 @@ public class PhenologicalCharacteristicEntity {
     PhenologicalCharacteristicEntity that = (PhenologicalCharacteristicEntity) obj;
 
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
-    if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
-    return conditionTypeId != null ? conditionTypeId.equals(that.conditionTypeId)
-        : that.conditionTypeId == null;
+    return name != null ? name.equals(that.name) : that.name == null;
   }
 
   @Override public int hashCode() {
     int result = id != null ? id.hashCode() : 0;
     result = 31 * result + (name != null ? name.hashCode() : 0);
-    result = 31 * result + (conditionTypeId != null ? conditionTypeId.hashCode() : 0);
     return result;
   }
 
@@ -65,13 +59,5 @@ public class PhenologicalCharacteristicEntity {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public Long getConditionTypeId() {
-    return conditionTypeId;
-  }
-
-  public void setConditionTypeId(Long conditionTypeId) {
-    this.conditionTypeId = conditionTypeId;
   }
 }
