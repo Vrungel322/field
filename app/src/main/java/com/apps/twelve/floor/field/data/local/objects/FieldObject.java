@@ -187,4 +187,24 @@ public class FieldObject implements Parcelable, Cloneable {
   public void addAllPoints(List<LatLng> points) {
     mPoints.addAll(points);
   }
+
+  public long getCropId() {
+    return mCrop.getId();
+  }
+
+  public long getPreviousCropId() {
+    return (mPreviousCrop != null) ? mPreviousCrop.getId() : null;
+  }
+
+  public long getClimateZoneId() {
+    return mClimateZone.getId();
+  }
+
+  public long getPhaseId() {
+    return mPhase.getId();
+  }
+
+  public long getSoilTypeId() {
+    return mSoilType.getId();
+  }
 }

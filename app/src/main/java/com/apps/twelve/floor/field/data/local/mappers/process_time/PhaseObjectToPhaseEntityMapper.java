@@ -11,6 +11,6 @@ import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 public class PhaseObjectToPhaseEntityMapper implements Mapper<PhaseObject, PhaseEntity> {
 
   @Override public PhaseEntity transform(PhaseObject obj) throws RuntimeException {
-    return PhaseEntity.newPhaseEntity(obj.getId(), obj.getName(), obj.getCrop().getId());
+    return PhaseEntity.newPhaseEntity(obj.getId(), obj.getName(), obj.getCropId());
   }
 }

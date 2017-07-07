@@ -89,4 +89,8 @@ public class ConditionSpanValueObject extends BaseConditionValueObject {
   public void setValueTo(long valueTo) {
     this.mValueTo = valueTo;
   }
+
+  public long getTypeId() {
+    return mType.getId();
+  }
 }

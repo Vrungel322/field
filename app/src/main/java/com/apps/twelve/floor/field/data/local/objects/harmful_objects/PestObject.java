@@ -95,4 +95,8 @@ public class PestObject implements Parcelable {
   public void setIsGroup(boolean isGroup) {
     this.mIsGroup = isGroup;
   }
+
+  public long getConditionTypeId() {
+    return mConditionType.getId();
+  }
 }

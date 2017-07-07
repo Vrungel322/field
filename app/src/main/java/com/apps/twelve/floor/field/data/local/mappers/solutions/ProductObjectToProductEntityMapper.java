@@ -11,7 +11,7 @@ import com.apps.twelve.floor.field.data.local.objects.solutions.ProductObject;
 public class ProductObjectToProductEntityMapper implements Mapper<ProductObject, ProductEntity> {
   @Override public ProductEntity transform(ProductObject obj) throws RuntimeException {
     // TODO: need doze for product
-    return ProductEntity.newProductEntity(obj.getId(), obj.getName(), obj.getType().getId(),
-        obj.getCategory().getId(), 0L /*TODO*/, obj.getPrice());
+    return ProductEntity.newProductEntity(obj.getId(), obj.getName(), obj.getTypeId(),
+        obj.getCategoryId(), 0L /*TODO*/, obj.getPrice());
   }
 }

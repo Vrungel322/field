@@ -12,7 +12,7 @@ public class ConditionSpanValueObjectToConditionSpanValueEntityMapper
     implements Mapper<ConditionSpanValueObject, ConditionSpanValueEntity> {
   @Override public ConditionSpanValueEntity transform(ConditionSpanValueObject obj)
       throws RuntimeException {
-    return ConditionSpanValueEntity.newConditionSpanValueEntity(obj.getId(), obj.getType().getId(),
+    return ConditionSpanValueEntity.newConditionSpanValueEntity(obj.getId(), obj.getTypeId(),
         obj.getValueFrom(), obj.getValueTo());
   }
 }

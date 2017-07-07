@@ -11,7 +11,7 @@ import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 public class AggregateObjectToAggregateEntityMapper
     implements Mapper<AggregateObject, AggregateEntity> {
   @Override public AggregateEntity transform(AggregateObject obj) throws RuntimeException {
-    return AggregateEntity.newAggregateEntity(obj.getId(), obj.getName(), obj.getType().getId(),
+    return AggregateEntity.newAggregateEntity(obj.getId(), obj.getName(), obj.getTypeId(),
         obj.getPrice());
   }
 }

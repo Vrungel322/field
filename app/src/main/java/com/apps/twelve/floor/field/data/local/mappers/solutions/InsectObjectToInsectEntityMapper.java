@@ -10,7 +10,7 @@ import com.apps.twelve.floor.field.data.local.objects.solutions.InsectObject;
 
 public class InsectObjectToInsectEntityMapper implements Mapper<InsectObject, InsectEntity> {
   @Override public InsectEntity transform(InsectObject obj) throws RuntimeException {
-    return InsectEntity.newInsectEntity(obj.getId(), obj.getName(), obj.getType().getId(),
+    return InsectEntity.newInsectEntity(obj.getId(), obj.getName(), obj.getTypeId(),
         obj.getPrice());
   }
 }

@@ -95,4 +95,12 @@ public class ProductObject extends BaseTechnologicalSolutionObject {
   public void setCategory(@NonNull ProductCategoryObject category) {
     this.mCategory = category;
   }
+
+  public long getTypeId() {
+    return mType.getId();
+  }
+
+  public long getCategoryId() {
+    return mCategory.getId();
+  }
 }

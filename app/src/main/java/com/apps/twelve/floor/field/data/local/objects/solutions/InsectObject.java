@@ -81,4 +81,8 @@ public class InsectObject extends BaseTechnologicalSolutionObject {
   @Override public void setType(@NonNull TechnologicalSolutionTypeObject type) {
     this.mType = type;
   }
+
+  public long getTypeId() {
+    return mType.getId();
+  }
 }

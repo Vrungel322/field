@@ -12,11 +12,6 @@ import com.apps.twelve.floor.field.data.local.objects.CropObject;
 public class PhaseObject implements Parcelable, Cloneable {
 
   public static final PhaseObject EMPTY;
-
-  static {
-    EMPTY = new PhaseObject(0, "", CropObject.EMPTY);
-  }
-
   public static final Creator<PhaseObject> CREATOR = new Creator<PhaseObject>() {
     @Override public PhaseObject createFromParcel(Parcel in) {
       return new PhaseObject(in);
@@ -26,6 +21,10 @@ public class PhaseObject implements Parcelable, Cloneable {
       return new PhaseObject[size];
     }
   };
+
+  static {
+    EMPTY = new PhaseObject(0, "", CropObject.EMPTY);
+  }
 
   private long mId;
   @NonNull private String mName;
@@ -84,5 +83,9 @@ public class PhaseObject implements Parcelable, Cloneable {
 
   public void setCrop(@NonNull CropObject crop) {
     this.mCrop = crop;
+  }
+
+  public long getCropId() {
+    return mCrop.getId();
   }
 }

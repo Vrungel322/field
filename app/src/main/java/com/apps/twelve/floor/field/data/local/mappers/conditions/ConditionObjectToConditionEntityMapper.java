@@ -11,8 +11,8 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject
 public class ConditionObjectToConditionEntityMapper
     implements Mapper<ConditionObject, ConditionEntity> {
   @Override public ConditionEntity transform(ConditionObject obj) throws RuntimeException {
-    return ConditionEntity.newConditionEntity(obj.getId(), obj.getPriority(), obj.getName().getId(),
-        obj.getConditionType().getId(), obj.getConditionValue().getId());
+    return ConditionEntity.newConditionEntity(obj.getId(), obj.getPriority(), obj.getNameId(),
+        obj.getConditionTypeId(), obj.getConditionValueId());
   }
 }
 
