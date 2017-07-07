@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.data.local.tables.conditions;
+package com.apps.twelve.floor.field.data.local.tables;
 
 import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;
@@ -13,13 +13,10 @@ public class SoilTypesTable {
 
   @NonNull public static final String COLUMN_ID = "id";
   @NonNull public static final String COLUMN_NAME = "name";
-  @NonNull public static final String COLUMN_CONDITION_TYPE_ID = "condition_type_id";
   @NonNull public static final String COLUMN_COORDINATES = "coordinates";
 
   @NonNull public static final String COLUMN_ID_WITH_TABLE_PREFIX = TABLE + "." + COLUMN_ID;
   @NonNull public static final String COLUMN_NAME_WITH_TABLE_PREFIX = TABLE + "." + COLUMN_NAME;
-  @NonNull public static final String COLUMN_CONDITION_TYPE_ID_WITH_TABLE_PREFIX =
-      TABLE + "." + COLUMN_CONDITION_TYPE_ID;
   @NonNull public static final String COLUMN_COORDINATES_WITH_TABLE_PREFIX =
       TABLE + "." + COLUMN_COORDINATES;
 
@@ -36,7 +33,7 @@ public class SoilTypesTable {
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_NAME
-        + " TEXT NULL, " + COLUMN_CONDITION_TYPE_ID + " INTEGER, "
+        + " TEXT NULL, "
         + COLUMN_COORDINATES
         + " TEXT NULL "
         + ");";

@@ -21,7 +21,7 @@ import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.utils.Constants;
@@ -38,12 +38,6 @@ import java.util.List;
 public class EditFieldBottomSheetFragment extends BaseFragment implements IEditFieldFragmentView {
 
   @InjectPresenter EditFieldPresenter mEditFieldPresenter;
-
-  @ProvidePresenter EditFieldPresenter provideEditFieldPresenter() {
-    return new EditFieldPresenter(
-        getArguments().getParcelable(Constants.EditField.FIELD_BUNDLE_KEY));
-  }
-
   @BindView(R.id.constraint_layout_root) ConstraintLayout mConstraintLayoutRoot;
   @BindView(R.id.toggle_button_edit_mode) ToggleButton mTglBtnEditMode;
   @BindView(R.id.ed_text_name) EditText mEdTextName;
@@ -55,13 +49,11 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   @BindView(R.id.spinner_phase) Spinner mSpinnerPhase;
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
-
   private CropsArrayAdapter mCropsAdapter;
   private CropsArrayAdapter mPreviousCropsAdapter;
   private ClimateZonesArrayAdapter mClimateZonesAdapter;
   private SoilTypesArrayAdapter mSoilTypesAdapter;
   private PhasesArrayAdapter mPhasesAdapter;
-
   public EditFieldBottomSheetFragment() {
     super(R.layout.fragment_edit_field_bottom_sheet);
   }
@@ -76,6 +68,11 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
     EditFieldBottomSheetFragment fragment = new EditFieldBottomSheetFragment();
     fragment.setArguments(args);
     return fragment;
+  }
+
+  @ProvidePresenter EditFieldPresenter provideEditFieldPresenter() {
+    return new EditFieldPresenter(
+        getArguments().getParcelable(Constants.EditField.FIELD_BUNDLE_KEY));
   }
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

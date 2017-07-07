@@ -8,13 +8,14 @@ import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.DealersTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
 import com.apps.twelve.floor.field.data.local.tables.PhenologicalCharacteristicsTable;
+import com.apps.twelve.floor.field.data.local.tables.SoilTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.TillageDirectionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicValuesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypeValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectTypesTable;
@@ -78,8 +79,8 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(ConditionTypesTable.getCreateTableQuery());
     // PhenologicalCharacteristicValues
     db.execSQL(PhenologicalCharacteristicValuesTable.getCreateTableQuery());
-    // SoilTypes
-    db.execSQL(SoilTypesTable.getCreateTableQuery());
+    // SoilTypeValues
+    db.execSQL(SoilTypeValuesTable.getCreateTableQuery());
     // TillageDirectionValues
     db.execSQL(TillageDirectionValuesTable.getCreateTableQuery());
     // ConditionNames
@@ -155,5 +156,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(TillageDirectionsTable.getCreateTableQuery());
     // PhenologicalCharacteristics
     db.execSQL(PhenologicalCharacteristicsTable.getCreateTableQuery());
+    // SoilTypes
+    db.execSQL(SoilTypesTable.getCreateTableQuery());
   }
 }

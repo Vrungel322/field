@@ -19,7 +19,7 @@ import butterknife.OnEditorAction;
 import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.feature.edit_field.ClimateZonesArrayAdapter;
@@ -43,12 +43,6 @@ public class AddFieldTrackingBottomSheetFragment extends BaseFragment
     implements IEditFieldFragmentView {
 
   @InjectPresenter EditFieldPresenter mEditFieldPresenter;
-
-  @ProvidePresenter EditFieldPresenter provideEditFieldPresenter() {
-    return new EditFieldPresenter(
-        getArguments().getParcelable(Constants.EditField.FIELD_BUNDLE_KEY));
-  }
-
   @BindView(R.id.toggle_button_tracking_mode) ToggleButton mTglBtnTrackingMode;
   @BindView(R.id.ed_text_name) EditText mEdTextName;
   @BindView(R.id.ed_text_area) EditText mEdTextArea;
@@ -59,13 +53,11 @@ public class AddFieldTrackingBottomSheetFragment extends BaseFragment
   @BindView(R.id.spinner_phase) Spinner mSpinnerPhase;
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
-
   private CropsArrayAdapter mCropsAdapter;
   private CropsArrayAdapter mPreviousCropsAdapter;
   private ClimateZonesArrayAdapter mClimateZonesAdapter;
   private SoilTypesArrayAdapter mSoilTypesAdapter;
   private PhasesArrayAdapter mPhasesAdapter;
-
   public AddFieldTrackingBottomSheetFragment() {
     super(R.layout.fragment_tracking_field_bottom_sheet);
   }
@@ -75,6 +67,11 @@ public class AddFieldTrackingBottomSheetFragment extends BaseFragment
     AddFieldTrackingBottomSheetFragment fragment = new AddFieldTrackingBottomSheetFragment();
     fragment.setArguments(args);
     return fragment;
+  }
+
+  @ProvidePresenter EditFieldPresenter provideEditFieldPresenter() {
+    return new EditFieldPresenter(
+        getArguments().getParcelable(Constants.EditField.FIELD_BUNDLE_KEY));
   }
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

@@ -6,13 +6,14 @@ import com.apps.twelve.floor.field.data.local.entities.CropEntity;
 import com.apps.twelve.floor.field.data.local.entities.DealerEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.PhenologicalCharacteristicEntity;
+import com.apps.twelve.floor.field.data.local.entities.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.TillageDirectionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectPhaseEntity;
@@ -42,13 +43,14 @@ import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.DealersTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
 import com.apps.twelve.floor.field.data.local.tables.PhenologicalCharacteristicsTable;
+import com.apps.twelve.floor.field.data.local.tables.SoilTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.TillageDirectionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicValuesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypeValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectTypesTable;
@@ -155,86 +157,6 @@ public class DbHelper {
   }
 
   ///////////////////////////////////////////////////////////////////////////
-  // Pest
-  ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<PestEntity>> getAllPests() {
-    return mStorIOSQLite.get()
-        .listOfObjects(PestEntity.class)
-        .withQuery(PestsTable.QUERY_ALL)
-        .prepare()
-        .asRxObservable()
-        .take(1);
-  }
-
-  public PutResult putPest(PestEntity pestEntity) {
-    return mStorIOSQLite.put().object(pestEntity).prepare().executeAsBlocking();
-  }
-
-  public DeleteResult deletePest(PestEntity pestEntity) {
-    return mStorIOSQLite.delete().object(pestEntity).prepare().executeAsBlocking();
-  }
-
-  ///////////////////////////////////////////////////////////////////////////
-  // Harmful object type
-  ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<HarmfulObjectTypeEntity>> getAllHarmfulObjectTypes() {
-    return mStorIOSQLite.get()
-        .listOfObjects(HarmfulObjectTypeEntity.class)
-        .withQuery(HarmfulObjectTypesTable.QUERY_ALL)
-        .prepare()
-        .asRxObservable()
-        .take(1);
-  }
-
-  public PutResult putHarmfulObjectType(HarmfulObjectTypeEntity harmfulObjectTypeEntity) {
-    return mStorIOSQLite.put().object(harmfulObjectTypeEntity).prepare().executeAsBlocking();
-  }
-
-  public DeleteResult deleteHarmfulObjectType(HarmfulObjectTypeEntity harmfulObjectTypeEntity) {
-    return mStorIOSQLite.delete().object(harmfulObjectTypeEntity).prepare().executeAsBlocking();
-  }
-
-  ///////////////////////////////////////////////////////////////////////////
-  // Harmful object
-  ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<HarmfulObjectEntity>> getAllHarmfulObjects() {
-    return mStorIOSQLite.get()
-        .listOfObjects(HarmfulObjectEntity.class)
-        .withQuery(HarmfulObjectsTable.QUERY_ALL)
-        .prepare()
-        .asRxObservable()
-        .take(1);
-  }
-
-  public PutResult putHarmfulObject(HarmfulObjectEntity harmfulObjectEntity) {
-    return mStorIOSQLite.put().object(harmfulObjectEntity).prepare().executeAsBlocking();
-  }
-
-  public DeleteResult deleteHarmfulObject(HarmfulObjectEntity harmfulObjectEntity) {
-    return mStorIOSQLite.delete().object(harmfulObjectEntity).prepare().executeAsBlocking();
-  }
-
-  ///////////////////////////////////////////////////////////////////////////
-  // Harmful Object phase
-  ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<HarmfulObjectPhaseEntity>> getAllHarmfulObjectPhases() {
-    return mStorIOSQLite.get()
-        .listOfObjects(HarmfulObjectPhaseEntity.class)
-        .withQuery(HarmfulObjectPhasesTable.QUERY_ALL)
-        .prepare()
-        .asRxObservable()
-        .take(1);
-  }
-
-  public PutResult putHarmfulObjectPhase(HarmfulObjectPhaseEntity harmfulObjectPhaseEntity) {
-    return mStorIOSQLite.put().object(harmfulObjectPhaseEntity).prepare().executeAsBlocking();
-  }
-
-  public DeleteResult deleteHarmfulObjectPhase(HarmfulObjectPhaseEntity harmfulObjectPhaseEntity) {
-    return mStorIOSQLite.delete().object(harmfulObjectPhaseEntity).prepare().executeAsBlocking();
-  }
-
-  ///////////////////////////////////////////////////////////////////////////
   // Phenological characteristic value
   ///////////////////////////////////////////////////////////////////////////
   public Observable<List<PhenologicalCharacteristicValueEntity>> getAllPhenologicalCharacteristicValues() {
@@ -263,23 +185,23 @@ public class DbHelper {
   }
 
   ///////////////////////////////////////////////////////////////////////////
-  // Soil type
+  // Soil type value
   ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<SoilTypeEntity>> getAllSoilTypes() {
+  public Observable<List<SoilTypeValueEntity>> getAllSoilTypeValues() {
     return mStorIOSQLite.get()
-        .listOfObjects(SoilTypeEntity.class)
-        .withQuery(SoilTypesTable.QUERY_ALL)
+        .listOfObjects(SoilTypeValueEntity.class)
+        .withQuery(SoilTypeValuesTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
-  public PutResult putSoilType(SoilTypeEntity soilTypeEntity) {
-    return mStorIOSQLite.put().object(soilTypeEntity).prepare().executeAsBlocking();
+  public PutResult putSoilTypeValue(SoilTypeValueEntity soilTypeValueEntity) {
+    return mStorIOSQLite.put().object(soilTypeValueEntity).prepare().executeAsBlocking();
   }
 
-  public DeleteResult deleteSoilType(SoilTypeEntity soilTypeEntity) {
-    return mStorIOSQLite.delete().object(soilTypeEntity).prepare().executeAsBlocking();
+  public DeleteResult deleteSoilTypeValue(SoilTypeValueEntity soilTypeValueEntity) {
+    return mStorIOSQLite.delete().object(soilTypeValueEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -302,89 +224,6 @@ public class DbHelper {
   public DeleteResult deleteTillageDirectionValue(
       TillageDirectionValueEntity tillageDirectionValueEntity) {
     return mStorIOSQLite.delete().object(tillageDirectionValueEntity).prepare().executeAsBlocking();
-  }
-
-  ///////////////////////////////////////////////////////////////////////////
-  // Weed nutrition type
-  ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<WeedNutritionTypeEntity>> getAllWeedNutritionTypes() {
-    return mStorIOSQLite.get()
-        .listOfObjects(WeedNutritionTypeEntity.class)
-        .withQuery(WeedNutritionTypesTable.QUERY_ALL)
-        .prepare()
-        .asRxObservable()
-        .take(1);
-  }
-
-  public PutResult putWeedNutritionType(WeedNutritionTypeEntity weedNutritionTypeEntity) {
-    return mStorIOSQLite.put().object(weedNutritionTypeEntity).prepare().executeAsBlocking();
-  }
-
-  public DeleteResult deleteWeedNutritionType(WeedNutritionTypeEntity weedNutritionTypeEntity) {
-    return mStorIOSQLite.delete().object(weedNutritionTypeEntity).prepare().executeAsBlocking();
-  }
-
-  ///////////////////////////////////////////////////////////////////////////
-  // Weed class
-  ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<WeedClassEntity>> getAllWeedClasses() {
-    return mStorIOSQLite.get()
-        .listOfObjects(WeedClassEntity.class)
-        .withQuery(WeedClassesTable.QUERY_ALL)
-        .prepare()
-        .asRxObservable()
-        .take(1);
-  }
-
-  public PutResult putWeedClass(WeedClassEntity weedClassEntity) {
-    return mStorIOSQLite.put().object(weedClassEntity).prepare().executeAsBlocking();
-  }
-
-  public DeleteResult deleteWeedClass(WeedClassEntity weedClassEntity) {
-    return mStorIOSQLite.delete().object(weedClassEntity).prepare().executeAsBlocking();
-  }
-
-  ///////////////////////////////////////////////////////////////////////////
-  // Weed group
-  ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<WeedGroupEntity>> getAllWeedGroups() {
-    return mStorIOSQLite.get()
-        .listOfObjects(WeedGroupEntity.class)
-        .withQuery(WeedGroupsTable.QUERY_ALL)
-        .prepare()
-        .asRxObservable()
-        .take(1);
-  }
-
-  public PutResult putWeedGroup(WeedGroupEntity weedGroupEntity) {
-    return mStorIOSQLite.put().object(weedGroupEntity).prepare().executeAsBlocking();
-  }
-
-  public DeleteResult deleteWeedGroup(WeedGroupEntity weedGroupEntity) {
-    return mStorIOSQLite.delete().object(weedGroupEntity).prepare().executeAsBlocking();
-  }
-
-  ///////////////////////////////////////////////////////////////////////////
-  // Weed
-  ///////////////////////////////////////////////////////////////////////////
-  public List<WeedEntity> getAllWeed() {
-    return mStorIOSQLite.get()
-        .listOfObjects(WeedEntity.class)
-        .withQuery(WeedsTable.QUERY_ALL)
-        .prepare()
-
-        .executeAsBlocking()
-        //.asRxObservable()
-        //.take(1)
-        ;
-  }
-
-  public PutResult putWeed(WeedEntity weedEntity) {
-    return mStorIOSQLite.put().object(weedEntity).prepare().executeAsBlocking();
-  }
-
-  public DeleteResult deleteWeed(WeedEntity weedEntity) {
-    return mStorIOSQLite.delete().object(weedEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -727,6 +566,172 @@ public class DbHelper {
   }
 
   ///////////////////////////////////////////////////////////////////////////
+  // HARMFUL OBJECTS
+  ///////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////
+  // Harmful object type
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<HarmfulObjectTypeEntity>> getAllHarmfulObjectTypes() {
+    return mStorIOSQLite.get()
+        .listOfObjects(HarmfulObjectTypeEntity.class)
+        .withQuery(HarmfulObjectTypesTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putHarmfulObjectType(HarmfulObjectTypeEntity harmfulObjectTypeEntity) {
+    return mStorIOSQLite.put().object(harmfulObjectTypeEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteHarmfulObjectType(HarmfulObjectTypeEntity harmfulObjectTypeEntity) {
+    return mStorIOSQLite.delete().object(harmfulObjectTypeEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Harmful object
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<HarmfulObjectEntity>> getAllHarmfulObjects() {
+    return mStorIOSQLite.get()
+        .listOfObjects(HarmfulObjectEntity.class)
+        .withQuery(HarmfulObjectsTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putHarmfulObject(HarmfulObjectEntity harmfulObjectEntity) {
+    return mStorIOSQLite.put().object(harmfulObjectEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteHarmfulObject(HarmfulObjectEntity harmfulObjectEntity) {
+    return mStorIOSQLite.delete().object(harmfulObjectEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Harmful Object phase
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<HarmfulObjectPhaseEntity>> getAllHarmfulObjectPhases() {
+    return mStorIOSQLite.get()
+        .listOfObjects(HarmfulObjectPhaseEntity.class)
+        .withQuery(HarmfulObjectPhasesTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putHarmfulObjectPhase(HarmfulObjectPhaseEntity harmfulObjectPhaseEntity) {
+    return mStorIOSQLite.put().object(harmfulObjectPhaseEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteHarmfulObjectPhase(HarmfulObjectPhaseEntity harmfulObjectPhaseEntity) {
+    return mStorIOSQLite.delete().object(harmfulObjectPhaseEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Weed nutrition type
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<WeedNutritionTypeEntity>> getAllWeedNutritionTypes() {
+    return mStorIOSQLite.get()
+        .listOfObjects(WeedNutritionTypeEntity.class)
+        .withQuery(WeedNutritionTypesTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putWeedNutritionType(WeedNutritionTypeEntity weedNutritionTypeEntity) {
+    return mStorIOSQLite.put().object(weedNutritionTypeEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteWeedNutritionType(WeedNutritionTypeEntity weedNutritionTypeEntity) {
+    return mStorIOSQLite.delete().object(weedNutritionTypeEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Weed class
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<WeedClassEntity>> getAllWeedClasses() {
+    return mStorIOSQLite.get()
+        .listOfObjects(WeedClassEntity.class)
+        .withQuery(WeedClassesTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putWeedClass(WeedClassEntity weedClassEntity) {
+    return mStorIOSQLite.put().object(weedClassEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteWeedClass(WeedClassEntity weedClassEntity) {
+    return mStorIOSQLite.delete().object(weedClassEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Weed group
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<WeedGroupEntity>> getAllWeedGroups() {
+    return mStorIOSQLite.get()
+        .listOfObjects(WeedGroupEntity.class)
+        .withQuery(WeedGroupsTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putWeedGroup(WeedGroupEntity weedGroupEntity) {
+    return mStorIOSQLite.put().object(weedGroupEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteWeedGroup(WeedGroupEntity weedGroupEntity) {
+    return mStorIOSQLite.delete().object(weedGroupEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Weed
+  ///////////////////////////////////////////////////////////////////////////
+  public List<WeedEntity> getAllWeed() {
+    return mStorIOSQLite.get()
+        .listOfObjects(WeedEntity.class)
+        .withQuery(WeedsTable.QUERY_ALL)
+        .prepare()
+
+        .executeAsBlocking()
+        //.asRxObservable()
+        //.take(1)
+        ;
+  }
+
+  public PutResult putWeed(WeedEntity weedEntity) {
+    return mStorIOSQLite.put().object(weedEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteWeed(WeedEntity weedEntity) {
+    return mStorIOSQLite.delete().object(weedEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Pest
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<PestEntity>> getAllPests() {
+    return mStorIOSQLite.get()
+        .listOfObjects(PestEntity.class)
+        .withQuery(PestsTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putPest(PestEntity pestEntity) {
+    return mStorIOSQLite.put().object(pestEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deletePest(PestEntity pestEntity) {
+    return mStorIOSQLite.delete().object(pestEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
   // OTHER
   ///////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////
@@ -932,5 +937,25 @@ public class DbHelper {
         .object(phenologicalCharacteristicEntity)
         .prepare()
         .executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Soil type
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<SoilTypeEntity>> getAllSoilTypes() {
+    return mStorIOSQLite.get()
+        .listOfObjects(SoilTypeEntity.class)
+        .withQuery(SoilTypesTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putSoilType(SoilTypeEntity soilTypeEntity) {
+    return mStorIOSQLite.put().object(soilTypeEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deleteSoilType(SoilTypeEntity soilTypeEntity) {
+    return mStorIOSQLite.delete().object(soilTypeEntity).prepare().executeAsBlocking();
   }
 }

@@ -1,19 +1,11 @@
 package com.apps.twelve.floor.field.utils;
 
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
-import com.apps.twelve.floor.field.data.local.objects.FieldObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
-import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
-import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
-import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.BaseTechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
-import com.apps.twelve.floor.field.data.local.objects.technological_map.CropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
-import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import java.util.ArrayList;
 
 /**

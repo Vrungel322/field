@@ -6,7 +6,7 @@ import com.apps.twelve.floor.field.base.BasePresenter;
 import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.utils.RxBus;

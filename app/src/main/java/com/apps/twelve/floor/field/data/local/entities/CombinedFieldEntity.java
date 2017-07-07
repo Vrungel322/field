@@ -2,7 +2,6 @@ package com.apps.twelve.floor.field.data.local.entities;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ClimateZoneEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
 

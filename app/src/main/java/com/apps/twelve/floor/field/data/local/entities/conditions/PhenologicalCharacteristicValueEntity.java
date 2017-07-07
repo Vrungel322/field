@@ -30,8 +30,8 @@ public class PhenologicalCharacteristicValueEntity {
   public static PhenologicalCharacteristicValueEntity newPhenologicalCharacteristicValueEntity(
       Long id, Long conditionTypeId, Long phenologicalCharacteristicId) {
     if (id == 0) id = null;
-    return PhenologicalCharacteristicValueEntity.newPhenologicalCharacteristicValueEntity(id,
-        conditionTypeId, phenologicalCharacteristicId);
+    return new PhenologicalCharacteristicValueEntity(id, conditionTypeId,
+        phenologicalCharacteristicId);
   }
 
   @Override public boolean equals(Object obj) {

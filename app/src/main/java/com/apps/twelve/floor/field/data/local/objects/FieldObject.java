@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.utils.LatLngStringUtil;
@@ -19,12 +18,6 @@ import java.util.List;
 public class FieldObject implements Parcelable, Cloneable {
 
   public static final FieldObject EMPTY;
-
-  static {
-    EMPTY = new FieldObject(0, "", CropObject.EMPTY, null, "", 0, ClimateZoneObject.EMPTY,
-        PhaseObject.EMPTY, SoilTypeObject.EMPTY);
-  }
-
   public static final Creator<FieldObject> CREATOR = new Creator<FieldObject>() {
     @Override public FieldObject createFromParcel(Parcel in) {
       return new FieldObject(in);
@@ -34,6 +27,11 @@ public class FieldObject implements Parcelable, Cloneable {
       return new FieldObject[size];
     }
   };
+
+  static {
+    EMPTY = new FieldObject(0, "", CropObject.EMPTY, null, "", 0, ClimateZoneObject.EMPTY,
+        PhaseObject.EMPTY, SoilTypeObject.EMPTY);
+  }
 
   private long mId;
   @NonNull private String mName = "";
@@ -162,16 +160,16 @@ public class FieldObject implements Parcelable, Cloneable {
     return mPhase;
   }
 
+  public void setPhase(@NonNull PhaseObject phase) {
+    this.mPhase = phase;
+  }
+
   @NonNull public SoilTypeObject getSoilType() {
     return mSoilType;
   }
 
   public void setSoilType(@NonNull SoilTypeObject soilType) {
     this.mSoilType = soilType;
-  }
-
-  public void setPhase(@NonNull PhaseObject phase) {
-    this.mPhase = phase;
   }
 
   @NonNull public String getPointsAsCoordinatesString() {

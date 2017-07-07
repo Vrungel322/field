@@ -12,6 +12,8 @@ import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.FieldEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.PhenologicalCharacteristicEntity;
 import com.apps.twelve.floor.field.data.local.entities.PhenologicalCharacteristicEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.SoilTypeEntity;
+import com.apps.twelve.floor.field.data.local.entities.SoilTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.TillageDirectionEntity;
 import com.apps.twelve.floor.field.data.local.entities.TillageDirectionEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
@@ -24,8 +26,8 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeE
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicValueEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntity;
@@ -114,6 +116,8 @@ import dagger.Provides;
         .addTypeMapping(ConditionTypeEntity.class, new ConditionTypeEntitySQLiteTypeMapping())
         // SoilTypeEntity mapping
         .addTypeMapping(SoilTypeEntity.class, new SoilTypeEntitySQLiteTypeMapping())
+        // SoilTypeValueEntity mapping
+        .addTypeMapping(SoilTypeValueEntity.class, new SoilTypeValueEntitySQLiteTypeMapping())
         // TechnologicalProcessStateEntity mapping
         .addTypeMapping(TechnologicalProcessStateEntity.class,
             new TechnologicalProcessStateEntitySQLiteTypeMapping())

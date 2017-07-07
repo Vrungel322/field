@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypesTable;
+import com.apps.twelve.floor.field.data.local.tables.SoilTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.PhasesTable;
 import com.pushtorefresh.storio.sqlite.StorIOSQLite;

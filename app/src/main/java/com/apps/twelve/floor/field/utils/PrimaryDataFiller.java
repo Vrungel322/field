@@ -4,13 +4,14 @@ import android.support.v4.util.SparseArrayCompat;
 import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.PhenologicalCharacteristicObject;
+import com.apps.twelve.floor.field.data.local.objects.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.TillageDirectionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionNameObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicValueObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionValueObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectTypeObject;
@@ -48,6 +49,7 @@ public final class PrimaryDataFiller {
   private ConditionTypeFiller mConditionTypeFiller;
   private SpanValueFiller mSpanValueFiller;
   private SoilTypeFiller mSoilTypeFiller;
+  private SoilTypeValueFiller mSoilTypeValueFiller;
   private TechnologicalProcessStateFiller mTechnologicalProcessStateFiller;
   private PestFiller mPestFiller;
   private TillageDirectionFiller mTillageDirectionFiller;
@@ -89,6 +91,7 @@ public final class PrimaryDataFiller {
     mConditionTypeFiller = new ConditionTypeFiller();
     mSpanValueFiller = new SpanValueFiller();
     mSoilTypeFiller = new SoilTypeFiller();
+    mSoilTypeValueFiller = new SoilTypeValueFiller();
     mPestFiller = new PestFiller();
     mTillageDirectionFiller = new TillageDirectionFiller();
     mTillageDirectionValueFiller = new TillageDirectionValueFiller();
@@ -119,6 +122,7 @@ public final class PrimaryDataFiller {
     mConditionTypeFiller.makeObjects();
     mSpanValueFiller.makeObjects();
     mSoilTypeFiller.makeObjects();
+    mSoilTypeValueFiller.makeObjects();
     mPestFiller.makeObjects();
     mTillageDirectionFiller.makeObjects();
     mTillageDirectionValueFiller.makeObjects();
@@ -149,6 +153,7 @@ public final class PrimaryDataFiller {
     mConditionTypeFiller.saveObjects();
     mSpanValueFiller.saveObjects();
     mSoilTypeFiller.saveObjects();
+    mSoilTypeValueFiller.saveObjects();
     mPestFiller.saveObjects();
     mTillageDirectionFiller.saveObjects();
     mTillageDirectionValueFiller.saveObjects();
@@ -308,25 +313,42 @@ public final class PrimaryDataFiller {
     private SparseArrayCompat<SoilTypeObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
-
-      ConditionTypeObject soilTypeConditionTypeObject =
-          mConditionTypeFiller.objects.get(ConditionTypeFiller.SOIL_TYPE_KEY);
-
-      objects.put(1,
-          new SoilTypeObject(1, "Піщані, або легкі грунти", soilTypeConditionTypeObject, ""));
-      objects.put(2,
-          new SoilTypeObject(2, "Глинисті, або важкі грунти ", soilTypeConditionTypeObject, ""));
-      objects.put(3, new SoilTypeObject(3, "Кам'янисті грунти", soilTypeConditionTypeObject, ""));
-      objects.put(4,
-          new SoilTypeObject(4, "Торф'яно-болотні грунти", soilTypeConditionTypeObject, ""));
-      objects.put(5, new SoilTypeObject(5, "Супіщані грунти", soilTypeConditionTypeObject, ""));
-      objects.put(6,
-          new SoilTypeObject(6, "Суглинні, або середні грунти", soilTypeConditionTypeObject, ""));
+      objects.put(1, new SoilTypeObject(1, "Піщані, або легкі грунти", ""));
+      objects.put(2, new SoilTypeObject(2, "Глинисті, або важкі грунти ", ""));
+      objects.put(3, new SoilTypeObject(3, "Кам'янисті грунти", ""));
+      objects.put(4, new SoilTypeObject(4, "Торф'яно-болотні грунти", ""));
+      objects.put(5, new SoilTypeObject(5, "Супіщані грунти", ""));
+      objects.put(6, new SoilTypeObject(6, "Суглинні, або середні грунти", ""));
     }
 
     void saveObjects() {
       for (int i = 0; i < objects.size(); i++) {
         mDataManager.putSoilType(objects.valueAt(i));
+      }
+    }
+  }
+
+  private class SoilTypeValueFiller {
+
+    private static final int CAPACITY = 6;
+
+    private SparseArrayCompat<SoilTypeValueObject> objects = new SparseArrayCompat<>(CAPACITY);
+
+    void makeObjects() {
+
+      ConditionTypeObject soilTypeConditionType =
+          mConditionTypeFiller.objects.get(ConditionTypeFiller.SOIL_TYPE_KEY);
+
+      int currentId = 1;
+      for (int i = 0; i < mSoilTypeFiller.objects.size(); i++) {
+        objects.put(currentId, new SoilTypeValueObject(currentId, soilTypeConditionType,
+            mSoilTypeFiller.objects.valueAt(i)));
+      }
+    }
+
+    void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putSoilTypeValue(objects.valueAt(i));
       }
     }
   }
@@ -443,7 +465,8 @@ public final class PrimaryDataFiller {
 
     private static final int CAPACITY = 4;
 
-    private SparseArrayCompat<TillageDirectionValueObject> objects = new SparseArrayCompat<>(CAPACITY);
+    private SparseArrayCompat<TillageDirectionValueObject> objects =
+        new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
 
@@ -452,11 +475,11 @@ public final class PrimaryDataFiller {
 
       int currentId = 1;
       for (int i = 0; i < mTillageDirectionFiller.objects.size(); i++) {
-        objects.put(currentId, new TillageDirectionValueObject(currentId, tillageDirectionConditionTypeObject, mTillageDirectionFiller.objects.valueAt(i)));
+        objects.put(currentId,
+            new TillageDirectionValueObject(currentId, tillageDirectionConditionTypeObject,
+                mTillageDirectionFiller.objects.valueAt(i)));
         currentId++;
       }
-
-
     }
 
     void saveObjects() {
