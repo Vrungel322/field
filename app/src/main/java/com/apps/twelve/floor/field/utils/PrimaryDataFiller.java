@@ -1490,6 +1490,10 @@ public final class PrimaryDataFiller {
 
       long weedHarmfulObjectTypeId =
           mHarmfulObjectTypeFiller.objects.get(HarmfulObjectTypeFiller.WEED_KEY).getId();
+      long diseaseHarmfulObjectTypeId =
+          mHarmfulObjectTypeFiller.objects.get(HarmfulObjectTypeFiller.DISEASE_KEY).getId();
+      long pestHarmfulObjectTypeId =
+          mHarmfulObjectTypeFiller.objects.get(HarmfulObjectTypeFiller.PEST_KEY).getId();
 
       int currentId = 1;
 
@@ -1497,6 +1501,19 @@ public final class PrimaryDataFiller {
       for (int i = 0; i < mWeedFiller.objects.size(); i++) {
         objects.put(currentId, new HarmfulObjectObject(currentId, weedHarmfulObjectTypeId,
             mWeedFiller.objects.valueAt(i).getId()));
+        currentId++;
+      }
+      // TODO:
+      // Diseases
+      /*for (int i = 0; i < mDiseaseFiller.objects.size(); i++) {
+        objects.put(currentId, new HarmfulObjectObject(currentId, diseaseHarmfulObjectTypeId,
+            mDiseaseFiller.objects.valueAt(i).getId()));
+        currentId++;
+      }*/
+      // Pests
+      for (int i = 0; i < mPestFiller.objects.size(); i++) {
+        objects.put(currentId, new HarmfulObjectObject(currentId, pestHarmfulObjectTypeId,
+            mPestFiller.objects.valueAt(i).getId()));
         currentId++;
       }
     }
