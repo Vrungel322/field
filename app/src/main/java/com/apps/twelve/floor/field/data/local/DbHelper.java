@@ -18,7 +18,9 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirecti
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectPhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectTypeEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.PestClassEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.PestEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.PestOrderEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.WeedClassEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.WeedEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.WeedGroupEntity;
@@ -55,6 +57,8 @@ import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirection
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectsTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.PestClassesTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.PestOrdersTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.PestsTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedClassesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedGroupsTable;
@@ -709,6 +713,46 @@ public class DbHelper {
 
   public DeleteResult deleteWeed(WeedEntity weedEntity) {
     return mStorIOSQLite.delete().object(weedEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Pest class
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<PestClassEntity>> getAllPestClasses() {
+    return mStorIOSQLite.get()
+        .listOfObjects(PestClassEntity.class)
+        .withQuery(PestClassesTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putPestClass(PestClassEntity pestClassEntity) {
+    return mStorIOSQLite.put().object(pestClassEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deletePestClass(PestClassEntity pestClassEntity) {
+    return mStorIOSQLite.delete().object(pestClassEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Pest order
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<PestOrderEntity>> getAllPestOrders() {
+    return mStorIOSQLite.get()
+        .listOfObjects(PestOrderEntity.class)
+        .withQuery(PestOrdersTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putPestOrder(PestOrderEntity pestOrderEntity) {
+    return mStorIOSQLite.put().object(pestOrderEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deletePestOrder(PestOrderEntity pestOrderEntity) {
+    return mStorIOSQLite.delete().object(pestOrderEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////

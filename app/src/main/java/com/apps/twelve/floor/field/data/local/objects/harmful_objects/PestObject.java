@@ -3,7 +3,6 @@ package com.apps.twelve.floor.field.data.local.objects.harmful_objects;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
 
 /**
  * Created by Yaroslav on 31.05.2017.
@@ -22,26 +21,27 @@ public class PestObject implements Parcelable {
   };
 
   private long mId;
+  @NonNull private HarmfulObjectTypeObject mHarmfulObjectType;
   @NonNull private String mName;
-  @NonNull private ConditionTypeObject mConditionType; // TODO: maybe we don't need this field
-  private long mParentId;
-  private boolean mIsGroup;
+  @NonNull private PestClassObject mPestClass;
+  @NonNull private PestOrderObject mPestOrder;
 
-  public PestObject(long id, @NonNull String name, @NonNull ConditionTypeObject conditionType,
-      long parentId, boolean isGroup) {
+  public PestObject(long id, @NonNull HarmfulObjectTypeObject harmfulObjectType,
+      @NonNull String name, @NonNull PestClassObject pestClass,
+      @NonNull PestOrderObject pestOrder) {
     this.mId = id;
+    this.mHarmfulObjectType = harmfulObjectType;
     this.mName = name;
-    this.mConditionType = conditionType;
-    this.mParentId = parentId;
-    this.mIsGroup = isGroup;
+    this.mPestClass = pestClass;
+    this.mPestOrder = pestOrder;
   }
 
   protected PestObject(Parcel in) {
     this.mId = in.readLong();
+    this.mHarmfulObjectType = in.readParcelable(HarmfulObjectTypeObject.class.getClassLoader());
     this.mName = in.readString();
-    this.mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
-    this.mParentId = in.readLong();
-    this.mIsGroup = in.readByte() != 0;
+    this.mPestClass = in.readParcelable(PestClassObject.class.getClassLoader());
+    this.mPestOrder = in.readParcelable(PestOrderObject.class.getClassLoader());
   }
 
   @Override public int describeContents() {
@@ -50,10 +50,10 @@ public class PestObject implements Parcelable {
 
   @Override public void writeToParcel(Parcel dest, int flags) {
     dest.writeLong(mId);
+    dest.writeParcelable(mHarmfulObjectType, flags);
     dest.writeString(mName);
-    dest.writeParcelable(mConditionType, flags);
-    dest.writeLong(mParentId);
-    dest.writeByte((byte) (mIsGroup ? 1 : 0));
+    dest.writeParcelable(mPestClass, flags);
+    dest.writeParcelable(mPestOrder, flags);
   }
 
   public long getId() {
@@ -64,6 +64,14 @@ public class PestObject implements Parcelable {
     this.mId = id;
   }
 
+  @NonNull public HarmfulObjectTypeObject getHarmfulObjectType() {
+    return mHarmfulObjectType;
+  }
+
+  public void setHarmfulObjectType(@NonNull HarmfulObjectTypeObject harmfulObjectType) {
+    this.mHarmfulObjectType = harmfulObjectType;
+  }
+
   public String getName() {
     return mName;
   }
@@ -72,31 +80,31 @@ public class PestObject implements Parcelable {
     this.mName = name;
   }
 
-  @NonNull public ConditionTypeObject getConditionType() {
-    return mConditionType;
+  @NonNull public PestClassObject getPestClass() {
+    return mPestClass;
   }
 
-  public void setConditionType(@NonNull ConditionTypeObject conditionType) {
-    this.mConditionType = conditionType;
+  public void setPestClass(@NonNull PestClassObject pestClass) {
+    this.mPestClass = pestClass;
   }
 
-  public long getParentId() {
-    return mParentId;
+  @NonNull public PestOrderObject getPestOrder() {
+    return mPestOrder;
   }
 
-  public void setParentId(long parentId) {
-    this.mParentId = parentId;
+  public void setPestOrder(@NonNull PestOrderObject pestOrder) {
+    this.mPestOrder = pestOrder;
   }
 
-  public boolean isGroup() {
-    return mIsGroup;
+  public Long getHarmfulObjectTypeId() {
+    return mHarmfulObjectType.getId();
   }
 
-  public void setIsGroup(boolean isGroup) {
-    this.mIsGroup = isGroup;
+  public Long getPestClassId() {
+    return mPestClass.getId();
   }
 
-  public long getConditionTypeId() {
-    return mConditionType.getId();
+  public Long getPestOrderId() {
+    return mPestOrder.getId();
   }
 }

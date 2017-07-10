@@ -15,7 +15,9 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeValueOb
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionValueObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.PestClassObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.PestObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.PestOrderObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedClassObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedGroupObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedNutritionTypeObject;
@@ -51,6 +53,8 @@ public final class PrimaryDataFiller {
   private SoilTypeFiller mSoilTypeFiller;
   private SoilTypeValueFiller mSoilTypeValueFiller;
   private TechnologicalProcessStateFiller mTechnologicalProcessStateFiller;
+  private PestClassFiller mPestClassFiller;
+  private PestOrderFiller mPestOrderFiller;
   private PestFiller mPestFiller;
   private TillageDirectionFiller mTillageDirectionFiller;
   private TillageDirectionValueFiller mTillageDirectionValueFiller;
@@ -84,95 +88,137 @@ public final class PrimaryDataFiller {
   }
 
   private void initFillers() {
+    // other
     mCropFiller = new CropFiller();
-    mClimateZoneFiller = new ClimateZoneFiller();
-    mPhaseFiller = new PhaseFiller();
+    mSoilTypeFiller = new SoilTypeFiller();
+    mTillageDirectionFiller = new TillageDirectionFiller();
+    mPhenologicalCharacteristicFiller = new PhenologicalCharacteristicFiller();
+
+    // conditions
     mConditionNamesFiller = new ConditionNamesFiller();
     mConditionTypeFiller = new ConditionTypeFiller();
-    mSpanValueFiller = new SpanValueFiller();
-    mSoilTypeFiller = new SoilTypeFiller();
     mSoilTypeValueFiller = new SoilTypeValueFiller();
-    mPestFiller = new PestFiller();
-    mTillageDirectionFiller = new TillageDirectionFiller();
     mTillageDirectionValueFiller = new TillageDirectionValueFiller();
-    mPhenologicalCharacteristicFiller = new PhenologicalCharacteristicFiller();
     mPhenologicalCharacteristicValueFiller = new PhenologicalCharacteristicValueFiller();
+    mSpanValueFiller = new SpanValueFiller();
     mConditionsFiller = new ConditionsFiller();
-    mTechnologicalProcessStateFiller = new TechnologicalProcessStateFiller();
-    mTechnologicalSolutionTypeFiller = new TechnologicalSolutionTypeFiller();
-    mAggregateFiller = new AggregateFiller();
-    mInsectFiller = new InsectFiller();
-    mProductCategoryFiller = new ProductCategoryFiller();
-    mProductFiller = new ProductFiller();
+
+    // harmful objects
+    mHarmfulObjectTypeFiller = new HarmfulObjectTypeFiller();
+    mPestClassFiller = new PestClassFiller();
+    mPestOrderFiller = new PestOrderFiller();
+    mPestFiller = new PestFiller();
     mWeedNutritionTypeFiller = new WeedNutritionTypeFiller();
     mWeedClassFiller = new WeedClassFiller();
     mWeedGroupFiller = new WeedGroupFiller();
-    mProcessPeriodFiller = new ProcessPeriodFiller();
-    mHarmfulObjectTypeFiller = new HarmfulObjectTypeFiller();
-    mHarmfulObjectsFiller = new HarmfulObjectsFiller();
     mWeedFiller = new WeedFiller();
+    mHarmfulObjectsFiller = new HarmfulObjectsFiller();
+
+    // process time
+    mClimateZoneFiller = new ClimateZoneFiller();
+    mPhaseFiller = new PhaseFiller();
+    mProcessPeriodFiller = new ProcessPeriodFiller();
+
+    // solutions
+    mTechnologicalSolutionTypeFiller = new TechnologicalSolutionTypeFiller();
+    mProductCategoryFiller = new ProductCategoryFiller();
+    mProductFiller = new ProductFiller();
+    mAggregateFiller = new AggregateFiller();
+    mInsectFiller = new InsectFiller();
+
+    // technological map
+    mTechnologicalProcessStateFiller = new TechnologicalProcessStateFiller();
+
     // TODO
   }
 
   private void makeObjects() {
+    // other
     mCropFiller.makeObjects();
-    mClimateZoneFiller.makeObjects();
-    mPhaseFiller.makeObjects();
+    mSoilTypeFiller.makeObjects();
+    mTillageDirectionFiller.makeObjects();
+    mPhenologicalCharacteristicFiller.makeObjects();
+
+    // conditions
     mConditionNamesFiller.makeObjects();
     mConditionTypeFiller.makeObjects();
-    mSpanValueFiller.makeObjects();
-    mSoilTypeFiller.makeObjects();
     mSoilTypeValueFiller.makeObjects();
-    mPestFiller.makeObjects();
-    mTillageDirectionFiller.makeObjects();
     mTillageDirectionValueFiller.makeObjects();
-    mPhenologicalCharacteristicFiller.makeObjects();
     mPhenologicalCharacteristicValueFiller.makeObjects();
+    mSpanValueFiller.makeObjects();
     mConditionsFiller.makeObjects();
-    mTechnologicalProcessStateFiller.makeObjects();
-    mTechnologicalSolutionTypeFiller.makeObjects();
-    mAggregateFiller.makeObjects();
-    mInsectFiller.makeObjects();
-    mProductCategoryFiller.makeObjects();
-    mProductFiller.makeObjects();
+
+    // harmful objects
+    mHarmfulObjectTypeFiller.makeObjects();
+    mPestClassFiller.makeObjects();
+    mPestOrderFiller.makeObjects();
+    mPestFiller.makeObjects();
     mWeedNutritionTypeFiller.makeObjects();
     mWeedClassFiller.makeObjects();
     mWeedGroupFiller.makeObjects();
-    mProcessPeriodFiller.makeObjects();
-    mHarmfulObjectTypeFiller.makeObjects();
-    mHarmfulObjectsFiller.makeObjects();
     mWeedFiller.makeObjects();
+    mHarmfulObjectsFiller.makeObjects();
+
+    // process time
+    mClimateZoneFiller.makeObjects();
+    mPhaseFiller.makeObjects();
+    mProcessPeriodFiller.makeObjects();
+
+    // solutions
+    mTechnologicalSolutionTypeFiller.makeObjects();
+    mProductCategoryFiller.makeObjects();
+    mProductFiller.makeObjects();
+    mAggregateFiller.makeObjects();
+    mInsectFiller.makeObjects();
+
+    // technological map
+    mTechnologicalProcessStateFiller.makeObjects();
+
     // TODO
   }
 
   private void saveObjects() {
+    // other
     mCropFiller.saveObjects();
-    mClimateZoneFiller.saveObjects();
-    mPhaseFiller.saveObjects();
+    mSoilTypeFiller.saveObjects();
+    mTillageDirectionFiller.saveObjects();
+    mPhenologicalCharacteristicFiller.saveObjects();
+
+    // conditions
     mConditionNamesFiller.saveObjects();
     mConditionTypeFiller.saveObjects();
-    mSpanValueFiller.saveObjects();
-    mSoilTypeFiller.saveObjects();
     mSoilTypeValueFiller.saveObjects();
-    mPestFiller.saveObjects();
-    mTillageDirectionFiller.saveObjects();
     mTillageDirectionValueFiller.saveObjects();
-    mPhenologicalCharacteristicFiller.saveObjects();
     mPhenologicalCharacteristicValueFiller.saveObjects();
+    mSpanValueFiller.saveObjects();
     mConditionsFiller.saveObjects();
-    mTechnologicalProcessStateFiller.saveObjects();
-    mTechnologicalSolutionTypeFiller.saveObjects();
-    mAggregateFiller.saveObjects();
-    mInsectFiller.saveObjects();
-    mProductCategoryFiller.saveObjects();
-    mProductFiller.saveObjects();
+
+    // harmful objects
+    mHarmfulObjectTypeFiller.saveObjects();
+    mPestClassFiller.saveObjects();
+    mPestOrderFiller.saveObjects();
+    mPestFiller.saveObjects();
     mWeedNutritionTypeFiller.saveObjects();
     mWeedClassFiller.saveObjects();
     mWeedGroupFiller.saveObjects();
-    mProcessPeriodFiller.saveObjects();
-    mHarmfulObjectTypeFiller.saveObjects();
-    mHarmfulObjectsFiller.saveObjects();
     mWeedFiller.saveObjects();
+    mHarmfulObjectsFiller.saveObjects();
+
+    // process time
+    mClimateZoneFiller.saveObjects();
+    mPhaseFiller.saveObjects();
+    mProcessPeriodFiller.saveObjects();
+
+    // solution
+    mTechnologicalSolutionTypeFiller.saveObjects();
+    mProductCategoryFiller.saveObjects();
+    mProductFiller.saveObjects();
+    mAggregateFiller.saveObjects();
+    mInsectFiller.saveObjects();
+
+    // technological map
+    mTechnologicalProcessStateFiller.saveObjects();
+
     // TODO
   }
 
@@ -389,49 +435,108 @@ public final class PrimaryDataFiller {
     }
   }
 
+  private class PestClassFiller {
+
+    private static final int MYRIAPODA_KEY = 1;
+    private static final int INSECTA_KEY = 2;
+
+    private static final int CAPACITY = 2;
+
+    private SparseArrayCompat<PestClassObject> objects = new SparseArrayCompat<>(CAPACITY);
+
+    void makeObjects() {
+      objects.put(MYRIAPODA_KEY, new PestClassObject(1, "Багатоніжки"));
+      objects.put(INSECTA_KEY, new PestClassObject(2, "Комахи"));
+    }
+
+    void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putPestClass(objects.valueAt(i));
+      }
+    }
+  }
+
+  private class PestOrderFiller {
+
+    private static final int DIPLOPODA_KEY = 1;
+    private static final int COLEOPTERA_KEY = 2;
+    private static final int DIPTERA_KEY = 3;
+    private static final int HOMOPTERA_KEY = 4;
+    private static final int LEPIDOPTERA_KEY = 5;
+
+    private static final int CAPACITY = 5;
+
+    private SparseArrayCompat<PestOrderObject> objects = new SparseArrayCompat<>(CAPACITY);
+
+    void makeObjects() {
+      objects.put(DIPLOPODA_KEY, new PestOrderObject(1, "Двопарноногі"));
+      objects.put(COLEOPTERA_KEY, new PestOrderObject(2, "Твердокрилі (жуки)"));
+      objects.put(DIPTERA_KEY, new PestOrderObject(3, "Двокрилі (мухи)"));
+      objects.put(HOMOPTERA_KEY, new PestOrderObject(4, "Рівнокрилі"));
+      objects.put(LEPIDOPTERA_KEY, new PestOrderObject(5, "Лускокрилі (метелики)"));
+    }
+
+    void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putPestOrder(objects.valueAt(i));
+      }
+    }
+  }
+
   private class PestFiller {
 
-    private static final int CAPACITY = 22;
+    private static final int CAPACITY = 13;
 
     private SparseArrayCompat<PestObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
+      HarmfulObjectTypeObject pestHarmfulObjectType =
+          mHarmfulObjectTypeFiller.objects.get(HarmfulObjectTypeFiller.PEST_KEY);
 
-      ConditionTypeObject pestConditionTypeObject =
-          mConditionTypeFiller.objects.get(ConditionTypeFiller.HARMFUL_OBJECT_KEY);
+      PestClassObject insectaPestClass = mPestClassFiller.objects.get(PestClassFiller.INSECTA_KEY);
+      PestClassObject myriapodaPestClass =
+          mPestClassFiller.objects.get(PestClassFiller.MYRIAPODA_KEY);
 
-      objects.put(1, new PestObject(1, "злакові бур’яни", pestConditionTypeObject, 0, false));
-      objects.put(2, new PestObject(2, "ярі дводольні бур’яни", pestConditionTypeObject, 0, false));
-      objects.put(3,
-          new PestObject(3, "Однорічні зимуючі бур’яни", pestConditionTypeObject, 0, false));
-      objects.put(4,
-          new PestObject(4, "Збудники пліснявіння  насіння", pestConditionTypeObject, 0, false));
-      objects.put(5, new PestObject(5, "Збудники фузаріозу", pestConditionTypeObject, 0, false));
-      objects.put(6, new PestObject(6, "Дротяники", pestConditionTypeObject, 0, false));
-      objects.put(7, new PestObject(7, "ківсяки", pestConditionTypeObject, 0, false));
-      objects.put(8, new PestObject(8, "личинки хрущів", pestConditionTypeObject, 0, false));
-      objects.put(9, new PestObject(9, "личинки хлібних жуків", pestConditionTypeObject, 0, false));
-      objects.put(10,
-          new PestObject(10, "ярі дводольні бур’яни", pestConditionTypeObject, 0, false));
-      objects.put(11, new PestObject(11, "ярі злакові бур’яни", pestConditionTypeObject, 0, false));
+      PestOrderObject coleopteraPestOrder =
+          mPestOrderFiller.objects.get(PestOrderFiller.COLEOPTERA_KEY);
+      PestOrderObject dipteraPestOrder = mPestOrderFiller.objects.get(PestOrderFiller.DIPTERA_KEY);
+      PestOrderObject homopteraPestOrder =
+          mPestOrderFiller.objects.get(PestOrderFiller.HOMOPTERA_KEY);
+      PestOrderObject lepidopteraPestOrder =
+          mPestOrderFiller.objects.get(PestOrderFiller.LEPIDOPTERA_KEY);
+      PestOrderObject diplopodaPestOrder =
+          mPestOrderFiller.objects.get(PestOrderFiller.DIPLOPODA_KEY);
+
+      objects.put(1, new PestObject(1, pestHarmfulObjectType, "Широкий ковалик", insectaPestClass,
+          coleopteraPestOrder));
+      objects.put(2, new PestObject(2, pestHarmfulObjectType, "Буроногий ковалик", insectaPestClass,
+          coleopteraPestOrder));
+      objects.put(3, new PestObject(3, pestHarmfulObjectType, "Темний ковалик", insectaPestClass,
+          coleopteraPestOrder));
+      objects.put(4, new PestObject(4, pestHarmfulObjectType, "Посівний ковалик", insectaPestClass,
+          coleopteraPestOrder));
+      objects.put(5, new PestObject(5, pestHarmfulObjectType, "Степовий ковалик", insectaPestClass,
+          coleopteraPestOrder));
+      objects.put(6, new PestObject(6, pestHarmfulObjectType, "Мідляк піщаний", insectaPestClass,
+          coleopteraPestOrder));
+      objects.put(7, new PestObject(7, pestHarmfulObjectType, "Мідляк степовий", insectaPestClass,
+          coleopteraPestOrder));
+      objects.put(8,
+          new PestObject(8, pestHarmfulObjectType, "Кукурудзяна чорнотілка", insectaPestClass,
+              coleopteraPestOrder));
+      objects.put(9,
+          new PestObject(9, pestHarmfulObjectType, "Південний сірий довгоносик", insectaPestClass,
+              coleopteraPestOrder));
+      objects.put(10, new PestObject(10, pestHarmfulObjectType, "Шведська муха", insectaPestClass,
+          dipteraPestOrder));
+      objects.put(11, new PestObject(11, pestHarmfulObjectType, "Попелиця", insectaPestClass,
+          homopteraPestOrder));
       objects.put(12,
-          new PestObject(12, "Однорічні ярі дводольні бур’яни", pestConditionTypeObject, 0, false));
+          new PestObject(12, pestHarmfulObjectType, "Кукурудзяний метелик", insectaPestClass,
+              lepidopteraPestOrder));
       objects.put(13,
-          new PestObject(13, "Однорічні ярі злакові бур’яни", pestConditionTypeObject, 0, false));
-      objects.put(14,
-          new PestObject(14, "Однорічні дводольні бур’яни", pestConditionTypeObject, 0, false));
-      objects.put(15,
-          new PestObject(15, "Однорічні злакові бур’яни", pestConditionTypeObject, 0, false));
-      objects.put(16,
-          new PestObject(16, "багаторічні дводольні бур’яни", pestConditionTypeObject, 0, false));
-      objects.put(17,
-          new PestObject(17, "багаторічні злакові бур’яни", pestConditionTypeObject, 0, false));
-      objects.put(18, new PestObject(18, "Шведська муха", pestConditionTypeObject, 0, false));
-      objects.put(19, new PestObject(19, "попелиці", pestConditionTypeObject, 0, false));
-      objects.put(20,
-          new PestObject(20, "кукурудзяний метелик", pestConditionTypeObject, 0, false));
-      objects.put(21, new PestObject(21, "лучний метелик", pestConditionTypeObject, 0, false));
-      objects.put(22, new PestObject(22, "бавовникова совка", pestConditionTypeObject, 0, false));
+          new PestObject(13, pestHarmfulObjectType, "Ківсяк піщаний", myriapodaPestClass,
+              diplopodaPestOrder));
     }
 
     void saveObjects() {

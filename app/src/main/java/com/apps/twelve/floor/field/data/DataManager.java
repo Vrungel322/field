@@ -25,7 +25,9 @@ import com.apps.twelve.floor.field.data.local.mappers.conditions.TillageDirectio
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectObjectToHarmfulObjectEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectPhaseObjectToHarmfulObjectPhaseEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectTypeObjectToHarmfulObjectTypeEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.PestClassObjectToPestClassEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.PestObjectToPestEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.PestOrderObjectToPestOrderEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.WeedClassObjectToWeedClassEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.WeedGroupObjectToWeedGroupEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.WeedNutritionTypeObjectToWeedNutritionTypeEntityMapper;
@@ -58,7 +60,9 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectio
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectPhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.PestClassObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.PestObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.PestOrderObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedClassObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedGroupObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedNutritionTypeObject;
@@ -207,6 +211,16 @@ public class DataManager {
     return mDbHelper.putHarmfulObjectPhase(
         new HarmfulObjectPhaseObjectToHarmfulObjectPhaseEntityMapper().transform(
             harmfulObjectPhaseObject));
+  }
+
+  public PutResult putPestClass(PestClassObject pestClassObject) {
+    return mDbHelper.putPestClass(
+        new PestClassObjectToPestClassEntityMapper().transform(pestClassObject));
+  }
+
+  public PutResult putPestOrder(PestOrderObject pestOrderObject) {
+    return mDbHelper.putPestOrder(
+        new PestOrderObjectToPestOrderEntityMapper().transform(pestOrderObject));
   }
 
   public PutResult putPest(PestObject pestObject) {

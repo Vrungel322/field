@@ -20,6 +20,8 @@ import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirection
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectsTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.PestClassesTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.PestOrdersTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.PestsTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedClassesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedGroupsTable;
@@ -94,6 +96,10 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(HarmfulObjectsTable.getCreateTableQuery());
     // HarmfulObjectPhases
     db.execSQL(HarmfulObjectPhasesTable.getCreateTableQuery());
+    // PestClasses
+    db.execSQL(PestClassesTable.getCreateTableQuery());
+    // PestOrders
+    db.execSQL(PestOrdersTable.getCreateTableQuery());
     // Pests
     db.execSQL(PestsTable.getCreateTableQuery());
     // WeedNutritionTypes

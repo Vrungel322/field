@@ -34,8 +34,12 @@ import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulOb
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectTypeEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.PestClassEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.PestClassEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.PestEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.PestEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.PestOrderEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.PestOrderEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.WeedClassEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.WeedClassEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.WeedEntity;
@@ -103,6 +107,10 @@ import dagger.Provides;
         // CropTechnologicalProcessEntity  mapping
         .addTypeMapping(CropTechnologicalProcessEntity.class,
             new CropTechnologicalProcessEntitySQLiteTypeMapping())
+        // PestClassEntity mapping
+        .addTypeMapping(PestClassEntity.class, new PestClassEntitySQLiteTypeMapping())
+        // PestOrderEntity mapping
+        .addTypeMapping(PestOrderEntity.class, new PestOrderEntitySQLiteTypeMapping())
         // PestEntity mapping
         .addTypeMapping(PestEntity.class, new PestEntitySQLiteTypeMapping())
         // HarmfulObjectTypeEntity mapping
