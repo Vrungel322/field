@@ -25,6 +25,7 @@ import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedObject
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.ActiveComponentObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.InsectObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.ProductCategoryObject;
@@ -74,6 +75,7 @@ public final class PrimaryDataFiller {
   private HarmfulObjectTypeFiller mHarmfulObjectTypeFiller;
   private ConditionNamesFiller mConditionNamesFiller;
   private HarmfulObjectsFiller mHarmfulObjectsFiller;
+  private ActiveComponentFiller mActiveComponentFiller;
 
   public PrimaryDataFiller(DataManager dataManager) {
     this.mDataManager = dataManager;
@@ -123,6 +125,7 @@ public final class PrimaryDataFiller {
     mTechnologicalSolutionTypeFiller = new TechnologicalSolutionTypeFiller();
     mProductCategoryFiller = new ProductCategoryFiller();
     mProductFiller = new ProductFiller();
+    mActiveComponentFiller = new ActiveComponentFiller();
     mAggregateFiller = new AggregateFiller();
     mInsectFiller = new InsectFiller();
 
@@ -168,6 +171,7 @@ public final class PrimaryDataFiller {
     mTechnologicalSolutionTypeFiller.makeObjects();
     mProductCategoryFiller.makeObjects();
     mProductFiller.makeObjects();
+    mActiveComponentFiller.makeObjects();
     mAggregateFiller.makeObjects();
     mInsectFiller.makeObjects();
 
@@ -213,7 +217,8 @@ public final class PrimaryDataFiller {
     mTechnologicalSolutionTypeFiller.saveObjects();
     mProductCategoryFiller.saveObjects();
     mProductFiller.saveObjects();
-    mAggregateFiller.saveObjects();
+    mProductFiller.saveObjects();
+    mActiveComponentFiller.saveObjects();
     mInsectFiller.saveObjects();
 
     // technological map
@@ -729,10 +734,11 @@ public final class PrimaryDataFiller {
 
     static final int AGGREGATES_KEY = 1;
     static final int PRODUCTS_KEY = 2;
-    static final int INSECTS_KEY = 3;
-    static final int OTHER_KEY = 4;
+    static final int ACTIVE_COMPONENTS_KEY = 3;
+    static final int INSECTS_KEY = 4;
+    static final int OTHER_KEY = 5;
 
-    private static final int CAPACITY = 4;
+    private static final int CAPACITY = 5;
 
     private SparseArrayCompat<TechnologicalSolutionTypeObject> objects =
         new SparseArrayCompat<>(CAPACITY);
@@ -740,8 +746,9 @@ public final class PrimaryDataFiller {
     void makeObjects() {
       objects.put(AGGREGATES_KEY, new TechnologicalSolutionTypeObject(1, "Агрегаты"));
       objects.put(PRODUCTS_KEY, new TechnologicalSolutionTypeObject(2, "Препараты"));
-      objects.put(INSECTS_KEY, new TechnologicalSolutionTypeObject(3, "Насекомые"));
-      objects.put(OTHER_KEY, new TechnologicalSolutionTypeObject(4, "Другие решения"));
+      objects.put(ACTIVE_COMPONENTS_KEY, new TechnologicalSolutionTypeObject(3, "Действующие вещества"));
+      objects.put(INSECTS_KEY, new TechnologicalSolutionTypeObject(4, "Насекомые"));
+      objects.put(OTHER_KEY, new TechnologicalSolutionTypeObject(5, "Другие решения"));
     }
 
     void saveObjects() {
@@ -805,6 +812,54 @@ public final class PrimaryDataFiller {
     void saveObjects() {
       for (int i = 0; i < objects.size(); i++) {
         mDataManager.putInsect(objects.valueAt(i));
+      }
+    }
+  }
+
+  private class ActiveComponentFiller {
+
+    private static final int CAPACITY = 28;
+
+    private SparseArrayCompat<ActiveComponentObject> objects = new SparseArrayCompat<>(CAPACITY);
+
+    void makeObjects() {
+      TechnologicalSolutionTypeObject activeComponentTechnologicalSolutionType =
+          mTechnologicalSolutionTypeFiller.objects.get(
+              TechnologicalSolutionTypeFiller.ACTIVE_COMPONENTS_KEY);
+
+      objects.put(1, new ActiveComponentObject(1, "Калійна сіль гліфосату", activeComponentTechnologicalSolutionType));
+      objects.put(2, new ActiveComponentObject(2, "Пропіконазол", activeComponentTechnologicalSolutionType));
+      objects.put(3, new ActiveComponentObject(3, "Ципроконазол", activeComponentTechnologicalSolutionType));
+      objects.put(4, new ActiveComponentObject(4, "Гліфосату калійна сіль", activeComponentTechnologicalSolutionType));
+      objects.put(5, new ActiveComponentObject(5, "S-метолахлор", activeComponentTechnologicalSolutionType));
+      objects.put(6, new ActiveComponentObject(6, "Тербутилазин", activeComponentTechnologicalSolutionType));
+      objects.put(7, new ActiveComponentObject(7, "Десмедифам", activeComponentTechnologicalSolutionType));
+      objects.put(8, new ActiveComponentObject(8, "Фенмедифам", activeComponentTechnologicalSolutionType));
+      objects.put(9, new ActiveComponentObject(9, "Етофумезат", activeComponentTechnologicalSolutionType));
+      objects.put(10, new ActiveComponentObject(10, "Метамітрон", activeComponentTechnologicalSolutionType));
+      objects.put(11, new ActiveComponentObject(11, "Флорасулам", activeComponentTechnologicalSolutionType));
+      objects.put(12, new ActiveComponentObject(12, "Метазахлор", activeComponentTechnologicalSolutionType));
+      objects.put(13, new ActiveComponentObject(13, "Нікосульфурон", activeComponentTechnologicalSolutionType));
+      objects.put(14, new ActiveComponentObject(14, "Хізалофоп-П-тефурил", activeComponentTechnologicalSolutionType));
+      objects.put(15, new ActiveComponentObject(15, "Імазамокс", activeComponentTechnologicalSolutionType));
+      objects.put(16, new ActiveComponentObject(16, "Імазапір", activeComponentTechnologicalSolutionType));
+      objects.put(17, new ActiveComponentObject(17, "Тебуконазол", activeComponentTechnologicalSolutionType));
+      objects.put(18, new ActiveComponentObject(18, "Триадимефон", activeComponentTechnologicalSolutionType));
+      objects.put(19, new ActiveComponentObject(19, "Карбендазим", activeComponentTechnologicalSolutionType));
+      objects.put(20, new ActiveComponentObject(20, "Азоксистробін", activeComponentTechnologicalSolutionType));
+      objects.put(21, new ActiveComponentObject(21, "Імідаклоприд", activeComponentTechnologicalSolutionType));
+      objects.put(22, new ActiveComponentObject(22, "Прохлораз", activeComponentTechnologicalSolutionType));
+      objects.put(23, new ActiveComponentObject(23, "Тритіконазол", activeComponentTechnologicalSolutionType));
+      objects.put(24, new ActiveComponentObject(24, "Тіклоприд", activeComponentTechnologicalSolutionType));
+      objects.put(25, new ActiveComponentObject(25, "Дельтаметрин", activeComponentTechnologicalSolutionType));
+      objects.put(26, new ActiveComponentObject(26, "Дифеноконазол", activeComponentTechnologicalSolutionType));
+      objects.put(27, new ActiveComponentObject(27, "Епоксіконазол", activeComponentTechnologicalSolutionType));
+      objects.put(28, new ActiveComponentObject(28, "Дифлюфеникан", activeComponentTechnologicalSolutionType));
+    }
+
+    void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putActiveComponent(objects.valueAt(i));
       }
     }
   }
