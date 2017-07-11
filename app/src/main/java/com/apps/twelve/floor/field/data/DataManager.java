@@ -5,6 +5,7 @@ import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
 import com.apps.twelve.floor.field.data.local.DbHelper;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.WeedEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ProcessPeriodEntity;
 import com.apps.twelve.floor.field.data.local.mappers.CombinedFieldEntityToFieldObjectMapper;
@@ -341,6 +342,10 @@ public class DataManager {
     return mDbHelper.putConditionSpanValueEntity(
         new ConditionSpanValueObjectToConditionSpanValueEntityMapper().transform(
             conditionSpanValueObject));
+  }
+
+  public List<ConditionSpanValueEntity> getConditionSpanValueEntitiesAsList() {
+    return mDbHelper.getConditionSpanValueEntity();
   }
 
   public List<ConditionEntity> getAllConditionEntitiesAsList() {

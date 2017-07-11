@@ -40,6 +40,7 @@ import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTec
 import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessStateEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessesConditionEntity;
+import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.tables.CropsActiveComponentsHarmfulObjectsTable;
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.DealersTable;
@@ -123,20 +124,19 @@ public class DbHelper {
   ///////////////////////////////////////////////////////////////////////////
   // Condition span value
   ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<ConditionSpanValueEntity>> getAllConditionSpanValues() {
+  public List<ConditionSpanValueEntity> getConditionSpanValueEntity() {
     return mStorIOSQLite.get()
         .listOfObjects(ConditionSpanValueEntity.class)
         .withQuery(ConditionSpanValuesTable.QUERY_ALL)
         .prepare()
-        .asRxObservable()
-        .take(1);
+        .executeAsBlocking();
   }
 
-  public PutResult putConditionSpanValue(ConditionSpanValueEntity conditionSpanValueEntity) {
+  public PutResult putConditionSpanValueEntity(ConditionSpanValueEntity conditionSpanValueEntity) {
     return mStorIOSQLite.put().object(conditionSpanValueEntity).prepare().executeAsBlocking();
   }
 
-  public DeleteResult deleteConditionSpanValue(ConditionSpanValueEntity conditionSpanValueEntity) {
+  public DeleteResult deleteConditionSpanValueEntity(ConditionSpanValueEntity conditionSpanValueEntity) {
     return mStorIOSQLite.delete().object(conditionSpanValueEntity).prepare().executeAsBlocking();
   }
 
@@ -909,10 +909,6 @@ public class DbHelper {
         .withQuery(ConditionsTable.QUERY_ALL)
         .prepare()
         .executeAsBlocking();
-  }
-
-  public PutResult putConditionSpanValueEntity(ConditionSpanValueEntity conditionSpanValueEntity) {
-    return mStorIOSQLite.put().object(conditionSpanValueEntity).prepare().executeAsBlocking();
   }
 
   public List<ProcessPeriodEntity> getAllProcessPeriodEntitiesAsList() {

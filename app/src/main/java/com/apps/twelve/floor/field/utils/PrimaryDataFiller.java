@@ -235,7 +235,8 @@ public final class PrimaryDataFiller {
   private void checkObjects() {
     //Timber.e(String.valueOf(mDataManager.getAllProcessPeriodEntitiesAsList().size()));
     //Timber.e(String.valueOf(mDataManager.getAllWeedEntitiesAsList().size()));
-    Timber.e(String.valueOf(mDataManager.getAllConditionNameEntitiesAsList().size()));
+    //Timber.e(String.valueOf(mDataManager.getAllConditionNameEntitiesAsList().size()));
+    Timber.e(String.valueOf(mDataManager.getConditionSpanValueEntitiesAsList().size()));
     // TODO
   }
 
@@ -412,14 +413,48 @@ public final class PrimaryDataFiller {
   }
 
   private class SpanValueFiller {
+    //Soil Moisture
+    static final int SPAN_40_70_KEY = 1;
+    static final int SPAN_50_65_KEY = 2;
+    static final int SPAN_40_60_KEY = 3;
+    static final int SPAN_40_50_KEY = 4;
+    static final int SPAN_30_40_KEY = 5;
+    static final int SPAN_20_50_KEY = 6;
 
-    static final int SPAN_0_10_KEY = 1;
-    static final int SPAN_10_300_KEY = 2;
-    static final int SPAN_12_20_KEY = 3;
-    static final int SPAN_8_10_KEY = 4;
-    static final int SPAN_0_25_KEY = 5;
+    //Soil Temperature
+    static final int SPAN_0_5_KEY = 7;
+    static final int SPAN_8_12_KEY = 8;
 
-    private static final int CAPACITY = 5;
+    //Planned yield
+    //All values from 8 to 10 - this is already exists
+
+    //Air Temperature
+    static final int SPAN_0_10_KEY = 9;
+    static final int SPAN_10_300_KEY = 10;
+    static final int SPAN_12_20_KEY = 11;
+    static final int SPAN_8_10_KEY = 12;
+    static final int SPAN_0_25_KEY = 13;
+
+    //Air Moisture
+    static final int SPAN_60_99_KEY = 14;
+    static final int SPAN_30_50_KEY = 15;
+    static final int SPAN_50_99_KEY = 16;
+    static final int SPAN_0_80_KEY = 17;
+
+    //Grain moisture
+    static final int SPAN_14_99_KEY = 18;
+    static final int SPAN_0_30_KEY = 19;
+
+    //Tillage Depth
+    static final int SPAN_10_12_KEY = 20;
+    static final int SPAN_6_10_KEY = 21;
+    static final int SPAN_5_8_KEY = 22;
+    static final int SPAN_4_8_KEY = 23;
+    static final int SPAN_2_4_KEY = 24;
+    static final int SPAN_4_5_KEY = 25;
+    static final int SPAN_6_8_KEY = 26;
+
+    private static final int CAPACITY = 27;
 
     private SparseArrayCompat<ConditionSpanValueObject> objects = new SparseArrayCompat<>(CAPACITY);
 
@@ -428,16 +463,71 @@ public final class PrimaryDataFiller {
       ConditionTypeObject spanValueConditionTypeObject =
           mConditionTypeFiller.objects.get(ConditionTypeFiller.SPAN_VALUE_KEY);
 
-      objects.put(SPAN_0_10_KEY,
-          new ConditionSpanValueObject(1, spanValueConditionTypeObject, 0, 10));
-      objects.put(SPAN_10_300_KEY,
-          new ConditionSpanValueObject(2, spanValueConditionTypeObject, 10, 300));
-      objects.put(SPAN_12_20_KEY,
-          new ConditionSpanValueObject(3, spanValueConditionTypeObject, 12, 20));
+      //Soil Moisture
+      objects.put(SPAN_40_70_KEY,
+          new ConditionSpanValueObject(1, spanValueConditionTypeObject, 40, 70));
+      objects.put(SPAN_50_65_KEY,
+          new ConditionSpanValueObject(2, spanValueConditionTypeObject, 50, 65));
+      objects.put(SPAN_40_60_KEY,
+          new ConditionSpanValueObject(3, spanValueConditionTypeObject, 40, 60));
+      objects.put(SPAN_40_50_KEY,
+          new ConditionSpanValueObject(4, spanValueConditionTypeObject, 40, 50));
+      objects.put(SPAN_30_40_KEY,
+          new ConditionSpanValueObject(5, spanValueConditionTypeObject, 30, 40));
+      objects.put(SPAN_20_50_KEY,
+          new ConditionSpanValueObject(6, spanValueConditionTypeObject, 20, 50));
+
+      //Soil Temperature
+      objects.put(SPAN_0_5_KEY,
+          new ConditionSpanValueObject(7, spanValueConditionTypeObject, 0, 5));
       objects.put(SPAN_8_10_KEY,
-          new ConditionSpanValueObject(4, spanValueConditionTypeObject, 8, 10));
+          new ConditionSpanValueObject(8, spanValueConditionTypeObject, 8, 10));
+      objects.put(SPAN_8_12_KEY,
+          new ConditionSpanValueObject(9, spanValueConditionTypeObject, 8, 12));
+
+      //Air Temperature
+      objects.put(SPAN_0_10_KEY,
+          new ConditionSpanValueObject(10, spanValueConditionTypeObject, 0, 10));
+      objects.put(SPAN_10_300_KEY,
+          new ConditionSpanValueObject(11, spanValueConditionTypeObject, 10, 300));
+      objects.put(SPAN_12_20_KEY,
+          new ConditionSpanValueObject(12, spanValueConditionTypeObject, 12, 20));
+      objects.put(SPAN_8_10_KEY,
+          new ConditionSpanValueObject(13, spanValueConditionTypeObject, 8, 10));
       objects.put(SPAN_0_25_KEY,
-          new ConditionSpanValueObject(5, spanValueConditionTypeObject, 0, 25));
+          new ConditionSpanValueObject(14, spanValueConditionTypeObject, 0, 25));
+
+      //Air Moisture
+      objects.put(SPAN_60_99_KEY,
+          new ConditionSpanValueObject(15, spanValueConditionTypeObject, 60, 99));
+      objects.put(SPAN_30_50_KEY,
+          new ConditionSpanValueObject(16, spanValueConditionTypeObject, 30, 50));
+      objects.put(SPAN_50_99_KEY,
+          new ConditionSpanValueObject(17, spanValueConditionTypeObject, 50, 99));
+      objects.put(SPAN_0_80_KEY,
+          new ConditionSpanValueObject(18, spanValueConditionTypeObject, 0, 80));
+
+      //Grain moisture
+      objects.put(SPAN_14_99_KEY,
+          new ConditionSpanValueObject(19, spanValueConditionTypeObject, 14, 99));
+      objects.put(SPAN_0_30_KEY,
+          new ConditionSpanValueObject(20, spanValueConditionTypeObject, 0, 30));
+
+      //Tillage Depth
+      objects.put(SPAN_10_12_KEY,
+          new ConditionSpanValueObject(21, spanValueConditionTypeObject, 10, 12));
+      objects.put(SPAN_6_10_KEY,
+          new ConditionSpanValueObject(22, spanValueConditionTypeObject, 6, 10));
+      objects.put(SPAN_5_8_KEY,
+          new ConditionSpanValueObject(23, spanValueConditionTypeObject, 5, 8));
+      objects.put(SPAN_4_8_KEY,
+          new ConditionSpanValueObject(24, spanValueConditionTypeObject, 4, 8));
+      objects.put(SPAN_2_4_KEY,
+          new ConditionSpanValueObject(25, spanValueConditionTypeObject, 2, 4));
+      objects.put(SPAN_4_5_KEY,
+          new ConditionSpanValueObject(26, spanValueConditionTypeObject, 4, 5));
+      objects.put(SPAN_6_8_KEY,
+          new ConditionSpanValueObject(27, spanValueConditionTypeObject, 6, 8));
     }
 
     void saveObjects() {

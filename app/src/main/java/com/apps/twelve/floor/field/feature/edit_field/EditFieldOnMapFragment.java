@@ -243,8 +243,13 @@ public class EditFieldOnMapFragment extends BaseManualAttachFragment
   @Override public void clearObjects() {
     clearPolygon();
     clearPolyline();
-    mMarkers.forEach(Marker::remove);
-    mMarkers.clear();
+    if (mMarkers.size() != 0) {
+      //mMarkers.forEach(Marker::remove);
+      for (int i = 0; i < mMarkers.size(); i++) {
+        mMarkers.get(i).remove();
+      }
+      mMarkers.clear();
+    }
   }
 
   @Override public void moveCamera(CameraUpdate cameraUpdate) {
