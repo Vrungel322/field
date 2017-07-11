@@ -25,6 +25,7 @@ import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedObject
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.ActiveComponentInProductObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.ActiveComponentObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.InsectObject;
@@ -76,6 +77,7 @@ public final class PrimaryDataFiller {
   private ConditionNamesFiller mConditionNamesFiller;
   private HarmfulObjectsFiller mHarmfulObjectsFiller;
   private ActiveComponentFiller mActiveComponentFiller;
+  private ActiveComponentInProductFiller mActiveComponentInProductFiller;
 
   public PrimaryDataFiller(DataManager dataManager) {
     this.mDataManager = dataManager;
@@ -126,6 +128,7 @@ public final class PrimaryDataFiller {
     mProductCategoryFiller = new ProductCategoryFiller();
     mProductFiller = new ProductFiller();
     mActiveComponentFiller = new ActiveComponentFiller();
+    mActiveComponentInProductFiller = new ActiveComponentInProductFiller();
     mAggregateFiller = new AggregateFiller();
     mInsectFiller = new InsectFiller();
 
@@ -172,6 +175,7 @@ public final class PrimaryDataFiller {
     mProductCategoryFiller.makeObjects();
     mProductFiller.makeObjects();
     mActiveComponentFiller.makeObjects();
+    mActiveComponentInProductFiller.makeObjects();
     mAggregateFiller.makeObjects();
     mInsectFiller.makeObjects();
 
@@ -219,6 +223,7 @@ public final class PrimaryDataFiller {
     mProductFiller.saveObjects();
     mProductFiller.saveObjects();
     mActiveComponentFiller.saveObjects();
+    mActiveComponentInProductFiller.saveObjects();
     mInsectFiller.saveObjects();
 
     // technological map
@@ -269,6 +274,7 @@ public final class PrimaryDataFiller {
     private SparseArrayCompat<ClimateZoneObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
+      // TODO: add coordinates
       objects.put(1, new ClimateZoneObject(1, "Степ", new ArrayList<>()));
       objects.put(2, new ClimateZoneObject(2, "Лісо-степ", new ArrayList<>()));
       objects.put(3, new ClimateZoneObject(3, "Полісся", new ArrayList<>()));
@@ -364,6 +370,7 @@ public final class PrimaryDataFiller {
     private SparseArrayCompat<SoilTypeObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
+      // TODO: add coordinates
       objects.put(1, new SoilTypeObject(1, "Піщані, або легкі грунти", ""));
       objects.put(2, new SoilTypeObject(2, "Глинисті, або важкі грунти ", ""));
       objects.put(3, new SoilTypeObject(3, "Кам'янисті грунти", ""));
@@ -746,7 +753,8 @@ public final class PrimaryDataFiller {
     void makeObjects() {
       objects.put(AGGREGATES_KEY, new TechnologicalSolutionTypeObject(1, "Агрегаты"));
       objects.put(PRODUCTS_KEY, new TechnologicalSolutionTypeObject(2, "Препараты"));
-      objects.put(ACTIVE_COMPONENTS_KEY, new TechnologicalSolutionTypeObject(3, "Действующие вещества"));
+      objects.put(ACTIVE_COMPONENTS_KEY,
+          new TechnologicalSolutionTypeObject(3, "Действующие вещества"));
       objects.put(INSECTS_KEY, new TechnologicalSolutionTypeObject(4, "Насекомые"));
       objects.put(OTHER_KEY, new TechnologicalSolutionTypeObject(5, "Другие решения"));
     }
@@ -818,7 +826,35 @@ public final class PrimaryDataFiller {
 
   private class ActiveComponentFiller {
 
-    private static final int CAPACITY = 28;
+    private static final int GLIFOSAD_KALIY_SOL_KEY = 1;
+    private static final int PROPIKONAZOL_KEY = 2;
+    private static final int CYPROKONAZOL_KEY = 3;
+    private static final int S_METOLACHLOR_KEY = 4;
+    private static final int TERBUTILAZIN_KEY = 5;
+    private static final int DESMEDIFAM_KEY = 6;
+    private static final int FENMEDIFAM_KEY = 7;
+    private static final int ETOFUMEZAT_KEY = 8;
+    private static final int METAMITRON_KEY = 9;
+    private static final int FLORASULAM_KEY = 10;
+    private static final int METAZACHLOR_KEY = 11;
+    private static final int NIKOSULPHURON_KEY = 12;
+    private static final int HIZALOFOP_KEY = 13;
+    private static final int IMAZAMOKS_KEY = 14;
+    private static final int IMAZAPIR_KEY = 15;
+    private static final int TEBUKONAZOL_KEY = 16;
+    private static final int TRIADIMEFON_KEY = 17;
+    private static final int KARBENDAZIM_KEY = 18;
+    private static final int AZOKSISTROBIN_KEY = 19;
+    private static final int IMIDAKLOPRID_KEY = 20;
+    private static final int PROCHLORAZ_KEY = 21;
+    private static final int TRITIKONAZOL_KEY = 22;
+    private static final int TIKLOPRID_KEY = 23;
+    private static final int DELTAMETRIN_KEY = 24;
+    private static final int DIFENOKONAZOL_KEY = 25;
+    private static final int EPOKSIKONAZOL_KEY = 26;
+    private static final int DIFLUFENIKAN_KEY = 27;
+
+    private static final int CAPACITY = 55;
 
     private SparseArrayCompat<ActiveComponentObject> objects = new SparseArrayCompat<>(CAPACITY);
 
@@ -827,39 +863,241 @@ public final class PrimaryDataFiller {
           mTechnologicalSolutionTypeFiller.objects.get(
               TechnologicalSolutionTypeFiller.ACTIVE_COMPONENTS_KEY);
 
-      objects.put(1, new ActiveComponentObject(1, "Калійна сіль гліфосату", activeComponentTechnologicalSolutionType));
-      objects.put(2, new ActiveComponentObject(2, "Пропіконазол", activeComponentTechnologicalSolutionType));
-      objects.put(3, new ActiveComponentObject(3, "Ципроконазол", activeComponentTechnologicalSolutionType));
-      objects.put(4, new ActiveComponentObject(4, "Гліфосату калійна сіль", activeComponentTechnologicalSolutionType));
-      objects.put(5, new ActiveComponentObject(5, "S-метолахлор", activeComponentTechnologicalSolutionType));
-      objects.put(6, new ActiveComponentObject(6, "Тербутилазин", activeComponentTechnologicalSolutionType));
-      objects.put(7, new ActiveComponentObject(7, "Десмедифам", activeComponentTechnologicalSolutionType));
-      objects.put(8, new ActiveComponentObject(8, "Фенмедифам", activeComponentTechnologicalSolutionType));
-      objects.put(9, new ActiveComponentObject(9, "Етофумезат", activeComponentTechnologicalSolutionType));
-      objects.put(10, new ActiveComponentObject(10, "Метамітрон", activeComponentTechnologicalSolutionType));
-      objects.put(11, new ActiveComponentObject(11, "Флорасулам", activeComponentTechnologicalSolutionType));
-      objects.put(12, new ActiveComponentObject(12, "Метазахлор", activeComponentTechnologicalSolutionType));
-      objects.put(13, new ActiveComponentObject(13, "Нікосульфурон", activeComponentTechnologicalSolutionType));
-      objects.put(14, new ActiveComponentObject(14, "Хізалофоп-П-тефурил", activeComponentTechnologicalSolutionType));
-      objects.put(15, new ActiveComponentObject(15, "Імазамокс", activeComponentTechnologicalSolutionType));
-      objects.put(16, new ActiveComponentObject(16, "Імазапір", activeComponentTechnologicalSolutionType));
-      objects.put(17, new ActiveComponentObject(17, "Тебуконазол", activeComponentTechnologicalSolutionType));
-      objects.put(18, new ActiveComponentObject(18, "Триадимефон", activeComponentTechnologicalSolutionType));
-      objects.put(19, new ActiveComponentObject(19, "Карбендазим", activeComponentTechnologicalSolutionType));
-      objects.put(20, new ActiveComponentObject(20, "Азоксистробін", activeComponentTechnologicalSolutionType));
-      objects.put(21, new ActiveComponentObject(21, "Імідаклоприд", activeComponentTechnologicalSolutionType));
-      objects.put(22, new ActiveComponentObject(22, "Прохлораз", activeComponentTechnologicalSolutionType));
-      objects.put(23, new ActiveComponentObject(23, "Тритіконазол", activeComponentTechnologicalSolutionType));
-      objects.put(24, new ActiveComponentObject(24, "Тіклоприд", activeComponentTechnologicalSolutionType));
-      objects.put(25, new ActiveComponentObject(25, "Дельтаметрин", activeComponentTechnologicalSolutionType));
-      objects.put(26, new ActiveComponentObject(26, "Дифеноконазол", activeComponentTechnologicalSolutionType));
-      objects.put(27, new ActiveComponentObject(27, "Епоксіконазол", activeComponentTechnologicalSolutionType));
-      objects.put(28, new ActiveComponentObject(28, "Дифлюфеникан", activeComponentTechnologicalSolutionType));
+      objects.put(GLIFOSAD_KALIY_SOL_KEY, new ActiveComponentObject(1, "Гліфосату калійна сіль",
+          activeComponentTechnologicalSolutionType));
+      objects.put(PROPIKONAZOL_KEY,
+          new ActiveComponentObject(2, "Пропіконазол", activeComponentTechnologicalSolutionType));
+      objects.put(CYPROKONAZOL_KEY,
+          new ActiveComponentObject(3, "Ципроконазол", activeComponentTechnologicalSolutionType));
+      objects.put(S_METOLACHLOR_KEY,
+          new ActiveComponentObject(4, "S-метолахлор", activeComponentTechnologicalSolutionType));
+      objects.put(TERBUTILAZIN_KEY,
+          new ActiveComponentObject(5, "Тербутилазин", activeComponentTechnologicalSolutionType));
+      objects.put(DESMEDIFAM_KEY,
+          new ActiveComponentObject(6, "Десмедифам", activeComponentTechnologicalSolutionType));
+      objects.put(FENMEDIFAM_KEY,
+          new ActiveComponentObject(7, "Фенмедифам", activeComponentTechnologicalSolutionType));
+      objects.put(ETOFUMEZAT_KEY,
+          new ActiveComponentObject(8, "Етофумезат", activeComponentTechnologicalSolutionType));
+      objects.put(METAMITRON_KEY,
+          new ActiveComponentObject(9, "Метамітрон", activeComponentTechnologicalSolutionType));
+      objects.put(FLORASULAM_KEY,
+          new ActiveComponentObject(10, "Флорасулам", activeComponentTechnologicalSolutionType));
+      objects.put(METAZACHLOR_KEY,
+          new ActiveComponentObject(11, "Метазахлор", activeComponentTechnologicalSolutionType));
+      objects.put(NIKOSULPHURON_KEY,
+          new ActiveComponentObject(12, "Нікосульфурон", activeComponentTechnologicalSolutionType));
+      objects.put(HIZALOFOP_KEY, new ActiveComponentObject(13, "Хізалофоп-П-тефурил",
+          activeComponentTechnologicalSolutionType));
+      objects.put(IMAZAMOKS_KEY,
+          new ActiveComponentObject(14, "Імазамокс", activeComponentTechnologicalSolutionType));
+      objects.put(IMAZAPIR_KEY,
+          new ActiveComponentObject(15, "Імазапір", activeComponentTechnologicalSolutionType));
+      objects.put(TEBUKONAZOL_KEY,
+          new ActiveComponentObject(16, "Тебуконазол", activeComponentTechnologicalSolutionType));
+      objects.put(TRIADIMEFON_KEY,
+          new ActiveComponentObject(17, "Триадимефон", activeComponentTechnologicalSolutionType));
+      objects.put(KARBENDAZIM_KEY,
+          new ActiveComponentObject(18, "Карбендазим", activeComponentTechnologicalSolutionType));
+      objects.put(AZOKSISTROBIN_KEY,
+          new ActiveComponentObject(19, "Азоксистробін", activeComponentTechnologicalSolutionType));
+      objects.put(IMIDAKLOPRID_KEY,
+          new ActiveComponentObject(20, "Імідаклоприд", activeComponentTechnologicalSolutionType));
+      objects.put(PROCHLORAZ_KEY,
+          new ActiveComponentObject(21, "Прохлораз", activeComponentTechnologicalSolutionType));
+      objects.put(TRITIKONAZOL_KEY,
+          new ActiveComponentObject(22, "Тритіконазол", activeComponentTechnologicalSolutionType));
+      objects.put(TIKLOPRID_KEY,
+          new ActiveComponentObject(23, "Тіклоприд", activeComponentTechnologicalSolutionType));
+      objects.put(DELTAMETRIN_KEY,
+          new ActiveComponentObject(24, "Дельтаметрин", activeComponentTechnologicalSolutionType));
+      objects.put(DIFENOKONAZOL_KEY,
+          new ActiveComponentObject(25, "Дифеноконазол", activeComponentTechnologicalSolutionType));
+      objects.put(EPOKSIKONAZOL_KEY,
+          new ActiveComponentObject(26, "Епоксіконазол", activeComponentTechnologicalSolutionType));
+      objects.put(DIFLUFENIKAN_KEY,
+          new ActiveComponentObject(27, "Дифлюфеникан", activeComponentTechnologicalSolutionType));
+      objects.put(28, new ActiveComponentObject(28, "Піраклостробін",
+          activeComponentTechnologicalSolutionType));
+      objects.put(29,
+          new ActiveComponentObject(29, "Тіаметоксам", activeComponentTechnologicalSolutionType));
+      objects.put(30,
+          new ActiveComponentObject(30, "Фіпроніл", activeComponentTechnologicalSolutionType));
+      objects.put(31,
+          new ActiveComponentObject(31, "Клотіанідин", activeComponentTechnologicalSolutionType));
+      objects.put(32,
+          new ActiveComponentObject(32, "Карбамід", activeComponentTechnologicalSolutionType));
+      objects.put(33,
+          new ActiveComponentObject(33, "Ацетохлор", activeComponentTechnologicalSolutionType));
+      objects.put(34,
+          new ActiveComponentObject(34, "Прометрин", activeComponentTechnologicalSolutionType));
+      objects.put(35,
+          new ActiveComponentObject(35, "Пендиметалін", activeComponentTechnologicalSolutionType));
+      objects.put(36,
+          new ActiveComponentObject(36, "Римсульфурон", activeComponentTechnologicalSolutionType));
+      objects.put(37,
+          new ActiveComponentObject(37, "Бентазон", activeComponentTechnologicalSolutionType));
+      objects.put(38, new ActiveComponentObject(38, "Тифенсульфурон",
+          activeComponentTechnologicalSolutionType));
+      objects.put(39,
+          new ActiveComponentObject(39, "Дикамба", activeComponentTechnologicalSolutionType));
+      objects.put(40,
+          new ActiveComponentObject(40, "Клопіралід", activeComponentTechnologicalSolutionType));
+      objects.put(41, new ActiveComponentObject(41, "2-етилгексиловий ефір 2,4-Д",
+          activeComponentTechnologicalSolutionType));
+      objects.put(42,
+          new ActiveComponentObject(42, "Тіаклоприд", activeComponentTechnologicalSolutionType));
+      objects.put(43,
+          new ActiveComponentObject(43, "Диметоат", activeComponentTechnologicalSolutionType));
+      objects.put(44, new ActiveComponentObject(44, "Лямбда-цигалотрин",
+          activeComponentTechnologicalSolutionType));
+      objects.put(45,
+          new ActiveComponentObject(45, "Хлорпірифос", activeComponentTechnologicalSolutionType));
+      objects.put(46, new ActiveComponentObject(46, "Форамсульфурон",
+          activeComponentTechnologicalSolutionType));
+      objects.put(47, new ActiveComponentObject(47, "Йодсульфурон-метил",
+          activeComponentTechnologicalSolutionType));
+      objects.put(48, new ActiveComponentObject(48, "Антидот-ізоксадифенетил",
+          activeComponentTechnologicalSolutionType));
+      objects.put(49, new ActiveComponentObject(49, "Гідроксид амонію",
+          activeComponentTechnologicalSolutionType));
+      objects.put(50, new ActiveComponentObject(50, "Сульфат амонію",
+          activeComponentTechnologicalSolutionType));
+      objects.put(51, new ActiveComponentObject(51, "Нітрат кальцію",
+          activeComponentTechnologicalSolutionType));
+      objects.put(52,
+          new ActiveComponentObject(52, "Нітрат натрію", activeComponentTechnologicalSolutionType));
+      objects.put(53,
+          new ActiveComponentObject(53, "Хлорид амонію", activeComponentTechnologicalSolutionType));
+      objects.put(54, new ActiveComponentObject(54, "Аміачна селітра",
+          activeComponentTechnologicalSolutionType));
     }
 
     void saveObjects() {
       for (int i = 0; i < objects.size(); i++) {
         mDataManager.putActiveComponent(objects.valueAt(i));
+      }
+    }
+  }
+
+  private class ActiveComponentInProductFiller {
+
+    private static final int CAPACITY = 27;
+
+    private SparseArrayCompat<ActiveComponentInProductObject> objects =
+        new SparseArrayCompat<>(CAPACITY);
+
+    void makeObjects() {
+
+      // TODO: need to fill dozes
+      objects.put(1, new ActiveComponentInProductObject(11,
+          mProductFiller.objects.get(ProductFiller.AGROSCHIT_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.GLIFOSAD_KALIY_SOL_KEY).getId(),
+          "doze"));
+      objects.put(2, new ActiveComponentInProductObject(2,
+          mProductFiller.objects.get(ProductFiller.EXTRACORN_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.S_METOLACHLOR_KEY).getId(),
+          "doze"));
+      objects.put(3, new ActiveComponentInProductObject(3,
+          mProductFiller.objects.get(ProductFiller.EXTRACORN_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.TERBUTILAZIN_KEY).getId(),
+          "doze"));
+      objects.put(4, new ActiveComponentInProductObject(4,
+          mProductFiller.objects.get(ProductFiller.KIANIT_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.DESMEDIFAM_KEY).getId(),
+          "doze"));
+      objects.put(5, new ActiveComponentInProductObject(5,
+          mProductFiller.objects.get(ProductFiller.KIANIT_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.FENMEDIFAM_KEY).getId(),
+          "doze"));
+      objects.put(6, new ActiveComponentInProductObject(6,
+          mProductFiller.objects.get(ProductFiller.KIANIT_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.ETOFUMEZAT_KEY).getId(),
+          "doze"));
+      objects.put(7, new ActiveComponentInProductObject(7,
+          mProductFiller.objects.get(ProductFiller.LAVINA_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.METAMITRON_KEY).getId(),
+          "doze"));
+      objects.put(8, new ActiveComponentInProductObject(8,
+          mProductFiller.objects.get(ProductFiller.RATNIK_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.FLORASULAM_KEY).getId(),
+          "doze"));
+      objects.put(9, new ActiveComponentInProductObject(9,
+          mProductFiller.objects.get(ProductFiller.RIPIUS_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.METAZACHLOR_KEY).getId(),
+          "doze"));
+      objects.put(10, new ActiveComponentInProductObject(10,
+          mProductFiller.objects.get(ProductFiller.SATURN_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.NIKOSULPHURON_KEY).getId(),
+          "doze"));
+      objects.put(11, new ActiveComponentInProductObject(11,
+          mProductFiller.objects.get(ProductFiller.SKAT_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.HIZALOFOP_KEY).getId(), "doze"));
+      objects.put(12, new ActiveComponentInProductObject(12,
+          mProductFiller.objects.get(ProductFiller.SOTEYRA_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.IMAZAMOKS_KEY).getId(), "doze"));
+      objects.put(13, new ActiveComponentInProductObject(13,
+          mProductFiller.objects.get(ProductFiller.SOTEYRA_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.IMAZAPIR_KEY).getId(), "doze"));
+      objects.put(14, new ActiveComponentInProductObject(14,
+          mProductFiller.objects.get(ProductFiller.AZIMUT_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.TEBUKONAZOL_KEY).getId(),
+          "doze"));
+      objects.put(15, new ActiveComponentInProductObject(15,
+          mProductFiller.objects.get(ProductFiller.AZIMUT_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.TRIADIMEFON_KEY).getId(),
+          "doze"));
+      objects.put(16, new ActiveComponentInProductObject(16,
+          mProductFiller.objects.get(ProductFiller.ALIOT_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.PROPIKONAZOL_KEY).getId(),
+          "doze"));
+      objects.put(17, new ActiveComponentInProductObject(17,
+          mProductFiller.objects.get(ProductFiller.ALIOT_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.CYPROKONAZOL_KEY).getId(),
+          "doze"));
+      objects.put(18, new ActiveComponentInProductObject(18,
+          mProductFiller.objects.get(ProductFiller.KARBENAZOL_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.CYPROKONAZOL_KEY).getId(),
+          "doze"));
+      objects.put(19, new ActiveComponentInProductObject(19,
+          mProductFiller.objects.get(ProductFiller.KARBENAZOL_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.KARBENDAZIM_KEY).getId(),
+          "doze"));
+      objects.put(20, new ActiveComponentInProductObject(20,
+          mProductFiller.objects.get(ProductFiller.VERSHINA_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.TEBUKONAZOL_KEY).getId(),
+          "doze"));
+      objects.put(21, new ActiveComponentInProductObject(21,
+          mProductFiller.objects.get(ProductFiller.VERSHINA_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.AZOKSISTROBIN_KEY).getId(),
+          "doze"));
+      objects.put(22, new ActiveComponentInProductObject(22,
+          mProductFiller.objects.get(ProductFiller.COYOT_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.IMIDAKLOPRID_KEY).getId(),
+          "doze"));
+      objects.put(23, new ActiveComponentInProductObject(23,
+          mProductFiller.objects.get(ProductFiller.TAYMEN_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.PROCHLORAZ_KEY).getId(),
+          "doze"));
+      objects.put(24, new ActiveComponentInProductObject(24,
+          mProductFiller.objects.get(ProductFiller.TAYMEN_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.TRITIKONAZOL_KEY).getId(),
+          "doze"));
+      objects.put(25, new ActiveComponentInProductObject(25,
+          mProductFiller.objects.get(ProductFiller.VELES_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.TIKLOPRID_KEY).getId(), "doze"));
+      objects.put(26, new ActiveComponentInProductObject(26,
+          mProductFiller.objects.get(ProductFiller.VELES_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.DELTAMETRIN_KEY).getId(),
+          "doze"));
+      objects.put(27, new ActiveComponentInProductObject(27,
+          mProductFiller.objects.get(ProductFiller.VYRIY_KEY).getId(),
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.TIKLOPRID_KEY).getId(), "doze"));
+    }
+
+    void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putActiveComponentInProduct(objects.valueAt(i));
       }
     }
   }
@@ -891,6 +1129,24 @@ public final class PrimaryDataFiller {
 
   private class ProductFiller {
 
+    private static final int AGROSCHIT_KEY = 1;
+    private static final int EXTRACORN_KEY = 2;
+    private static final int KIANIT_KEY = 3;
+    private static final int LAVINA_KEY = 4;
+    private static final int RATNIK_KEY = 5;
+    private static final int RIPIUS_KEY = 6;
+    private static final int SATURN_KEY = 7;
+    private static final int SKAT_KEY = 8;
+    private static final int SOTEYRA_KEY = 9;
+    private static final int AZIMUT_KEY = 10;
+    private static final int ALIOT_KEY = 11;
+    private static final int KARBENAZOL_KEY = 12;
+    private static final int VERSHINA_KEY = 13;
+    private static final int COYOT_KEY = 14;
+    private static final int TAYMEN_KEY = 15;
+    private static final int VELES_KEY = 16;
+    private static final int VYRIY_KEY = 17;
+
     private static final int CAPACITY = 17;
 
     private SparseArrayCompat<ProductObject> objects = new SparseArrayCompat<>(CAPACITY);
@@ -910,39 +1166,39 @@ public final class PrimaryDataFiller {
       ProductCategoryObject insecticideProductCategory =
           mProductCategoryFiller.objects.get(ProductCategoryFiller.INSECTICIDES_KEY);
 
-      objects.put(1, new ProductObject(1, "Агрощит Супер", techSolutionTypeProducts, 0,
+      objects.put(AGROSCHIT_KEY, new ProductObject(1, "Агрощит Супер", techSolutionTypeProducts, 0,
           herbicideProductCategory));
-      objects.put(2, new ProductObject(2, "Екстракорн", techSolutionTypeProducts, 0,
+      objects.put(EXTRACORN_KEY, new ProductObject(2, "Екстракорн", techSolutionTypeProducts, 0,
           herbicideProductCategory));
-      objects.put(3,
+      objects.put(KIANIT_KEY,
           new ProductObject(3, "Кіаніт", techSolutionTypeProducts, 0, herbicideProductCategory));
-      objects.put(4,
+      objects.put(LAVINA_KEY,
           new ProductObject(4, "Лавина", techSolutionTypeProducts, 0, herbicideProductCategory));
-      objects.put(5,
+      objects.put(RATNIK_KEY,
           new ProductObject(5, "Ратник", techSolutionTypeProducts, 0, herbicideProductCategory));
-      objects.put(6,
+      objects.put(RIPIUS_KEY,
           new ProductObject(6, "Ріпіус", techSolutionTypeProducts, 0, herbicideProductCategory));
-      objects.put(7,
+      objects.put(SATURN_KEY,
           new ProductObject(7, "Сатурн", techSolutionTypeProducts, 0, herbicideProductCategory));
-      objects.put(8,
+      objects.put(SKAT_KEY,
           new ProductObject(8, "Скат", techSolutionTypeProducts, 0, herbicideProductCategory));
-      objects.put(9,
+      objects.put(SOTEYRA_KEY,
           new ProductObject(9, "Сотейра", techSolutionTypeProducts, 0, herbicideProductCategory));
-      objects.put(10,
+      objects.put(AZIMUT_KEY,
           new ProductObject(10, "Азимут", techSolutionTypeProducts, 0, fungicideProductCategory));
-      objects.put(11,
+      objects.put(ALIOT_KEY,
           new ProductObject(11, "Аліот", techSolutionTypeProducts, 0, fungicideProductCategory));
-      objects.put(12, new ProductObject(12, "Карбеназол", techSolutionTypeProducts, 0,
+      objects.put(KARBENAZOL_KEY, new ProductObject(12, "Карбеназол", techSolutionTypeProducts, 0,
           fungicideProductCategory));
-      objects.put(13, new ProductObject(13, "Вершина", techSolutionTypeProducts, 0,
+      objects.put(VERSHINA_KEY, new ProductObject(13, "Вершина", techSolutionTypeProducts, 0,
           disinfectantProductCategory));
-      objects.put(14,
+      objects.put(COYOT_KEY,
           new ProductObject(14, "Койот", techSolutionTypeProducts, 0, disinfectantProductCategory));
-      objects.put(15, new ProductObject(15, "Таймень", techSolutionTypeProducts, 0,
+      objects.put(TAYMEN_KEY, new ProductObject(15, "Таймень", techSolutionTypeProducts, 0,
           disinfectantProductCategory));
-      objects.put(16,
+      objects.put(VELES_KEY,
           new ProductObject(16, "Велес", techSolutionTypeProducts, 0, insecticideProductCategory));
-      objects.put(17,
+      objects.put(VYRIY_KEY,
           new ProductObject(17, "Вирій", techSolutionTypeProducts, 0, insecticideProductCategory));
     }
 
