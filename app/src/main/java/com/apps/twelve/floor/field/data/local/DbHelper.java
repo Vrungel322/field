@@ -35,6 +35,7 @@ import com.apps.twelve.floor.field.data.local.entities.solutions.FieldTechnologi
 import com.apps.twelve.floor.field.data.local.entities.solutions.InsectEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.ProductCategoryEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.ProductEntity;
+import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessEntity;
@@ -74,6 +75,7 @@ import com.apps.twelve.floor.field.data.local.tables.solutions.InsectsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.ProductCategoriesTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.ProductsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.TechnologicalSolutionTypesTable;
+import com.apps.twelve.floor.field.data.local.tables.solutions.TechnologicalSolutionsTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.CropTechnologicalProcessesTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.FieldCropTechnologicalProcessesTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.TechnologicalProcessStatesTable;
@@ -453,6 +455,34 @@ public class DbHelper {
       TechnologicalSolutionTypeEntity technologicalSolutionTypeEntity) {
     return mStorIOSQLite.delete()
         .object(technologicalSolutionTypeEntity)
+        .prepare()
+        .executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Technological Solution
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<TechnologicalSolutionEntity>> getAllTechnologicalSolutions() {
+    return mStorIOSQLite.get()
+        .listOfObjects(TechnologicalSolutionEntity.class)
+        .withQuery(TechnologicalSolutionsTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putTechnologicalSolution(
+      TechnologicalSolutionEntity technologicalSolutionEntity) {
+    return mStorIOSQLite.put()
+        .object(technologicalSolutionEntity)
+        .prepare()
+        .executeAsBlocking();
+  }
+
+  public DeleteResult deleteTechnologicalSolution(
+      TechnologicalSolutionEntity technologicalSolutionEntity) {
+    return mStorIOSQLite.delete()
+        .object(technologicalSolutionEntity)
         .prepare()
         .executeAsBlocking();
   }

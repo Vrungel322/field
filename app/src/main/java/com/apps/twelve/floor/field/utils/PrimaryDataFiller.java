@@ -868,24 +868,24 @@ public final class PrimaryDataFiller {
           mTechnologicalSolutionTypeFiller.objects.get(
               TechnologicalSolutionTypeFiller.AGGREGATES_KEY);
 
-      // TODO: need to change - we wouldn't use specified aggregates - only their groups
       objects.put(1, new AggregateObject(1, "Важка борона", aggregateTechSolutionType, 0));
       objects.put(2, new AggregateObject(2, "Волокуша-вирівнювач", aggregateTechSolutionType, 0));
       objects.put(3, new AggregateObject(3, "Культиватор", aggregateTechSolutionType, 0));
-      objects.put(4, new AggregateObject(4, "Гладкорубчасті котки", aggregateTechSolutionType, 0));
-      objects.put(5, new AggregateObject(5, "Кільчасті котки", aggregateTechSolutionType, 0));
-      objects.put(6, new AggregateObject(6, "Борона ЗБП-0.6", aggregateTechSolutionType, 0));
-      objects.put(7, new AggregateObject(7, "Борона БЗСС-1", aggregateTechSolutionType, 0));
-      objects.put(8, new AggregateObject(8, "Культиватор КРН-4.2", aggregateTechSolutionType, 0));
-      objects.put(9, new AggregateObject(9, "Культиватор КРН-5.6", aggregateTechSolutionType, 0));
-      objects.put(11, new AggregateObject(11, "Дисковий лущильник", aggregateTechSolutionType, 0));
-      objects.put(12, new AggregateObject(12, "Оприскувачі навісні", aggregateTechSolutionType, 0));
-      objects.put(13,
-          new AggregateObject(13, "Оприскувачі причіпні", aggregateTechSolutionType, 0));
-      objects.put(14,
-          new AggregateObject(14, "Кукурудзозбиральні комбайни", aggregateTechSolutionType, 0));
-      objects.put(15,
-          new AggregateObject(15, "Зернозбиральні комбайни", aggregateTechSolutionType, 0));
+      objects.put(4, new AggregateObject(4, "Борона", aggregateTechSolutionType, 0));
+      objects.put(5, new AggregateObject(5, "Сівалка", aggregateTechSolutionType, 0));
+      objects.put(6, new AggregateObject(6, "Грунтообробний комбінований агрегат", aggregateTechSolutionType, 0));
+      objects.put(7, new AggregateObject(7, "Гладкорубчастий каток", aggregateTechSolutionType, 0));
+      objects.put(8, new AggregateObject(8, "Легка борона", aggregateTechSolutionType, 0));
+      objects.put(9, new AggregateObject(9, "Середня борона", aggregateTechSolutionType, 0));
+      objects.put(10, new AggregateObject(10, "Стрільчаста лапа культиватора", aggregateTechSolutionType, 0));
+      objects.put(11, new AggregateObject(11, "Лапа-бритва культиватора", aggregateTechSolutionType, 0));
+      objects.put(12, new AggregateObject(12, "Лапа-підгортальник культиватора", aggregateTechSolutionType, 0));
+      objects.put(13, new AggregateObject(13, "Дисковий лущильник", aggregateTechSolutionType, 0));
+      objects.put(14, new AggregateObject(14, "Дискова борона", aggregateTechSolutionType, 0));
+      objects.put(15, new AggregateObject(15, "Оприскувач навісний", aggregateTechSolutionType, 0));
+      objects.put(16, new AggregateObject(16, "Оприскувач причіпний", aggregateTechSolutionType, 0));
+      objects.put(17, new AggregateObject(17, "Кукурудзозбиральний комбайн", aggregateTechSolutionType, 0));
+      objects.put(18, new AggregateObject(18, "Зернозбиральний комбайн", aggregateTechSolutionType, 0));
     }
 
     void saveObjects() {

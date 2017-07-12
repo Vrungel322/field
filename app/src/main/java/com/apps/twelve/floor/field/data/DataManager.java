@@ -44,6 +44,7 @@ import com.apps.twelve.floor.field.data.local.mappers.solutions.AggregateObjectT
 import com.apps.twelve.floor.field.data.local.mappers.solutions.InsectObjectToInsectEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.solutions.ProductCategoryObjectToProductCategoryEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.solutions.ProductObjectToProductEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.solutions.TechnologicalSolutionObjectToTechnologicalSolutionEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.solutions.TechnologicalSolutionTypeObjectToTechnologicalSolutionTypeEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.technological_map.TechnologicalProcessStateObjectToTechnologicalProcessStateEntityMapper;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
@@ -78,6 +79,7 @@ import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologic
 import com.apps.twelve.floor.field.data.local.objects.solutions.InsectObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.ProductCategoryObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.ProductObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
@@ -326,6 +328,13 @@ public class DataManager {
       long mTechnologicalProcessId) {
     // TODO get data from DB, not from test util
     return Observable.just(TestUtils.getTechnologicalSolutions());
+  }
+
+  public PutResult putTechnologicalSolution(
+      TechnologicalSolutionObject technologicalSolutionObject) {
+    return mDbHelper.putTechnologicalSolution(
+        new TechnologicalSolutionObjectToTechnologicalSolutionEntityMapper().transform(
+            technologicalSolutionObject));
   }
 
   public Observable<List<TechnologicalSolutionTypeObject>> getAllTechnologicalSolutionTypes() {

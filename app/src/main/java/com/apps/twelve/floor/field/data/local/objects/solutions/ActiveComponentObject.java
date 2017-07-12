@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
  * Created by yarrick on 06.07.17.
  */
 
-public class ActiveComponentObject extends BaseTechnologicalSolutionObject{
+public class ActiveComponentObject extends BaseTechnologicalSolutionObject {
 
   public static final Creator<ActiveComponentObject> CREATOR = new Creator<ActiveComponentObject>() {
     @Override public ActiveComponentObject createFromParcel(Parcel in) {

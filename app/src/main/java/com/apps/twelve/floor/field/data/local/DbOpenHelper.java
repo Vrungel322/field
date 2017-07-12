@@ -38,6 +38,7 @@ import com.apps.twelve.floor.field.data.local.tables.solutions.InsectsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.ProductCategoriesTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.ProductsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.TechnologicalSolutionTypesTable;
+import com.apps.twelve.floor.field.data.local.tables.solutions.TechnologicalSolutionsTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.CropTechnologicalProcessesTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.FieldCropTechnologicalProcessesTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.TechnologicalProcessStatesTable;
@@ -137,6 +138,8 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(ProductsTable.getCreateTableQuery());
     // TechnologicalSolutionTypes
     db.execSQL(TechnologicalSolutionTypesTable.getCreateTableQuery());
+    // TechnologicalSolutions
+    db.execSQL(TechnologicalSolutionsTable.getCreateTableQuery());
     // ActiveComponentsInProducts
     db.execSQL(ActiveComponentsInProductsTable.getCreateTableQuery());
   }
