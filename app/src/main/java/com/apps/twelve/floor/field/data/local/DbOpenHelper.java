@@ -30,6 +30,7 @@ import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedsTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.PhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ProcessPeriodsTable;
+import com.apps.twelve.floor.field.data.local.tables.solutions.ActiveComponentsInProductsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.ActiveComponentsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.AggregatesTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.FieldTechnologicalProcessSolutionsTable;
@@ -136,6 +137,8 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(ProductsTable.getCreateTableQuery());
     // TechnologicalSolutionTypes
     db.execSQL(TechnologicalSolutionTypesTable.getCreateTableQuery());
+    // ActiveComponentsInProducts
+    db.execSQL(ActiveComponentsInProductsTable.getCreateTableQuery());
   }
 
   private void createTechnologicalMapTables(SQLiteDatabase db) {

@@ -40,7 +40,6 @@ import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTec
 import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessStateEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessesConditionEntity;
-import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.tables.CropsActiveComponentsHarmfulObjectsTable;
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.DealersTable;
@@ -136,7 +135,8 @@ public class DbHelper {
     return mStorIOSQLite.put().object(conditionSpanValueEntity).prepare().executeAsBlocking();
   }
 
-  public DeleteResult deleteConditionSpanValueEntity(ConditionSpanValueEntity conditionSpanValueEntity) {
+  public DeleteResult deleteConditionSpanValueEntity(
+      ConditionSpanValueEntity conditionSpanValueEntity) {
     return mStorIOSQLite.delete().object(conditionSpanValueEntity).prepare().executeAsBlocking();
   }
 
@@ -352,13 +352,13 @@ public class DbHelper {
     return mStorIOSQLite.put().object(activeComponentEntity).prepare().executeAsBlocking();
   }
 
+  public DeleteResult deleteActiveComponent(ActiveComponentEntity activeComponentEntity) {
+    return mStorIOSQLite.delete().object(activeComponentEntity).prepare().executeAsBlocking();
+  }
+
   public PutResult putActiveComponentInProduct(
       ActiveComponentInProductEntity activeComponentInProductEntity) {
     return mStorIOSQLite.put().object(activeComponentInProductEntity).prepare().executeAsBlocking();
-  }
-
-  public DeleteResult deleteActiveComponent(ActiveComponentEntity activeComponentEntity) {
-    return mStorIOSQLite.delete().object(activeComponentEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////

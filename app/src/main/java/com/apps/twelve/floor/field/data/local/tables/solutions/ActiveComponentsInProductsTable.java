@@ -29,11 +29,11 @@ public class ActiveComponentsInProductsTable {
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_PRODUCT_ID
-        + "INTEGER, "
+        + " INTEGER, "
         + COLUMN_ACTIVE_COMPONENT_ID
-        + "INTEGER, "
+        + " INTEGER, "
         + COLUMN_DOZE
-        + "TEXT NULL "
+        + " TEXT NULL "
         + ");";
   }
 }

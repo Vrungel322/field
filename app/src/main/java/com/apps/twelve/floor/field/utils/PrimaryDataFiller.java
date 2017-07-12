@@ -224,6 +224,7 @@ public final class PrimaryDataFiller {
     mProductFiller.saveObjects();
     mActiveComponentFiller.saveObjects();
     mActiveComponentInProductFiller.saveObjects();
+    mAggregateFiller.saveObjects();
     mInsectFiller.saveObjects();
 
     // technological map
@@ -1080,109 +1081,91 @@ public final class PrimaryDataFiller {
     void makeObjects() {
 
       // TODO: need to fill dozes
-      objects.put(1, new ActiveComponentInProductObject(11,
+      objects.put(1, new ActiveComponentInProductObject(1,
           mProductFiller.objects.get(ProductFiller.AGROSCHIT_KEY).getId(),
           mActiveComponentFiller.objects.get(ActiveComponentFiller.GLIFOSAD_KALIY_SOL_KEY).getId(),
-          "doze"));
+          "0"));
       objects.put(2, new ActiveComponentInProductObject(2,
           mProductFiller.objects.get(ProductFiller.EXTRACORN_KEY).getId(),
           mActiveComponentFiller.objects.get(ActiveComponentFiller.S_METOLACHLOR_KEY).getId(),
-          "doze"));
+          "0"));
       objects.put(3, new ActiveComponentInProductObject(3,
           mProductFiller.objects.get(ProductFiller.EXTRACORN_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.TERBUTILAZIN_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.TERBUTILAZIN_KEY).getId(), "0"));
       objects.put(4, new ActiveComponentInProductObject(4,
           mProductFiller.objects.get(ProductFiller.KIANIT_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.DESMEDIFAM_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.DESMEDIFAM_KEY).getId(), "0"));
       objects.put(5, new ActiveComponentInProductObject(5,
           mProductFiller.objects.get(ProductFiller.KIANIT_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.FENMEDIFAM_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.FENMEDIFAM_KEY).getId(), "0"));
       objects.put(6, new ActiveComponentInProductObject(6,
           mProductFiller.objects.get(ProductFiller.KIANIT_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.ETOFUMEZAT_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.ETOFUMEZAT_KEY).getId(), "0"));
       objects.put(7, new ActiveComponentInProductObject(7,
           mProductFiller.objects.get(ProductFiller.LAVINA_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.METAMITRON_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.METAMITRON_KEY).getId(), "0"));
       objects.put(8, new ActiveComponentInProductObject(8,
           mProductFiller.objects.get(ProductFiller.RATNIK_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.FLORASULAM_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.FLORASULAM_KEY).getId(), "0"));
       objects.put(9, new ActiveComponentInProductObject(9,
           mProductFiller.objects.get(ProductFiller.RIPIUS_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.METAZACHLOR_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.METAZACHLOR_KEY).getId(), "0"));
       objects.put(10, new ActiveComponentInProductObject(10,
           mProductFiller.objects.get(ProductFiller.SATURN_KEY).getId(),
           mActiveComponentFiller.objects.get(ActiveComponentFiller.NIKOSULPHURON_KEY).getId(),
-          "doze"));
+          "0"));
       objects.put(11, new ActiveComponentInProductObject(11,
           mProductFiller.objects.get(ProductFiller.SKAT_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.HIZALOFOP_KEY).getId(), "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.HIZALOFOP_KEY).getId(), "0"));
       objects.put(12, new ActiveComponentInProductObject(12,
           mProductFiller.objects.get(ProductFiller.SOTEYRA_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.IMAZAMOKS_KEY).getId(), "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.IMAZAMOKS_KEY).getId(), "0"));
       objects.put(13, new ActiveComponentInProductObject(13,
           mProductFiller.objects.get(ProductFiller.SOTEYRA_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.IMAZAPIR_KEY).getId(), "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.IMAZAPIR_KEY).getId(), "0"));
       objects.put(14, new ActiveComponentInProductObject(14,
           mProductFiller.objects.get(ProductFiller.AZIMUT_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.TEBUKONAZOL_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.TEBUKONAZOL_KEY).getId(), "0"));
       objects.put(15, new ActiveComponentInProductObject(15,
           mProductFiller.objects.get(ProductFiller.AZIMUT_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.TRIADIMEFON_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.TRIADIMEFON_KEY).getId(), "0"));
       objects.put(16, new ActiveComponentInProductObject(16,
           mProductFiller.objects.get(ProductFiller.ALIOT_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.PROPIKONAZOL_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.PROPIKONAZOL_KEY).getId(), "0"));
       objects.put(17, new ActiveComponentInProductObject(17,
           mProductFiller.objects.get(ProductFiller.ALIOT_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.CYPROKONAZOL_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.CYPROKONAZOL_KEY).getId(), "0"));
       objects.put(18, new ActiveComponentInProductObject(18,
           mProductFiller.objects.get(ProductFiller.KARBENAZOL_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.CYPROKONAZOL_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.CYPROKONAZOL_KEY).getId(), "0"));
       objects.put(19, new ActiveComponentInProductObject(19,
           mProductFiller.objects.get(ProductFiller.KARBENAZOL_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.KARBENDAZIM_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.KARBENDAZIM_KEY).getId(), "0"));
       objects.put(20, new ActiveComponentInProductObject(20,
           mProductFiller.objects.get(ProductFiller.VERSHINA_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.TEBUKONAZOL_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.TEBUKONAZOL_KEY).getId(), "0"));
       objects.put(21, new ActiveComponentInProductObject(21,
           mProductFiller.objects.get(ProductFiller.VERSHINA_KEY).getId(),
           mActiveComponentFiller.objects.get(ActiveComponentFiller.AZOKSISTROBIN_KEY).getId(),
-          "doze"));
+          "0"));
       objects.put(22, new ActiveComponentInProductObject(22,
           mProductFiller.objects.get(ProductFiller.COYOT_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.IMIDAKLOPRID_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.IMIDAKLOPRID_KEY).getId(), "0"));
       objects.put(23, new ActiveComponentInProductObject(23,
           mProductFiller.objects.get(ProductFiller.TAYMEN_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.PROCHLORAZ_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.PROCHLORAZ_KEY).getId(), "0"));
       objects.put(24, new ActiveComponentInProductObject(24,
           mProductFiller.objects.get(ProductFiller.TAYMEN_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.TRITIKONAZOL_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.TRITIKONAZOL_KEY).getId(), "0"));
       objects.put(25, new ActiveComponentInProductObject(25,
           mProductFiller.objects.get(ProductFiller.VELES_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.TIKLOPRID_KEY).getId(), "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.TIKLOPRID_KEY).getId(), "0"));
       objects.put(26, new ActiveComponentInProductObject(26,
           mProductFiller.objects.get(ProductFiller.VELES_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.DELTAMETRIN_KEY).getId(),
-          "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.DELTAMETRIN_KEY).getId(), "0"));
       objects.put(27, new ActiveComponentInProductObject(27,
           mProductFiller.objects.get(ProductFiller.VYRIY_KEY).getId(),
-          mActiveComponentFiller.objects.get(ActiveComponentFiller.TIKLOPRID_KEY).getId(), "doze"));
+          mActiveComponentFiller.objects.get(ActiveComponentFiller.TIKLOPRID_KEY).getId(), "0"));
     }
 
     void saveObjects() {
