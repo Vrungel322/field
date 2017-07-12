@@ -12,7 +12,7 @@ public class TechnologicalSolutionObjectToTechnologicalSolutionEntityMapper
     implements Mapper<TechnologicalSolutionObject, TechnologicalSolutionEntity> {
   @Override public TechnologicalSolutionEntity transform(TechnologicalSolutionObject obj)
       throws RuntimeException {
-    return TechnologicalSolutionEntity.newTechnologicalSolutionEntity(obj.getId(), obj.getName(),
+    return TechnologicalSolutionEntity.newTechnologicalSolutionEntity(obj.getId(),
         obj.getSolutionTypeId(), obj.getSolutionValueId());
   }
 }

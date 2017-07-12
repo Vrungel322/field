@@ -66,6 +66,8 @@ import com.apps.twelve.floor.field.data.local.entities.solutions.ProductCategory
 import com.apps.twelve.floor.field.data.local.entities.solutions.ProductCategoryEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.solutions.ProductEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.ProductEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionEntity;
+import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntity;
@@ -148,6 +150,9 @@ import dagger.Provides;
         // TechnologicalSolutionTypeEntity mapping
         .addTypeMapping(TechnologicalSolutionTypeEntity.class,
             new TechnologicalSolutionTypeEntitySQLiteTypeMapping())
+        // TechnologicalSolutionEntity mapping
+        .addTypeMapping(TechnologicalSolutionEntity.class,
+            new TechnologicalSolutionEntitySQLiteTypeMapping())
         // AggregateEntity mapping
         .addTypeMapping(AggregateEntity.class, new AggregateEntitySQLiteTypeMapping())
         // InsectEntityEntity mapping

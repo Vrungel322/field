@@ -31,6 +31,7 @@ import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.InsectObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.ProductCategoryObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.ProductObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import java.util.ArrayList;
@@ -78,6 +79,7 @@ public final class PrimaryDataFiller {
   private HarmfulObjectsFiller mHarmfulObjectsFiller;
   private ActiveComponentFiller mActiveComponentFiller;
   private ActiveComponentInProductFiller mActiveComponentInProductFiller;
+  private TechnologicalSolutionFiller mTechnologicalSolutionFiller;
 
   public PrimaryDataFiller(DataManager dataManager) {
     this.mDataManager = dataManager;
@@ -131,6 +133,7 @@ public final class PrimaryDataFiller {
     mActiveComponentInProductFiller = new ActiveComponentInProductFiller();
     mAggregateFiller = new AggregateFiller();
     mInsectFiller = new InsectFiller();
+    mTechnologicalSolutionFiller = new TechnologicalSolutionFiller();
 
     // technological map
     mTechnologicalProcessStateFiller = new TechnologicalProcessStateFiller();
@@ -178,6 +181,7 @@ public final class PrimaryDataFiller {
     mActiveComponentInProductFiller.makeObjects();
     mAggregateFiller.makeObjects();
     mInsectFiller.makeObjects();
+    mTechnologicalSolutionFiller.makeObjects();
 
     // technological map
     mTechnologicalProcessStateFiller.makeObjects();
@@ -226,6 +230,7 @@ public final class PrimaryDataFiller {
     mActiveComponentInProductFiller.saveObjects();
     mAggregateFiller.saveObjects();
     mInsectFiller.saveObjects();
+    mTechnologicalSolutionFiller.saveObjects();
 
     // technological map
     mTechnologicalProcessStateFiller.saveObjects();
@@ -911,6 +916,59 @@ public final class PrimaryDataFiller {
     void saveObjects() {
       for (int i = 0; i < objects.size(); i++) {
         mDataManager.putInsect(objects.valueAt(i));
+      }
+    }
+  }
+
+  private class TechnologicalSolutionFiller {
+
+    private static final int CAPACITY = AggregateFiller.CAPACITY + ProductFiller.CAPACITY + ActiveComponentFiller.CAPACITY + InsectFiller.CAPACITY;
+
+    private SparseArrayCompat<TechnologicalSolutionObject> objects = new SparseArrayCompat<>(CAPACITY);
+
+    public void makeObjects() {
+
+      TechnologicalSolutionTypeObject aggregateTechnologicalSolutionType =
+          mTechnologicalSolutionTypeFiller.objects.get(
+              TechnologicalSolutionTypeFiller.AGGREGATES_KEY);
+      TechnologicalSolutionTypeObject productTechnologicalSolutionType =
+          mTechnologicalSolutionTypeFiller.objects.get(
+              TechnologicalSolutionTypeFiller.PRODUCTS_KEY);
+      TechnologicalSolutionTypeObject activeComponentTechnologicalSolutionType =
+          mTechnologicalSolutionTypeFiller.objects.get(
+              TechnologicalSolutionTypeFiller.ACTIVE_COMPONENTS_KEY);
+      TechnologicalSolutionTypeObject insectTechnologicalSolutionType =
+          mTechnologicalSolutionTypeFiller.objects.get(
+              TechnologicalSolutionTypeFiller.INSECTS_KEY);
+
+
+      int currentId = 1;
+
+      // Aggregates
+      for (int i = 0; i < mAggregateFiller.objects.size(); i++) {
+        objects.put(currentId, new TechnologicalSolutionObject(currentId, aggregateTechnologicalSolutionType, mAggregateFiller.objects.valueAt(i)));
+        currentId++;
+      }
+      // Products
+      for (int i = 0; i < mProductFiller.objects.size(); i++) {
+        objects.put(currentId, new TechnologicalSolutionObject(currentId, productTechnologicalSolutionType, mProductFiller.objects.valueAt(i)));
+        currentId++;
+      }
+      // Active components
+      for (int i = 0; i < mActiveComponentFiller.objects.size(); i++) {
+        objects.put(currentId, new TechnologicalSolutionObject(currentId, activeComponentTechnologicalSolutionType, mActiveComponentFiller.objects.valueAt(i)));
+        currentId++;
+      }
+      // Insects
+      for (int i = 0; i < mInsectFiller.objects.size(); i++) {
+        objects.put(currentId, new TechnologicalSolutionObject(currentId, insectTechnologicalSolutionType, mInsectFiller.objects.valueAt(i)));
+        currentId++;
+      }
+    }
+
+    public void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putTechnologicalSolution(objects.valueAt(i));
       }
     }
   }
@@ -1866,7 +1924,7 @@ public final class PrimaryDataFiller {
 
   private class HarmfulObjectsFiller {
 
-    private static final int CAPACITY = 125;
+    private static final int CAPACITY = WeedFiller.CAPACITY + PestFiller.CAPACITY/*TODO: + DiseaseFiller.CAPACITY*/;
 
     private SparseArrayCompat<HarmfulObjectObject> objects = new SparseArrayCompat<>(CAPACITY);
 

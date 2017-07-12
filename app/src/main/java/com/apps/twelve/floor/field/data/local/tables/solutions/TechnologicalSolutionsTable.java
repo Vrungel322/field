@@ -12,7 +12,6 @@ public class TechnologicalSolutionsTable {
   @NonNull public static final String TABLE = "TechnologicalSolutions";
 
   @NonNull public static final String COLUMN_ID = "id";
-  @NonNull public static final String COLUMN_NAME = "name";
   @NonNull public static final String COLUMN_TYPE_ID = "type_id";
   @NonNull public static final String COLUMN_VALUE_ID = "value_id";
 
@@ -28,8 +27,6 @@ public class TechnologicalSolutionsTable {
         + " ("
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
-        + COLUMN_NAME
-        + " TEXT NULL, "
         + COLUMN_TYPE_ID
         + " INTEGER, "
         + COLUMN_VALUE_ID

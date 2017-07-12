@@ -21,22 +21,18 @@ public class TechnologicalSolutionObject implements Parcelable {
       };
 
   private long mId;
-  @NonNull private String mName;
   @NonNull private TechnologicalSolutionTypeObject mSolutionType;
-  @NonNull private  BaseTechnologicalSolutionObject mSolutionValue;
+  @NonNull private BaseTechnologicalSolutionObject mSolutionValue;
 
-  public TechnologicalSolutionObject(long id, @NonNull String name,
-      @NonNull TechnologicalSolutionTypeObject solutionType,
+  public TechnologicalSolutionObject(long id, @NonNull TechnologicalSolutionTypeObject solutionType,
       @NonNull BaseTechnologicalSolutionObject solutionValue) {
     this.mId = id;
-    this.mName = name;
     this.mSolutionType = solutionType;
     this.mSolutionValue = solutionValue;
   }
 
   protected TechnologicalSolutionObject(Parcel in) {
     mId = in.readLong();
-    mName = in.readString();
     mSolutionType = in.readParcelable(TechnologicalSolutionTypeObject.class.getClassLoader());
     mSolutionValue = in.readParcelable(BaseTechnologicalSolutionObject.class.getClassLoader());
   }
@@ -47,7 +43,6 @@ public class TechnologicalSolutionObject implements Parcelable {
 
   @Override public void writeToParcel(Parcel dest, int flags) {
     dest.writeLong(mId);
-    dest.writeString(mName);
     dest.writeParcelable(mSolutionType, flags);
     dest.writeParcelable(mSolutionValue, flags);
   }
@@ -58,14 +53,6 @@ public class TechnologicalSolutionObject implements Parcelable {
 
   public void setId(long id) {
     this.mId = id;
-  }
-
-  @NonNull public String getName() {
-    return mName;
-  }
-
-  public void setName(@NonNull String name) {
-    this.mName = name;
   }
 
   @NonNull public TechnologicalSolutionTypeObject getSolutionType() {
