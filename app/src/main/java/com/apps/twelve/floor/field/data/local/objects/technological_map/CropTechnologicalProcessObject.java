@@ -124,4 +124,20 @@ public class CropTechnologicalProcessObject implements Parcelable {
   public void setPeriod(@NonNull ProcessPeriodObject period) {
     this.mPeriod = period;
   }
+
+  public long getCropId() {
+    return mCrop.getId();
+  }
+
+  public long getClimateZoneId() {
+    return mClimateZone.getId();
+  }
+
+  public long getPeriodId() {
+    return mPeriod.getId();
+  }
+
+  public long getPhaseId() {
+    return mPhase.getId();
+  }
 }

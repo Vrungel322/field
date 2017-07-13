@@ -46,6 +46,7 @@ import com.apps.twelve.floor.field.data.local.mappers.solutions.ProductCategoryO
 import com.apps.twelve.floor.field.data.local.mappers.solutions.ProductObjectToProductEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.solutions.TechnologicalSolutionObjectToTechnologicalSolutionEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.solutions.TechnologicalSolutionTypeObjectToTechnologicalSolutionTypeEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.technological_map.CropTechnologicalProcessObjectToCropTechnologicalProcessEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.technological_map.TechnologicalProcessStateObjectToTechnologicalProcessStateEntityMapper;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
@@ -81,6 +82,7 @@ import com.apps.twelve.floor.field.data.local.objects.solutions.ProductCategoryO
 import com.apps.twelve.floor.field.data.local.objects.solutions.ProductObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.CropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import com.apps.twelve.floor.field.utils.TestUtils;
@@ -197,6 +199,13 @@ public class DataManager {
     return mDbHelper.putTechnologicalProcessState(
         new TechnologicalProcessStateObjectToTechnologicalProcessStateEntityMapper().transform(
             technologicalProcessStateObject));
+  }
+
+  public PutResult putCropTechnologicalProcess(
+      CropTechnologicalProcessObject cropTechnologicalProcessObject) {
+    return mDbHelper.putCropTechnologicalProcess(
+        new CropTechnologicalProcessObjectToCropTechnologicalProcessEntityMapper().transform(
+            cropTechnologicalProcessObject));
   }
 
   public PutResult putHarmfulObjectType(HarmfulObjectTypeObject harmfulObjectTypeObject) {
