@@ -254,17 +254,26 @@ public final class PrimaryDataFiller {
 
     static final int CORN_KEY = 1;
 
-    private static final int CAPACITY = 6;
+    private static final int CAPACITY = 14;
 
     private SparseArrayCompat<CropObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
-      objects.put(CORN_KEY, new CropObject(1, "Кукуруза", 0, false, true));
-      objects.put(2, new CropObject(2, "Картошка", 0, false, false));
-      objects.put(3, new CropObject(3, "Свекла", 0, false, false));
-      objects.put(4, new CropObject(4, "Пшеница", 0, false, false));
-      objects.put(5, new CropObject(5, "Виноград", 0, false, false));
-      objects.put(6, new CropObject(6, "Лен", 0, false, false));
+      objects.put(CORN_KEY, new CropObject(1, "Кукурудза", 0, false, true));
+      objects.put(2, new CropObject(2, "Озима пшениця", 0, false, false));
+      objects.put(3, new CropObject(3, "Озимий ячмінь", 0, false, false));
+      objects.put(4, new CropObject(4, "Озиме жито", 0, false, false));
+      objects.put(5, new CropObject(5, "Озиме тритікале", 0, false, false));
+      objects.put(6, new CropObject(6, "Соя", 0, false, false));
+      objects.put(7, new CropObject(7, "Горох", 0, false, false));
+      objects.put(8, new CropObject(8, "Кормові боби", 0, false, false));
+      objects.put(9, new CropObject(9, "Люпин", 0, false, false));
+      objects.put(0, new CropObject(0, "Квасоля", 0, false, false));
+      objects.put(10, new CropObject(10, "Чина", 0, false, false));
+      objects.put(11, new CropObject(11, "Сочевиця", 0, false, false));
+      objects.put(12, new CropObject(12, "Нут", 0, false, false));
+      objects.put(13, new CropObject(13, "Цукровий буряк", 0, false, false));
+      objects.put(14, new CropObject(14, "Ярий ячмінь", 0, false, false));
     }
 
     void saveObjects() {
