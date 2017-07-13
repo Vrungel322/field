@@ -24,25 +24,21 @@ public class FieldTechnologicalProcessSolutionObject implements Parcelable {
 
   private long mId;
   @NonNull private FieldCropTechnologicalProcessObject mTechnologicalProcess;
-  @NonNull private TechnologicalSolutionTypeObject mType;
-  @NonNull private BaseTechnologicalSolutionObject mSolutionValue;
+  @NonNull private TechnologicalSolutionObject mSolution;
 
   public FieldTechnologicalProcessSolutionObject(long id,
       @NonNull FieldCropTechnologicalProcessObject technologicalProcess,
-      @NonNull TechnologicalSolutionTypeObject type,
-      @NonNull BaseTechnologicalSolutionObject solutionValue) {
+      @NonNull TechnologicalSolutionObject solution) {
     this.mId = id;
     this.mTechnologicalProcess = technologicalProcess;
-    this.mType = type;
-    this.mSolutionValue = solutionValue;
+    this.mSolution = solution;
   }
 
   protected FieldTechnologicalProcessSolutionObject(Parcel in) {
     this.mId = in.readLong();
     this.mTechnologicalProcess =
         in.readParcelable(FieldCropTechnologicalProcessObject.class.getClassLoader());
-    this.mType = in.readParcelable(TechnologicalSolutionTypeObject.class.getClassLoader());
-    this.mSolutionValue = in.readParcelable(BaseTechnologicalSolutionObject.class.getClassLoader());
+    this.mSolution = in.readParcelable(TechnologicalSolutionObject.class.getClassLoader());
   }
 
   @Override public int describeContents() {
@@ -52,8 +48,7 @@ public class FieldTechnologicalProcessSolutionObject implements Parcelable {
   @Override public void writeToParcel(Parcel dest, int flags) {
     dest.writeLong(mId);
     dest.writeParcelable(mTechnologicalProcess, flags);
-    dest.writeParcelable(mType, flags);
-    dest.writeParcelable(mSolutionValue, flags);
+    dest.writeParcelable(mSolution, flags);
   }
 
   public long getId() {
@@ -73,19 +68,11 @@ public class FieldTechnologicalProcessSolutionObject implements Parcelable {
     this.mTechnologicalProcess = technologicalProcess;
   }
 
-  public TechnologicalSolutionTypeObject getType() {
-    return mType;
+  public TechnologicalSolutionObject getSolution() {
+    return mSolution;
   }
 
-  public void setType(@NonNull TechnologicalSolutionTypeObject type) {
-    this.mType = type;
-  }
-
-  public BaseTechnologicalSolutionObject getSolutionValue() {
-    return mSolutionValue;
-  }
-
-  public void setSolutionValue(@NonNull BaseTechnologicalSolutionObject solutionValue) {
-    this.mSolutionValue = solutionValue;
+  public void setSolution(@NonNull TechnologicalSolutionObject solution) {
+    this.mSolution = solution;
   }
 }

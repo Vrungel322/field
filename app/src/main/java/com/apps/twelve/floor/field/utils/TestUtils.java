@@ -2,8 +2,8 @@ package com.apps.twelve.floor.field.utils;
 
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
-import com.apps.twelve.floor.field.data.local.objects.solutions.BaseTechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import java.util.ArrayList;
@@ -80,19 +80,18 @@ public final class TestUtils {
 
     ArrayList<FieldTechnologicalProcessSolutionObject> res = new ArrayList<>();
 
-    res.add(makeTechnologicalProcessSolutionObject(1, null, null, null));
-    res.add(makeTechnologicalProcessSolutionObject(2, null, null, null));
-    res.add(makeTechnologicalProcessSolutionObject(3, null, null, null));
-    res.add(makeTechnologicalProcessSolutionObject(4, null, null, null));
-    res.add(makeTechnologicalProcessSolutionObject(5, null, null, null));
+    res.add(makeTechnologicalProcessSolutionObject(1, null, null));
+    res.add(makeTechnologicalProcessSolutionObject(2, null, null));
+    res.add(makeTechnologicalProcessSolutionObject(3, null, null));
+    res.add(makeTechnologicalProcessSolutionObject(4, null, null));
+    res.add(makeTechnologicalProcessSolutionObject(5, null, null));
 
     return res;
   }
 
   public static FieldTechnologicalProcessSolutionObject makeTechnologicalProcessSolutionObject(
-      long id, FieldCropTechnologicalProcessObject process, TechnologicalSolutionTypeObject type,
-      BaseTechnologicalSolutionObject value) {
-    return new FieldTechnologicalProcessSolutionObject(id, process, type, value);
+      long id, FieldCropTechnologicalProcessObject process, TechnologicalSolutionObject solution) {
+    return new FieldTechnologicalProcessSolutionObject(id, process, solution);
   }
 
   public static ArrayList<TechnologicalSolutionTypeObject> getAllTechnologicalSolutionTypes() {

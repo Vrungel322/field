@@ -14,27 +14,23 @@ public class FieldTechnologicalProcessSolutionEntity {
   @StorIOSQLiteColumn(name = FieldTechnologicalProcessSolutionsTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = FieldTechnologicalProcessSolutionsTable.COLUMN_FIELD_TECH_PROCESS_ID)
   Long fieldTechProcessId;
-  @StorIOSQLiteColumn(name = FieldTechnologicalProcessSolutionsTable.COLUMN_SOLUTION_TYPE_ID) Long
-      solutionTypeId;
-  @StorIOSQLiteColumn(name = FieldTechnologicalProcessSolutionsTable.COLUMN_SOLUTION_VALUE_ID) Long
-      solutionValueId;
+  @StorIOSQLiteColumn(name = FieldTechnologicalProcessSolutionsTable.COLUMN_SOLUTION_ID) Long
+      solutionId;
 
   public FieldTechnologicalProcessSolutionEntity() {
   }
 
   public FieldTechnologicalProcessSolutionEntity(Long id, Long fieldTechProcessId,
-      Long solutionTypeId, Long solutionValueId) {
+      Long solutionId) {
     this.id = id;
     this.fieldTechProcessId = fieldTechProcessId;
-    this.solutionTypeId = solutionTypeId;
-    this.solutionValueId = solutionValueId;
+    this.solutionId = solutionId;
   }
 
   public static FieldTechnologicalProcessSolutionEntity newFieldTechnologicalProcessSolutionEntity(
-      Long id, Long filedTechProcessId, Long solutionTypeId, Long solutionValueId) {
+      Long id, Long filedTechProcessId, Long solutionId) {
     if (id == 0) id = null;
-    return new FieldTechnologicalProcessSolutionEntity(id, filedTechProcessId, solutionTypeId,
-        solutionValueId);
+    return new FieldTechnologicalProcessSolutionEntity(id, filedTechProcessId, solutionId);
   }
 
   @Override public boolean equals(Object obj) {
@@ -48,20 +44,14 @@ public class FieldTechnologicalProcessSolutionEntity {
         : that.fieldTechProcessId != null) {
       return false;
     }
-    if (solutionTypeId != null ? !solutionTypeId.equals(that.solutionTypeId)
-        : that.solutionTypeId != null) {
-      return false;
-    }
 
-    return solutionValueId != null ? solutionValueId.equals(that.solutionValueId)
-        : that.solutionValueId == null;
+    return solutionId != null ? solutionId.equals(that.solutionId) : that.solutionId == null;
   }
 
   @Override public int hashCode() {
     int result = id != null ? id.hashCode() : 0;
     result = 31 * result + (fieldTechProcessId != null ? fieldTechProcessId.hashCode() : 0);
-    result = 31 * result + (solutionTypeId != null ? solutionTypeId.hashCode() : 0);
-    result = 31 * result + (solutionValueId != null ? solutionValueId.hashCode() : 0);
+    result = 31 * result + (solutionId != null ? solutionId.hashCode() : 0);
     return result;
   }
 
@@ -81,19 +71,11 @@ public class FieldTechnologicalProcessSolutionEntity {
     this.fieldTechProcessId = fieldTechProcessId;
   }
 
-  public Long getSolutionTypeId() {
-    return solutionTypeId;
+  public Long getSolutionId() {
+    return solutionId;
   }
 
-  public void setSolutionTypeId(Long solutionTypeId) {
-    this.solutionTypeId = solutionTypeId;
-  }
-
-  public Long getSolutionValueId() {
-    return solutionValueId;
-  }
-
-  public void setSolutionValueId(Long solutionValueId) {
-    this.solutionValueId = solutionValueId;
+  public void setSolutionId(Long solutionId) {
+    this.solutionId = solutionId;
   }
 }

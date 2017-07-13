@@ -13,8 +13,7 @@ public class FieldTechnologicalProcessSolutionsTable {
 
   @NonNull public static final String COLUMN_ID = "id";
   @NonNull public static final String COLUMN_FIELD_TECH_PROCESS_ID = "process_id";
-  @NonNull public static final String COLUMN_SOLUTION_TYPE_ID = "solution_type_id";
-  @NonNull public static final String COLUMN_SOLUTION_VALUE_ID = "solution_value_id";
+  @NonNull public static final String COLUMN_SOLUTION_ID = "solution_id";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
@@ -28,9 +27,10 @@ public class FieldTechnologicalProcessSolutionsTable {
         + " ("
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
-        + COLUMN_FIELD_TECH_PROCESS_ID + " INTEGER, "
-        + COLUMN_SOLUTION_TYPE_ID + " INTEGER, "
-        + COLUMN_SOLUTION_VALUE_ID + " INTEGER "
+        + COLUMN_FIELD_TECH_PROCESS_ID
+        + " INTEGER, "
+        + COLUMN_SOLUTION_ID
+        + " INTEGER "
         + ");";
   }
 }
