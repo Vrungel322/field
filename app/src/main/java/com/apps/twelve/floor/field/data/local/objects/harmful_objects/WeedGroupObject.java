@@ -23,20 +23,20 @@ public class WeedGroupObject implements Parcelable {
   private long mId;
   @NonNull private String mName;
   private long mParentId;
-  private boolean mIsGroup;
+  private boolean mIsParent;
 
-  public WeedGroupObject(long id, @NonNull String name, long parentId, boolean isGroup) {
+  public WeedGroupObject(long id, @NonNull String name, long parentId, boolean isParent) {
     this.mId = id;
     this.mName = name;
     this.mParentId = parentId;
-    this.mIsGroup = isGroup;
+    this.mIsParent = isParent;
   }
 
   protected WeedGroupObject(Parcel in) {
     mId = in.readLong();
     mName = in.readString();
     mParentId = in.readLong();
-    mIsGroup = in.readByte() != 0;
+    mIsParent = in.readByte() != 0;
   }
 
   @Override public int describeContents() {
@@ -47,7 +47,7 @@ public class WeedGroupObject implements Parcelable {
     dest.writeLong(mId);
     dest.writeString(mName);
     dest.writeLong(mParentId);
-    dest.writeByte((byte) (mIsGroup ? 1 : 0));
+    dest.writeByte((byte) (mIsParent ? 1 : 0));
   }
 
   public long getId() {
@@ -74,11 +74,11 @@ public class WeedGroupObject implements Parcelable {
     this.mParentId = parentId;
   }
 
-  public boolean isGroup() {
-    return mIsGroup;
+  public boolean isParent() {
+    return mIsParent;
   }
 
-  public void setIsGroup(boolean isGroup) {
-    this.mIsGroup = isGroup;
+  public void setIsParent(boolean isParent) {
+    this.mIsParent = isParent;
   }
 }

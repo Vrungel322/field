@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.utils;
 
+import android.support.v4.util.LongSparseArray;
 import android.support.v4.util.SparseArrayCompat;
 import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
@@ -14,6 +15,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCha
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionValueObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectPhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.PestClassObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.PestObject;
@@ -36,6 +38,7 @@ import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSol
 import com.apps.twelve.floor.field.data.local.objects.technological_map.CropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import timber.log.Timber;
 
 /**
@@ -77,11 +80,12 @@ public final class PrimaryDataFiller {
   private WeedFiller mWeedFiller;
   private HarmfulObjectTypeFiller mHarmfulObjectTypeFiller;
   private ConditionNamesFiller mConditionNamesFiller;
-  private HarmfulObjectsFiller mHarmfulObjectsFiller;
+  private HarmfulObjectFiller mHarmfulObjectFiller;
   private ActiveComponentFiller mActiveComponentFiller;
   private ActiveComponentInProductFiller mActiveComponentInProductFiller;
   private TechnologicalSolutionFiller mTechnologicalSolutionFiller;
   private CropTechnologicalProcessFiller mCropTechnologicalProcessFiller;
+  private HarmfulObjectPhaseFiller mHarmfulObjectPhaseFiller;
 
   public PrimaryDataFiller(DataManager dataManager) {
     this.mDataManager = dataManager;
@@ -120,7 +124,8 @@ public final class PrimaryDataFiller {
     mWeedClassFiller = new WeedClassFiller();
     mWeedGroupFiller = new WeedGroupFiller();
     mWeedFiller = new WeedFiller();
-    mHarmfulObjectsFiller = new HarmfulObjectsFiller();
+    mHarmfulObjectFiller = new HarmfulObjectFiller();
+    mHarmfulObjectPhaseFiller = new HarmfulObjectPhaseFiller();
 
     // process time
     mClimateZoneFiller = new ClimateZoneFiller();
@@ -169,7 +174,8 @@ public final class PrimaryDataFiller {
     mWeedClassFiller.makeObjects();
     mWeedGroupFiller.makeObjects();
     mWeedFiller.makeObjects();
-    mHarmfulObjectsFiller.makeObjects();
+    mHarmfulObjectFiller.makeObjects();
+    mHarmfulObjectPhaseFiller.makeObjects();
 
     // process time
     mClimateZoneFiller.makeObjects();
@@ -218,7 +224,8 @@ public final class PrimaryDataFiller {
     mWeedClassFiller.saveObjects();
     mWeedGroupFiller.saveObjects();
     mWeedFiller.saveObjects();
-    mHarmfulObjectsFiller.saveObjects();
+    mHarmfulObjectFiller.saveObjects();
+    mHarmfulObjectPhaseFiller.saveObjects();
 
     // process time
     mClimateZoneFiller.saveObjects();
@@ -561,6 +568,31 @@ public final class PrimaryDataFiller {
     }
   }
 
+  /*private class HarmfulObjectValueFiller {
+
+    private static final int CAPACITY = HarmfulObjectFiller.CAPACITY;
+
+    private SparseArrayCompat<HarmfulObjectValueObject> objects = new SparseArrayCompat<>(CAPACITY);
+
+    void makeObjects() {
+
+      ConditionTypeObject harmfulObjectConditionType =
+          mConditionTypeFiller.objects.get(ConditionTypeFiller.HARMFUL_OBJECT_KEY);
+
+      int currentId = 1;
+      for (int i = 0; i < mHarmfulObjectFiller.objects.size(); i++) {
+        objects.put(currentId, new HarmfulObjectValueObject(currentId, harmfulObjectConditionType,
+            mHarmfulObjectFiller.objects.valueAt(i)));
+      }
+    }
+
+    void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putHarmfulObjectValue(objects.valueAt(i));
+      }
+    }
+  }*/
+
   private class PestClassFiller {
 
     private static final int MYRIAPODA_KEY = 1;
@@ -663,6 +695,9 @@ public final class PrimaryDataFiller {
       objects.put(13,
           new PestObject(13, pestHarmfulObjectType, "Ківсяк піщаний", myriapodaPestClass,
               diplopodaPestOrder));
+      objects.put(14, new PestObject(14, pestHarmfulObjectType, "Хрущ травневий", insectaPestClass, coleopteraPestOrder));
+      objects.put(15, new PestObject(15, pestHarmfulObjectType, "Хрущ польовий", insectaPestClass, coleopteraPestOrder));
+      objects.put(16, new PestObject(16, pestHarmfulObjectType, "Хлібний жук", insectaPestClass, coleopteraPestOrder));
     }
 
     void saveObjects() {
@@ -1560,44 +1595,44 @@ public final class PrimaryDataFiller {
 
   private class WeedGroupFiller {
 
-    private static final int SEMI_YEAR_KEY = 1;
-    private static final int ARDENT_KEY = 2;
-    private static final int EPHEMERAL_KEY = 3;
-    private static final int EARLY_KEY = 4;
-    private static final int LATE_KEY = 5;
-    private static final int WINTER_KEY = 6;
-    private static final int WINTERING_KEY = 7;
-    private static final int TWO_YEAR_KEY = 8;
-    private static final int POLY_YEAR_KEY = 9;
-    private static final int ROOT_KEY = 10;
-    private static final int ROOT_SPROUT_KEY = 11;
-    private static final int ROOT_FIBER_KEY = 12;
-    private static final int STEM_ROOT_KEY = 13;
-    private static final int REPENT_KEY = 14;
-    private static final int TUBEROUS_KEY = 15;
-    private static final int ONION_KEY = 16;
+    private static final long SEMI_YEAR_KEY = 1;
+    private static final long ARDENT_KEY = 2;
+    private static final long EPHEMERAL_KEY = 3;
+    private static final long EARLY_KEY = 4;
+    private static final long LATE_KEY = 5;
+    private static final long WINTER_KEY = 6;
+    private static final long WINTERING_KEY = 7;
+    private static final long TWO_YEAR_KEY = 8;
+    private static final long POLY_YEAR_KEY = 9;
+    private static final long ROOT_KEY = 10;
+    private static final long ROOT_SPROUT_KEY = 11;
+    private static final long ROOT_FIBER_KEY = 12;
+    private static final long STEM_ROOT_KEY = 13;
+    private static final long REPENT_KEY = 14;
+    private static final long TUBEROUS_KEY = 15;
+    private static final long ONION_KEY = 16;
 
     private static final int CAPACITY = 16;
 
-    private SparseArrayCompat<WeedGroupObject> objects = new SparseArrayCompat<>(CAPACITY);
+    private LongSparseArray<WeedGroupObject> objects = new LongSparseArray<>(CAPACITY);
 
     void makeObjects() {
-      objects.put(1, new WeedGroupObject(SEMI_YEAR_KEY, "Малорічні", 0, true));
-      objects.put(2, new WeedGroupObject(ARDENT_KEY, "Ярі", 1, true));
-      objects.put(3, new WeedGroupObject(EPHEMERAL_KEY, "Ефемери", 2, false));
-      objects.put(4, new WeedGroupObject(EARLY_KEY, "Ранні", 2, false));
-      objects.put(5, new WeedGroupObject(LATE_KEY, "Пізні", 2, false));
-      objects.put(6, new WeedGroupObject(WINTER_KEY, "Озимі", 1, false));
-      objects.put(7, new WeedGroupObject(WINTERING_KEY, "Зимуючі", 1, false));
-      objects.put(8, new WeedGroupObject(TWO_YEAR_KEY, "Дворічні", 1, false));
-      objects.put(9, new WeedGroupObject(POLY_YEAR_KEY, "Багаторічні", 0, true));
-      objects.put(10, new WeedGroupObject(ROOT_KEY, "Кореневищні", 9, false));
-      objects.put(11, new WeedGroupObject(ROOT_SPROUT_KEY, "Коренепаросткові", 9, false));
-      objects.put(12, new WeedGroupObject(ROOT_FIBER_KEY, "Коренемичкуваті", 9, false));
-      objects.put(13, new WeedGroupObject(STEM_ROOT_KEY, "Стрижнекореневі", 9, false));
-      objects.put(14, new WeedGroupObject(REPENT_KEY, "Повзучі", 9, false));
-      objects.put(15, new WeedGroupObject(TUBEROUS_KEY, "Бульбові", 9, false));
-      objects.put(16, new WeedGroupObject(ONION_KEY, "Цибулинні", 9, false));
+      objects.put(SEMI_YEAR_KEY, new WeedGroupObject(SEMI_YEAR_KEY, "Малорічні", 0, true));
+      objects.put(ARDENT_KEY, new WeedGroupObject(ARDENT_KEY, "Ярі", SEMI_YEAR_KEY, true));
+      objects.put(EPHEMERAL_KEY, new WeedGroupObject(EPHEMERAL_KEY, "Ефемери", ARDENT_KEY, false));
+      objects.put(EARLY_KEY, new WeedGroupObject(EARLY_KEY, "Ранні", ARDENT_KEY, false));
+      objects.put(LATE_KEY, new WeedGroupObject(LATE_KEY, "Пізні", ARDENT_KEY, false));
+      objects.put(WINTER_KEY, new WeedGroupObject(WINTER_KEY, "Озимі", SEMI_YEAR_KEY, false));
+      objects.put(WINTERING_KEY, new WeedGroupObject(WINTERING_KEY, "Зимуючі", SEMI_YEAR_KEY, false));
+      objects.put(TWO_YEAR_KEY, new WeedGroupObject(TWO_YEAR_KEY, "Дворічні", SEMI_YEAR_KEY, false));
+      objects.put(POLY_YEAR_KEY, new WeedGroupObject(POLY_YEAR_KEY, "Багаторічні", 0, true));
+      objects.put(ROOT_KEY, new WeedGroupObject(ROOT_KEY, "Кореневищні", POLY_YEAR_KEY, false));
+      objects.put(ROOT_SPROUT_KEY, new WeedGroupObject(ROOT_SPROUT_KEY, "Коренепаросткові", POLY_YEAR_KEY, false));
+      objects.put(ROOT_FIBER_KEY, new WeedGroupObject(ROOT_FIBER_KEY, "Коренемичкуваті", POLY_YEAR_KEY, false));
+      objects.put(STEM_ROOT_KEY, new WeedGroupObject(STEM_ROOT_KEY, "Стрижнекореневі", POLY_YEAR_KEY, false));
+      objects.put(REPENT_KEY, new WeedGroupObject(REPENT_KEY, "Повзучі", POLY_YEAR_KEY, false));
+      objects.put(TUBEROUS_KEY, new WeedGroupObject(TUBEROUS_KEY, "Бульбові", POLY_YEAR_KEY, false));
+      objects.put(ONION_KEY, new WeedGroupObject(ONION_KEY, "Цибулинні", POLY_YEAR_KEY, false));
     }
 
     void saveObjects() {
@@ -1960,6 +1995,24 @@ public final class PrimaryDataFiller {
         mDataManager.putWeed(objects.valueAt(i));
       }
     }
+
+    public long[] getWeedIdsByGroupId(long weedGroupId) {
+      long[] result = new long[objects.size()];
+
+      int currentIndex = 0;
+      for (int i = 0; i < objects.size(); i++) {
+        if (objects.valueAt(i).getGroupId() == weedGroupId) {
+          result[currentIndex] = objects.valueAt(i).getId();
+          currentIndex++;
+        }
+      }
+
+      if (currentIndex+1 < objects.size()) {
+        result = Arrays.copyOf(result, currentIndex+1);
+      }
+
+      return result;
+    }
   }
 
   private class ConditionNamesFiller {
@@ -2007,7 +2060,7 @@ public final class PrimaryDataFiller {
     }
   }
 
-  private class HarmfulObjectsFiller {
+  private class HarmfulObjectFiller {
 
     private static final int CAPACITY = WeedFiller.CAPACITY + PestFiller.CAPACITY/*TODO: + DiseaseFiller.CAPACITY*/;
 
@@ -2048,6 +2101,250 @@ public final class PrimaryDataFiller {
     public void saveObjects() {
       for (int i = 0; i < objects.size(); i++) {
         mDataManager.putHarmfulObject(objects.valueAt(i));
+      }
+    }
+
+    public ArrayList<HarmfulObjectObject> getWeedsByGroupId(long weedGroupId) {
+      ArrayList<HarmfulObjectObject> result = new ArrayList();
+
+      long weedHarmfulObjectTypeId =
+          mHarmfulObjectTypeFiller.objects.get(HarmfulObjectTypeFiller.WEED_KEY).getId();
+
+      long[] weedIds = mWeedFiller.getWeedIdsByGroupId(weedGroupId);
+
+      for (int i = 0; i < objects.size(); i++) {
+        if (objects.valueAt(i).getTypeId() == weedHarmfulObjectTypeId) {
+          if (Arrays.binarySearch(weedIds, objects.valueAt(i).getValueId()) >= 0) {
+            result.add(objects.valueAt(i));
+          }
+        }
+      }
+
+      return result;
+    }
+
+    public ArrayList<HarmfulObjectObject> getPestsByIds(long[] pestIds) {
+      ArrayList<HarmfulObjectObject> result = new ArrayList();
+
+      long pestHarmfulObjectTypeId =
+          mHarmfulObjectTypeFiller.objects.get(HarmfulObjectTypeFiller.PEST_KEY).getId();
+
+      for (int i = 0; i < objects.size(); i++) {
+        if (objects.valueAt(i).getTypeId() == pestHarmfulObjectTypeId) {
+          if (Arrays.binarySearch(pestIds, objects.valueAt(i).getValueId()) >= 0) {
+            result.add(objects.valueAt(i));
+          }
+        }
+      }
+
+      return result;
+    }
+
+    public HarmfulObjectObject[] getWeedsByGroupAndClassIds(long[] weedGroupIds, long[] weedClassIds) {
+
+      LongSparseArray<HarmfulObjectObject> harmfulObjects = new LongSparseArray<>();
+
+      LongSparseArray<WeedObject> weeds = new LongSparseArray<>();
+
+      for (int i = 0; i < mWeedFiller.objects.size(); i++) {
+        if ((Arrays.binarySearch(weedGroupIds, mWeedFiller.objects.valueAt(i).getGroupId()) >= 0)
+            && (Arrays.binarySearch(weedClassIds, mWeedFiller.objects.valueAt(i).getClassId()) >= 0)) {
+          weeds.put(mWeedFiller.objects.valueAt(i).getId(), mWeedFiller.objects.valueAt(i));
+        }
+      }
+
+      long weedHarmfulObjectTypeId =
+          mHarmfulObjectTypeFiller.objects.get(HarmfulObjectTypeFiller.WEED_KEY).getId();
+
+      for (int i = 0; i < objects.size(); i++) {
+        if ((objects.valueAt(i).getTypeId() == weedHarmfulObjectTypeId)
+            && (weeds.indexOfKey(objects.valueAt(i).getValueId()) >= 0)) {
+          harmfulObjects.put(objects.valueAt(i).getId(), objects.valueAt(i));
+        }
+      }
+
+      if (harmfulObjects.size() == 0) {
+        return new HarmfulObjectObject[0];
+      }
+
+      HarmfulObjectObject[] res = new HarmfulObjectObject[harmfulObjects.size()];
+      for (int i = 0; i < harmfulObjects.size(); i++) {
+        res[i] = harmfulObjects.valueAt(i); // this is slow and stupid, but IDGF
+      }
+      return res;
+    }
+  }
+
+  private class HarmfulObjectPhaseFiller {
+
+    private static final int CAPACITY = 150;
+
+    private SparseArrayCompat<HarmfulObjectPhaseObject> objects = new SparseArrayCompat<>(CAPACITY);
+
+    public void makeObjects() {
+
+      /*
+      "спори грибів"
+
+      "імаго"
+      */
+
+      long winteringWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.WINTERING_KEY).getId();
+      long ephemeralWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.EPHEMERAL_KEY).getId();
+      long earlyWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.EARLY_KEY).getId();
+      long lateWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.LATE_KEY).getId();
+      long winterWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.WINTER_KEY).getId();
+
+      String phaseName = "";
+      int currentId = 1;
+
+      phaseName = "1-2 листка";
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(winteringWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(ephemeralWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(earlyWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(lateWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+
+      phaseName = "личинка";
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(new long[]{1, 2, 3, 4, 5, 13, 14, 15})) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+
+      phaseName = "набубнявіння насіння";
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(ephemeralWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(earlyWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(lateWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+
+      phaseName = "проростання насіння - сходи";
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(ephemeralWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(earlyWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(lateWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+
+      phaseName = "біла ниточка";
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(ephemeralWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(earlyWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(lateWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+
+      phaseName = "біла ниточка - сходи";
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(ephemeralWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(earlyWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(lateWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+
+      phaseName = "1-3 листка";
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(ephemeralWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(earlyWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(lateWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(winteringWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(winterWeedGroupId)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+
+      long dicotWeedClassId = mWeedClassFiller.objects.get(WeedClassFiller.DICOT_KEY).getId();
+
+      phaseName = "розетка";
+      long[] weedGroupIds = new long[16-10+1];
+      long[] weedClassIds = new long[38-2+1];
+      for (int i = 0; i < weedClassIds.length; i++) {
+        weedClassIds[i] = i + 2;
+      }
+      for (int i = 0; i < weedGroupIds.length; i++) {
+        weedGroupIds[i] = i + 10;
+      }
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupAndClassIds(weedGroupIds, weedClassIds)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+
+      phaseName = "висота 10-15 см";
+      weedClassIds = new long[] {40};
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupAndClassIds(weedGroupIds, weedClassIds)) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+
+      phaseName = "імаго - початок відкладання яєць";
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(new long[] {12})) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+
+      phaseName = "імаго - масове відкладання яєць";
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(new long[] {12})) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+
+      phaseName = "гусениці - личинки 1-3 віку";
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(new long[] {12})) {
+        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
+        currentId++;
+      }
+    }
+
+    public void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putHarmfulObjectPhase(objects.valueAt(i));
       }
     }
   }

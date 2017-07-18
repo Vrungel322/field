@@ -12,6 +12,6 @@ public class WeedGroupObjectToWeedGroupEntityMapper
     implements Mapper<WeedGroupObject, WeedGroupEntity> {
   @Override public WeedGroupEntity transform(WeedGroupObject obj) throws RuntimeException {
     return WeedGroupEntity.newWeedGroupEntity(obj.getId(), obj.getName(), obj.getParentId(),
-        obj.isGroup());
+        obj.isParent());
   }
 }

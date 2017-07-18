@@ -12,6 +12,6 @@ public class WeedClassObjectToWeedClassEntityMapper
     implements Mapper<WeedClassObject, WeedClassEntity> {
   @Override public WeedClassEntity transform(WeedClassObject obj) throws RuntimeException {
     return WeedClassEntity.newWeedClassEntity(obj.getId(), obj.getName(), obj.getParentId(),
-        obj.isGroup());
+        obj.isParent());
   }
 }

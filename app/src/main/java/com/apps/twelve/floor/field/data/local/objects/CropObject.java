@@ -11,11 +11,6 @@ import android.support.annotation.NonNull;
 public class CropObject implements Parcelable, Cloneable {
 
   public static final CropObject EMPTY;
-
-  static {
-    EMPTY = new CropObject(0, "", 0, false, false);
-  }
-
   public static final Creator<CropObject> CREATOR = new Creator<CropObject>() {
     @Override public CropObject createFromParcel(Parcel in) {
       return new CropObject(in);
@@ -26,18 +21,22 @@ public class CropObject implements Parcelable, Cloneable {
     }
   };
 
+  static {
+    EMPTY = new CropObject(0, "", 0, false, false);
+  }
+
   private long mId;
   @NonNull private String mName;
   private long mParentId;
-  private boolean mIsGroup;
+  private boolean mIsParent;
   private boolean mIsSupported;
 
-  public CropObject(long id, @NonNull String name, long parentId, boolean isGroup,
+  public CropObject(long id, @NonNull String name, long parentId, boolean isParent,
       boolean isSupported) {
     this.mId = id;
     this.mName = name;
     this.mParentId = parentId;
-    this.mIsGroup = isGroup;
+    this.mIsParent = isParent;
     this.mIsSupported = isSupported;
   }
 
@@ -45,7 +44,7 @@ public class CropObject implements Parcelable, Cloneable {
     this.mId = in.readLong();
     this.mName = in.readString();
     this.mParentId = in.readLong();
-    this.mIsGroup = in.readByte() != 0;
+    this.mIsParent = in.readByte() != 0;
     this.mIsSupported = in.readByte() != 0;
   }
 
@@ -61,7 +60,7 @@ public class CropObject implements Parcelable, Cloneable {
     dest.writeLong(mId);
     dest.writeString(mName);
     dest.writeLong(mParentId);
-    dest.writeByte((byte) (mIsGroup ? 1 : 0));
+    dest.writeByte((byte) (mIsParent ? 1 : 0));
     dest.writeByte((byte) (mIsSupported ? 1 : 0));
   }
 
@@ -94,12 +93,12 @@ public class CropObject implements Parcelable, Cloneable {
     this.mParentId = parentId;
   }
 
-  public boolean isGroup() {
-    return mIsGroup;
+  public boolean isParent() {
+    return mIsParent;
   }
 
-  public void setIsGroup(boolean isGroup) {
-    this.mIsGroup = isGroup;
+  public void setIsParent(boolean isParent) {
+    this.mIsParent = isParent;
   }
 
   public boolean isSupported() {

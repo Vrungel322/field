@@ -9,7 +9,7 @@ import com.apps.twelve.floor.field.data.local.objects.CropObject;
 
 public class CropObjectToCropEntityMapper implements Mapper<CropObject, CropEntity> {
   @Override public CropEntity transform(CropObject obj) throws RuntimeException {
-    return CropEntity.newCropEntity(obj.getId(), obj.getName(), obj.getParentId(), obj.isGroup(),
+    return CropEntity.newCropEntity(obj.getId(), obj.getName(), obj.getParentId(), obj.isParent(),
         obj.isSupported());
   }
 }

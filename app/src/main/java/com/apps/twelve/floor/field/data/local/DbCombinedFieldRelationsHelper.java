@@ -76,7 +76,7 @@ public class DbCombinedFieldRelationsHelper {
       + " AS "
       + QUERY_COLUMN_CROP_PARENT_ID
       + ", "
-      + CropsTable.COLUMN_IS_GROUP_WITH_TABLE_PREFIX
+      + CropsTable.COLUMN_IS_PARENT_WITH_TABLE_PREFIX
       + " AS "
       + QUERY_COLUMN_CROP_IS_GROUP
       + ", "
@@ -106,7 +106,7 @@ public class DbCombinedFieldRelationsHelper {
       + ", "
       + CropsTable.TABLE
       + "_PREV."
-      + CropsTable.COLUMN_IS_GROUP
+      + CropsTable.COLUMN_IS_PARENT
       + " AS "
       + QUERY_COLUMN_PREV_CROP_IS_GROUP
       + ", "

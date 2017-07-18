@@ -14,7 +14,7 @@ public class WeedClassesTable {
   @NonNull public static final String COLUMN_ID = "id";
   @NonNull public static final String COLUMN_NAME = "name";
   @NonNull public static final String COLUMN_PARENT_ID = "parent_id";
-  @NonNull public static final String COLUMN_IS_GROUP = "is_group";
+  @NonNull public static final String COLUMN_IS_PARENT = "is_parent";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
@@ -32,7 +32,7 @@ public class WeedClassesTable {
         + " TEXT NULL, "
         + COLUMN_PARENT_ID
         + " INTEGER, "
-        + COLUMN_IS_GROUP
+        + COLUMN_IS_PARENT
         + " TEXT NULL "
         + ");";
   }
