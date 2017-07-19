@@ -10,6 +10,7 @@ import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObj
 
 public class HarmfulObjectPhaseObjectToHarmfulObjectPhaseEntityMapper
     implements Mapper<HarmfulObjectPhaseObject, HarmfulObjectPhaseEntity> {
+
   @Override public HarmfulObjectPhaseEntity transform(HarmfulObjectPhaseObject obj)
       throws RuntimeException {
     return HarmfulObjectPhaseEntity.newHarmfulObjectPhaseEntity(obj.getId(), obj.getName(),

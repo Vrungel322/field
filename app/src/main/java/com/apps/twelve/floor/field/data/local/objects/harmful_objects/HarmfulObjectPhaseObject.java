@@ -1,12 +1,25 @@
 package com.apps.twelve.floor.field.data.local.objects.harmful_objects;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 /**
  * Created by Yaroslav on 31.05.2017.
  */
 
-public class HarmfulObjectPhaseObject {
+public class HarmfulObjectPhaseObject implements Parcelable{
+
+  public static final Creator<HarmfulObjectPhaseObject> CREATOR =
+      new Creator<HarmfulObjectPhaseObject>() {
+        @Override public HarmfulObjectPhaseObject createFromParcel(Parcel in) {
+          return new HarmfulObjectPhaseObject(in);
+        }
+
+        @Override public HarmfulObjectPhaseObject[] newArray(int size) {
+          return new HarmfulObjectPhaseObject[size];
+        }
+      };
 
   private long mId;
   @NonNull private String mName;
@@ -17,6 +30,22 @@ public class HarmfulObjectPhaseObject {
     this.mId = id;
     this.mName = name;
     this.mHarmfulObject = harmfulObject;
+  }
+
+  protected HarmfulObjectPhaseObject(Parcel in) {
+    mId = in.readLong();
+    mName = in.readString();
+    mHarmfulObject = in.readParcelable(HarmfulObjectObject.class.getClassLoader());
+  }
+
+  @Override public int describeContents() {
+    return 0;
+  }
+
+  @Override public void writeToParcel(Parcel dest, int flags) {
+    dest.writeLong(mId);
+    dest.writeString(mName);
+    dest.writeParcelable(mHarmfulObject, flags);
   }
 
   public long getId() {
@@ -44,6 +73,6 @@ public class HarmfulObjectPhaseObject {
   }
 
   public long getHarmfulObjectId() {
-    return (mHarmfulObject == null) ? 0 : mHarmfulObject.getId();
+    return mHarmfulObject.getId();
   }
 }

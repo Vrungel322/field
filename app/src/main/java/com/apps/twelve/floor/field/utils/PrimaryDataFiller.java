@@ -313,7 +313,8 @@ public final class PrimaryDataFiller {
       objects.put(STEPPE_KEY, new ClimateZoneObject(2, "Степ", new ArrayList<>()));
       objects.put(FOREST_STEPPE_KEY, new ClimateZoneObject(3, "Лісо-степ", new ArrayList<>()));
       objects.put(WOODLAND_KEY, new ClimateZoneObject(4, "Полісся", new ArrayList<>()));
-      objects.put(CARPATHIAN_MOUNTAINS_KEY, new ClimateZoneObject(5, "Карпатські та Кримські гори", new ArrayList<>()));
+      objects.put(CARPATHIAN_MOUNTAINS_KEY,
+          new ClimateZoneObject(5, "Карпатські та Кримські гори", new ArrayList<>()));
     }
 
     void saveObjects() {
@@ -336,7 +337,8 @@ public final class PrimaryDataFiller {
       objects.put(2, new PhaseObject(2, "До посіву", cornCropObject));
       objects.put(3, new PhaseObject(3, "Суха зернівка", cornCropObject));
       objects.put(4, new PhaseObject(4, "Протруєне насіння", cornCropObject));
-      objects.put(5, new PhaseObject(5, "Після посіву - початок набубнявіння насіння", cornCropObject));
+      objects.put(5,
+          new PhaseObject(5, "Після посіву - початок набубнявіння насіння", cornCropObject));
       objects.put(6, new PhaseObject(6, "Після сівби до появи сходів кукурудзи", cornCropObject));
       objects.put(7, new PhaseObject(7, "До появи сходів кукурудзи", cornCropObject));
       objects.put(8, new PhaseObject(8, "У фазі 2-3-х листків", cornCropObject));
@@ -347,9 +349,12 @@ public final class PrimaryDataFiller {
       objects.put(13, new PhaseObject(13, "4-8 до 10 листків", cornCropObject));
       objects.put(14, new PhaseObject(14, "Висота рослин 30-40см", cornCropObject));
       objects.put(15, new PhaseObject(15, "Початок викидання волоті", cornCropObject));
-      objects.put(16, new PhaseObject(16, "Кінець викидання волоті - початок цвітіння", cornCropObject));
+      objects.put(16,
+          new PhaseObject(16, "Кінець викидання волоті - початок цвітіння", cornCropObject));
       objects.put(17, new PhaseObject(17, "Слідом за збиранням попередника ", cornCropObject));
-      objects.put(18, new PhaseObject(18, "У фазі розетки у багаторічних дводольних та за висоти 10-20 см у багаторічних злакових", cornCropObject));
+      objects.put(18, new PhaseObject(18,
+          "У фазі розетки у багаторічних дводольних та за висоти 10-20 см у багаторічних злакових",
+          cornCropObject));
       objects.put(19, new PhaseObject(19, "Повна стиглість", cornCropObject));
     }
 
@@ -695,9 +700,12 @@ public final class PrimaryDataFiller {
       objects.put(13,
           new PestObject(13, pestHarmfulObjectType, "Ківсяк піщаний", myriapodaPestClass,
               diplopodaPestOrder));
-      objects.put(14, new PestObject(14, pestHarmfulObjectType, "Хрущ травневий", insectaPestClass, coleopteraPestOrder));
-      objects.put(15, new PestObject(15, pestHarmfulObjectType, "Хрущ польовий", insectaPestClass, coleopteraPestOrder));
-      objects.put(16, new PestObject(16, pestHarmfulObjectType, "Хлібний жук", insectaPestClass, coleopteraPestOrder));
+      objects.put(14, new PestObject(14, pestHarmfulObjectType, "Хрущ травневий", insectaPestClass,
+          coleopteraPestOrder));
+      objects.put(15, new PestObject(15, pestHarmfulObjectType, "Хрущ польовий", insectaPestClass,
+          coleopteraPestOrder));
+      objects.put(16, new PestObject(16, pestHarmfulObjectType, "Хлібний жук", insectaPestClass,
+          coleopteraPestOrder));
     }
 
     void saveObjects() {
@@ -897,53 +905,164 @@ public final class PrimaryDataFiller {
       CropObject cornCrop = mCropFiller.objects.get(CropFiller.CORN_KEY);
 
       ClimateZoneObject anyClimateZone = mClimateZoneFiller.objects.get(ClimateZoneFiller.ANY_KEY);
-      ClimateZoneObject steppeClimateZone = mClimateZoneFiller.objects.get(ClimateZoneFiller.STEPPE_KEY);
-      ClimateZoneObject forestSteppeClimateZone = mClimateZoneFiller.objects.get(ClimateZoneFiller.FOREST_STEPPE_KEY);
-      ClimateZoneObject woodlandClimateZone = mClimateZoneFiller.objects.get(ClimateZoneFiller.WOODLAND_KEY);
+      ClimateZoneObject steppeClimateZone =
+          mClimateZoneFiller.objects.get(ClimateZoneFiller.STEPPE_KEY);
+      ClimateZoneObject forestSteppeClimateZone =
+          mClimateZoneFiller.objects.get(ClimateZoneFiller.FOREST_STEPPE_KEY);
+      ClimateZoneObject woodlandClimateZone =
+          mClimateZoneFiller.objects.get(ClimateZoneFiller.WOODLAND_KEY);
 
-      objects.put(1, new CropTechnologicalProcessObject(1, "Ранньовесняне боронування", 1, cornCrop, anyClimateZone, mPhaseFiller.objects.get(1), mProcessPeriodFiller.objects.get(1)));
-      objects.put(2, new CropTechnologicalProcessObject(2, "Культивація з боронуванням", 2, cornCrop, anyClimateZone, mPhaseFiller.objects.get(2), mProcessPeriodFiller.objects.get(2)));
-      objects.put(3, new CropTechnologicalProcessObject(3, "Протруювання насіння та обробка регуляторами росту, біологічно-активними речовинами", 3, cornCrop, steppeClimateZone, mPhaseFiller.objects.get(3), mProcessPeriodFiller.objects.get(3)));
-      objects.put(4, new CropTechnologicalProcessObject(4, "Протруювання насіння та обробка регуляторами росту, біологічно-активними речовинами", 3, cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(3), mProcessPeriodFiller.objects.get(4)));
-      objects.put(5, new CropTechnologicalProcessObject(5, "Протруювання насіння та обробка регуляторами росту, біологічно-активними речовинами", 3, cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(3), mProcessPeriodFiller.objects.get(5)));
-      objects.put(6, new CropTechnologicalProcessObject(6, "Посів та припосівне внесення добрив. Передпосівний обробіток ґрунту з послідуючою сівбою", 4, cornCrop, steppeClimateZone, mPhaseFiller.objects.get(4), mProcessPeriodFiller.objects.get(6)));
-      objects.put(7, new CropTechnologicalProcessObject(7, "Посів та припосівне внесення добрив. Передпосівний обробіток ґрунту з послідуючою сівбою", 4, cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(4), mProcessPeriodFiller.objects.get(7)));
-      objects.put(8, new CropTechnologicalProcessObject(8, "Посів та припосівне внесення добрив. Передпосівний обробіток ґрунту з послідуючою сівбою", 4, cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(4), mProcessPeriodFiller.objects.get(8)));
-      objects.put(9, new CropTechnologicalProcessObject(9, "Коткування", 4, cornCrop, steppeClimateZone, mPhaseFiller.objects.get(5), mProcessPeriodFiller.objects.get(6)));
-      objects.put(10, new CropTechnologicalProcessObject(10, "Коткування", 4, cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(5), mProcessPeriodFiller.objects.get(7)));
-      objects.put(11, new CropTechnologicalProcessObject(11, "Коткування", 4, cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(5), mProcessPeriodFiller.objects.get(8)));
-      objects.put(12, new CropTechnologicalProcessObject(12, "Внесення гербіциду ґрунтової дії", 4, cornCrop, steppeClimateZone, mPhaseFiller.objects.get(6), mProcessPeriodFiller.objects.get(6)));
-      objects.put(13, new CropTechnologicalProcessObject(13, "Внесення гербіциду ґрунтової дії", 4, cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(6), mProcessPeriodFiller.objects.get(7)));
-      objects.put(14, new CropTechnologicalProcessObject(14, "Внесення гербіциду ґрунтової дії", 4, cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(6), mProcessPeriodFiller.objects.get(8)));
-      objects.put(15, new CropTechnologicalProcessObject(15, "Досходове боронування", 5, cornCrop, steppeClimateZone, mPhaseFiller.objects.get(7), mProcessPeriodFiller.objects.get(9)));
-      objects.put(16, new CropTechnologicalProcessObject(16, "Досходове боронування", 5, cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(7), mProcessPeriodFiller.objects.get(10)));
-      objects.put(17, new CropTechnologicalProcessObject(17, "Досходове боронування", 5, cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(7), mProcessPeriodFiller.objects.get(11)));
-      objects.put(18, new CropTechnologicalProcessObject(18, "Післясходове боронування перше", 6, cornCrop, steppeClimateZone, mPhaseFiller.objects.get(8), mProcessPeriodFiller.objects.get(12)));
-      objects.put(19, new CropTechnologicalProcessObject(19, "Післясходове боронування перше", 6, cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(8), mProcessPeriodFiller.objects.get(13)));
-      objects.put(20, new CropTechnologicalProcessObject(20, "Післясходове боронування перше", 6, cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(8), mProcessPeriodFiller.objects.get(14)));
-      objects.put(21, new CropTechnologicalProcessObject(21, "Післясходове боронування друге", 7, cornCrop, steppeClimateZone, mPhaseFiller.objects.get(9), mProcessPeriodFiller.objects.get(15)));
-      objects.put(22, new CropTechnologicalProcessObject(22, "Післясходове боронування друге", 7, cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(9), mProcessPeriodFiller.objects.get(16)));
-      objects.put(23, new CropTechnologicalProcessObject(23, "Післясходове боронування друге", 7, cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(9), mProcessPeriodFiller.objects.get(17)));
-      objects.put(24, new CropTechnologicalProcessObject(24, "Внесення гербіциду по вегетуючій культурі", 5, cornCrop, steppeClimateZone, mPhaseFiller.objects.get(10), mProcessPeriodFiller.objects.get(18)));
-      objects.put(25, new CropTechnologicalProcessObject(25, "Внесення гербіциду по вегетуючій культурі", 5, cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(10), mProcessPeriodFiller.objects.get(19)));
-      objects.put(26, new CropTechnologicalProcessObject(26, "Внесення гербіциду по вегетуючій культурі", 5, cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(10), mProcessPeriodFiller.objects.get(20)));
-      objects.put(27, new CropTechnologicalProcessObject(27, "Боротьба з шкідниками: обприскування посівів інсектицидами", 8, cornCrop, steppeClimateZone, mPhaseFiller.objects.get(11), mProcessPeriodFiller.objects.get(18)));
-      objects.put(28, new CropTechnologicalProcessObject(28, "Боротьба з шкідниками: обприскування посівів інсектицидами", 8, cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(11), mProcessPeriodFiller.objects.get(19)));
-      objects.put(29, new CropTechnologicalProcessObject(29, "Боротьба з шкідниками: обприскування посівів інсектицидами", 8, cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(11), mProcessPeriodFiller.objects.get(20)));
-      objects.put(30, new CropTechnologicalProcessObject(30, "Міжрядний обробіток: перша культивація", 9, cornCrop, anyClimateZone, mPhaseFiller.objects.get(12), mProcessPeriodFiller.objects.get(21)));
-      objects.put(31, new CropTechnologicalProcessObject(31, "Міжрядний обробіток: друга культивація", 10, cornCrop, anyClimateZone, mPhaseFiller.objects.get(12), mProcessPeriodFiller.objects.get(21)));
-      objects.put(32, new CropTechnologicalProcessObject(32, "Внесення страхового гербіциду", 9, cornCrop, anyClimateZone, mPhaseFiller.objects.get(13), mProcessPeriodFiller.objects.get(21)));
-      objects.put(33, new CropTechnologicalProcessObject(33, "Прикореневе підживлення кукурудзи", 11, cornCrop, anyClimateZone, mPhaseFiller.objects.get(14), mProcessPeriodFiller.objects.get(22)));
-      objects.put(34, new CropTechnologicalProcessObject(34, "Біологічний  метод боротьби з шкідниками: перший випуск трихограми", 12, cornCrop, steppeClimateZone, mPhaseFiller.objects.get(15), mProcessPeriodFiller.objects.get(23)));
-      objects.put(35, new CropTechnologicalProcessObject(35, "Біологічний  метод боротьби з шкідниками: перший випуск трихограми", 12, cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(15), mProcessPeriodFiller.objects.get(24)));
-      objects.put(36, new CropTechnologicalProcessObject(36, "Біологічний  метод боротьби з шкідниками: перший випуск трихограми", 12, cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(15), mProcessPeriodFiller.objects.get(25)));
-      objects.put(37, new CropTechnologicalProcessObject(37, "Біологічний  метод боротьби з шкідниками: другий випуск трихограми", 13, cornCrop, steppeClimateZone, mPhaseFiller.objects.get(16), mProcessPeriodFiller.objects.get(26)));
-      objects.put(38, new CropTechnologicalProcessObject(38, "Біологічний  метод боротьби з шкідниками: другий випуск трихограми", 13, cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(16), mProcessPeriodFiller.objects.get(27)));
-      objects.put(39, new CropTechnologicalProcessObject(39, "Біологічний  метод боротьби з шкідниками: другий випуск трихограми", 13, cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(16), mProcessPeriodFiller.objects.get(28)));
-      objects.put(40, new CropTechnologicalProcessObject(40, "Обробка посівів інсектицидами", 13, cornCrop, steppeClimateZone, mPhaseFiller.objects.get(16), mProcessPeriodFiller.objects.get(29)));
-      objects.put(41, new CropTechnologicalProcessObject(41, "Обробка посівів інсектицидами", 13, cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(16), mProcessPeriodFiller.objects.get(30)));
-      objects.put(42, new CropTechnologicalProcessObject(42, "Обробка посівів інсектицидами", 13, cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(16), mProcessPeriodFiller.objects.get(31)));
-      objects.put(43, new CropTechnologicalProcessObject(43, "Збір урожаю", 14, cornCrop, anyClimateZone, mPhaseFiller.objects.get(19), mProcessPeriodFiller.objects.get(32)));
+      objects.put(1, new CropTechnologicalProcessObject(1, "Ранньовесняне боронування", 1, cornCrop,
+          anyClimateZone, mPhaseFiller.objects.get(1), mProcessPeriodFiller.objects.get(1)));
+      objects.put(2,
+          new CropTechnologicalProcessObject(2, "Культивація з боронуванням", 2, cornCrop,
+              anyClimateZone, mPhaseFiller.objects.get(2), mProcessPeriodFiller.objects.get(2)));
+      objects.put(3, new CropTechnologicalProcessObject(3,
+          "Протруювання насіння та обробка регуляторами росту, біологічно-активними речовинами", 3,
+          cornCrop, steppeClimateZone, mPhaseFiller.objects.get(3),
+          mProcessPeriodFiller.objects.get(3)));
+      objects.put(4, new CropTechnologicalProcessObject(4,
+          "Протруювання насіння та обробка регуляторами росту, біологічно-активними речовинами", 3,
+          cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(3),
+          mProcessPeriodFiller.objects.get(4)));
+      objects.put(5, new CropTechnologicalProcessObject(5,
+          "Протруювання насіння та обробка регуляторами росту, біологічно-активними речовинами", 3,
+          cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(3),
+          mProcessPeriodFiller.objects.get(5)));
+      objects.put(6, new CropTechnologicalProcessObject(6,
+          "Посів та припосівне внесення добрив. Передпосівний обробіток ґрунту з послідуючою сівбою",
+          4, cornCrop, steppeClimateZone, mPhaseFiller.objects.get(4),
+          mProcessPeriodFiller.objects.get(6)));
+      objects.put(7, new CropTechnologicalProcessObject(7,
+          "Посів та припосівне внесення добрив. Передпосівний обробіток ґрунту з послідуючою сівбою",
+          4, cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(4),
+          mProcessPeriodFiller.objects.get(7)));
+      objects.put(8, new CropTechnologicalProcessObject(8,
+          "Посів та припосівне внесення добрив. Передпосівний обробіток ґрунту з послідуючою сівбою",
+          4, cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(4),
+          mProcessPeriodFiller.objects.get(8)));
+      objects.put(9,
+          new CropTechnologicalProcessObject(9, "Коткування", 4, cornCrop, steppeClimateZone,
+              mPhaseFiller.objects.get(5), mProcessPeriodFiller.objects.get(6)));
+      objects.put(10,
+          new CropTechnologicalProcessObject(10, "Коткування", 4, cornCrop, forestSteppeClimateZone,
+              mPhaseFiller.objects.get(5), mProcessPeriodFiller.objects.get(7)));
+      objects.put(11,
+          new CropTechnologicalProcessObject(11, "Коткування", 4, cornCrop, woodlandClimateZone,
+              mPhaseFiller.objects.get(5), mProcessPeriodFiller.objects.get(8)));
+      objects.put(12,
+          new CropTechnologicalProcessObject(12, "Внесення гербіциду ґрунтової дії", 4, cornCrop,
+              steppeClimateZone, mPhaseFiller.objects.get(6), mProcessPeriodFiller.objects.get(6)));
+      objects.put(13,
+          new CropTechnologicalProcessObject(13, "Внесення гербіциду ґрунтової дії", 4, cornCrop,
+              forestSteppeClimateZone, mPhaseFiller.objects.get(6),
+              mProcessPeriodFiller.objects.get(7)));
+      objects.put(14,
+          new CropTechnologicalProcessObject(14, "Внесення гербіциду ґрунтової дії", 4, cornCrop,
+              woodlandClimateZone, mPhaseFiller.objects.get(6),
+              mProcessPeriodFiller.objects.get(8)));
+      objects.put(15, new CropTechnologicalProcessObject(15, "Досходове боронування", 5, cornCrop,
+          steppeClimateZone, mPhaseFiller.objects.get(7), mProcessPeriodFiller.objects.get(9)));
+      objects.put(16, new CropTechnologicalProcessObject(16, "Досходове боронування", 5, cornCrop,
+          forestSteppeClimateZone, mPhaseFiller.objects.get(7),
+          mProcessPeriodFiller.objects.get(10)));
+      objects.put(17, new CropTechnologicalProcessObject(17, "Досходове боронування", 5, cornCrop,
+          woodlandClimateZone, mPhaseFiller.objects.get(7), mProcessPeriodFiller.objects.get(11)));
+      objects.put(18,
+          new CropTechnologicalProcessObject(18, "Післясходове боронування перше", 6, cornCrop,
+              steppeClimateZone, mPhaseFiller.objects.get(8),
+              mProcessPeriodFiller.objects.get(12)));
+      objects.put(19,
+          new CropTechnologicalProcessObject(19, "Післясходове боронування перше", 6, cornCrop,
+              forestSteppeClimateZone, mPhaseFiller.objects.get(8),
+              mProcessPeriodFiller.objects.get(13)));
+      objects.put(20,
+          new CropTechnologicalProcessObject(20, "Післясходове боронування перше", 6, cornCrop,
+              woodlandClimateZone, mPhaseFiller.objects.get(8),
+              mProcessPeriodFiller.objects.get(14)));
+      objects.put(21,
+          new CropTechnologicalProcessObject(21, "Післясходове боронування друге", 7, cornCrop,
+              steppeClimateZone, mPhaseFiller.objects.get(9),
+              mProcessPeriodFiller.objects.get(15)));
+      objects.put(22,
+          new CropTechnologicalProcessObject(22, "Післясходове боронування друге", 7, cornCrop,
+              forestSteppeClimateZone, mPhaseFiller.objects.get(9),
+              mProcessPeriodFiller.objects.get(16)));
+      objects.put(23,
+          new CropTechnologicalProcessObject(23, "Післясходове боронування друге", 7, cornCrop,
+              woodlandClimateZone, mPhaseFiller.objects.get(9),
+              mProcessPeriodFiller.objects.get(17)));
+      objects.put(24,
+          new CropTechnologicalProcessObject(24, "Внесення гербіциду по вегетуючій культурі", 5,
+              cornCrop, steppeClimateZone, mPhaseFiller.objects.get(10),
+              mProcessPeriodFiller.objects.get(18)));
+      objects.put(25,
+          new CropTechnologicalProcessObject(25, "Внесення гербіциду по вегетуючій культурі", 5,
+              cornCrop, forestSteppeClimateZone, mPhaseFiller.objects.get(10),
+              mProcessPeriodFiller.objects.get(19)));
+      objects.put(26,
+          new CropTechnologicalProcessObject(26, "Внесення гербіциду по вегетуючій культурі", 5,
+              cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(10),
+              mProcessPeriodFiller.objects.get(20)));
+      objects.put(27, new CropTechnologicalProcessObject(27,
+          "Боротьба з шкідниками: обприскування посівів інсектицидами", 8, cornCrop,
+          steppeClimateZone, mPhaseFiller.objects.get(11), mProcessPeriodFiller.objects.get(18)));
+      objects.put(28, new CropTechnologicalProcessObject(28,
+          "Боротьба з шкідниками: обприскування посівів інсектицидами", 8, cornCrop,
+          forestSteppeClimateZone, mPhaseFiller.objects.get(11),
+          mProcessPeriodFiller.objects.get(19)));
+      objects.put(29, new CropTechnologicalProcessObject(29,
+          "Боротьба з шкідниками: обприскування посівів інсектицидами", 8, cornCrop,
+          woodlandClimateZone, mPhaseFiller.objects.get(11), mProcessPeriodFiller.objects.get(20)));
+      objects.put(30,
+          new CropTechnologicalProcessObject(30, "Міжрядний обробіток: перша культивація", 9,
+              cornCrop, anyClimateZone, mPhaseFiller.objects.get(12),
+              mProcessPeriodFiller.objects.get(21)));
+      objects.put(31,
+          new CropTechnologicalProcessObject(31, "Міжрядний обробіток: друга культивація", 10,
+              cornCrop, anyClimateZone, mPhaseFiller.objects.get(12),
+              mProcessPeriodFiller.objects.get(21)));
+      objects.put(32,
+          new CropTechnologicalProcessObject(32, "Внесення страхового гербіциду", 9, cornCrop,
+              anyClimateZone, mPhaseFiller.objects.get(13), mProcessPeriodFiller.objects.get(21)));
+      objects.put(33,
+          new CropTechnologicalProcessObject(33, "Прикореневе підживлення кукурудзи", 11, cornCrop,
+              anyClimateZone, mPhaseFiller.objects.get(14), mProcessPeriodFiller.objects.get(22)));
+      objects.put(34, new CropTechnologicalProcessObject(34,
+          "Біологічний  метод боротьби з шкідниками: перший випуск трихограми", 12, cornCrop,
+          steppeClimateZone, mPhaseFiller.objects.get(15), mProcessPeriodFiller.objects.get(23)));
+      objects.put(35, new CropTechnologicalProcessObject(35,
+          "Біологічний  метод боротьби з шкідниками: перший випуск трихограми", 12, cornCrop,
+          forestSteppeClimateZone, mPhaseFiller.objects.get(15),
+          mProcessPeriodFiller.objects.get(24)));
+      objects.put(36, new CropTechnologicalProcessObject(36,
+          "Біологічний  метод боротьби з шкідниками: перший випуск трихограми", 12, cornCrop,
+          woodlandClimateZone, mPhaseFiller.objects.get(15), mProcessPeriodFiller.objects.get(25)));
+      objects.put(37, new CropTechnologicalProcessObject(37,
+          "Біологічний  метод боротьби з шкідниками: другий випуск трихограми", 13, cornCrop,
+          steppeClimateZone, mPhaseFiller.objects.get(16), mProcessPeriodFiller.objects.get(26)));
+      objects.put(38, new CropTechnologicalProcessObject(38,
+          "Біологічний  метод боротьби з шкідниками: другий випуск трихограми", 13, cornCrop,
+          forestSteppeClimateZone, mPhaseFiller.objects.get(16),
+          mProcessPeriodFiller.objects.get(27)));
+      objects.put(39, new CropTechnologicalProcessObject(39,
+          "Біологічний  метод боротьби з шкідниками: другий випуск трихограми", 13, cornCrop,
+          woodlandClimateZone, mPhaseFiller.objects.get(16), mProcessPeriodFiller.objects.get(28)));
+      objects.put(40,
+          new CropTechnologicalProcessObject(40, "Обробка посівів інсектицидами", 13, cornCrop,
+              steppeClimateZone, mPhaseFiller.objects.get(16),
+              mProcessPeriodFiller.objects.get(29)));
+      objects.put(41,
+          new CropTechnologicalProcessObject(41, "Обробка посівів інсектицидами", 13, cornCrop,
+              forestSteppeClimateZone, mPhaseFiller.objects.get(16),
+              mProcessPeriodFiller.objects.get(30)));
+      objects.put(42,
+          new CropTechnologicalProcessObject(42, "Обробка посівів інсектицидами", 13, cornCrop,
+              woodlandClimateZone, mPhaseFiller.objects.get(16),
+              mProcessPeriodFiller.objects.get(31)));
+      objects.put(43,
+          new CropTechnologicalProcessObject(43, "Збір урожаю", 14, cornCrop, anyClimateZone,
+              mPhaseFiller.objects.get(19), mProcessPeriodFiller.objects.get(32)));
     }
 
     void saveObjects() {
@@ -998,19 +1117,27 @@ public final class PrimaryDataFiller {
       objects.put(3, new AggregateObject(3, "Культиватор", aggregateTechSolutionType, 0));
       objects.put(4, new AggregateObject(4, "Борона", aggregateTechSolutionType, 0));
       objects.put(5, new AggregateObject(5, "Сівалка", aggregateTechSolutionType, 0));
-      objects.put(6, new AggregateObject(6, "Грунтообробний комбінований агрегат", aggregateTechSolutionType, 0));
+      objects.put(6,
+          new AggregateObject(6, "Грунтообробний комбінований агрегат", aggregateTechSolutionType,
+              0));
       objects.put(7, new AggregateObject(7, "Гладкорубчастий каток", aggregateTechSolutionType, 0));
       objects.put(8, new AggregateObject(8, "Легка борона", aggregateTechSolutionType, 0));
       objects.put(9, new AggregateObject(9, "Середня борона", aggregateTechSolutionType, 0));
-      objects.put(10, new AggregateObject(10, "Стрільчаста лапа культиватора", aggregateTechSolutionType, 0));
-      objects.put(11, new AggregateObject(11, "Лапа-бритва культиватора", aggregateTechSolutionType, 0));
-      objects.put(12, new AggregateObject(12, "Лапа-підгортальник культиватора", aggregateTechSolutionType, 0));
+      objects.put(10,
+          new AggregateObject(10, "Стрільчаста лапа культиватора", aggregateTechSolutionType, 0));
+      objects.put(11,
+          new AggregateObject(11, "Лапа-бритва культиватора", aggregateTechSolutionType, 0));
+      objects.put(12,
+          new AggregateObject(12, "Лапа-підгортальник культиватора", aggregateTechSolutionType, 0));
       objects.put(13, new AggregateObject(13, "Дисковий лущильник", aggregateTechSolutionType, 0));
       objects.put(14, new AggregateObject(14, "Дискова борона", aggregateTechSolutionType, 0));
       objects.put(15, new AggregateObject(15, "Оприскувач навісний", aggregateTechSolutionType, 0));
-      objects.put(16, new AggregateObject(16, "Оприскувач причіпний", aggregateTechSolutionType, 0));
-      objects.put(17, new AggregateObject(17, "Кукурудзозбиральний комбайн", aggregateTechSolutionType, 0));
-      objects.put(18, new AggregateObject(18, "Зернозбиральний комбайн", aggregateTechSolutionType, 0));
+      objects.put(16,
+          new AggregateObject(16, "Оприскувач причіпний", aggregateTechSolutionType, 0));
+      objects.put(17,
+          new AggregateObject(17, "Кукурудзозбиральний комбайн", aggregateTechSolutionType, 0));
+      objects.put(18,
+          new AggregateObject(18, "Зернозбиральний комбайн", aggregateTechSolutionType, 0));
     }
 
     void saveObjects() {
@@ -1042,9 +1169,13 @@ public final class PrimaryDataFiller {
 
   private class TechnologicalSolutionFiller {
 
-    private static final int CAPACITY = AggregateFiller.CAPACITY + ProductFiller.CAPACITY + ActiveComponentFiller.CAPACITY + InsectFiller.CAPACITY;
+    private static final int CAPACITY = AggregateFiller.CAPACITY
+        + ProductFiller.CAPACITY
+        + ActiveComponentFiller.CAPACITY
+        + InsectFiller.CAPACITY;
 
-    private SparseArrayCompat<TechnologicalSolutionObject> objects = new SparseArrayCompat<>(CAPACITY);
+    private SparseArrayCompat<TechnologicalSolutionObject> objects =
+        new SparseArrayCompat<>(CAPACITY);
 
     public void makeObjects() {
 
@@ -1058,30 +1189,36 @@ public final class PrimaryDataFiller {
           mTechnologicalSolutionTypeFiller.objects.get(
               TechnologicalSolutionTypeFiller.ACTIVE_COMPONENTS_KEY);
       TechnologicalSolutionTypeObject insectTechnologicalSolutionType =
-          mTechnologicalSolutionTypeFiller.objects.get(
-              TechnologicalSolutionTypeFiller.INSECTS_KEY);
-
+          mTechnologicalSolutionTypeFiller.objects.get(TechnologicalSolutionTypeFiller.INSECTS_KEY);
 
       int currentId = 1;
 
       // Aggregates
       for (int i = 0; i < mAggregateFiller.objects.size(); i++) {
-        objects.put(currentId, new TechnologicalSolutionObject(currentId, aggregateTechnologicalSolutionType, mAggregateFiller.objects.valueAt(i)));
+        objects.put(currentId,
+            new TechnologicalSolutionObject(currentId, aggregateTechnologicalSolutionType,
+                mAggregateFiller.objects.valueAt(i)));
         currentId++;
       }
       // Products
       for (int i = 0; i < mProductFiller.objects.size(); i++) {
-        objects.put(currentId, new TechnologicalSolutionObject(currentId, productTechnologicalSolutionType, mProductFiller.objects.valueAt(i)));
+        objects.put(currentId,
+            new TechnologicalSolutionObject(currentId, productTechnologicalSolutionType,
+                mProductFiller.objects.valueAt(i)));
         currentId++;
       }
       // Active components
       for (int i = 0; i < mActiveComponentFiller.objects.size(); i++) {
-        objects.put(currentId, new TechnologicalSolutionObject(currentId, activeComponentTechnologicalSolutionType, mActiveComponentFiller.objects.valueAt(i)));
+        objects.put(currentId,
+            new TechnologicalSolutionObject(currentId, activeComponentTechnologicalSolutionType,
+                mActiveComponentFiller.objects.valueAt(i)));
         currentId++;
       }
       // Insects
       for (int i = 0; i < mInsectFiller.objects.size(); i++) {
-        objects.put(currentId, new TechnologicalSolutionObject(currentId, insectTechnologicalSolutionType, mInsectFiller.objects.valueAt(i)));
+        objects.put(currentId,
+            new TechnologicalSolutionObject(currentId, insectTechnologicalSolutionType,
+                mInsectFiller.objects.valueAt(i)));
         currentId++;
       }
     }
@@ -1623,15 +1760,21 @@ public final class PrimaryDataFiller {
       objects.put(EARLY_KEY, new WeedGroupObject(EARLY_KEY, "Ранні", ARDENT_KEY, false));
       objects.put(LATE_KEY, new WeedGroupObject(LATE_KEY, "Пізні", ARDENT_KEY, false));
       objects.put(WINTER_KEY, new WeedGroupObject(WINTER_KEY, "Озимі", SEMI_YEAR_KEY, false));
-      objects.put(WINTERING_KEY, new WeedGroupObject(WINTERING_KEY, "Зимуючі", SEMI_YEAR_KEY, false));
-      objects.put(TWO_YEAR_KEY, new WeedGroupObject(TWO_YEAR_KEY, "Дворічні", SEMI_YEAR_KEY, false));
+      objects.put(WINTERING_KEY,
+          new WeedGroupObject(WINTERING_KEY, "Зимуючі", SEMI_YEAR_KEY, false));
+      objects.put(TWO_YEAR_KEY,
+          new WeedGroupObject(TWO_YEAR_KEY, "Дворічні", SEMI_YEAR_KEY, false));
       objects.put(POLY_YEAR_KEY, new WeedGroupObject(POLY_YEAR_KEY, "Багаторічні", 0, true));
       objects.put(ROOT_KEY, new WeedGroupObject(ROOT_KEY, "Кореневищні", POLY_YEAR_KEY, false));
-      objects.put(ROOT_SPROUT_KEY, new WeedGroupObject(ROOT_SPROUT_KEY, "Коренепаросткові", POLY_YEAR_KEY, false));
-      objects.put(ROOT_FIBER_KEY, new WeedGroupObject(ROOT_FIBER_KEY, "Коренемичкуваті", POLY_YEAR_KEY, false));
-      objects.put(STEM_ROOT_KEY, new WeedGroupObject(STEM_ROOT_KEY, "Стрижнекореневі", POLY_YEAR_KEY, false));
+      objects.put(ROOT_SPROUT_KEY,
+          new WeedGroupObject(ROOT_SPROUT_KEY, "Коренепаросткові", POLY_YEAR_KEY, false));
+      objects.put(ROOT_FIBER_KEY,
+          new WeedGroupObject(ROOT_FIBER_KEY, "Коренемичкуваті", POLY_YEAR_KEY, false));
+      objects.put(STEM_ROOT_KEY,
+          new WeedGroupObject(STEM_ROOT_KEY, "Стрижнекореневі", POLY_YEAR_KEY, false));
       objects.put(REPENT_KEY, new WeedGroupObject(REPENT_KEY, "Повзучі", POLY_YEAR_KEY, false));
-      objects.put(TUBEROUS_KEY, new WeedGroupObject(TUBEROUS_KEY, "Бульбові", POLY_YEAR_KEY, false));
+      objects.put(TUBEROUS_KEY,
+          new WeedGroupObject(TUBEROUS_KEY, "Бульбові", POLY_YEAR_KEY, false));
       objects.put(ONION_KEY, new WeedGroupObject(ONION_KEY, "Цибулинні", POLY_YEAR_KEY, false));
     }
 
@@ -2007,8 +2150,8 @@ public final class PrimaryDataFiller {
         }
       }
 
-      if (currentIndex+1 < objects.size()) {
-        result = Arrays.copyOf(result, currentIndex+1);
+      if (currentIndex + 1 < objects.size()) {
+        result = Arrays.copyOf(result, currentIndex + 1);
       }
 
       return result;
@@ -2140,7 +2283,8 @@ public final class PrimaryDataFiller {
       return result;
     }
 
-    public HarmfulObjectObject[] getWeedsByGroupAndClassIds(long[] weedGroupIds, long[] weedClassIds) {
+    public HarmfulObjectObject[] getWeedsByGroupAndClassIds(long[] weedGroupIds,
+        long[] weedClassIds) {
 
       LongSparseArray<HarmfulObjectObject> harmfulObjects = new LongSparseArray<>();
 
@@ -2148,7 +2292,8 @@ public final class PrimaryDataFiller {
 
       for (int i = 0; i < mWeedFiller.objects.size(); i++) {
         if ((Arrays.binarySearch(weedGroupIds, mWeedFiller.objects.valueAt(i).getGroupId()) >= 0)
-            && (Arrays.binarySearch(weedClassIds, mWeedFiller.objects.valueAt(i).getClassId()) >= 0)) {
+            && (Arrays.binarySearch(weedClassIds, mWeedFiller.objects.valueAt(i).getClassId())
+            >= 0)) {
           weeds.put(mWeedFiller.objects.valueAt(i).getId(), mWeedFiller.objects.valueAt(i));
         }
       }
@@ -2157,8 +2302,8 @@ public final class PrimaryDataFiller {
           mHarmfulObjectTypeFiller.objects.get(HarmfulObjectTypeFiller.WEED_KEY).getId();
 
       for (int i = 0; i < objects.size(); i++) {
-        if ((objects.valueAt(i).getTypeId() == weedHarmfulObjectTypeId)
-            && (weeds.indexOfKey(objects.valueAt(i).getValueId()) >= 0)) {
+        if ((objects.valueAt(i).getTypeId() == weedHarmfulObjectTypeId) && (weeds.indexOfKey(
+            objects.valueAt(i).getValueId()) >= 0)) {
           harmfulObjects.put(objects.valueAt(i).getId(), objects.valueAt(i));
         }
       }
@@ -2189,8 +2334,10 @@ public final class PrimaryDataFiller {
       "імаго"
       */
 
-      long winteringWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.WINTERING_KEY).getId();
-      long ephemeralWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.EPHEMERAL_KEY).getId();
+      long winteringWeedGroupId =
+          mWeedGroupFiller.objects.get(WeedGroupFiller.WINTERING_KEY).getId();
+      long ephemeralWeedGroupId =
+          mWeedGroupFiller.objects.get(WeedGroupFiller.EPHEMERAL_KEY).getId();
       long earlyWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.EARLY_KEY).getId();
       long lateWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.LATE_KEY).getId();
       long winterWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.WINTER_KEY).getId();
@@ -2199,103 +2346,125 @@ public final class PrimaryDataFiller {
       int currentId = 1;
 
       phaseName = "1-2 листка";
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(winteringWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          winteringWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(ephemeralWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          ephemeralWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(earlyWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          earlyWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(lateWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          lateWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
 
       phaseName = "личинка";
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(new long[]{1, 2, 3, 4, 5, 13, 14, 15})) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(
+          new long[] { 1, 2, 3, 4, 5, 13, 14, 15 })) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
 
       phaseName = "набубнявіння насіння";
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(ephemeralWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          ephemeralWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(earlyWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          earlyWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(lateWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          lateWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
 
       phaseName = "проростання насіння - сходи";
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(ephemeralWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          ephemeralWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(earlyWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          earlyWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(lateWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          lateWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
 
       phaseName = "біла ниточка";
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(ephemeralWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          ephemeralWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(earlyWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          earlyWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(lateWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          lateWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
 
       phaseName = "біла ниточка - сходи";
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(ephemeralWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          ephemeralWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(earlyWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          earlyWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(lateWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          lateWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
 
       phaseName = "1-3 листка";
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(ephemeralWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          ephemeralWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(earlyWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          earlyWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(lateWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          lateWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(winteringWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          winteringWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(winterWeedGroupId)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
+          winterWeedGroupId)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
@@ -2303,40 +2472,45 @@ public final class PrimaryDataFiller {
       long dicotWeedClassId = mWeedClassFiller.objects.get(WeedClassFiller.DICOT_KEY).getId();
 
       phaseName = "розетка";
-      long[] weedGroupIds = new long[16-10+1];
-      long[] weedClassIds = new long[38-2+1];
+      long[] weedGroupIds = new long[16 - 10 + 1];
+      long[] weedClassIds = new long[38 - 2 + 1];
       for (int i = 0; i < weedClassIds.length; i++) {
         weedClassIds[i] = i + 2;
       }
       for (int i = 0; i < weedGroupIds.length; i++) {
         weedGroupIds[i] = i + 10;
       }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupAndClassIds(weedGroupIds, weedClassIds)) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupAndClassIds(
+          weedGroupIds, weedClassIds)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
 
       phaseName = "висота 10-15 см";
-      weedClassIds = new long[] {40};
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupAndClassIds(weedGroupIds, weedClassIds)) {
+      weedClassIds = new long[] { 40 };
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupAndClassIds(
+          weedGroupIds, weedClassIds)) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
 
       phaseName = "імаго - початок відкладання яєць";
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(new long[] {12})) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(
+          new long[] { 12 })) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
 
       phaseName = "імаго - масове відкладання яєць";
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(new long[] {12})) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(
+          new long[] { 12 })) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
 
       phaseName = "гусениці - личинки 1-3 віку";
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(new long[] {12})) {
+      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(
+          new long[] { 12 })) {
         objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
         currentId++;
       }
