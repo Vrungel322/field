@@ -22,10 +22,10 @@ public class HarmfulObjectPhaseObject implements Parcelable{
       };
 
   private long mId;
-  @NonNull private String mName;
+  @NonNull private HarmfulObjectPhaseNameObject mName;
   @NonNull private HarmfulObjectObject mHarmfulObject;
 
-  public HarmfulObjectPhaseObject(long id, @NonNull String name,
+  public HarmfulObjectPhaseObject(long id, @NonNull HarmfulObjectPhaseNameObject name,
       @NonNull HarmfulObjectObject harmfulObject) {
     this.mId = id;
     this.mName = name;
@@ -34,7 +34,7 @@ public class HarmfulObjectPhaseObject implements Parcelable{
 
   protected HarmfulObjectPhaseObject(Parcel in) {
     mId = in.readLong();
-    mName = in.readString();
+    mName = in.readParcelable(HarmfulObjectPhaseNameObject.class.getClassLoader());
     mHarmfulObject = in.readParcelable(HarmfulObjectObject.class.getClassLoader());
   }
 
@@ -44,7 +44,7 @@ public class HarmfulObjectPhaseObject implements Parcelable{
 
   @Override public void writeToParcel(Parcel dest, int flags) {
     dest.writeLong(mId);
-    dest.writeString(mName);
+    dest.writeParcelable(mName, flags);
     dest.writeParcelable(mHarmfulObject, flags);
   }
 
@@ -56,11 +56,11 @@ public class HarmfulObjectPhaseObject implements Parcelable{
     this.mId = id;
   }
 
-  public String getName() {
+  @NonNull public HarmfulObjectPhaseNameObject getName() {
     return mName;
   }
 
-  public void setName(@NonNull String name) {
+  public void setName(@NonNull HarmfulObjectPhaseNameObject name) {
     this.mName = name;
   }
 
@@ -74,5 +74,9 @@ public class HarmfulObjectPhaseObject implements Parcelable{
 
   public long getHarmfulObjectId() {
     return mHarmfulObject.getId();
+  }
+
+  public long getNameId() {
+    return mName.getId();
   }
 }

@@ -4,20 +4,19 @@ import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;
 
 /**
- * Created by Yaroslav on 30.05.2017.
+ * Created by yarrick on 20.07.17.
  */
 
-public class HarmfulObjectPhasesTable {
+public class HarmfulObjectPhaseNamesTable {
 
-  @NonNull public static final String TABLE = "HarmfulObjectPhases";
+  @NonNull public static final String TABLE = "HarmfulObjectPhaseNames";
 
   @NonNull public static final String COLUMN_ID = "id";
-  @NonNull public static final String COLUMN_NAME_ID = "name_id";
-  @NonNull public static final String COLUMN_HARMFUL_OBJECT_ID = "harmful_object_id";
+  @NonNull public static final String COLUMN_NAME = "name";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public HarmfulObjectPhasesTable() {
+  public HarmfulObjectPhaseNamesTable() {
     throw new IllegalStateException("No instances allowed");
   }
 
@@ -27,10 +26,8 @@ public class HarmfulObjectPhasesTable {
         + " ("
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
-        + COLUMN_NAME_ID
-        + " INTEGER, "
-        + COLUMN_HARMFUL_OBJECT_ID
-        + " INTEGER "
+        + COLUMN_NAME
+        + " TEXT NULL "
         + ");";
   }
 }

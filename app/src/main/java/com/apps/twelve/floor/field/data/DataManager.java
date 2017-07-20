@@ -26,6 +26,7 @@ import com.apps.twelve.floor.field.data.local.mappers.conditions.PhenologicalCha
 import com.apps.twelve.floor.field.data.local.mappers.conditions.SoilTypeValueObjectToSoilTypeValueEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.conditions.TillageDirectionValueObjectToTillageDirectionValueEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectObjectToHarmfulObjectEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectPhaseNameObjectToHarmfulObjectPhaseNameEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectPhaseObjectToHarmfulObjectPhaseEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectTypeObjectToHarmfulObjectTypeEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.PestClassObjectToPestClassEntityMapper;
@@ -64,6 +65,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCha
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionValueObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectPhaseNameObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectPhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.PestClassObject;
@@ -97,6 +99,7 @@ import rx.Observable;
 
 /**
  * Created by John on 27.03.2017.
+ *
  */
 
 public class DataManager {
@@ -239,6 +242,12 @@ public class DataManager {
     return mDbHelper.putHarmfulObjectPhase(
         new HarmfulObjectPhaseObjectToHarmfulObjectPhaseEntityMapper().transform(
             harmfulObjectPhaseObject));
+  }
+
+  public PutResult putHarmfulObjectPhaseName(HarmfulObjectPhaseNameObject harmfulObjectPhaseNameObject) {
+    return mDbHelper.putHarmfulObjectPhaseName(
+        new HarmfulObjectPhaseNameObjectToHarmfulObjectPhaseNameEntityMapper().transform(
+            harmfulObjectPhaseNameObject));
   }
 
   public PutResult putPestClass(PestClassObject pestClassObject) {

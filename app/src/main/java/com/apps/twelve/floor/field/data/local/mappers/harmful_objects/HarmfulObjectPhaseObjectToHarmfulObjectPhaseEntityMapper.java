@@ -13,7 +13,7 @@ public class HarmfulObjectPhaseObjectToHarmfulObjectPhaseEntityMapper
 
   @Override public HarmfulObjectPhaseEntity transform(HarmfulObjectPhaseObject obj)
       throws RuntimeException {
-    return HarmfulObjectPhaseEntity.newHarmfulObjectPhaseEntity(obj.getId(), obj.getName(),
+    return HarmfulObjectPhaseEntity.newHarmfulObjectPhaseEntity(obj.getId(), obj.getNameId(),
         obj.getHarmfulObjectId());
   }
 }
