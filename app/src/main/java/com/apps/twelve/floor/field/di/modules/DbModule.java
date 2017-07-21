@@ -42,8 +42,6 @@ import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulOb
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectPhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectPhaseEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectPhaseNameEntity;
-import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectPhaseNameEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.PestClassEntity;
@@ -104,7 +102,6 @@ import dagger.Provides;
 
 /**
  * Created by Yaroslav on 11.04.2017.
- *
  */
 
 @Module public class DbModule {
@@ -126,29 +123,34 @@ import dagger.Provides;
         // ConditionNames mapping
         .addTypeMapping(ConditionNameEntity.class, new ConditionNameEntitySQLiteTypeMapping())
         // ConditionSpanValueEntity mapping
-        .addTypeMapping(ConditionSpanValueEntity.class, new ConditionSpanValueEntitySQLiteTypeMapping())
+        .addTypeMapping(ConditionSpanValueEntity.class,
+            new ConditionSpanValueEntitySQLiteTypeMapping())
         // ConditionTypeEntity mapping
         .addTypeMapping(ConditionTypeEntity.class, new ConditionTypeEntitySQLiteTypeMapping())
         // HarmfulObjectPhaseValueEntity mapping
-        .addTypeMapping(HarmfulObjectPhaseValueEntity.class, new HarmfulObjectPhaseValueEntitySQLiteTypeMapping())
+        .addTypeMapping(HarmfulObjectPhaseValueEntity.class,
+            new HarmfulObjectPhaseValueEntitySQLiteTypeMapping())
         // HarmfulObjectValueEntity mapping
-        .addTypeMapping(HarmfulObjectValueEntity.class, new HarmfulObjectValueEntitySQLiteTypeMapping())
+        .addTypeMapping(HarmfulObjectValueEntity.class,
+            new HarmfulObjectValueEntitySQLiteTypeMapping())
         // PhenologicalCharacteristicValueEntity mapping
-        .addTypeMapping(PhenologicalCharacteristicValueEntity.class, new PhenologicalCharacteristicValueEntitySQLiteTypeMapping())
+        .addTypeMapping(PhenologicalCharacteristicValueEntity.class,
+            new PhenologicalCharacteristicValueEntitySQLiteTypeMapping())
         // SoilTypeValueEntity mapping
         .addTypeMapping(SoilTypeValueEntity.class, new SoilTypeValueEntitySQLiteTypeMapping())
         // TillageDirectionValueEntity mapping
-        .addTypeMapping(TillageDirectionValueEntity.class, new TillageDirectionValueEntitySQLiteTypeMapping())
+        .addTypeMapping(TillageDirectionValueEntity.class,
+            new TillageDirectionValueEntitySQLiteTypeMapping())
 
         // HARMFUL OBJECTS
         // HarmfulObjectEntity mapping
         .addTypeMapping(HarmfulObjectEntity.class, new HarmfulObjectEntitySQLiteTypeMapping())
         // HarmfulObjectPhaseEntity mapping
-        .addTypeMapping(HarmfulObjectPhaseEntity.class, new HarmfulObjectPhaseEntitySQLiteTypeMapping())
-        // HarmfulObjectPhaseNameEntity mapping
-        .addTypeMapping(HarmfulObjectPhaseNameEntity.class, new HarmfulObjectPhaseNameEntitySQLiteTypeMapping())
+        .addTypeMapping(HarmfulObjectPhaseEntity.class,
+            new HarmfulObjectPhaseEntitySQLiteTypeMapping())
         // HarmfulObjectTypeEntity mapping
-        .addTypeMapping(HarmfulObjectTypeEntity.class, new HarmfulObjectTypeEntitySQLiteTypeMapping())
+        .addTypeMapping(HarmfulObjectTypeEntity.class,
+            new HarmfulObjectTypeEntitySQLiteTypeMapping())
         // PestClassEntity mapping
         .addTypeMapping(PestClassEntity.class, new PestClassEntitySQLiteTypeMapping())
         // PestEntity mapping
@@ -162,7 +164,8 @@ import dagger.Provides;
         // WeedGroupEntity mapping
         .addTypeMapping(WeedGroupEntity.class, new WeedGroupEntitySQLiteTypeMapping())
         // WeedNutritionTypeEntity mapping
-        .addTypeMapping(WeedNutritionTypeEntity.class, new WeedNutritionTypeEntitySQLiteTypeMapping())
+        .addTypeMapping(WeedNutritionTypeEntity.class,
+            new WeedNutritionTypeEntitySQLiteTypeMapping())
 
         // PROCESS TIME
         // ClimateZoneEntity mapping
@@ -176,11 +179,13 @@ import dagger.Provides;
         // ActiveComponentEntity mapping
         .addTypeMapping(ActiveComponentEntity.class, new ActiveComponentEntitySQLiteTypeMapping())
         // ActiveComponentInProductEntity mapping
-        .addTypeMapping(ActiveComponentInProductEntity.class, new ActiveComponentInProductEntitySQLiteTypeMapping())
+        .addTypeMapping(ActiveComponentInProductEntity.class,
+            new ActiveComponentInProductEntitySQLiteTypeMapping())
         // AggregateEntity mapping
         .addTypeMapping(AggregateEntity.class, new AggregateEntitySQLiteTypeMapping())
         // FieldTechnologicalProcessSolutionEntity mapping
-        .addTypeMapping(FieldTechnologicalProcessSolutionEntity.class, new FieldTechnologicalProcessSolutionEntitySQLiteTypeMapping())
+        .addTypeMapping(FieldTechnologicalProcessSolutionEntity.class,
+            new FieldTechnologicalProcessSolutionEntitySQLiteTypeMapping())
         // InsectEntity mapping
         .addTypeMapping(InsectEntity.class, new InsectEntitySQLiteTypeMapping())
         // ProductCategoryEntity mapping
@@ -188,23 +193,30 @@ import dagger.Provides;
         // ProductEntity mapping
         .addTypeMapping(ProductEntity.class, new ProductEntitySQLiteTypeMapping())
         // TechnologicalSolutionEntity mapping
-        .addTypeMapping(TechnologicalSolutionEntity.class, new TechnologicalSolutionEntitySQLiteTypeMapping())
+        .addTypeMapping(TechnologicalSolutionEntity.class,
+            new TechnologicalSolutionEntitySQLiteTypeMapping())
         // TechnologicalSolutionTypeEntity mapping
-        .addTypeMapping(TechnologicalSolutionTypeEntity.class, new TechnologicalSolutionTypeEntitySQLiteTypeMapping())
+        .addTypeMapping(TechnologicalSolutionTypeEntity.class,
+            new TechnologicalSolutionTypeEntitySQLiteTypeMapping())
 
         // TECHNOLOGICAL MAP
         // CropTechnologicalProcessEntity  mapping
-        .addTypeMapping(CropTechnologicalProcessEntity.class, new CropTechnologicalProcessEntitySQLiteTypeMapping())
+        .addTypeMapping(CropTechnologicalProcessEntity.class,
+            new CropTechnologicalProcessEntitySQLiteTypeMapping())
         // FieldCropTechnologicalProcessEntity mapping
-        .addTypeMapping(FieldCropTechnologicalProcessEntity.class, new FieldCropTechnologicalProcessEntitySQLiteTypeMapping())
+        .addTypeMapping(FieldCropTechnologicalProcessEntity.class,
+            new FieldCropTechnologicalProcessEntitySQLiteTypeMapping())
         // TechnologicalProcessesConditionEntity mapping
-        .addTypeMapping(TechnologicalProcessesConditionEntity.class, new TechnologicalProcessesConditionEntitySQLiteTypeMapping())
+        .addTypeMapping(TechnologicalProcessesConditionEntity.class,
+            new TechnologicalProcessesConditionEntitySQLiteTypeMapping())
         // TechnologicalProcessStateEntity mapping
-        .addTypeMapping(TechnologicalProcessStateEntity.class, new TechnologicalProcessStateEntitySQLiteTypeMapping())
+        .addTypeMapping(TechnologicalProcessStateEntity.class,
+            new TechnologicalProcessStateEntitySQLiteTypeMapping())
 
         // OTHER
         // CropActiveComponentHarmfulObjectEntity mapping
-        .addTypeMapping(CropActiveComponentHarmfulObjectEntity.class, new CropActiveComponentHarmfulObjectEntitySQLiteTypeMapping())
+        .addTypeMapping(CropActiveComponentHarmfulObjectEntity.class,
+            new CropActiveComponentHarmfulObjectEntitySQLiteTypeMapping())
         // CropEntity mapping
         .addTypeMapping(CropEntity.class, new CropEntitySQLiteTypeMapping())
         // DealerEntity mapping
@@ -212,7 +224,8 @@ import dagger.Provides;
         // FieldEntity mapping
         .addTypeMapping(FieldEntity.class, new FieldEntitySQLiteTypeMapping())
         // PhenologicalCharacteristicEntity mapping
-        .addTypeMapping(PhenologicalCharacteristicEntity.class, new PhenologicalCharacteristicEntitySQLiteTypeMapping())
+        .addTypeMapping(PhenologicalCharacteristicEntity.class,
+            new PhenologicalCharacteristicEntitySQLiteTypeMapping())
         // SoilTypeEntity mapping
         .addTypeMapping(SoilTypeEntity.class, new SoilTypeEntitySQLiteTypeMapping())
         // TillageDirectionEntity mapping

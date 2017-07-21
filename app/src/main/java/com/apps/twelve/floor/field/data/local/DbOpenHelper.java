@@ -19,7 +19,6 @@ import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectVal
 import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypeValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionValuesTable;
-import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhaseNamesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectsTable;
@@ -103,8 +102,6 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(HarmfulObjectTypesTable.getCreateTableQuery());
     // HarmfulObjects
     db.execSQL(HarmfulObjectsTable.getCreateTableQuery());
-    // HarmfulObjectPhaseNames
-    db.execSQL(HarmfulObjectPhaseNamesTable.getCreateTableQuery());
     // HarmfulObjectPhases
     db.execSQL(HarmfulObjectPhasesTable.getCreateTableQuery());
     // PestClasses

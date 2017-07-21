@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 
 /**
  * Created by Yaroslav on 31.05.2017.
+ *
  */
 
 public class HarmfulObjectPhaseObject implements Parcelable{
@@ -22,20 +23,16 @@ public class HarmfulObjectPhaseObject implements Parcelable{
       };
 
   private long mId;
-  @NonNull private HarmfulObjectPhaseNameObject mName;
-  @NonNull private HarmfulObjectObject mHarmfulObject;
+  @NonNull private String mName;
 
-  public HarmfulObjectPhaseObject(long id, @NonNull HarmfulObjectPhaseNameObject name,
-      @NonNull HarmfulObjectObject harmfulObject) {
+  public HarmfulObjectPhaseObject(long id, @NonNull String name) {
     this.mId = id;
     this.mName = name;
-    this.mHarmfulObject = harmfulObject;
   }
 
   protected HarmfulObjectPhaseObject(Parcel in) {
     mId = in.readLong();
-    mName = in.readParcelable(HarmfulObjectPhaseNameObject.class.getClassLoader());
-    mHarmfulObject = in.readParcelable(HarmfulObjectObject.class.getClassLoader());
+    mName = in.readString();
   }
 
   @Override public int describeContents() {
@@ -44,8 +41,7 @@ public class HarmfulObjectPhaseObject implements Parcelable{
 
   @Override public void writeToParcel(Parcel dest, int flags) {
     dest.writeLong(mId);
-    dest.writeParcelable(mName, flags);
-    dest.writeParcelable(mHarmfulObject, flags);
+    dest.writeString(mName);
   }
 
   public long getId() {
@@ -56,27 +52,11 @@ public class HarmfulObjectPhaseObject implements Parcelable{
     this.mId = id;
   }
 
-  @NonNull public HarmfulObjectPhaseNameObject getName() {
+  @NonNull public String getName() {
     return mName;
   }
 
-  public void setName(@NonNull HarmfulObjectPhaseNameObject name) {
+  public void setName(@NonNull String name) {
     this.mName = name;
-  }
-
-  @NonNull public HarmfulObjectObject getHarmfulObject() {
-    return mHarmfulObject;
-  }
-
-  public void setHarmfulObject(@NonNull HarmfulObjectObject harmfulObject) {
-    this.mHarmfulObject = harmfulObject;
-  }
-
-  public long getHarmfulObjectId() {
-    return mHarmfulObject.getId();
-  }
-
-  public long getNameId() {
-    return mName.getId();
   }
 }

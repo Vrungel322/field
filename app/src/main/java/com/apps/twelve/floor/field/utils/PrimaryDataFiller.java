@@ -17,7 +17,6 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCha
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionValueObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
-import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectPhaseNameObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectPhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.PestClassObject;
@@ -91,7 +90,6 @@ public final class PrimaryDataFiller {
   private CropTechnologicalProcessFiller mCropTechnologicalProcessFiller;
   private HarmfulObjectPhaseValueFiller mHarmfulObjectPhaseValueFiller;
   private HarmfulObjectValueFiller mHarmfulObjectValueFiller;
-  private HarmfulObjectPhaseNameFiller mHarmfulObjectPhaseNameFiller;
 
   public PrimaryDataFiller(DataManager dataManager) {
     this.mDataManager = dataManager;
@@ -133,7 +131,6 @@ public final class PrimaryDataFiller {
     mWeedGroupFiller = new WeedGroupFiller();
     mWeedFiller = new WeedFiller();
     mHarmfulObjectFiller = new HarmfulObjectFiller();
-    mHarmfulObjectPhaseNameFiller = new HarmfulObjectPhaseNameFiller();
     mHarmfulObjectPhaseFiller = new HarmfulObjectPhaseFiller();
 
     // process time
@@ -165,17 +162,6 @@ public final class PrimaryDataFiller {
     mTillageDirectionFiller.makeObjects();
     mPhenologicalCharacteristicFiller.makeObjects();
 
-    // conditions
-    mConditionNamesFiller.makeObjects();
-    mConditionTypeFiller.makeObjects();
-    mSoilTypeValueFiller.makeObjects();
-    mTillageDirectionValueFiller.makeObjects();
-    mPhenologicalCharacteristicValueFiller.makeObjects();
-    mSpanValueFiller.makeObjects();
-    mHarmfulObjectPhaseValueFiller.makeObjects();
-    mHarmfulObjectValueFiller.makeObjects();
-    mConditionsFiller.makeObjects();
-
     // harmful objects
     mHarmfulObjectTypeFiller.makeObjects();
     mPestClassFiller.makeObjects();
@@ -186,8 +172,18 @@ public final class PrimaryDataFiller {
     mWeedGroupFiller.makeObjects();
     mWeedFiller.makeObjects();
     mHarmfulObjectFiller.makeObjects();
-    mHarmfulObjectPhaseNameFiller.makeObjects();
     mHarmfulObjectPhaseFiller.makeObjects();
+
+    // conditions
+    mConditionNamesFiller.makeObjects();
+    mConditionTypeFiller.makeObjects();
+    mSoilTypeValueFiller.makeObjects();
+    mTillageDirectionValueFiller.makeObjects();
+    mPhenologicalCharacteristicValueFiller.makeObjects();
+    mSpanValueFiller.makeObjects();
+    mHarmfulObjectPhaseValueFiller.makeObjects();
+    mHarmfulObjectValueFiller.makeObjects();
+    mConditionsFiller.makeObjects();
 
     // process time
     mClimateZoneFiller.makeObjects();
@@ -218,17 +214,6 @@ public final class PrimaryDataFiller {
     mTillageDirectionFiller.saveObjects();
     mPhenologicalCharacteristicFiller.saveObjects();
 
-    // conditions
-    mConditionNamesFiller.saveObjects();
-    mConditionTypeFiller.saveObjects();
-    mSoilTypeValueFiller.saveObjects();
-    mTillageDirectionValueFiller.saveObjects();
-    mPhenologicalCharacteristicValueFiller.saveObjects();
-    mSpanValueFiller.saveObjects();
-    mHarmfulObjectPhaseValueFiller.saveObjects();
-    mHarmfulObjectValueFiller.saveObjects();
-    mConditionsFiller.saveObjects();
-
     // harmful objects
     mHarmfulObjectTypeFiller.saveObjects();
     mPestClassFiller.saveObjects();
@@ -239,8 +224,18 @@ public final class PrimaryDataFiller {
     mWeedGroupFiller.saveObjects();
     mWeedFiller.saveObjects();
     mHarmfulObjectFiller.saveObjects();
-    mHarmfulObjectPhaseNameFiller.saveObjects();
     mHarmfulObjectPhaseFiller.saveObjects();
+
+    // conditions
+    mConditionNamesFiller.saveObjects();
+    mConditionTypeFiller.saveObjects();
+    mSoilTypeValueFiller.saveObjects();
+    mTillageDirectionValueFiller.saveObjects();
+    mPhenologicalCharacteristicValueFiller.saveObjects();
+    mSpanValueFiller.saveObjects();
+    mHarmfulObjectPhaseValueFiller.saveObjects();
+    mHarmfulObjectValueFiller.saveObjects();
+    mConditionsFiller.saveObjects();
 
     // process time
     mClimateZoneFiller.saveObjects();
@@ -884,8 +879,6 @@ public final class PrimaryDataFiller {
       ConditionNameObject harmfulObjectConditionName = mConditionNamesFiller.objects.get(ConditionNamesFiller.HARMFUL_OBJECT_KEY);
       ConditionNameObject harmfulObjectPhaseConditionName = mConditionNamesFiller.objects.get(ConditionNamesFiller.HARMFUL_OBJECT_PHASE_KEY);
 
-
-      // TODO: move this to another filler
       ConditionSpanValueObject temperature0to10 =
           mSpanValueFiller.objects.get(SpanValueFiller.SPAN_0_10_KEY);
       ConditionSpanValueObject temperature10to300 =
@@ -918,18 +911,81 @@ public final class PrimaryDataFiller {
         currentId++;
       }
 
-      // TODO
-      /*// Harmful object phases
-      long[] highPriorityPhaseIds = {asdasdsad};
-      for (int i = 0; i < mHarmfulObjectPhaseValueFiller.objects.size(); i++) {
-        if (Arrays.binarySearch(highPriorityPhaseIds, mHarmfulObjectPhaseValueFiller.objects.valueAt(i).getId()) > 0) {
-          currentPriority = ConditionObject.HIGEST_PRIORITY;
-        } else {
-          currentPriority = ConditionObject.LOWEST_PRIORITY;
-        }
-        objects.put(currentId, new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName, harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.valueAt(i)));
-        currentId++;
-      }*/
+      // Harmful object phases
+      objects.put(currentId,
+          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+              harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(5)));
+      currentId++;
+      objects.put(currentId,
+          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+              harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(16)));
+      currentId++;
+      objects.put(currentId,
+          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+              harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(11)));
+      currentId++;
+      objects.put(currentId, new ConditionObject(currentId, ConditionObject.HIGEST_PRIORITY,
+          harmfulObjectPhaseConditionName, harmfulObjectPhaseConditionType,
+          mHarmfulObjectPhaseValueFiller.objects.get(1)));
+      currentId++;
+      objects.put(currentId, new ConditionObject(currentId, ConditionObject.HIGEST_PRIORITY,
+          harmfulObjectPhaseConditionName, harmfulObjectPhaseConditionType,
+          mHarmfulObjectPhaseValueFiller.objects.get(3)));
+      currentId++;
+      objects.put(currentId, new ConditionObject(currentId, ConditionObject.HIGEST_PRIORITY,
+          harmfulObjectPhaseConditionName, harmfulObjectPhaseConditionType,
+          mHarmfulObjectPhaseValueFiller.objects.get(4)));
+      currentId++;
+      objects.put(currentId, new ConditionObject(currentId, ConditionObject.HIGEST_PRIORITY,
+          harmfulObjectPhaseConditionName, harmfulObjectPhaseConditionType,
+          mHarmfulObjectPhaseValueFiller.objects.get(7)));
+      currentId++;
+      objects.put(currentId, new ConditionObject(currentId, ConditionObject.HIGEST_PRIORITY,
+          harmfulObjectPhaseConditionName, harmfulObjectPhaseConditionType,
+          mHarmfulObjectPhaseValueFiller.objects.get(10)));
+      currentId++;
+      objects.put(currentId, new ConditionObject(currentId, ConditionObject.HIGEST_PRIORITY,
+          harmfulObjectPhaseConditionName, harmfulObjectPhaseConditionType,
+          mHarmfulObjectPhaseValueFiller.objects.get(8)));
+      currentId++;
+      objects.put(currentId,
+          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+              harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(12)));
+      currentId++;
+      objects.put(currentId,
+          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+              harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(6)));
+      currentId++;
+      objects.put(currentId,
+          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+              harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(7)));
+      currentId++;
+      objects.put(currentId,
+          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+              harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(10)));
+      currentId++;
+      objects.put(currentId,
+          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+              harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(8)));
+      currentId++;
+      objects.put(currentId,
+          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+              harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(13)));
+      currentId++;
+      objects.put(currentId,
+          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+              harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(14)));
+      currentId++;
+      objects.put(currentId,
+          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+              harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(15)));
+      currentId++;
+      objects.put(currentId, new ConditionObject(currentId, 2, harmfulObjectPhaseConditionName,
+          harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(10)));
+      currentId++;
+      objects.put(currentId, new ConditionObject(currentId, 2, harmfulObjectPhaseConditionName,
+          harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(9)));
+      currentId++;
 
     }
 
@@ -2388,239 +2444,30 @@ public final class PrimaryDataFiller {
     }
   }
 
-  private class HarmfulObjectPhaseNameFiller {
-
-    private static final int CAPACITY = 16;
-
-    private SparseArrayCompat<HarmfulObjectPhaseNameObject> objects = new SparseArrayCompat<>(CAPACITY);
-
-    public void makeObjects() {
-
-      objects.put(1, new HarmfulObjectPhaseNameObject(1, "Набубнявіння насіння"));
-      objects.put(2, new HarmfulObjectPhaseNameObject(2, "Проростання насіння - сходи"));
-      objects.put(3, new HarmfulObjectPhaseNameObject(3, "Біла ниточка"));
-      objects.put(4, new HarmfulObjectPhaseNameObject(4, "Біла ниточка - сходи"));
-      objects.put(5, new HarmfulObjectPhaseNameObject(5, "Сходи - 1-2 листка"));
-      objects.put(6, new HarmfulObjectPhaseNameObject(6, "Сходи - 1-3 листка"));
-      objects.put(7, new HarmfulObjectPhaseNameObject(7, "1-3 листка"));
-      objects.put(8, new HarmfulObjectPhaseNameObject(8, "Висота 10-15 см"));
-      objects.put(9, new HarmfulObjectPhaseNameObject(9, "Висота 10-20 см"));
-      objects.put(10, new HarmfulObjectPhaseNameObject(10, "Розетка"));
-      objects.put(11, new HarmfulObjectPhaseNameObject(11, "Личинка"));
-      objects.put(12, new HarmfulObjectPhaseNameObject(12, "Імаго"));
-      objects.put(13, new HarmfulObjectPhaseNameObject(13, "Імаго - початок відкладання яєць"));
-      objects.put(14, new HarmfulObjectPhaseNameObject(14, "Імаго - масове відкладання яєць"));
-      objects.put(15, new HarmfulObjectPhaseNameObject(15, "Гусениці - личинки 1-3 віку"));
-      objects.put(16, new HarmfulObjectPhaseNameObject(16, "Спори грибів"));
-    }
-
-    public void saveObjects() {
-      for (int i = 0; i < objects.size(); i++) {
-        mDataManager.putHarmfulObjectPhaseName(objects.valueAt(i));
-      }
-    }
-
-  }
-
   private class HarmfulObjectPhaseFiller {
 
-    private static final int CAPACITY = 150;
+    private static final int CAPACITY = 16;
 
     private SparseArrayCompat<HarmfulObjectPhaseObject> objects = new SparseArrayCompat<>(CAPACITY);
 
     public void makeObjects() {
 
-      long winteringWeedGroupId =
-          mWeedGroupFiller.objects.get(WeedGroupFiller.WINTERING_KEY).getId();
-      long ephemeralWeedGroupId =
-          mWeedGroupFiller.objects.get(WeedGroupFiller.EPHEMERAL_KEY).getId();
-      long earlyWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.EARLY_KEY).getId();
-      long lateWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.LATE_KEY).getId();
-      long winterWeedGroupId = mWeedGroupFiller.objects.get(WeedGroupFiller.WINTER_KEY).getId();
-
-      int currentId = 1;
-
-      // Сходи - 1-2 листка
-      HarmfulObjectPhaseNameObject phaseName = mHarmfulObjectPhaseNameFiller.objects.get(5);
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          winteringWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          ephemeralWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          earlyWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          lateWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-
-      // Личинка
-      phaseName = mHarmfulObjectPhaseNameFiller.objects.get(11);
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(
-          new long[] { 1, 2, 3, 4, 5, 13, 14, 15 })) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-
-      // Набубнявіння насіння
-      phaseName = mHarmfulObjectPhaseNameFiller.objects.get(1);
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          ephemeralWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          earlyWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          lateWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-
-      // Проростання насіння - сходи
-      phaseName = mHarmfulObjectPhaseNameFiller.objects.get(2);
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          ephemeralWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          earlyWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          lateWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-
-      // Біла ниточка
-      phaseName = mHarmfulObjectPhaseNameFiller.objects.get(3);
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          ephemeralWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          earlyWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          lateWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-
-      // Біла ниточка - сходи
-      phaseName = mHarmfulObjectPhaseNameFiller.objects.get(4);
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          ephemeralWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          earlyWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          lateWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-
-      // 1-3 листка
-      phaseName = mHarmfulObjectPhaseNameFiller.objects.get(7);
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          ephemeralWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          earlyWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          lateWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          winteringWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupId(
-          winterWeedGroupId)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-
-      long dicotWeedClassId = mWeedClassFiller.objects.get(WeedClassFiller.DICOT_KEY).getId();
-
-      // Розетка
-      phaseName = mHarmfulObjectPhaseNameFiller.objects.get(10);
-      long[] weedGroupIds = new long[16 - 10 + 1];
-      long[] weedClassIds = new long[38 - 2 + 1];
-      for (int i = 0; i < weedClassIds.length; i++) {
-        weedClassIds[i] = i + 2;
-      }
-      for (int i = 0; i < weedGroupIds.length; i++) {
-        weedGroupIds[i] = i + 10;
-      }
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupAndClassIds(
-          weedGroupIds, weedClassIds)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-
-      // Висота 10-15 см
-      phaseName = mHarmfulObjectPhaseNameFiller.objects.get(8);
-      weedClassIds = new long[] { 40 };
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getWeedsByGroupAndClassIds(
-          weedGroupIds, weedClassIds)) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-
-      // Імаго - початок відкладання яєць
-      phaseName = mHarmfulObjectPhaseNameFiller.objects.get(13);
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(
-          new long[] { 12 })) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-
-      // Імаго - масове відкладання яєць
-      phaseName = mHarmfulObjectPhaseNameFiller.objects.get(14);
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(
-          new long[] { 12 })) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
-
-      // Гусениці - личинки 1-3 віку
-      phaseName = mHarmfulObjectPhaseNameFiller.objects.get(15);
-      for (HarmfulObjectObject harmfulObject : mHarmfulObjectFiller.getPestsByIds(
-          new long[] { 12 })) {
-        objects.put(currentId, new HarmfulObjectPhaseObject(currentId, phaseName, harmfulObject));
-        currentId++;
-      }
+      objects.put(1, new HarmfulObjectPhaseObject(1, "Набубнявіння насіння"));
+      objects.put(2, new HarmfulObjectPhaseObject(2, "Проростання насіння - сходи"));
+      objects.put(3, new HarmfulObjectPhaseObject(3, "Біла ниточка"));
+      objects.put(4, new HarmfulObjectPhaseObject(4, "Біла ниточка - сходи"));
+      objects.put(5, new HarmfulObjectPhaseObject(5, "Сходи - 1-2 листка"));
+      objects.put(6, new HarmfulObjectPhaseObject(6, "Сходи - 1-3 листка"));
+      objects.put(7, new HarmfulObjectPhaseObject(7, "1-3 листка"));
+      objects.put(8, new HarmfulObjectPhaseObject(8, "Висота 10-15 см"));
+      objects.put(9, new HarmfulObjectPhaseObject(9, "Висота 10-20 см"));
+      objects.put(10, new HarmfulObjectPhaseObject(10, "Розетка"));
+      objects.put(11, new HarmfulObjectPhaseObject(11, "Личинка"));
+      objects.put(12, new HarmfulObjectPhaseObject(12, "Імаго"));
+      objects.put(13, new HarmfulObjectPhaseObject(13, "Імаго - початок відкладання яєць"));
+      objects.put(14, new HarmfulObjectPhaseObject(14, "Імаго - масове відкладання яєць"));
+      objects.put(15, new HarmfulObjectPhaseObject(15, "Гусениці - личинки 1-3 віку"));
+      objects.put(16, new HarmfulObjectPhaseObject(16, "Спори грибів"));
     }
 
     public void saveObjects() {
@@ -2628,5 +2475,6 @@ public final class PrimaryDataFiller {
         mDataManager.putHarmfulObjectPhase(objects.valueAt(i));
       }
     }
+
   }
 }

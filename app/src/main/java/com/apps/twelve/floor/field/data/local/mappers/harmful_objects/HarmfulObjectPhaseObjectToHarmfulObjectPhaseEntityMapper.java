@@ -6,6 +6,7 @@ import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObj
 
 /**
  * Created by yarrick on 06.07.17.
+ *
  */
 
 public class HarmfulObjectPhaseObjectToHarmfulObjectPhaseEntityMapper
@@ -13,7 +14,6 @@ public class HarmfulObjectPhaseObjectToHarmfulObjectPhaseEntityMapper
 
   @Override public HarmfulObjectPhaseEntity transform(HarmfulObjectPhaseObject obj)
       throws RuntimeException {
-    return HarmfulObjectPhaseEntity.newHarmfulObjectPhaseEntity(obj.getId(), obj.getNameId(),
-        obj.getHarmfulObjectId());
+    return HarmfulObjectPhaseEntity.newHarmfulObjectPhaseEntity(obj.getId(), obj.getName());
   }
 }
