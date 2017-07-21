@@ -12,6 +12,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 public class TechnologicalProcessesConditionEntity {
 
   @StorIOSQLiteColumn(name = TechnologicalProcessesConditionsTable.COLUMN_ID, key = true) Long id;
+  @StorIOSQLiteColumn(name = TechnologicalProcessesConditionsTable.COLUMN_SET_ID) Long setId;
   @StorIOSQLiteColumn(name = TechnologicalProcessesConditionsTable.COLUMN_CROP_TECH_PROCESS_ID) Long
       cropTechnologicalProcessId;
   @StorIOSQLiteColumn(name = TechnologicalProcessesConditionsTable.COLUMN_CONDITION_ID) Long
@@ -20,17 +21,19 @@ public class TechnologicalProcessesConditionEntity {
   public TechnologicalProcessesConditionEntity() {
   }
 
-  public TechnologicalProcessesConditionEntity(Long id, Long cropTechnologicalProcessId,
+  public TechnologicalProcessesConditionEntity(Long id, Long setId, Long cropTechnologicalProcessId,
       Long conditionId) {
     this.id = id;
+    this.setId = setId;
     this.cropTechnologicalProcessId = cropTechnologicalProcessId;
     this.conditionId = conditionId;
   }
 
   public static TechnologicalProcessesConditionEntity newTechnologicalProcessesConditionEntity(
-      Long id, Long cropTechnologicalProcessId, Long conditionId) {
+      Long id, Long setId, Long cropTechnologicalProcessId, Long conditionId) {
     if (id == 0) id = null;
-    return new TechnologicalProcessesConditionEntity(id, cropTechnologicalProcessId, conditionId);
+    return new TechnologicalProcessesConditionEntity(id, setId, cropTechnologicalProcessId,
+        conditionId);
   }
 
   @Override public boolean equals(Object obj) {
@@ -40,6 +43,7 @@ public class TechnologicalProcessesConditionEntity {
     TechnologicalProcessesConditionEntity that = (TechnologicalProcessesConditionEntity) obj;
 
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
+    if (setId != null ? !setId.equals(that.setId) : that.setId != null) return false;
     if (cropTechnologicalProcessId != null ? !cropTechnologicalProcessId.equals(
         that.cropTechnologicalProcessId) : that.cropTechnologicalProcessId != null) {
       return false;
@@ -50,6 +54,7 @@ public class TechnologicalProcessesConditionEntity {
 
   @Override public int hashCode() {
     int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (setId != null ? setId.hashCode() : 0);
     result =
         31 * result + (cropTechnologicalProcessId != null ? cropTechnologicalProcessId.hashCode()
             : 0);
@@ -63,6 +68,14 @@ public class TechnologicalProcessesConditionEntity {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public Long getSetId() {
+    return setId;
+  }
+
+  public void setSetId(Long setId) {
+    this.setId = setId;
   }
 
   public Long getCropTechnologicalProcessId() {

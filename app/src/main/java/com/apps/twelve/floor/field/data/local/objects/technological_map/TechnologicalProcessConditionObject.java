@@ -7,6 +7,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject
 
 /**
  * Created by Yaroslav on 01.06.2017.
+ *
  */
 
 public class TechnologicalProcessConditionObject implements Parcelable {
@@ -23,18 +24,21 @@ public class TechnologicalProcessConditionObject implements Parcelable {
       };
 
   private long mId;
+  private long mSetId;
   @NonNull private FieldCropTechnologicalProcessObject mProcess;
   @NonNull private ConditionObject mCondition;
 
-  public TechnologicalProcessConditionObject(long id,
+  public TechnologicalProcessConditionObject(long id, long setId,
       @NonNull FieldCropTechnologicalProcessObject process, @NonNull ConditionObject condition) {
     this.mId = id;
+    this.mSetId = setId;
     this.mProcess = process;
     this.mCondition = condition;
   }
 
   protected TechnologicalProcessConditionObject(Parcel in) {
     this.mId = in.readLong();
+    this.mSetId = in.readLong();
     this.mProcess = in.readParcelable(FieldCropTechnologicalProcessObject.class.getClassLoader());
     this.mCondition = in.readParcelable(ConditionObject.class.getClassLoader());
   }
@@ -45,6 +49,7 @@ public class TechnologicalProcessConditionObject implements Parcelable {
 
   @Override public void writeToParcel(Parcel dest, int flags) {
     dest.writeLong(mId);
+    dest.writeLong(mSetId);
     dest.writeParcelable(mProcess, flags);
     dest.writeParcelable(mCondition, flags);
   }
@@ -55,6 +60,14 @@ public class TechnologicalProcessConditionObject implements Parcelable {
 
   public void setId(long id) {
     this.mId = id;
+  }
+
+  public long getSetId() {
+    return mSetId;
+  }
+
+  public void setSetId(long setId) {
+    this.mSetId = setId;
   }
 
   public FieldCropTechnologicalProcessObject getProcess() {
