@@ -17,6 +17,7 @@ import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectPhaseValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.PreviousCropValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypeValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
@@ -95,6 +96,8 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(HarmfulObjectValuesTable.getCreateTableQuery());
     // HarmfulObjectPhaseValues
     db.execSQL(HarmfulObjectPhaseValuesTable.getCreateTableQuery());
+    // PreviousCropValues
+    db.execSQL(PreviousCropValuesTable.getCreateTableQuery());
   }
 
   private void createHarmfulObjectsTables(SQLiteDatabase db) {

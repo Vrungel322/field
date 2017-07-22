@@ -6,6 +6,7 @@ import com.apps.twelve.floor.field.data.local.objects.SoilTypeObject;
 
 /**
  * Created by yarrick on 07.07.17.
+ *
  */
 
 public class SoilTypeValueObject extends BaseConditionValueObject {

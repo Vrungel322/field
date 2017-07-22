@@ -15,6 +15,7 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeE
 import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectPhaseValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PreviousCropValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntity;
@@ -57,6 +58,7 @@ import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectPhaseValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.PreviousCropValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypeValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
@@ -276,6 +278,28 @@ public class DbHelper {
   public DeleteResult deleteHarmfulObjectPhaseValue(
       HarmfulObjectPhaseValueEntity harmfulObjectPhaseValueEntity) {
     return mStorIOSQLite.delete().object(harmfulObjectPhaseValueEntity)
+        .prepare()
+        .executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Previous crop value
+  ///////////////////////////////////////////////////////////////////////////
+  public Observable<List<PreviousCropValueEntity>> getAllPreviousCropValues() {
+    return mStorIOSQLite.get()
+        .listOfObjects(PreviousCropValueEntity.class)
+        .withQuery(PreviousCropValuesTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putPreviousCropValue(PreviousCropValueEntity previousCropValueEntity) {
+    return mStorIOSQLite.put().object(previousCropValueEntity).prepare().executeAsBlocking();
+  }
+
+  public DeleteResult deletePreviousCropValue(PreviousCropValueEntity previousCropValueEntity) {
+    return mStorIOSQLite.delete().object(previousCropValueEntity)
         .prepare().executeAsBlocking();
   }
 

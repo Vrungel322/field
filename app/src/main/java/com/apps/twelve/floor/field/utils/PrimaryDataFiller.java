@@ -14,6 +14,7 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeOb
 import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectPhaseValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.PreviousCropValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionValueObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
@@ -90,6 +91,7 @@ public final class PrimaryDataFiller {
   private CropTechnologicalProcessFiller mCropTechnologicalProcessFiller;
   private HarmfulObjectPhaseValueFiller mHarmfulObjectPhaseValueFiller;
   private HarmfulObjectValueFiller mHarmfulObjectValueFiller;
+  private PreviousCropValueFiller mPreviousCropValueFiller;
 
   public PrimaryDataFiller(DataManager dataManager) {
     this.mDataManager = dataManager;
@@ -116,6 +118,7 @@ public final class PrimaryDataFiller {
     mSoilTypeValueFiller = new SoilTypeValueFiller();
     mTillageDirectionValueFiller = new TillageDirectionValueFiller();
     mPhenologicalCharacteristicValueFiller = new PhenologicalCharacteristicValueFiller();
+    mPreviousCropValueFiller = new PreviousCropValueFiller();
     mSpanValueFiller = new SpanValueFiller();
     mHarmfulObjectPhaseValueFiller = new HarmfulObjectPhaseValueFiller();
     mHarmfulObjectValueFiller = new HarmfulObjectValueFiller();
@@ -180,6 +183,7 @@ public final class PrimaryDataFiller {
     mSoilTypeValueFiller.makeObjects();
     mTillageDirectionValueFiller.makeObjects();
     mPhenologicalCharacteristicValueFiller.makeObjects();
+    mPreviousCropValueFiller.makeObjects();
     mSpanValueFiller.makeObjects();
     mHarmfulObjectPhaseValueFiller.makeObjects();
     mHarmfulObjectValueFiller.makeObjects();
@@ -232,6 +236,7 @@ public final class PrimaryDataFiller {
     mSoilTypeValueFiller.saveObjects();
     mTillageDirectionValueFiller.saveObjects();
     mPhenologicalCharacteristicValueFiller.saveObjects();
+    mPreviousCropValueFiller.saveObjects();
     mSpanValueFiller.saveObjects();
     mHarmfulObjectPhaseValueFiller.saveObjects();
     mHarmfulObjectValueFiller.saveObjects();
@@ -384,8 +389,9 @@ public final class PrimaryDataFiller {
     static final int PHENOLOGICAL_CHARACTERISTIC_KEY = 5;
     static final int SPAN_VALUE_KEY = 6;
     static final int NUMBER_VALUE_KEY = 7;
+    static final int PREVIOUS_CROP_KEY = 8;
 
-    private static final int CAPACITY = 7;
+    private static final int CAPACITY = 8;
 
     private SparseArrayCompat<ConditionTypeObject> objects = new SparseArrayCompat<>(CAPACITY);
 
@@ -401,6 +407,7 @@ public final class PrimaryDataFiller {
           new ConditionTypeObject(5, "Фенологическая характеристика"));
       objects.put(SPAN_VALUE_KEY, new ConditionTypeObject(6, "Числовой диапазон"));
       objects.put(NUMBER_VALUE_KEY, new ConditionTypeObject(7, "Число"));
+      objects.put(PREVIOUS_CROP_KEY, new ConditionTypeObject(8, "Предшественник"));
     }
 
     void saveObjects() {
@@ -858,6 +865,32 @@ public final class PrimaryDataFiller {
     }
   }
 
+  private class PreviousCropValueFiller {
+
+    private static final int CAPACITY = CropFiller.CAPACITY;
+
+    private SparseArrayCompat<PreviousCropValueObject> objects = new SparseArrayCompat<>(CAPACITY);
+
+    void makeObjects() {
+
+      ConditionTypeObject previousCropConditionType =
+          mConditionTypeFiller.objects.get(ConditionTypeFiller.PREVIOUS_CROP_KEY);
+
+      int currentId = 1;
+      for (int i = 0; i < mCropFiller.objects.size(); i++) {
+        objects.put(currentId, new PreviousCropValueObject(currentId, previousCropConditionType,
+            mCropFiller.objects.valueAt(i)));
+        currentId++;
+      }
+    }
+
+    void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putPreviousCropValue(objects.valueAt(i));
+      }
+    }
+  }
+
   private class ConditionsFiller {
 
     private static final int CAPACITY = 5;
@@ -878,6 +911,8 @@ public final class PrimaryDataFiller {
       ConditionNameObject soilTypeConditionName = mConditionNamesFiller.objects.get(ConditionNamesFiller.SOIL_TYPE_KEY);
       ConditionNameObject harmfulObjectConditionName = mConditionNamesFiller.objects.get(ConditionNamesFiller.HARMFUL_OBJECT_KEY);
       ConditionNameObject harmfulObjectPhaseConditionName = mConditionNamesFiller.objects.get(ConditionNamesFiller.HARMFUL_OBJECT_PHASE_KEY);
+      ConditionNameObject previousCropConditionName =
+          mConditionNamesFiller.objects.get(ConditionNamesFiller.PREVIOUS_CROP_KEY);
 
       ConditionSpanValueObject temperature0to10 =
           mSpanValueFiller.objects.get(SpanValueFiller.SPAN_0_10_KEY);
@@ -892,7 +927,7 @@ public final class PrimaryDataFiller {
 
       int currentPriority = ConditionObject.LOWEST_PRIORITY;
 
-      // air temperatures
+      // Air temperatures
       objects.put(1, new ConditionObject(1, currentPriority, airTemperatureConditionName, spanValueConditionType, temperature0to10));
       objects.put(2, new ConditionObject(2, currentPriority, airTemperatureConditionName, spanValueConditionType, temperature10to300));
       objects.put(3, new ConditionObject(3, currentPriority, airTemperatureConditionName, spanValueConditionType, temperature12to20));
@@ -986,6 +1021,14 @@ public final class PrimaryDataFiller {
       objects.put(currentId, new ConditionObject(currentId, 2, harmfulObjectPhaseConditionName,
           harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(9)));
       currentId++;
+
+      // Previous crops
+      for (int i = 0; i < mPreviousCropValueFiller.objects.size(); i++) {
+        objects.put(currentId,
+            new ConditionObject(currentId, currentPriority, previousCropConditionName,
+                harmfulObjectPhaseConditionType, mPreviousCropValueFiller.objects.valueAt(i)));
+        currentId++;
+      }
 
     }
 

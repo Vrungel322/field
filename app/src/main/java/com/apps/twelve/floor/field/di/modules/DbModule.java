@@ -34,6 +34,8 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectV
 import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicValueEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PreviousCropValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PreviousCropValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntity;
@@ -102,6 +104,7 @@ import dagger.Provides;
 
 /**
  * Created by Yaroslav on 11.04.2017.
+ *
  */
 
 @Module public class DbModule {
@@ -141,6 +144,9 @@ import dagger.Provides;
         // TillageDirectionValueEntity mapping
         .addTypeMapping(TillageDirectionValueEntity.class,
             new TillageDirectionValueEntitySQLiteTypeMapping())
+        // PreviousCropValueEntity mapping
+        .addTypeMapping(PreviousCropValueEntity.class,
+            new PreviousCropValueEntitySQLiteTypeMapping())
 
         // HARMFUL OBJECTS
         // HarmfulObjectEntity mapping
