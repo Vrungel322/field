@@ -3,9 +3,11 @@ package com.apps.twelve.floor.field.data.local.objects.conditions;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 31.05.2017.
+ *
  */
 
 public class ConditionObject implements Parcelable {
@@ -20,7 +22,7 @@ public class ConditionObject implements Parcelable {
     }
   };
 
-  public static final int HIGEST_PRIORITY = 1;
+  public static final int HIGHEST_PRIORITY = 1;
   public static final int LOWEST_PRIORITY = 999;
 
   private long mId;
@@ -37,6 +39,35 @@ public class ConditionObject implements Parcelable {
     this.mName = name;
     this.mConditionType = conditionType;
     this.mConditionValue = conditionValue;
+
+    valueChecker();
+  }
+
+  // TODO: this is for tests
+  private void valueChecker() {
+    boolean isOk = ((mName != null) && (mConditionType != null) && (mConditionValue != null));
+
+    if (!isOk) {
+      String errMsg = "ERROR: Invalid ConditionObject: \n"
+          + "\t id: "
+          + mId
+          + "\t prior: "
+          + mPriority
+          + "\t name: "
+          + mName.getId()
+          + ", "
+          + mName.getName()
+          + "\t cond type: "
+          + mConditionType.getId()
+          + ", "
+          + mConditionType.getName()
+          + "\t cond value: "
+          + mConditionValue.getId()
+          + ", "
+          + mConditionValue.getType().getName();
+
+      Timber.e(errMsg);
+    }
   }
 
   protected ConditionObject(Parcel in) {

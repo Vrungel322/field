@@ -159,108 +159,111 @@ public final class PrimaryDataFiller {
   }
 
   private void makeObjects() {
+    // solutions
+    mTechnologicalSolutionTypeFiller.makeObjects();
+    mProductCategoryFiller.makeObjects();
+    mProductFiller.makeObjects();
+    mAggregateFiller.makeObjects();
+    mActiveComponentFiller.makeObjects();
+    mInsectFiller.makeObjects();
+    mActiveComponentInProductFiller.makeObjects();
+    mTechnologicalSolutionFiller.makeObjects();
+
+    // harmful objects
+    mHarmfulObjectTypeFiller.makeObjects();
+    mWeedNutritionTypeFiller.makeObjects();
+    mWeedClassFiller.makeObjects();
+    mWeedGroupFiller.makeObjects();
+    mWeedFiller.makeObjects();
+    mPestClassFiller.makeObjects();
+    mPestOrderFiller.makeObjects();
+    mPestFiller.makeObjects();
+    // TODO: diseases
+    mHarmfulObjectFiller.makeObjects();
+    mHarmfulObjectPhaseFiller.makeObjects();
+
     // other
     mCropFiller.makeObjects();
     mSoilTypeFiller.makeObjects();
     mTillageDirectionFiller.makeObjects();
     mPhenologicalCharacteristicFiller.makeObjects();
 
-    // harmful objects
-    mHarmfulObjectTypeFiller.makeObjects();
-    mPestClassFiller.makeObjects();
-    mPestOrderFiller.makeObjects();
-    mPestFiller.makeObjects();
-    mWeedNutritionTypeFiller.makeObjects();
-    mWeedClassFiller.makeObjects();
-    mWeedGroupFiller.makeObjects();
-    mWeedFiller.makeObjects();
-    mHarmfulObjectFiller.makeObjects();
-    mHarmfulObjectPhaseFiller.makeObjects();
-
-    // conditions
-    mConditionNamesFiller.makeObjects();
-    mConditionTypeFiller.makeObjects();
-    mSoilTypeValueFiller.makeObjects();
-    mTillageDirectionValueFiller.makeObjects();
-    mPhenologicalCharacteristicValueFiller.makeObjects();
-    mPreviousCropValueFiller.makeObjects();
-    mSpanValueFiller.makeObjects();
-    mHarmfulObjectPhaseValueFiller.makeObjects();
-    mHarmfulObjectValueFiller.makeObjects();
-    mConditionsFiller.makeObjects();
-
     // process time
     mClimateZoneFiller.makeObjects();
     mPhaseFiller.makeObjects();
     mProcessPeriodFiller.makeObjects();
 
-    // solutions
-    mTechnologicalSolutionTypeFiller.makeObjects();
-    mProductCategoryFiller.makeObjects();
-    mProductFiller.makeObjects();
-    mActiveComponentFiller.makeObjects();
-    mActiveComponentInProductFiller.makeObjects();
-    mAggregateFiller.makeObjects();
-    mInsectFiller.makeObjects();
-    mTechnologicalSolutionFiller.makeObjects();
+    // conditions
+    mConditionNamesFiller.makeObjects();
+    mConditionTypeFiller.makeObjects();
+    mPreviousCropValueFiller.makeObjects();
+    mSpanValueFiller.makeObjects();
+    mSoilTypeValueFiller.makeObjects();
+    mHarmfulObjectValueFiller.makeObjects();
+    mHarmfulObjectPhaseValueFiller.makeObjects();
+    mTillageDirectionValueFiller.makeObjects();
+    mPhenologicalCharacteristicValueFiller.makeObjects();
+    mConditionsFiller.makeObjects();
 
     // technological map
     mTechnologicalProcessStateFiller.makeObjects();
-    mCropTechnologicalProcessFiller.makeObjects();
+    mCropTechnologicalProcessFiller.makeObjects(); // TODO: finish
+    // TODO: Tech processes Conditions
 
     // TODO
   }
 
   private void saveObjects() {
+    // solutions
+    mTechnologicalSolutionTypeFiller.saveObjects();
+    mProductCategoryFiller.saveObjects();
+    mProductFiller.saveObjects();
+    mAggregateFiller.saveObjects();
+    mActiveComponentFiller.saveObjects();
+    mInsectFiller.saveObjects();
+    mActiveComponentInProductFiller.saveObjects();
+    mTechnologicalSolutionFiller.saveObjects();
+
+    // harmful objects
+    mHarmfulObjectTypeFiller.saveObjects();
+    mWeedNutritionTypeFiller.saveObjects();
+    mWeedClassFiller.saveObjects();
+    mWeedGroupFiller.saveObjects();
+    mWeedFiller.saveObjects();
+    mPestClassFiller.saveObjects();
+    mPestOrderFiller.saveObjects();
+    mPestFiller.saveObjects();
+    // TODO: diseases
+    mHarmfulObjectFiller.saveObjects();
+    mHarmfulObjectPhaseFiller.saveObjects();
+
     // other
     mCropFiller.saveObjects();
     mSoilTypeFiller.saveObjects();
     mTillageDirectionFiller.saveObjects();
     mPhenologicalCharacteristicFiller.saveObjects();
 
-    // harmful objects
-    mHarmfulObjectTypeFiller.saveObjects();
-    mPestClassFiller.saveObjects();
-    mPestOrderFiller.saveObjects();
-    mPestFiller.saveObjects();
-    mWeedNutritionTypeFiller.saveObjects();
-    mWeedClassFiller.saveObjects();
-    mWeedGroupFiller.saveObjects();
-    mWeedFiller.saveObjects();
-    mHarmfulObjectFiller.saveObjects();
-    mHarmfulObjectPhaseFiller.saveObjects();
-
-    // conditions
-    mConditionNamesFiller.saveObjects();
-    mConditionTypeFiller.saveObjects();
-    mSoilTypeValueFiller.saveObjects();
-    mTillageDirectionValueFiller.saveObjects();
-    mPhenologicalCharacteristicValueFiller.saveObjects();
-    mPreviousCropValueFiller.saveObjects();
-    mSpanValueFiller.saveObjects();
-    mHarmfulObjectPhaseValueFiller.saveObjects();
-    mHarmfulObjectValueFiller.saveObjects();
-    mConditionsFiller.saveObjects();
-
     // process time
     mClimateZoneFiller.saveObjects();
     mPhaseFiller.saveObjects();
     mProcessPeriodFiller.saveObjects();
 
-    // solution
-    mTechnologicalSolutionTypeFiller.saveObjects();
-    mProductCategoryFiller.saveObjects();
-    mProductFiller.saveObjects();
-    mProductFiller.saveObjects();
-    mActiveComponentFiller.saveObjects();
-    mActiveComponentInProductFiller.saveObjects();
-    mAggregateFiller.saveObjects();
-    mInsectFiller.saveObjects();
-    mTechnologicalSolutionFiller.saveObjects();
+    // conditions
+    mConditionNamesFiller.saveObjects();
+    mConditionTypeFiller.saveObjects();
+    mPreviousCropValueFiller.saveObjects();
+    mSpanValueFiller.saveObjects();
+    mSoilTypeValueFiller.saveObjects();
+    mHarmfulObjectValueFiller.saveObjects();
+    mHarmfulObjectPhaseValueFiller.saveObjects();
+    mTillageDirectionValueFiller.saveObjects();
+    mPhenologicalCharacteristicValueFiller.saveObjects();
+    mConditionsFiller.saveObjects();
 
     // technological map
     mTechnologicalProcessStateFiller.saveObjects();
-    mCropTechnologicalProcessFiller.saveObjects();
+    mCropTechnologicalProcessFiller.saveObjects(); // TODO: finish
+    // TODO: Tech processes Conditions
 
     // TODO
   }
@@ -455,6 +458,7 @@ public final class PrimaryDataFiller {
       for (int i = 0; i < mSoilTypeFiller.objects.size(); i++) {
         objects.put(currentId, new SoilTypeValueObject(currentId, soilTypeConditionType,
             mSoilTypeFiller.objects.valueAt(i)));
+        currentId++;
       }
     }
 
@@ -507,7 +511,14 @@ public final class PrimaryDataFiller {
     static final int SPAN_4_5_KEY = 25;
     static final int SPAN_6_8_KEY = 26;
 
-    private static final int CAPACITY = 27;
+    // Weed amount
+    static final int SPAN_10_50_KEY = 27;
+    static final int SPAN_1_5_KEY = 28;
+
+    // Grain moisture
+    static final int SPAN_0_14_KEY = 29;
+
+    private static final int CAPACITY = 29;
 
     private SparseArrayCompat<ConditionSpanValueObject> objects = new SparseArrayCompat<>(CAPACITY);
 
@@ -518,69 +529,77 @@ public final class PrimaryDataFiller {
 
       //Soil Moisture
       objects.put(SPAN_40_70_KEY,
-          new ConditionSpanValueObject(1, spanValueConditionTypeObject, 40, 70));
+          new ConditionSpanValueObject(SPAN_40_70_KEY, spanValueConditionTypeObject, 40, 70));
       objects.put(SPAN_50_65_KEY,
-          new ConditionSpanValueObject(2, spanValueConditionTypeObject, 50, 65));
+          new ConditionSpanValueObject(SPAN_50_65_KEY, spanValueConditionTypeObject, 50, 65));
       objects.put(SPAN_40_60_KEY,
-          new ConditionSpanValueObject(3, spanValueConditionTypeObject, 40, 60));
+          new ConditionSpanValueObject(SPAN_40_60_KEY, spanValueConditionTypeObject, 40, 60));
       objects.put(SPAN_40_50_KEY,
-          new ConditionSpanValueObject(4, spanValueConditionTypeObject, 40, 50));
+          new ConditionSpanValueObject(SPAN_40_50_KEY, spanValueConditionTypeObject, 40, 50));
       objects.put(SPAN_30_40_KEY,
-          new ConditionSpanValueObject(5, spanValueConditionTypeObject, 30, 40));
+          new ConditionSpanValueObject(SPAN_30_40_KEY, spanValueConditionTypeObject, 30, 40));
       objects.put(SPAN_20_50_KEY,
-          new ConditionSpanValueObject(6, spanValueConditionTypeObject, 20, 50));
+          new ConditionSpanValueObject(SPAN_20_50_KEY, spanValueConditionTypeObject, 20, 50));
 
       //Soil Temperature
       objects.put(SPAN_0_5_KEY,
-          new ConditionSpanValueObject(7, spanValueConditionTypeObject, 0, 5));
+          new ConditionSpanValueObject(SPAN_0_5_KEY, spanValueConditionTypeObject, 0, 5));
       objects.put(SPAN_8_10_KEY,
-          new ConditionSpanValueObject(8, spanValueConditionTypeObject, 8, 10));
+          new ConditionSpanValueObject(SPAN_8_10_KEY, spanValueConditionTypeObject, 8, 10));
       objects.put(SPAN_8_12_KEY,
-          new ConditionSpanValueObject(9, spanValueConditionTypeObject, 8, 12));
+          new ConditionSpanValueObject(SPAN_8_12_KEY, spanValueConditionTypeObject, 8, 12));
 
       //Air Temperature
       objects.put(SPAN_0_10_KEY,
-          new ConditionSpanValueObject(10, spanValueConditionTypeObject, 0, 10));
+          new ConditionSpanValueObject(SPAN_0_10_KEY, spanValueConditionTypeObject, 0, 10));
       objects.put(SPAN_10_300_KEY,
-          new ConditionSpanValueObject(11, spanValueConditionTypeObject, 10, 300));
+          new ConditionSpanValueObject(SPAN_10_300_KEY, spanValueConditionTypeObject, 10, 300));
       objects.put(SPAN_12_20_KEY,
-          new ConditionSpanValueObject(12, spanValueConditionTypeObject, 12, 20));
-      objects.put(SPAN_8_10_KEY,
-          new ConditionSpanValueObject(13, spanValueConditionTypeObject, 8, 10));
+          new ConditionSpanValueObject(SPAN_12_20_KEY, spanValueConditionTypeObject, 12, 20));
       objects.put(SPAN_0_25_KEY,
-          new ConditionSpanValueObject(14, spanValueConditionTypeObject, 0, 25));
+          new ConditionSpanValueObject(SPAN_0_25_KEY, spanValueConditionTypeObject, 0, 25));
 
       //Air Moisture
       objects.put(SPAN_60_99_KEY,
-          new ConditionSpanValueObject(15, spanValueConditionTypeObject, 60, 99));
+          new ConditionSpanValueObject(SPAN_60_99_KEY, spanValueConditionTypeObject, 60, 99));
       objects.put(SPAN_30_50_KEY,
-          new ConditionSpanValueObject(16, spanValueConditionTypeObject, 30, 50));
+          new ConditionSpanValueObject(SPAN_30_50_KEY, spanValueConditionTypeObject, 30, 50));
       objects.put(SPAN_50_99_KEY,
-          new ConditionSpanValueObject(17, spanValueConditionTypeObject, 50, 99));
+          new ConditionSpanValueObject(SPAN_50_99_KEY, spanValueConditionTypeObject, 50, 99));
       objects.put(SPAN_0_80_KEY,
-          new ConditionSpanValueObject(18, spanValueConditionTypeObject, 0, 80));
+          new ConditionSpanValueObject(SPAN_0_80_KEY, spanValueConditionTypeObject, 0, 80));
 
       //Grain moisture
       objects.put(SPAN_14_99_KEY,
-          new ConditionSpanValueObject(19, spanValueConditionTypeObject, 14, 99));
+          new ConditionSpanValueObject(SPAN_14_99_KEY, spanValueConditionTypeObject, 14, 99));
       objects.put(SPAN_0_30_KEY,
-          new ConditionSpanValueObject(20, spanValueConditionTypeObject, 0, 30));
+          new ConditionSpanValueObject(SPAN_0_30_KEY, spanValueConditionTypeObject, 0, 30));
 
       //Tillage Depth
       objects.put(SPAN_10_12_KEY,
-          new ConditionSpanValueObject(21, spanValueConditionTypeObject, 10, 12));
+          new ConditionSpanValueObject(SPAN_10_12_KEY, spanValueConditionTypeObject, 10, 12));
       objects.put(SPAN_6_10_KEY,
-          new ConditionSpanValueObject(22, spanValueConditionTypeObject, 6, 10));
+          new ConditionSpanValueObject(SPAN_6_10_KEY, spanValueConditionTypeObject, 6, 10));
       objects.put(SPAN_5_8_KEY,
-          new ConditionSpanValueObject(23, spanValueConditionTypeObject, 5, 8));
+          new ConditionSpanValueObject(SPAN_5_8_KEY, spanValueConditionTypeObject, 5, 8));
       objects.put(SPAN_4_8_KEY,
-          new ConditionSpanValueObject(24, spanValueConditionTypeObject, 4, 8));
+          new ConditionSpanValueObject(SPAN_4_8_KEY, spanValueConditionTypeObject, 4, 8));
       objects.put(SPAN_2_4_KEY,
-          new ConditionSpanValueObject(25, spanValueConditionTypeObject, 2, 4));
+          new ConditionSpanValueObject(SPAN_2_4_KEY, spanValueConditionTypeObject, 2, 4));
       objects.put(SPAN_4_5_KEY,
-          new ConditionSpanValueObject(26, spanValueConditionTypeObject, 4, 5));
+          new ConditionSpanValueObject(SPAN_4_5_KEY, spanValueConditionTypeObject, 4, 5));
       objects.put(SPAN_6_8_KEY,
-          new ConditionSpanValueObject(27, spanValueConditionTypeObject, 6, 8));
+          new ConditionSpanValueObject(SPAN_6_8_KEY, spanValueConditionTypeObject, 6, 8));
+
+      // Weed amount
+      objects.put(SPAN_10_50_KEY,
+          new ConditionSpanValueObject(SPAN_10_50_KEY, spanValueConditionTypeObject, 10, 50));
+      objects.put(SPAN_1_5_KEY,
+          new ConditionSpanValueObject(SPAN_1_5_KEY, spanValueConditionTypeObject, 1, 5));
+
+      // Grain moisture
+      objects.put(SPAN_0_14_KEY,
+          new ConditionSpanValueObject(SPAN_0_14_KEY, spanValueConditionTypeObject, 0, 14));
     }
 
     void saveObjects() {
@@ -893,7 +912,10 @@ public final class PrimaryDataFiller {
 
   private class ConditionsFiller {
 
-    private static final int CAPACITY = 5;
+    private static final int CAPACITY = 8
+        + HarmfulObjectValueFiller.CAPACITY
+        + HarmfulObjectPhaseValueFiller.CAPACITY
+        + PreviousCropValueFiller.CAPACITY;
 
     private SparseArrayCompat<ConditionObject> objects = new SparseArrayCompat<>(CAPACITY);
 
@@ -904,15 +926,38 @@ public final class PrimaryDataFiller {
       ConditionTypeObject soilTypeConditionType = mConditionTypeFiller.objects.get(ConditionTypeFiller.SOIL_TYPE_KEY);
       ConditionTypeObject harmfulObjectConditionType = mConditionTypeFiller.objects.get(ConditionTypeFiller.HARMFUL_OBJECT_KEY);
       ConditionTypeObject harmfulObjectPhaseConditionType = mConditionTypeFiller.objects.get(ConditionTypeFiller.HARMFUL_OBJECT_PHASE_KEY);
+      ConditionTypeObject previousCropConditionType =
+          mConditionTypeFiller.objects.get(ConditionTypeFiller.PREVIOUS_CROP_KEY);
+      ConditionTypeObject tillageDirectionConditionType =
+          mConditionTypeFiller.objects.get(ConditionTypeFiller.TILLAGE_DIRECTION_KEY);
+      ConditionTypeObject phenologicalCharacteristicConditionType =
+          mConditionTypeFiller.objects.get(ConditionTypeFiller.PHENOLOGICAL_CHARACTERISTIC_KEY);
 
-      // air temperatures
       ConditionNameObject airTemperatureConditionName =
           mConditionNamesFiller.objects.get(ConditionNamesFiller.AIR_TEMPERATURE_KEY);
+      ConditionNameObject airMoistureConditionName =
+          mConditionNamesFiller.objects.get(ConditionNamesFiller.AIR_MOISTURE_KEY);
       ConditionNameObject soilTypeConditionName = mConditionNamesFiller.objects.get(ConditionNamesFiller.SOIL_TYPE_KEY);
+      ConditionNameObject soilMoistureConditionName =
+          mConditionNamesFiller.objects.get(ConditionNamesFiller.SOIL_MOISTURE_KEY);
+      ConditionNameObject soilTemperatureConditionName =
+          mConditionNamesFiller.objects.get(ConditionNamesFiller.SOIL_TEMPERATURE_KEY);
       ConditionNameObject harmfulObjectConditionName = mConditionNamesFiller.objects.get(ConditionNamesFiller.HARMFUL_OBJECT_KEY);
       ConditionNameObject harmfulObjectPhaseConditionName = mConditionNamesFiller.objects.get(ConditionNamesFiller.HARMFUL_OBJECT_PHASE_KEY);
       ConditionNameObject previousCropConditionName =
           mConditionNamesFiller.objects.get(ConditionNamesFiller.PREVIOUS_CROP_KEY);
+      ConditionNameObject plannedYieldConditionName =
+          mConditionNamesFiller.objects.get(ConditionNamesFiller.PLANNED_YIELD_KEY);
+      ConditionNameObject weedAmountConditionName =
+          mConditionNamesFiller.objects.get(ConditionNamesFiller.WEED_AMOUNT_KEY);
+      ConditionNameObject grainMoistureConditionName =
+          mConditionNamesFiller.objects.get(ConditionNamesFiller.GRAIN_MOISTURE_KEY);
+      ConditionNameObject tillageDirectionConditionName =
+          mConditionNamesFiller.objects.get(ConditionNamesFiller.TILLAGE_DIRECTION_KEY);
+      ConditionNameObject tillageDepthConditionName =
+          mConditionNamesFiller.objects.get(ConditionNamesFiller.TILLAGE_DEPTH_KEY);
+      ConditionNameObject phenologicalCharacteristicConditionName =
+          mConditionNamesFiller.objects.get(ConditionNamesFiller.PHENOLOGICAL_CHARACTERISTIC_KEY);
 
       ConditionSpanValueObject temperature0to10 =
           mSpanValueFiller.objects.get(SpanValueFiller.SPAN_0_10_KEY);
@@ -925,94 +970,212 @@ public final class PrimaryDataFiller {
       ConditionSpanValueObject temperature0to25 =
           mSpanValueFiller.objects.get(SpanValueFiller.SPAN_0_25_KEY);
 
-      int currentPriority = ConditionObject.LOWEST_PRIORITY;
+      int lowestPriority = ConditionObject.LOWEST_PRIORITY;
+      int highestPriority = ConditionObject.HIGHEST_PRIORITY;
 
       // Air temperatures
-      objects.put(1, new ConditionObject(1, currentPriority, airTemperatureConditionName, spanValueConditionType, temperature0to10));
-      objects.put(2, new ConditionObject(2, currentPriority, airTemperatureConditionName, spanValueConditionType, temperature10to300));
-      objects.put(3, new ConditionObject(3, currentPriority, airTemperatureConditionName, spanValueConditionType, temperature12to20));
-      objects.put(4, new ConditionObject(4, currentPriority, airTemperatureConditionName, spanValueConditionType, temperature8to10));
-      objects.put(5, new ConditionObject(5, currentPriority, airTemperatureConditionName, spanValueConditionType, temperature0to25));
+      objects.put(1, new ConditionObject(1, lowestPriority, airTemperatureConditionName,
+          spanValueConditionType, temperature0to10));
+      objects.put(2, new ConditionObject(2, lowestPriority, airTemperatureConditionName,
+          spanValueConditionType, temperature10to300));
+      objects.put(3, new ConditionObject(3, lowestPriority, airTemperatureConditionName,
+          spanValueConditionType, temperature12to20));
+      objects.put(4, new ConditionObject(4, lowestPriority, airTemperatureConditionName,
+          spanValueConditionType, temperature8to10));
+      objects.put(5, new ConditionObject(5, lowestPriority, airTemperatureConditionName,
+          spanValueConditionType, temperature0to25));
+
+      // Air moisture
+      objects.put(6,
+          new ConditionObject(6, lowestPriority, airMoistureConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_60_99_KEY)));
+      objects.put(7,
+          new ConditionObject(7, lowestPriority, airMoistureConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_30_50_KEY)));
+      objects.put(8,
+          new ConditionObject(8, lowestPriority, airMoistureConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_50_99_KEY)));
+      objects.put(9,
+          new ConditionObject(9, lowestPriority, airMoistureConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_0_80_KEY)));
 
       // Soil types
-      objects.put(6, new ConditionObject(6, currentPriority, soilTypeConditionName, soilTypeConditionType, mSoilTypeValueFiller.objects.get(1)));
-      objects.put(7, new ConditionObject(7, currentPriority, soilTypeConditionName, soilTypeConditionType, mSoilTypeValueFiller.objects.get(2)));
+      objects.put(10,
+          new ConditionObject(10, lowestPriority, soilTypeConditionName, soilTypeConditionType,
+              mSoilTypeValueFiller.objects.get(1)));
+      objects.put(11,
+          new ConditionObject(11, lowestPriority, soilTypeConditionName, soilTypeConditionType,
+              mSoilTypeValueFiller.objects.get(2)));
 
-      int currentId = 8;
+      // Soil moisture
+      objects.put(12, new ConditionObject(12, highestPriority, soilMoistureConditionName,
+          spanValueConditionType, mSpanValueFiller.objects.get(SpanValueFiller.SPAN_40_70_KEY)));
+      objects.put(13, new ConditionObject(13, highestPriority, soilMoistureConditionName,
+          spanValueConditionType, mSpanValueFiller.objects.get(SpanValueFiller.SPAN_50_65_KEY)));
+      objects.put(14, new ConditionObject(14, 2, soilMoistureConditionName, spanValueConditionType,
+          mSpanValueFiller.objects.get(SpanValueFiller.SPAN_40_60_KEY)));
+      objects.put(15,
+          new ConditionObject(15, lowestPriority, soilMoistureConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_40_50_KEY)));
+      objects.put(16,
+          new ConditionObject(16, lowestPriority, soilMoistureConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_30_40_KEY)));
+      objects.put(17,
+          new ConditionObject(17, lowestPriority, soilMoistureConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_20_50_KEY)));
+
+      // Soil temperature
+      objects.put(18, new ConditionObject(18, highestPriority, soilTemperatureConditionName,
+          spanValueConditionType, mSpanValueFiller.objects.get(SpanValueFiller.SPAN_0_5_KEY)));
+      objects.put(19, new ConditionObject(19, highestPriority, soilTemperatureConditionName,
+          spanValueConditionType, mSpanValueFiller.objects.get(SpanValueFiller.SPAN_8_10_KEY)));
+      objects.put(20, new ConditionObject(20, highestPriority, soilTemperatureConditionName,
+          spanValueConditionType, mSpanValueFiller.objects.get(SpanValueFiller.SPAN_8_12_KEY)));
+      objects.put(21, new ConditionObject(21, lowestPriority, soilTemperatureConditionName,
+          spanValueConditionType, mSpanValueFiller.objects.get(SpanValueFiller.SPAN_8_10_KEY)));
+
+      // Planned yield
+      objects.put(22,
+          new ConditionObject(22, lowestPriority, plannedYieldConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_8_10_KEY)));
+
+      // Weed amount
+      objects.put(23,
+          new ConditionObject(23, lowestPriority, weedAmountConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_10_50_KEY)));
+      objects.put(24,
+          new ConditionObject(24, lowestPriority, weedAmountConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_1_5_KEY)));
+      objects.put(25,
+          new ConditionObject(25, highestPriority, weedAmountConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_10_50_KEY)));
+      objects.put(26,
+          new ConditionObject(26, highestPriority, weedAmountConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_1_5_KEY)));
+
+      // Grain moisture
+      objects.put(27, new ConditionObject(27, highestPriority, grainMoistureConditionName,
+          spanValueConditionType, mSpanValueFiller.objects.get(SpanValueFiller.SPAN_0_14_KEY)));
+      objects.put(28, new ConditionObject(28, lowestPriority, grainMoistureConditionName,
+          spanValueConditionType, mSpanValueFiller.objects.get(SpanValueFiller.SPAN_0_30_KEY)));
+
+      // Tillage depth
+      objects.put(29,
+          new ConditionObject(29, lowestPriority, tillageDepthConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_10_12_KEY)));
+      objects.put(30,
+          new ConditionObject(30, lowestPriority, tillageDepthConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_6_10_KEY)));
+      objects.put(31,
+          new ConditionObject(31, lowestPriority, tillageDepthConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_5_8_KEY)));
+      objects.put(32,
+          new ConditionObject(32, lowestPriority, tillageDepthConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_4_8_KEY)));
+      objects.put(33,
+          new ConditionObject(33, lowestPriority, tillageDepthConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_2_4_KEY)));
+      objects.put(34,
+          new ConditionObject(34, lowestPriority, tillageDepthConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_4_5_KEY)));
+      objects.put(35,
+          new ConditionObject(35, lowestPriority, tillageDepthConditionName, spanValueConditionType,
+              mSpanValueFiller.objects.get(SpanValueFiller.SPAN_6_8_KEY)));
+
+      int currentId = 36;
+
+      // Tillage directions
+      for (int i = 0; i < mTillageDirectionValueFiller.objects.size(); i++) {
+        objects.put(currentId,
+            new ConditionObject(currentId, lowestPriority, tillageDirectionConditionName,
+                tillageDirectionConditionType, mTillageDirectionValueFiller.objects.valueAt(i)));
+        currentId++;
+      }
+
+      // Phenological characteristic
+      for (int i = 0; i < mPhenologicalCharacteristicValueFiller.objects.size(); i++) {
+        objects.put(currentId,
+            new ConditionObject(currentId, lowestPriority, phenologicalCharacteristicConditionName,
+                phenologicalCharacteristicConditionType,
+                mPhenologicalCharacteristicValueFiller.objects.valueAt(i)));
+        currentId++;
+      }
 
       // Harmful objects
       for (int i = 0; i < mHarmfulObjectValueFiller.objects.size(); i++) {
-        objects.put(currentId, new ConditionObject(currentId, currentPriority, harmfulObjectConditionName, harmfulObjectConditionType, mHarmfulObjectValueFiller.objects.valueAt(i)));
+        objects.put(currentId,
+            new ConditionObject(currentId, lowestPriority, harmfulObjectConditionName,
+                harmfulObjectConditionType, mHarmfulObjectValueFiller.objects.valueAt(i)));
         currentId++;
       }
 
       // Harmful object phases
       objects.put(currentId,
-          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+          new ConditionObject(currentId, lowestPriority, harmfulObjectPhaseConditionName,
               harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(5)));
       currentId++;
       objects.put(currentId,
-          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+          new ConditionObject(currentId, lowestPriority, harmfulObjectPhaseConditionName,
               harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(16)));
       currentId++;
       objects.put(currentId,
-          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+          new ConditionObject(currentId, lowestPriority, harmfulObjectPhaseConditionName,
               harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(11)));
       currentId++;
-      objects.put(currentId, new ConditionObject(currentId, ConditionObject.HIGEST_PRIORITY,
+      objects.put(currentId, new ConditionObject(currentId, highestPriority,
           harmfulObjectPhaseConditionName, harmfulObjectPhaseConditionType,
           mHarmfulObjectPhaseValueFiller.objects.get(1)));
       currentId++;
-      objects.put(currentId, new ConditionObject(currentId, ConditionObject.HIGEST_PRIORITY,
+      objects.put(currentId, new ConditionObject(currentId, highestPriority,
           harmfulObjectPhaseConditionName, harmfulObjectPhaseConditionType,
           mHarmfulObjectPhaseValueFiller.objects.get(3)));
       currentId++;
-      objects.put(currentId, new ConditionObject(currentId, ConditionObject.HIGEST_PRIORITY,
+      objects.put(currentId, new ConditionObject(currentId, highestPriority,
           harmfulObjectPhaseConditionName, harmfulObjectPhaseConditionType,
           mHarmfulObjectPhaseValueFiller.objects.get(4)));
       currentId++;
-      objects.put(currentId, new ConditionObject(currentId, ConditionObject.HIGEST_PRIORITY,
+      objects.put(currentId, new ConditionObject(currentId, highestPriority,
           harmfulObjectPhaseConditionName, harmfulObjectPhaseConditionType,
           mHarmfulObjectPhaseValueFiller.objects.get(7)));
       currentId++;
-      objects.put(currentId, new ConditionObject(currentId, ConditionObject.HIGEST_PRIORITY,
+      objects.put(currentId, new ConditionObject(currentId, highestPriority,
           harmfulObjectPhaseConditionName, harmfulObjectPhaseConditionType,
           mHarmfulObjectPhaseValueFiller.objects.get(10)));
       currentId++;
-      objects.put(currentId, new ConditionObject(currentId, ConditionObject.HIGEST_PRIORITY,
+      objects.put(currentId, new ConditionObject(currentId, highestPriority,
           harmfulObjectPhaseConditionName, harmfulObjectPhaseConditionType,
           mHarmfulObjectPhaseValueFiller.objects.get(8)));
       currentId++;
       objects.put(currentId,
-          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+          new ConditionObject(currentId, lowestPriority, harmfulObjectPhaseConditionName,
               harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(12)));
       currentId++;
       objects.put(currentId,
-          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+          new ConditionObject(currentId, lowestPriority, harmfulObjectPhaseConditionName,
               harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(6)));
       currentId++;
       objects.put(currentId,
-          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+          new ConditionObject(currentId, lowestPriority, harmfulObjectPhaseConditionName,
               harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(7)));
       currentId++;
       objects.put(currentId,
-          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+          new ConditionObject(currentId, lowestPriority, harmfulObjectPhaseConditionName,
               harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(10)));
       currentId++;
       objects.put(currentId,
-          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+          new ConditionObject(currentId, lowestPriority, harmfulObjectPhaseConditionName,
               harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(8)));
       currentId++;
       objects.put(currentId,
-          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+          new ConditionObject(currentId, lowestPriority, harmfulObjectPhaseConditionName,
               harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(13)));
       currentId++;
       objects.put(currentId,
-          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+          new ConditionObject(currentId, lowestPriority, harmfulObjectPhaseConditionName,
               harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(14)));
       currentId++;
       objects.put(currentId,
-          new ConditionObject(currentId, currentPriority, harmfulObjectPhaseConditionName,
+          new ConditionObject(currentId, lowestPriority, harmfulObjectPhaseConditionName,
               harmfulObjectPhaseConditionType, mHarmfulObjectPhaseValueFiller.objects.get(15)));
       currentId++;
       objects.put(currentId, new ConditionObject(currentId, 2, harmfulObjectPhaseConditionName,
@@ -1025,8 +1188,8 @@ public final class PrimaryDataFiller {
       // Previous crops
       for (int i = 0; i < mPreviousCropValueFiller.objects.size(); i++) {
         objects.put(currentId,
-            new ConditionObject(currentId, currentPriority, previousCropConditionName,
-                harmfulObjectPhaseConditionType, mPreviousCropValueFiller.objects.valueAt(i)));
+            new ConditionObject(currentId, lowestPriority, previousCropConditionName,
+                previousCropConditionType, mPreviousCropValueFiller.objects.valueAt(i)));
         currentId++;
       }
 
