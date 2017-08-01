@@ -88,10 +88,10 @@ import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTec
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessConditionEntity;
+import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessConditionEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessStateEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessStateEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessesConditionEntity;
-import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessesConditionEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.resolvers.CombinedFieldDeleteResolver;
 import com.apps.twelve.floor.field.data.local.resolvers.CombinedFieldGetResolver;
 import com.apps.twelve.floor.field.data.local.resolvers.CombinedFieldPutResolver;
@@ -212,9 +212,9 @@ import dagger.Provides;
         // FieldCropTechnologicalProcessEntity mapping
         .addTypeMapping(FieldCropTechnologicalProcessEntity.class,
             new FieldCropTechnologicalProcessEntitySQLiteTypeMapping())
-        // TechnologicalProcessesConditionEntity mapping
-        .addTypeMapping(TechnologicalProcessesConditionEntity.class,
-            new TechnologicalProcessesConditionEntitySQLiteTypeMapping())
+        // TechnologicalProcessConditionEntity mapping
+        .addTypeMapping(TechnologicalProcessConditionEntity.class,
+            new TechnologicalProcessConditionEntitySQLiteTypeMapping())
         // TechnologicalProcessStateEntity mapping
         .addTypeMapping(TechnologicalProcessStateEntity.class,
             new TechnologicalProcessStateEntitySQLiteTypeMapping())

@@ -9,7 +9,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  */
 
 @StorIOSQLiteType(table = TechnologicalProcessesConditionsTable.TABLE)
-public class TechnologicalProcessesConditionEntity {
+public class TechnologicalProcessConditionEntity {
 
   @StorIOSQLiteColumn(name = TechnologicalProcessesConditionsTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = TechnologicalProcessesConditionsTable.COLUMN_SET_ID) Long setId;
@@ -18,10 +18,10 @@ public class TechnologicalProcessesConditionEntity {
   @StorIOSQLiteColumn(name = TechnologicalProcessesConditionsTable.COLUMN_CONDITION_ID) Long
       conditionId;
 
-  public TechnologicalProcessesConditionEntity() {
+  public TechnologicalProcessConditionEntity() {
   }
 
-  public TechnologicalProcessesConditionEntity(Long id, Long setId, Long cropTechnologicalProcessId,
+  public TechnologicalProcessConditionEntity(Long id, Long setId, Long cropTechnologicalProcessId,
       Long conditionId) {
     this.id = id;
     this.setId = setId;
@@ -29,10 +29,10 @@ public class TechnologicalProcessesConditionEntity {
     this.conditionId = conditionId;
   }
 
-  public static TechnologicalProcessesConditionEntity newTechnologicalProcessesConditionEntity(
+  public static TechnologicalProcessConditionEntity newTechnologicalProcessesConditionEntity(
       Long id, Long setId, Long cropTechnologicalProcessId, Long conditionId) {
     if (id == 0) id = null;
-    return new TechnologicalProcessesConditionEntity(id, setId, cropTechnologicalProcessId,
+    return new TechnologicalProcessConditionEntity(id, setId, cropTechnologicalProcessId,
         conditionId);
   }
 
@@ -40,7 +40,7 @@ public class TechnologicalProcessesConditionEntity {
     if (this == obj) return true;
     if (obj == null || getClass() != obj.getClass()) return false;
 
-    TechnologicalProcessesConditionEntity that = (TechnologicalProcessesConditionEntity) obj;
+    TechnologicalProcessConditionEntity that = (TechnologicalProcessConditionEntity) obj;
 
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
     if (setId != null ? !setId.equals(that.setId) : that.setId != null) return false;

@@ -39,6 +39,7 @@ import com.apps.twelve.floor.field.data.local.objects.solutions.ProductObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.CropTechnologicalProcessObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -123,6 +124,7 @@ public final class PrimaryDataFiller {
     mHarmfulObjectPhaseValueFiller = new HarmfulObjectPhaseValueFiller();
     mHarmfulObjectValueFiller = new HarmfulObjectValueFiller();
     mConditionsFiller = new ConditionsFiller();
+    new CropTechnologicalProcessConditionFiller();
 
     // harmful objects
     mHarmfulObjectTypeFiller = new HarmfulObjectTypeFiller();
@@ -828,24 +830,23 @@ public final class PrimaryDataFiller {
 
   private class PhenologicalCharacteristicFiller {
 
-    private static final int CAPACITY = 8;
+    private static final int CAPACITY = 7;
 
     private SparseArrayCompat<PhenologicalCharacteristicObject> objects =
         new SparseArrayCompat<>(CAPACITY);
 
     void makeObjects() {
-      objects.put(1, new PhenologicalCharacteristicObject(1, "Цвітіння черемухи"));
-      objects.put(2, new PhenologicalCharacteristicObject(2, "Цвітіння черешні"));
-      objects.put(3, new PhenologicalCharacteristicObject(3,
+      objects.put(1, new PhenologicalCharacteristicObject(1, "Цвітіння черемухи, черешні"));
+      objects.put(2, new PhenologicalCharacteristicObject(3,
           "Активна вегетація. Рослини не повинні перебувати в стресовому стані"));
-      objects.put(4, new PhenologicalCharacteristicObject(4,
+      objects.put(3, new PhenologicalCharacteristicObject(4,
           "Початок масового льоту кукурудзяного метелика -визначається за допомогою феромонних пасток. "));
-      objects.put(5, new PhenologicalCharacteristicObject(5,
+      objects.put(4, new PhenologicalCharacteristicObject(5,
           "масове відкладання яєць кукурудзяним метеликом"));
-      objects.put(6,
+      objects.put(5,
           new PhenologicalCharacteristicObject(6, "проникнення перших гусениць у стебла"));
-      objects.put(7, new PhenologicalCharacteristicObject(7, "Активна вегетація бур’янів"));
-      objects.put(8, new PhenologicalCharacteristicObject(8,
+      objects.put(6, new PhenologicalCharacteristicObject(7, "Активна вегетація бур’янів"));
+      objects.put(7, new PhenologicalCharacteristicObject(8,
           "Візуально визначається по наявності чор-ного прошарку (чорної точки) між зерном і місцем прикріплення його до качана"));
     }
 
@@ -912,10 +913,12 @@ public final class PrimaryDataFiller {
 
   private class ConditionsFiller {
 
-    private static final int CAPACITY = 8
+    private static final int CAPACITY = 36
         + HarmfulObjectValueFiller.CAPACITY
         + HarmfulObjectPhaseValueFiller.CAPACITY
-        + PreviousCropValueFiller.CAPACITY;
+        + PreviousCropValueFiller.CAPACITY
+        + TillageDirectionValueFiller.CAPACITY
+        + PhenologicalCharacteristicValueFiller.CAPACITY;
 
     private SparseArrayCompat<ConditionObject> objects = new SparseArrayCompat<>(CAPACITY);
 
@@ -1084,20 +1087,35 @@ public final class PrimaryDataFiller {
 
       int currentId = 36;
 
-      // Tillage directions
-      for (int i = 0; i < mTillageDirectionValueFiller.objects.size(); i++) {
-        objects.put(currentId,
-            new ConditionObject(currentId, lowestPriority, tillageDirectionConditionName,
-                tillageDirectionConditionType, mTillageDirectionValueFiller.objects.valueAt(i)));
-        currentId++;
-      }
-
       // Phenological characteristic
+      /*
+      37, "Цвітіння черемухи, черешні"
+      38, "Активна вегетація. Рослини не повинні перебувати в стресовому стані"
+      39, "Початок масового льоту кукурудзяного метелика -визначається за допомогою феромонних пасток. "
+      40, "масове відкладання яєць кукурудзяним метеликом"
+      41, "проникнення перших гусениць у стебла"
+      42, "Активна вегетація бур’янів"
+      43, "Візуально визначається по наявності чор-ного прошарку (чорної точки) між зерном і місцем прикріплення його до качана"
+      */
       for (int i = 0; i < mPhenologicalCharacteristicValueFiller.objects.size(); i++) {
         objects.put(currentId,
             new ConditionObject(currentId, lowestPriority, phenologicalCharacteristicConditionName,
                 phenologicalCharacteristicConditionType,
                 mPhenologicalCharacteristicValueFiller.objects.valueAt(i)));
+        currentId++;
+      }
+
+      // Tillage directions
+      /*
+      44 "під кутом 45⁰ до напряму оранки")
+      45 "Човнико-вий або діагональ-ний")
+      46 "міжряддя вздовж рядків")
+      47 "суцільний обробіток")
+      */
+      for (int i = 0; i < mTillageDirectionValueFiller.objects.size(); i++) {
+        objects.put(currentId,
+            new ConditionObject(currentId, lowestPriority, tillageDirectionConditionName,
+                tillageDirectionConditionType, mTillageDirectionValueFiller.objects.valueAt(i)));
         currentId++;
       }
 
@@ -1202,6 +1220,73 @@ public final class PrimaryDataFiller {
     }
   }
 
+  private class CropTechnologicalProcessConditionFiller {
+    private static final int CAPACITY = 15;
+
+    private SparseArrayCompat<TechnologicalProcessConditionObject> objects =
+        new SparseArrayCompat<>(CAPACITY);
+
+    void makeObjects() {
+      CropTechnologicalProcessObject posevStepTechProc =
+          mCropTechnologicalProcessFiller.objects.get(6);
+      CropTechnologicalProcessObject posevLisostepTechProc =
+          mCropTechnologicalProcessFiller.objects.get(7);
+      CropTechnologicalProcessObject posevPolesseTechProc =
+          mCropTechnologicalProcessFiller.objects.get(8);
+
+      CropTechnologicalProcessObject soilGerbStepTechProc =
+          mCropTechnologicalProcessFiller.objects.get(24);
+      CropTechnologicalProcessObject soilGerbLisostepTechProc =
+          mCropTechnologicalProcessFiller.objects.get(25);
+      CropTechnologicalProcessObject soilGerbPolesseTechProc =
+          mCropTechnologicalProcessFiller.objects.get(26);
+
+      // 4a - Посів та припосівне внесення добрив
+      objects.put(1, new TechnologicalProcessConditionObject(1, 1, posevStepTechProc,
+          mConditionsFiller.objects.get(20))); /*т почвы 8-12*/
+      objects.put(2, new TechnologicalProcessConditionObject(2, 1, posevStepTechProc,
+          mConditionsFiller.objects.get(22))); /*план урожайность 8-10*/
+      objects.put(3, new TechnologicalProcessConditionObject(3, 1, posevStepTechProc,
+          mConditionsFiller.objects.get(3))); /*т воздуха 12-20*/
+      objects.put(4, new TechnologicalProcessConditionObject(4, 1, posevStepTechProc,
+          mConditionsFiller.objects.get(30))); /*глубина обработки 6-10*/
+      objects.put(5, new TechnologicalProcessConditionObject(5, 1, posevStepTechProc,
+          mConditionsFiller.objects.get(37))); /*фенол хар: цвет черемухи*/
+      objects.put(6, new TechnologicalProcessConditionObject(6, 2, posevLisostepTechProc,
+          mConditionsFiller.objects.get(20))); /*т почвы 8-12*/
+      objects.put(7, new TechnologicalProcessConditionObject(7, 2, posevLisostepTechProc,
+          mConditionsFiller.objects.get(22))); /*план урожайность 8-10*/
+      objects.put(8, new TechnologicalProcessConditionObject(8, 2, posevLisostepTechProc,
+          mConditionsFiller.objects.get(3))); /*т воздуха 12-20*/
+      objects.put(9, new TechnologicalProcessConditionObject(9, 2, posevLisostepTechProc,
+          mConditionsFiller.objects.get(31))); /*глубина обработки 5-8*/ // 32
+      objects.put(10, new TechnologicalProcessConditionObject(10, 2, posevLisostepTechProc,
+          mConditionsFiller.objects.get(37))); /*фенол хар: цвет черемухи*/
+      objects.put(11, new TechnologicalProcessConditionObject(11, 3, posevPolesseTechProc,
+          mConditionsFiller.objects.get(20))); /*т почвы 8-12*/
+      objects.put(12, new TechnologicalProcessConditionObject(12, 3, posevPolesseTechProc,
+          mConditionsFiller.objects.get(22))); /*план урожайность 8-10*/
+      objects.put(13, new TechnologicalProcessConditionObject(13, 3, posevPolesseTechProc,
+          mConditionsFiller.objects.get(3))); /*т воздуха 12-20*/
+      objects.put(14, new TechnologicalProcessConditionObject(14, 3, posevPolesseTechProc,
+          mConditionsFiller.objects.get(32))); /*глубина обработки 4-8*/
+      objects.put(15, new TechnologicalProcessConditionObject(15, 3, posevPolesseTechProc,
+          mConditionsFiller.objects.get(37))); /*фенол хар: цвет черемухи*/
+
+      // 5б Внесення гербіциду по вегетуючій культурі
+      /*objects.put(, new TechnologicalProcessConditionObject(, 1, soilGerbStepTechProc, mConditionsFiller.objects.get())); *//*TODO: вред об. Однорічні і багаторічні дводольні та злакові бур’яни*//*
+      objects.put(, new TechnologicalProcessConditionObject(, 1, soilGerbStepTechProc, mConditionsFiller.objects.get())); *//**//*
+      objects.put(, new TechnologicalProcessConditionObject(, 1, soilGerbStepTechProc, mConditionsFiller.objects.get())); *//**/
+
+    }
+
+    void saveObjects() {
+      for (int i = 0; i < objects.size(); i++) {
+        mDataManager.putTechnologicalProcessCondition(objects.valueAt(i));
+      }
+    }
+  }
+
   private class TechnologicalProcessStateFiller {
 
     private static final int CAPACITY = 5;
@@ -1259,6 +1344,7 @@ public final class PrimaryDataFiller {
           "Протруювання насіння та обробка регуляторами росту, біологічно-активними речовинами", 3,
           cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(3),
           mProcessPeriodFiller.objects.get(5)));
+
       objects.put(6, new CropTechnologicalProcessObject(6,
           "Посів та припосівне внесення добрив. Передпосівний обробіток ґрунту з послідуючою сівбою",
           4, cornCrop, steppeClimateZone, mPhaseFiller.objects.get(4),
@@ -1271,6 +1357,7 @@ public final class PrimaryDataFiller {
           "Посів та припосівне внесення добрив. Передпосівний обробіток ґрунту з послідуючою сівбою",
           4, cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(4),
           mProcessPeriodFiller.objects.get(8)));
+
       objects.put(9,
           new CropTechnologicalProcessObject(9, "Коткування", 4, cornCrop, steppeClimateZone,
               mPhaseFiller.objects.get(5), mProcessPeriodFiller.objects.get(6)));
@@ -1322,6 +1409,7 @@ public final class PrimaryDataFiller {
           new CropTechnologicalProcessObject(23, "Післясходове боронування друге", 7, cornCrop,
               woodlandClimateZone, mPhaseFiller.objects.get(9),
               mProcessPeriodFiller.objects.get(17)));
+
       objects.put(24,
           new CropTechnologicalProcessObject(24, "Внесення гербіциду по вегетуючій культурі", 5,
               cornCrop, steppeClimateZone, mPhaseFiller.objects.get(10),
@@ -1334,6 +1422,7 @@ public final class PrimaryDataFiller {
           new CropTechnologicalProcessObject(26, "Внесення гербіциду по вегетуючій культурі", 5,
               cornCrop, woodlandClimateZone, mPhaseFiller.objects.get(10),
               mProcessPeriodFiller.objects.get(20)));
+
       objects.put(27, new CropTechnologicalProcessObject(27,
           "Боротьба з шкідниками: обприскування посівів інсектицидами", 8, cornCrop,
           steppeClimateZone, mPhaseFiller.objects.get(11), mProcessPeriodFiller.objects.get(18)));

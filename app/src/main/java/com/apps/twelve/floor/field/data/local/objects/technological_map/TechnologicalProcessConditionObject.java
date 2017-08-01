@@ -25,11 +25,11 @@ public class TechnologicalProcessConditionObject implements Parcelable {
 
   private long mId;
   private long mSetId;
-  @NonNull private FieldCropTechnologicalProcessObject mProcess;
+  @NonNull private CropTechnologicalProcessObject mProcess;
   @NonNull private ConditionObject mCondition;
 
   public TechnologicalProcessConditionObject(long id, long setId,
-      @NonNull FieldCropTechnologicalProcessObject process, @NonNull ConditionObject condition) {
+      @NonNull CropTechnologicalProcessObject process, @NonNull ConditionObject condition) {
     this.mId = id;
     this.mSetId = setId;
     this.mProcess = process;
@@ -39,7 +39,7 @@ public class TechnologicalProcessConditionObject implements Parcelable {
   protected TechnologicalProcessConditionObject(Parcel in) {
     this.mId = in.readLong();
     this.mSetId = in.readLong();
-    this.mProcess = in.readParcelable(FieldCropTechnologicalProcessObject.class.getClassLoader());
+    this.mProcess = in.readParcelable(CropTechnologicalProcessObject.class.getClassLoader());
     this.mCondition = in.readParcelable(ConditionObject.class.getClassLoader());
   }
 
@@ -70,11 +70,11 @@ public class TechnologicalProcessConditionObject implements Parcelable {
     this.mSetId = setId;
   }
 
-  public FieldCropTechnologicalProcessObject getProcess() {
+  public CropTechnologicalProcessObject getProcess() {
     return mProcess;
   }
 
-  public void setProcess(@NonNull FieldCropTechnologicalProcessObject process) {
+  public void setProcess(@NonNull CropTechnologicalProcessObject process) {
     this.mProcess = process;
   }
 
@@ -84,5 +84,13 @@ public class TechnologicalProcessConditionObject implements Parcelable {
 
   public void setCondition(@NonNull ConditionObject condition) {
     this.mCondition = condition;
+  }
+
+  public Long getProcessId() {
+    return mProcess.getId();
+  }
+
+  public Long getConditionId() {
+    return mCondition.getId();
   }
 }

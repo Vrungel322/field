@@ -9,6 +9,7 @@ import com.apps.twelve.floor.field.utils.RxBus;
 import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
 import com.arellomobile.mvp.InjectViewState;
+import com.google.gson.Gson;
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
 import javax.inject.Inject;
 import rx.Subscription;
@@ -23,6 +24,12 @@ import timber.log.Timber;
 
   @Inject DataManager mDataManager;
   @Inject RxBus mRxBus;
+  @Inject Gson mGson;
+
+  // look in R.array.dialog_field_add_types
+  private static int ON_MAP_FILED_ADDING_TYPE = 0; //Точками на карте
+  private static int TRACKING_FILED_ADDING_TYPE = 1; //Обходом с GPS
+  private static int MANUAL_FILED_ADDING_TYPE = 2; //Вручную
 
   private int mFieldTypePosition = -1;
 
@@ -60,18 +67,13 @@ import timber.log.Timber;
   }
 
   public void onFieldTypeDialogPositiveButton(int which) {
-    switch (which) {
-      case 0:
-        getViewState().showEditFieldOnMapFragment();
-        break;
-      case 1:
-        getViewState().showEditFieldTrackingFragment();
-        break;
-      case 2:
-        getViewState().showEditFieldFullScreenFragment();
-        break;
-      default:
-        break;
+
+    if (which == ON_MAP_FILED_ADDING_TYPE) {
+      getViewState().showEditFieldOnMapFragment();
+    } else if (which == TRACKING_FILED_ADDING_TYPE) {
+      getViewState().showEditFieldTrackingFragment();
+    } else if (which == MANUAL_FILED_ADDING_TYPE) {
+      getViewState().showEditFieldFullScreenFragment();
     }
   }
 

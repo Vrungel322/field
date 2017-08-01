@@ -50,6 +50,7 @@ import com.apps.twelve.floor.field.data.local.mappers.solutions.ProductObjectToP
 import com.apps.twelve.floor.field.data.local.mappers.solutions.TechnologicalSolutionObjectToTechnologicalSolutionEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.solutions.TechnologicalSolutionTypeObjectToTechnologicalSolutionTypeEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.technological_map.CropTechnologicalProcessObjectToCropTechnologicalProcessEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.technological_map.TechnologicalProcessConditionObjectToTechnologicalProcessConditionEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.technological_map.TechnologicalProcessStateObjectToTechnologicalProcessStateEntityMapper;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
@@ -90,6 +91,7 @@ import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSol
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.CropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import com.apps.twelve.floor.field.utils.TestUtils;
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
@@ -379,6 +381,13 @@ public class DataManager {
   public PutResult putCondition(ConditionObject conditionObject) {
     return mDbHelper.putConditionEntity(
         new ConditionObjectToConditionEntityMapper().transform(conditionObject));
+  }
+
+  public PutResult putTechnologicalProcessCondition(
+      TechnologicalProcessConditionObject technologicalProcessCondition) {
+    return mDbHelper.putTechnologicalProcessesCondition(
+        new TechnologicalProcessConditionObjectToTechnologicalProcessConditionEntityMapper().transform(
+            technologicalProcessCondition));
   }
 
   public PutResult putSpanValue(ConditionSpanValueObject conditionSpanValueObject) {

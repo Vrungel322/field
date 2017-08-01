@@ -42,8 +42,8 @@ import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSo
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessEntity;
+import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessStateEntity;
-import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessesConditionEntity;
 import com.apps.twelve.floor.field.data.local.tables.CropsActiveComponentsHarmfulObjectsTable;
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.DealersTable;
@@ -611,9 +611,8 @@ public class DbHelper {
   ///////////////////////////////////////////////////////////////////////////
   // Technological Processes Condition
   ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<TechnologicalProcessesConditionEntity>> getAllTechnologicalProcessesConditions() {
-    return mStorIOSQLite.get()
-        .listOfObjects(TechnologicalProcessesConditionEntity.class)
+  public Observable<List<TechnologicalProcessConditionEntity>> getAllTechnologicalProcessesConditions() {
+    return mStorIOSQLite.get().listOfObjects(TechnologicalProcessConditionEntity.class)
         .withQuery(TechnologicalProcessesConditionsTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
@@ -621,17 +620,15 @@ public class DbHelper {
   }
 
   public PutResult putTechnologicalProcessesCondition(
-      TechnologicalProcessesConditionEntity technologicalProcessesConditionEntity) {
-    return mStorIOSQLite.put()
-        .object(technologicalProcessesConditionEntity)
+      TechnologicalProcessConditionEntity technologicalProcessConditionEntity) {
+    return mStorIOSQLite.put().object(technologicalProcessConditionEntity)
         .prepare()
         .executeAsBlocking();
   }
 
   public DeleteResult deleteTechnologicalProcessesCondition(
-      TechnologicalProcessesConditionEntity technologicalProcessesConditionEntity) {
-    return mStorIOSQLite.delete()
-        .object(technologicalProcessesConditionEntity)
+      TechnologicalProcessConditionEntity technologicalProcessConditionEntity) {
+    return mStorIOSQLite.delete().object(technologicalProcessConditionEntity)
         .prepare()
         .executeAsBlocking();
   }
