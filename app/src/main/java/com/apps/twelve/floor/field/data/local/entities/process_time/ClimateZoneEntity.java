@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities.process_time;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ClimateZonesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
@@ -8,7 +9,8 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  * Created by Yaroslav on 04.05.2017.
  */
 
-@StorIOSQLiteType(table = ClimateZonesTable.TABLE) public class ClimateZoneEntity {
+@StorIOSQLiteType(table = ClimateZonesTable.TABLE) public class ClimateZoneEntity
+    implements IEntity {
 
   @StorIOSQLiteColumn(name = ClimateZonesTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = ClimateZonesTable.COLUMN_NAME) String name;

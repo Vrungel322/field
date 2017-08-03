@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities.conditions;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
@@ -8,7 +9,8 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  * Created by Yaroslav on 02.06.2017.
  */
 
-@StorIOSQLiteType(table = ConditionTypesTable.TABLE) public class ConditionTypeEntity {
+@StorIOSQLiteType(table = ConditionTypesTable.TABLE) public class ConditionTypeEntity
+    implements IEntity {
 
   @StorIOSQLiteColumn(name = ConditionTypesTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = ConditionTypesTable.COLUMN_NAME) String name;

@@ -1,12 +1,13 @@
 package com.apps.twelve.floor.field.data.local.objects.solutions;
 
 import android.os.Parcelable;
+import com.apps.twelve.floor.field.data.local.objects.IObject;
 
 /**
  * Created by Yaroslav on 29.05.2017.
  */
 
-public abstract class BaseTechnologicalSolutionObject implements Parcelable {
+public abstract class BaseTechnologicalSolutionObject implements IObject, Parcelable {
 
   abstract public long getId();
 

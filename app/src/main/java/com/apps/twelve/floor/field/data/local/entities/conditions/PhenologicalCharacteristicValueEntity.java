@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities.conditions;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicValuesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
@@ -9,7 +10,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  */
 
 @StorIOSQLiteType(table = PhenologicalCharacteristicValuesTable.TABLE)
-public class PhenologicalCharacteristicValueEntity {
+public class PhenologicalCharacteristicValueEntity implements IEntity {
 
   @StorIOSQLiteColumn(name = PhenologicalCharacteristicValuesTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = PhenologicalCharacteristicValuesTable.COLUMN_CONDITION_TYPE_ID) Long

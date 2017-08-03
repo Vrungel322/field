@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
+import com.apps.twelve.floor.field.data.local.objects.IObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
@@ -12,7 +13,7 @@ import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriod
  * Created by Yaroslav on 23.05.2017.
  */
 
-public class CropTechnologicalProcessObject implements Parcelable {
+public class CropTechnologicalProcessObject implements IObject, Parcelable {
 
   public static final Creator<CropTechnologicalProcessObject> CREATOR =
       new Creator<CropTechnologicalProcessObject>() {

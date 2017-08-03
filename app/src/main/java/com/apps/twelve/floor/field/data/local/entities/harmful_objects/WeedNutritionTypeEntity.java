@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities.harmful_objects;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.WeedNutritionTypesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
@@ -8,7 +9,8 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  * Created by yarrick on 30.06.17.
  */
 
-@StorIOSQLiteType(table = WeedNutritionTypesTable.TABLE) public class WeedNutritionTypeEntity {
+@StorIOSQLiteType(table = WeedNutritionTypesTable.TABLE) public class WeedNutritionTypeEntity
+    implements IEntity {
 
   @StorIOSQLiteColumn(name = WeedNutritionTypesTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = WeedNutritionTypesTable.COLUMN_NAME) String name;

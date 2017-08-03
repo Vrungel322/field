@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities.solutions;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.solutions.InsectsTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
@@ -8,7 +9,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  * Created by Yaroslav on 22.06.2017.
  */
 
-@StorIOSQLiteType(table = InsectsTable.TABLE) public class InsectEntity {
+@StorIOSQLiteType(table = InsectsTable.TABLE) public class InsectEntity implements IEntity {
 
   @StorIOSQLiteColumn(name = InsectsTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = InsectsTable.COLUMN_NAME) String name;

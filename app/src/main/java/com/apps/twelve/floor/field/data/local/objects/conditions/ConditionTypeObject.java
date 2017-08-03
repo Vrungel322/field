@@ -3,12 +3,13 @@ package com.apps.twelve.floor.field.data.local.objects.conditions;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import com.apps.twelve.floor.field.data.local.objects.IObject;
 
 /**
  * Created by Yaroslav on 20.05.2017.
  */
 
-public class ConditionTypeObject implements Parcelable {
+public class ConditionTypeObject implements IObject, Parcelable {
 
   public static final Creator<ConditionTypeObject> CREATOR = new Creator<ConditionTypeObject>() {
     @Override public ConditionTypeObject createFromParcel(Parcel in) {

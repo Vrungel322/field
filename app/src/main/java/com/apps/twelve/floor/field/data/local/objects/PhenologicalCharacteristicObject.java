@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
  * Created by Yaroslav on 31.05.2017.
  */
 
-public class PhenologicalCharacteristicObject implements Parcelable {
+public class PhenologicalCharacteristicObject implements IObject, Parcelable {
 
   public static final Creator<PhenologicalCharacteristicObject> CREATOR =
       new Creator<PhenologicalCharacteristicObject>() {

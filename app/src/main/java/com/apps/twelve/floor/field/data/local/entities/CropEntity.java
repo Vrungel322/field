@@ -8,7 +8,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  * Created by Yaroslav on 05.05.2017.
  */
 
-@StorIOSQLiteType(table = CropsTable.TABLE) public class CropEntity {
+@StorIOSQLiteType(table = CropsTable.TABLE) public class CropEntity implements IEntity {
 
   @StorIOSQLiteColumn(name = CropsTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = CropsTable.COLUMN_NAME) String name;

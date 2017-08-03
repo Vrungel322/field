@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities.solutions;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.solutions.TechnologicalSolutionsTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
@@ -9,7 +10,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  */
 
 @StorIOSQLiteType(table = TechnologicalSolutionsTable.TABLE)
-public class TechnologicalSolutionEntity {
+public class TechnologicalSolutionEntity implements IEntity {
 
   @StorIOSQLiteColumn(name = TechnologicalSolutionsTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = TechnologicalSolutionsTable.COLUMN_TYPE_ID) Long typeId;
@@ -24,7 +25,8 @@ public class TechnologicalSolutionEntity {
     this.valueId = valueId;
   }
 
-  public static TechnologicalSolutionEntity newTechnologicalSolutionEntity(Long id, Long typeId, Long valueId) {
+  public static TechnologicalSolutionEntity newTechnologicalSolutionEntity(Long id, Long typeId,
+      Long valueId) {
     if (id == 0) id = null;
     return new TechnologicalSolutionEntity(id, typeId, valueId);
   }

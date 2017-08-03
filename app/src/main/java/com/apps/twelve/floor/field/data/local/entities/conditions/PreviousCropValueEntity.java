@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities.conditions;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.conditions.PreviousCropValuesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
@@ -7,7 +8,8 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 /**
  * Created by yarrick on 22.07.17.
  */
-@StorIOSQLiteType(table = PreviousCropValuesTable.TABLE) public class PreviousCropValueEntity {
+@StorIOSQLiteType(table = PreviousCropValuesTable.TABLE) public class PreviousCropValueEntity
+    implements IEntity {
 
   @StorIOSQLiteColumn(name = PreviousCropValuesTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = PreviousCropValuesTable.COLUMN_CONDITION_TYPE_ID) Long conditionTypeId;

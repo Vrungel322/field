@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
  * Created by Yaroslav on 31.05.2017.
  */
 
-public class TillageDirectionObject implements Parcelable {
+public class TillageDirectionObject implements IObject, Parcelable {
 
   public static final Creator<TillageDirectionObject> CREATOR =
       new Creator<TillageDirectionObject>() {

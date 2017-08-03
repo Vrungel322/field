@@ -3,12 +3,13 @@ package com.apps.twelve.floor.field.data.local.objects.solutions;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import com.apps.twelve.floor.field.data.local.objects.IObject;
 
 /**
  * Created by Yaroslav on 29.05.2017.
  */
 
-public class ProductCategoryObject implements Parcelable {
+public class ProductCategoryObject implements IObject, Parcelable {
 
   public static final Creator<ProductCategoryObject> CREATOR =
       new Creator<ProductCategoryObject>() {

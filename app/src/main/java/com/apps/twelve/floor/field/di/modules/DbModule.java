@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
 import com.apps.twelve.floor.field.data.local.DbHelper;
 import com.apps.twelve.floor.field.data.local.DbOpenHelper;
+import com.apps.twelve.floor.field.data.local.db_filler.DbFillHelper;
 import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.CropActiveComponentHarmfulObjectEntity;
 import com.apps.twelve.floor.field.data.local.entities.CropActiveComponentHarmfulObjectEntitySQLiteTypeMapping;
@@ -108,6 +109,10 @@ import dagger.Provides;
  */
 
 @Module public class DbModule {
+
+  @Provides @AppScope DbFillHelper provideDbFillHelper() {
+    return new DbFillHelper();
+  }
 
   @Provides @AppScope DbHelper provideDbHelper() {
     return new DbHelper();

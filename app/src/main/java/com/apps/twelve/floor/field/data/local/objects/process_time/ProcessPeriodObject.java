@@ -1,15 +1,14 @@
 package com.apps.twelve.floor.field.data.local.objects.process_time;
 
-import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.text.format.DateUtils;
+import com.apps.twelve.floor.field.data.local.objects.IObject;
 
 /**
  * Created by Yaroslav on 23.05.2017.
  */
 
-public class ProcessPeriodObject implements Parcelable {
+public class ProcessPeriodObject implements IObject, Parcelable {
   private long mId;
   private long mDateDayFrom;
   private long mDateDayTo;

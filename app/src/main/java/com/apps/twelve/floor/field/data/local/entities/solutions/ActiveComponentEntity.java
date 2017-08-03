@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities.solutions;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.solutions.ActiveComponentsTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
@@ -8,7 +9,8 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  * Created by yarrick on 06.07.17.
  */
 
-@StorIOSQLiteType(table = ActiveComponentsTable.TABLE) public class ActiveComponentEntity {
+@StorIOSQLiteType(table = ActiveComponentsTable.TABLE) public class ActiveComponentEntity
+    implements IEntity {
 
   @StorIOSQLiteColumn(name = ActiveComponentsTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = ActiveComponentsTable.COLUMN_NAME) String name;

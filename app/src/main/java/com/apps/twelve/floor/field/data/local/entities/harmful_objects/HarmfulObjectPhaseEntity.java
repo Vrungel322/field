@@ -1,15 +1,16 @@
 package com.apps.twelve.floor.field.data.local.entities.harmful_objects;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
 /**
  * Created by Yaroslav on 02.06.2017.
- *
  */
 
-@StorIOSQLiteType(table = HarmfulObjectPhasesTable.TABLE) public class HarmfulObjectPhaseEntity {
+@StorIOSQLiteType(table = HarmfulObjectPhasesTable.TABLE) public class HarmfulObjectPhaseEntity
+    implements IEntity {
 
   @StorIOSQLiteColumn(name = HarmfulObjectPhasesTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = HarmfulObjectPhasesTable.COLUMN_NAME) String name;

@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities.solutions;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.solutions.AggregatesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
@@ -8,7 +9,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  * Created by Yaroslav on 02.06.2017.
  */
 
-@StorIOSQLiteType(table = AggregatesTable.TABLE) public class AggregateEntity {
+@StorIOSQLiteType(table = AggregatesTable.TABLE) public class AggregateEntity implements IEntity {
 
   @StorIOSQLiteColumn(name = AggregatesTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = AggregatesTable.COLUMN_NAME) String name;

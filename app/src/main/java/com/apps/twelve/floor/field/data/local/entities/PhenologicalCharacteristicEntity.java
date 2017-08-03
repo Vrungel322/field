@@ -9,7 +9,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  */
 
 @StorIOSQLiteType(table = PhenologicalCharacteristicsTable.TABLE)
-public class PhenologicalCharacteristicEntity {
+public class PhenologicalCharacteristicEntity implements IEntity {
 
   @StorIOSQLiteColumn(name = PhenologicalCharacteristicsTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = PhenologicalCharacteristicsTable.COLUMN_NAME) String name;

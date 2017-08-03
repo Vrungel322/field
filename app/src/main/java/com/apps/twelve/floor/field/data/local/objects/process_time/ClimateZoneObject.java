@@ -3,6 +3,7 @@ package com.apps.twelve.floor.field.data.local.objects.process_time;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import com.apps.twelve.floor.field.data.local.objects.IObject;
 import com.apps.twelve.floor.field.utils.LatLngStringUtil;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by Yaroslav on 12.05.2017.
  */
 
-public class ClimateZoneObject implements Parcelable, Cloneable {
+public class ClimateZoneObject implements IObject, Parcelable, Cloneable {
 
   public static final ClimateZoneObject EMPTY;
 

@@ -3,12 +3,13 @@ package com.apps.twelve.floor.field.data.local.objects.harmful_objects;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import com.apps.twelve.floor.field.data.local.objects.IObject;
 
 /**
  * Created by yarrick on 30.06.17.
  */
 
-public class WeedGroupObject implements Parcelable {
+public class WeedGroupObject implements IObject, Parcelable {
 
   public static final Creator<WeedGroupObject> CREATOR = new Creator<WeedGroupObject>() {
     @Override public WeedGroupObject createFromParcel(Parcel in) {

@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities.process_time;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.process_time.ProcessPeriodsTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
@@ -8,7 +9,8 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  * Created by Yaroslav on 01.06.2017.
  */
 
-@StorIOSQLiteType(table = ProcessPeriodsTable.TABLE) public class ProcessPeriodEntity {
+@StorIOSQLiteType(table = ProcessPeriodsTable.TABLE) public class ProcessPeriodEntity
+    implements IEntity {
 
   @StorIOSQLiteColumn(name = ProcessPeriodsTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = ProcessPeriodsTable.COLUMN_DATE_DAY_FROM, key = true) Long dateDayFrom;
@@ -82,9 +84,16 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
     ProcessPeriodEntity that = (ProcessPeriodEntity) obj;
 
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
-    if (dateDayFrom != null ? !dateDayFrom.equals(that.dateDayFrom) : that.dateDayFrom != null) return false;
-    if (dateDayTo != null ? !dateDayTo.equals(that.dateDayTo) : that.dateDayTo != null) return false;
-    if (dateMonthFrom != null ? !dateMonthFrom.equals(that.dateMonthFrom) : that.dateMonthFrom != null) return false;
+    if (dateDayFrom != null ? !dateDayFrom.equals(that.dateDayFrom) : that.dateDayFrom != null) {
+      return false;
+    }
+    if (dateDayTo != null ? !dateDayTo.equals(that.dateDayTo) : that.dateDayTo != null) {
+      return false;
+    }
+    if (dateMonthFrom != null ? !dateMonthFrom.equals(that.dateMonthFrom)
+        : that.dateMonthFrom != null) {
+      return false;
+    }
 
     return dateMonthTo != null ? dateMonthTo.equals(that.dateMonthTo) : that.dateMonthTo == null;
   }

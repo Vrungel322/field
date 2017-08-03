@@ -4,12 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
+import com.apps.twelve.floor.field.data.local.objects.IObject;
 
 /**
  * Created by Yaroslav on 23.05.2017.
  */
 
-public class PhaseObject implements Parcelable, Cloneable {
+public class PhaseObject implements IObject, Parcelable, Cloneable {
 
   public static final PhaseObject EMPTY;
   public static final Creator<PhaseObject> CREATOR = new Creator<PhaseObject>() {

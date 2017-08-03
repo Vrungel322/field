@@ -12,7 +12,8 @@ import dagger.Provides;
  * Created by John on 27.03.2017.
  */
 
-@Module(includes = { DataModule.class, GoogleApiModule.class }) public class AppModule {
+@Module(includes = { DataModule.class, GoogleApiModule.class, AssetModule.class })
+public class AppModule {
 
   private final Application mApplication;
 

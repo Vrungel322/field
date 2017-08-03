@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
  * Created by Yaroslav on 12.05.2017.
  */
 
-public class CropObject implements Parcelable, Cloneable {
+public class CropObject implements IObject, Parcelable, Cloneable {
 
   public static final CropObject EMPTY;
   public static final Creator<CropObject> CREATOR = new Creator<CropObject>() {

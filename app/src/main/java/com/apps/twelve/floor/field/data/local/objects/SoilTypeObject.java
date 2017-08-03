@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Yaroslav on 20.05.2017.
  */
 
-public class SoilTypeObject implements Parcelable {
+public class SoilTypeObject implements IObject, Parcelable {
 
   public static final SoilTypeObject EMPTY;
   public static final Creator<SoilTypeObject> CREATOR = new Creator<SoilTypeObject>() {

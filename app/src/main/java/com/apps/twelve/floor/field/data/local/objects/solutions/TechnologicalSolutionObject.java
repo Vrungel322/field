@@ -3,12 +3,13 @@ package com.apps.twelve.floor.field.data.local.objects.solutions;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import com.apps.twelve.floor.field.data.local.objects.IObject;
 
 /**
  * Created by yarrick on 12.07.17.
  */
 
-public class TechnologicalSolutionObject implements Parcelable {
+public class TechnologicalSolutionObject implements IObject, Parcelable {
   public static final Creator<TechnologicalSolutionObject> CREATOR =
       new Creator<TechnologicalSolutionObject>() {
         @Override public TechnologicalSolutionObject createFromParcel(Parcel in) {

@@ -8,7 +8,8 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  * Created by Yaroslav on 02.06.2017.
  */
 
-@StorIOSQLiteType(table = TillageDirectionsTable.TABLE) public class TillageDirectionEntity {
+@StorIOSQLiteType(table = TillageDirectionsTable.TABLE) public class TillageDirectionEntity
+    implements IEntity {
 
   @StorIOSQLiteColumn(name = TillageDirectionsTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = TillageDirectionsTable.COLUMN_NAME) String name;

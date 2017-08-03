@@ -3,14 +3,14 @@ package com.apps.twelve.floor.field.data.local.objects.technological_map;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import com.apps.twelve.floor.field.data.local.objects.IObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
 
 /**
  * Created by Yaroslav on 01.06.2017.
- *
  */
 
-public class TechnologicalProcessConditionObject implements Parcelable {
+public class TechnologicalProcessConditionObject implements IObject, Parcelable {
 
   public static final Creator<TechnologicalProcessConditionObject> CREATOR =
       new Creator<TechnologicalProcessConditionObject>() {

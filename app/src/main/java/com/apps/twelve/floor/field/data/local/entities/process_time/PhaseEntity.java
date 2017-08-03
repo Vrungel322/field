@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities.process_time;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.process_time.PhasesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
@@ -8,7 +9,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  * Created by Yaroslav on 05.05.2017.
  */
 
-@StorIOSQLiteType(table = PhasesTable.TABLE) public class PhaseEntity {
+@StorIOSQLiteType(table = PhasesTable.TABLE) public class PhaseEntity implements IEntity {
 
   @StorIOSQLiteColumn(name = PhasesTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = PhasesTable.COLUMN_NAME) String name;

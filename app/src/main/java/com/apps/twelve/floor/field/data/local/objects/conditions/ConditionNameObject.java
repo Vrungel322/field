@@ -3,12 +3,13 @@ package com.apps.twelve.floor.field.data.local.objects.conditions;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import com.apps.twelve.floor.field.data.local.objects.IObject;
 
 /**
  * Created by Vrungel on 05.07.2017.
  */
 
-public class ConditionNameObject implements Parcelable {
+public class ConditionNameObject implements IObject, Parcelable {
   private long mId;
   @NonNull private String mName;
 

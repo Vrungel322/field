@@ -4,12 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.R;
+import com.apps.twelve.floor.field.data.local.objects.IObject;
 
 /**
  * Created by Yaroslav on 23.05.2017.
  */
 
-public class TechnologicalProcessStateObject implements Parcelable {
+public class TechnologicalProcessStateObject implements IObject, Parcelable {
 
   public static final Creator<TechnologicalProcessStateObject> CREATOR =
       new Creator<TechnologicalProcessStateObject>() {

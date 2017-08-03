@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities.solutions;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.solutions.ActiveComponentsInProductsTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
@@ -9,7 +10,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  */
 
 @StorIOSQLiteType(table = ActiveComponentsInProductsTable.TABLE)
-public class ActiveComponentInProductEntity {
+public class ActiveComponentInProductEntity implements IEntity {
 
   @StorIOSQLiteColumn(name = ActiveComponentsInProductsTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = ActiveComponentsInProductsTable.COLUMN_PRODUCT_ID) Long productId;
