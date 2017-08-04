@@ -9,6 +9,7 @@ import com.apps.twelve.floor.field.data.local.entities.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.TillageDirectionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectPhaseValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectValueEntity;
@@ -38,6 +39,7 @@ import com.apps.twelve.floor.field.data.local.entities.solutions.ProductEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntity;
+import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessStateEntity;
 import com.google.gson.Gson;
 import javax.inject.Inject;
@@ -152,9 +154,9 @@ public class DbFillHelper {
         mDbHelper.putConditionType((ConditionTypeEntity) entity);
       } else if (entity instanceof PreviousCropValueEntity) {
         mDbHelper.putPreviousCropValue((PreviousCropValueEntity) entity);
-      }
-      // TODO: else if (entity instanceof SpanValueEntity) {mDbHelper.putSpanValue((SpanValueEntity) entity);}
-      else if (entity instanceof SoilTypeValueEntity) {
+      } else if (entity instanceof ConditionSpanValueEntity) {
+        mDbHelper.putConditionSpanValue((ConditionSpanValueEntity) entity);
+      } else if (entity instanceof SoilTypeValueEntity) {
         mDbHelper.putSoilTypeValue((SoilTypeValueEntity) entity);
       } else if (entity instanceof HarmfulObjectValueEntity) {
         mDbHelper.putHarmfulObjectValue((HarmfulObjectValueEntity) entity);
@@ -171,9 +173,9 @@ public class DbFillHelper {
         mDbHelper.putTechnologicalProcessState((TechnologicalProcessStateEntity) entity);
       } else if (entity instanceof CropTechnologicalProcessEntity) {
         mDbHelper.putCropTechnologicalProcess((CropTechnologicalProcessEntity) entity);
-      }
-      // TODO: else if (entity instanceof CropTechnologicalProcessConditionEntity) {mDbHelper.putCropTechnologicalProcessCondition((CropTechnologicalProcessConditionEntity) entity);}
-      else {
+      } else if (entity instanceof TechnologicalProcessConditionEntity) {
+        mDbHelper.putTechnologicalProcessesCondition((TechnologicalProcessConditionEntity) entity);
+      } else {
         Timber.e("Got unknown entity");
       }
     }

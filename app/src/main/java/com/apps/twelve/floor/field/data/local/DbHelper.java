@@ -139,7 +139,7 @@ public class DbHelper {
         .executeAsBlocking();
   }
 
-  public PutResult putConditionSpanValueEntity(ConditionSpanValueEntity conditionSpanValueEntity) {
+  public PutResult putConditionSpanValue(ConditionSpanValueEntity conditionSpanValueEntity) {
     return mStorIOSQLite.put().object(conditionSpanValueEntity).prepare().executeAsBlocking();
   }
 

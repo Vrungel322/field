@@ -391,7 +391,7 @@ public class DataManager {
   }
 
   public PutResult putSpanValue(ConditionSpanValueObject conditionSpanValueObject) {
-    return mDbHelper.putConditionSpanValueEntity(
+    return mDbHelper.putConditionSpanValue(
         new ConditionSpanValueObjectToConditionSpanValueEntityMapper().transform(
             conditionSpanValueObject));
   }
