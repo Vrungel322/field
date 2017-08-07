@@ -9,13 +9,10 @@ import com.apps.twelve.floor.field.base.BasePresenter;
 import com.apps.twelve.floor.field.data.local.db_filler.DbFillHelper;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
 import com.arellomobile.mvp.InjectViewState;
-import javax.inject.Inject;
 import rx.Observable;
 import rx.Subscription;
 
 @InjectViewState public class SplashFragmentPresenter extends BasePresenter<ISplashFragmentView> {
-
-  @Inject DbFillHelper mDbFillHelper;
 
   @Override protected void inject() {
     App.getAppComponent().inject(this);
@@ -28,9 +25,8 @@ import rx.Subscription;
   }
 
   private void initiateDbFiller() {
-
-    Subscription subscription = Observable.just(false)
-        .map(isOk -> mDbFillHelper.fillDbWithInitialData())
+    Subscription subscription =
+        Observable.just(new DbFillHelper()).map(DbFillHelper::fillDbWithInitialData)
         .compose(ThreadSchedulers.applySchedulers())
         .subscribe(isOk -> {
           if (isOk) {

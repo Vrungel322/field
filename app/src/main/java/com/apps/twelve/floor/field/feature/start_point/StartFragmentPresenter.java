@@ -3,7 +3,6 @@ package com.apps.twelve.floor.field.feature.start_point;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.base.BasePresenter;
 import com.apps.twelve.floor.field.data.DataManager;
-import com.apps.twelve.floor.field.data.local.db_filler.DbFillHelper;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.utils.RxBus;
 import com.apps.twelve.floor.field.utils.RxBusHelper;
@@ -25,9 +24,6 @@ import timber.log.Timber;
   @Inject DataManager mDataManager;
   @Inject RxBus mRxBus;
   @Inject Gson mGson;
-
-  // TODO: this is for tests - move to another class
-  @Inject DbFillHelper mBbFillHelper;
 
   // look in R.array.dialog_field_add_types
   private static int ON_MAP_FILED_ADDING_TYPE = 0; //Точками на карте
