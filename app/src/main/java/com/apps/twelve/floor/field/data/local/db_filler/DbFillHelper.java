@@ -59,7 +59,9 @@ public class DbFillHelper {
     App.getAppComponent().inject(this);
   }
 
-  public void fillDbWithInitialData() {
+  public boolean fillDbWithInitialData() {
+    boolean isOk = true;
+
     // read json text from asset file
     String json = mAssetHelper.readStringFromAssetFile(AssetHelper.ASSET_INITIAL_DB_DATA_V1);
 
@@ -72,7 +74,6 @@ public class DbFillHelper {
     for (int i = 0; i < metaEntities.length; i++) {
       String entityKey = metaEntities[i].entityKey;
       String entityJsonValue = metaEntities[i].entityJsonValue;
-      Timber.d("DBG: MetaEntity: " + entityKey + "; " + entityJsonValue);
 
       try {
         //entities = mGson.fromJson(entityJsonValue, Class.forName(entityKey));
@@ -81,8 +82,11 @@ public class DbFillHelper {
             (IEntity[]) mGson.fromJson(entityJsonValue, Class.forName(entityKey)));
       } catch (ClassNotFoundException | ClassCastException e) {
         Timber.e(e);
+        isOk = false;
       }
     }
+
+    return isOk;
   }
 
   private class DbHelperDelegate {

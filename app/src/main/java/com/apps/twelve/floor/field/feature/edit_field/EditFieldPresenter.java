@@ -164,8 +164,7 @@ import timber.log.Timber;
 
   private void subscribeToCropsForSelect() {
     Subscription subscription = mDataManager.getSupportedCrops()
-        .compose(ThreadSchedulers.applySchedulers())
-        .map(this::syncFieldCrop)
+        .compose(ThreadSchedulers.applySchedulers()).doOnNext(this::syncFieldCrop)
         .subscribe(this::updateCropsSpinner, Timber::e);
 
     addToUnsubscription(subscription);
@@ -173,8 +172,7 @@ import timber.log.Timber;
 
   private void subscribeToPreviousCropsForSelect() {
     Subscription subscription = mDataManager.getAllCrops()
-        .compose(ThreadSchedulers.applySchedulers())
-        .map(this::syncFieldPreviousCrop)
+        .compose(ThreadSchedulers.applySchedulers()).doOnNext(this::syncFieldPreviousCrop)
         .subscribe(this::updatePreviousCropsSpinner, Timber::e);
 
     addToUnsubscription(subscription);
@@ -182,8 +180,7 @@ import timber.log.Timber;
 
   private void subscribeToClimateZonesForSelect() {
     Subscription subscription = mDataManager.getAllClimateZones()
-        .compose(ThreadSchedulers.applySchedulers())
-        .map(this::syncFieldClimateZone)
+        .compose(ThreadSchedulers.applySchedulers()).doOnNext(this::syncFieldClimateZone)
         .subscribe(this::updateClimateZonesSpinner, Timber::e);
 
     addToUnsubscription(subscription);
@@ -191,8 +188,7 @@ import timber.log.Timber;
 
   private void subscribeToPhasesForSelect() {
     Subscription subscription = mDataManager.getAllPhases()
-        .compose(ThreadSchedulers.applySchedulers())
-        .map(this::syncFieldPhase)
+        .compose(ThreadSchedulers.applySchedulers()).doOnNext(this::syncFieldPhase)
         .subscribe(this::updatePhasesSpinner, Timber::e);
 
     addToUnsubscription(subscription);
@@ -200,66 +196,60 @@ import timber.log.Timber;
 
   private void subscribeToSoilTypesForSelect() {
     Subscription subscription = mDataManager.getAllSoilTypes()
-        .compose(ThreadSchedulers.applySchedulers())
-        .map(this::syncSoilType)
+        .compose(ThreadSchedulers.applySchedulers()).doOnNext(this::syncSoilType)
         .subscribe(this::updateSoilTypesSpinner, Timber::e);
 
     addToUnsubscription(subscription);
   }
 
-  private List<CropObject> syncFieldCrop(List<CropObject> crops) {
-    if (mFieldObject.getCrop() == null) return crops;
+  private void syncFieldCrop(List<CropObject> crops) {
+    if (mFieldObject.getCrop() == null) return;
     for (CropObject crop : crops) {
       if (crop.getId() == mFieldObject.getCrop().getId()) {
         mFieldObject.setCrop(crop);
         break;
       }
     }
-    return crops;
   }
 
-  private List<CropObject> syncFieldPreviousCrop(List<CropObject> crops) {
-    if (mFieldObject.getPreviousCrop() == null) return crops;
+  private void syncFieldPreviousCrop(List<CropObject> crops) {
+    if (mFieldObject.getPreviousCrop() == null) return;
     for (CropObject crop : crops) {
       if (crop.getId() == mFieldObject.getPreviousCrop().getId()) {
         mFieldObject.setPreviousCrop(crop);
         break;
       }
     }
-    return crops;
   }
 
-  private List<ClimateZoneObject> syncFieldClimateZone(List<ClimateZoneObject> climateZones) {
-    if (mFieldObject.getClimateZone() == null) return climateZones;
+  private void syncFieldClimateZone(List<ClimateZoneObject> climateZones) {
+    if (mFieldObject.getClimateZone() == null) return;
     for (ClimateZoneObject climateZone : climateZones) {
       if (climateZone.getId() == mFieldObject.getClimateZone().getId()) {
         mFieldObject.setClimateZone(climateZone);
         break;
       }
     }
-    return climateZones;
   }
 
-  private List<PhaseObject> syncFieldPhase(List<PhaseObject> phases) {
-    if (mFieldObject.getPhase() == null) return phases;
+  private void syncFieldPhase(List<PhaseObject> phases) {
+    if (mFieldObject.getPhase() == null) return;
     for (PhaseObject phase : phases) {
       if (phase.getId() == mFieldObject.getPhase().getId()) {
         mFieldObject.setPhase(phase);
         break;
       }
     }
-    return phases;
   }
 
-  private List<SoilTypeObject> syncSoilType(List<SoilTypeObject> soilTypes) {
-    if (mFieldObject.getSoilType() == null) return soilTypes;
+  private void syncSoilType(List<SoilTypeObject> soilTypes) {
+    if (mFieldObject.getSoilType() == null) return;
     for (SoilTypeObject soilType : soilTypes) {
       if (soilType.getId() == mFieldObject.getSoilType().getId()) {
         mFieldObject.setSoilType(soilType);
         break;
       }
     }
-    return soilTypes;
   }
 
   private void updateCropsSpinner(List<CropObject> crops) {

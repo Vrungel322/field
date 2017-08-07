@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.base.BaseActivity;
+import com.apps.twelve.floor.field.feature.splash.SplashFragment;
 import com.apps.twelve.floor.field.utils.Alerts;
 import com.apps.twelve.floor.field.utils.Permissions;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -33,7 +34,6 @@ public class MainActivity extends BaseActivity implements IMainActivityView {
   }
 
   @Override public void addStartFragment() {
-    mNavigator.addFragmentBackStack(MainActivity.this, R.id.container_start,
-        StartFragment.newInstance());
+    mNavigator.addFragment(MainActivity.this, R.id.container_start, SplashFragment.newInstance());
   }
 }

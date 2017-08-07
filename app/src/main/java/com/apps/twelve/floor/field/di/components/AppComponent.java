@@ -18,6 +18,7 @@ import com.apps.twelve.floor.field.feature.edit_field_technological_process.Tech
 import com.apps.twelve.floor.field.feature.edit_field_technological_solution.EditFieldTechnologicalSolutionPresenter;
 import com.apps.twelve.floor.field.feature.field_technological_map.FieldTechnologicalMapPresenter;
 import com.apps.twelve.floor.field.feature.field_technological_map.FieldTechnologicalProcessesAdapter;
+import com.apps.twelve.floor.field.feature.splash.SplashFragmentPresenter;
 import com.apps.twelve.floor.field.feature.start_point.FieldsAdapter;
 import com.apps.twelve.floor.field.feature.start_point.MainActivityPresenter;
 import com.apps.twelve.floor.field.feature.start_point.StartFragmentPresenter;
@@ -31,6 +32,8 @@ import dagger.Component;
 
   //presenters
   void inject(MainActivityPresenter presenter);
+
+  void inject(SplashFragmentPresenter presenter);
 
   void inject(StartFragmentPresenter presenter);
 

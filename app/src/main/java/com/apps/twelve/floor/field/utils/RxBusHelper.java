@@ -70,6 +70,22 @@ public final class RxBusHelper {
   // DataBase events
   ///////////////////////////////////////////////////////////////////////////
 
+  public static class DbActualised {
+
+    public static final int EVENT_TYPE_DB_FILLED = 10;
+
+    public static final int EVENT_STATUS_OK = 1;
+    public static final int EVENT_STATUS_FAIL = 2;
+
+    public int eventType;
+    public int eventStatus;
+
+    public DbActualised(int eventType, int eventStatus) {
+      this.eventType = eventType;
+      this.eventStatus = eventStatus;
+    }
+  }
+
   public static class FieldChangedInDb {
     public static final int CHANGE_INSERT = 20;
     public static final int CHANGE_UPDATE = 30;

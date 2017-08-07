@@ -20,6 +20,13 @@
     <item>Вручную</item>
   </string-array>
 
+  <!-- Error dialog -->
+  <string name="dialog_title_error">Ошибка!</string>
+  <string name="dialog_error_message_db_fail">Не удалось инициализировать базуданных</string>
+
+  <!-- Splash screen -->
+  <string name="text_preparing">Подготовка базы данных</string>
+
   <!-- Field editing -->
   <string name="text_edit_mode">Режим редактирования</string>
   <string name="text_tracking_mode">Режим обхода</string>

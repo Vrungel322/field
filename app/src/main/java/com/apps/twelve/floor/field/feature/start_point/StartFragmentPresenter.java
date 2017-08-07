@@ -47,13 +47,6 @@ import timber.log.Timber;
 
     subscribeToFieldsDbChanges();
     subscribeToFieldsListChanges();
-
-    // TODO: this is for test - remove
-    //PrimaryDataFiller primaryDataFiller = new PrimaryDataFiller(mDataManager, mGson);
-    //primaryDataFiller.addTestData();
-    //primaryDataFiller.tryToParseData(mGson);
-
-    mBbFillHelper.fillDbWithInitialData();
   }
 
   public void showFieldTypeDialog() {
