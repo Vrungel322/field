@@ -59,7 +59,8 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
   }
 
   public FieldTechnologicalProcessFragment() {
-    super(R.layout.fragment_field_technological_process);
+    super(R.layout.fragment_field_technological_process, true,
+        R.string.title_technological_process);
   }
 
   public static FieldTechnologicalProcessFragment newInstance(
@@ -100,6 +101,14 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
   ///////////////////////////////////////////////////////////////////////////
   // UI events
   ///////////////////////////////////////////////////////////////////////////
+
+  @Override protected void updateActionBar(boolean mIsActionBarShown, String title) {
+    mFieldTechnologicalProcessPresenter.updateActionBar(mIsActionBarShown, title);
+  }
+
+  @Override protected void restoreActionBar() {
+    mFieldTechnologicalProcessPresenter.restoreActionBar();
+  }
 
   @OnClick({ R.id.fab_add_new_solution, R.id.btn_ok, R.id.btn_cancel })
   public void onViewClicked(View view) {

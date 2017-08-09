@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.data.local.objects.process_time;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.apps.twelve.floor.field.data.local.objects.IObject;
@@ -97,4 +98,14 @@ public class ProcessPeriodObject implements IObject, Parcelable {
       return new ProcessPeriodObject[size];
     }
   };
+
+  public String getRepresentation(Context context) {
+    return String.format("%02d", mDateDayFrom)
+        + "."
+        + String.format("%02d", mDateMonthFrom)
+        + " - "
+        + String.format("%02d", mDateDayTo)
+        + "."
+        + String.format("%02d", mDateMonthTo);
+  }
 }

@@ -357,6 +357,11 @@ public class DataManager {
   public Observable<List<FieldCropTechnologicalProcessObject>> getFieldTechnologicalProcesses(
       long mFieldObjectId) {
     // TODO get data from DB, not from test util
+    /*return mDbHelper.getFieldCropTechnologicalProcesses(mFieldObjectId)
+        .concatMap(Observable::from)
+        .map(fieldCropTechnologicalProcessEntity -> {new FieldCropTechnologicalProcessEntityToFieldCropTechnologicalProcessObjectMapper(fieldCropTechnologicalProcessEntity)})
+        .toList();*/
+
     return Observable.just(TestUtils.getFieldTechnologicalProcesses());
   }
 

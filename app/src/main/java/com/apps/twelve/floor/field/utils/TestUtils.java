@@ -1,11 +1,18 @@
 package com.apps.twelve.floor.field.utils;
 
+import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
+import com.apps.twelve.floor.field.data.local.objects.FieldObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
+import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.CropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import java.util.ArrayList;
 
 /**
@@ -43,35 +50,37 @@ public final class TestUtils {
   public static ArrayList<FieldCropTechnologicalProcessObject> getFieldTechnologicalProcesses() {
     ArrayList<FieldCropTechnologicalProcessObject> list = new ArrayList<>();
 
-    //CropObject crop = new CropObject(1, "Тестовая культура", 0, false, false);
-    //ClimateZoneObject climateZone = new ClimateZoneObject(1, "Тестовая климатическая зона", "");
-    //PhaseObject phase = new PhaseObject(1, "Тестовая фаза", crop);
-    //SoilTypeObject soilType = new SoilTypeObject(1, "Тестовый тип почвы",
-    //    new ConditionTypeObject(1, "Тестовый тип условия"), "");
-    //FieldObject field =
-    //    new FieldObject(1, "Тестовое поле", crop, crop, "", 11111D, climateZone, phase, soilType);
-    //ProcessPeriodObject period =
-    //    new ProcessPeriodObject(1, System.currentTimeMillis(), System.currentTimeMillis());
-    //CropTechnologicalProcessObject cropTp =
-    //    new CropTechnologicalProcessObject(1, "Тестовый тех процесс", 1, crop, climateZone, phase,
-    //        period);
-    //TechnologicalProcessStateObject status =
-    //    new TechnologicalProcessStateObject(1, "Тестовое состояние", -1);
-    //
-    //FieldCropTechnologicalProcessObject fieldTechProcess =
-    //    new FieldCropTechnologicalProcessObject(1, field, cropTp, status);
-    //
-    //list.add(fieldTechProcess);
-    //list.add(fieldTechProcess);
-    //list.add(fieldTechProcess);
-    //list.add(fieldTechProcess);
-    //list.add(fieldTechProcess);
-    //list.add(fieldTechProcess);
-    //list.add(fieldTechProcess);
-    //list.add(fieldTechProcess);
-    //list.add(fieldTechProcess);
-    //list.add(fieldTechProcess);
-    //list.add(fieldTechProcess);
+    FieldObject field = FieldObject.EMPTY;
+
+    ProcessPeriodObject processPeriod1 = new ProcessPeriodObject(1, 1, 30, 3, 3);
+    ProcessPeriodObject processPeriod2 = new ProcessPeriodObject(1, 30, 15, 4, 5);
+    ProcessPeriodObject processPeriod3 = new ProcessPeriodObject(1, 10, 25, 8, 9);
+    ProcessPeriodObject processPeriod4 = new ProcessPeriodObject(1, 1, 25, 10, 10);
+
+    CropTechnologicalProcessObject cropTechProcess1 =
+        new CropTechnologicalProcessObject(1, "ТЕСТ: Посев", 1, CropObject.EMPTY,
+            ClimateZoneObject.EMPTY, PhaseObject.EMPTY, processPeriod1);
+    CropTechnologicalProcessObject cropTechProcess2 =
+        new CropTechnologicalProcessObject(2, "ТЕСТ: Гербицидная обработка", 2, CropObject.EMPTY,
+            ClimateZoneObject.EMPTY, PhaseObject.EMPTY, processPeriod2);
+    CropTechnologicalProcessObject cropTechProcess3 =
+        new CropTechnologicalProcessObject(3, "ТЕСТ: Инсектицидная обработка", 3, CropObject.EMPTY,
+            ClimateZoneObject.EMPTY, PhaseObject.EMPTY, processPeriod3);
+    CropTechnologicalProcessObject cropTechProcess4 =
+        new CropTechnologicalProcessObject(4, "ТЕСТ: Сбор урожая", 4, CropObject.EMPTY,
+            ClimateZoneObject.EMPTY, PhaseObject.EMPTY, processPeriod4);
+
+    TechnologicalProcessStateObject stateDone =
+        new TechnologicalProcessStateObject(1, "Выполнен", R.drawable.ic_done_24dp);
+    TechnologicalProcessStateObject stateActual =
+        new TechnologicalProcessStateObject(2, "Актуален", R.drawable.ic_actual_24dp);
+    TechnologicalProcessStateObject stateFuture =
+        new TechnologicalProcessStateObject(3, "Запланирован", R.drawable.ic_future_24dp);
+
+    list.add(new FieldCropTechnologicalProcessObject(1, field, cropTechProcess1, stateDone));
+    list.add(new FieldCropTechnologicalProcessObject(2, field, cropTechProcess2, stateActual));
+    list.add(new FieldCropTechnologicalProcessObject(3, field, cropTechProcess3, stateFuture));
+    list.add(new FieldCropTechnologicalProcessObject(4, field, cropTechProcess4, stateFuture));
 
     return list;
   }

@@ -13,4 +13,8 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
     extends MvpView {
 
   @StateStrategyType(SkipStrategy.class) void addStartFragment();
+
+  void updateActionbar(boolean isShown, String title, boolean isSaveState);
+
+  void restoreActionBar();
 }

@@ -59,7 +59,7 @@ public class AddFieldTrackingBottomSheetFragment extends BaseFragment
   private SoilTypesArrayAdapter mSoilTypesAdapter;
   private PhasesArrayAdapter mPhasesAdapter;
   public AddFieldTrackingBottomSheetFragment() {
-    super(R.layout.fragment_tracking_field_bottom_sheet);
+    super(R.layout.fragment_tracking_field_bottom_sheet, true, R.string.title_new_field);
   }
 
   public static AddFieldTrackingBottomSheetFragment newInstance() {
@@ -78,6 +78,14 @@ public class AddFieldTrackingBottomSheetFragment extends BaseFragment
     super.onViewCreated(view, savedInstanceState);
 
     setupSpinnersAdapters();
+  }
+
+  @Override protected void updateActionBar(boolean mIsActionBarShown, String title) {
+    // do nothing - this fragment is additional
+  }
+
+  @Override protected void restoreActionBar() {
+    // do nothing - this fragment is additional
   }
 
   ///////////////////////////////////////////////////////////////////////////

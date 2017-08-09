@@ -1,6 +1,13 @@
 <resources>
   <string name="app_name">Поле мобайл</string>
 
+  <!-- UI titles-->
+  <string name="title_new_field">Новое поле</string>
+  <string name="title_fields_list">Поля</string>
+  <string name="title_field">Поле</string>
+  <string name="title_technological_process">Технологический процесс</string>
+  <string name="title_solution">Решение</string>
+
   <string name="dialog_action_ok">OK</string>
   <string name="dialog_action_cancel">ОТМЕНА</string>
   <string name="dialog_error_title">Ошибка</string>

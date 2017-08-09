@@ -65,12 +65,13 @@ public class FieldTechnologicalProcessesAdapter extends
     FieldCropTechnologicalProcessObject fieldTechProcess = mTechProcessesList.get(position);
 
     // TODO: shorten method chains
-    /*holder.mTextProcessName.setText(fieldTechProcess.getTechProcess().getName());
-    holder.mTextProcessPeriod.setText(fieldTechProcess.getTechProcess()
-        .getTime()
-        .getPeriod()
-        .getRepresentation(holder.mItemView.getContext()));
-    holder.mImageStatus.setImageResource(fieldTechProcess.getStatus().getImageId());*/
+    holder.mTextProcessName.setText(fieldTechProcess.getTechProcessName());
+    holder.mTextProcessPeriod.setText(
+        fieldTechProcess.getTechProcessPeriodRepresentation(holder.mItemView.getContext()));
+    holder.mImageStatus.setImageResource(fieldTechProcess.getStatusImageId());
+    // TODO: status id is from test data
+    holder.mImageFrame.setVisibility(
+        (fieldTechProcess.getStatus().getId() == 2) ? View.VISIBLE : View.INVISIBLE);
   }
 
   static class FieldTechnologicalProcessesViewHolder extends RecyclerView.ViewHolder {
@@ -79,10 +80,11 @@ public class FieldTechnologicalProcessesAdapter extends
     @BindView(R.id.text_process_name) TextView mTextProcessName;
     @BindView(R.id.text_process_period) TextView mTextProcessPeriod;
     @BindView(R.id.image_status) ImageView mImageStatus;
+    @BindView(R.id.image_frame) ImageView mImageFrame;
 
     FieldTechnologicalProcessesViewHolder(View itemView) {
       super(itemView);
-      ButterKnife.bind(itemView);
+      ButterKnife.bind(this, itemView);
       this.mItemView = itemView;
     }
   }

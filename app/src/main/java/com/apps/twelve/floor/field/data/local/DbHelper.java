@@ -592,6 +592,16 @@ public class DbHelper {
         .take(1);
   }
 
+  public Observable<List<FieldCropTechnologicalProcessEntity>> getFieldCropTechnologicalProcesses(
+      long fieldId) {
+    return mStorIOSQLite.get()
+        .listOfObjects(FieldCropTechnologicalProcessEntity.class)
+        .withQuery(FieldCropTechnologicalProcessesTable.getDataByFieldIdQuery(fieldId))
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
   public PutResult putFieldCropTechnologicalProcess(
       FieldCropTechnologicalProcessEntity fieldCropTechnologicalProcessEntity) {
     return mStorIOSQLite.put()

@@ -3,6 +3,7 @@ package com.apps.twelve.floor.field.feature.edit_field;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -25,8 +26,12 @@ import com.apps.twelve.floor.field.utils.Constants;
 import com.apps.twelve.floor.field.utils.ViewUtil;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 05.04.2017.
@@ -35,10 +40,11 @@ import java.util.List;
 public class EditFieldFullScreenFragment extends BaseFragment implements IEditFieldFragmentView {
 
   @InjectPresenter EditFieldPresenter mEditFieldPresenter;
+
   @BindView(R.id.ed_text_name) EditText mEdTextName;
   @BindView(R.id.ed_text_area) EditText mEdTextArea;
   @BindView(R.id.ed_text_planned_yield) EditText mEdTextPlannedYield; // TODO
-  @BindView(R.id.ed_text_sowing_date) EditText mEdTextSowingDate; // TODO
+  @BindView(R.id.ed_text_sowing_date) EditText mEdTextSowingDate;
   @BindView(R.id.spinner_crop) Spinner mSpinnerCrop;
   @BindView(R.id.spinner_previous_crop) Spinner mSpinnerPreviousCrop;
   @BindView(R.id.spinner_climate_zone) Spinner mSpinnerClimateZone;
@@ -46,13 +52,15 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   @BindView(R.id.spinner_phase) Spinner mSpinnerPhase;
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
+
   private CropsArrayAdapter mCropsAdapter;
   private CropsArrayAdapter mPreviousCropsAdapter;
   private ClimateZonesArrayAdapter mClimateZonesAdapter;
   private SoilTypesArrayAdapter mSoilTypesAdapter;
   private PhasesArrayAdapter mPhasesAdapter;
+
   public EditFieldFullScreenFragment() {
-    super(R.layout.fragment_edit_field_full_screen);
+    super(R.layout.fragment_edit_field_full_screen, true, R.string.title_new_field);
   }
 
   public static EditFieldFullScreenFragment newInstance() {
@@ -142,6 +150,14 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   ///////////////////////////////////////////////////////////////////////////
   // UI events
   ///////////////////////////////////////////////////////////////////////////
+
+  @Override protected void updateActionBar(boolean mIsActionBarShown, String title) {
+    mEditFieldPresenter.updateActionBar(mIsActionBarShown, title);
+  }
+
+  @Override protected void restoreActionBar() {
+    mEditFieldPresenter.restoreActionBar();
+  }
 
   @OnClick({ R.id.btn_ok, R.id.btn_cancel }) public void onViewClicked(View view) {
     switch (view.getId()) {
@@ -280,7 +296,33 @@ public class EditFieldFullScreenFragment extends BaseFragment implements IEditFi
   private void updateFieldData() {
     mEditFieldPresenter.updateFieldName(mEdTextName.getText().toString());
     mEditFieldPresenter.updateFieldArea(mEdTextArea.getText().toString());
+    mEditFieldPresenter.updateFieldSowingDate(getSowingDateTimestamp());
     // TODO: Crop must be selected from list
     //mEditFieldPresenter.updateFieldCrop(selectedCropObject);
+  }
+
+  private long getSowingDateTimestamp() {
+    long time = 0;
+    String dateStr = mEdTextSowingDate.getText().toString();
+
+    String separator = "/";
+    if (TextUtils.indexOf(dateStr, separator) < 0) {
+      separator = "-";
+    }
+    if (TextUtils.indexOf(dateStr, separator) < 0) {
+      separator = ".";
+    }
+    if (TextUtils.indexOf(dateStr, separator) < 0) {
+      separator = "_";
+    }
+
+    SimpleDateFormat df =
+        new SimpleDateFormat("dd" + separator + "MM" + separator + "yyyy", new Locale("uk") /*TODO: keep locale in App*/);
+    try {
+      time = df.parse(dateStr).getTime();
+    } catch (ParseException e) {
+      Timber.e(e);
+    }
+    return time;
   }
 }

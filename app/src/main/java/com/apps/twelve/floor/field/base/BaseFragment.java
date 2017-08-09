@@ -26,9 +26,13 @@ public abstract class BaseFragment extends MvpAppCompatFragment {
   Unbinder unbinder;
 
   private final int mLayoutId;
+  private final boolean mIsActionBarShown;
+  private final int mTitleId;
 
-  public BaseFragment(int mLayoutId) {
-    this.mLayoutId = mLayoutId;
+  public BaseFragment(int layoutId, boolean isActionBarShown, int titleId) {
+    this.mLayoutId = layoutId;
+    this.mIsActionBarShown = isActionBarShown;
+    this.mTitleId = titleId;
   }
 
   @Override public void onCreate(Bundle savedInstanceState) {
@@ -44,9 +48,15 @@ public abstract class BaseFragment extends MvpAppCompatFragment {
     return fragmentView;
   }
 
+  @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    updateActionBar(mIsActionBarShown, (mTitleId == 0) ? "" : getString(mTitleId));
+  }
+
   @Override public void onDestroyView() {
     super.onDestroyView();
     unbinder.unbind();
+    restoreActionBar();
   }
 
   @Override public void onDestroy() {
@@ -54,6 +64,10 @@ public abstract class BaseFragment extends MvpAppCompatFragment {
     // leak canary
     App.getRefWatcher(getActivity()).watch(this);
   }
+
+  protected abstract void updateActionBar(boolean mIsActionBarShown, String title);
+
+  protected abstract void restoreActionBar();
 
   // TODO: remove toast methods on release version
   protected void showToastMessage(String message) {

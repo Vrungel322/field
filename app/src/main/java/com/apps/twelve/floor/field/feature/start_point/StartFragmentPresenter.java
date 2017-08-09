@@ -77,6 +77,18 @@ import timber.log.Timber;
     getViewState().openFieldTechnologicalMapFragment(position);
   }
 
+  public void updateActionBar(boolean mIsActionBarShown, String title) {
+    mRxBus.post(new RxBusHelper.FragmentChangedOnScreen(mIsActionBarShown, title, false));
+  }
+
+  public void restoreActionBar() {
+    mRxBus.post(new RxBusHelper.FragmentChangedOnScreen(false, "", true));
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Private section
+  ///////////////////////////////////////////////////////////////////////////
+
   private void getAllFields() {
     Subscription subscription = mDataManager.getAllFields()
         .compose(ThreadSchedulers.applySchedulers())

@@ -26,7 +26,10 @@ import com.apps.twelve.floor.field.utils.Constants;
 import com.apps.twelve.floor.field.utils.ItemClickSupport;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Yaroslav on 23.05.2017.
@@ -55,7 +58,7 @@ public class FieldTechnologicalMapFragment extends BaseFragment
   }
 
   public FieldTechnologicalMapFragment() {
-    super(R.layout.fragment_field_technological_map);
+    super(R.layout.fragment_field_technological_map, true, R.string.title_field);
   }
 
   public static FieldTechnologicalMapFragment newInstance(FieldObject fieldObject) {
@@ -71,6 +74,14 @@ public class FieldTechnologicalMapFragment extends BaseFragment
     setupRecyclerView();
   }
 
+  @Override protected void updateActionBar(boolean mIsActionBarShown, String title) {
+    mFieldTechnologicalMapPresenter.updateActionBar(mIsActionBarShown, title);
+  }
+
+  @Override protected void restoreActionBar() {
+    mFieldTechnologicalMapPresenter.restoreActionBar();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // MVP methods
   ///////////////////////////////////////////////////////////////////////////
@@ -84,6 +95,25 @@ public class FieldTechnologicalMapFragment extends BaseFragment
     mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
         makeFieldTechnologicalProcessFragment(
             mFieldTechnologicalProcessesAdapter.getTechProcessAt(position)));
+  }
+
+  @Override public void updateCrop(String cropName) {
+    mTextCrop.setText(cropName);
+  }
+
+  @Override public void updatePhase(String phaseName) {
+    mTextPhase.setText(phaseName);
+  }
+
+  @Override public void updateArea(double area) {
+    // TODO format to "120 га" format (use resource string as placeholder)
+    mTextArea.setText(area + " кв.м.");
+  }
+
+  @Override public void updateSowingDate(long sowingDate) {
+    SimpleDateFormat df =
+        new SimpleDateFormat("dd.MM.yyyy", new Locale("uk") /*TODO: keep locale in App*/);
+    mTextSowingDate.setText(df.format(new Date(sowingDate)));
   }
 
   ///////////////////////////////////////////////////////////////////////////

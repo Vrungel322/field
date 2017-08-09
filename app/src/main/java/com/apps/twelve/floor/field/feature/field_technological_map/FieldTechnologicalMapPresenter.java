@@ -5,6 +5,8 @@ import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.base.BasePresenter;
 import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
+import com.apps.twelve.floor.field.utils.RxBus;
+import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
 import com.arellomobile.mvp.InjectViewState;
 import javax.inject.Inject;
@@ -19,6 +21,7 @@ import timber.log.Timber;
     extends BasePresenter<IFieldTechnologicalMapFragmentView> {
 
   @Inject DataManager mDataManager;
+  @Inject RxBus mRxBus;
 
   @NonNull private FieldObject mFieldObject;
 
@@ -33,11 +36,27 @@ import timber.log.Timber;
   @Override protected void onFirstViewAttach() {
     super.onFirstViewAttach();
 
+    showFieldDataOnView();
     getAllFieldTechnologicalProcesses();
   }
 
+  public void onTechProcessClickedAtPosition(int position) {
+    getViewState().openTechnologicalProcessFragment(position);
+  }
+
+  public void updateActionBar(boolean mIsActionBarShown, String title) {
+    mRxBus.post(new RxBusHelper.FragmentChangedOnScreen(mIsActionBarShown, title, false));
+  }
+
+  public void restoreActionBar() {
+    mRxBus.post(new RxBusHelper.FragmentChangedOnScreen(false, "", false));
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Private section
+  ///////////////////////////////////////////////////////////////////////////
+
   private void getAllFieldTechnologicalProcesses() {
-    // TODO
     Subscription subscription = mDataManager.getFieldTechnologicalProcesses(mFieldObject.getId())
         .compose(ThreadSchedulers.applySchedulers())
         .subscribe(
@@ -47,7 +66,10 @@ import timber.log.Timber;
     addToUnsubscription(subscription);
   }
 
-  public void onTechProcessClickedAtPosition(int position) {
-    getViewState().openTechnologicalProcessFragment(position);
+  private void showFieldDataOnView() {
+    getViewState().updateCrop(mFieldObject.getCropName());
+    getViewState().updatePhase(mFieldObject.getPhaseName());
+    getViewState().updateArea(mFieldObject.getArea());
+    getViewState().updateSowingDate(mFieldObject.getSowingDate());
   }
 }

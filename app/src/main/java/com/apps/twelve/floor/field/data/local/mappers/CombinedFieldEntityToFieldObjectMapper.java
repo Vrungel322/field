@@ -30,6 +30,7 @@ public class CombinedFieldEntityToFieldObjectMapper
         fieldEntity.getArea(),
         new ClimateZoneEntityToClimateZoneObjectMapper().transform(entity.getClimateZoneEntity()),
         new PhaseEntityToPhaseObjectMapper().transform(entity.getPhaseEntity()),
-        new SoilTypeEntityToSoilTypeObjectMapper().transform(entity.getSoilTypeEntity()));
+        new SoilTypeEntityToSoilTypeObjectMapper().transform(entity.getSoilTypeEntity()),
+        fieldEntity.getSowingDate());
   }
 }

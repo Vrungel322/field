@@ -3,7 +3,6 @@ package com.apps.twelve.floor.field.data.local.objects.technological_map;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.data.local.objects.IObject;
 
 /**
@@ -67,8 +66,7 @@ public class TechnologicalProcessStateObject implements IObject, Parcelable {
 
   // TODO: keep status images in resources, and their ids - in DB
   public int getImageId() {
-    return R.mipmap.ic_launcher_round;
-    //return mImageResourceId;
+    return mImageResourceId;
   }
 
   public void setImageId(int imageId) {

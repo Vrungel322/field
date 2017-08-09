@@ -45,8 +45,10 @@ public class CombinedFieldGetResolver extends DefaultGetResolver<CombinedFieldEn
             cursor.getColumnIndexOrThrow(
                 DbCombinedFieldRelationsHelper.QUERY_COLUMN_CLIMATE_ZONE_ID)), cursor.getLong(
             cursor.getColumnIndexOrThrow(DbCombinedFieldRelationsHelper.QUERY_COLUMN_PHASE_ID)),
+        cursor.getLong(
+            cursor.getColumnIndexOrThrow(DbCombinedFieldRelationsHelper.QUERY_COLUMN_SOIL_TYPE_ID)),
         cursor.getLong(cursor.getColumnIndexOrThrow(
-            DbCombinedFieldRelationsHelper.QUERY_COLUMN_SOIL_TYPE_ID)));
+            DbCombinedFieldRelationsHelper.QUERY_COLUMN_FIELD_SOWING_DATE)));
   }
 
   @NonNull private CropEntity cropEntityFromCursor(@NonNull Cursor cursor) {

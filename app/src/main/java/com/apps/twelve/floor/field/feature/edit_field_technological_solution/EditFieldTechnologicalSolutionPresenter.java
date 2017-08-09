@@ -6,6 +6,8 @@ import com.apps.twelve.floor.field.base.BasePresenter;
 import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.objects.solutions.BaseTechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
+import com.apps.twelve.floor.field.utils.RxBus;
+import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
 import com.arellomobile.mvp.InjectViewState;
 import java.util.List;
@@ -21,6 +23,7 @@ import timber.log.Timber;
     extends BasePresenter<ITechnologicalSolutionFragmentView> {
 
   @Inject DataManager mDataManager;
+  @Inject RxBus mRxBus;
 
   @NonNull private BaseTechnologicalSolutionObject mSolution;
 
@@ -37,6 +40,14 @@ import timber.log.Timber;
     super.onFirstViewAttach();
 
     getSolutionTypesForSelect();
+  }
+
+  public void updateActionBar(boolean mIsActionBarShown, String title) {
+    mRxBus.post(new RxBusHelper.FragmentChangedOnScreen(mIsActionBarShown, title, false));
+  }
+
+  public void restoreActionBar() {
+    mRxBus.post(new RxBusHelper.FragmentChangedOnScreen(false, "", true));
   }
 
   ///////////////////////////////////////////////////////////////////////////

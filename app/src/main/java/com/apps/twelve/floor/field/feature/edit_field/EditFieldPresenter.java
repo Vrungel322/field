@@ -119,6 +119,10 @@ import timber.log.Timber;
     mFieldObject.addAllPoints(points);
   }
 
+  public void updateFieldSowingDate(long sowingDate) {
+    mFieldObject.setSowingDate(sowingDate);
+  }
+
   public void saveField() {
     PutResult putResult = mDataManager.putField(mFieldObject);
 
@@ -147,6 +151,14 @@ import timber.log.Timber;
   public void setTrackingMode(boolean isTrackingMode) {
     mRxBus.post(new RxBusHelper.SwitchFieldTrackingMode(isTrackingMode));
     getViewState().setBtnOkEnabled(!isTrackingMode);
+  }
+
+  public void updateActionBar(boolean mIsActionBarShown, String title) {
+    mRxBus.post(new RxBusHelper.FragmentChangedOnScreen(mIsActionBarShown, title, false));
+  }
+
+  public void restoreActionBar() {
+    mRxBus.post(new RxBusHelper.FragmentChangedOnScreen(false, "", true));
   }
 
   ///////////////////////////////////////////////////////////////////////////

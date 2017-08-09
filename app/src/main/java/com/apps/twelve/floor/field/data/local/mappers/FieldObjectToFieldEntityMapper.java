@@ -13,6 +13,6 @@ public class FieldObjectToFieldEntityMapper implements Mapper<FieldObject, Field
 
     return FieldEntity.newFieldEntity(obj.getId(), obj.getName(), obj.getArea(), obj.getCropId(),
         obj.getPreviousCropId(), obj.getPointsAsCoordinatesString(), obj.getClimateZoneId(),
-        obj.getPhaseId(), obj.getSoilTypeId());
+        obj.getPhaseId(), obj.getSoilTypeId(), obj.getSowingDate());
   }
 }

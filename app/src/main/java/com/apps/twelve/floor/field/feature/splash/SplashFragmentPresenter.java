@@ -6,13 +6,17 @@ package com.apps.twelve.floor.field.feature.splash;
 
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.base.BasePresenter;
+import com.apps.twelve.floor.field.data.local.PreferencesHelper;
 import com.apps.twelve.floor.field.data.local.db_filler.DbFillHelper;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
 import com.arellomobile.mvp.InjectViewState;
+import javax.inject.Inject;
 import rx.Observable;
 import rx.Subscription;
 
 @InjectViewState public class SplashFragmentPresenter extends BasePresenter<ISplashFragmentView> {
+
+  @Inject PreferencesHelper mPreferencesHelper;
 
   @Override protected void inject() {
     App.getAppComponent().inject(this);
@@ -21,15 +25,19 @@ import rx.Subscription;
   @Override protected void onFirstViewAttach() {
     super.onFirstViewAttach();
 
-    initiateDbFiller();
+    fillDbWithInitialData();
   }
 
-  private void initiateDbFiller() {
+  private void fillDbWithInitialData() {
+    if (mPreferencesHelper.getIsDbFilled()) {
+      getViewState().showStartFragment();
+      return;
+    }
     Subscription subscription =
         Observable.just(new DbFillHelper()).map(DbFillHelper::fillDbWithInitialData)
-        .compose(ThreadSchedulers.applySchedulers())
-        .subscribe(isOk -> {
-          if (isOk) {
+        .compose(ThreadSchedulers.applySchedulers()).subscribe(isDbFilled -> {
+          mPreferencesHelper.setIsDbFilled(isDbFilled);
+          if (isDbFilled) {
             getViewState().showStartFragment();
           } else {
             getViewState().showErrorDialog();

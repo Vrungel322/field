@@ -48,7 +48,7 @@ public class EditFieldTechnologicalSolutionFragment extends BaseFragment
   }
 
   public EditFieldTechnologicalSolutionFragment() {
-    super(R.layout.fragment_field_technological_solution);
+    super(R.layout.fragment_field_technological_solution, true, R.string.title_solution);
   }
 
   public static EditFieldTechnologicalSolutionFragment newInstance(
@@ -77,6 +77,14 @@ public class EditFieldTechnologicalSolutionFragment extends BaseFragment
   ///////////////////////////////////////////////////////////////////////////
   // UI events
   ///////////////////////////////////////////////////////////////////////////
+
+  @Override protected void updateActionBar(boolean mIsActionBarShown, String title) {
+    mEditFieldTechnologicalSolutionPresenter.updateActionBar(mIsActionBarShown, title);
+  }
+
+  @Override protected void restoreActionBar() {
+    mEditFieldTechnologicalSolutionPresenter.restoreActionBar();
+  }
 
   @OnClick({ R.id.btn_ok, R.id.btn_cancel }) public void onViewClicked(View view) {
     switch (view.getId()) {

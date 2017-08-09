@@ -25,7 +25,7 @@ public class SplashFragment extends BaseFragment implements ISplashFragmentView 
   private AlertDialog mErrorDialog;
 
   public SplashFragment() {
-    super(R.layout.fragment_splash);
+    super(R.layout.fragment_splash, false, 0);
   }
 
   public static SplashFragment newInstance() {
@@ -61,5 +61,13 @@ public class SplashFragment extends BaseFragment implements ISplashFragmentView 
 
   @Override public void hideErrorDialog() {
     if (mErrorDialog != null) mErrorDialog.dismiss();
+  }
+
+  @Override protected void updateActionBar(boolean mIsActionBarShown, String title) {
+    // do nothing - on splash screen AB is hidden
+  }
+
+  @Override protected void restoreActionBar() {
+    // do nothing - on splash screen AB is hidden
   }
 }

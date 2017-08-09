@@ -5,6 +5,8 @@ import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.base.BasePresenter;
 import com.apps.twelve.floor.field.data.DataManager;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
+import com.apps.twelve.floor.field.utils.RxBus;
+import com.apps.twelve.floor.field.utils.RxBusHelper;
 import com.apps.twelve.floor.field.utils.ThreadSchedulers;
 import com.arellomobile.mvp.InjectViewState;
 import javax.inject.Inject;
@@ -19,6 +21,7 @@ import timber.log.Timber;
     extends BasePresenter<ITechnologicalProcessFragmentView> {
 
   @Inject DataManager mDataManager;
+  @Inject RxBus mRxBus;
 
   @NonNull private FieldCropTechnologicalProcessObject mFieldTechnologicalProcess;
 
@@ -37,22 +40,34 @@ import timber.log.Timber;
     getAllTechnologicalSolutions();
   }
 
-  private void getAllTechnologicalSolutions() {
-    // TODO
-    Subscription subscription = mDataManager.getTechnologicalSolutions(/*TODO: uncomment after test*//*mFieldTechnologicalProcess.getId()*/
-        1)
-            .compose(ThreadSchedulers.applySchedulers())
-            .subscribe(technologicalSolutions -> getViewState().showTechnologicalSolutions(
-                technologicalSolutions), Timber::e);
-
-    addToUnsubscription(subscription);
-  }
-
   public void onSolutionClickedAtPosition(int position) {
     getViewState().openEditFieldTechnologicalSolutionFragment(position);
   }
 
   public void onAddNewSolutionClicked() {
     // TODO: open add tech process solution screen
+  }
+
+  public void updateActionBar(boolean mIsActionBarShown, String title) {
+    mRxBus.post(new RxBusHelper.FragmentChangedOnScreen(mIsActionBarShown, title, false));
+  }
+
+  public void restoreActionBar() {
+    mRxBus.post(new RxBusHelper.FragmentChangedOnScreen(false, "", true));
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Private section
+  ///////////////////////////////////////////////////////////////////////////
+
+  private void getAllTechnologicalSolutions() {
+    // TODO
+    Subscription subscription = mDataManager.getTechnologicalSolutions(/*TODO: uncomment after test*//*mFieldTechnologicalProcess.getId()*/
+        1)
+        .compose(ThreadSchedulers.applySchedulers())
+        .subscribe(technologicalSolutions -> getViewState().showTechnologicalSolutions(
+            technologicalSolutions), Timber::e);
+
+    addToUnsubscription(subscription);
   }
 }

@@ -46,7 +46,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
   private AlertDialog mFieldAddTypeDialog;
 
   public StartFragment() {
-    super(R.layout.fragment_start);
+    super(R.layout.fragment_start, true, R.string.title_fields_list);
   }
 
   public static StartFragment newInstance() {
@@ -136,6 +136,14 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
   @Override public void openFieldTechnologicalMapFragment(int position) {
     mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
         makeFieldTechnologicalMapFragment(mFieldsAdapter.getFieldAt(position)));
+  }
+
+  @Override protected void updateActionBar(boolean mIsActionBarShown, String title) {
+    mStartFragmentPresenter.updateActionBar(mIsActionBarShown, title);
+  }
+
+  @Override protected void restoreActionBar() {
+    mStartFragmentPresenter.restoreActionBar();
   }
 
   ///////////////////////////////////////////////////////////////////////////

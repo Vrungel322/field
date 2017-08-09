@@ -11,6 +11,21 @@ import java.util.List;
 public final class RxBusHelper {
 
   ///////////////////////////////////////////////////////////////////////////
+  // UI events
+  ///////////////////////////////////////////////////////////////////////////
+  public static class FragmentChangedOnScreen {
+    public boolean isActionbarShown;
+    public String title;
+    public boolean isRestoring;
+
+    public FragmentChangedOnScreen(boolean isActionbarShown, String title, boolean isRestoring) {
+      this.isActionbarShown = isActionbarShown;
+      this.title = title;
+      this.isRestoring = isRestoring;
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
   // Field list events
   ///////////////////////////////////////////////////////////////////////////
 

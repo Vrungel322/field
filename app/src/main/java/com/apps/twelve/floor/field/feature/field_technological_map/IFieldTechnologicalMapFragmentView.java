@@ -19,4 +19,12 @@ import java.util.List;
       List<FieldCropTechnologicalProcessObject> technologicalProcessObjectList);
 
   @StateStrategyType(SkipStrategy.class) void openTechnologicalProcessFragment(int position);
+
+  void updateCrop(String cropName);
+
+  void updatePhase(String phaseName);
+
+  void updateArea(double area);
+
+  void updateSowingDate(long sowingDate);
 }

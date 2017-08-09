@@ -33,4 +33,8 @@ public class FieldCropTechnologicalProcessesTable {
         + COLUMN_TECH_PROCESS_STATE_ID + " INTEGER "
         + ");";
   }
+
+  public static Query getDataByFieldIdQuery(Long fieldId) {
+    return Query.builder().table(TABLE).where(COLUMN_FIELD_ID).whereArgs(fieldId).build();
+  }
 }

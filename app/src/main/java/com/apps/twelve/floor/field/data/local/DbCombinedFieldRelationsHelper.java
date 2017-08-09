@@ -39,6 +39,7 @@ public class DbCombinedFieldRelationsHelper {
   public static final String QUERY_COLUMN_CLIMATE_ZONE_COORDINATES = "climate_zone_coordinates";
   public static final String QUERY_COLUMN_PHASE_ID = "phase_id";
   public static final String QUERY_COLUMN_PHASE_NAME = "phase_name";
+  public static final String QUERY_COLUMN_FIELD_SOWING_DATE = "sowing_date";
 
   public static final String QUERY_COLUMN_SOIL_TYPE_ID = "soil_type_id";
   public static final String QUERY_COLUMN_SOIL_TYPE_NAME = "soil_type_name";
@@ -61,6 +62,10 @@ public class DbCombinedFieldRelationsHelper {
       + FieldsTable.COLUMN_COORDINATES_WITH_TABLE_PREFIX
       + " AS "
       + QUERY_COLUMN_FIELD_COORDINATES
+      + ", "
+      + FieldsTable.COLUMN_SOWING_DATE_WITH_TABLE_PREFIX
+      + " AS "
+      + QUERY_COLUMN_FIELD_SOWING_DATE
       + ", "
 
       // Crop data

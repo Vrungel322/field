@@ -38,6 +38,7 @@ import java.util.List;
 public class EditFieldBottomSheetFragment extends BaseFragment implements IEditFieldFragmentView {
 
   @InjectPresenter EditFieldPresenter mEditFieldPresenter;
+
   @BindView(R.id.constraint_layout_root) ConstraintLayout mConstraintLayoutRoot;
   @BindView(R.id.toggle_button_edit_mode) ToggleButton mTglBtnEditMode;
   @BindView(R.id.ed_text_name) EditText mEdTextName;
@@ -49,13 +50,15 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   @BindView(R.id.spinner_phase) Spinner mSpinnerPhase;
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
+
   private CropsArrayAdapter mCropsAdapter;
   private CropsArrayAdapter mPreviousCropsAdapter;
   private ClimateZonesArrayAdapter mClimateZonesAdapter;
   private SoilTypesArrayAdapter mSoilTypesAdapter;
   private PhasesArrayAdapter mPhasesAdapter;
+
   public EditFieldBottomSheetFragment() {
-    super(R.layout.fragment_edit_field_bottom_sheet);
+    super(R.layout.fragment_edit_field_bottom_sheet, true, R.string.title_new_field);
   }
 
   public static EditFieldBottomSheetFragment newInstance() {
@@ -145,6 +148,14 @@ public class EditFieldBottomSheetFragment extends BaseFragment implements IEditF
   ///////////////////////////////////////////////////////////////////////////
   // UI events
   ///////////////////////////////////////////////////////////////////////////
+
+  @Override protected void updateActionBar(boolean mIsActionBarShown, String title) {
+    mEditFieldPresenter.updateActionBar(mIsActionBarShown, title);
+  }
+
+  @Override protected void restoreActionBar() {
+    mEditFieldPresenter.restoreActionBar();
+  }
 
   @OnClick({ R.id.btn_ok, R.id.btn_cancel }) public void onViewClicked(View view) {
     switch (view.getId()) {

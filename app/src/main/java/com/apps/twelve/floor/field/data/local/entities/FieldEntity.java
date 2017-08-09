@@ -19,12 +19,13 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_CLIMATE_ZONE_ID) Long climateZoneId;
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_PHASE_ID) Long phaseId;
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_SOIL_TYPE_ID) Long soilTypeId;
+  @StorIOSQLiteColumn(name = FieldsTable.COLUMN_SOWING_DATE) Long sowingDate;
 
   public FieldEntity() {
   }
 
   private FieldEntity(Long id, String name, Double area, Long cropId, Long previousCropId,
-      String coordinates, Long climateZoneId, Long phaseId, Long soilTypeId) {
+      String coordinates, Long climateZoneId, Long phaseId, Long soilTypeId, Long sowingDate) {
     this.id = id;
     this.name = name;
     this.area = area;
@@ -34,13 +35,15 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
     this.climateZoneId = climateZoneId;
     this.phaseId = phaseId;
     this.soilTypeId = soilTypeId;
+    this.sowingDate = sowingDate;
   }
 
   public static FieldEntity newFieldEntity(Long id, String name, Double area, Long cropId,
-      Long previousCropId, String coordinates, Long climateZoneId, Long phaseId, Long soilTypeId) {
+      Long previousCropId, String coordinates, Long climateZoneId, Long phaseId, Long soilTypeId,
+      Long sowingDate) {
     if (id == 0) id = null;
     return new FieldEntity(id, name, area, cropId, previousCropId, coordinates, climateZoneId,
-        phaseId, soilTypeId);
+        phaseId, soilTypeId, sowingDate);
   }
 
   @Override public boolean equals(Object obj) {
@@ -65,7 +68,10 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
       return false;
     }
     if (phaseId != null ? !phaseId.equals(that.phaseId) : that.phaseId != null) return false;
-    return soilTypeId != null ? soilTypeId.equals(that.soilTypeId) : that.soilTypeId == null;
+    if (soilTypeId != null ? !soilTypeId.equals(that.soilTypeId) : that.soilTypeId != null) {
+      return false;
+    }
+    return sowingDate != null ? sowingDate.equals(that.sowingDate) : that.sowingDate == null;
   }
 
   @Override public int hashCode() {
@@ -78,6 +84,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
     result = 31 * result + (climateZoneId != null ? climateZoneId.hashCode() : 0);
     result = 31 * result + (phaseId != null ? phaseId.hashCode() : 0);
     result = 31 * result + (soilTypeId != null ? soilTypeId.hashCode() : 0);
+    result = 31 * result + (sowingDate != null ? sowingDate.hashCode() : 0);
     return result;
   }
 
@@ -151,5 +158,13 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
   public void setSoilTypeId(Long soilTypeId) {
     this.soilTypeId = soilTypeId;
+  }
+
+  public Long getSowingDate() {
+    return sowingDate;
+  }
+
+  public void setSowingDate(Long sowingDate) {
+    this.sowingDate = sowingDate;
   }
 }

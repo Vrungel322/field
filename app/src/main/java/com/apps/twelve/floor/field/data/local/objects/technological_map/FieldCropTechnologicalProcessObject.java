@@ -1,7 +1,9 @@
 package com.apps.twelve.floor.field.data.local.objects.technological_map;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 
@@ -84,5 +86,17 @@ public class FieldCropTechnologicalProcessObject implements Parcelable {
 
   public void setStatus(@NonNull TechnologicalProcessStateObject status) {
     this.mStatus = status;
+  }
+
+  public String getTechProcessName() {
+    return mTechProcess.getName();
+  }
+
+  public String getTechProcessPeriodRepresentation(Context context) {
+    return mTechProcess.getPeriod().getRepresentation(context);
+  }
+
+  @DrawableRes public int getStatusImageId() {
+    return mStatus.getImageId();
   }
 }
