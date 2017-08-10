@@ -8,6 +8,8 @@ import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.ProductCategoryObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.ProductObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.CropTechnologicalProcessObject;
@@ -47,6 +49,17 @@ public final class TestUtils {
     return null;
   }
 
+  public static ArrayList<TechnologicalProcessStateObject> getAllTechnologicalProcessStates() {
+    ArrayList<TechnologicalProcessStateObject> list = new ArrayList<>();
+
+    list.add(new TechnologicalProcessStateObject(1, "ТЕСТ: Выполнен", R.drawable.ic_done_24dp));
+    list.add(new TechnologicalProcessStateObject(2, "ТЕСТ: Актуален", R.drawable.ic_actual_24dp));
+    list.add(
+        new TechnologicalProcessStateObject(3, "ТЕСТ: Запланирован", R.drawable.ic_future_24dp));
+
+    return list;
+  }
+
   public static ArrayList<FieldCropTechnologicalProcessObject> getFieldTechnologicalProcesses() {
     ArrayList<FieldCropTechnologicalProcessObject> list = new ArrayList<>();
 
@@ -71,11 +84,11 @@ public final class TestUtils {
             ClimateZoneObject.EMPTY, PhaseObject.EMPTY, processPeriod4);
 
     TechnologicalProcessStateObject stateDone =
-        new TechnologicalProcessStateObject(1, "Выполнен", R.drawable.ic_done_24dp);
+        new TechnologicalProcessStateObject(1, "ТЕСТ: Выполнен", R.drawable.ic_done_24dp);
     TechnologicalProcessStateObject stateActual =
-        new TechnologicalProcessStateObject(2, "Актуален", R.drawable.ic_actual_24dp);
+        new TechnologicalProcessStateObject(2, "ТЕСТ: Актуален", R.drawable.ic_actual_24dp);
     TechnologicalProcessStateObject stateFuture =
-        new TechnologicalProcessStateObject(3, "Запланирован", R.drawable.ic_future_24dp);
+        new TechnologicalProcessStateObject(3, "ТЕСТ: Запланирован", R.drawable.ic_future_24dp);
 
     list.add(new FieldCropTechnologicalProcessObject(1, field, cropTechProcess1, stateDone));
     list.add(new FieldCropTechnologicalProcessObject(2, field, cropTechProcess2, stateActual));
@@ -86,14 +99,49 @@ public final class TestUtils {
   }
 
   public static ArrayList<FieldTechnologicalProcessSolutionObject> getTechnologicalSolutions() {
-
     ArrayList<FieldTechnologicalProcessSolutionObject> res = new ArrayList<>();
 
-    res.add(makeTechnologicalProcessSolutionObject(1, null, null));
-    res.add(makeTechnologicalProcessSolutionObject(2, null, null));
-    res.add(makeTechnologicalProcessSolutionObject(3, null, null));
-    res.add(makeTechnologicalProcessSolutionObject(4, null, null));
-    res.add(makeTechnologicalProcessSolutionObject(5, null, null));
+    FieldObject field = FieldObject.EMPTY;
+    ProcessPeriodObject processPeriod2 = new ProcessPeriodObject(1, 30, 15, 4, 5);
+    CropTechnologicalProcessObject cropTechProcess2 =
+        new CropTechnologicalProcessObject(2, "ТЕСТ: Гербицидная обработка", 2, CropObject.EMPTY,
+            ClimateZoneObject.EMPTY, PhaseObject.EMPTY, processPeriod2);
+    TechnologicalProcessStateObject stateActual =
+        new TechnologicalProcessStateObject(2, "ТЕСТ: Актуален", R.drawable.ic_actual_24dp);
+    FieldCropTechnologicalProcessObject fieldCropTechnologicalProcessObject =
+        new FieldCropTechnologicalProcessObject(2, field, cropTechProcess2, stateActual);
+
+    TechnologicalSolutionTypeObject solutionType =
+        new TechnologicalSolutionTypeObject(1, "ТЕСТ: Препарат");
+
+    ProductCategoryObject productCategoryHerbicide = new ProductCategoryObject(1, "ТЕСТ: Гербицид");
+
+    ProductObject product1 =
+        new ProductObject(1, "ТЕСТ: Ратник", solutionType, 300, productCategoryHerbicide);
+    ProductObject product2 =
+        new ProductObject(2, "ТЕСТ: Рипиус", solutionType, 200, productCategoryHerbicide);
+    ProductObject product3 =
+        new ProductObject(3, "ТЕСТ: Сатурн", solutionType, 150, productCategoryHerbicide);
+    ProductObject product4 =
+        new ProductObject(4, "ТЕСТ: Скат", solutionType, 480, productCategoryHerbicide);
+
+    TechnologicalSolutionObject technologicalSolution1 =
+        new TechnologicalSolutionObject(1, solutionType, product1);
+    TechnologicalSolutionObject technologicalSolution2 =
+        new TechnologicalSolutionObject(2, solutionType, product2);
+    TechnologicalSolutionObject technologicalSolution3 =
+        new TechnologicalSolutionObject(3, solutionType, product3);
+    TechnologicalSolutionObject technologicalSolution4 =
+        new TechnologicalSolutionObject(4, solutionType, product4);
+
+    res.add(new FieldTechnologicalProcessSolutionObject(1, fieldCropTechnologicalProcessObject,
+        technologicalSolution1));
+    res.add(new FieldTechnologicalProcessSolutionObject(2, fieldCropTechnologicalProcessObject,
+        technologicalSolution2));
+    res.add(new FieldTechnologicalProcessSolutionObject(3, fieldCropTechnologicalProcessObject,
+        technologicalSolution3));
+    res.add(new FieldTechnologicalProcessSolutionObject(4, fieldCropTechnologicalProcessObject,
+        technologicalSolution4));
 
     return res;
   }

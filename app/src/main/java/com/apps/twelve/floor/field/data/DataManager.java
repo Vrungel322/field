@@ -383,6 +383,11 @@ public class DataManager {
     return Observable.just(TestUtils.getAllTechnologicalSolutionTypes());
   }
 
+  public Observable<List<TechnologicalProcessStateObject>> getAllTechnologicalProcessStates() {
+    // TODO get data from DB, not from test util
+    return Observable.just(TestUtils.getAllTechnologicalProcessStates());
+  }
+
   public PutResult putCondition(ConditionObject conditionObject) {
     return mDbHelper.putConditionEntity(
         new ConditionObjectToConditionEntityMapper().transform(conditionObject));

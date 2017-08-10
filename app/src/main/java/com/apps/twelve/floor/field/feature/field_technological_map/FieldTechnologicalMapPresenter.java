@@ -45,7 +45,9 @@ import timber.log.Timber;
   }
 
   public void updateActionBar(boolean mIsActionBarShown, String title) {
-    mRxBus.post(new RxBusHelper.FragmentChangedOnScreen(mIsActionBarShown, title, false));
+    mRxBus.post(
+        new RxBusHelper.FragmentChangedOnScreen(mIsActionBarShown, title + mFieldObject.getName(),
+            false));
   }
 
   public void restoreActionBar() {

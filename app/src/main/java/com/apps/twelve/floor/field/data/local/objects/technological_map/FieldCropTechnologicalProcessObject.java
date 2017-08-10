@@ -27,7 +27,7 @@ public class FieldCropTechnologicalProcessObject implements Parcelable {
   private long mId;
   @NonNull private FieldObject mField;
   @NonNull private CropTechnologicalProcessObject mTechProcess;
-  @NonNull private TechnologicalProcessStateObject mStatus;
+  @NonNull private TechnologicalProcessStateObject mState;
 
   public FieldCropTechnologicalProcessObject(long id, @NonNull FieldObject field,
       @NonNull CropTechnologicalProcessObject techProcess,
@@ -35,14 +35,14 @@ public class FieldCropTechnologicalProcessObject implements Parcelable {
     this.mId = id;
     this.mField = field;
     this.mTechProcess = techProcess;
-    this.mStatus = status;
+    this.mState = status;
   }
 
   protected FieldCropTechnologicalProcessObject(Parcel in) {
     this.mId = in.readLong();
     this.mField = in.readParcelable(FieldObject.class.getClassLoader());
     this.mTechProcess = in.readParcelable(CropTechnologicalProcessObject.class.getClassLoader());
-    this.mStatus = in.readParcelable(TechnologicalProcessStateObject.class.getClassLoader());
+    this.mState = in.readParcelable(TechnologicalProcessStateObject.class.getClassLoader());
   }
 
   @Override public int describeContents() {
@@ -53,7 +53,7 @@ public class FieldCropTechnologicalProcessObject implements Parcelable {
     dest.writeLong(mId);
     dest.writeParcelable(mField, flags);
     dest.writeParcelable(mTechProcess, flags);
-    dest.writeParcelable(mStatus, flags);
+    dest.writeParcelable(mState, flags);
   }
 
   public long getId() {
@@ -80,12 +80,12 @@ public class FieldCropTechnologicalProcessObject implements Parcelable {
     this.mTechProcess = techProcess;
   }
 
-  public TechnologicalProcessStateObject getStatus() {
-    return mStatus;
+  public TechnologicalProcessStateObject getState() {
+    return mState;
   }
 
-  public void setStatus(@NonNull TechnologicalProcessStateObject status) {
-    this.mStatus = status;
+  public void setState(@NonNull TechnologicalProcessStateObject state) {
+    this.mState = state;
   }
 
   public String getTechProcessName() {
@@ -97,6 +97,6 @@ public class FieldCropTechnologicalProcessObject implements Parcelable {
   }
 
   @DrawableRes public int getStatusImageId() {
-    return mStatus.getImageId();
+    return mState.getImageId();
   }
 }

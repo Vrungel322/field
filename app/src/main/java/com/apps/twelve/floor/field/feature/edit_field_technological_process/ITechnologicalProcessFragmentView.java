@@ -1,6 +1,7 @@
 package com.apps.twelve.floor.field.feature.edit_field_technological_process;
 
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy;
@@ -20,4 +21,10 @@ import java.util.List;
 
   @StateStrategyType(SkipStrategy.class) void openEditFieldTechnologicalSolutionFragment(
       int position);
+
+  void setSelectedTechnologicalProcessState(TechnologicalProcessStateObject state);
+
+  void addTechnologicalProcessStatesToSpinnerAdapter(List<TechnologicalProcessStateObject> states);
+
+  void updateDoneDate(long doneDate);
 }

@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
+import butterknife.OnClick;
 import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
@@ -47,8 +48,8 @@ public class FieldTechnologicalMapFragment extends BaseFragment
   @BindView(R.id.text_sowing_date) TextView mTextSowingDate;
   @BindView(R.id.text_area) TextView mTextArea;
   @BindView(R.id.recycler_view_tech_processes) RecyclerView mTechProcessesRecyclerView;
-  @BindView(R.id.appbar) AppBarLayout appbar;
-  @BindView(R.id.toolbar) Toolbar toolbar;
+  @BindView(R.id.appbar) AppBarLayout mAppbar;
+  @BindView(R.id.toolbar) Toolbar mToolbar;
 
   FieldTechnologicalProcessesAdapter mFieldTechnologicalProcessesAdapter;
 
@@ -80,6 +81,11 @@ public class FieldTechnologicalMapFragment extends BaseFragment
 
   @Override protected void restoreActionBar() {
     mFieldTechnologicalMapPresenter.restoreActionBar();
+  }
+
+  @OnClick(R.id.button_edit_field) public void onViewClicked() {
+    // TODO: open EditField screen
+    showToastMessage("Эта кнопка еще не работает");
   }
 
   ///////////////////////////////////////////////////////////////////////////

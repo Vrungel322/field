@@ -75,4 +75,21 @@ public class FieldTechnologicalProcessSolutionObject implements Parcelable {
   public void setSolution(@NonNull TechnologicalSolutionObject solution) {
     this.mSolution = solution;
   }
+
+  public String getSolutionName() {
+    return mSolution.getmSolutionValue().getName();
+  }
+
+  public long getSolutionPrice() {
+    return mSolution.getmSolutionValue().getPrice();
+  }
+
+  public long calculateSolutionQuantity() {
+    // TODO: calculate real quantity, depending on TP needs
+    return 20;
+  }
+
+  public long calculateSolutionAmount() {
+    return getSolutionPrice() * calculateSolutionQuantity();
+  }
 }

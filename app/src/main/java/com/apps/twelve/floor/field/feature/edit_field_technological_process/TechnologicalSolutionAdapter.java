@@ -4,6 +4,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
@@ -63,6 +65,16 @@ public class TechnologicalSolutionAdapter
     FieldTechnologicalProcessSolutionObject technologicalSolution =
         mFieldTechnologicalProcessSolutionObjectsList.get(position);
 
+    holder.mTextSolutionName.setText(technologicalSolution.getSolutionName());
+    holder.mTextSolutionPrice.setText("Цена: "
+        + technologicalSolution.getSolutionPrice()
+        + " грн."); // TODO: make res string with placeholder
+    holder.mTextSolutionQuantity.setText("Количество: "
+        + technologicalSolution.calculateSolutionQuantity()
+        + " л."); // TODO: make res string with placeholder
+    holder.mTextSolutionAmount.setText("Стоимость: "
+        + technologicalSolution.calculateSolutionAmount()
+        + " грн."); // TODO: make res string with placeholder
     // TODO: update view holder
   }
 
@@ -70,9 +82,14 @@ public class TechnologicalSolutionAdapter
 
     private View mItemView;
 
+    @BindView(R.id.text_solution_name) TextView mTextSolutionName;
+    @BindView(R.id.text_solution_price) TextView mTextSolutionPrice;
+    @BindView(R.id.text_solution_quantity) TextView mTextSolutionQuantity;
+    @BindView(R.id.text_solution_amount) TextView mTextSolutionAmount;
+
     TechnologicalSolutionViewHolder(View itemView) {
       super(itemView);
-      ButterKnife.bind(itemView);
+      ButterKnife.bind(this, itemView);
       this.mItemView = itemView;
     }
   }

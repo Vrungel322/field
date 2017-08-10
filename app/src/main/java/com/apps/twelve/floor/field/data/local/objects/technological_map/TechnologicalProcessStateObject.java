@@ -48,6 +48,11 @@ public class TechnologicalProcessStateObject implements IObject, Parcelable {
     dest.writeInt(mImageResourceId);
   }
 
+  // TODO: remove this method, get name in adapter
+  @Override public String toString() {
+    return mName;
+  }
+
   public long getId() {
     return mId;
   }

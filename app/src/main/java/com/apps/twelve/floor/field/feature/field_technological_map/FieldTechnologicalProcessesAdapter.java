@@ -71,7 +71,7 @@ public class FieldTechnologicalProcessesAdapter extends
     holder.mImageStatus.setImageResource(fieldTechProcess.getStatusImageId());
     // TODO: status id is from test data
     holder.mImageFrame.setVisibility(
-        (fieldTechProcess.getStatus().getId() == 2) ? View.VISIBLE : View.INVISIBLE);
+        (fieldTechProcess.getState().getId() == 2) ? View.VISIBLE : View.INVISIBLE);
   }
 
   static class FieldTechnologicalProcessesViewHolder extends RecyclerView.ViewHolder {
