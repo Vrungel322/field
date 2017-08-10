@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.feature.start_point;
+package com.apps.twelve.floor.field.feature.fields_list;
 
 import android.content.Context;
 import android.os.Bundle;

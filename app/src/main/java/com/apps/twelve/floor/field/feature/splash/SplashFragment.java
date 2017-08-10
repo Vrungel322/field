@@ -8,7 +8,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.base.BaseFragment;
-import com.apps.twelve.floor.field.feature.start_point.StartFragment;
+import com.apps.twelve.floor.field.feature.fields_list.StartFragment;
 import com.apps.twelve.floor.field.utils.DialogFactory;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 

@@ -13,15 +13,15 @@ import com.apps.twelve.floor.field.data.local.db_filler.AssetHelper;
 import com.apps.twelve.floor.field.data.local.db_filler.DbFillHelper;
 import com.apps.twelve.floor.field.di.modules.AppModule;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
+import com.apps.twelve.floor.field.feature.MainActivityPresenter;
 import com.apps.twelve.floor.field.feature.add_field.AddFieldTrackingPresenter;
 import com.apps.twelve.floor.field.feature.edit_field.EditFieldPresenter;
 import com.apps.twelve.floor.field.feature.edit_field.MapPolygonEditPresenter;
 import com.apps.twelve.floor.field.feature.edit_field_technological_process.FieldTechnologicalProcessPresenter;
 import com.apps.twelve.floor.field.feature.edit_field_technological_solution.EditFieldTechnologicalSolutionPresenter;
 import com.apps.twelve.floor.field.feature.field_technological_map.FieldTechnologicalMapPresenter;
+import com.apps.twelve.floor.field.feature.fields_list.StartFragmentPresenter;
 import com.apps.twelve.floor.field.feature.splash.SplashFragmentPresenter;
-import com.apps.twelve.floor.field.feature.start_point.MainActivityPresenter;
-import com.apps.twelve.floor.field.feature.start_point.StartFragmentPresenter;
 import dagger.Component;
 
 /**

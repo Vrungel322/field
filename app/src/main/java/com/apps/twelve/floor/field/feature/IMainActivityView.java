@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.feature.start_point;
+package com.apps.twelve.floor.field.feature;
 
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;

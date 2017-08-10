@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.feature.start_point;
+package com.apps.twelve.floor.field.feature.fields_list;
 
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.arellomobile.mvp.MvpView;
