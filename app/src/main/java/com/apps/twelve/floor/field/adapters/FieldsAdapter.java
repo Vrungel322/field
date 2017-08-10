@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.feature.start_point;
+package com.apps.twelve.floor.field.adapters;
 
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;

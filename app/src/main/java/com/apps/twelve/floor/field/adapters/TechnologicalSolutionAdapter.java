@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.feature.edit_field_technological_process;
+package com.apps.twelve.floor.field.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

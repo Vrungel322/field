@@ -20,7 +20,8 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import com.apps.twelve.floor.field.R;
-import com.apps.twelve.floor.field.adapters.TechnologicalProcessStateAdapter;
+import com.apps.twelve.floor.field.adapters.TechnologicalProcessStateArrayAdapter;
+import com.apps.twelve.floor.field.adapters.TechnologicalSolutionAdapter;
 import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
@@ -47,7 +48,7 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
   @InjectPresenter FieldTechnologicalProcessPresenter mFieldTechnologicalProcessPresenter;
 
   TechnologicalSolutionAdapter mTechnologicalSolutionAdapter;
-  TechnologicalProcessStateAdapter mTechnologicalProcessStateAdapter;
+  TechnologicalProcessStateArrayAdapter mTechnologicalProcessStateAdapter;
 
   @BindView(R.id.text_description) TextView mTextDescription;
   @BindView(R.id.spinner_tech_process_state) Spinner mSpinnerTechProcessState;
@@ -180,8 +181,8 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
   }
 
   private void setupStateSpinnerAdapter() {
-    mTechnologicalProcessStateAdapter =
-        new TechnologicalProcessStateAdapter(getContext(), android.R.layout.simple_spinner_item,
+    mTechnologicalProcessStateAdapter = new TechnologicalProcessStateArrayAdapter(getContext(),
+        android.R.layout.simple_spinner_item,
             new ArrayList<>());
     mTechnologicalProcessStateAdapter.setDropDownViewResource(
         android.R.layout.simple_spinner_dropdown_item);

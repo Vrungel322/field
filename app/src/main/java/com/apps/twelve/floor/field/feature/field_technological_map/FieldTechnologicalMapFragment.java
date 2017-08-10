@@ -19,6 +19,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import com.apps.twelve.floor.field.R;
+import com.apps.twelve.floor.field.adapters.FieldTechnologicalProcessesAdapter;
 import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;

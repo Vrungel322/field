@@ -1,5 +1,8 @@
 package com.apps.twelve.floor.field.di.components;
 
+import com.apps.twelve.floor.field.adapters.FieldTechnologicalProcessesAdapter;
+import com.apps.twelve.floor.field.adapters.FieldsAdapter;
+import com.apps.twelve.floor.field.adapters.TechnologicalSolutionAdapter;
 import com.apps.twelve.floor.field.base.BaseActivity;
 import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.base.BaseManualAttachFragment;
@@ -14,12 +17,9 @@ import com.apps.twelve.floor.field.feature.add_field.AddFieldTrackingPresenter;
 import com.apps.twelve.floor.field.feature.edit_field.EditFieldPresenter;
 import com.apps.twelve.floor.field.feature.edit_field.MapPolygonEditPresenter;
 import com.apps.twelve.floor.field.feature.edit_field_technological_process.FieldTechnologicalProcessPresenter;
-import com.apps.twelve.floor.field.feature.edit_field_technological_process.TechnologicalSolutionAdapter;
 import com.apps.twelve.floor.field.feature.edit_field_technological_solution.EditFieldTechnologicalSolutionPresenter;
 import com.apps.twelve.floor.field.feature.field_technological_map.FieldTechnologicalMapPresenter;
-import com.apps.twelve.floor.field.feature.field_technological_map.FieldTechnologicalProcessesAdapter;
 import com.apps.twelve.floor.field.feature.splash.SplashFragmentPresenter;
-import com.apps.twelve.floor.field.feature.start_point.FieldsAdapter;
 import com.apps.twelve.floor.field.feature.start_point.MainActivityPresenter;
 import com.apps.twelve.floor.field.feature.start_point.StartFragmentPresenter;
 import dagger.Component;

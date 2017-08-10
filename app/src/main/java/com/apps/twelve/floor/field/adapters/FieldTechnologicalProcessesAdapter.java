@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.feature.field_technological_map;
+package com.apps.twelve.floor.field.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
