@@ -50,6 +50,11 @@ public class InsectObject extends BaseTechnologicalSolutionObject {
     dest.writeLong(mPrice);
   }
 
+  // TODO: return name in adapter, not here
+  @Override public String toString() {
+    return mName;
+  }
+
   @Override public long getId() {
     return mId;
   }

@@ -83,4 +83,11 @@ public class TechnologicalSolutionObject implements IObject, Parcelable {
   public String getSolutionValueName() {
     return mSolutionValue.getName();
   }
+
+  public long getSolutionValuePrice() {
+    if (mSolutionValue == null) {
+      return 0;
+    }
+    return mSolutionValue.getPrice();
+  }
 }

@@ -16,8 +16,6 @@
   <string name="warning">Предупреждение</string>
   <string name="warning_permission">Для работы приложения необходимо разрешение определения места положения</string>
 
-  <string name="msg_no_fields_data">Нет полей.\nДобавьте новое поле.</string>
-
   <!-- Add filed type dialog -->
   <string name="dialog_title_add_field">Выберите способ создания поля</string>
   <string name="dialog_error_add_field">Не указан способ создания поля</string>
@@ -29,10 +27,13 @@
 
   <!-- Error dialog -->
   <string name="dialog_title_error">Ошибка!</string>
-  <string name="dialog_error_message_db_fail">Не удалось инициализировать базуданных</string>
+  <string name="dialog_error_message_db_fail">Не удалось инициализировать базуд анных</string>
 
   <!-- Splash screen -->
   <string name="text_preparing">Подготовка базы данных</string>
+
+  <!-- Fields list -->
+  <string name="msg_no_fields_data">Нет полей.\nДобавьте новое поле.</string>
 
   <!-- Field editing -->
   <string name="text_edit_mode">Режим редактирования</string>
@@ -57,4 +58,7 @@
 
   <!-- Technological process -->
   <string name="edit_text_technological_process_date_hint">Дата проведения</string>
+
+  <!-- Technological process solution -->
+  <string name="text_technological_process_solution_sum">"Сумма: %s грн."</string>
 </resources>

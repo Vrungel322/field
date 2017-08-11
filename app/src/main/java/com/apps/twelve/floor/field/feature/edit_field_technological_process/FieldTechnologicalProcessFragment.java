@@ -147,7 +147,11 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
         mNavigator.popBackStack((AppCompatActivity) getActivity());
         break;
       case R.id.fab_add_new_solution:
-        mFieldTechnologicalProcessPresenter.onAddNewSolutionClicked();
+        // TODO: this is for tests
+        showToastMessage("Пока нельзя добавлять новые решения");
+
+        // TODO: uncomment this
+        //mFieldTechnologicalProcessPresenter.onAddNewSolutionClicked();
         break;
       default:
         break;

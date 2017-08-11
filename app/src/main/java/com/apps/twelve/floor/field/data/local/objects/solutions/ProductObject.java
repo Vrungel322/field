@@ -56,6 +56,11 @@ public class ProductObject extends BaseTechnologicalSolutionObject {
     dest.writeParcelable(mCategory, flags);
   }
 
+  // TODO: return name in adapter, not here
+  @Override public String toString() {
+    return mName;
+  }
+
   @Override public long getId() {
     return mId;
   }

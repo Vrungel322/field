@@ -13,7 +13,7 @@
       android:layout_marginLeft="@dimen/common_margin"
       android:layout_marginRight="@dimen/common_margin"
       android:layout_marginTop="@dimen/common_margin"
-      app:layout_constraintBottom_toTopOf="@+id/text_amount"
+      app:layout_constraintBottom_toTopOf="@+id/text_sum"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toTopOf="parent"
@@ -132,13 +132,13 @@
   </android.support.v4.widget.NestedScrollView>
 
   <TextView
-      android:id="@+id/text_amount"
+      android:id="@+id/text_sum"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/common_margin"
       android:layout_marginRight="@dimen/common_margin"
       android:layout_marginTop="@dimen/common_margin"
-      android:text="Всего: 7000 грн."
+      android:text="@string/text_technological_process_solution_sum"
       android:textStyle="bold"
       app:layout_constraintBottom_toTopOf="@+id/btn_ok"
       app:layout_constraintLeft_toLeftOf="parent"

@@ -46,6 +46,11 @@ public class ActiveComponentObject extends BaseTechnologicalSolutionObject {
     dest.writeParcelable(mType, flags);
   }
 
+  // TODO: return name in adapter, not here
+  @Override public String toString() {
+    return mName;
+  }
+
   @Override public long getId() {
     return mId;
   }

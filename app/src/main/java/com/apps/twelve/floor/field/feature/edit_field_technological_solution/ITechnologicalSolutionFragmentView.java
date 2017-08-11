@@ -21,4 +21,10 @@ import java.util.List;
   void setSelectedSolutionType(TechnologicalSolutionTypeObject solutionType);
 
   void setSelectedSolutionValue(BaseTechnologicalSolutionObject solutionValue);
+
+  void updateTextQuantity(String quantity);
+
+  void updateTextPrice(String price);
+
+  void updateTextSum(String sum);
 }

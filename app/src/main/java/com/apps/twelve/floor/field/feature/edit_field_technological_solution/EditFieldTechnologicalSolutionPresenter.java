@@ -14,6 +14,8 @@ import com.arellomobile.mvp.InjectViewState;
 import java.util.List;
 import javax.inject.Inject;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.subjects.PublishSubject;
 import timber.log.Timber;
 
 /**
@@ -27,6 +29,10 @@ import timber.log.Timber;
   @Inject RxBus mRxBus;
 
   @NonNull private TechnologicalSolutionObject mSolution;
+  private long mQuantity;
+  private long mPrice;
+  private long mSum;
+  private PublishSubject<Object> solutionTypePublisher;
 
   public EditFieldTechnologicalSolutionPresenter(@NonNull TechnologicalSolutionObject solution) {
     this.mSolution = solution;
@@ -39,8 +45,14 @@ import timber.log.Timber;
   @Override protected void onFirstViewAttach() {
     super.onFirstViewAttach();
 
+    initSolutionTypePublisher();
+
     getSolutionTypesForSelect();
     getSolutionValuesForSelect();
+
+    subscribeToSolutionTypeChanges();
+
+    fillInitialData();
   }
 
   public void updateActionBar(boolean mIsActionBarShown, String title) {
@@ -55,16 +67,35 @@ import timber.log.Timber;
   public void updateSolutionType(TechnologicalSolutionTypeObject solutionType) {
     mSolution.setSolutionType(solutionType);
     getViewState().setSelectedSolutionType(solutionType);
+    solutionTypePublisher.onNext(solutionType);
   }
 
   public void updateSolutionValue(BaseTechnologicalSolutionObject solutionValue) {
     mSolution.setSolutionValue(solutionValue);
     getViewState().setSelectedSolutionValue(solutionValue);
+    updatePrice(mSolution.getSolutionValuePrice());
+  }
+
+  public void updateQuantity(long quantity) {
+    mQuantity = quantity;
+    getViewState().updateTextQuantity(String.valueOf(mQuantity));
+    calculateSum();
+  }
+
+  public void updatePrice(long price) {
+    mPrice = price;
+    getViewState().updateTextPrice(String.valueOf(mPrice));
+    calculateSum();
   }
 
   ///////////////////////////////////////////////////////////////////////////
   // Private section
   ///////////////////////////////////////////////////////////////////////////
+
+  private void initSolutionTypePublisher() {
+    solutionTypePublisher = PublishSubject.create();
+    solutionTypePublisher.ofType(TechnologicalSolutionTypeObject.class);
+  }
 
   private void getSolutionTypesForSelect() {
     Subscription subscription = mDataManager.getAllTechnologicalSolutionTypes()
@@ -80,6 +111,16 @@ import timber.log.Timber;
             .compose(ThreadSchedulers.applySchedulers())
             .doOnNext(this::syncSolutionValue)
             .subscribe(this::updateSolutionValuesSpinner, Timber::e);
+
+    addToUnsubscription(subscription);
+  }
+
+  private void subscribeToSolutionTypeChanges() {
+    Subscription subscription =
+        solutionTypePublisher.observeOn(AndroidSchedulers.mainThread()).subscribe(solutionType -> {
+          mSolution.setSolutionType((TechnologicalSolutionTypeObject) solutionType);
+          getSolutionValuesForSelect();
+        });
 
     addToUnsubscription(subscription);
   }
@@ -116,5 +157,17 @@ import timber.log.Timber;
     if (mSolution.getSolutionValue() != null) {
       getViewState().setSelectedSolutionValue(mSolution.getSolutionValue());
     }
+  }
+
+  private void fillInitialData() {
+    // TODO: need to store quantity somewhere
+    //mSolution.getSolutionQuantity();
+    updateQuantity(20);
+    updatePrice(mSolution.getSolutionValuePrice());
+  }
+
+  private void calculateSum() {
+    mSum = mQuantity * mPrice;
+    getViewState().updateTextSum(String.valueOf(mSum));
   }
 }
