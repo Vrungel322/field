@@ -118,7 +118,7 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
 
   private Fragment makeEditFieldTechnologicalSolutionFragment(
       @NonNull FieldTechnologicalProcessSolutionObject solution) {
-    return EditFieldTechnologicalSolutionFragment.newInstance(solution);
+    return EditFieldTechnologicalSolutionFragment.newInstance(solution.getSolution());
   }
 
   ///////////////////////////////////////////////////////////////////////////

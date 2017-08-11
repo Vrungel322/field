@@ -44,6 +44,11 @@ public class TechnologicalSolutionTypeObject implements IObject, Parcelable {
     dest.writeString(mName);
   }
 
+  // TODO: get name in adapter, not here
+  @Override public String toString() {
+    return mName;
+  }
+
   public long getId() {
     return mId;
   }

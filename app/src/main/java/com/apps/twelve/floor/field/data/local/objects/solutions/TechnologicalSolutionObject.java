@@ -64,12 +64,12 @@ public class TechnologicalSolutionObject implements IObject, Parcelable {
     this.mSolutionType = solutionType;
   }
 
-  @NonNull public BaseTechnologicalSolutionObject getmSolutionValue() {
+  @NonNull public BaseTechnologicalSolutionObject getSolutionValue() {
     return mSolutionValue;
   }
 
-  public void setmSolutionValue(@NonNull BaseTechnologicalSolutionObject mSolutionValue) {
-    this.mSolutionValue = mSolutionValue;
+  public void setSolutionValue(@NonNull BaseTechnologicalSolutionObject solutionValue) {
+    this.mSolutionValue = solutionValue;
   }
 
   public long getSolutionTypeId() {
@@ -78,5 +78,9 @@ public class TechnologicalSolutionObject implements IObject, Parcelable {
 
   public long getSolutionValueId() {
     return mSolutionValue.getId();
+  }
+
+  public String getSolutionValueName() {
+    return mSolutionValue.getName();
   }
 }

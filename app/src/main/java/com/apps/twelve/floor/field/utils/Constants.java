@@ -17,6 +17,8 @@ public final class Constants {
     @NonNull public static final String FIELD_BUNDLE_KEY = "field_bundle_key";
     @NonNull public static final String FIELD_TECHNOLOGICAL_PROCESS_BUNDLE_KEY =
         "technological_process_bundle_key";
+    @NonNull public static final String FIELD_TECHNOLOGICAL_PROCESS_SOLUTION_BUNDLE_KEY =
+        "technological_process_solution_bundle_key";
   }
 
   public class Spinner {

@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.feature.edit_field_technological_solution;
 
+import com.apps.twelve.floor.field.data.local.objects.solutions.BaseTechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
@@ -15,5 +16,9 @@ import java.util.List;
 
   void addSolutionTypesToSpinnerAdapter(List<TechnologicalSolutionTypeObject> solutionTypes);
 
-  void setSelectedSolutionType(TechnologicalSolutionTypeObject type);
+  void addSolutionValuesToSpinnerAdapter(List<BaseTechnologicalSolutionObject> solutionValues);
+
+  void setSelectedSolutionType(TechnologicalSolutionTypeObject solutionType);
+
+  void setSelectedSolutionValue(BaseTechnologicalSolutionObject solutionValue);
 }

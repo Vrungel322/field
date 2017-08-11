@@ -83,6 +83,7 @@ import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriod
 import com.apps.twelve.floor.field.data.local.objects.solutions.ActiveComponentInProductObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.ActiveComponentObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.AggregateObject;
+import com.apps.twelve.floor.field.data.local.objects.solutions.BaseTechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.InsectObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.ProductCategoryObject;
@@ -96,6 +97,7 @@ import com.apps.twelve.floor.field.data.local.objects.technological_map.Technolo
 import com.apps.twelve.floor.field.utils.TestUtils;
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
 import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import rx.Observable;
@@ -368,7 +370,7 @@ public class DataManager {
   public Observable<List<FieldTechnologicalProcessSolutionObject>> getTechnologicalSolutions(
       long mTechnologicalProcessId) {
     // TODO get data from DB, not from test util
-    return Observable.just(TestUtils.getTechnologicalSolutions());
+    return Observable.just(TestUtils.getTechnologicalProcessSolutions());
   }
 
   public PutResult putTechnologicalSolution(
@@ -386,6 +388,55 @@ public class DataManager {
   public Observable<List<TechnologicalProcessStateObject>> getAllTechnologicalProcessStates() {
     // TODO get data from DB, not from test util
     return Observable.just(TestUtils.getAllTechnologicalProcessStates());
+  }
+
+  public Observable<List<BaseTechnologicalSolutionObject>> getAllTechnologicalSolutionValuesByType(
+      TechnologicalSolutionTypeObject solutionType) {
+
+    if (solutionType == null) {
+      return Observable.just(new ArrayList<BaseTechnologicalSolutionObject>());
+    }
+
+    /*if (solutionType.getId() == 1) {
+      return mDbHelper.getAllAggregates()
+          .concatMap(Observable::from)
+          .map(aggregateEntity -> new AggregateEntityToAggregateObjectMapper().transform(
+              aggregateEntity)).toList();
+    } else if (solutionType.getId() == 2) {
+      //Препараты
+      return mDbHelper.getAllProducts()
+          .concatMap(Observable::from)
+          .map(productEntity -> new ProductEntityToProductObjectMapper().transform(
+              productEntity)).toList();
+    } else if (solutionType.getId() == 3) {
+      //Действующие вещества
+      return mDbHelper.getAllActiveComponents()
+          .concatMap(Observable::from)
+          .map(activeComponentEntity -> new ActiveComponentEntityToActiveComponentObjectMapper().transform(
+              activeComponentEntity)).toList();
+    } else if (solutionType.getId() == 4) {
+      //Насекомые
+      return mDbHelper.getAllInsects()
+          .concatMap(Observable::from)
+          .map(insectEntity -> new InsectEntityToInsectObjectMapper().transform(
+              insectEntity)).toList();
+    } else if (solutionType.getId() == 5) {
+      // TODO: Other solutions
+      return Observable.just(new ArrayList<BaseTechnologicalSolutionObject>());
+    }*/
+
+    // TODO: get data from DB, not TestUtils
+    if (solutionType.getId() == 1) {
+      return Observable.just(TestUtils.getAggregates());
+    } else if (solutionType.getId() == 2) {
+      return Observable.just(TestUtils.getProducts());
+    } else if (solutionType.getId() == 3) {
+      return Observable.just(TestUtils.getActiveComponents());
+    } else if (solutionType.getId() == 4) {
+      return Observable.just(TestUtils.getInsects());
+    }
+
+    return Observable.just(new ArrayList<BaseTechnologicalSolutionObject>());
   }
 
   public PutResult putCondition(ConditionObject conditionObject) {
