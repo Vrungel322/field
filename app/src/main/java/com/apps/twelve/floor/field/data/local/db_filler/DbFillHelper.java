@@ -60,45 +60,33 @@ public class DbFillHelper {
   }
 
   public boolean fillDbWithInitialData() {
-    boolean isOk = true;
-
-    // read json text from asset file
     String json = mAssetHelper.readStringFromAssetFile(AssetHelper.ASSET_INITIAL_DB_DATA_V1);
+    return deserializeEntitiesFromJson(json);
+  }
 
-    // parse json into array MetaEntity[]
+  private boolean deserializeEntitiesFromJson(String json) {
     MetaEntity[] metaEntities = mGson.fromJson(json, MetaEntity[].class);
 
     DbHelperDelegate dbHelperDelegate = new DbHelperDelegate();
-
-    // get every MetaEntity value json-string and parse it into concrete Entity
     for (int i = 0; i < metaEntities.length; i++) {
-      String entityKey = metaEntities[i].entityKey;
-      String entityJsonValue = metaEntities[i].entityJsonValue;
-
-      try {
-        //entities = mGson.fromJson(entityJsonValue, Class.forName(entityKey));
-        // put every concrete Entity into DB with DbHelper
-        dbHelperDelegate.putEntitiesInDb(
-            (IEntity[]) mGson.fromJson(entityJsonValue, Class.forName(entityKey)));
-      } catch (ClassNotFoundException | ClassCastException e) {
-        Timber.e(e);
-        isOk = false;
-      }
+      dbHelperDelegate.putEntitiesInDb(metaEntities[i].getEntitiesArray());
     }
 
-    return isOk;
+    return true;
   }
 
   private class DbHelperDelegate {
 
-    private void putEntitiesInDb(IEntity[] entities) {
+    private boolean putEntitiesInDb(IEntity[] entities) {
       if (entities == null) {
         Timber.e("Got null entities from json");
-        return;
+        return false;
       }
       for (IEntity entity : entities) {
         putEntityInDb(entity);
       }
+
+      return true;
     }
 
     void putEntityInDb(IEntity entity) {

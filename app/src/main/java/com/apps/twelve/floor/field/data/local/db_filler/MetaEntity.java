@@ -1,22 +1,33 @@
 package com.apps.twelve.floor.field.data.local.db_filler;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
+
 /**
  * Created by yarrick on 01.08.17.
  */
 
 public class MetaEntity {
+  private String entityKey;
+  private IEntity[] entitiesArray;
 
-  public String entityKey;
-  public String entityJsonValue;
-  //public IEntity[] entitiesArray;
-
-  /*public MetaEntity(String entityKey, IEntity[] entitiesArray) {
+  public MetaEntity(String entityKey, IEntity[] entitiesArray) {
     this.entityKey = entityKey;
     this.entitiesArray = entitiesArray;
-  }*/
+  }
 
-  public MetaEntity(String entityKey, String entityJsonValue) {
+  public String getEntityKey() {
+    return entityKey;
+  }
+
+  public void setEntityKey(String entityKey) {
     this.entityKey = entityKey;
-    this.entityJsonValue = entityJsonValue;
+  }
+
+  public IEntity[] getEntitiesArray() {
+    return entitiesArray;
+  }
+
+  public void setEntitiesArray(IEntity[] entitiesArray) {
+    this.entitiesArray = entitiesArray;
   }
 }

@@ -1,6 +1,8 @@
 package com.apps.twelve.floor.field.di.modules;
 
 import com.apps.twelve.floor.field.BuildConfig;
+import com.apps.twelve.floor.field.data.local.db_filler.MetaEntity;
+import com.apps.twelve.floor.field.data.local.db_filler.MetaEntityDeserializer;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
 import com.apps.twelve.floor.field.utils.Constants;
 import com.google.gson.FieldNamingPolicy;
@@ -39,7 +41,7 @@ import timber.log.Timber;
   @Provides @AppScope Gson provideGson() {
     return new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
         .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
-        .serializeNulls()
+        .serializeNulls().registerTypeAdapter(MetaEntity.class, new MetaEntityDeserializer())
         .create();
   }
 
