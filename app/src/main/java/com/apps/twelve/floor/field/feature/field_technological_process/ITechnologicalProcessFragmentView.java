@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.feature.edit_field_technological_process;
+package com.apps.twelve.floor.field.feature.field_technological_process;
 
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;

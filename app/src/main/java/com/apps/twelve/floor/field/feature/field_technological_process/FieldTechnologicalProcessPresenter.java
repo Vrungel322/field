@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.feature.edit_field_technological_process;
+package com.apps.twelve.floor.field.feature.field_technological_process;
 
 import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.App;

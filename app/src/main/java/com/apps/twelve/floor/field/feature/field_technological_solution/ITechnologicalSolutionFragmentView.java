@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.feature.edit_field_technological_solution;
+package com.apps.twelve.floor.field.feature.field_technological_solution;
 
 import com.apps.twelve.floor.field.data.local.objects.solutions.BaseTechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;

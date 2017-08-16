@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.feature.edit_field_technological_solution;
+package com.apps.twelve.floor.field.feature.field_technological_solution;
 
 import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.App;
@@ -22,7 +22,7 @@ import timber.log.Timber;
  * Created by Yaroslav on 29.05.2017.
  */
 
-@InjectViewState public class EditFieldTechnologicalSolutionPresenter
+@InjectViewState public class FieldTechnologicalSolutionPresenter
     extends BasePresenter<ITechnologicalSolutionFragmentView> {
 
   @Inject DataManager mDataManager;
@@ -34,7 +34,7 @@ import timber.log.Timber;
   private long mSum;
   private PublishSubject<Object> solutionTypePublisher;
 
-  public EditFieldTechnologicalSolutionPresenter(@NonNull TechnologicalSolutionObject solution) {
+  public FieldTechnologicalSolutionPresenter(@NonNull TechnologicalSolutionObject solution) {
     this.mSolution = solution;
   }
 

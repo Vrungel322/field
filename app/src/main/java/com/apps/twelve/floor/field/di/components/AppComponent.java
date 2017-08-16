@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.di.components;
 
+import com.apps.twelve.floor.field.adapters.FieldTechnologicalProcessConditionsAdapter;
 import com.apps.twelve.floor.field.adapters.FieldTechnologicalProcessesAdapter;
 import com.apps.twelve.floor.field.adapters.FieldsAdapter;
 import com.apps.twelve.floor.field.adapters.TechnologicalSolutionAdapter;
@@ -17,9 +18,10 @@ import com.apps.twelve.floor.field.feature.MainActivityPresenter;
 import com.apps.twelve.floor.field.feature.add_field.AddFieldTrackingPresenter;
 import com.apps.twelve.floor.field.feature.edit_field.EditFieldPresenter;
 import com.apps.twelve.floor.field.feature.edit_field.MapPolygonEditPresenter;
-import com.apps.twelve.floor.field.feature.edit_field_technological_process.FieldTechnologicalProcessPresenter;
-import com.apps.twelve.floor.field.feature.edit_field_technological_solution.EditFieldTechnologicalSolutionPresenter;
 import com.apps.twelve.floor.field.feature.field_technological_map.FieldTechnologicalMapPresenter;
+import com.apps.twelve.floor.field.feature.field_technological_process.FieldTechnologicalProcessPresenter;
+import com.apps.twelve.floor.field.feature.field_technological_process_conditions.FieldTechnologicalProcessConditionsPresenter;
+import com.apps.twelve.floor.field.feature.field_technological_solution.FieldTechnologicalSolutionPresenter;
 import com.apps.twelve.floor.field.feature.fields_list.StartFragmentPresenter;
 import com.apps.twelve.floor.field.feature.splash.SplashFragmentPresenter;
 import dagger.Component;
@@ -47,7 +49,9 @@ import dagger.Component;
 
   void inject(FieldTechnologicalProcessPresenter presenter);
 
-  void inject(EditFieldTechnologicalSolutionPresenter presenter);
+  void inject(FieldTechnologicalProcessConditionsPresenter presenter);
+
+  void inject(FieldTechnologicalSolutionPresenter presenter);
 
   //activities
   void inject(BaseActivity activity);
@@ -63,6 +67,8 @@ import dagger.Component;
   void inject(FieldTechnologicalProcessesAdapter adapter);
 
   void inject(TechnologicalSolutionAdapter adapter);
+
+  void inject(FieldTechnologicalProcessConditionsAdapter adapter);
 
   // managers
   void inject(DataManager dataManager);

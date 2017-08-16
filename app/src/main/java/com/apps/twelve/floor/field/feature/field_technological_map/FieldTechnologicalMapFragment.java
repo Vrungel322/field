@@ -23,7 +23,7 @@ import com.apps.twelve.floor.field.adapters.FieldTechnologicalProcessesAdapter;
 import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
-import com.apps.twelve.floor.field.feature.edit_field_technological_process.FieldTechnologicalProcessFragment;
+import com.apps.twelve.floor.field.feature.field_technological_process.FieldTechnologicalProcessFragment;
 import com.apps.twelve.floor.field.utils.Constants;
 import com.apps.twelve.floor.field.utils.ItemClickSupport;
 import com.arellomobile.mvp.presenter.InjectPresenter;

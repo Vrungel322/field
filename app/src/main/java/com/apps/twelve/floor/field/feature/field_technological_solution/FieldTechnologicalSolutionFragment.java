@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.feature.edit_field_technological_solution;
+package com.apps.twelve.floor.field.feature.field_technological_solution;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -32,10 +32,10 @@ import java.util.List;
  * Created by Yaroslav on 29.05.2017.
  */
 
-public class EditFieldTechnologicalSolutionFragment extends BaseFragment
+public class FieldTechnologicalSolutionFragment extends BaseFragment
     implements ITechnologicalSolutionFragmentView {
 
-  @InjectPresenter EditFieldTechnologicalSolutionPresenter mEditFieldTechnologicalSolutionPresenter;
+  @InjectPresenter FieldTechnologicalSolutionPresenter mFieldTechnologicalSolutionPresenter;
 
   // TODO: add adapters for solution types and values
 
@@ -51,19 +51,19 @@ public class EditFieldTechnologicalSolutionFragment extends BaseFragment
   private TechnologicalSolutionValuesArrayAdapter mSolutionValueAdapter;
 
   @ProvidePresenter
-  EditFieldTechnologicalSolutionPresenter provideEditFieldTechnologicalSolutionPresenter() {
-    return new EditFieldTechnologicalSolutionPresenter(getArguments().getParcelable(
+  FieldTechnologicalSolutionPresenter provideEditFieldTechnologicalSolutionPresenter() {
+    return new FieldTechnologicalSolutionPresenter(getArguments().getParcelable(
         Constants.EditField.FIELD_TECHNOLOGICAL_PROCESS_SOLUTION_BUNDLE_KEY));
   }
 
-  public EditFieldTechnologicalSolutionFragment() {
+  public FieldTechnologicalSolutionFragment() {
     super(R.layout.fragment_field_technological_solution, true, R.string.title_solution);
   }
 
-  public static EditFieldTechnologicalSolutionFragment newInstance(
+  public static FieldTechnologicalSolutionFragment newInstance(
       TechnologicalSolutionObject solution) {
     Bundle args = new Bundle();
-    EditFieldTechnologicalSolutionFragment fragment = new EditFieldTechnologicalSolutionFragment();
+    FieldTechnologicalSolutionFragment fragment = new FieldTechnologicalSolutionFragment();
     args.putParcelable(Constants.EditField.FIELD_TECHNOLOGICAL_PROCESS_SOLUTION_BUNDLE_KEY,
         solution);
     fragment.setArguments(args);
@@ -118,31 +118,25 @@ public class EditFieldTechnologicalSolutionFragment extends BaseFragment
   ///////////////////////////////////////////////////////////////////////////
 
   @Override protected void updateActionBar(boolean mIsActionBarShown, String title) {
-    mEditFieldTechnologicalSolutionPresenter.updateActionBar(mIsActionBarShown, title);
+    mFieldTechnologicalSolutionPresenter.updateActionBar(mIsActionBarShown, title);
   }
 
   @Override protected void restoreActionBar() {
-    mEditFieldTechnologicalSolutionPresenter.restoreActionBar();
+    mFieldTechnologicalSolutionPresenter.restoreActionBar();
   }
 
   @OnClick({ R.id.btn_ok, R.id.btn_cancel }) public void onViewClicked(View view) {
-    switch (view.getId()) {
-      case R.id.btn_ok:
-        // TODO: this is for tests
-        showToastMessage("В тестовой версии изменения данных не сохраняются");
-        // TODO: uncomment this
+
+    if (view.getId() == R.id.btn_ok) {
+      // TODO: this is for tests
+      showToastMessage("В тестовой версии изменения данных не сохраняются");
+      // TODO: uncomment this
         /*updateTechnologicalSolutionData();
-        mEditFieldTechnologicalSolutionPresenter.saveFieldTechnologicalSolution();*/
-        ViewUtil.hideKeyboard(getActivity());
-        mNavigator.popBackStack((AppCompatActivity) getActivity());
-        break;
-      case R.id.btn_cancel:
-        ViewUtil.hideKeyboard(getActivity());
-        mNavigator.popBackStack((AppCompatActivity) getActivity());
-        break;
-      default:
-        break;
+        mFieldTechnologicalSolutionPresenter.saveFieldTechnologicalSolution();*/
     }
+
+    ViewUtil.hideKeyboard(getActivity());
+    mNavigator.popBackStack((AppCompatActivity) getActivity());
   }
 
   // when finished editing text - clear EditText's focus
@@ -156,10 +150,10 @@ public class EditFieldTechnologicalSolutionFragment extends BaseFragment
 
     if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT) {
       if (editText.getId() == R.id.ed_text_quantity) {
-        mEditFieldTechnologicalSolutionPresenter.updateQuantity(
+        mFieldTechnologicalSolutionPresenter.updateQuantity(
             Long.parseLong(editText.getText().toString()));
       } else if (editText.getId() == R.id.ed_text_price) {
-        mEditFieldTechnologicalSolutionPresenter.updatePrice(
+        mFieldTechnologicalSolutionPresenter.updatePrice(
             Long.parseLong(editText.getText().toString()));
       }
     }
@@ -185,12 +179,12 @@ public class EditFieldTechnologicalSolutionFragment extends BaseFragment
     mSpinnerTechSolutionType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        mEditFieldTechnologicalSolutionPresenter.updateSolutionType(
+        mFieldTechnologicalSolutionPresenter.updateSolutionType(
             mSolutionTypeAdapter.getItem(position));
       }
 
       @Override public void onNothingSelected(AdapterView<?> parent) {
-        mEditFieldTechnologicalSolutionPresenter.updateSolutionType(null);
+        mFieldTechnologicalSolutionPresenter.updateSolutionType(null);
       }
     });
   }
@@ -204,12 +198,12 @@ public class EditFieldTechnologicalSolutionFragment extends BaseFragment
     mSpinnerTechSolution.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        mEditFieldTechnologicalSolutionPresenter.updateSolutionValue(
+        mFieldTechnologicalSolutionPresenter.updateSolutionValue(
             mSolutionValueAdapter.getItem(position));
       }
 
       @Override public void onNothingSelected(AdapterView<?> parent) {
-        mEditFieldTechnologicalSolutionPresenter.updateSolutionValue(null);
+        mFieldTechnologicalSolutionPresenter.updateSolutionValue(null);
       }
     });
   }

@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field.feature.edit_field_technological_process;
+package com.apps.twelve.floor.field.feature.field_technological_process;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,7 +26,7 @@ import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
-import com.apps.twelve.floor.field.feature.edit_field_technological_solution.EditFieldTechnologicalSolutionFragment;
+import com.apps.twelve.floor.field.feature.field_technological_solution.FieldTechnologicalSolutionFragment;
 import com.apps.twelve.floor.field.utils.Constants;
 import com.apps.twelve.floor.field.utils.ItemClickSupport;
 import com.apps.twelve.floor.field.utils.ViewUtil;
@@ -47,9 +47,6 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
 
   @InjectPresenter FieldTechnologicalProcessPresenter mFieldTechnologicalProcessPresenter;
 
-  TechnologicalSolutionAdapter mTechnologicalSolutionAdapter;
-  TechnologicalProcessStateArrayAdapter mTechnologicalProcessStateAdapter;
-
   @BindView(R.id.text_description) TextView mTextDescription;
   @BindView(R.id.spinner_tech_process_state) Spinner mSpinnerTechProcessState;
   @BindView(R.id.ed_text_done_date) EditText mEditTextDoneDate;
@@ -58,6 +55,9 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
   @BindView(R.id.text_total_amount) TextView mTextTotalAmount;
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
+
+  TechnologicalSolutionAdapter mTechnologicalSolutionAdapter;
+  TechnologicalProcessStateArrayAdapter mTechnologicalProcessStateAdapter;
 
   @ProvidePresenter FieldTechnologicalProcessPresenter provideTechnologicalProcessPresenter() {
     return new FieldTechnologicalProcessPresenter(
@@ -118,7 +118,7 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
 
   private Fragment makeEditFieldTechnologicalSolutionFragment(
       @NonNull FieldTechnologicalProcessSolutionObject solution) {
-    return EditFieldTechnologicalSolutionFragment.newInstance(solution.getSolution());
+    return FieldTechnologicalSolutionFragment.newInstance(solution.getSolution());
   }
 
   ///////////////////////////////////////////////////////////////////////////
