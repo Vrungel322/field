@@ -8,6 +8,7 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameE
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.WeedEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ProcessPeriodEntity;
+import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessConditionEntity;
 import com.apps.twelve.floor.field.data.local.mappers.CombinedFieldEntityToFieldObjectMapper;
 import com.apps.twelve.floor.field.data.local.mappers.CropEntityToCropObjectMapper;
 import com.apps.twelve.floor.field.data.local.mappers.CropObjectToCropEntityMapper;
@@ -50,6 +51,7 @@ import com.apps.twelve.floor.field.data.local.mappers.solutions.ProductObjectToP
 import com.apps.twelve.floor.field.data.local.mappers.solutions.TechnologicalSolutionObjectToTechnologicalSolutionEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.solutions.TechnologicalSolutionTypeObjectToTechnologicalSolutionTypeEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.technological_map.CropTechnologicalProcessObjectToCropTechnologicalProcessEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.technological_map.FieldCropTechnologicalProcessConditionObjectToFieldCropTechnologicalProcessConditionEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.technological_map.TechnologicalProcessConditionObjectToTechnologicalProcessConditionEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.technological_map.TechnologicalProcessStateObjectToTechnologicalProcessStateEntityMapper;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
@@ -91,6 +93,7 @@ import com.apps.twelve.floor.field.data.local.objects.solutions.ProductObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.CropTechnologicalProcessObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
@@ -390,6 +393,12 @@ public class DataManager {
     return Observable.just(TestUtils.getAllTechnologicalProcessStates());
   }
 
+  public Observable<List<FieldCropTechnologicalProcessConditionObject>> getAllFieldCropTechnologicalProcessesConditions(
+      long fieldTechnologicalProcessId) {
+    // TODO: get data from DB, not TestUtils
+    return Observable.just(TestUtils.getFieldCropTechnologicalProcessConditions());
+  }
+
   public Observable<List<BaseTechnologicalSolutionObject>> getAllTechnologicalSolutionValuesByType(
       TechnologicalSolutionTypeObject solutionType) {
 
@@ -481,5 +490,16 @@ public class DataManager {
 
   public List<ConditionNameEntity> getAllConditionNameEntitiesAsList() {
     return mDbHelper.getAllConditionNameEntitiesAsList();
+  }
+
+  public PutResult putFieldCropTechnologicalProcessCondition(
+      FieldCropTechnologicalProcessConditionObject fieldCropTechnologicalProcessConditionObject) {
+    return mDbHelper.putFieldCropTechnologicalProcessCondition(
+        new FieldCropTechnologicalProcessConditionObjectToFieldCropTechnologicalProcessConditionEntityMapper()
+            .transform(fieldCropTechnologicalProcessConditionObject));
+  }
+
+  public Observable<List<FieldCropTechnologicalProcessConditionEntity>> getAllFieldCropTechnologicalProcessesConditions() {
+    return mDbHelper.getAllFieldCropTechnologicalProcessesConditions();
   }
 }

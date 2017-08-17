@@ -41,7 +41,8 @@ import timber.log.Timber;
   }
 
   public void onTechProcessClickedAtPosition(int position) {
-    getViewState().openTechnologicalProcessFragment(position);
+    //getViewState().openTechnologicalProcessFragment(position);
+    getViewState().openTechnologicalProcessConditionsFragment(position);
   }
 
   public void updateActionBar(boolean mIsActionBarShown, String title) {

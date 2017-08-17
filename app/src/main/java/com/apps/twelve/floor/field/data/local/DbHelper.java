@@ -41,6 +41,7 @@ import com.apps.twelve.floor.field.data.local.entities.solutions.ProductEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntity;
+import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessStateEntity;
@@ -83,6 +84,7 @@ import com.apps.twelve.floor.field.data.local.tables.solutions.ProductsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.TechnologicalSolutionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.TechnologicalSolutionsTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.CropTechnologicalProcessesTable;
+import com.apps.twelve.floor.field.data.local.tables.technological_map.FieldCropTechnologicalProcessesConditionsTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.FieldCropTechnologicalProcessesTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.TechnologicalProcessStatesTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.TechnologicalProcessesConditionsTable;
@@ -666,7 +668,33 @@ public class DbHelper {
   public DeleteResult deleteTechnologicalProcessState(
       TechnologicalProcessStateEntity technologicalProcessStateEntity) {
     return mStorIOSQLite.delete()
-        .object(technologicalProcessStateEntity)
+        .object(technologicalProcessStateEntity).prepare().executeAsBlocking();
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Field Crop Technological Processes Conditions
+  ///////////////////////////////////////////////////////////////////////////
+  // FieldCropTechnologicalProcessCondition
+  public Observable<List<FieldCropTechnologicalProcessConditionEntity>> getAllFieldCropTechnologicalProcessesConditions() {
+    return mStorIOSQLite.get()
+        .listOfObjects(FieldCropTechnologicalProcessConditionEntity.class)
+        .withQuery(FieldCropTechnologicalProcessesConditionsTable.QUERY_ALL)
+        .prepare()
+        .asRxObservable()
+        .take(1);
+  }
+
+  public PutResult putFieldCropTechnologicalProcessCondition(
+      FieldCropTechnologicalProcessConditionEntity fieldCropTechnologicalProcessConditionEntity) {
+    return mStorIOSQLite.put()
+        .object(fieldCropTechnologicalProcessConditionEntity)
+        .prepare()
+        .executeAsBlocking();
+  }
+
+  public DeleteResult deleteFieldCropTechnologicalProcessCondition(
+      FieldCropTechnologicalProcessConditionEntity fieldCropTechnologicalProcessConditionEntity) {
+    return mStorIOSQLite.delete().object(fieldCropTechnologicalProcessConditionEntity)
         .prepare()
         .executeAsBlocking();
   }

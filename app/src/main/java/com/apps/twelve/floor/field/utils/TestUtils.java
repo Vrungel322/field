@@ -3,6 +3,19 @@ package com.apps.twelve.floor.field.utils;
 import com.apps.twelve.floor.field.R;
 import com.apps.twelve.floor.field.data.local.objects.CropObject;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
+import com.apps.twelve.floor.field.data.local.objects.TillageDirectionObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.BaseConditionValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionNameObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectPhaseValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionValueObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectPhaseObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ProcessPeriodObject;
@@ -16,7 +29,9 @@ import com.apps.twelve.floor.field.data.local.objects.solutions.ProductObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.CropTechnologicalProcessObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import java.util.ArrayList;
 
@@ -111,7 +126,7 @@ public final class TestUtils {
     new InsectObject(1, "Огневковая раса трихограммы", insectSolutionType, 150);
   }
 
-  // Tecnological process states
+  // Technological process states
   private static ArrayList<TechnologicalProcessStateObject> technologicalProcessStates;
 
   static {
@@ -176,6 +191,175 @@ public final class TestUtils {
     fieldTechnologicalProcesses.add(
         new FieldCropTechnologicalProcessObject(4, field, cropTechnologicalProcesses.get(3),
             technologicalProcessStates.get(2)));
+  }
+
+  // Condition names
+  private static ArrayList<ConditionNameObject> conditionNames;
+
+  static {
+    conditionNames = new ArrayList<>();
+    conditionNames.add(new ConditionNameObject(1, "ТЕСТ: Фаза вредного объекта"));
+    conditionNames.add(new ConditionNameObject(2, "ТЕСТ: Влажность почвы"));
+    conditionNames.add(new ConditionNameObject(3, "ТЕСТ: t⁰ почвы"));
+    conditionNames.add(new ConditionNameObject(4, "ТЕСТ: Планируемая урожайность, т/га"));
+    conditionNames.add(new ConditionNameObject(5, "ТЕСТ: Вредный объект"));
+    conditionNames.add(new ConditionNameObject(6, "ТЕСТ: t⁰ воздуха"));
+    conditionNames.add(new ConditionNameObject(7, "ТЕСТ: Влажность воздуха"));
+    conditionNames.add(
+        new ConditionNameObject(8, "ТЕСТ: Направление обработки почвы, посева, опрыскивания"));
+    conditionNames.add(new ConditionNameObject(9, "ТЕСТ: Глубина обработки почвы, посева"));
+  }
+
+  // Condition types
+  private static ArrayList<ConditionTypeObject> conditionTypes;
+
+  static {
+    conditionTypes = new ArrayList<>();
+    conditionTypes.add(new ConditionTypeObject(1, "ТЕСТ: Фаза вредного объекта"));
+    conditionTypes.add(new ConditionTypeObject(2, "ТЕСТ: Числовой диапазон"));
+    conditionTypes.add(new ConditionTypeObject(3, "ТЕСТ: Вредный объект"));
+    conditionTypes.add(new ConditionTypeObject(4, "ТЕСТ: Направление обработки"));
+  }
+
+  // Harmful object types
+  private static ArrayList<HarmfulObjectTypeObject> harmfulObjectTypes;
+
+  static {
+    harmfulObjectTypes = new ArrayList<>();
+
+    harmfulObjectTypes.add(new HarmfulObjectTypeObject(1, "ТЕСТ: Сорняк"));
+    harmfulObjectTypes.add(new HarmfulObjectTypeObject(2, "ТЕСТ: Вредитель"));
+    harmfulObjectTypes.add(new HarmfulObjectTypeObject(3, "ТЕСТ: Болезнь"));
+  }
+
+  // Weeds
+  private static ArrayList<WeedObject> weeds;
+
+  static {
+    weeds = new ArrayList<>();
+    weeds.add(new WeedObject(1, harmfulObjectTypes.get(0).getId(),
+        "ТЕСТ: Одногодичные ярые дводольные и злаковые сорняки", 1, 1, 1));
+  }
+
+  // Conditions
+  private static ArrayList<ConditionObject> conditions;
+
+  static {
+    conditions = new ArrayList<>();
+
+    // HO phases
+    HarmfulObjectPhaseValueObject hoPhase =
+        new HarmfulObjectPhaseValueObject(1, conditionTypes.get(0),
+            new HarmfulObjectPhaseObject(1, "ТЕСТ: Белая ниточка"));
+
+    // HO values
+    HarmfulObjectValueObject ho = new HarmfulObjectValueObject(1, conditionTypes.get(2),
+        new HarmfulObjectObject(1, harmfulObjectTypes.get(0).getId(), weeds.get(0).getId()));
+
+    // Span values
+    ConditionSpanValueObject span30_40 =
+        new ConditionSpanValueObject(1, conditionTypes.get(1), 30, 40);
+    ConditionSpanValueObject span8_10 =
+        new ConditionSpanValueObject(2, conditionTypes.get(1), 8, 10);
+    ConditionSpanValueObject span30_50 =
+        new ConditionSpanValueObject(3, conditionTypes.get(1), 30, 50);
+    ConditionSpanValueObject span2_4 = new ConditionSpanValueObject(4, conditionTypes.get(1), 2, 4);
+
+    // Tillage dir
+    TillageDirectionValueObject tillageDir =
+        new TillageDirectionValueObject(1, conditionTypes.get(3),
+            new TillageDirectionObject(1, "ТЕСТ: челноковый или диагональный"));
+
+    ArrayList<BaseConditionValueObject> conditionValues = new ArrayList<>();
+
+    conditions.add(
+        new ConditionObject(1, 1, conditionNames.get(0), conditionTypes.get(0), hoPhase));
+    conditions.add(
+        new ConditionObject(2, 1, conditionNames.get(1), conditionTypes.get(1), span30_40));
+    conditions.add(
+        new ConditionObject(3, 1, conditionNames.get(2), conditionTypes.get(1), span8_10));
+    conditions.add(
+        new ConditionObject(4, 1, conditionNames.get(3), conditionTypes.get(1), span8_10));
+    conditions.add(new ConditionObject(5, 1, conditionNames.get(4), conditionTypes.get(2), ho));
+    conditions.add(
+        new ConditionObject(6, 1, conditionNames.get(5), conditionTypes.get(1), span8_10));
+    conditions.add(
+        new ConditionObject(7, 1, conditionNames.get(6), conditionTypes.get(1), span30_50));
+    conditions.add(
+        new ConditionObject(8, 1, conditionNames.get(7), conditionTypes.get(3), tillageDir));
+    conditions.add(
+        new ConditionObject(9, 1, conditionNames.get(8), conditionTypes.get(1), span2_4));
+  }
+
+  // Technological process conditions
+  private static ArrayList<TechnologicalProcessConditionObject> technologicalProcessConditions;
+
+  static {
+    technologicalProcessConditions = new ArrayList<>();
+
+    technologicalProcessConditions.add(
+        new TechnologicalProcessConditionObject(1, 1, cropTechnologicalProcesses.get(1),
+            conditions.get(0)));
+    technologicalProcessConditions.add(
+        new TechnologicalProcessConditionObject(2, 1, cropTechnologicalProcesses.get(1),
+            conditions.get(1)));
+    technologicalProcessConditions.add(
+        new TechnologicalProcessConditionObject(3, 1, cropTechnologicalProcesses.get(1),
+            conditions.get(2)));
+    technologicalProcessConditions.add(
+        new TechnologicalProcessConditionObject(4, 1, cropTechnologicalProcesses.get(1),
+            conditions.get(3)));
+    technologicalProcessConditions.add(
+        new TechnologicalProcessConditionObject(5, 1, cropTechnologicalProcesses.get(1),
+            conditions.get(4)));
+    technologicalProcessConditions.add(
+        new TechnologicalProcessConditionObject(6, 1, cropTechnologicalProcesses.get(1),
+            conditions.get(5)));
+    technologicalProcessConditions.add(
+        new TechnologicalProcessConditionObject(7, 1, cropTechnologicalProcesses.get(1),
+            conditions.get(6)));
+    technologicalProcessConditions.add(
+        new TechnologicalProcessConditionObject(8, 1, cropTechnologicalProcesses.get(1),
+            conditions.get(7)));
+    technologicalProcessConditions.add(
+        new TechnologicalProcessConditionObject(9, 1, cropTechnologicalProcesses.get(1),
+            conditions.get(8)));
+  }
+
+  // Filed crop technological processes conditions
+  private static ArrayList<FieldCropTechnologicalProcessConditionObject>
+      fieldCropTechnologicalProcessSolutions;
+
+  static {
+    fieldCropTechnologicalProcessSolutions = new ArrayList<>();
+
+    fieldCropTechnologicalProcessSolutions.add(
+        new FieldCropTechnologicalProcessConditionObject(1, fieldTechnologicalProcesses.get(1),
+            technologicalProcessConditions.get(0), false));
+    fieldCropTechnologicalProcessSolutions.add(
+        new FieldCropTechnologicalProcessConditionObject(2, fieldTechnologicalProcesses.get(1),
+            technologicalProcessConditions.get(1), false));
+    fieldCropTechnologicalProcessSolutions.add(
+        new FieldCropTechnologicalProcessConditionObject(3, fieldTechnologicalProcesses.get(1),
+            technologicalProcessConditions.get(2), false));
+    fieldCropTechnologicalProcessSolutions.add(
+        new FieldCropTechnologicalProcessConditionObject(4, fieldTechnologicalProcesses.get(1),
+            technologicalProcessConditions.get(3), false));
+    fieldCropTechnologicalProcessSolutions.add(
+        new FieldCropTechnologicalProcessConditionObject(5, fieldTechnologicalProcesses.get(1),
+            technologicalProcessConditions.get(4), false));
+    fieldCropTechnologicalProcessSolutions.add(
+        new FieldCropTechnologicalProcessConditionObject(6, fieldTechnologicalProcesses.get(1),
+            technologicalProcessConditions.get(5), false));
+    fieldCropTechnologicalProcessSolutions.add(
+        new FieldCropTechnologicalProcessConditionObject(7, fieldTechnologicalProcesses.get(1),
+            technologicalProcessConditions.get(6), false));
+    fieldCropTechnologicalProcessSolutions.add(
+        new FieldCropTechnologicalProcessConditionObject(8, fieldTechnologicalProcesses.get(1),
+            technologicalProcessConditions.get(7), false));
+    fieldCropTechnologicalProcessSolutions.add(
+        new FieldCropTechnologicalProcessConditionObject(9, fieldTechnologicalProcesses.get(1),
+            technologicalProcessConditions.get(8), false));
   }
 
   // Technological solutions
@@ -248,5 +432,9 @@ public final class TestUtils {
 
   public static ArrayList<TechnologicalSolutionTypeObject> getAllTechnologicalSolutionTypes() {
     return technicalSolutionTypes;
+  }
+
+  public static ArrayList<FieldCropTechnologicalProcessConditionObject> getFieldCropTechnologicalProcessConditions() {
+    return fieldCropTechnologicalProcessSolutions;
   }
 }

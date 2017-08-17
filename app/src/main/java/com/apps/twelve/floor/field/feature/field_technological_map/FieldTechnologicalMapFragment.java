@@ -24,6 +24,7 @@ import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.FieldObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.feature.field_technological_process.FieldTechnologicalProcessFragment;
+import com.apps.twelve.floor.field.feature.field_technological_process_conditions.FieldTechnologicalProcessConditionsFragment;
 import com.apps.twelve.floor.field.utils.Constants;
 import com.apps.twelve.floor.field.utils.ItemClickSupport;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -104,6 +105,12 @@ public class FieldTechnologicalMapFragment extends BaseFragment
             mFieldTechnologicalProcessesAdapter.getTechProcessAt(position)));
   }
 
+  @Override public void openTechnologicalProcessConditionsFragment(int position) {
+    mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
+        makeFieldTechnologicalProcessConditionsFragment(
+            mFieldTechnologicalProcessesAdapter.getTechProcessAt(position)));
+  }
+
   @Override public void updateCrop(String cropName) {
     mTextCrop.setText(cropName);
   }
@@ -148,5 +155,10 @@ public class FieldTechnologicalMapFragment extends BaseFragment
   private Fragment makeFieldTechnologicalProcessFragment(
       @NonNull FieldCropTechnologicalProcessObject processObject) {
     return FieldTechnologicalProcessFragment.newInstance(processObject);
+  }
+
+  private Fragment makeFieldTechnologicalProcessConditionsFragment(
+      @NonNull FieldCropTechnologicalProcessObject processObject) {
+    return FieldTechnologicalProcessConditionsFragment.newInstance(processObject);
   }
 }

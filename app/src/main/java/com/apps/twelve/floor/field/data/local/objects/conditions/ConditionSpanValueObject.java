@@ -67,6 +67,10 @@ public class ConditionSpanValueObject extends BaseConditionValueObject {
     this.mType = type;
   }
 
+  @Override public String getRepresentation() {
+    return mValueFrom + " - " + mValueTo;
+  }
+
   public String getName() {
     return mValueFrom + " : " + mValueTo;
   }

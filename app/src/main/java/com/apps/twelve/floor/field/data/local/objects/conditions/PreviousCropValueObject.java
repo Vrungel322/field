@@ -63,6 +63,10 @@ public class PreviousCropValueObject extends BaseConditionValueObject {
     this.mConditionType = conditionType;
   }
 
+  @Override public String getRepresentation() {
+    return mCrop.getName();
+  }
+
   @NonNull public CropObject getCrop() {
     return mCrop;
   }

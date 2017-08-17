@@ -64,6 +64,10 @@ public class HarmfulObjectValueObject extends BaseConditionValueObject{
     this.mConditionType = conditionType;
   }
 
+  @Override public String getRepresentation() {
+    return mHarmfulObject.getValueRepresentation();
+  }
+
   @NonNull public HarmfulObjectObject getHarmfulObject() {
     return mHarmfulObject;
   }

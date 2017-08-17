@@ -6,11 +6,6 @@
     android:layout_height="wrap_content"
     >
 
-
-  <!--
-  android:checkMark="@drawable/ic_edit_24dp"
-      android:checked="false"
-      -->
   <CheckedTextView
       android:id="@+id/checked_text_condition"
       android:layout_width="0dp"
@@ -19,7 +14,8 @@
       android:layout_marginLeft="@dimen/common_margin"
       android:layout_marginRight="@dimen/common_margin"
       android:layout_marginTop="@dimen/common_margin"
-      android:text="CheckedTextView"
+      android:checkMark="@drawable/checked_text_icon"
+      android:checked="false"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"

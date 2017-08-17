@@ -106,7 +106,7 @@ public class ConditionObject implements IObject, Parcelable {
     this.mPriority = priority;
   }
 
-  public ConditionNameObject getName() {
+  public ConditionNameObject getConditionName() {
     return mName;
   }
 
@@ -140,5 +140,9 @@ public class ConditionObject implements IObject, Parcelable {
 
   public long getConditionValueId() {
     return mConditionValue.getId();
+  }
+
+  public String getRepresentation() {
+    return mName.getName() + ": " + mConditionValue.getRepresentation();
   }
 }

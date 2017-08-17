@@ -64,6 +64,10 @@ public class SoilTypeValueObject extends BaseConditionValueObject {
     this.mConditionType = conditionType;
   }
 
+  @Override public String getRepresentation() {
+    return mSoilType.getName();
+  }
+
   @NonNull public SoilTypeObject getSoilType() {
     return mSoilType;
   }

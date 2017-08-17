@@ -20,6 +20,9 @@ import java.util.List;
 
   @StateStrategyType(SkipStrategy.class) void openTechnologicalProcessFragment(int position);
 
+  @StateStrategyType(SkipStrategy.class) void openTechnologicalProcessConditionsFragment(
+      int position);
+
   void updateCrop(String cropName);
 
   void updatePhase(String phaseName);

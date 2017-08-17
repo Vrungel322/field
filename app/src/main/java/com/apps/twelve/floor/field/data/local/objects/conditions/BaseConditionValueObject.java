@@ -16,4 +16,6 @@ public abstract class BaseConditionValueObject implements IObject, Parcelable, C
   abstract public ConditionTypeObject getType();
 
   abstract public void setType(ConditionTypeObject type);
+
+  abstract public String getRepresentation();
 }

@@ -93,4 +93,8 @@ public class TechnologicalProcessConditionObject implements IObject, Parcelable 
   public Long getConditionId() {
     return mCondition.getId();
   }
+
+  public String getConditionName() {
+    return mCondition.getConditionName().getName();
+  }
 }

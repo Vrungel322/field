@@ -63,6 +63,10 @@ public class TillageDirectionValueObject extends BaseConditionValueObject {
     this.mType = type;
   }
 
+  @Override public String getRepresentation() {
+    return mTillageDirection.getName();
+  }
+
   @NonNull public TillageDirectionObject getTillageDirection() {
     return mTillageDirection;
   }

@@ -64,6 +64,10 @@ public class PhenologicalCharacteristicValueObject extends BaseConditionValueObj
     this.mType = type;
   }
 
+  @Override public String getRepresentation() {
+    return mPhenologicalCharacteristic.getName();
+  }
+
   @NonNull public PhenologicalCharacteristicObject getPhenologicalCharacteristic() {
     return mPhenologicalCharacteristic;
   }

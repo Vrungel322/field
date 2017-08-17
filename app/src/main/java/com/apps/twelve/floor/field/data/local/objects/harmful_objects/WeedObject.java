@@ -19,11 +19,11 @@ public class WeedObject implements IObject, Parcelable {
     }
   };
   private long mId;
-  private long mHarmfulObjTypeId;
+  private long mHarmfulObjTypeId; // TODO: must be an object
   private String mName;
-  private long mNutritionTypeId;
-  private long mClassId;
-  private long mGroupId;
+  private long mNutritionTypeId; // TODO: must be an object
+  private long mClassId; // TODO: must be an object
+  private long mGroupId; // TODO: must be an object
 
   public WeedObject(long id, long harmfulObjTypeId, String name, long nutritionTypeId, long classId,
       long groupId) {

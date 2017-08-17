@@ -21,8 +21,8 @@ public class HarmfulObjectObject implements IObject, Parcelable {
   };
 
   private long mId;
-  private long mTypeId;
-  private long mValueId;
+  private long mTypeId; // TODO: here must be an Object
+  private long mValueId; // TODO: here must be an Object
 
   public HarmfulObjectObject(long id, long typeId, long valueId) {
     this.mId = id;
@@ -68,5 +68,13 @@ public class HarmfulObjectObject implements IObject, Parcelable {
 
   public void setValueId(long valueId) {
     this.mValueId = valueId;
+  }
+
+  public String getValueRepresentation() {
+    // TODO: when value will be an object - uncomment
+    //return mValue.getRepresentation();
+
+    // TODO: remove it
+    return "TEST: harmful object representation";
   }
 }
