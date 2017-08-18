@@ -36,7 +36,9 @@ import rx.Subscription;
     Subscription subscription =
         Observable.just(new DbFillHelper()).map(DbFillHelper::fillDbWithInitialData)
         .compose(ThreadSchedulers.applySchedulers()).subscribe(isDbFilled -> {
-          mPreferencesHelper.setIsDbFilled(isDbFilled);
+          // TODO: on testing version - DB is cleared on every start, so we need to fill it all the time
+          // TODO: when DB migration will be done - uncomment this
+          //mPreferencesHelper.setIsDbFilled(isDbFilled);
           if (isDbFilled) {
             getViewState().showStartFragment();
           } else {

@@ -252,6 +252,8 @@ import dagger.Provides;
   }
 
   @Provides @AppScope SQLiteOpenHelper provideSqLiteOpenHelper(Context context) {
+    // TODO: 05.07.2017 need to remove deletion, tis just for test
+    context.deleteDatabase(DbOpenHelper.DB_NAME);
     return new DbOpenHelper(context);
   }
 }
