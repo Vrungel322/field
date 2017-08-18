@@ -34,6 +34,9 @@ import java.util.List;
 public class FieldTechnologicalProcessConditionsFragment extends BaseFragment
     implements ITechnologicalProcessConditionsFragmentView {
 
+  public static final String TAG =
+      FieldTechnologicalProcessConditionsFragment.class.getSimpleName();
+
   @InjectPresenter FieldTechnologicalProcessConditionsPresenter
       mFieldTechnologicalProcessConditionsPresenter;
 
@@ -83,8 +86,8 @@ public class FieldTechnologicalProcessConditionsFragment extends BaseFragment
 
   @Override
   public void openTechnologicalProcessFragment(FieldCropTechnologicalProcessObject process) {
-    //mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start, makeFieldTechnologicalProcessFragment(process));
-    mNavigator.replaceFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
+    mNavigator.clearBackStack(TAG, ((AppCompatActivity) getActivity()));
+    mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
         makeFieldTechnologicalProcessFragment(process));
   }
 

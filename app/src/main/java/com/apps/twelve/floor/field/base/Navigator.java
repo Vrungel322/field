@@ -73,6 +73,15 @@ public class Navigator implements INavigator {
         .commit();
   }
 
+  @Override public void addFragmentBackStack(@NonNull AppCompatActivity appCompatActivity,
+      @NonNull String name, @IdRes int containerId, @NonNull Fragment fragment) {
+    appCompatActivity.getSupportFragmentManager()
+        .beginTransaction()
+        .addToBackStack(name)
+        .add(containerId, fragment)
+        .commit();
+  }
+
   @Override public void addFragmentTagBackStack(@NonNull AppCompatActivity appCompatActivity,
       @IdRes int containerId, @NonNull Fragment fragment, @NonNull String fragmentTag) {
     appCompatActivity.getSupportFragmentManager()
@@ -136,6 +145,13 @@ public class Navigator implements INavigator {
     if (!isEmptyBackStack(activity)) {
       activity.getSupportFragmentManager()
           .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
+  }
+
+  @Override public void clearBackStack(@NonNull String name, @NonNull AppCompatActivity activity) {
+    if (!isEmptyBackStack(activity)) {
+      activity.getSupportFragmentManager()
+          .popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
   }
 

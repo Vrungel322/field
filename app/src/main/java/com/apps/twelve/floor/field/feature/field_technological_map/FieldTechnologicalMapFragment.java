@@ -106,7 +106,8 @@ public class FieldTechnologicalMapFragment extends BaseFragment
   }
 
   @Override public void openTechnologicalProcessConditionsFragment(int position) {
-    mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
+    mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()),
+        FieldTechnologicalProcessConditionsFragment.TAG, R.id.container_start,
         makeFieldTechnologicalProcessConditionsFragment(
             mFieldTechnologicalProcessesAdapter.getTechProcessAt(position)));
   }

@@ -39,6 +39,9 @@ public interface INavigator {
   void addFragmentBackStack(@NonNull AppCompatActivity appCompatActivity, @IdRes int containerId,
       @NonNull Fragment fragment);
 
+  void addFragmentBackStack(@NonNull AppCompatActivity appCompatActivity, @NonNull String name,
+      @IdRes int containerId, @NonNull Fragment fragment);
+
   void addFragmentTagBackStack(@NonNull AppCompatActivity appCompatActivity, @IdRes int containerId,
       @NonNull Fragment fragment, @NonNull String fragmentTag);
 
@@ -59,6 +62,8 @@ public interface INavigator {
   void popBackStack(@NonNull AppCompatActivity appCompatActivity);
 
   void clearBackStack(@NonNull AppCompatActivity appCompatActivity);
+
+  void clearBackStack(@NonNull String name, @NonNull AppCompatActivity activity);
 
   boolean isEmptyBackStack(@NonNull AppCompatActivity appCompatActivity);
 }
