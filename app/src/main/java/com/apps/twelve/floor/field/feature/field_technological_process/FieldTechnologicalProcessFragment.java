@@ -1,19 +1,27 @@
 package com.apps.twelve.floor.field.feature.field_technological_process;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.TransitionManager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -49,15 +57,24 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
 
   @BindView(R.id.text_description) TextView mTextDescription;
   @BindView(R.id.spinner_tech_process_state) Spinner mSpinnerTechProcessState;
-  @BindView(R.id.ed_text_done_date) EditText mEditTextDoneDate;
+
+  @BindView(R.id.checked_text_show_conditions) CheckedTextView mCheckedTextShowConditions;
+  @BindView(R.id.scroll_view_conditions) NestedScrollView mScrollViewConditions;
+  @BindView(R.id.recycler_view_conditions) RecyclerView mRecyclerViewConditions;
+
   @BindView(R.id.recycler_view_solutions) RecyclerView mRecyclerViewSolutions;
   @BindView(R.id.fab_add_new_solution) FloatingActionButton mFabAddNewSolution;
   @BindView(R.id.text_total_amount) TextView mTextTotalAmount;
+  @BindView(R.id.ed_text_done_date) EditText mEditTextDoneDate;
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
 
   TechnologicalSolutionAdapter mTechnologicalSolutionAdapter;
   TechnologicalProcessStateArrayAdapter mTechnologicalProcessStateAdapter;
+
+  private ConstraintSet mShowConditionsConstraintSet;
+  private ConstraintSet mHideConditionsConstraintSet;
+  private ConstraintLayout mRootConstraintLayout;
 
   @ProvidePresenter FieldTechnologicalProcessPresenter provideTechnologicalProcessPresenter() {
     return new FieldTechnologicalProcessPresenter(
@@ -78,9 +95,29 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
     return fragment;
   }
 
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    mShowConditionsConstraintSet = new ConstraintSet();
+    mHideConditionsConstraintSet = new ConstraintSet();
+  }
+
+  @Nullable @Override
+  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+      @Nullable Bundle savedInstanceState) {
+    mRootConstraintLayout =
+        (ConstraintLayout) super.onCreateView(inflater, container, savedInstanceState);
+
+    mShowConditionsConstraintSet.clone(mRootConstraintLayout);
+    mHideConditionsConstraintSet.clone(mShowConditionsConstraintSet);
+    mHideConditionsConstraintSet.clear(R.id.scroll_view_conditions, ConstraintSet.BOTTOM);
+
+    return mRootConstraintLayout;
+  }
+
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    setupRecyclerView();
+    setupRecyclerViews();
     setupSpinnersAdapters();
   }
 
@@ -133,28 +170,27 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
     mFieldTechnologicalProcessPresenter.restoreActionBar();
   }
 
-  @OnClick({ R.id.fab_add_new_solution, R.id.btn_ok, R.id.btn_cancel })
+  @OnClick({
+      R.id.checked_text_show_conditions, R.id.fab_add_new_solution, R.id.btn_ok, R.id.btn_cancel
+  })
   public void onViewClicked(View view) {
-    switch (view.getId()) {
-      case R.id.btn_ok:
-        /*updateTechnologicalProcessData();
-        mFieldTechnologicalProcessPresenter.saveFieldTechnologicalProcess();*/
-        ViewUtil.hideKeyboard(getActivity());
-        mNavigator.popBackStack((AppCompatActivity) getActivity());
-        break;
-      case R.id.btn_cancel:
-        ViewUtil.hideKeyboard(getActivity());
-        mNavigator.popBackStack((AppCompatActivity) getActivity());
-        break;
-      case R.id.fab_add_new_solution:
-        // TODO: this is for tests
-        showToastMessage("Пока нельзя добавлять новые решения");
 
-        // TODO: uncomment this
-        //mFieldTechnologicalProcessPresenter.onAddNewSolutionClicked();
-        break;
-      default:
-        break;
+    if (view.getId() == R.id.btn_ok) {
+      /*updateTechnologicalProcessData();
+        mFieldTechnologicalProcessPresenter.saveFieldTechnologicalProcess();*/
+      ViewUtil.hideKeyboard(getActivity());
+      mNavigator.popBackStack((AppCompatActivity) getActivity());
+    } else if (view.getId() == R.id.btn_cancel) {
+      ViewUtil.hideKeyboard(getActivity());
+      mNavigator.popBackStack((AppCompatActivity) getActivity());
+    } else if (view.getId() == R.id.fab_add_new_solution) {
+      // TODO: this is for tests
+      showToastMessage("Пока нельзя добавлять новые решения");
+
+      // TODO: uncomment this
+      //mFieldTechnologicalProcessPresenter.onAddNewSolutionClicked();
+    } else if (view.getId() == R.id.checked_text_show_conditions) {
+      showHideConditions();
     }
   }
 
@@ -162,7 +198,33 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
   // Private section
   ///////////////////////////////////////////////////////////////////////////
 
-  private void setupRecyclerView() {
+  private void showHideConditions() {
+    // TODO: need to fix this for low SDK
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+      return;
+    }
+
+    // TODO: pass this to presenter
+    boolean isChecked = mCheckedTextShowConditions.isChecked();
+    TransitionManager.beginDelayedTransition(mRootConstraintLayout);
+    if (isChecked) {
+      mHideConditionsConstraintSet.applyTo(mRootConstraintLayout);
+    } else {
+      mShowConditionsConstraintSet.applyTo(mRootConstraintLayout);
+    }
+    mCheckedTextShowConditions.setChecked(!isChecked);
+  }
+
+  private void setupRecyclerViews() {
+    setupConditionsRecyclerView();
+    setupSolutionsRecyclerView();
+  }
+
+  private void setupConditionsRecyclerView() {
+    // TODO: setup adapter and other stuff to conditions
+  }
+
+  private void setupSolutionsRecyclerView() {
     mTechnologicalSolutionAdapter = new TechnologicalSolutionAdapter();
     mRecyclerViewSolutions.setAdapter(mTechnologicalSolutionAdapter);
     mRecyclerViewSolutions.setLayoutManager(new LinearLayoutManager(getContext()));

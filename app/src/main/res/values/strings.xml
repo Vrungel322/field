@@ -59,6 +59,7 @@
 
   <!-- Technological process -->
   <string name="edit_text_technological_process_date_hint">Дата проведения</string>
+  <string name="checked_text_technological_process_conditions">Условия проведения</string>
 
   <!-- Technological process solution -->
   <string name="text_technological_process_solution_sum">"Сумма: %s грн."</string>
