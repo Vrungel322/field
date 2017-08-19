@@ -40,8 +40,10 @@ import timber.log.Timber;
     super.onFirstViewAttach();
 
     getAllTechnologicalSolutions();
+    getAllFieldTechnologicalProcessConditions();
 
     subscribeToStatesForSelect();
+    // TODO: subscribe to conditions change in DB, and call ViewState.updCond(cond)
 
     setDoneDate();
   }
@@ -79,6 +81,15 @@ import timber.log.Timber;
         .compose(ThreadSchedulers.applySchedulers())
         .subscribe(technologicalSolutions -> getViewState().showTechnologicalSolutions(
             technologicalSolutions), Timber::e);
+
+    addToUnsubscription(subscription);
+  }
+
+  private void getAllFieldTechnologicalProcessConditions() {
+    Subscription subscription = mDataManager.getAllFieldCropTechnologicalProcessesConditions(
+        mFieldTechnologicalProcess.getId())
+        .compose(ThreadSchedulers.applySchedulers())
+        .subscribe(conditions -> getViewState().showConditions(conditions), Timber::e);
 
     addToUnsubscription(subscription);
   }

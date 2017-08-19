@@ -28,10 +28,12 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import com.apps.twelve.floor.field.R;
+import com.apps.twelve.floor.field.adapters.FieldTechnologicalProcessConditionsAdapter;
 import com.apps.twelve.floor.field.adapters.TechnologicalProcessStateArrayAdapter;
 import com.apps.twelve.floor.field.adapters.TechnologicalSolutionAdapter;
 import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.solutions.FieldTechnologicalProcessSolutionObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessStateObject;
 import com.apps.twelve.floor.field.feature.field_technological_solution.FieldTechnologicalSolutionFragment;
@@ -69,8 +71,9 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
   @BindView(R.id.btn_ok) Button mBtnOk;
   @BindView(R.id.btn_cancel) Button mBtnCancel;
 
-  TechnologicalSolutionAdapter mTechnologicalSolutionAdapter;
-  TechnologicalProcessStateArrayAdapter mTechnologicalProcessStateAdapter;
+  private TechnologicalSolutionAdapter mTechnologicalSolutionAdapter;
+  private TechnologicalProcessStateArrayAdapter mTechnologicalProcessStateAdapter;
+  private FieldTechnologicalProcessConditionsAdapter mConditionsAdapter;
 
   private ConstraintSet mShowConditionsConstraintSet;
   private ConstraintSet mHideConditionsConstraintSet;
@@ -128,6 +131,11 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
   @Override public void showTechnologicalSolutions(
       List<FieldTechnologicalProcessSolutionObject> technologicalSolutionsObjectList) {
     mTechnologicalSolutionAdapter.addAllTechnologicalSolutions(technologicalSolutionsObjectList);
+  }
+
+  @Override
+  public void showConditions(List<FieldCropTechnologicalProcessConditionObject> conditions) {
+    mConditionsAdapter.addAllConditions(conditions);
   }
 
   @Override public void openEditFieldTechnologicalSolutionFragment(int position) {
@@ -221,7 +229,21 @@ public class FieldTechnologicalProcessFragment extends BaseFragment
   }
 
   private void setupConditionsRecyclerView() {
-    // TODO: setup adapter and other stuff to conditions
+    mConditionsAdapter = new FieldTechnologicalProcessConditionsAdapter();
+    mRecyclerViewConditions.setAdapter(mConditionsAdapter);
+    mRecyclerViewConditions.setLayoutManager(new LinearLayoutManager(getContext()));
+    mRecyclerViewConditions.setItemAnimator(new DefaultItemAnimator());
+
+    DividerItemDecoration dividerItemDecoration =
+        new DividerItemDecoration(getContext(), RecyclerView.VERTICAL);
+    dividerItemDecoration.setDrawable(
+        ContextCompat.getDrawable(getContext(), R.drawable.shape_list_item_divider));
+    mRecyclerViewConditions.addItemDecoration(dividerItemDecoration);
+
+    // TODO: send clicks to presenter instead of this
+    ItemClickSupport.addTo(mRecyclerViewConditions)
+        .setOnItemClickListener(
+            (recyclerView, position, v) -> mConditionsAdapter.updateConditionAtPosition(position));
   }
 
   private void setupSolutionsRecyclerView() {

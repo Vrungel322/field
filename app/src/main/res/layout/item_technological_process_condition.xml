@@ -14,7 +14,7 @@
       android:layout_marginLeft="@dimen/common_margin"
       android:layout_marginRight="@dimen/common_margin"
       android:layout_marginTop="@dimen/common_margin"
-      android:checkMark="@drawable/checked_text_icon"
+      android:checkMark="@drawable/checked_text_checked_icon"
       android:checked="false"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
