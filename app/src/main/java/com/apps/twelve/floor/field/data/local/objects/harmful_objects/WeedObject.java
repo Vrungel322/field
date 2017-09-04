@@ -1,14 +1,13 @@
 package com.apps.twelve.floor.field.data.local.objects.harmful_objects;
 
 import android.os.Parcel;
-import android.os.Parcelable;
-import com.apps.twelve.floor.field.data.local.objects.IObject;
+import android.support.annotation.NonNull;
 
 /**
  * Created by Vrungel on 04.07.2017.
  */
 
-public class WeedObject implements IObject, Parcelable {
+public class WeedObject extends BaseHarmfulObjectObject {
   public static final Creator<WeedObject> CREATOR = new Creator<WeedObject>() {
     @Override public WeedObject createFromParcel(Parcel in) {
       return new WeedObject(in);
@@ -57,28 +56,47 @@ public class WeedObject implements IObject, Parcelable {
     return 0;
   }
 
-  public long getId() {
+  @Override public long getId() {
     return mId;
   }
 
-  public void setId(long id) {
+  @Override public void setId(long id) {
     mId = id;
   }
 
-  public long getHarmfulObjTypeId() {
+  /**
+   * @deprecated Use getType instead.
+   */
+  @Deprecated public long getHarmfulObjTypeId() {
     return mHarmfulObjTypeId;
   }
 
-  public void setHarmfulObjTypeId(long harmfulObjTypeId) {
+  /**
+   * @deprecated Use setType instead.
+   */
+  @Deprecated public void setHarmfulObjTypeId(long harmfulObjTypeId) {
     mHarmfulObjTypeId = harmfulObjTypeId;
   }
 
-  public String getName() {
+  @NonNull @Override public HarmfulObjectTypeObject getType() {
+    // TODO: return mHarmfulObjType
+    return null;
+  }
+
+  @Override public void setType(@NonNull HarmfulObjectTypeObject type) {
+    // TODO: set mHarmfulObjType
+  }
+
+  @NonNull @Override public String getName() {
     return mName;
   }
 
-  public void setName(String name) {
+  @Override public void setName(@NonNull String name) {
     mName = name;
+  }
+
+  @NonNull @Override public String getRepresentation() {
+    return mName;
   }
 
   public long getNutritionTypeId() {

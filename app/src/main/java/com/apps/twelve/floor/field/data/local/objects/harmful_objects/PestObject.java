@@ -1,15 +1,13 @@
 package com.apps.twelve.floor.field.data.local.objects.harmful_objects;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import com.apps.twelve.floor.field.data.local.objects.IObject;
 
 /**
  * Created by Yaroslav on 31.05.2017.
  */
 
-public class PestObject implements IObject, Parcelable {
+public class PestObject extends BaseHarmfulObjectObject {
 
   public static final Creator<PestObject> CREATOR = new Creator<PestObject>() {
     @Override public PestObject createFromParcel(Parcel in) {
@@ -45,10 +43,6 @@ public class PestObject implements IObject, Parcelable {
     this.mPestOrder = in.readParcelable(PestOrderObject.class.getClassLoader());
   }
 
-  @Override public int describeContents() {
-    return 0;
-  }
-
   @Override public void writeToParcel(Parcel dest, int flags) {
     dest.writeLong(mId);
     dest.writeParcelable(mHarmfulObjectType, flags);
@@ -57,28 +51,36 @@ public class PestObject implements IObject, Parcelable {
     dest.writeParcelable(mPestOrder, flags);
   }
 
-  public long getId() {
+  @Override public int describeContents() {
+    return 0;
+  }
+
+  @Override public long getId() {
     return mId;
   }
 
-  public void setId(long id) {
+  @Override public void setId(long id) {
     this.mId = id;
   }
 
-  @NonNull public HarmfulObjectTypeObject getHarmfulObjectType() {
-    return mHarmfulObjectType;
-  }
-
-  public void setHarmfulObjectType(@NonNull HarmfulObjectTypeObject harmfulObjectType) {
-    this.mHarmfulObjectType = harmfulObjectType;
-  }
-
-  public String getName() {
+  @NonNull @Override public String getName() {
     return mName;
   }
 
-  public void setName(@NonNull String name) {
+  @Override public void setName(@NonNull String name) {
     this.mName = name;
+  }
+
+  @NonNull @Override public HarmfulObjectTypeObject getType() {
+    return mHarmfulObjectType;
+  }
+
+  @Override public void setType(@NonNull HarmfulObjectTypeObject type) {
+    this.mHarmfulObjectType = type;
+  }
+
+  @NonNull @Override public String getRepresentation() {
+    return mName;
   }
 
   @NonNull public PestClassObject getPestClass() {

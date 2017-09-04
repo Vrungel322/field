@@ -255,7 +255,7 @@ public final class TestUtils {
     // HO values
     HarmfulObjectConditionValueObject ho =
         new HarmfulObjectConditionValueObject(1, conditionTypes.get(2),
-        new HarmfulObjectObject(1, harmfulObjectTypes.get(0).getId(), weeds.get(0).getId()));
+            new HarmfulObjectObject(1, harmfulObjectTypes.get(0), weeds.get(0)));
 
     // Span values
     SpanConditionValueObject span30_40 =
