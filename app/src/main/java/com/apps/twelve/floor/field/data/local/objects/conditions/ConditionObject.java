@@ -145,4 +145,8 @@ public class ConditionObject implements IObject, Parcelable {
   public String getRepresentation() {
     return mName.getName() + ": " + mConditionValue.getRepresentation();
   }
+
+  public String getConditionNameName() {
+    return mName.getName();
+  }
 }

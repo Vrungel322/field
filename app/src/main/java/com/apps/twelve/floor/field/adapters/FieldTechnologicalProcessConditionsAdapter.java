@@ -89,7 +89,7 @@ public class FieldTechnologicalProcessConditionsAdapter
   private void updateHolder(ConditionViewHolder holder, int position) {
     FieldCropTechnologicalProcessConditionObject condition = mConditionList.get(position);
 
-    holder.mConditionCheckedText.setText(condition.getConditionName());
+    holder.mConditionCheckedText.setText(condition.getConditionRepresentation());
     holder.mConditionCheckedText.setChecked(condition.isFulfilled());
   }
 

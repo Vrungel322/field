@@ -90,6 +90,10 @@ public class FieldCropTechnologicalProcessConditionObject implements Parcelable 
     return mCondition.getConditionName();
   }
 
+  public String getConditionRepresentation() {
+    return mCondition.getConditionRepresentation();
+  }
+
   public Long getTechnologicalProcessId() {
     return mTechnologicalProcess.getId();
   }

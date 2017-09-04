@@ -84,6 +84,7 @@
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/checked_text_show_conditions"
+      android:background="@color/white"
       >
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_conditions"

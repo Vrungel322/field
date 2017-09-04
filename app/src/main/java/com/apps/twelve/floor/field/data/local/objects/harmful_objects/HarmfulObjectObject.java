@@ -21,6 +21,8 @@ public class HarmfulObjectObject implements IObject, Parcelable {
   };
 
   private long mId;
+  //private HarmfulObjectTypeObject mType;
+  //private HarmfulObjectObject mValue;
   private long mTypeId; // TODO: here must be an Object
   private long mValueId; // TODO: here must be an Object
 
