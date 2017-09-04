@@ -4266,7 +4266,7 @@
         "Id": 15
       }
     ],
-    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.conditions.PreviousCropValueEntity"
+    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.conditions.PreviousCropConditionValueEntity"
   },
   {
     "EntitiesArray": [
@@ -4445,7 +4445,7 @@
         "ValueTo": 14
       }
     ],
-    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity"
+    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.conditions.SpanConditionValueEntity"
   },
   {
     "EntitiesArray": [
@@ -4480,7 +4480,7 @@
         "SoilTypeId": 6
       }
     ],
-    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeValueEntity"
+    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeConditionValueEntity"
   },
   {
     "EntitiesArray": [
@@ -5190,7 +5190,7 @@
         "Id": 141
       }
     ],
-    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectValueEntity"
+    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectConditionValueEntity"
   },
   {
     "EntitiesArray": [
@@ -5275,7 +5275,7 @@
         "Id": 16
       }
     ],
-    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectPhaseValueEntity"
+    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectPhaseConditionValueEntity"
   },
   {
     "EntitiesArray": [
@@ -5300,7 +5300,7 @@
         "TillageDirectionId": 4
       }
     ],
-    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntity"
+    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionConditionValueEntity"
   },
   {
     "EntitiesArray": [
@@ -5340,7 +5340,7 @@
         "PhenologicalCharacteristicId": 8
       }
     ],
-    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicValueEntity"
+    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicConditionValueEntity"
   },
   {
     "EntitiesArray": [

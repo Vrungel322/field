@@ -8,15 +8,15 @@ import com.apps.twelve.floor.field.data.local.objects.TillageDirectionObject;
  * Created by yarrick on 06.07.17.
  */
 
-public class TillageDirectionValueObject extends BaseConditionValueObject {
-  public static final Creator<TillageDirectionValueObject> CREATOR =
-      new Creator<TillageDirectionValueObject>() {
-        @Override public TillageDirectionValueObject createFromParcel(Parcel in) {
-          return new TillageDirectionValueObject(in);
+public class TillageDirectionConditionValueObject extends BaseConditionValueObject {
+  public static final Creator<TillageDirectionConditionValueObject> CREATOR =
+      new Creator<TillageDirectionConditionValueObject>() {
+        @Override public TillageDirectionConditionValueObject createFromParcel(Parcel in) {
+          return new TillageDirectionConditionValueObject(in);
         }
 
-        @Override public TillageDirectionValueObject[] newArray(int size) {
-          return new TillageDirectionValueObject[size];
+        @Override public TillageDirectionConditionValueObject[] newArray(int size) {
+          return new TillageDirectionConditionValueObject[size];
         }
       };
 
@@ -24,14 +24,14 @@ public class TillageDirectionValueObject extends BaseConditionValueObject {
   @NonNull private ConditionTypeObject mType;
   @NonNull private TillageDirectionObject mTillageDirection;
 
-  public TillageDirectionValueObject(long id, @NonNull ConditionTypeObject type,
+  public TillageDirectionConditionValueObject(long id, @NonNull ConditionTypeObject type,
       @NonNull TillageDirectionObject tillageDirection) {
     this.mId = id;
     this.mType = type;
     this.mTillageDirection = tillageDirection;
   }
 
-  protected TillageDirectionValueObject(Parcel in) {
+  protected TillageDirectionConditionValueObject(Parcel in) {
     mId = in.readLong();
     mType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
     mTillageDirection = in.readParcelable(TillageDirectionObject.class.getClassLoader());

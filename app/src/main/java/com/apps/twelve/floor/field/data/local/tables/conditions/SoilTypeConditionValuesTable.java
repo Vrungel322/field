@@ -7,7 +7,7 @@ import com.pushtorefresh.storio.sqlite.queries.Query;
  * Created by yarrick on 07.07.17.
  */
 
-public class SoilTypeValuesTable {
+public class SoilTypeConditionValuesTable {
 
   @NonNull public static final String TABLE = "SoilTypeValues";
 
@@ -17,7 +17,7 @@ public class SoilTypeValuesTable {
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public SoilTypeValuesTable() {
+  public SoilTypeConditionValuesTable() {
     throw new IllegalStateException("No instances allowed");
   }
 

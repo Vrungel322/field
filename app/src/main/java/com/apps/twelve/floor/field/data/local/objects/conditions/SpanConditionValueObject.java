@@ -7,16 +7,16 @@ import android.support.annotation.NonNull;
  * Created by Yaroslav on 31.05.2017.
  */
 
-public class ConditionSpanValueObject extends BaseConditionValueObject {
+public class SpanConditionValueObject extends BaseConditionValueObject {
 
-  public static final Creator<ConditionSpanValueObject> CREATOR =
-      new Creator<ConditionSpanValueObject>() {
-        @Override public ConditionSpanValueObject createFromParcel(Parcel in) {
-          return new ConditionSpanValueObject(in);
+  public static final Creator<SpanConditionValueObject> CREATOR =
+      new Creator<SpanConditionValueObject>() {
+        @Override public SpanConditionValueObject createFromParcel(Parcel in) {
+          return new SpanConditionValueObject(in);
         }
 
-        @Override public ConditionSpanValueObject[] newArray(int size) {
-          return new ConditionSpanValueObject[size];
+        @Override public SpanConditionValueObject[] newArray(int size) {
+          return new SpanConditionValueObject[size];
         }
       };
 
@@ -25,7 +25,7 @@ public class ConditionSpanValueObject extends BaseConditionValueObject {
   private long mValueFrom;
   private long mValueTo;
 
-  public ConditionSpanValueObject(long id, @NonNull ConditionTypeObject type, long valueFrom,
+  public SpanConditionValueObject(long id, @NonNull ConditionTypeObject type, long valueFrom,
       long valueTo) {
     this.mId = id;
     this.mType = type;
@@ -33,7 +33,7 @@ public class ConditionSpanValueObject extends BaseConditionValueObject {
     this.mValueTo = valueTo;
   }
 
-  protected ConditionSpanValueObject(Parcel in) {
+  protected SpanConditionValueObject(Parcel in) {
     this.mId = in.readLong();
     this.mType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
     this.mValueFrom = in.readLong();

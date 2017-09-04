@@ -1,7 +1,7 @@
 package com.apps.twelve.floor.field.data.local.entities.conditions;
 
 import com.apps.twelve.floor.field.data.local.entities.IEntity;
-import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypeValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypeConditionValuesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
@@ -9,32 +9,34 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  * Created by yarrick on 07.07.17.
  */
 
-@StorIOSQLiteType(table = SoilTypeValuesTable.TABLE) public class SoilTypeValueEntity
+@StorIOSQLiteType(table = SoilTypeConditionValuesTable.TABLE)
+public class SoilTypeConditionValueEntity
     implements IEntity {
 
-  @StorIOSQLiteColumn(name = SoilTypeValuesTable.COLUMN_ID, key = true) Long id;
-  @StorIOSQLiteColumn(name = SoilTypeValuesTable.COLUMN_CONDITION_TYPE_ID) Long conditionTypeId;
-  @StorIOSQLiteColumn(name = SoilTypeValuesTable.COLUMN_SOIL_TYPE_ID) Long soilTypeId;
+  @StorIOSQLiteColumn(name = SoilTypeConditionValuesTable.COLUMN_ID, key = true) Long id;
+  @StorIOSQLiteColumn(name = SoilTypeConditionValuesTable.COLUMN_CONDITION_TYPE_ID) Long
+      conditionTypeId;
+  @StorIOSQLiteColumn(name = SoilTypeConditionValuesTable.COLUMN_SOIL_TYPE_ID) Long soilTypeId;
 
-  public SoilTypeValueEntity() {
+  public SoilTypeConditionValueEntity() {
   }
 
-  public SoilTypeValueEntity(Long id, Long conditionTypeId, Long soilTypeId) {
+  public SoilTypeConditionValueEntity(Long id, Long conditionTypeId, Long soilTypeId) {
     this.id = id;
     this.conditionTypeId = conditionTypeId;
     this.soilTypeId = soilTypeId;
   }
 
-  public static SoilTypeValueEntity newSoilTypeValueEntity(Long id, Long conditionTypeId,
+  public static SoilTypeConditionValueEntity newSoilTypeValueEntity(Long id, Long conditionTypeId,
       Long soilTypeId) {
-    return new SoilTypeValueEntity(id, conditionTypeId, soilTypeId);
+    return new SoilTypeConditionValueEntity(id, conditionTypeId, soilTypeId);
   }
 
   @Override public boolean equals(Object obj) {
     if (this == obj) return true;
     if (obj == null || getClass() != obj.getClass()) return false;
 
-    SoilTypeValueEntity that = (SoilTypeValueEntity) obj;
+    SoilTypeConditionValueEntity that = (SoilTypeConditionValueEntity) obj;
 
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
     if (conditionTypeId != null ? !conditionTypeId.equals(that.conditionTypeId)

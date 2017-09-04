@@ -9,14 +9,14 @@ import com.apps.twelve.floor.field.data.local.entities.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.TillageDirectionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectPhaseValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.PreviousCropValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectPhaseConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PreviousCropConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.SpanConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionConditionValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectPhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectTypeEntity;
@@ -144,21 +144,21 @@ public class DbFillHelper {
         mDbHelper.putConditionName((ConditionNameEntity) entity);
       } else if (entity instanceof ConditionTypeEntity) {
         mDbHelper.putConditionType((ConditionTypeEntity) entity);
-      } else if (entity instanceof PreviousCropValueEntity) {
-        mDbHelper.putPreviousCropValue((PreviousCropValueEntity) entity);
-      } else if (entity instanceof ConditionSpanValueEntity) {
-        mDbHelper.putConditionSpanValue((ConditionSpanValueEntity) entity);
-      } else if (entity instanceof SoilTypeValueEntity) {
-        mDbHelper.putSoilTypeValue((SoilTypeValueEntity) entity);
-      } else if (entity instanceof HarmfulObjectValueEntity) {
-        mDbHelper.putHarmfulObjectValue((HarmfulObjectValueEntity) entity);
-      } else if (entity instanceof HarmfulObjectPhaseValueEntity) {
-        mDbHelper.putHarmfulObjectPhaseValue((HarmfulObjectPhaseValueEntity) entity);
-      } else if (entity instanceof TillageDirectionValueEntity) {
-        mDbHelper.putTillageDirectionValue((TillageDirectionValueEntity) entity);
-      } else if (entity instanceof PhenologicalCharacteristicValueEntity) {
+      } else if (entity instanceof PreviousCropConditionValueEntity) {
+        mDbHelper.putPreviousCropValue((PreviousCropConditionValueEntity) entity);
+      } else if (entity instanceof SpanConditionValueEntity) {
+        mDbHelper.putConditionSpanValue((SpanConditionValueEntity) entity);
+      } else if (entity instanceof SoilTypeConditionValueEntity) {
+        mDbHelper.putSoilTypeValue((SoilTypeConditionValueEntity) entity);
+      } else if (entity instanceof HarmfulObjectConditionValueEntity) {
+        mDbHelper.putHarmfulObjectValue((HarmfulObjectConditionValueEntity) entity);
+      } else if (entity instanceof HarmfulObjectPhaseConditionValueEntity) {
+        mDbHelper.putHarmfulObjectPhaseValue((HarmfulObjectPhaseConditionValueEntity) entity);
+      } else if (entity instanceof TillageDirectionConditionValueEntity) {
+        mDbHelper.putTillageDirectionValue((TillageDirectionConditionValueEntity) entity);
+      } else if (entity instanceof PhenologicalCharacteristicConditionValueEntity) {
         mDbHelper.putPhenologicalCharacteristicValue(
-            (PhenologicalCharacteristicValueEntity) entity);
+            (PhenologicalCharacteristicConditionValueEntity) entity);
       } else if (entity instanceof ConditionEntity) {
         mDbHelper.putCondition((ConditionEntity) entity);
       } else if (entity instanceof TechnologicalProcessStateEntity) {

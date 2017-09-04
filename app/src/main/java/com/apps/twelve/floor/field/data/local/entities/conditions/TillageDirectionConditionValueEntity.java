@@ -1,7 +1,7 @@
 package com.apps.twelve.floor.field.data.local.entities.conditions;
 
 import com.apps.twelve.floor.field.data.local.entities.IEntity;
-import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionConditionValuesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
@@ -9,35 +9,36 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  * Created by yarrick on 06.07.17.
  */
 
-@StorIOSQLiteType(table = TillageDirectionValuesTable.TABLE)
-public class TillageDirectionValueEntity implements IEntity {
+@StorIOSQLiteType(table = TillageDirectionConditionValuesTable.TABLE)
+public class TillageDirectionConditionValueEntity implements IEntity {
 
-  @StorIOSQLiteColumn(name = TillageDirectionValuesTable.COLUMN_ID, key = true) Long id;
-  @StorIOSQLiteColumn(name = TillageDirectionValuesTable.COLUMN_CONDITION_TYPE_ID) Long
+  @StorIOSQLiteColumn(name = TillageDirectionConditionValuesTable.COLUMN_ID, key = true) Long id;
+  @StorIOSQLiteColumn(name = TillageDirectionConditionValuesTable.COLUMN_CONDITION_TYPE_ID) Long
       conditionTypeId;
-  @StorIOSQLiteColumn(name = TillageDirectionValuesTable.COLUMN_TILLAGE_DIRECTION_ID) Long
+  @StorIOSQLiteColumn(name = TillageDirectionConditionValuesTable.COLUMN_TILLAGE_DIRECTION_ID) Long
       tillageDirectionId;
 
-  public TillageDirectionValueEntity() {
+  public TillageDirectionConditionValueEntity() {
   }
 
-  public TillageDirectionValueEntity(Long id, Long conditionTypeId, Long tillageDirectionId) {
+  public TillageDirectionConditionValueEntity(Long id, Long conditionTypeId,
+      Long tillageDirectionId) {
     this.id = id;
     this.conditionTypeId = conditionTypeId;
     this.tillageDirectionId = tillageDirectionId;
   }
 
-  public static TillageDirectionValueEntity newTillageDirectionValueEntity(Long id,
+  public static TillageDirectionConditionValueEntity newTillageDirectionValueEntity(Long id,
       Long conditionTypeId, Long tillageDirectionId) {
     if (id == 0) id = null;
-    return new TillageDirectionValueEntity(id, conditionTypeId, tillageDirectionId);
+    return new TillageDirectionConditionValueEntity(id, conditionTypeId, tillageDirectionId);
   }
 
   @Override public boolean equals(Object obj) {
     if (this == obj) return true;
     if (obj == null || getClass() != obj.getClass()) return false;
 
-    TillageDirectionValueEntity that = (TillageDirectionValueEntity) obj;
+    TillageDirectionConditionValueEntity that = (TillageDirectionConditionValueEntity) obj;
 
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
     if (conditionTypeId != conditionTypeId ? !conditionTypeId.equals(that.conditionTypeId)

@@ -7,7 +7,7 @@ import com.pushtorefresh.storio.sqlite.queries.Query;
  * Created by yarrick on 19.07.17.
  */
 
-public class HarmfulObjectValuesTable {
+public class HarmfulObjectConditionValuesTable {
 
   @NonNull public static final String TABLE = "HarmfulObjectValues";
 
@@ -17,7 +17,7 @@ public class HarmfulObjectValuesTable {
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public HarmfulObjectValuesTable() {
+  public HarmfulObjectConditionValuesTable() {
     throw new IllegalStateException("No instances allowed");
   }
 

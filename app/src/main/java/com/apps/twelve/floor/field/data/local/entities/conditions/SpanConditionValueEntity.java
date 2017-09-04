@@ -1,7 +1,7 @@
 package com.apps.twelve.floor.field.data.local.entities.conditions;
 
 import com.apps.twelve.floor.field.data.local.entities.IEntity;
-import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.SpanConditionValuesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
@@ -9,36 +9,36 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  * Created by Yaroslav on 02.06.2017.
  */
 
-@StorIOSQLiteType(table = ConditionSpanValuesTable.TABLE) public class ConditionSpanValueEntity
+@StorIOSQLiteType(table = SpanConditionValuesTable.TABLE) public class SpanConditionValueEntity
     implements IEntity {
 
-  @StorIOSQLiteColumn(name = ConditionSpanValuesTable.COLUMN_ID, key = true) Long id;
-  @StorIOSQLiteColumn(name = ConditionSpanValuesTable.COLUMN_CONDITION_TYPE_ID) Long
+  @StorIOSQLiteColumn(name = SpanConditionValuesTable.COLUMN_ID, key = true) Long id;
+  @StorIOSQLiteColumn(name = SpanConditionValuesTable.COLUMN_CONDITION_TYPE_ID) Long
       conditionTypeId;
-  @StorIOSQLiteColumn(name = ConditionSpanValuesTable.COLUMN_VALUE_FROM) Long valueFrom;
-  @StorIOSQLiteColumn(name = ConditionSpanValuesTable.COLUMN_VALUE_TO) Long valueTo;
+  @StorIOSQLiteColumn(name = SpanConditionValuesTable.COLUMN_VALUE_FROM) Long valueFrom;
+  @StorIOSQLiteColumn(name = SpanConditionValuesTable.COLUMN_VALUE_TO) Long valueTo;
 
-  public ConditionSpanValueEntity() {
+  public SpanConditionValueEntity() {
   }
 
-  public ConditionSpanValueEntity(Long id, Long conditionTypeId, Long valueFrom, Long valueTo) {
+  public SpanConditionValueEntity(Long id, Long conditionTypeId, Long valueFrom, Long valueTo) {
     this.id = id;
     this.conditionTypeId = conditionTypeId;
     this.valueFrom = valueFrom;
     this.valueTo = valueTo;
   }
 
-  public static ConditionSpanValueEntity newConditionSpanValueEntity(Long id, Long conditionTypeId,
+  public static SpanConditionValueEntity newConditionSpanValueEntity(Long id, Long conditionTypeId,
       Long valueFrom, Long valueTo) {
     if (id == 0) id = null;
-    return new ConditionSpanValueEntity(id, conditionTypeId, valueFrom, valueTo);
+    return new SpanConditionValueEntity(id, conditionTypeId, valueFrom, valueTo);
   }
 
   @Override public boolean equals(Object obj) {
     if (this == obj) return true;
     if (obj == null || getClass() != obj.getClass()) return false;
 
-    ConditionSpanValueEntity that = (ConditionSpanValueEntity) obj;
+    SpanConditionValueEntity that = (SpanConditionValueEntity) obj;
 
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
     if (conditionTypeId != null ? !conditionTypeId.equals(that.conditionTypeId)

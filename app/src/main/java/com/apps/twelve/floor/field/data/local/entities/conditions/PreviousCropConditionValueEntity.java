@@ -1,39 +1,42 @@
 package com.apps.twelve.floor.field.data.local.entities.conditions;
 
 import com.apps.twelve.floor.field.data.local.entities.IEntity;
-import com.apps.twelve.floor.field.data.local.tables.conditions.PreviousCropValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.PreviousCropConditionValuesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
 /**
  * Created by yarrick on 22.07.17.
  */
-@StorIOSQLiteType(table = PreviousCropValuesTable.TABLE) public class PreviousCropValueEntity
+@StorIOSQLiteType(table = PreviousCropConditionValuesTable.TABLE)
+public class PreviousCropConditionValueEntity
     implements IEntity {
 
-  @StorIOSQLiteColumn(name = PreviousCropValuesTable.COLUMN_ID, key = true) Long id;
-  @StorIOSQLiteColumn(name = PreviousCropValuesTable.COLUMN_CONDITION_TYPE_ID) Long conditionTypeId;
-  @StorIOSQLiteColumn(name = PreviousCropValuesTable.COLUMN_CROP_ID) Long cropId;
+  @StorIOSQLiteColumn(name = PreviousCropConditionValuesTable.COLUMN_ID, key = true) Long id;
+  @StorIOSQLiteColumn(name = PreviousCropConditionValuesTable.COLUMN_CONDITION_TYPE_ID) Long
+      conditionTypeId;
+  @StorIOSQLiteColumn(name = PreviousCropConditionValuesTable.COLUMN_CROP_ID) Long cropId;
 
-  public PreviousCropValueEntity() {
+  public PreviousCropConditionValueEntity() {
   }
 
-  public PreviousCropValueEntity(Long id, Long conditionTypeId, Long cropId) {
+  public PreviousCropConditionValueEntity(Long id, Long conditionTypeId, Long cropId) {
     this.id = id;
     this.conditionTypeId = conditionTypeId;
     this.cropId = cropId;
   }
 
-  public static PreviousCropValueEntity newPreviousCropValueEntity(Long id, Long conditionTypeId,
+  public static PreviousCropConditionValueEntity newPreviousCropValueEntity(Long id,
+      Long conditionTypeId,
       Long cropId) {
-    return new PreviousCropValueEntity(id, conditionTypeId, cropId);
+    return new PreviousCropConditionValueEntity(id, conditionTypeId, cropId);
   }
 
   @Override public boolean equals(Object obj) {
     if (this == obj) return true;
     if (obj == null || getClass() != obj.getClass()) return false;
 
-    PreviousCropValueEntity that = (PreviousCropValueEntity) obj;
+    PreviousCropConditionValueEntity that = (PreviousCropConditionValueEntity) obj;
 
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
     if (conditionTypeId != null ? !conditionTypeId.equals(that.conditionTypeId)

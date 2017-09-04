@@ -10,14 +10,14 @@ import com.apps.twelve.floor.field.data.local.entities.SoilTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.TillageDirectionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectPhaseValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.PreviousCropValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectPhaseConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PreviousCropConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.SpanConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionConditionValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectPhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectTypeEntity;
@@ -53,15 +53,15 @@ import com.apps.twelve.floor.field.data.local.tables.PhenologicalCharacteristics
 import com.apps.twelve.floor.field.data.local.tables.SoilTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.TillageDirectionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectPhaseValuesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectValuesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicValuesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.PreviousCropValuesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypeValuesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectConditionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectPhaseConditionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicConditionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.PreviousCropConditionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypeConditionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.SpanConditionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionConditionValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectsTable;
@@ -133,21 +133,21 @@ public class DbHelper {
   ///////////////////////////////////////////////////////////////////////////
   // Condition span value
   ///////////////////////////////////////////////////////////////////////////
-  public List<ConditionSpanValueEntity> getConditionSpanValueEntity() {
+  public List<SpanConditionValueEntity> getConditionSpanValueEntity() {
     return mStorIOSQLite.get()
-        .listOfObjects(ConditionSpanValueEntity.class)
-        .withQuery(ConditionSpanValuesTable.QUERY_ALL)
+        .listOfObjects(SpanConditionValueEntity.class)
+        .withQuery(SpanConditionValuesTable.QUERY_ALL)
         .prepare()
         .executeAsBlocking();
   }
 
-  public PutResult putConditionSpanValue(ConditionSpanValueEntity conditionSpanValueEntity) {
-    return mStorIOSQLite.put().object(conditionSpanValueEntity).prepare().executeAsBlocking();
+  public PutResult putConditionSpanValue(SpanConditionValueEntity spanConditionValueEntity) {
+    return mStorIOSQLite.put().object(spanConditionValueEntity).prepare().executeAsBlocking();
   }
 
   public DeleteResult deleteConditionSpanValueEntity(
-      ConditionSpanValueEntity conditionSpanValueEntity) {
-    return mStorIOSQLite.delete().object(conditionSpanValueEntity).prepare().executeAsBlocking();
+      SpanConditionValueEntity spanConditionValueEntity) {
+    return mStorIOSQLite.delete().object(spanConditionValueEntity).prepare().executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -173,27 +173,25 @@ public class DbHelper {
   ///////////////////////////////////////////////////////////////////////////
   // Phenological characteristic value
   ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<PhenologicalCharacteristicValueEntity>> getAllPhenologicalCharacteristicValues() {
+  public Observable<List<PhenologicalCharacteristicConditionValueEntity>> getAllPhenologicalCharacteristicValues() {
     return mStorIOSQLite.get()
-        .listOfObjects(PhenologicalCharacteristicValueEntity.class)
-        .withQuery(PhenologicalCharacteristicValuesTable.QUERY_ALL)
+        .listOfObjects(PhenologicalCharacteristicConditionValueEntity.class)
+        .withQuery(PhenologicalCharacteristicConditionValuesTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
   public PutResult putPhenologicalCharacteristicValue(
-      PhenologicalCharacteristicValueEntity phenologicalCharacteristicValueEntity) {
-    return mStorIOSQLite.put()
-        .object(phenologicalCharacteristicValueEntity)
+      PhenologicalCharacteristicConditionValueEntity phenologicalCharacteristicConditionValueEntity) {
+    return mStorIOSQLite.put().object(phenologicalCharacteristicConditionValueEntity)
         .prepare()
         .executeAsBlocking();
   }
 
   public DeleteResult deletePhenologicalCharacteristicValue(
-      PhenologicalCharacteristicValueEntity phenologicalCharacteristicValueEntity) {
-    return mStorIOSQLite.delete()
-        .object(phenologicalCharacteristicValueEntity)
+      PhenologicalCharacteristicConditionValueEntity phenologicalCharacteristicConditionValueEntity) {
+    return mStorIOSQLite.delete().object(phenologicalCharacteristicConditionValueEntity)
         .prepare()
         .executeAsBlocking();
   }
@@ -201,85 +199,106 @@ public class DbHelper {
   ///////////////////////////////////////////////////////////////////////////
   // Soil type value
   ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<SoilTypeValueEntity>> getAllSoilTypeValues() {
+  public Observable<List<SoilTypeConditionValueEntity>> getAllSoilTypeValues() {
     return mStorIOSQLite.get()
-        .listOfObjects(SoilTypeValueEntity.class)
-        .withQuery(SoilTypeValuesTable.QUERY_ALL)
+        .listOfObjects(SoilTypeConditionValueEntity.class)
+        .withQuery(SoilTypeConditionValuesTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
-  public PutResult putSoilTypeValue(SoilTypeValueEntity soilTypeValueEntity) {
-    return mStorIOSQLite.put().object(soilTypeValueEntity).prepare().executeAsBlocking();
+  public PutResult putSoilTypeValue(SoilTypeConditionValueEntity soilTypeConditionValueEntity) {
+    return mStorIOSQLite.put().object(soilTypeConditionValueEntity).prepare().executeAsBlocking();
   }
 
-  public DeleteResult deleteSoilTypeValue(SoilTypeValueEntity soilTypeValueEntity) {
-    return mStorIOSQLite.delete().object(soilTypeValueEntity).prepare().executeAsBlocking();
+  public DeleteResult deleteSoilTypeValue(
+      SoilTypeConditionValueEntity soilTypeConditionValueEntity) {
+    return mStorIOSQLite.delete()
+        .object(soilTypeConditionValueEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
   // Tillage direction value
   ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<TillageDirectionValueEntity>> getAllTillageDirectionValues() {
+  public Observable<List<TillageDirectionConditionValueEntity>> getAllTillageDirectionValues() {
     return mStorIOSQLite.get()
-        .listOfObjects(TillageDirectionValueEntity.class)
-        .withQuery(TillageDirectionValuesTable.QUERY_ALL)
+        .listOfObjects(TillageDirectionConditionValueEntity.class)
+        .withQuery(TillageDirectionConditionValuesTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
   public PutResult putTillageDirectionValue(
-      TillageDirectionValueEntity tillageDirectionValueEntity) {
-    return mStorIOSQLite.put().object(tillageDirectionValueEntity).prepare().executeAsBlocking();
+      TillageDirectionConditionValueEntity tillageDirectionConditionValueEntity) {
+    return mStorIOSQLite.put()
+        .object(tillageDirectionConditionValueEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 
   public DeleteResult deleteTillageDirectionValue(
-      TillageDirectionValueEntity tillageDirectionValueEntity) {
-    return mStorIOSQLite.delete().object(tillageDirectionValueEntity).prepare().executeAsBlocking();
+      TillageDirectionConditionValueEntity tillageDirectionConditionValueEntity) {
+    return mStorIOSQLite.delete()
+        .object(tillageDirectionConditionValueEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
   // Harmful object value
   ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<HarmfulObjectValueEntity>> getAllHarmfulObjectValues() {
+  public Observable<List<HarmfulObjectConditionValueEntity>> getAllHarmfulObjectValues() {
     return mStorIOSQLite.get()
-        .listOfObjects(HarmfulObjectValueEntity.class)
-        .withQuery(HarmfulObjectValuesTable.QUERY_ALL)
+        .listOfObjects(HarmfulObjectConditionValueEntity.class)
+        .withQuery(HarmfulObjectConditionValuesTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
-  public PutResult putHarmfulObjectValue(HarmfulObjectValueEntity harmfulObjectValueEntity) {
-    return mStorIOSQLite.put().object(harmfulObjectValueEntity).prepare().executeAsBlocking();
+  public PutResult putHarmfulObjectValue(
+      HarmfulObjectConditionValueEntity harmfulObjectConditionValueEntity) {
+    return mStorIOSQLite.put()
+        .object(harmfulObjectConditionValueEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 
-  public DeleteResult deleteHarmfulObjectValue(HarmfulObjectValueEntity harmfulObjectValueEntity) {
-    return mStorIOSQLite.delete().object(harmfulObjectValueEntity).prepare().executeAsBlocking();
+  public DeleteResult deleteHarmfulObjectValue(
+      HarmfulObjectConditionValueEntity harmfulObjectConditionValueEntity) {
+    return mStorIOSQLite.delete()
+        .object(harmfulObjectConditionValueEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 
   ///////////////////////////////////////////////////////////////////////////
   // Harmful object phase value
   ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<HarmfulObjectPhaseValueEntity>> getAllHarmfulObjectPhaseValues() {
+  public Observable<List<HarmfulObjectPhaseConditionValueEntity>> getAllHarmfulObjectPhaseValues() {
     return mStorIOSQLite.get()
-        .listOfObjects(HarmfulObjectPhaseValueEntity.class)
-        .withQuery(HarmfulObjectPhaseValuesTable.QUERY_ALL)
+        .listOfObjects(HarmfulObjectPhaseConditionValueEntity.class)
+        .withQuery(HarmfulObjectPhaseConditionValuesTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
   public PutResult putHarmfulObjectPhaseValue(
-      HarmfulObjectPhaseValueEntity harmfulObjectPhaseValueEntity) {
-    return mStorIOSQLite.put().object(harmfulObjectPhaseValueEntity).prepare().executeAsBlocking();
+      HarmfulObjectPhaseConditionValueEntity harmfulObjectPhaseConditionValueEntity) {
+    return mStorIOSQLite.put()
+        .object(harmfulObjectPhaseConditionValueEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 
   public DeleteResult deleteHarmfulObjectPhaseValue(
-      HarmfulObjectPhaseValueEntity harmfulObjectPhaseValueEntity) {
-    return mStorIOSQLite.delete().object(harmfulObjectPhaseValueEntity)
+      HarmfulObjectPhaseConditionValueEntity harmfulObjectPhaseConditionValueEntity) {
+    return mStorIOSQLite.delete().object(harmfulObjectPhaseConditionValueEntity)
         .prepare()
         .executeAsBlocking();
   }
@@ -287,21 +306,26 @@ public class DbHelper {
   ///////////////////////////////////////////////////////////////////////////
   // Previous crop value
   ///////////////////////////////////////////////////////////////////////////
-  public Observable<List<PreviousCropValueEntity>> getAllPreviousCropValues() {
+  public Observable<List<PreviousCropConditionValueEntity>> getAllPreviousCropValues() {
     return mStorIOSQLite.get()
-        .listOfObjects(PreviousCropValueEntity.class)
-        .withQuery(PreviousCropValuesTable.QUERY_ALL)
+        .listOfObjects(PreviousCropConditionValueEntity.class)
+        .withQuery(PreviousCropConditionValuesTable.QUERY_ALL)
         .prepare()
         .asRxObservable()
         .take(1);
   }
 
-  public PutResult putPreviousCropValue(PreviousCropValueEntity previousCropValueEntity) {
-    return mStorIOSQLite.put().object(previousCropValueEntity).prepare().executeAsBlocking();
+  public PutResult putPreviousCropValue(
+      PreviousCropConditionValueEntity previousCropConditionValueEntity) {
+    return mStorIOSQLite.put()
+        .object(previousCropConditionValueEntity)
+        .prepare()
+        .executeAsBlocking();
   }
 
-  public DeleteResult deletePreviousCropValue(PreviousCropValueEntity previousCropValueEntity) {
-    return mStorIOSQLite.delete().object(previousCropValueEntity)
+  public DeleteResult deletePreviousCropValue(
+      PreviousCropConditionValueEntity previousCropConditionValueEntity) {
+    return mStorIOSQLite.delete().object(previousCropConditionValueEntity)
         .prepare().executeAsBlocking();
   }
 

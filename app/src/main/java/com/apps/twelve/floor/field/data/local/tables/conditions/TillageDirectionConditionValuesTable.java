@@ -4,19 +4,20 @@ import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;
 
 /**
- * Created by yarrick on 22.07.17.
+ * Created by yarrick on 06.07.17.
  */
-public class PreviousCropValuesTable {
 
-  @NonNull public static final String TABLE = "PreviousCropValues";
+public class TillageDirectionConditionValuesTable {
+
+  @NonNull public static final String TABLE = "TillageDirectionValues";
 
   @NonNull public static final String COLUMN_ID = "id";
   @NonNull public static final String COLUMN_CONDITION_TYPE_ID = "condition_type_id";
-  @NonNull public static final String COLUMN_CROP_ID = "crop_id";
+  @NonNull public static final String COLUMN_TILLAGE_DIRECTION_ID = "tillage_direction_id";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public PreviousCropValuesTable() {
+  public TillageDirectionConditionValuesTable() {
     throw new IllegalStateException("No instances allowed");
   }
 
@@ -28,7 +29,7 @@ public class PreviousCropValuesTable {
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_CONDITION_TYPE_ID
         + " INTEGER, "
-        + COLUMN_CROP_ID
+        + COLUMN_TILLAGE_DIRECTION_ID
         + " INTEGER "
         + ");";
   }

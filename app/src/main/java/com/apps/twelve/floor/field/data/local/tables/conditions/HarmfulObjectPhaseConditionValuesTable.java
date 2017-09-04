@@ -4,21 +4,20 @@ import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.sqlite.queries.Query;
 
 /**
- * Created by Yaroslav on 30.05.2017.
+ * Created by yarrick on 19.07.17.
  */
 
-public class ConditionSpanValuesTable {
+public class HarmfulObjectPhaseConditionValuesTable {
 
-  @NonNull public static final String TABLE = "ConditionSpanValues";
+  @NonNull public static final String TABLE = "HarmfulObjectPhaseValues";
 
   @NonNull public static final String COLUMN_ID = "id";
   @NonNull public static final String COLUMN_CONDITION_TYPE_ID = "condition_type_id";
-  @NonNull public static final String COLUMN_VALUE_FROM = "value_from";
-  @NonNull public static final String COLUMN_VALUE_TO = "value_to";
+  @NonNull public static final String COLUMN_HARMFUL_OBJECT_PHASE_ID = "harmful_object_phase_id";
 
   @NonNull public static final Query QUERY_ALL = Query.builder().table(TABLE).build();
 
-  public ConditionSpanValuesTable() {
+  public HarmfulObjectPhaseConditionValuesTable() {
     throw new IllegalStateException("No instances allowed");
   }
 
@@ -29,11 +28,9 @@ public class ConditionSpanValuesTable {
         + COLUMN_ID
         + " INTEGER NOT NULL PRIMARY KEY, "
         + COLUMN_CONDITION_TYPE_ID
-        + " TEXT NULL, "
-        + COLUMN_VALUE_FROM
-        + " TEXT NULL, "
-        + COLUMN_VALUE_TO
-        + " TEXT NULL "
+        + " INTEGER, "
+        + COLUMN_HARMFUL_OBJECT_PHASE_ID
+        + " INTEGER "
         + ");";
   }
 }

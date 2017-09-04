@@ -25,22 +25,22 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntit
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionTypeEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectPhaseValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectPhaseValueEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectValueEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicValueEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.conditions.PreviousCropValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.PreviousCropValueEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeValueEntitySQLiteTypeMapping;
-import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionValueEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectConditionValueEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectPhaseConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.HarmfulObjectPhaseConditionValueEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PhenologicalCharacteristicConditionValueEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PreviousCropConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.PreviousCropConditionValueEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeConditionValueEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.SpanConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.SpanConditionValueEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionConditionValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectPhaseEntity;
@@ -130,28 +130,29 @@ import dagger.Provides;
         .addTypeMapping(ConditionEntity.class, new ConditionEntitySQLiteTypeMapping())
         // ConditionNames mapping
         .addTypeMapping(ConditionNameEntity.class, new ConditionNameEntitySQLiteTypeMapping())
-        // ConditionSpanValueEntity mapping
-        .addTypeMapping(ConditionSpanValueEntity.class,
-            new ConditionSpanValueEntitySQLiteTypeMapping())
+        // SpanConditionValueEntity mapping
+        .addTypeMapping(SpanConditionValueEntity.class,
+            new SpanConditionValueEntitySQLiteTypeMapping())
         // ConditionTypeEntity mapping
         .addTypeMapping(ConditionTypeEntity.class, new ConditionTypeEntitySQLiteTypeMapping())
-        // HarmfulObjectPhaseValueEntity mapping
-        .addTypeMapping(HarmfulObjectPhaseValueEntity.class,
-            new HarmfulObjectPhaseValueEntitySQLiteTypeMapping())
-        // HarmfulObjectValueEntity mapping
-        .addTypeMapping(HarmfulObjectValueEntity.class,
-            new HarmfulObjectValueEntitySQLiteTypeMapping())
-        // PhenologicalCharacteristicValueEntity mapping
-        .addTypeMapping(PhenologicalCharacteristicValueEntity.class,
-            new PhenologicalCharacteristicValueEntitySQLiteTypeMapping())
-        // SoilTypeValueEntity mapping
-        .addTypeMapping(SoilTypeValueEntity.class, new SoilTypeValueEntitySQLiteTypeMapping())
-        // TillageDirectionValueEntity mapping
-        .addTypeMapping(TillageDirectionValueEntity.class,
-            new TillageDirectionValueEntitySQLiteTypeMapping())
-        // PreviousCropValueEntity mapping
-        .addTypeMapping(PreviousCropValueEntity.class,
-            new PreviousCropValueEntitySQLiteTypeMapping())
+        // HarmfulObjectPhaseConditionValueEntity mapping
+        .addTypeMapping(HarmfulObjectPhaseConditionValueEntity.class,
+            new HarmfulObjectPhaseConditionValueEntitySQLiteTypeMapping())
+        // HarmfulObjectConditionValueEntity mapping
+        .addTypeMapping(HarmfulObjectConditionValueEntity.class,
+            new HarmfulObjectConditionValueEntitySQLiteTypeMapping())
+        // PhenologicalCharacteristicConditionValueEntity mapping
+        .addTypeMapping(PhenologicalCharacteristicConditionValueEntity.class,
+            new PhenologicalCharacteristicConditionValueEntitySQLiteTypeMapping())
+        // SoilTypeConditionValueEntity mapping
+        .addTypeMapping(SoilTypeConditionValueEntity.class,
+            new SoilTypeConditionValueEntitySQLiteTypeMapping())
+        // TillageDirectionConditionValueEntity mapping
+        .addTypeMapping(TillageDirectionConditionValueEntity.class,
+            new TillageDirectionConditionValueEntitySQLiteTypeMapping())
+        // PreviousCropConditionValueEntity mapping
+        .addTypeMapping(PreviousCropConditionValueEntity.class,
+            new PreviousCropConditionValueEntitySQLiteTypeMapping())
 
         // HARMFUL OBJECTS
         // HarmfulObjectEntity mapping

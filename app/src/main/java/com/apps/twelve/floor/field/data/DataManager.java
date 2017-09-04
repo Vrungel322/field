@@ -5,7 +5,7 @@ import com.apps.twelve.floor.field.data.local.DbCombinedFieldRelationsHelper;
 import com.apps.twelve.floor.field.data.local.DbHelper;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionNameEntity;
-import com.apps.twelve.floor.field.data.local.entities.conditions.ConditionSpanValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.conditions.SpanConditionValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.WeedEntity;
 import com.apps.twelve.floor.field.data.local.entities.process_time.ProcessPeriodEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessConditionEntity;
@@ -19,14 +19,14 @@ import com.apps.twelve.floor.field.data.local.mappers.SoilTypeObjectToSoilTypeEn
 import com.apps.twelve.floor.field.data.local.mappers.TillageDirectionObjectToTillageDirectionEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.conditions.ConditionNameObjectToConditionNameEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.conditions.ConditionObjectToConditionEntityMapper;
-import com.apps.twelve.floor.field.data.local.mappers.conditions.ConditionSpanValueObjectToConditionSpanValueEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.conditions.ConditionTypeObjectToConditionTypeEntityMapper;
-import com.apps.twelve.floor.field.data.local.mappers.conditions.HarmfulObjectPhaseValueObjectToHarmfulObjectPhaseValueEntityMapper;
-import com.apps.twelve.floor.field.data.local.mappers.conditions.HarmfulObjectValueObjectToHarmfulObjectValueEntityMapper;
-import com.apps.twelve.floor.field.data.local.mappers.conditions.PhenologicalCharacteristicValueObjectToPhenologicalCharacteristicValueEntityMapper;
-import com.apps.twelve.floor.field.data.local.mappers.conditions.PreviousCropValueObjectToPreviousCropValueEntityMapper;
-import com.apps.twelve.floor.field.data.local.mappers.conditions.SoilTypeValueObjectToSoilTypeValueEntityMapper;
-import com.apps.twelve.floor.field.data.local.mappers.conditions.TillageDirectionValueObjectToTillageDirectionValueEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.conditions.HarmfulObjectConditionValueObjectToHarmfulObjectConditionValueEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.conditions.HarmfulObjectPhaseConditionValueObjectToHarmfulObjectPhaseConditionValueEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.conditions.PhenologicalCharacteristicConditionValueObjectToPhenologicalCharacteristicConditionValueEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.conditions.PreviousCropConditionValueObjectToPreviousCropConditionValueEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.conditions.SoilTypeConditionValueObjectToSoilTypeConditionValueEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.conditions.SpanConditionConditionValueObjectToSpanConditionConditionValueEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.conditions.TillageDirectionConditionValueObjectToTillageDirectionConditionValueEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectObjectToHarmfulObjectEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectPhaseObjectToHarmfulObjectPhaseEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectTypeObjectToHarmfulObjectTypeEntityMapper;
@@ -61,14 +61,14 @@ import com.apps.twelve.floor.field.data.local.objects.SoilTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.TillageDirectionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionNameObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectPhaseValueObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectValueObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicValueObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.PreviousCropValueObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeValueObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectConditionValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectPhaseConditionValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.PhenologicalCharacteristicConditionValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.PreviousCropConditionValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeConditionValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.SpanConditionValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionConditionValueObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectPhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectTypeObject;
@@ -189,28 +189,30 @@ public class DataManager {
         new ConditionTypeObjectToConditionTypeEntityMapper().transform(conditionTypeObject));
   }
 
-  public PutResult putSoilTypeValue(SoilTypeValueObject soilTypeValueObject) {
+  public PutResult putSoilTypeValue(SoilTypeConditionValueObject soilTypeConditionValueObject) {
     return mDbHelper.putSoilTypeValue(
-        new SoilTypeValueObjectToSoilTypeValueEntityMapper().transform(soilTypeValueObject));
+        new SoilTypeConditionValueObjectToSoilTypeConditionValueEntityMapper().transform(
+            soilTypeConditionValueObject));
   }
 
-  public PutResult putHarmfulObjectValue(HarmfulObjectValueObject harmfulObjectValue) {
+  public PutResult putHarmfulObjectValue(HarmfulObjectConditionValueObject harmfulObjectValue) {
     return mDbHelper.putHarmfulObjectValue(
-        new HarmfulObjectValueObjectToHarmfulObjectValueEntityMapper().transform(
+        new HarmfulObjectConditionValueObjectToHarmfulObjectConditionValueEntityMapper().transform(
             harmfulObjectValue));
   }
 
   public PutResult putHarmfulObjectPhaseValue(
-      HarmfulObjectPhaseValueObject harmfulObjectPhaseValue) {
+      HarmfulObjectPhaseConditionValueObject harmfulObjectPhaseValue) {
     return mDbHelper.putHarmfulObjectPhaseValue(
-        new HarmfulObjectPhaseValueObjectToHarmfulObjectPhaseValueEntityMapper().transform(
+        new HarmfulObjectPhaseConditionValueObjectToHarmfulObjectPhaseConditionValueEntityMapper().transform(
             harmfulObjectPhaseValue));
   }
 
-  public PutResult putPreviousCropValue(PreviousCropValueObject previousCropValueObject) {
+  public PutResult putPreviousCropValue(
+      PreviousCropConditionValueObject previousCropConditionValueObject) {
     return mDbHelper.putPreviousCropValue(
-        new PreviousCropValueObjectToPreviousCropValueEntityMapper().transform(
-            previousCropValueObject));
+        new PreviousCropConditionValueObjectToPreviousCropConditionValueEntityMapper().transform(
+            previousCropConditionValueObject));
   }
 
   public PutResult putSoilType(SoilTypeObject soilTypeObject) {
@@ -278,10 +280,10 @@ public class DataManager {
   }
 
   public PutResult putTillageDirectionValue(
-      TillageDirectionValueObject tillageDirectionValueObject) {
+      TillageDirectionConditionValueObject tillageDirectionConditionValueObject) {
     return mDbHelper.putTillageDirectionValue(
-        new TillageDirectionValueObjectToTillageDirectionValueEntityMapper().transform(
-            tillageDirectionValueObject));
+        new TillageDirectionConditionValueObjectToTillageDirectionConditionValueEntityMapper().transform(
+            tillageDirectionConditionValueObject));
   }
 
   public PutResult putWeedNutritionType(WeedNutritionTypeObject weedNutritionTypeObject) {
@@ -316,10 +318,10 @@ public class DataManager {
   }
 
   public PutResult putPhenologicalCharacteristicValue(
-      PhenologicalCharacteristicValueObject phenologicalCharacteristicValueObject) {
+      PhenologicalCharacteristicConditionValueObject phenologicalCharacteristicConditionValueObject) {
     return mDbHelper.putPhenologicalCharacteristicValue(
-        new PhenologicalCharacteristicValueObjectToPhenologicalCharacteristicValueEntityMapper().transform(
-            phenologicalCharacteristicValueObject));
+        new PhenologicalCharacteristicConditionValueObjectToPhenologicalCharacteristicConditionValueEntityMapper()
+            .transform(phenologicalCharacteristicConditionValueObject));
   }
 
   public PutResult putTechnologicalSolutionType(
@@ -460,13 +462,13 @@ public class DataManager {
             technologicalProcessCondition));
   }
 
-  public PutResult putSpanValue(ConditionSpanValueObject conditionSpanValueObject) {
+  public PutResult putSpanValue(SpanConditionValueObject spanConditionValueObject) {
     return mDbHelper.putConditionSpanValue(
-        new ConditionSpanValueObjectToConditionSpanValueEntityMapper().transform(
-            conditionSpanValueObject));
+        new SpanConditionConditionValueObjectToSpanConditionConditionValueEntityMapper().transform(
+            spanConditionValueObject));
   }
 
-  public List<ConditionSpanValueEntity> getConditionSpanValueEntitiesAsList() {
+  public List<SpanConditionValueEntity> getConditionSpanValueEntitiesAsList() {
     return mDbHelper.getConditionSpanValueEntity();
   }
 

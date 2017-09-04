@@ -7,11 +7,11 @@ import com.apps.twelve.floor.field.data.local.objects.TillageDirectionObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.BaseConditionValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionNameObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionSpanValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.ConditionTypeObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectPhaseValueObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectValueObject;
-import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectConditionValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.HarmfulObjectPhaseConditionValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.SpanConditionValueObject;
+import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionConditionValueObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectPhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectTypeObject;
@@ -248,26 +248,27 @@ public final class TestUtils {
     conditions = new ArrayList<>();
 
     // HO phases
-    HarmfulObjectPhaseValueObject hoPhase =
-        new HarmfulObjectPhaseValueObject(1, conditionTypes.get(0),
+    HarmfulObjectPhaseConditionValueObject hoPhase =
+        new HarmfulObjectPhaseConditionValueObject(1, conditionTypes.get(0),
             new HarmfulObjectPhaseObject(1, "ТЕСТ: Белая ниточка"));
 
     // HO values
-    HarmfulObjectValueObject ho = new HarmfulObjectValueObject(1, conditionTypes.get(2),
+    HarmfulObjectConditionValueObject ho =
+        new HarmfulObjectConditionValueObject(1, conditionTypes.get(2),
         new HarmfulObjectObject(1, harmfulObjectTypes.get(0).getId(), weeds.get(0).getId()));
 
     // Span values
-    ConditionSpanValueObject span30_40 =
-        new ConditionSpanValueObject(1, conditionTypes.get(1), 30, 40);
-    ConditionSpanValueObject span8_10 =
-        new ConditionSpanValueObject(2, conditionTypes.get(1), 8, 10);
-    ConditionSpanValueObject span30_50 =
-        new ConditionSpanValueObject(3, conditionTypes.get(1), 30, 50);
-    ConditionSpanValueObject span2_4 = new ConditionSpanValueObject(4, conditionTypes.get(1), 2, 4);
+    SpanConditionValueObject span30_40 =
+        new SpanConditionValueObject(1, conditionTypes.get(1), 30, 40);
+    SpanConditionValueObject span8_10 =
+        new SpanConditionValueObject(2, conditionTypes.get(1), 8, 10);
+    SpanConditionValueObject span30_50 =
+        new SpanConditionValueObject(3, conditionTypes.get(1), 30, 50);
+    SpanConditionValueObject span2_4 = new SpanConditionValueObject(4, conditionTypes.get(1), 2, 4);
 
     // Tillage dir
-    TillageDirectionValueObject tillageDir =
-        new TillageDirectionValueObject(1, conditionTypes.get(3),
+    TillageDirectionConditionValueObject tillageDir =
+        new TillageDirectionConditionValueObject(1, conditionTypes.get(3),
             new TillageDirectionObject(1, "ТЕСТ: челноковый или диагональный"));
 
     ArrayList<BaseConditionValueObject> conditionValues = new ArrayList<>();

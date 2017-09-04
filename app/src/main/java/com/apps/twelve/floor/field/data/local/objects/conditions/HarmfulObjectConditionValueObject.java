@@ -8,16 +8,16 @@ import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObj
  * Created by yarrick on 19.07.17.
  */
 
-public class HarmfulObjectValueObject extends BaseConditionValueObject{
+public class HarmfulObjectConditionValueObject extends BaseConditionValueObject {
 
-  public static final Creator<HarmfulObjectValueObject> CREATOR =
-      new Creator<HarmfulObjectValueObject>() {
-        @Override public HarmfulObjectValueObject createFromParcel(Parcel in) {
-          return new HarmfulObjectValueObject(in);
+  public static final Creator<HarmfulObjectConditionValueObject> CREATOR =
+      new Creator<HarmfulObjectConditionValueObject>() {
+        @Override public HarmfulObjectConditionValueObject createFromParcel(Parcel in) {
+          return new HarmfulObjectConditionValueObject(in);
         }
 
-        @Override public HarmfulObjectValueObject[] newArray(int size) {
-          return new HarmfulObjectValueObject[size];
+        @Override public HarmfulObjectConditionValueObject[] newArray(int size) {
+          return new HarmfulObjectConditionValueObject[size];
         }
       };
 
@@ -25,14 +25,14 @@ public class HarmfulObjectValueObject extends BaseConditionValueObject{
   @NonNull private ConditionTypeObject mConditionType;
   @NonNull private HarmfulObjectObject mHarmfulObject;
 
-  public HarmfulObjectValueObject(long id, @NonNull ConditionTypeObject conditionType,
+  public HarmfulObjectConditionValueObject(long id, @NonNull ConditionTypeObject conditionType,
       @NonNull HarmfulObjectObject harmfulObject) {
     this.mId = id;
     this.mConditionType = conditionType;
     this.mHarmfulObject = harmfulObject;
   }
 
-  protected HarmfulObjectValueObject(Parcel in) {
+  protected HarmfulObjectConditionValueObject(Parcel in) {
     mId = in.readLong();
     mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
     mHarmfulObject = in.readParcelable(HarmfulObjectObject.class.getClassLoader());

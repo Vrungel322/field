@@ -7,16 +7,16 @@ import com.apps.twelve.floor.field.data.local.objects.CropObject;
 /**
  * Created by yarrick on 22.07.17..
  */
-public class PreviousCropValueObject extends BaseConditionValueObject {
+public class PreviousCropConditionValueObject extends BaseConditionValueObject {
 
-  public static final Creator<PreviousCropValueObject> CREATOR =
-      new Creator<PreviousCropValueObject>() {
-        @Override public PreviousCropValueObject createFromParcel(Parcel in) {
-          return new PreviousCropValueObject(in);
+  public static final Creator<PreviousCropConditionValueObject> CREATOR =
+      new Creator<PreviousCropConditionValueObject>() {
+        @Override public PreviousCropConditionValueObject createFromParcel(Parcel in) {
+          return new PreviousCropConditionValueObject(in);
         }
 
-        @Override public PreviousCropValueObject[] newArray(int size) {
-          return new PreviousCropValueObject[size];
+        @Override public PreviousCropConditionValueObject[] newArray(int size) {
+          return new PreviousCropConditionValueObject[size];
         }
       };
 
@@ -24,14 +24,14 @@ public class PreviousCropValueObject extends BaseConditionValueObject {
   @NonNull private ConditionTypeObject mConditionType;
   @NonNull private CropObject mCrop;
 
-  public PreviousCropValueObject(long id, @NonNull ConditionTypeObject conditionType,
+  public PreviousCropConditionValueObject(long id, @NonNull ConditionTypeObject conditionType,
       @NonNull CropObject crop) {
     this.mId = id;
     this.mConditionType = conditionType;
     this.mCrop = crop;
   }
 
-  public PreviousCropValueObject(Parcel in) {
+  public PreviousCropConditionValueObject(Parcel in) {
     mId = in.readLong();
     mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
     mCrop = in.readParcelable(CropObject.class.getClassLoader());

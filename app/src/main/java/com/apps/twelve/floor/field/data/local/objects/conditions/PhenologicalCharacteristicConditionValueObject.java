@@ -8,15 +8,16 @@ import com.apps.twelve.floor.field.data.local.objects.PhenologicalCharacteristic
  * Created by yarrick on 07.07.17.
  */
 
-public class PhenologicalCharacteristicValueObject extends BaseConditionValueObject {
-  public static final Creator<PhenologicalCharacteristicValueObject> CREATOR =
-      new Creator<PhenologicalCharacteristicValueObject>() {
-        @Override public PhenologicalCharacteristicValueObject createFromParcel(Parcel in) {
-          return new PhenologicalCharacteristicValueObject(in);
+public class PhenologicalCharacteristicConditionValueObject extends BaseConditionValueObject {
+  public static final Creator<PhenologicalCharacteristicConditionValueObject> CREATOR =
+      new Creator<PhenologicalCharacteristicConditionValueObject>() {
+        @Override
+        public PhenologicalCharacteristicConditionValueObject createFromParcel(Parcel in) {
+          return new PhenologicalCharacteristicConditionValueObject(in);
         }
 
-        @Override public PhenologicalCharacteristicValueObject[] newArray(int size) {
-          return new PhenologicalCharacteristicValueObject[size];
+        @Override public PhenologicalCharacteristicConditionValueObject[] newArray(int size) {
+          return new PhenologicalCharacteristicConditionValueObject[size];
         }
       };
 
@@ -24,14 +25,14 @@ public class PhenologicalCharacteristicValueObject extends BaseConditionValueObj
   @NonNull private ConditionTypeObject mType;
   @NonNull private PhenologicalCharacteristicObject mPhenologicalCharacteristic;
 
-  public PhenologicalCharacteristicValueObject(long id, @NonNull ConditionTypeObject type,
+  public PhenologicalCharacteristicConditionValueObject(long id, @NonNull ConditionTypeObject type,
       @NonNull PhenologicalCharacteristicObject phenologicalCharacteristic) {
     this.mId = id;
     this.mType = type;
     this.mPhenologicalCharacteristic = phenologicalCharacteristic;
   }
 
-  protected PhenologicalCharacteristicValueObject(Parcel in) {
+  protected PhenologicalCharacteristicConditionValueObject(Parcel in) {
     mId = in.readLong();
     mType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
     mPhenologicalCharacteristic =

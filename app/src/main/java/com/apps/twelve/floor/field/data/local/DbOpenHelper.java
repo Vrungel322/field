@@ -11,15 +11,15 @@ import com.apps.twelve.floor.field.data.local.tables.PhenologicalCharacteristics
 import com.apps.twelve.floor.field.data.local.tables.SoilTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.TillageDirectionsTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionNamesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionSpanValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.ConditionsTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectPhaseValuesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectValuesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicValuesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.PreviousCropValuesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypeValuesTable;
-import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectConditionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.HarmfulObjectPhaseConditionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.PhenologicalCharacteristicConditionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.PreviousCropConditionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypeConditionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.SpanConditionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionConditionValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectsTable;
@@ -79,25 +79,25 @@ public class DbOpenHelper extends SQLiteOpenHelper {
 
   private void createConditionsTables(SQLiteDatabase db) {
     // ConditionSpanValues
-    db.execSQL(ConditionSpanValuesTable.getCreateTableQuery());
+    db.execSQL(SpanConditionValuesTable.getCreateTableQuery());
     // Conditions
     db.execSQL(ConditionsTable.getCreateTableQuery());
     // ConditionTypes
     db.execSQL(ConditionTypesTable.getCreateTableQuery());
     // PhenologicalCharacteristicValues
-    db.execSQL(PhenologicalCharacteristicValuesTable.getCreateTableQuery());
+    db.execSQL(PhenologicalCharacteristicConditionValuesTable.getCreateTableQuery());
     // SoilTypeValues
-    db.execSQL(SoilTypeValuesTable.getCreateTableQuery());
+    db.execSQL(SoilTypeConditionValuesTable.getCreateTableQuery());
     // TillageDirectionValues
-    db.execSQL(TillageDirectionValuesTable.getCreateTableQuery());
+    db.execSQL(TillageDirectionConditionValuesTable.getCreateTableQuery());
     // ConditionNames
     db.execSQL(ConditionNamesTable.getCreateTableQuery());
     // HarmfulObjectValues
-    db.execSQL(HarmfulObjectValuesTable.getCreateTableQuery());
+    db.execSQL(HarmfulObjectConditionValuesTable.getCreateTableQuery());
     // HarmfulObjectPhaseValues
-    db.execSQL(HarmfulObjectPhaseValuesTable.getCreateTableQuery());
+    db.execSQL(HarmfulObjectPhaseConditionValuesTable.getCreateTableQuery());
     // PreviousCropValues
-    db.execSQL(PreviousCropValuesTable.getCreateTableQuery());
+    db.execSQL(PreviousCropConditionValuesTable.getCreateTableQuery());
   }
 
   private void createHarmfulObjectsTables(SQLiteDatabase db) {

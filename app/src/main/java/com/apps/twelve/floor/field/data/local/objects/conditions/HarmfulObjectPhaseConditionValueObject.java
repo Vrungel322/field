@@ -8,16 +8,16 @@ import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObj
  * Created by yarrick on 19.07.17.
  */
 
-public class HarmfulObjectPhaseValueObject extends BaseConditionValueObject {
+public class HarmfulObjectPhaseConditionValueObject extends BaseConditionValueObject {
 
-  public static final Creator<HarmfulObjectPhaseValueObject> CREATOR =
-      new Creator<HarmfulObjectPhaseValueObject>() {
-        @Override public HarmfulObjectPhaseValueObject createFromParcel(Parcel in) {
-          return new HarmfulObjectPhaseValueObject(in);
+  public static final Creator<HarmfulObjectPhaseConditionValueObject> CREATOR =
+      new Creator<HarmfulObjectPhaseConditionValueObject>() {
+        @Override public HarmfulObjectPhaseConditionValueObject createFromParcel(Parcel in) {
+          return new HarmfulObjectPhaseConditionValueObject(in);
         }
 
-        @Override public HarmfulObjectPhaseValueObject[] newArray(int size) {
-          return new HarmfulObjectPhaseValueObject[size];
+        @Override public HarmfulObjectPhaseConditionValueObject[] newArray(int size) {
+          return new HarmfulObjectPhaseConditionValueObject[size];
         }
       };
 
@@ -26,14 +26,15 @@ public class HarmfulObjectPhaseValueObject extends BaseConditionValueObject {
   @NonNull
   private HarmfulObjectPhaseObject mHarmfulObjectPhase;
 
-  public HarmfulObjectPhaseValueObject(long id, @NonNull ConditionTypeObject conditionType, @NonNull
+  public HarmfulObjectPhaseConditionValueObject(long id, @NonNull ConditionTypeObject conditionType,
+      @NonNull
       HarmfulObjectPhaseObject harmfulObjectPhase) {
     this.mId = id;
     this.mConditionType = conditionType;
     this.mHarmfulObjectPhase = harmfulObjectPhase;
   }
 
-  protected HarmfulObjectPhaseValueObject(Parcel in) {
+  protected HarmfulObjectPhaseConditionValueObject(Parcel in) {
     mId = in.readLong();
     mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
     mHarmfulObjectPhase = in.readParcelable(HarmfulObjectPhaseObject.class.getClassLoader());

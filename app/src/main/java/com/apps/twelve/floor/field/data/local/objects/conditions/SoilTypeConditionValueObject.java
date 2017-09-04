@@ -9,15 +9,16 @@ import com.apps.twelve.floor.field.data.local.objects.SoilTypeObject;
  *
  */
 
-public class SoilTypeValueObject extends BaseConditionValueObject {
+public class SoilTypeConditionValueObject extends BaseConditionValueObject {
 
-  public static final Creator<SoilTypeValueObject> CREATOR = new Creator<SoilTypeValueObject>() {
-    @Override public SoilTypeValueObject createFromParcel(Parcel in) {
-      return new SoilTypeValueObject(in);
+  public static final Creator<SoilTypeConditionValueObject> CREATOR =
+      new Creator<SoilTypeConditionValueObject>() {
+        @Override public SoilTypeConditionValueObject createFromParcel(Parcel in) {
+          return new SoilTypeConditionValueObject(in);
     }
 
-    @Override public SoilTypeValueObject[] newArray(int size) {
-      return new SoilTypeValueObject[size];
+        @Override public SoilTypeConditionValueObject[] newArray(int size) {
+          return new SoilTypeConditionValueObject[size];
     }
   };
 
@@ -25,14 +26,14 @@ public class SoilTypeValueObject extends BaseConditionValueObject {
   @NonNull private ConditionTypeObject mConditionType;
   @NonNull private SoilTypeObject mSoilType;
 
-  public SoilTypeValueObject(long id, @NonNull ConditionTypeObject conditionType,
+  public SoilTypeConditionValueObject(long id, @NonNull ConditionTypeObject conditionType,
       @NonNull SoilTypeObject soilType) {
     this.mId = id;
     this.mConditionType = conditionType;
     this.mSoilType = soilType;
   }
 
-  protected SoilTypeValueObject(Parcel in) {
+  protected SoilTypeConditionValueObject(Parcel in) {
     mId = in.readLong();
     mConditionType = in.readParcelable(ConditionTypeObject.class.getClassLoader());
     mSoilType = in.readParcelable(SoilTypeObject.class.getClassLoader());
