@@ -27,6 +27,8 @@ import com.apps.twelve.floor.field.data.local.mappers.conditions.PreviousCropCon
 import com.apps.twelve.floor.field.data.local.mappers.conditions.SoilTypeConditionValueObjectToSoilTypeConditionValueEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.conditions.SpanConditionConditionValueObjectToSpanConditionConditionValueEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.conditions.TillageDirectionConditionValueObjectToTillageDirectionConditionValueEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.DiseaseObjectToDiseaseEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.DiseasePathogenTypeObjectToDiseasePathogenTypeEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectObjectToHarmfulObjectEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectPhaseObjectToHarmfulObjectPhaseEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.harmful_objects.HarmfulObjectTypeObjectToHarmfulObjectTypeEntityMapper;
@@ -69,6 +71,8 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.PreviousCropCon
 import com.apps.twelve.floor.field.data.local.objects.conditions.SoilTypeConditionValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.SpanConditionValueObject;
 import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectionConditionValueObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.DiseaseObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.DiseasePathogenTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectPhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectTypeObject;
@@ -315,6 +319,16 @@ public class DataManager {
     return mDbHelper.putPhenologicalCharacteristic(
         new PhenologicalCharacteristicObjectToPhenologicalCharacteristicEntityMapper().transform(
             phenologicalCharacteristicObject));
+  }
+
+  public PutResult putDiseasePathogenType(DiseasePathogenTypeObject diseasePathogenTypeObject) {
+    return mDbHelper.putDiseasePathogenType(
+        new DiseasePathogenTypeObjectToDiseasePathogenTypeEntityMapper().transform(
+            diseasePathogenTypeObject));
+  }
+
+  public PutResult putDisease(DiseaseObject diseaseObject) {
+    return mDbHelper.putDisease(new DiseaseObjectToDiseaseEntityMapper().transform(diseaseObject));
   }
 
   public PutResult putPhenologicalCharacteristicValue(

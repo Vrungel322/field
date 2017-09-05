@@ -41,6 +41,10 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.SpanConditionV
 import com.apps.twelve.floor.field.data.local.entities.conditions.SpanConditionValueEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionConditionValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionConditionValueEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.DiseaseEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.DiseaseEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.DiseasePathogenTypeEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.DiseasePathogenTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectPhaseEntity;
@@ -178,6 +182,11 @@ import dagger.Provides;
         // WeedNutritionTypeEntity mapping
         .addTypeMapping(WeedNutritionTypeEntity.class,
             new WeedNutritionTypeEntitySQLiteTypeMapping())
+        // DiseasePathogenTypeEntity mapping
+        .addTypeMapping(DiseasePathogenTypeEntity.class,
+            new DiseasePathogenTypeEntitySQLiteTypeMapping())
+        // DiseaseEntity mapping
+        .addTypeMapping(DiseaseEntity.class, new DiseaseEntitySQLiteTypeMapping())
 
         // PROCESS TIME
         // ClimateZoneEntity mapping

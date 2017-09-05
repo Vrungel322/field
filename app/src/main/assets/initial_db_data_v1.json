@@ -3536,6 +3536,52 @@
     "EntitiesArray": [
       {
         "Id": 1,
+        "Name": "Бактерія"
+      },
+      {
+        "Id": 2,
+        "Name": "Вірус"
+      },
+      {
+        "Id": 3,
+        "Name": "Гриб"
+      },
+      {
+        "Id": 4,
+        "Name": "Мікоплазмовий організм"
+      },
+      {
+        "Id": 5,
+        "Name": "Рослина паразит"
+      },
+      {
+        "Id": 6,
+        "Name": "Немає типу"
+      }
+    ],
+    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.harmful_objects.DiseasePathogenTypeEntity"
+  },
+  {
+    "EntitiesArray": [
+      {
+        "Id": 1,
+        "Name": "Пліснявіння качанів і насіння",
+        "HarmfulObjectTypeId": 3,
+        "PathogenTypeId": 3
+      },
+      {
+        "Id": 2,
+        "Name": "Фузаріоз",
+        "HarmfulObjectTypeId": 3,
+        "PathogenTypeId": 3
+      }
+    ],
+    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.harmful_objects.DiseaseEntity"
+  },
+  {
+    "EntitiesArray": [
+      {
+        "Id": 1,
         "IsParent": false,
         "IsSupported": true,
         "Name": "Кукурудза",

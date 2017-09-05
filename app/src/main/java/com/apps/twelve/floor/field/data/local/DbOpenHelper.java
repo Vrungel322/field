@@ -20,6 +20,8 @@ import com.apps.twelve.floor.field.data.local.tables.conditions.PreviousCropCond
 import com.apps.twelve.floor.field.data.local.tables.conditions.SoilTypeConditionValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.SpanConditionValuesTable;
 import com.apps.twelve.floor.field.data.local.tables.conditions.TillageDirectionConditionValuesTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.DiseasePathogenTypesTable;
+import com.apps.twelve.floor.field.data.local.tables.harmful_objects.DiseasesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectPhasesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.harmful_objects.HarmfulObjectsTable;
@@ -121,6 +123,10 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(WeedGroupsTable.getCreateTableQuery());
     // Weeds
     db.execSQL(WeedsTable.getCreateTableQuery());
+    // DiseasePathogenTypes
+    db.execSQL(DiseasePathogenTypesTable.getCreateTableQuery());
+    // Diseases
+    db.execSQL(DiseasesTable.getCreateTableQuery());
   }
 
   private void createProcessTimeTables(SQLiteDatabase db) {
