@@ -10,7 +10,7 @@ import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedObject
 
 public class WeedObjectToWeedEntityMapper implements Mapper<WeedObject, WeedEntity> {
   @Override public WeedEntity transform(WeedObject obj) throws RuntimeException {
-    return WeedEntity.newWeedEntity(obj.getId(), obj.getHarmfulObjTypeId(), obj.getName(),
+    return WeedEntity.newWeedEntity(obj.getId(), obj.getName(), obj.getHarmfulObjTypeId(),
         obj.getNutritionTypeId(), obj.getClassId(), obj.getGroupId());
   }
 }

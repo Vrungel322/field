@@ -11,8 +11,8 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 @StorIOSQLiteType(table = WeedsTable.TABLE) public class WeedEntity implements IEntity {
 
   @StorIOSQLiteColumn(name = WeedsTable.COLUMN_ID, key = true) Long id;
-  @StorIOSQLiteColumn(name = WeedsTable.COLUMN_HARMFUL_OBJ_TYPE_ID) Long harmfulObjTypeId;
   @StorIOSQLiteColumn(name = WeedsTable.COLUMN_NAME) String name;
+  @StorIOSQLiteColumn(name = WeedsTable.COLUMN_HARMFUL_OBJ_TYPE_ID) Long harmfulObjTypeId;
   @StorIOSQLiteColumn(name = WeedsTable.COLUMN_NUTRITION_TYPE_ID) Long nutritionTypeId;
   @StorIOSQLiteColumn(name = WeedsTable.COLUMN_CLASS_ID) Long classId;
   @StorIOSQLiteColumn(name = WeedsTable.COLUMN_GROUP_ID) Long groupId;
@@ -20,20 +20,20 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
   public WeedEntity() {
   }
 
-  public WeedEntity(Long id, Long harmfulObjTypeId, String name, Long nutritionTypeId, Long classId,
+  public WeedEntity(Long id, String name, Long harmfulObjTypeId, Long nutritionTypeId, Long classId,
       Long groupId) {
     this.id = id;
-    this.harmfulObjTypeId = harmfulObjTypeId;
     this.name = name;
+    this.harmfulObjTypeId = harmfulObjTypeId;
     this.nutritionTypeId = nutritionTypeId;
     this.classId = classId;
     this.groupId = groupId;
   }
 
-  public static WeedEntity newWeedEntity(Long id, Long harmfulObjTypeId, String name,
+  public static WeedEntity newWeedEntity(Long id, String name, Long harmfulObjTypeId,
       Long nutritionTypeId, Long classId, Long groupId) {
     if (id == 0) id = null;
-    return new WeedEntity(id, harmfulObjTypeId, name, nutritionTypeId, classId, groupId);
+    return new WeedEntity(id, name, harmfulObjTypeId, nutritionTypeId, classId, groupId);
   }
 
   @Override public boolean equals(Object obj) {
@@ -59,8 +59,8 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
   @Override public int hashCode() {
     int result = id != null ? id.hashCode() : 0;
-    result = 31 * result + (harmfulObjTypeId != null ? harmfulObjTypeId.hashCode() : 0);
     result = 31 * result + (name != null ? name.hashCode() : 0);
+    result = 31 * result + (harmfulObjTypeId != null ? harmfulObjTypeId.hashCode() : 0);
     result = 31 * result + (nutritionTypeId != null ? nutritionTypeId.hashCode() : 0);
     result = 31 * result + (classId != null ? classId.hashCode() : 0);
     result = 31 * result + (groupId != null ? groupId.hashCode() : 0);

@@ -18,38 +18,39 @@ public class WeedObject extends BaseHarmfulObjectObject {
     }
   };
   private long mId;
-  private long mHarmfulObjTypeId; // TODO: must be an object
-  private String mName;
-  private long mNutritionTypeId; // TODO: must be an object
-  private long mClassId; // TODO: must be an object
-  private long mGroupId; // TODO: must be an object
+  @NonNull private String mName;
+  @NonNull private HarmfulObjectTypeObject mHarmfulObjectType;
+  @NonNull private WeedNutritionTypeObject mWeedNutritionType;
+  @NonNull private WeedClassObject mWeedClass;
+  @NonNull private WeedGroupObject mWeedGroup;
 
-  public WeedObject(long id, long harmfulObjTypeId, String name, long nutritionTypeId, long classId,
-      long groupId) {
+  public WeedObject(long id, @NonNull String name, @NonNull HarmfulObjectTypeObject harmfulObjType,
+      @NonNull WeedNutritionTypeObject nutritionType, @NonNull WeedClassObject weedClass,
+      @NonNull WeedGroupObject weedGroup) {
     mId = id;
-    mHarmfulObjTypeId = harmfulObjTypeId;
     mName = name;
-    mNutritionTypeId = nutritionTypeId;
-    mClassId = classId;
-    mGroupId = groupId;
+    mHarmfulObjectType = harmfulObjType;
+    mWeedNutritionType = nutritionType;
+    mWeedClass = weedClass;
+    mWeedGroup = weedGroup;
   }
 
   protected WeedObject(Parcel in) {
     mId = in.readLong();
-    mHarmfulObjTypeId = in.readLong();
     mName = in.readString();
-    mNutritionTypeId = in.readLong();
-    mClassId = in.readLong();
-    mGroupId = in.readLong();
+    mHarmfulObjectType = in.readParcelable(HarmfulObjectTypeObject.class.getClassLoader());
+    mWeedNutritionType = in.readParcelable(WeedNutritionTypeObject.class.getClassLoader());
+    mWeedClass = in.readParcelable(WeedClassObject.class.getClassLoader());
+    mWeedGroup = in.readParcelable(WeedGroupObject.class.getClassLoader());
   }
 
   @Override public void writeToParcel(Parcel dest, int flags) {
     dest.writeLong(mId);
-    dest.writeLong(mHarmfulObjTypeId);
     dest.writeString(mName);
-    dest.writeLong(mNutritionTypeId);
-    dest.writeLong(mClassId);
-    dest.writeLong(mGroupId);
+    dest.writeParcelable(mHarmfulObjectType, flags);
+    dest.writeParcelable(mWeedNutritionType, flags);
+    dest.writeParcelable(mWeedClass, flags);
+    dest.writeParcelable(mWeedGroup, flags);
   }
 
   @Override public int describeContents() {
@@ -64,29 +65,6 @@ public class WeedObject extends BaseHarmfulObjectObject {
     mId = id;
   }
 
-  /**
-   * @deprecated Use getType instead.
-   */
-  @Deprecated public long getHarmfulObjTypeId() {
-    return mHarmfulObjTypeId;
-  }
-
-  /**
-   * @deprecated Use setType instead.
-   */
-  @Deprecated public void setHarmfulObjTypeId(long harmfulObjTypeId) {
-    mHarmfulObjTypeId = harmfulObjTypeId;
-  }
-
-  @NonNull @Override public HarmfulObjectTypeObject getType() {
-    // TODO: return mHarmfulObjType
-    return null;
-  }
-
-  @Override public void setType(@NonNull HarmfulObjectTypeObject type) {
-    // TODO: set mHarmfulObjType
-  }
-
   @NonNull @Override public String getName() {
     return mName;
   }
@@ -95,31 +73,55 @@ public class WeedObject extends BaseHarmfulObjectObject {
     mName = name;
   }
 
+  @NonNull @Override public HarmfulObjectTypeObject getType() {
+    return mHarmfulObjectType;
+  }
+
+  @Override public void setType(@NonNull HarmfulObjectTypeObject type) {
+    this.mHarmfulObjectType = type;
+  }
+
   @NonNull @Override public String getRepresentation() {
     return mName;
   }
 
-  public long getNutritionTypeId() {
-    return mNutritionTypeId;
+  @NonNull public WeedNutritionTypeObject getNutritionType() {
+    return mWeedNutritionType;
   }
 
-  public void setNutritionTypeId(long nutritionTypeId) {
-    mNutritionTypeId = nutritionTypeId;
+  public void setNutritionType(@NonNull WeedNutritionTypeObject nutritionType) {
+    this.mWeedNutritionType = nutritionType;
+  }
+
+  @NonNull public WeedClassObject getWeedClass() {
+    return mWeedClass;
+  }
+
+  public void setWeedClass(@NonNull WeedClassObject weedClass) {
+    mWeedClass = weedClass;
+  }
+
+  @NonNull public WeedGroupObject getWeedGroup() {
+    return mWeedGroup;
+  }
+
+  public void setWeedGroup(@NonNull WeedGroupObject weedGroup) {
+    mWeedGroup = weedGroup;
+  }
+
+  public long getHarmfulObjTypeId() {
+    return mHarmfulObjectType.getId();
+  }
+
+  public long getNutritionTypeId() {
+    return mWeedNutritionType.getId();
   }
 
   public long getClassId() {
-    return mClassId;
-  }
-
-  public void setClassId(long classId) {
-    mClassId = classId;
+    return mWeedClass.getId();
   }
 
   public long getGroupId() {
-    return mGroupId;
-  }
-
-  public void setGroupId(long groupId) {
-    mGroupId = groupId;
+    return mWeedGroup.getId();
   }
 }

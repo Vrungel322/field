@@ -15,6 +15,9 @@ import com.apps.twelve.floor.field.data.local.objects.conditions.TillageDirectio
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectPhaseObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.HarmfulObjectTypeObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedClassObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedGroupObject;
+import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedNutritionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.harmful_objects.WeedObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.ClimateZoneObject;
 import com.apps.twelve.floor.field.data.local.objects.process_time.PhaseObject;
@@ -237,8 +240,10 @@ public final class TestUtils {
 
   static {
     weeds = new ArrayList<>();
-    weeds.add(new WeedObject(1, harmfulObjectTypes.get(0).getId(),
-        "ТЕСТ: Одногодичные ярые дводольные и злаковые сорняки", 1, 1, 1));
+    weeds.add(new WeedObject(1, "ТЕСТ: Одногодичные ярые дводольные и злаковые сорняки",
+        harmfulObjectTypes.get(0), new WeedNutritionTypeObject(1, "ТЕСТ: Непаразит"),
+        new WeedClassObject(1, "ТЕСТ: Дводольные", 0, true),
+        new WeedGroupObject(2, "ТЕСТ: Одногодичные ярые", 1, true)));
   }
 
   // Conditions
