@@ -3,6 +3,7 @@ package com.apps.twelve.floor.field.data.local.db_filler;
 import com.apps.twelve.floor.field.App;
 import com.apps.twelve.floor.field.data.local.DbHelper;
 import com.apps.twelve.floor.field.data.local.entities.CropEntity;
+import com.apps.twelve.floor.field.data.local.entities.FieldEntity;
 import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.entities.PhenologicalCharacteristicEntity;
 import com.apps.twelve.floor.field.data.local.entities.SoilTypeEntity;
@@ -17,6 +18,8 @@ import com.apps.twelve.floor.field.data.local.entities.conditions.PreviousCropCo
 import com.apps.twelve.floor.field.data.local.entities.conditions.SoilTypeConditionValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.SpanConditionValueEntity;
 import com.apps.twelve.floor.field.data.local.entities.conditions.TillageDirectionConditionValueEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.DiseaseEntity;
+import com.apps.twelve.floor.field.data.local.entities.harmful_objects.DiseasePathogenTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectPhaseEntity;
 import com.apps.twelve.floor.field.data.local.entities.harmful_objects.HarmfulObjectTypeEntity;
@@ -61,7 +64,21 @@ public class DbFillHelper {
 
   public boolean fillDbWithInitialData() {
     String json = mAssetHelper.readStringFromAssetFile(AssetHelper.ASSET_INITIAL_DB_DATA_V1);
-    return deserializeEntitiesFromJson(json);
+    boolean isOk = deserializeEntitiesFromJson(json);
+
+    // TODO: this is for tests only - remove it
+    fillDbWithTestData();
+
+    return isOk;
+  }
+
+  /**
+   * This is for tests only
+   */
+  //TODO: for tests only - remove after
+  public boolean fillDbWithTestData() {
+    String testJson = mAssetHelper.readStringFromAssetFile("test_db_data_v1.json");
+    return deserializeEntitiesFromJson(testJson);
   }
 
   private boolean deserializeEntitiesFromJson(String json) {
@@ -167,8 +184,24 @@ public class DbFillHelper {
         mDbHelper.putCropTechnologicalProcess((CropTechnologicalProcessEntity) entity);
       } else if (entity instanceof TechnologicalProcessConditionEntity) {
         mDbHelper.putTechnologicalProcessesCondition((TechnologicalProcessConditionEntity) entity);
+      } else if (entity instanceof DiseasePathogenTypeEntity) {
+        mDbHelper.putDiseasePathogenType((DiseasePathogenTypeEntity) entity);
+      } else if (entity instanceof DiseaseEntity) {
+        mDbHelper.putDisease((DiseaseEntity) entity);
+        /*try {
+          mDbHelper.putDisease((DiseaseEntity) entity);
+        } catch (Exception e) {
+          Timber.e("Failed to put Disease in DB: " + e.toString());
+        }*/
+      } else if (entity instanceof FieldEntity) {
+        mDbHelper.putField((FieldEntity) entity);
+        /*try {
+          mDbHelper.putField((FieldEntity) entity);
+        } catch (Exception e) {
+          Timber.e("Failed to put Field in DB: " + e.toString());
+        }*/
       } else {
-        Timber.e("Got unknown entity");
+        Timber.e("Got unknown entity: " + entity.getClass().getSimpleName());
       }
     }
   }

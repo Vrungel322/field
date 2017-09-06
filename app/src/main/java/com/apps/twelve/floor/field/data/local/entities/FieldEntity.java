@@ -8,7 +8,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  * Created by John on 27.03.2017.
  */
 
-@StorIOSQLiteType(table = FieldsTable.TABLE) public class FieldEntity {
+@StorIOSQLiteType(table = FieldsTable.TABLE) public class FieldEntity implements IEntity {
 
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = FieldsTable.COLUMN_NAME) String name;

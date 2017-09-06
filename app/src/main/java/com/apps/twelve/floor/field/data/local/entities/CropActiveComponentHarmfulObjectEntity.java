@@ -9,7 +9,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  */
 
 @StorIOSQLiteType(table = CropsActiveComponentsHarmfulObjectsTable.TABLE)
-public class CropActiveComponentHarmfulObjectEntity {
+public class CropActiveComponentHarmfulObjectEntity implements IEntity {
 
   @StorIOSQLiteColumn(name = CropsActiveComponentsHarmfulObjectsTable.COLUMN_ID, key = true) Long
       id;

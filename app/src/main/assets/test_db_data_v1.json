@@ -1,0 +1,19 @@
+[
+  {
+    "EntitiesArray": [
+      {
+        "Id": 1,
+        "Name": "(T): поле",
+        "Area": 111222333,
+        "CropId": 1,
+        "PreviousCropId": 1,
+        "Coordinates": null,
+        "ClimateZoneId": 1,
+        "PhaseId": 1,
+        "SoilTypeId": 1,
+        "SowingDate": 1504700267000
+      }
+    ],
+    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.FieldEntity"
+  }
+]

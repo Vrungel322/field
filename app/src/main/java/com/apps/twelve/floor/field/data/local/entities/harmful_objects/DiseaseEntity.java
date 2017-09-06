@@ -13,16 +13,16 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
   @StorIOSQLiteColumn(name = DiseasesTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = DiseasesTable.COLUMN_NAME) String name;
-  @StorIOSQLiteColumn(name = DiseasesTable.COLUMN_HARMFUL_OBJ_TYPE_ID) Long harmfulObjTypeId;
+  @StorIOSQLiteColumn(name = DiseasesTable.COLUMN_HARMFUL_OBJ_TYPE_ID) Long harmfulObjectTypeId;
   @StorIOSQLiteColumn(name = DiseasesTable.COLUMN_PATHOGEN_TYPE_ID) Long pathogenTypeId;
 
   public DiseaseEntity() {
   }
 
-  public DiseaseEntity(Long id, String name, Long harmfulObjTypeId, Long pathogenTypeId) {
+  public DiseaseEntity(Long id, String name, Long harmfulObjectTypeId, Long pathogenTypeId) {
     this.id = id;
     this.name = name;
-    this.harmfulObjTypeId = harmfulObjTypeId;
+    this.harmfulObjectTypeId = harmfulObjectTypeId;
     this.pathogenTypeId = pathogenTypeId;
   }
 
@@ -38,8 +38,8 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
     DiseaseEntity that = (DiseaseEntity) obj;
 
     if (id != null ? !id.equals(that.id) : that.id != null) return false;
-    if (harmfulObjTypeId != null ? !harmfulObjTypeId.equals(that.harmfulObjTypeId)
-        : that.harmfulObjTypeId != null) {
+    if (harmfulObjectTypeId != null ? !harmfulObjectTypeId.equals(that.harmfulObjectTypeId)
+        : that.harmfulObjectTypeId != null) {
       return false;
     }
     if (name != null ? !name.equals(that.name) : that.name != null) return false;
@@ -51,7 +51,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
   @Override public int hashCode() {
     int result = id != null ? id.hashCode() : 0;
     result = 31 * result + (name != null ? name.hashCode() : 0);
-    result = 31 * result + (harmfulObjTypeId != null ? harmfulObjTypeId.hashCode() : 0);
+    result = 31 * result + (harmfulObjectTypeId != null ? harmfulObjectTypeId.hashCode() : 0);
     result = 31 * result + (pathogenTypeId != null ? pathogenTypeId.hashCode() : 0);
 
     return result;
@@ -73,12 +73,12 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
     this.name = name;
   }
 
-  public Long getHarmfulObjTypeId() {
-    return harmfulObjTypeId;
+  public Long getHarmfulObjectTypeId() {
+    return harmfulObjectTypeId;
   }
 
-  public void setHarmfulObjTypeId(Long harmfulObjTypeId) {
-    this.harmfulObjTypeId = harmfulObjTypeId;
+  public void setHarmfulObjectTypeId(Long harmfulObjectTypeId) {
+    this.harmfulObjectTypeId = harmfulObjectTypeId;
   }
 
   public Long getPathogenTypeId() {

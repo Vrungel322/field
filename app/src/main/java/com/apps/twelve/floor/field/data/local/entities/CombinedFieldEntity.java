@@ -9,7 +9,7 @@ import com.apps.twelve.floor.field.data.local.entities.process_time.PhaseEntity;
  * Created by Yaroslav on 12.05.2017.
  */
 
-public class CombinedFieldEntity {
+public class CombinedFieldEntity implements IEntity {
 
   @NonNull private final FieldEntity mFieldEntity;
   @NonNull private final CropEntity mCropEntity;

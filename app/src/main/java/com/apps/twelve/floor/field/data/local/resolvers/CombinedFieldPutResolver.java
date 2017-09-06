@@ -2,6 +2,7 @@ package com.apps.twelve.floor.field.data.local.resolvers;
 
 import android.support.annotation.NonNull;
 import com.apps.twelve.floor.field.data.local.entities.CombinedFieldEntity;
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.CropsTable;
 import com.apps.twelve.floor.field.data.local.tables.FieldsTable;
 import com.apps.twelve.floor.field.data.local.tables.SoilTypesTable;
@@ -29,7 +30,7 @@ public class CombinedFieldPutResolver extends PutResolver<CombinedFieldEntity> {
 
     // We can even reuse StorIO methods
     // TODO: maybe we don't need to put other entities - only field
-    final PutResults<Object> putResults = storIOSQLite.put()
+    final PutResults<IEntity> putResults = storIOSQLite.put()
         .objects(asList(combinedFieldEntity.getFieldEntity(), combinedFieldEntity.getCropEntity(),
             combinedFieldEntity.getClimateZoneEntity(), combinedFieldEntity.getPhaseEntity(),
             combinedFieldEntity.getSoilTypeEntity()))

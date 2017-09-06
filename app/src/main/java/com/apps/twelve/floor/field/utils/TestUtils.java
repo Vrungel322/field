@@ -49,11 +49,10 @@ public final class TestUtils {
 
   static {
     technicalSolutionTypes = new ArrayList<>();
-    technicalSolutionTypes.add(new TechnologicalSolutionTypeObject(1, "ТЕСТ: Агрегат"));
-    technicalSolutionTypes.add(new TechnologicalSolutionTypeObject(2, "ТЕСТ: Препарат"));
-    technicalSolutionTypes.add(
-        new TechnologicalSolutionTypeObject(3, "ТЕСТ: Действующее вещество"));
-    technicalSolutionTypes.add(new TechnologicalSolutionTypeObject(4, "ТЕСТ: Насекомое"));
+    technicalSolutionTypes.add(new TechnologicalSolutionTypeObject(1, "(T): Агрегат"));
+    technicalSolutionTypes.add(new TechnologicalSolutionTypeObject(2, "(T): Препарат"));
+    technicalSolutionTypes.add(new TechnologicalSolutionTypeObject(3, "(T): Действующее вещество"));
+    technicalSolutionTypes.add(new TechnologicalSolutionTypeObject(4, "(T): Насекомое"));
   }
 
   // Aggregates
@@ -64,13 +63,13 @@ public final class TestUtils {
 
     aggregateSolutionValues = new ArrayList<>();
     aggregateSolutionValues.add(
-        new AggregateObject(1, "ТЕСТ: Легкая борона", aggregateSolutionType, 3000));
+        new AggregateObject(1, "(T): Легкая борона", aggregateSolutionType, 3000));
     aggregateSolutionValues.add(
-        new AggregateObject(2, "ТЕСТ: Тяжелая борона", aggregateSolutionType, 3000));
+        new AggregateObject(2, "(T): Тяжелая борона", aggregateSolutionType, 3000));
     aggregateSolutionValues.add(
-        new AggregateObject(3, "ТЕСТ: Севалка", aggregateSolutionType, 6000));
+        new AggregateObject(3, "(T): Севалка", aggregateSolutionType, 6000));
     aggregateSolutionValues.add(
-        new AggregateObject(4, "ТЕСТ: Комбайн", aggregateSolutionType, 150000));
+        new AggregateObject(4, "(T): Комбайн", aggregateSolutionType, 150000));
   }
 
   // Product categories
@@ -78,7 +77,7 @@ public final class TestUtils {
 
   static {
     productCategories = new ArrayList<>();
-    productCategories.add(new ProductCategoryObject(1, "ТЕСТ: Гербицид"));
+    productCategories.add(new ProductCategoryObject(1, "(T): Гербицид"));
   }
 
   // Products
@@ -91,13 +90,13 @@ public final class TestUtils {
     ProductCategoryObject herbicideProductCategory = productCategories.get(0);
 
     productSolutionValues.add(
-        new ProductObject(1, "ТЕСТ: Ратник", productSolutionType, 300, herbicideProductCategory));
+        new ProductObject(1, "(T): Ратник", productSolutionType, 300, herbicideProductCategory));
     productSolutionValues.add(
-        new ProductObject(2, "ТЕСТ: Рипиус", productSolutionType, 200, herbicideProductCategory));
+        new ProductObject(2, "(T): Рипиус", productSolutionType, 200, herbicideProductCategory));
     productSolutionValues.add(
-        new ProductObject(3, "ТЕСТ: Сатурн", productSolutionType, 150, herbicideProductCategory));
+        new ProductObject(3, "(T): Сатурн", productSolutionType, 150, herbicideProductCategory));
     productSolutionValues.add(
-        new ProductObject(4, "ТЕСТ: Скат", productSolutionType, 480, herbicideProductCategory));
+        new ProductObject(4, "(T): Скат", productSolutionType, 480, herbicideProductCategory));
   }
 
   // Active components
@@ -109,13 +108,13 @@ public final class TestUtils {
     TechnologicalSolutionTypeObject activeComponentSolutionType = technicalSolutionTypes.get(2);
 
     activeComponentSolutionValues.add(
-        new ActiveComponentObject(1, "ТЕСТ: Ципроконазол", activeComponentSolutionType));
+        new ActiveComponentObject(1, "(T): Ципроконазол", activeComponentSolutionType));
     activeComponentSolutionValues.add(
-        new ActiveComponentObject(2, "ТЕСТ: S-метолахлор", activeComponentSolutionType));
+        new ActiveComponentObject(2, "(T): S-метолахлор", activeComponentSolutionType));
     activeComponentSolutionValues.add(
-        new ActiveComponentObject(3, "ТЕСТ: Тербутилазин", activeComponentSolutionType));
+        new ActiveComponentObject(3, "(T): Тербутилазин", activeComponentSolutionType));
     activeComponentSolutionValues.add(
-        new ActiveComponentObject(4, "ТЕСТ: Метазахлор", activeComponentSolutionType));
+        new ActiveComponentObject(4, "(T): Метазахлор", activeComponentSolutionType));
   }
 
   // Insects
@@ -136,11 +135,11 @@ public final class TestUtils {
     technologicalProcessStates = new ArrayList<>();
 
     technologicalProcessStates.add(
-        new TechnologicalProcessStateObject(1, "ТЕСТ: Выполнен", R.drawable.ic_done_24dp));
+        new TechnologicalProcessStateObject(1, "(T): Выполнен", R.drawable.ic_done_24dp));
     technologicalProcessStates.add(
-        new TechnologicalProcessStateObject(2, "ТЕСТ: Актуален", R.drawable.ic_actual_24dp));
+        new TechnologicalProcessStateObject(2, "(T): Актуален", R.drawable.ic_actual_24dp));
     technologicalProcessStates.add(
-        new TechnologicalProcessStateObject(3, "ТЕСТ: Запланирован", R.drawable.ic_future_24dp));
+        new TechnologicalProcessStateObject(3, "(T): Запланирован", R.drawable.ic_future_24dp));
   }
 
   // Process periods
@@ -163,16 +162,16 @@ public final class TestUtils {
     PhaseObject phase = PhaseObject.EMPTY;
     cropTechnologicalProcesses = new ArrayList<>();
     cropTechnologicalProcesses.add(
-        new CropTechnologicalProcessObject(1, "ТЕСТ: Посев", 1, crop, climateZone, phase,
+        new CropTechnologicalProcessObject(1, "(T): Посев", 1, crop, climateZone, phase,
             processPeriods.get(0)));
     cropTechnologicalProcesses.add(
-        new CropTechnologicalProcessObject(2, "ТЕСТ: Гербицидная обработка", 2, crop, climateZone,
+        new CropTechnologicalProcessObject(2, "(T): Гербицидная обработка", 2, crop, climateZone,
             phase, processPeriods.get(1)));
     cropTechnologicalProcesses.add(
-        new CropTechnologicalProcessObject(3, "ТЕСТ: Инсектицидная обработка", 3, crop, climateZone,
+        new CropTechnologicalProcessObject(3, "(T): Инсектицидная обработка", 3, crop, climateZone,
             phase, processPeriods.get(2)));
     cropTechnologicalProcesses.add(
-        new CropTechnologicalProcessObject(4, "ТЕСТ: Сбор урожая", 4, crop, climateZone, phase,
+        new CropTechnologicalProcessObject(4, "(T): Сбор урожая", 4, crop, climateZone, phase,
             processPeriods.get(3)));
   }
 
@@ -201,16 +200,16 @@ public final class TestUtils {
 
   static {
     conditionNames = new ArrayList<>();
-    conditionNames.add(new ConditionNameObject(1, "ТЕСТ: Фаза вредного объекта"));
-    conditionNames.add(new ConditionNameObject(2, "ТЕСТ: Влажность почвы"));
-    conditionNames.add(new ConditionNameObject(3, "ТЕСТ: t⁰ почвы"));
-    conditionNames.add(new ConditionNameObject(4, "ТЕСТ: Планируемая урожайность, т/га"));
-    conditionNames.add(new ConditionNameObject(5, "ТЕСТ: Вредный объект"));
-    conditionNames.add(new ConditionNameObject(6, "ТЕСТ: t⁰ воздуха"));
-    conditionNames.add(new ConditionNameObject(7, "ТЕСТ: Влажность воздуха"));
+    conditionNames.add(new ConditionNameObject(1, "(T): Фаза вредного объекта"));
+    conditionNames.add(new ConditionNameObject(2, "(T): Влажность почвы"));
+    conditionNames.add(new ConditionNameObject(3, "(T): t⁰ почвы"));
+    conditionNames.add(new ConditionNameObject(4, "(T): Планируемая урожайность, т/га"));
+    conditionNames.add(new ConditionNameObject(5, "(T): Вредный объект"));
+    conditionNames.add(new ConditionNameObject(6, "(T): t⁰ воздуха"));
+    conditionNames.add(new ConditionNameObject(7, "(T): Влажность воздуха"));
     conditionNames.add(
-        new ConditionNameObject(8, "ТЕСТ: Направление обработки почвы, посева, опрыскивания"));
-    conditionNames.add(new ConditionNameObject(9, "ТЕСТ: Глубина обработки почвы, посева"));
+        new ConditionNameObject(8, "(T): Направление обработки почвы, посева, опрыскивания"));
+    conditionNames.add(new ConditionNameObject(9, "(T): Глубина обработки почвы, посева"));
   }
 
   // Condition types
@@ -218,10 +217,10 @@ public final class TestUtils {
 
   static {
     conditionTypes = new ArrayList<>();
-    conditionTypes.add(new ConditionTypeObject(1, "ТЕСТ: Фаза вредного объекта"));
-    conditionTypes.add(new ConditionTypeObject(2, "ТЕСТ: Числовой диапазон"));
-    conditionTypes.add(new ConditionTypeObject(3, "ТЕСТ: Вредный объект"));
-    conditionTypes.add(new ConditionTypeObject(4, "ТЕСТ: Направление обработки"));
+    conditionTypes.add(new ConditionTypeObject(1, "(T): Фаза вредного объекта"));
+    conditionTypes.add(new ConditionTypeObject(2, "(T): Числовой диапазон"));
+    conditionTypes.add(new ConditionTypeObject(3, "(T): Вредный объект"));
+    conditionTypes.add(new ConditionTypeObject(4, "(T): Направление обработки"));
   }
 
   // Harmful object types
@@ -230,9 +229,9 @@ public final class TestUtils {
   static {
     harmfulObjectTypes = new ArrayList<>();
 
-    harmfulObjectTypes.add(new HarmfulObjectTypeObject(1, "ТЕСТ: Сорняк"));
-    harmfulObjectTypes.add(new HarmfulObjectTypeObject(2, "ТЕСТ: Вредитель"));
-    harmfulObjectTypes.add(new HarmfulObjectTypeObject(3, "ТЕСТ: Болезнь"));
+    harmfulObjectTypes.add(new HarmfulObjectTypeObject(1, "(T): Сорняк"));
+    harmfulObjectTypes.add(new HarmfulObjectTypeObject(2, "(T): Вредитель"));
+    harmfulObjectTypes.add(new HarmfulObjectTypeObject(3, "(T): Болезнь"));
   }
 
   // Weeds
@@ -240,10 +239,10 @@ public final class TestUtils {
 
   static {
     weeds = new ArrayList<>();
-    weeds.add(new WeedObject(1, "ТЕСТ: Одногодичные ярые дводольные и злаковые сорняки",
-        harmfulObjectTypes.get(0), new WeedNutritionTypeObject(1, "ТЕСТ: Непаразит"),
-        new WeedClassObject(1, "ТЕСТ: Дводольные", 0, true),
-        new WeedGroupObject(2, "ТЕСТ: Одногодичные ярые", 1, true)));
+    weeds.add(new WeedObject(1, "(T): Одногодичные ярые дводольные и злаковые сорняки",
+        harmfulObjectTypes.get(0), new WeedNutritionTypeObject(1, "(T): Непаразит"),
+        new WeedClassObject(1, "(T): Дводольные", 0, true),
+        new WeedGroupObject(2, "(T): Одногодичные ярые", 1, true)));
   }
 
   // Conditions
@@ -255,7 +254,7 @@ public final class TestUtils {
     // HO phases
     HarmfulObjectPhaseConditionValueObject hoPhase =
         new HarmfulObjectPhaseConditionValueObject(1, conditionTypes.get(0),
-            new HarmfulObjectPhaseObject(1, "ТЕСТ: Белая ниточка"));
+            new HarmfulObjectPhaseObject(1, "(T): Белая ниточка"));
 
     // HO values
     HarmfulObjectConditionValueObject ho =
@@ -274,7 +273,7 @@ public final class TestUtils {
     // Tillage dir
     TillageDirectionConditionValueObject tillageDir =
         new TillageDirectionConditionValueObject(1, conditionTypes.get(3),
-            new TillageDirectionObject(1, "ТЕСТ: челноковый или диагональный"));
+            new TillageDirectionObject(1, "(T): челноковый или диагональный"));
 
     ArrayList<BaseConditionValueObject> conditionValues = new ArrayList<>();
 

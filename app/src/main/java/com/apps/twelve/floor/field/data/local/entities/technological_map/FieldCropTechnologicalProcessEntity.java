@@ -1,5 +1,6 @@
 package com.apps.twelve.floor.field.data.local.entities.technological_map;
 
+import com.apps.twelve.floor.field.data.local.entities.IEntity;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.FieldCropTechnologicalProcessesTable;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
 import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
@@ -9,7 +10,7 @@ import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
  */
 
 @StorIOSQLiteType(table = FieldCropTechnologicalProcessesTable.TABLE)
-public class FieldCropTechnologicalProcessEntity {
+public class FieldCropTechnologicalProcessEntity implements IEntity {
 
   @StorIOSQLiteColumn(name = FieldCropTechnologicalProcessesTable.COLUMN_ID, key = true) Long id;
   @StorIOSQLiteColumn(name = FieldCropTechnologicalProcessesTable.COLUMN_FIELD_ID) Long fieldId;

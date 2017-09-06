@@ -10,6 +10,7 @@ import com.apps.twelve.floor.field.utils.ThreadSchedulers;
 import com.arellomobile.mvp.InjectViewState;
 import com.google.gson.Gson;
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult;
+import java.util.List;
 import javax.inject.Inject;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -91,10 +92,15 @@ import timber.log.Timber;
 
   private void getAllFields() {
     Subscription subscription = mDataManager.getAllFields()
-        .compose(ThreadSchedulers.applySchedulers())
+        .compose(ThreadSchedulers.applySchedulers()).doOnNext(fields -> checkFields(fields))
         .subscribe(fields -> getViewState().showFields(fields), Timber::e);
 
     addToUnsubscription(subscription);
+  }
+
+  // TODO: delete this
+  private void checkFields(List<FieldObject> fields) {
+    Timber.d("DBG: fields = " + fields.toString());
   }
 
   private void subscribeToFieldsListChanges() {
