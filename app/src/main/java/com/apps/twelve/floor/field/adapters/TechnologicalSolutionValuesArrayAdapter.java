@@ -1,4 +1,4 @@
-package com.apps.twelve.floor.field;
+package com.apps.twelve.floor.field.adapters;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
