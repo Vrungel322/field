@@ -20,7 +20,8 @@ import timber.log.Timber;
  * Created by John on 28.03.2017.
  */
 
-@InjectViewState public class StartFragmentPresenter extends BasePresenter<IStartFragmentView> {
+@InjectViewState public class FieldsListFragmentPresenter
+    extends BasePresenter<IFieldsListFragmentView> {
 
   @Inject DataManager mDataManager;
   @Inject RxBus mRxBus;

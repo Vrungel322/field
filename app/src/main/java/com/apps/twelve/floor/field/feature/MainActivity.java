@@ -30,6 +30,7 @@ public class MainActivity extends BaseActivity implements IMainActivityView {
     /*mActionBar.setHomeButtonEnabled(true);
     mActionBar.setDisplayHomeAsUpEnabled(true);*/
 
+    // TODO: maybe request location permission only in map-fragments
     Permissions.setPermission(MainActivity.this);
   }
 

@@ -13,7 +13,7 @@ import java.util.List;
  * Created by John on 28.03.2017.
  */
 
-@StateStrategyType(AddToEndSingleStrategy.class) public interface IStartFragmentView
+@StateStrategyType(AddToEndSingleStrategy.class) public interface IFieldsListFragmentView
     extends MvpView {
 
   @StateStrategyType(SingleStateStrategy.class) void showFields(List<FieldObject> fieldObjects);

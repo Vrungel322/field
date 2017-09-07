@@ -34,9 +34,9 @@ import java.util.List;
  * Created by John on 28.03.2017.
  */
 
-public class StartFragment extends BaseFragment implements IStartFragmentView {
+public class FieldsListFragment extends BaseFragment implements IFieldsListFragmentView {
 
-  @InjectPresenter StartFragmentPresenter mStartFragmentPresenter;
+  @InjectPresenter FieldsListFragmentPresenter mFieldsListFragmentPresenter;
 
   @BindView(R.id.recycler_view_fields) RecyclerView mFieldsRecyclerView;
   @BindView(R.id.text_no_data) TextView mNoDataText;
@@ -46,13 +46,13 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
 
   private AlertDialog mFieldAddTypeDialog;
 
-  public StartFragment() {
-    super(R.layout.fragment_start, true, R.string.title_fields_list);
+  public FieldsListFragment() {
+    super(R.layout.fragment_fields_list, true, R.string.title_fields_list);
   }
 
-  public static StartFragment newInstance() {
+  public static FieldsListFragment newInstance() {
     Bundle args = new Bundle();
-    StartFragment fragment = new StartFragment();
+    FieldsListFragment fragment = new FieldsListFragment();
     fragment.setArguments(args);
     return fragment;
   }
@@ -68,7 +68,7 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
   }
 
   @OnClick(R.id.fab_add_new_field) public void onViewClicked() {
-    mStartFragmentPresenter.showFieldTypeDialog();
+    mFieldsListFragmentPresenter.showFieldTypeDialog();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -86,11 +86,12 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
 
     mFieldAddTypeDialog =
         DialogFactory.createAlertDialogBuilder(context, getString(R.string.dialog_title_add_field))
-            .setSingleChoiceItems(fieldAddTypes, mStartFragmentPresenter.getFieldTypePosition(),
-                (dialog, which) -> mStartFragmentPresenter.setFieldTypePosition(which))
+            .setSingleChoiceItems(fieldAddTypes,
+                mFieldsListFragmentPresenter.getFieldTypePosition(),
+                (dialog, which) -> mFieldsListFragmentPresenter.setFieldTypePosition(which))
             .setPositiveButton(R.string.dialog_action_ok, null)
             .setNegativeButton(R.string.dialog_action_cancel,
-                (dialog, which) -> mStartFragmentPresenter.hideFieldTypeDialog())
+                (dialog, which) -> mFieldsListFragmentPresenter.hideFieldTypeDialog())
             .setCancelable(false)
             .create();
 
@@ -140,11 +141,11 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
   }
 
   @Override protected void updateActionBar(boolean mIsActionBarShown, String title) {
-    mStartFragmentPresenter.updateActionBar(mIsActionBarShown, title);
+    //mFieldsListFragmentPresenter.updateActionBar(mIsActionBarShown, title);
   }
 
   @Override protected void restoreActionBar() {
-    mStartFragmentPresenter.restoreActionBar();
+    //mFieldsListFragmentPresenter.restoreActionBar();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -166,20 +167,20 @@ public class StartFragment extends BaseFragment implements IStartFragmentView {
     // TODO: open fieldEntity editing screen (give it to mNavigator)
     ItemClickSupport.addTo(mFieldsRecyclerView)
         .setOnItemClickListener(
-            (recyclerView, position, v) -> mStartFragmentPresenter.onFiledClickedAtPosition(
+            (recyclerView, position, v) -> mFieldsListFragmentPresenter.onFiledClickedAtPosition(
                 position));
   }
 
   private void onDialogPositiveButtonClicked(String[] fieldAddTypes) {
-    int which = mStartFragmentPresenter.getFieldTypePosition();
+    int which = mFieldsListFragmentPresenter.getFieldTypePosition();
 
     if (which < 0) {
       showToastMessage(R.string.dialog_error_add_field);
       return;
     }
 
-    mStartFragmentPresenter.onFieldTypeDialogPositiveButton(which);
-    mStartFragmentPresenter.hideFieldTypeDialog();
+    mFieldsListFragmentPresenter.onFieldTypeDialogPositiveButton(which);
+    mFieldsListFragmentPresenter.hideFieldTypeDialog();
   }
 
   private Fragment makeFieldTechnologicalMapFragment(@NonNull FieldObject fieldObject) {

@@ -200,6 +200,7 @@ public final class TestUtils {
 
   static {
     FieldObject field = FieldObject.EMPTY;
+    field.setName("(T): поле");
     actualTechnologicalProcesses = new ArrayList<>();
 
     actualTechnologicalProcesses.add(

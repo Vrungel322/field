@@ -99,4 +99,8 @@ public class FieldCropTechnologicalProcessObject implements Parcelable {
   @DrawableRes public int getStatusImageId() {
     return mState.getImageId();
   }
+
+  public String getTechProcessFieldRepresentation() {
+    return mField.getName();
+  }
 }

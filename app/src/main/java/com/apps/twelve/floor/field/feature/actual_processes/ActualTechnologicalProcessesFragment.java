@@ -13,7 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import butterknife.BindView;
 import com.apps.twelve.floor.field.R;
-import com.apps.twelve.floor.field.adapters.FieldTechnologicalProcessesAdapter;
+import com.apps.twelve.floor.field.adapters.ActualTechnologicalProcessesAdapter;
 import com.apps.twelve.floor.field.base.BaseFragment;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.feature.field_technological_process.FieldTechnologicalProcessFragment;
@@ -32,7 +32,7 @@ public class ActualTechnologicalProcessesFragment extends BaseFragment
 
   @BindView(R.id.recycler_view_tech_processes) RecyclerView mTechProcessesRecyclerView;
 
-  FieldTechnologicalProcessesAdapter mFieldTechnologicalProcessesAdapter;
+  ActualTechnologicalProcessesAdapter mActualTechnologicalProcessesAdapter;
 
   public ActualTechnologicalProcessesFragment() {
     super(R.layout.fragment_actual_technological_processes, true, R.string.title_actual_processes);
@@ -48,11 +48,11 @@ public class ActualTechnologicalProcessesFragment extends BaseFragment
   }
 
   @Override protected void updateActionBar(boolean mIsActionBarShown, String title) {
-    mActualTechnologicalProcessesPresenter.updateActionBar(mIsActionBarShown, title);
+    //mActualTechnologicalProcessesPresenter.updateActionBar(mIsActionBarShown, title);
   }
 
   @Override protected void restoreActionBar() {
-    mActualTechnologicalProcessesPresenter.restoreActionBar();
+    //mActualTechnologicalProcessesPresenter.restoreActionBar();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -60,22 +60,22 @@ public class ActualTechnologicalProcessesFragment extends BaseFragment
   ///////////////////////////////////////////////////////////////////////////
   @Override public void showTechnologicalProcesses(
       List<FieldCropTechnologicalProcessObject> technologicalProcessObjectList) {
-    mFieldTechnologicalProcessesAdapter.addAllFieldTechnologicalProcesses(
+    mActualTechnologicalProcessesAdapter.addAllFieldTechnologicalProcesses(
         technologicalProcessObjectList);
   }
 
   @Override public void openTechnologicalProcessFragment(int position) {
     mNavigator.addFragmentBackStack(((AppCompatActivity) getActivity()), R.id.container_start,
         makeFieldTechnologicalProcessFragment(
-            mFieldTechnologicalProcessesAdapter.getTechProcessAt(position)));
+            mActualTechnologicalProcessesAdapter.getTechProcessAt(position)));
   }
 
   ///////////////////////////////////////////////////////////////////////////
   // Private section
   ///////////////////////////////////////////////////////////////////////////
   private void setupRecyclerView() {
-    mFieldTechnologicalProcessesAdapter = new FieldTechnologicalProcessesAdapter();
-    mTechProcessesRecyclerView.setAdapter(mFieldTechnologicalProcessesAdapter);
+    mActualTechnologicalProcessesAdapter = new ActualTechnologicalProcessesAdapter();
+    mTechProcessesRecyclerView.setAdapter(mActualTechnologicalProcessesAdapter);
     mTechProcessesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     mTechProcessesRecyclerView.setItemAnimator(new DefaultItemAnimator());
 

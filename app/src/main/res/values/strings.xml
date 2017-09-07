@@ -4,7 +4,7 @@
   <!-- UI titles-->
   <string name="title_new_field">Новое поле</string>
   <string name="title_fields_list">Список полей</string>
-  <string name="title_actual_processes">"Актуальные Техпроцессы"</string>
+  <string name="title_actual_processes">"Актуальные процессы"</string>
   <string name="title_field">"Поле: "</string>
   <string name="title_technological_process">"Техпроцесс: "</string>
   <string name="title_technological_process_conditions">"Условия техпроцесса: "</string>
@@ -61,6 +61,7 @@
   <!-- Technological process -->
   <string name="edit_text_technological_process_date_hint">Дата проведения</string>
   <string name="checked_text_technological_process_conditions">Условия проведения</string>
+  <string name="text_technological_process_field">"Поле: "</string>
 
   <!-- Technological process solution -->
   <string name="text_technological_process_solution_sum">"Сумма: %s грн."</string>
