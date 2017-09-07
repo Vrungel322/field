@@ -45,9 +45,9 @@ import timber.log.Timber;
     //getViewState().openTechnologicalProcessConditionsFragment(position);
   }
 
-  public void updateActionBar(boolean mIsActionBarShown, String title) {
+  public void updateActionBar(boolean isActionBarShown, String title) {
     mRxBus.post(
-        new RxBusHelper.FragmentChangedOnScreen(mIsActionBarShown, title + mFieldObject.getName(),
+        new RxBusHelper.FragmentChangedOnScreen(isActionBarShown, title + mFieldObject.getName(),
             false));
   }
 

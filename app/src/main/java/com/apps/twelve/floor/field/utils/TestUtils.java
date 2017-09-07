@@ -195,6 +195,27 @@ public final class TestUtils {
             technologicalProcessStates.get(2)));
   }
 
+  // Actual technological processes
+  public static ArrayList<FieldCropTechnologicalProcessObject> actualTechnologicalProcesses;
+
+  static {
+    FieldObject field = FieldObject.EMPTY;
+    actualTechnologicalProcesses = new ArrayList<>();
+
+    actualTechnologicalProcesses.add(
+        new FieldCropTechnologicalProcessObject(1, field, cropTechnologicalProcesses.get(1),
+            technologicalProcessStates.get(1)));
+    actualTechnologicalProcesses.add(
+        new FieldCropTechnologicalProcessObject(2, field, cropTechnologicalProcesses.get(2),
+            technologicalProcessStates.get(1)));
+    actualTechnologicalProcesses.add(
+        new FieldCropTechnologicalProcessObject(3, field, cropTechnologicalProcesses.get(3),
+            technologicalProcessStates.get(1)));
+    actualTechnologicalProcesses.add(
+        new FieldCropTechnologicalProcessObject(4, field, cropTechnologicalProcesses.get(2),
+            technologicalProcessStates.get(1)));
+  }
+
   // Condition names
   private static ArrayList<ConditionNameObject> conditionNames;
 
@@ -429,6 +450,10 @@ public final class TestUtils {
 
   public static ArrayList<FieldCropTechnologicalProcessObject> getFieldTechnologicalProcesses() {
     return fieldTechnologicalProcesses;
+  }
+
+  public static ArrayList<FieldCropTechnologicalProcessObject> getAllActualTechnologicalProcesses() {
+    return actualTechnologicalProcesses;
   }
 
   public static ArrayList<FieldTechnologicalProcessSolutionObject> getTechnologicalProcessSolutions() {

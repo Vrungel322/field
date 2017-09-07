@@ -15,6 +15,7 @@ import com.apps.twelve.floor.field.data.local.db_filler.DbFillHelper;
 import com.apps.twelve.floor.field.di.modules.AppModule;
 import com.apps.twelve.floor.field.di.scopes.AppScope;
 import com.apps.twelve.floor.field.feature.MainActivityPresenter;
+import com.apps.twelve.floor.field.feature.actual_processes.ActualTechnologicalProcessesPresenter;
 import com.apps.twelve.floor.field.feature.add_field.AddFieldTrackingPresenter;
 import com.apps.twelve.floor.field.feature.edit_field.EditFieldPresenter;
 import com.apps.twelve.floor.field.feature.edit_field.MapPolygonEditPresenter;
@@ -46,6 +47,8 @@ import dagger.Component;
   void inject(AddFieldTrackingPresenter presenter);
 
   void inject(FieldTechnologicalMapPresenter presenter);
+
+  void inject(ActualTechnologicalProcessesPresenter presenter);
 
   void inject(FieldTechnologicalProcessPresenter presenter);
 
