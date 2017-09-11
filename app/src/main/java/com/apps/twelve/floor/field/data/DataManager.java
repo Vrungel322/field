@@ -53,6 +53,7 @@ import com.apps.twelve.floor.field.data.local.mappers.solutions.ProductObjectToP
 import com.apps.twelve.floor.field.data.local.mappers.solutions.TechnologicalSolutionObjectToTechnologicalSolutionEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.solutions.TechnologicalSolutionTypeObjectToTechnologicalSolutionTypeEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.technological_map.CropTechnologicalProcessObjectToCropTechnologicalProcessEntityMapper;
+import com.apps.twelve.floor.field.data.local.mappers.technological_map.CropTechnologicalProcessesSequenceObjectToCropTechnologicalProcessesSequenceEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.technological_map.FieldCropTechnologicalProcessConditionObjectToFieldCropTechnologicalProcessConditionEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.technological_map.TechnologicalProcessConditionObjectToTechnologicalProcessConditionEntityMapper;
 import com.apps.twelve.floor.field.data.local.mappers.technological_map.TechnologicalProcessStateObjectToTechnologicalProcessStateEntityMapper;
@@ -97,6 +98,7 @@ import com.apps.twelve.floor.field.data.local.objects.solutions.ProductObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionObject;
 import com.apps.twelve.floor.field.data.local.objects.solutions.TechnologicalSolutionTypeObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.CropTechnologicalProcessObject;
+import com.apps.twelve.floor.field.data.local.objects.technological_map.CropTechnologicalProcessesSequenceObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessConditionObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.FieldCropTechnologicalProcessObject;
 import com.apps.twelve.floor.field.data.local.objects.technological_map.TechnologicalProcessConditionObject;
@@ -484,6 +486,13 @@ public class DataManager {
     return mDbHelper.putTechnologicalProcessesCondition(
         new TechnologicalProcessConditionObjectToTechnologicalProcessConditionEntityMapper().transform(
             technologicalProcessCondition));
+  }
+
+  public PutResult putCropTechnologicalProcessesSequence(
+      CropTechnologicalProcessesSequenceObject cropTechnologicalProcessesSequence) {
+    return mDbHelper.putCropTechnologicalProcessesSequence(
+        new CropTechnologicalProcessesSequenceObjectToCropTechnologicalProcessesSequenceEntityMapper()
+            .transform(cropTechnologicalProcessesSequence));
   }
 
   public PutResult putSpanValue(SpanConditionValueObject spanConditionValueObject) {

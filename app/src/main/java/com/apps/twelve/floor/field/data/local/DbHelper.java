@@ -43,6 +43,7 @@ import com.apps.twelve.floor.field.data.local.entities.solutions.ProductEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntity;
+import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessesSequenceEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessConditionEntity;
@@ -664,6 +665,13 @@ public class DbHelper {
   public PutResult putTechnologicalProcessesCondition(
       TechnologicalProcessConditionEntity technologicalProcessConditionEntity) {
     return mStorIOSQLite.put().object(technologicalProcessConditionEntity)
+        .prepare()
+        .executeAsBlocking();
+  }
+
+  public PutResult putCropTechnologicalProcessesSequence(
+      CropTechnologicalProcessesSequenceEntity cropTechnologicalProcessesSequenceEntity) {
+    return mStorIOSQLite.put().object(cropTechnologicalProcessesSequenceEntity)
         .prepare()
         .executeAsBlocking();
   }

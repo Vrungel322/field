@@ -91,6 +91,8 @@ import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSo
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntitySQLiteTypeMapping;
+import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessesSequenceEntity;
+import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessesSequenceEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.FieldCropTechnologicalProcessEntitySQLiteTypeMapping;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessConditionEntity;
@@ -230,6 +232,9 @@ import dagger.Provides;
         // TechnologicalProcessConditionEntity mapping
         .addTypeMapping(TechnologicalProcessConditionEntity.class,
             new TechnologicalProcessConditionEntitySQLiteTypeMapping())
+        // CropTechnologicalProcessesSequenceEntity mapping
+        .addTypeMapping(CropTechnologicalProcessesSequenceEntity.class,
+            new CropTechnologicalProcessesSequenceEntitySQLiteTypeMapping())
         // TechnologicalProcessStateEntity mapping
         .addTypeMapping(TechnologicalProcessStateEntity.class,
             new TechnologicalProcessStateEntitySQLiteTypeMapping())

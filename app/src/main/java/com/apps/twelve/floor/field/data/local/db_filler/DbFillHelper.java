@@ -42,6 +42,7 @@ import com.apps.twelve.floor.field.data.local.entities.solutions.ProductEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionEntity;
 import com.apps.twelve.floor.field.data.local.entities.solutions.TechnologicalSolutionTypeEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessEntity;
+import com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessesSequenceEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessConditionEntity;
 import com.apps.twelve.floor.field.data.local.entities.technological_map.TechnologicalProcessStateEntity;
 import com.google.gson.Gson;
@@ -184,22 +185,15 @@ public class DbFillHelper {
         mDbHelper.putCropTechnologicalProcess((CropTechnologicalProcessEntity) entity);
       } else if (entity instanceof TechnologicalProcessConditionEntity) {
         mDbHelper.putTechnologicalProcessesCondition((TechnologicalProcessConditionEntity) entity);
+      } else if (entity instanceof CropTechnologicalProcessesSequenceEntity) {
+        mDbHelper.putCropTechnologicalProcessesSequence(
+            (CropTechnologicalProcessesSequenceEntity) entity);
       } else if (entity instanceof DiseasePathogenTypeEntity) {
         mDbHelper.putDiseasePathogenType((DiseasePathogenTypeEntity) entity);
       } else if (entity instanceof DiseaseEntity) {
         mDbHelper.putDisease((DiseaseEntity) entity);
-        /*try {
-          mDbHelper.putDisease((DiseaseEntity) entity);
-        } catch (Exception e) {
-          Timber.e("Failed to put Disease in DB: " + e.toString());
-        }*/
       } else if (entity instanceof FieldEntity) {
         mDbHelper.putField((FieldEntity) entity);
-        /*try {
-          mDbHelper.putField((FieldEntity) entity);
-        } catch (Exception e) {
-          Timber.e("Failed to put Field in DB: " + e.toString());
-        }*/
       } else {
         Timber.e("Got unknown entity: " + entity.getClass().getSimpleName());
       }
