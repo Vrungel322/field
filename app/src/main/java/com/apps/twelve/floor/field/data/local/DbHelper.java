@@ -99,6 +99,7 @@ import com.pushtorefresh.storio.sqlite.operations.put.PutResult;
 import java.util.List;
 import javax.inject.Inject;
 import rx.Observable;
+import timber.log.Timber;
 
 /**
  * Created by Yaroslav on 11.04.2017.
@@ -671,9 +672,19 @@ public class DbHelper {
 
   public PutResult putCropTechnologicalProcessesSequence(
       CropTechnologicalProcessesSequenceEntity cropTechnologicalProcessesSequenceEntity) {
-    return mStorIOSQLite.put().object(cropTechnologicalProcessesSequenceEntity)
-        .prepare()
-        .executeAsBlocking();
+
+    PutResult res;
+    try {
+      res = mStorIOSQLite.put()
+          .object(cropTechnologicalProcessesSequenceEntity)
+          .prepare()
+          .executeAsBlocking();
+    } catch (Exception e) {
+      Timber.e("ERROR PUTTING: " + e.toString());
+      res = PutResult.newInsertResult(-1, "non");
+    }
+
+    return res;
   }
 
   public DeleteResult deleteTechnologicalProcessesCondition(

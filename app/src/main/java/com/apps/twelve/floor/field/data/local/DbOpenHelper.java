@@ -44,6 +44,7 @@ import com.apps.twelve.floor.field.data.local.tables.solutions.ProductCategories
 import com.apps.twelve.floor.field.data.local.tables.solutions.ProductsTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.TechnologicalSolutionTypesTable;
 import com.apps.twelve.floor.field.data.local.tables.solutions.TechnologicalSolutionsTable;
+import com.apps.twelve.floor.field.data.local.tables.technological_map.CropTechnologicalProcessesSequencesTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.CropTechnologicalProcessesTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.FieldCropTechnologicalProcessesTable;
 import com.apps.twelve.floor.field.data.local.tables.technological_map.TechnologicalProcessStatesTable;
@@ -164,6 +165,8 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     db.execSQL(FieldCropTechnologicalProcessesTable.getCreateTableQuery());
     // CropTechnologicalProcesses
     db.execSQL(CropTechnologicalProcessesTable.getCreateTableQuery());
+    // CropTechnologicalProcessesSequencesTable
+    db.execSQL(CropTechnologicalProcessesSequencesTable.getCreateTableQuery());
     // TechnologicalProcessesConditions
     db.execSQL(TechnologicalProcessesConditionsTable.getCreateTableQuery());
     // TechnologicalProcessStates

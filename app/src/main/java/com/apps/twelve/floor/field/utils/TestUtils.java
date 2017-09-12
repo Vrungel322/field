@@ -162,16 +162,18 @@ public final class TestUtils {
     PhaseObject phase = PhaseObject.EMPTY;
     cropTechnologicalProcesses = new ArrayList<>();
     cropTechnologicalProcesses.add(
-        new CropTechnologicalProcessObject(1, "(T): Посев", 1, crop, climateZone, phase,
+        new CropTechnologicalProcessObject(1, "(T): Посев", 1, true, crop, climateZone, phase,
             processPeriods.get(0)));
     cropTechnologicalProcesses.add(
-        new CropTechnologicalProcessObject(2, "(T): Гербицидная обработка", 2, crop, climateZone,
+        new CropTechnologicalProcessObject(2, "(T): Гербицидная обработка", 2, false, crop,
+            climateZone,
             phase, processPeriods.get(1)));
     cropTechnologicalProcesses.add(
-        new CropTechnologicalProcessObject(3, "(T): Инсектицидная обработка", 3, crop, climateZone,
+        new CropTechnologicalProcessObject(3, "(T): Инсектицидная обработка", 3, false, crop,
+            climateZone,
             phase, processPeriods.get(2)));
     cropTechnologicalProcesses.add(
-        new CropTechnologicalProcessObject(4, "(T): Сбор урожая", 4, crop, climateZone, phase,
+        new CropTechnologicalProcessObject(4, "(T): Сбор урожая", 4, true, crop, climateZone, phase,
             processPeriods.get(3)));
   }
 

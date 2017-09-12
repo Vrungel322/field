@@ -29,17 +29,20 @@ public class CropTechnologicalProcessObject implements IObject, Parcelable {
   private long mId;
   @NonNull private String mName;
   private int mOrder;
+  private boolean mIsUnskippable;
   @NonNull private CropObject mCrop;
   @NonNull private ClimateZoneObject mClimateZone;
   @NonNull private PhaseObject mPhase;
   @NonNull private ProcessPeriodObject mPeriod;
 
   public CropTechnologicalProcessObject(long id, @NonNull String name, int order,
+      boolean isUnskippable,
       @NonNull CropObject crop, @NonNull ClimateZoneObject climateZone, @NonNull PhaseObject phase,
       @NonNull ProcessPeriodObject period) {
     this.mId = id;
     this.mName = name;
     this.mOrder = order;
+    this.mIsUnskippable = isUnskippable;
     this.mCrop = crop;
     this.mClimateZone = climateZone;
     this.mPhase = phase;
@@ -50,6 +53,7 @@ public class CropTechnologicalProcessObject implements IObject, Parcelable {
     this.mId = in.readLong();
     this.mName = in.readString();
     this.mOrder = in.readInt();
+    this.mIsUnskippable = in.readByte() != 0;
     this.mCrop = in.readParcelable(CropObject.class.getClassLoader());
     this.mClimateZone = in.readParcelable(ClimateZoneObject.class.getClassLoader());
     this.mPhase = in.readParcelable(PhaseObject.class.getClassLoader());
@@ -64,6 +68,7 @@ public class CropTechnologicalProcessObject implements IObject, Parcelable {
     dest.writeLong(mId);
     dest.writeString(mName);
     dest.writeInt(mOrder);
+    dest.writeByte((byte) (mIsUnskippable ? 1 : 0));
     dest.writeParcelable(mCrop, flags);
     dest.writeParcelable(mClimateZone, flags);
     dest.writeParcelable(mPhase, flags);
@@ -92,6 +97,14 @@ public class CropTechnologicalProcessObject implements IObject, Parcelable {
 
   public void setOrder(int order) {
     this.mOrder = order;
+  }
+
+  public boolean isUnskippable() {
+    return mIsUnskippable;
+  }
+
+  public void setUnskippable(boolean isUnskippable) {
+    this.mIsUnskippable = isUnskippable;
   }
 
   public CropObject getCrop() {

@@ -6973,11 +6973,384 @@
   {
     "EntitiesArray": [
       {
+        "Id": 1,
+        "CropTechnologicalProcessId": 1,
+        "NextCropTechnologicalProcessId": 2
+      },
+      {
+        "Id": 2,
+        "CropTechnologicalProcessId": 2,
+        "NextCropTechnologicalProcessId": 3
+      },
+      {
+        "Id": 3,
+        "CropTechnologicalProcessId": 3,
+        "NextCropTechnologicalProcessId": 6
+      },
+      {
+        "Id": 4,
+        "CropTechnologicalProcessId": 6,
+        "NextCropTechnologicalProcessId": 9
+      },
+      {
+        "Id": 5,
+        "CropTechnologicalProcessId": 6,
+        "NextCropTechnologicalProcessId": 15
+      },
+      {
+        "Id": 6,
+        "CropTechnologicalProcessId": 6,
+        "NextCropTechnologicalProcessId": 24
+      },
+      {
+        "Id": 7,
+        "CropTechnologicalProcessId": 9,
+        "NextCropTechnologicalProcessId": 12
+      },
+      {
+        "Id": 8,
+        "CropTechnologicalProcessId": 9,
+        "NextCropTechnologicalProcessId": 15
+      },
+      {
+        "Id": 9,
+        "CropTechnologicalProcessId": 9,
+        "NextCropTechnologicalProcessId": 24
+      },
+      {
+        "Id": 10,
+        "CropTechnologicalProcessId": 12,
+        "NextCropTechnologicalProcessId": 15
+      },
+      {
+        "Id": 11,
+        "CropTechnologicalProcessId": 12,
+        "NextCropTechnologicalProcessId": 18
+      },
+      {
+        "Id": 12,
+        "CropTechnologicalProcessId": 12,
+        "NextCropTechnologicalProcessId": 21
+      },
+      {
+        "Id": 13,
+        "CropTechnologicalProcessId": 12,
+        "NextCropTechnologicalProcessId": 24
+      },
+      {
+        "Id": 14,
+        "CropTechnologicalProcessId": 15,
+        "NextCropTechnologicalProcessId": 18
+      },
+      {
+        "Id": 15,
+        "CropTechnologicalProcessId": 18,
+        "NextCropTechnologicalProcessId": 21
+      },
+      {
+        "Id": 16,
+        "CropTechnologicalProcessId": 21,
+        "NextCropTechnologicalProcessId": 27
+      },
+      {
+        "Id": 17,
+        "CropTechnologicalProcessId": 24,
+        "NextCropTechnologicalProcessId": 27
+      },
+      {
+        "Id": 18,
+        "CropTechnologicalProcessId": 27,
+        "NextCropTechnologicalProcessId": 30
+      },
+      {
+        "Id": 19,
+        "CropTechnologicalProcessId": 27,
+        "NextCropTechnologicalProcessId": 32
+      },
+      {
+        "Id": 20,
+        "CropTechnologicalProcessId": 30,
+        "NextCropTechnologicalProcessId": 31
+      },
+      {
+        "Id": 21,
+        "CropTechnologicalProcessId": 31,
+        "NextCropTechnologicalProcessId": 33
+      },
+      {
+        "Id": 22,
+        "CropTechnologicalProcessId": 32,
+        "NextCropTechnologicalProcessId": 33
+      },
+      {
+        "Id": 23,
+        "CropTechnologicalProcessId": 33,
+        "NextCropTechnologicalProcessId": 34
+      },
+      {
+        "Id": 24,
+        "CropTechnologicalProcessId": 33,
+        "NextCropTechnologicalProcessId": 40
+      },
+      {
+        "Id": 25,
+        "CropTechnologicalProcessId": 34,
+        "NextCropTechnologicalProcessId": 37
+      },
+      {
+        "Id": 26,
+        "CropTechnologicalProcessId": 37,
+        "NextCropTechnologicalProcessId": 43
+      },
+      {
+        "Id": 27,
+        "CropTechnologicalProcessId": 40,
+        "NextCropTechnologicalProcessId": 43
+      },
+
+      {
+        "Id": 28,
+        "CropTechnologicalProcessId": 2,
+        "NextCropTechnologicalProcessId": 4
+      },
+      {
+        "Id": 29,
+        "CropTechnologicalProcessId": 4,
+        "NextCropTechnologicalProcessId": 7
+      },
+      {
+        "Id": 30,
+        "CropTechnologicalProcessId": 7,
+        "NextCropTechnologicalProcessId": 10
+      },
+      {
+        "Id": 31,
+        "CropTechnologicalProcessId": 7,
+        "NextCropTechnologicalProcessId": 16
+      },
+      {
+        "Id": 32,
+        "CropTechnologicalProcessId": 7,
+        "NextCropTechnologicalProcessId": 25
+      },
+      {
+        "Id": 33,
+        "CropTechnologicalProcessId": 10,
+        "NextCropTechnologicalProcessId": 13
+      },
+      {
+        "Id": 34,
+        "CropTechnologicalProcessId": 10,
+        "NextCropTechnologicalProcessId": 16
+      },
+      {
+        "Id": 35,
+        "CropTechnologicalProcessId": 10,
+        "NextCropTechnologicalProcessId": 25
+      },
+      {
+        "Id": 36,
+        "CropTechnologicalProcessId": 13,
+        "NextCropTechnologicalProcessId": 16
+      },
+      {
+        "Id": 37,
+        "CropTechnologicalProcessId": 13,
+        "NextCropTechnologicalProcessId": 19
+      },
+      {
+        "Id": 38,
+        "CropTechnologicalProcessId": 13,
+        "NextCropTechnologicalProcessId": 22
+      },
+      {
+        "Id": 39,
+        "CropTechnologicalProcessId": 13,
+        "NextCropTechnologicalProcessId": 25
+      },
+      {
+        "Id": 40,
+        "CropTechnologicalProcessId": 16,
+        "NextCropTechnologicalProcessId": 19
+      },
+      {
+        "Id": 41,
+        "CropTechnologicalProcessId": 19,
+        "NextCropTechnologicalProcessId": 22
+      },
+      {
+        "Id": 42,
+        "CropTechnologicalProcessId": 22,
+        "NextCropTechnologicalProcessId": 28
+      },
+      {
+        "Id": 43,
+        "CropTechnologicalProcessId": 25,
+        "NextCropTechnologicalProcessId": 28
+      },
+      {
+        "Id": 44,
+        "CropTechnologicalProcessId": 28,
+        "NextCropTechnologicalProcessId": 30
+      },
+      {
+        "Id": 45,
+        "CropTechnologicalProcessId": 28,
+        "NextCropTechnologicalProcessId": 32
+      },
+      {
+        "Id": 46,
+        "CropTechnologicalProcessId": 33,
+        "NextCropTechnologicalProcessId": 35
+      },
+      {
+        "Id": 47,
+        "CropTechnologicalProcessId": 33,
+        "NextCropTechnologicalProcessId": 41
+      },
+      {
+        "Id": 48,
+        "CropTechnologicalProcessId": 35,
+        "NextCropTechnologicalProcessId": 38
+      },
+      {
+        "Id": 49,
+        "CropTechnologicalProcessId": 38,
+        "NextCropTechnologicalProcessId": 43
+      },
+      {
+        "Id": 50,
+        "CropTechnologicalProcessId": 41,
+        "NextCropTechnologicalProcessId": 43
+      },
+
+      {
+        "Id": 51,
+        "CropTechnologicalProcessId": 2,
+        "NextCropTechnologicalProcessId": 5
+      },
+      {
+        "Id": 52,
+        "CropTechnologicalProcessId": 5,
+        "NextCropTechnologicalProcessId": 8
+      },
+      {
+        "Id": 53,
+        "CropTechnologicalProcessId": 8,
+        "NextCropTechnologicalProcessId": 11
+      },
+      {
+        "Id": 54,
+        "CropTechnologicalProcessId": 8,
+        "NextCropTechnologicalProcessId": 17
+      },
+      {
+        "Id": 55,
+        "CropTechnologicalProcessId": 8,
+        "NextCropTechnologicalProcessId": 26
+      },
+      {
+        "Id": 56,
+        "CropTechnologicalProcessId": 11,
+        "NextCropTechnologicalProcessId": 14
+      },
+      {
+        "Id": 57,
+        "CropTechnologicalProcessId": 11,
+        "NextCropTechnologicalProcessId": 17
+      },
+      {
+        "Id": 58,
+        "CropTechnologicalProcessId": 11,
+        "NextCropTechnologicalProcessId": 26
+      },
+      {
+        "Id": 59,
+        "CropTechnologicalProcessId": 14,
+        "NextCropTechnologicalProcessId": 17
+      },
+      {
+        "Id": 60,
+        "CropTechnologicalProcessId": 14,
+        "NextCropTechnologicalProcessId": 20
+      },
+      {
+        "Id": 61,
+        "CropTechnologicalProcessId": 14,
+        "NextCropTechnologicalProcessId": 23
+      },
+      {
+        "Id": 62,
+        "CropTechnologicalProcessId": 14,
+        "NextCropTechnologicalProcessId": 26
+      },
+      {
+        "Id": 63,
+        "CropTechnologicalProcessId": 17,
+        "NextCropTechnologicalProcessId": 20
+      },
+      {
+        "Id": 64,
+        "CropTechnologicalProcessId": 20,
+        "NextCropTechnologicalProcessId": 23
+      },
+      {
+        "Id": 65,
+        "CropTechnologicalProcessId": 23,
+        "NextCropTechnologicalProcessId": 29
+      },
+      {
+        "Id": 66,
+        "CropTechnologicalProcessId": 26,
+        "NextCropTechnologicalProcessId": 29
+      },
+      {
+        "Id": 67,
+        "CropTechnologicalProcessId": 29,
+        "NextCropTechnologicalProcessId": 30
+      },
+      {
+        "Id": 68,
+        "CropTechnologicalProcessId": 29,
+        "NextCropTechnologicalProcessId": 32
+      },
+      {
+        "Id": 69,
+        "CropTechnologicalProcessId": 33,
+        "NextCropTechnologicalProcessId": 36
+      },
+      {
+        "Id": 70,
+        "CropTechnologicalProcessId": 33,
+        "NextCropTechnologicalProcessId": 42
+      },
+      {
+        "Id": 71,
+        "CropTechnologicalProcessId": 36,
+        "NextCropTechnologicalProcessId": 39
+      },
+      {
+        "Id": 72,
+        "CropTechnologicalProcessId": 39,
+        "NextCropTechnologicalProcessId": 43
+      },
+      {
+        "Id": 73,
+        "CropTechnologicalProcessId": 42,
+        "NextCropTechnologicalProcessId": 43
+      }
+    ],
+    "EntityKey": "com.apps.twelve.floor.field.data.local.entities.technological_map.CropTechnologicalProcessesSequenceEntity"
+  },
+  {
+    "EntitiesArray": [
+      {
         "ClimateZoneId": 1,
         "CropId": 1,
         "Id": 1,
         "Name": "Ранньовесняне боронування",
         "Order": 1,
+        "IsUnskippable": false,
         "PhaseId": 1,
         "ProcessPeriodId": 1
       },
@@ -6987,6 +7360,7 @@
         "Id": 2,
         "Name": "Культивація з боронуванням",
         "Order": 2,
+        "IsUnskippable": false,
         "PhaseId": 2,
         "ProcessPeriodId": 2
       },
@@ -6996,6 +7370,7 @@
         "Id": 3,
         "Name": "Протруювання насіння та обробка регуляторами росту, біологічно-активними речовинами",
         "Order": 3,
+        "IsUnskippable": false,
         "PhaseId": 3,
         "ProcessPeriodId": 3
       },
@@ -7005,6 +7380,7 @@
         "Id": 4,
         "Name": "Протруювання насіння та обробка регуляторами росту, біологічно-активними речовинами",
         "Order": 3,
+        "IsUnskippable": false,
         "PhaseId": 3,
         "ProcessPeriodId": 4
       },
@@ -7014,6 +7390,7 @@
         "Id": 5,
         "Name": "Протруювання насіння та обробка регуляторами росту, біологічно-активними речовинами",
         "Order": 3,
+        "IsUnskippable": false,
         "PhaseId": 3,
         "ProcessPeriodId": 5
       },
@@ -7023,6 +7400,7 @@
         "Id": 6,
         "Name": "Посів та припосівне внесення добрив. Передпосівний обробіток ґрунту з послідуючою сівбою",
         "Order": 4,
+        "IsUnskippable": true,
         "PhaseId": 4,
         "ProcessPeriodId": 6
       },
@@ -7032,6 +7410,7 @@
         "Id": 7,
         "Name": "Посів та припосівне внесення добрив. Передпосівний обробіток ґрунту з послідуючою сівбою",
         "Order": 4,
+        "IsUnskippable": true,
         "PhaseId": 4,
         "ProcessPeriodId": 7
       },
@@ -7041,6 +7420,7 @@
         "Id": 8,
         "Name": "Посів та припосівне внесення добрив. Передпосівний обробіток ґрунту з послідуючою сівбою",
         "Order": 4,
+        "IsUnskippable": true,
         "PhaseId": 4,
         "ProcessPeriodId": 8
       },
@@ -7050,6 +7430,7 @@
         "Id": 9,
         "Name": "Коткування",
         "Order": 4,
+        "IsUnskippable": false,
         "PhaseId": 5,
         "ProcessPeriodId": 6
       },
@@ -7059,6 +7440,7 @@
         "Id": 10,
         "Name": "Коткування",
         "Order": 4,
+        "IsUnskippable": false,
         "PhaseId": 5,
         "ProcessPeriodId": 7
       },
@@ -7068,6 +7450,7 @@
         "Id": 11,
         "Name": "Коткування",
         "Order": 4,
+        "IsUnskippable": false,
         "PhaseId": 5,
         "ProcessPeriodId": 8
       },
@@ -7077,6 +7460,7 @@
         "Id": 12,
         "Name": "Внесення гербіциду ґрунтової дії",
         "Order": 4,
+        "IsUnskippable": false,
         "PhaseId": 6,
         "ProcessPeriodId": 6
       },
@@ -7086,6 +7470,7 @@
         "Id": 13,
         "Name": "Внесення гербіциду ґрунтової дії",
         "Order": 4,
+        "IsUnskippable": false,
         "PhaseId": 6,
         "ProcessPeriodId": 7
       },
@@ -7095,6 +7480,7 @@
         "Id": 14,
         "Name": "Внесення гербіциду ґрунтової дії",
         "Order": 4,
+        "IsUnskippable": false,
         "PhaseId": 6,
         "ProcessPeriodId": 8
       },
@@ -7104,6 +7490,7 @@
         "Id": 15,
         "Name": "Досходове боронування",
         "Order": 5,
+        "IsUnskippable": false,
         "PhaseId": 7,
         "ProcessPeriodId": 9
       },
@@ -7113,6 +7500,7 @@
         "Id": 16,
         "Name": "Досходове боронування",
         "Order": 5,
+        "IsUnskippable": false,
         "PhaseId": 7,
         "ProcessPeriodId": 10
       },
@@ -7122,6 +7510,7 @@
         "Id": 17,
         "Name": "Досходове боронування",
         "Order": 5,
+        "IsUnskippable": false,
         "PhaseId": 7,
         "ProcessPeriodId": 11
       },
@@ -7131,6 +7520,7 @@
         "Id": 18,
         "Name": "Післясходове боронування перше",
         "Order": 6,
+        "IsUnskippable": false,
         "PhaseId": 8,
         "ProcessPeriodId": 12
       },
@@ -7140,6 +7530,7 @@
         "Id": 19,
         "Name": "Післясходове боронування перше",
         "Order": 6,
+        "IsUnskippable": false,
         "PhaseId": 8,
         "ProcessPeriodId": 13
       },
@@ -7149,6 +7540,7 @@
         "Id": 20,
         "Name": "Післясходове боронування перше",
         "Order": 6,
+        "IsUnskippable": false,
         "PhaseId": 8,
         "ProcessPeriodId": 14
       },
@@ -7158,6 +7550,7 @@
         "Id": 21,
         "Name": "Післясходове боронування друге",
         "Order": 7,
+        "IsUnskippable": false,
         "PhaseId": 9,
         "ProcessPeriodId": 15
       },
@@ -7167,6 +7560,7 @@
         "Id": 22,
         "Name": "Післясходове боронування друге",
         "Order": 7,
+        "IsUnskippable": false,
         "PhaseId": 9,
         "ProcessPeriodId": 16
       },
@@ -7176,6 +7570,7 @@
         "Id": 23,
         "Name": "Післясходове боронування друге",
         "Order": 7,
+        "IsUnskippable": false,
         "PhaseId": 9,
         "ProcessPeriodId": 17
       },
@@ -7185,6 +7580,7 @@
         "Id": 24,
         "Name": "Внесення гербіциду по вегетуючій культурі",
         "Order": 5,
+        "IsUnskippable": false,
         "PhaseId": 10,
         "ProcessPeriodId": 18
       },
@@ -7194,6 +7590,7 @@
         "Id": 25,
         "Name": "Внесення гербіциду по вегетуючій культурі",
         "Order": 5,
+        "IsUnskippable": false,
         "PhaseId": 10,
         "ProcessPeriodId": 19
       },
@@ -7203,6 +7600,7 @@
         "Id": 26,
         "Name": "Внесення гербіциду по вегетуючій культурі",
         "Order": 5,
+        "IsUnskippable": false,
         "PhaseId": 10,
         "ProcessPeriodId": 20
       },
@@ -7212,6 +7610,7 @@
         "Id": 27,
         "Name": "Боротьба з шкідниками: обприскування посівів інсектицидами",
         "Order": 8,
+        "IsUnskippable": false,
         "PhaseId": 11,
         "ProcessPeriodId": 18
       },
@@ -7221,6 +7620,7 @@
         "Id": 28,
         "Name": "Боротьба з шкідниками: обприскування посівів інсектицидами",
         "Order": 8,
+        "IsUnskippable": false,
         "PhaseId": 11,
         "ProcessPeriodId": 19
       },
@@ -7230,6 +7630,7 @@
         "Id": 29,
         "Name": "Боротьба з шкідниками: обприскування посівів інсектицидами",
         "Order": 8,
+        "IsUnskippable": false,
         "PhaseId": 11,
         "ProcessPeriodId": 20
       },
@@ -7239,6 +7640,7 @@
         "Id": 30,
         "Name": "Міжрядний обробіток: перша культивація",
         "Order": 9,
+        "IsUnskippable": false,
         "PhaseId": 12,
         "ProcessPeriodId": 21
       },
@@ -7248,6 +7650,7 @@
         "Id": 31,
         "Name": "Міжрядний обробіток: друга культивація",
         "Order": 10,
+        "IsUnskippable": false,
         "PhaseId": 12,
         "ProcessPeriodId": 21
       },
@@ -7257,6 +7660,7 @@
         "Id": 32,
         "Name": "Внесення страхового гербіциду",
         "Order": 9,
+        "IsUnskippable": false,
         "PhaseId": 13,
         "ProcessPeriodId": 21
       },
@@ -7266,6 +7670,7 @@
         "Id": 33,
         "Name": "Прикореневе підживлення кукурудзи",
         "Order": 11,
+        "IsUnskippable": false,
         "PhaseId": 14,
         "ProcessPeriodId": 22
       },
@@ -7275,6 +7680,7 @@
         "Id": 34,
         "Name": "Біологічний  метод боротьби з шкідниками: перший випуск трихограми",
         "Order": 12,
+        "IsUnskippable": false,
         "PhaseId": 15,
         "ProcessPeriodId": 23
       },
@@ -7284,6 +7690,7 @@
         "Id": 35,
         "Name": "Біологічний  метод боротьби з шкідниками: перший випуск трихограми",
         "Order": 12,
+        "IsUnskippable": false,
         "PhaseId": 15,
         "ProcessPeriodId": 24
       },
@@ -7293,6 +7700,7 @@
         "Id": 36,
         "Name": "Біологічний  метод боротьби з шкідниками: перший випуск трихограми",
         "Order": 12,
+        "IsUnskippable": false,
         "PhaseId": 15,
         "ProcessPeriodId": 25
       },
@@ -7302,6 +7710,7 @@
         "Id": 37,
         "Name": "Біологічний  метод боротьби з шкідниками: другий випуск трихограми",
         "Order": 13,
+        "IsUnskippable": false,
         "PhaseId": 16,
         "ProcessPeriodId": 26
       },
@@ -7311,6 +7720,7 @@
         "Id": 38,
         "Name": "Біологічний  метод боротьби з шкідниками: другий випуск трихограми",
         "Order": 13,
+        "IsUnskippable": false,
         "PhaseId": 16,
         "ProcessPeriodId": 27
       },
@@ -7320,6 +7730,7 @@
         "Id": 39,
         "Name": "Біологічний  метод боротьби з шкідниками: другий випуск трихограми",
         "Order": 13,
+        "IsUnskippable": false,
         "PhaseId": 16,
         "ProcessPeriodId": 28
       },
@@ -7329,6 +7740,7 @@
         "Id": 40,
         "Name": "Обробка посівів інсектицидами",
         "Order": 13,
+        "IsUnskippable": false,
         "PhaseId": 16,
         "ProcessPeriodId": 29
       },
@@ -7338,6 +7750,7 @@
         "Id": 41,
         "Name": "Обробка посівів інсектицидами",
         "Order": 13,
+        "IsUnskippable": false,
         "PhaseId": 16,
         "ProcessPeriodId": 30
       },
@@ -7347,6 +7760,7 @@
         "Id": 42,
         "Name": "Обробка посівів інсектицидами",
         "Order": 13,
+        "IsUnskippable": false,
         "PhaseId": 16,
         "ProcessPeriodId": 31
       },
@@ -7356,6 +7770,7 @@
         "Id": 43,
         "Name": "Збір урожаю",
         "Order": 14,
+        "IsUnskippable": true,
         "PhaseId": 19,
         "ProcessPeriodId": 32
       }

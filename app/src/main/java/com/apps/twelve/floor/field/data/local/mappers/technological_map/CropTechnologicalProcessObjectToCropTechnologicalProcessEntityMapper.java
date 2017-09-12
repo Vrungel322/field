@@ -13,7 +13,7 @@ public class CropTechnologicalProcessObjectToCropTechnologicalProcessEntityMappe
   @Override public CropTechnologicalProcessEntity transform(CropTechnologicalProcessObject obj)
       throws RuntimeException {
     return CropTechnologicalProcessEntity.newCropTechnologicalProcessesModel(obj.getId(),
-        obj.getName(), obj.getOrder(), obj.getCropId(), obj.getClimateZoneId(), obj.getPeriodId(),
-        obj.getPhaseId());
+        obj.getName(), obj.getOrder(), obj.isUnskippable(), obj.getCropId(), obj.getClimateZoneId(),
+        obj.getPeriodId(), obj.getPhaseId());
   }
 }
